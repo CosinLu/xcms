@@ -359,8 +359,8 @@ class Category
         $vals[$this->level_name] = $level;
         $vals[$this->pid_name] = $pid;
         $this->CI->db->insert($this->tb_name, $vals);
-        $bool = $this->CI->db->insert_id();
-        return $bool;
+        $insert_id = $this->CI->db->insert_id();
+        return $insert_id;
     }
 
     /**

@@ -19,10 +19,10 @@ class Sys_dict extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('sys_dict/get_list');
-        $url['insert_url'] = '<a href="' . site_url('sys_dict/insert') . '" class="btn btn-default">新增</a>';
-        $url['save_url'] = site_url('sys_dict/save');
-        $url['del_url'] = site_url('sys_dict/del');
+        $url['get_list_url'] = site_url('sys_dict/get_list?sys_cid=' . $this->sys_cid);
+        $url['insert_url'] = '<a href="' . site_url('sys_dict/insert?sys_cid=' . $this->sys_cid) . '" class="btn btn-default">新增</a>';
+        $url['save_url'] = site_url('sys_dict/save?sys_cid=' . $this->sys_cid);
+        $url['del_url'] = site_url('sys_dict/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
 
@@ -62,7 +62,7 @@ class Sys_dict extends MY_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->sys_dict->update();
         $data['sys_dict_type'] = $this->sys_dict->sys_dict_type();
-        $data['sys_dict_col'] = $this->category->update_option($id, $data['item']['pid'],$data['sys_dict_type']);
+        $data['sys_dict_col'] = $this->category->update_option($id, $data['item']['pid'], $data['sys_dict_type']);
         $this->load->view('sys_dict/update.html', $data);
     }
 

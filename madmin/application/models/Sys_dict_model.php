@@ -18,10 +18,10 @@ class Sys_dict_model extends MY_Model
     public function get_list()
     {
         $this->db->from('sys_dict');
-        $this->db->order_by('id asc');
-        $sys_dict_data = $this->db->get()->result_array();
-        $data['list'] = $this->category->children($sys_dict_data);
-        $data['total_nums'] = count($sys_dict_data);
+        $this->db->order_by('sort asc,id asc');
+        $res = $this->db->get()->result_array();
+        $data['list'] = $this->category->children($res);
+        $data['total_nums'] = count($res);
         return $data;
     }
 

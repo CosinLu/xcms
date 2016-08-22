@@ -42,10 +42,11 @@ class Sys_dict
     public function checkbox($pid = 0, $name = '', $check_val = '')
     {
         $str = '';
+        $check_val_arr = explode(',', $check_val);
         $res = $this->all($pid);
         foreach ($res as $val) {
-            if (is_array($check_val)) {
-                $checked = (in_array($val['ident'], $check_val)) ? 'checked' : '';
+            if (is_array($check_val_arr)) {
+                $checked = (in_array($val['ident'], $check_val_arr)) ? 'checked' : '';
             } else {
                 $checked = ($val['ident'] == $check_val) ? 'checked' : '';
             }

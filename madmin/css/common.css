@@ -96,8 +96,8 @@ a.disabled {
 
     /* 复选框 */
     input[type="checkbox"]:checked + ins:before {
-        width: 8px;
-        height: 5px;
+        width: 10px;
+        height: 6px;
         border-color: transparent transparent #333 #333;
         border-width: 1px;
         border-style: solid;

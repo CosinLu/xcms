@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-22 18:48:10
+Date: 2016-08-23 00:04:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -205,18 +205,20 @@ CREATE TABLE `sys_col` (
   `param` varchar(100) DEFAULT NULL COMMENT '参数',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型：developer=开发者，producter=生产者',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
+INSERT INTO `sys_col` VALUES ('1', '开始', '0', '1', '', 'welcome', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('2', '系统信息', '1', '2', '', 'welcome', '', '', '', 'pro', 'hide', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -224,12 +226,16 @@ CREATE TABLE `sys_col` (
 DROP TABLE IF EXISTS `sys_col_auth`;
 CREATE TABLE `sys_col_auth` (
   `sys_col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
-  `sys_col_auth_id` int(10) DEFAULT NULL COMMENT '系统栏目权限标识'
+  `sys_col_auth` varchar(10) DEFAULT NULL COMMENT '系统栏目权限标识'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统栏目权限表';
 
 -- ----------------------------
 -- Records of sys_col_auth
 -- ----------------------------
+INSERT INTO `sys_col_auth` VALUES ('1', 'look');
+INSERT INTO `sys_col_auth` VALUES ('2', 'look');
+INSERT INTO `sys_col_auth` VALUES ('2', 'del');
+INSERT INTO `sys_col_auth` VALUES ('2', 'insert');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -263,8 +269,8 @@ INSERT INTO `sys_dict` VALUES ('6', '用户类型', '0', '1', '', '#333333', '',
 INSERT INTO `sys_dict` VALUES ('7', '生产者', '6', '2', 'pro', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('8', '开发者', '6', '2', 'dev', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('9', '显示', '0', '1', '', '#333333', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('10', '显示', '9', '2', '1', '#5cb85c', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('11', '隐藏', '9', '2', '0', '#d9534f', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role
