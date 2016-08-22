@@ -1,0 +1,405 @@
+@import "common.css";
+@import "bootstrap.e.css";
+
+/*登录页头部*/
+.header_container {
+    width: 600px;
+    padding: 45px 0 0 0;
+}
+
+.header_container .logo {
+    float: left;
+    font-size: 22px;
+    color: #337ab7;
+}
+
+.header_container .expressway {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #7f7f7f;
+}
+
+.header_container .expressway a {
+    color: #7f7f7f;
+}
+
+.header_container .expressway i {
+    padding: 0 5px;
+}
+
+/*登录面板*/
+.form_login {
+    width: 320px;
+    margin: 100px auto 0px;
+}
+
+.form_login .form-control {
+    height: 48px;
+}
+
+.form_login .form-group {
+    margin-bottom: 0px;
+}
+
+.form_login .form_alert {
+    height: 22px;
+    padding: 2px 0 0 0;
+    font-size: 12px;
+}
+
+.form_login .btn {
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin: 10px 0 0 0;
+}
+
+.form_login .txtcode {
+    text-transform: uppercase;
+}
+
+.form_login .input-group-addon {
+    background: #fff;
+}
+
+/*框架*/
+.iframe-container {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+}
+
+.iframe-container .iframe-sidebar {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    width: 200px;
+}
+
+.iframe-container .iframe-sidebar-hidden {
+    left: -200px;
+}
+
+.iframe-container .iframe-sidebar-hidden + .iframe-main {
+    left: 0;
+}
+
+.iframe-container .iframe-main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 200px;
+    overflow: auto;
+}
+
+.iframe-container .iframe-main iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+.iframe-container .iframe-main-sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    width: 200px;
+}
+
+.iframe-container .iframe-main-sidebar + .iframe-main-section {
+    left: 200px;
+}
+
+.iframe-container .iframe-main-section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.iframe-inverse .iframe-sidebar {
+    background: #293038;
+}
+
+.iframe-inverse .iframe-main-sidebar {
+    background: #edf0f2;
+}
+
+/*模块侧边栏*/
+.iframe-sidebar::-webkit-scrollbar-thumb {
+    background-color: #37424f; /*#293038*/
+}
+
+.iframe-sidebar {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.iframe-sidebar .mtree ul {
+    margin: 0;
+}
+
+.iframe-sidebar .mtree a {
+    color: #b4b6bd;
+    line-height: 40px;
+}
+
+.iframe-sidebar .mtree a:hover,
+.iframe-sidebar .mtree a.current:hover,
+.iframe-sidebar .mtree a.slide_down:hover {
+    color: #fff;
+}
+
+.iframe-sidebar .mtree a.current {
+    background: #22282e;
+    color: #fff;
+}
+
+.iframe-sidebar .mtree span[data-name="mtree_btn"] {
+    width: 40px;
+    line-height: 40px;
+}
+
+.iframe-sidebar.sidebar_hidden {
+    left: -200px;
+}
+
+.iframe-sidebar.sidebar_hidden + .iframe-main {
+    left: 0;
+}
+
+/*内容模块*/
+/*.main_container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main_container .main_sidebar_mdl {
+    position: absolute;
+    width: 200px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-right: #ccc solid 1px;
+    overflow: auto;
+}
+
+.main_container .main_sidebar_mdl + .main_section_mdl {
+    left: 200px;
+}
+
+.main_container .main_section_mdl {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+.main_container .main_section_mdl .main_section_container{
+    position: absolute;
+    top:40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}*/
+
+/*面包屑导航*/
+.section_name_mdl {
+    height: 40px;
+    background: #fff;
+    border-bottom: #ddd solid 1px;
+}
+
+.section_name_mdl .section_name {
+    line-height: 40px;
+    float: left;
+    margin: 0;
+}
+
+.section_name_mdl .section_name:before {
+    content: '';
+    height: 14px;
+    width: 4px;
+    background: #337ab7;
+    display: inline-block;
+    vertical-align: -2px;
+    margin: 0 8px 0 15px;
+}
+
+.section_name_mdl .breadcrumb {
+    background: none;
+    margin: 0;
+    padding: 10px 15px 0;
+}
+
+/*分页*/
+.pagination_box {
+    text-align: right;
+    margin: 0 0 20px;
+}
+
+.pagination_info {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 16px;
+    color: #888;
+}
+
+.pagination {
+    font-size: 14px;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+    border-radius: 0;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    z-index: 4;
+}
+
+/*主内容区*/
+.section_container {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.section_content {
+    position: relative;
+}
+
+.nocategory {
+    font-size: 22px;
+    text-align: center;
+    padding: 100px 0 0 0;
+}
+
+.nocategory i {
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    font-size: 36px;
+    color: #f0ad4e;
+}
+
+/*站点配置*/
+.config_menubar {
+    padding: 20px 18px;
+}
+
+/*检索*/
+.search_bar {
+    padding: 10px 0;
+}
+
+/*列表*/
+div[data-name="loading"],
+div[data-name="nodata"] {
+    text-align: center;
+    padding:80px 0;
+}
+
+.table_list a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.table_list kbd {
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    font-size: 12px;
+}
+
+.table_list .checkbox,
+.table_list .radio {
+    margin: 0;
+}
+
+.table_list label {
+    margin-bottom: 0;
+}
+
+.table_list img {
+    width: 120px;
+    height: 80px;
+}
+
+/*操作区*/
+.form_container {
+    padding: 20px 0;
+}
+
+.form_container label {
+    margin: 0 10px 0 0;
+}
+
+/*设置权限*/
+.updata_auth {
+    padding: 0 0 20px;
+}
+
+/*内容区侧边栏*/
+.main_sidebar_title {
+    background: #d9dee4;
+    height: 40px;
+    margin: 0;
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.main_sidebar_tree {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.main_sidebar_tree .mtree ul {
+    margin: 0;
+}
+
+.main_sidebar_tree .mtree a {
+    color: #333;
+    line-height: 40px;
+}
+
+.main_sidebar_tree .mtree a:hover,
+.main_sidebar_tree .mtree a.current {
+    background: #fff;
+}
