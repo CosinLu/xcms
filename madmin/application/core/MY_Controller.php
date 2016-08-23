@@ -15,9 +15,81 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->sys_cid = $this->input->get('sys_id');
+        $this->sys_cid = $this->input->get('sys_cid');
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->is_save = ($this->input->post('is_save') == '') ? '1' : $this->input->post('is_save');
+        $this->load->library('category', array('tb_name' => 'sys_col'), 'my_category');
+
+        $this->menu();//菜单
+        $this->sidebar();
+    }
+
+    //菜单
+    public function menu()
+    {
+        $sys_col = $this->sys_col();//系统栏目
+        $sys_col_sort = $this->my_category->children($sys_col);//排序后的系统栏目
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得栏目所有上级id
+        $sys_col_url = $this->my_category->children_url($sys_col_sort);//获得系统栏目url
+        foreach ($sys_col_sort as $key => $val) {
+            if ($val['pid'] == 0) {
+                $data['menu'][$key] = $val;
+                $data['menu'][$key]['url'] = $sys_col_url[$key];
+                $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
+            }
+            if ($val['id'] == $this->sys_cid) {
+                $data['section_name'] = $val['name'];
+            }
+        }
+        $this->load->vars($data);
+    }
+
+    //侧边栏
+    public function sidebar()
+    {
+        $str = '';
+        $parent_level = 0;
+        $sys_col = $this->sys_col();//系统栏目
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
+        $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
+        foreach ($sys_col_chidren as $val) {
+            $level = $val['level'];
+            $dir = ($val['dir']) ? $val['dir'] . '/' : '';
+            $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
+            $method = ($val['method']) ? $val['method'] . '/' : '';
+            $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
+            $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
+            if ($level < $parent_level) {
+                $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+            } elseif ($level > $parent_level) {
+                $str .= '<ul data-level="' . ($level - 1) . '">';
+            } else {
+                $str .= '</li>';
+            }
+            $str .= '<li>';
+            if ($dir == '' && $sys_ctrl == '' && $method == '') {
+                $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtree_link">';
+            } else {
+                $str .= '<a href="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtree_link">';
+            }
+            $str .= '<span data-name="mtree_indent"></span>';
+            $str .= '<span data-name="mtree_btn"></span>';
+            $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
+            $str .= '</a>';
+            $parent_level = $level;
+        }
+        $str .= str_repeat('</li></ul>', $parent_level + 1);
+        $data['sidebar'] = $str;
+        $this->load->vars($data);
+    }
+
+    //系统栏目
+    public function sys_col()
+    {
+        $this->db->from('sys_col');
+        $this->db->order_by('sort asc,id asc');
+        $res = $this->db->get()->result_array();
+        return $res;
     }
 
 

@@ -12,7 +12,7 @@ class Sys_col extends MY_Controller
     {
         parent::__construct();
         $this->load->model('sys_col_model', 'sys_col');
-        $this->load->library('category', array('tb_name' => 'sys_col'));
+        $this->load->library('category', array('tb_name' => 'sys_col'),'category');
         $this->set_url();
     }
 
@@ -95,7 +95,8 @@ class Sys_col extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category->del($id);
+        $this->sys_col->del_sys_col_auth($id);//删除系统栏目权限
+        $rows = $this->category->del($id);//删除系统栏目
         echo $rows;
     }
 

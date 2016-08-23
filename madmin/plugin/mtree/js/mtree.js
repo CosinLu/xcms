@@ -38,7 +38,7 @@ $(function () {
      * @return {[type]}    [description]
      */
     $_mtreeIndent.each(function (e) {
-        var width = $(this).closest('ul').data('level') * indent;
+        var width = (parseInt($(this).closest('ul').data('level')) - 1) * indent;
         if (width > 0) {
             $(this).css({
                 display: 'inline-block',

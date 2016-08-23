@@ -13,8 +13,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class=""><a href="<?=site_url('sys_dict')?>">数据字典</a></li>
-                <li class=""><a href="<?=site_url('sys_col')?>">系统栏目</a></li>
+                <?php foreach($menu as $val):?>
+                <li class="<?=$val['active']?>"><a href="<?=$val['url']?>"><?=$val['name']?></a></li>
+                <?php endforeach;?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

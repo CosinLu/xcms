@@ -19,6 +19,12 @@ textarea:focus,
 button:focus {
     outline: none !important;
 }
+label{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 ul,
 ol,
@@ -64,6 +70,11 @@ a.disabled {
         vertical-align: -2px;
     }
 
+    input[type="radio"]:checked + ins,
+    input[type="checkbox"]:checked + ins{
+        border-color: #337AB7;
+    }
+
     input[type="radio"]:disabled + ins,
     input[type="checkbox"]:disabled + ins {
         opacity: 0.3;
@@ -90,7 +101,7 @@ a.disabled {
     }
 
     input[type="radio"]:checked + ins:before {
-        background: #333;
+        background: #337AB7;
         border-radius: 6px;
     }
 
@@ -98,11 +109,13 @@ a.disabled {
     input[type="checkbox"]:checked + ins:before {
         width: 10px;
         height: 6px;
-        border-color: transparent transparent #333 #333;
+        /*border-color: transparent transparent #337AB7 #337AB7;
         border-width: 1px;
-        border-style: solid;
+        border-style: solid;*/
+        border-left:#337AB7 solid 2px;
+        border-bottom:#337AB7 solid 2px;
         transform: rotate(-45deg);
-        top: -4px;
+        top: -3px;
     }
 }
 

@@ -12,7 +12,7 @@ class Sys_dict extends MY_Controller
     {
         parent::__construct();
         $this->load->model('sys_dict_model', 'sys_dict');
-        $this->load->library('category', array('tb_name' => 'sys_dict'));
+        $this->load->library('category', array('tb_name' => 'sys_dict'),'category');
         $this->set_url();
     }
 

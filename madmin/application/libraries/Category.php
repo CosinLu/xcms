@@ -233,7 +233,7 @@ class Category
      */
     public function parent_id($data = array(), $id = 0, $self = FALSE)
     {
-        $parent_arr = $this->children($data, $id, $self);
+        $parent_arr = $this->parent($data, $id, $self);
         $parent_id_arr = array();
         foreach ($parent_arr as $val) {
             $parent_id_arr[] = $val[$this->id_name];
@@ -339,6 +339,38 @@ class Category
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
         return $str;
+    }
+
+    /**
+     * 获取下级url
+     * @param array $data 初始数据
+     * @return mixed
+     */
+    public function children_url($data = array())
+    {
+        if (empty($data)) {
+            $data = $this->all();
+        }
+        $children_all = $this->children($data, 0);
+        $children = array();
+        foreach ($children_all as $key => $val) {
+            if ($val[$this->pid_name] == 0) {
+                $children[$key] = $this->children($data, $val[$this->id_name], TRUE);
+                foreach ($children[$key] as $val) {
+                    if ($val['dir'] OR $val['ctrl'] OR $val['method']) {
+                        $dir = ($val['dir']) ? $val['dir'] . '/' : '';
+                        $ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
+                        $method = ($val['method']) ? $val['method'] . '/' : '';
+                        $param = ($val['param']) ? '?sys_cid=' . $val['id'] . '&' . $val['param'] : '?sys_cid=' . $val['id'];
+                        $url[$key] = site_url($dir . $ctrl . $method . $param);
+                        break;
+                    } else {
+                        $url[$key] = 'javascript:;';
+                    }
+                }
+            }
+        }
+        return $url;
     }
 
     /**

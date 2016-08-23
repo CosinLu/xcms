@@ -71,11 +71,17 @@ class Sys_col_model extends MY_Model
         return $bool;
     }
 
-    //设置系统栏目权限
+    /**
+     * 设置系统栏目权限
+     * @param $sys_col_id   系统栏目id
+     * @param $sys_col_auth 系统栏目权限
+     */
     public function set_sys_col_auth($sys_col_id, $sys_col_auth)
     {
-        //删除栏目权限
-        $this->db->where('sys_col_id', $sys_col_id)->delete('sys_col_auth');
+        $this->del_sys_col_auth($sys_col_id);//删除栏目权限
+        if (empty($sys_col_auth)) {
+            return;
+        }
         //设置写入数据
         foreach ($sys_col_auth as $val) {
             $vals[] = array(
@@ -84,6 +90,19 @@ class Sys_col_model extends MY_Model
             );
         }
         $this->db->insert_batch('sys_col_auth', $vals);
+    }
+
+    /**
+     * 删除系统栏目权限
+     * @param $sys_col_id   系统栏目id
+     * @return mixed
+     */
+    public function del_sys_col_auth($sys_col_id)
+    {
+        $this->db->where('sys_col_id', $sys_col_id);
+        $this->db->delete('sys_col_auth');
+        $rows = $this->db->affected_rows();
+        return $rows;
     }
 
 }
