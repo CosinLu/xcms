@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-23 18:22:42
+Date: 2016-08-23 22:48:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `banner` (
   `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
   `image` int(10) DEFAULT NULL COMMENT '上传文件标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
@@ -50,7 +50,7 @@ CREATE TABLE `config` (
   `type` varchar(50) DEFAULT NULL COMMENT '配置项类型',
   `param` varchar(100) DEFAULT NULL COMMENT '参数',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='基本配置表';
@@ -66,15 +66,17 @@ DROP TABLE IF EXISTS `config_group`;
 CREATE TABLE `config_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='配置组';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='配置组';
 
 -- ----------------------------
 -- Records of config_group
 -- ----------------------------
+INSERT INTO `config_group` VALUES ('1', '测试', 'hide', '', '100');
+INSERT INTO `config_group` VALUES ('2', '测试1', 'show', '备注1', '100');
 
 -- ----------------------------
 -- Table structure for info_article
@@ -87,7 +89,7 @@ CREATE TABLE `info_article` (
   `image` int(10) DEFAULT NULL COMMENT '上传图片标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
@@ -132,7 +134,7 @@ CREATE TABLE `info_col` (
   `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` tinyint(1) DEFAULT NULL COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
@@ -177,7 +179,7 @@ CREATE TABLE `info_type` (
   `ctrl` varchar(20) DEFAULT NULL COMMENT '控制器',
   `sys_ctrl` varchar(20) DEFAULT NULL COMMENT '系统控制器',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` tinyint(1) DEFAULT '1' COMMENT '显示：0=隐藏，1=显示',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
@@ -223,19 +225,19 @@ INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro'
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置栏目', '2', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('11', '配置信息', '2', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', 'config_item', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('11', '配置信息', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'banner', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -269,7 +271,7 @@ CREATE TABLE `sys_dict` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -285,6 +287,12 @@ INSERT INTO `sys_dict` VALUES ('8', '开发者', '6', '2', 'dev', '#333333', '',
 INSERT INTO `sys_dict` VALUES ('9', '显示', '0', '1', '', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('12', '配置项类型', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role

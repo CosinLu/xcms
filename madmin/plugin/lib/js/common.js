@@ -49,7 +49,7 @@ $(function () {
                     type: 'post',
                     data: {tbname: tbname, id: id, primary: primary},
                     success: function (data) {
-                        if (data) {
+                        if (data > 0) {
                             layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
                                 $('[data-name="searchbtn"]').click();
                             });
@@ -87,7 +87,7 @@ $(function () {
                     type: 'post',
                     data: {tbname: tbname, id: id, primary: primary},
                     success: function (data) {
-                        if (data) {
+                        if (data > 0) {
                             layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
                                 $('[data-name="searchbtn"]').click();
                                 $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
@@ -99,7 +99,7 @@ $(function () {
                 });
             });
         }
-    }, '[data-name="batch_del"]');
+    }, '[data-name="batchDel"]');
 
 })
 

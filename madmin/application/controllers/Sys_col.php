@@ -20,7 +20,7 @@ class Sys_col extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_col/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_url'] = '<a href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid) . '" class="btn btn-default">新增</a>';
+        $url['insert_btn'] = '<a href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid) . '" class="btn btn-default">新增</a>';
         $url['save_url'] = site_url('sys_col/save?sys_cid=' . $this->sys_cid);
         $url['del_url'] = site_url('sys_col/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);

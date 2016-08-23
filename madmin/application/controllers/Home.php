@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:32
  */
-class Welcome extends MY_Controller
+class Home extends MY_Controller
 {
     public function __construct()
     {
@@ -14,7 +14,7 @@ class Welcome extends MY_Controller
     }
 
     public function index(){
-        $this->load->view('welcome/welcome.html');
+        $this->load->view('home/home.html');
     }
 
 }

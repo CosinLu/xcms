@@ -30,7 +30,7 @@ class Sys_col_model extends MY_Model
         $this->db->group_by('sys_col.id');
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
-        $data['total_nums'] = count($res);
+        $data['total'] = count($res);
         return $data;
     }
 

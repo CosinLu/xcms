@@ -21,7 +21,7 @@ class Sys_dict_model extends MY_Model
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
-        $data['total_nums'] = count($res);
+        $data['total'] = count($res);
         return $data;
     }
 
