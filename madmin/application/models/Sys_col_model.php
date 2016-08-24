@@ -19,7 +19,7 @@ class Sys_col_model extends MY_Model
     {
         $this->db->select('sys_col.*');
         $this->db->select('sd1.name as user_type');
-        $this->db->select('sd2.name as display_name,sd2.color');
+        $this->db->select('sd2.name as display_name,sd2.color as display_color');
         $this->db->select('group_concat(concat("<kbd>",sd3.name,"</kbd>") SEPARATOR "&nbsp;") as sys_col_auth');
         $this->db->from('sys_col');
         $this->db->join('sys_dict as sd1', 'sd1.ident=sys_col.user_type', 'left');

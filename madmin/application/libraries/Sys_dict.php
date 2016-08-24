@@ -22,7 +22,13 @@ class Sys_dict
         return $res;
     }
 
-    //单选框
+    /**
+     * 单选框
+     * @param int $pid 属性上级id
+     * @param string $name 元素名称
+     * @param string $check_val 选中值
+     * @return string
+     */
     public function radio($pid = 0, $name = '', $check_val = '')
     {
         $str = '';
@@ -38,7 +44,13 @@ class Sys_dict
         return $str;
     }
 
-    //复选框
+    /**
+     * 复选框
+     * @param int $pid 属性上级id
+     * @param string $name 元素名称
+     * @param string $check_val 选中值
+     * @return string
+     */
     public function checkbox($pid = 0, $name = '', $check_val = '')
     {
         $str = '';
@@ -53,5 +65,27 @@ class Sys_dict
             $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . '><ins></ins>' . $val['name'] . '</label>';
         }
         return $str;
+    }
+
+    /**
+     * 下拉菜单
+     * @param int $pid 属性上级id
+     * @param string $name 元素名称
+     * @param string $select_val 选中值
+     * @return string
+     */
+    public function select($pid = 0, $name = '', $select_val = '')
+    {
+        $str = '';
+        $res = $this->all($pid);
+        $str .= '<select name="' . $name . '" class="form-control">';
+        $str .= '<option value="0">-请选择-</option>';
+        foreach ($res as $val) {
+            $selected = ($val['ident'] == $select_val) ? 'selected' : '';
+            $str .= '<option value="' . $val['ident'] . '" ' . $selected . '>' . $val['name'] . '</option>';
+        }
+        $str .= '</select>';
+        return $str;
+
     }
 }

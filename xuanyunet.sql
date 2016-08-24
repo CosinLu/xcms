@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-23 22:48:44
+Date: 2016-08-24 23:25:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,18 +46,20 @@ CREATE TABLE `config` (
   `title` varchar(100) DEFAULT NULL COMMENT '标题',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `value` varchar(255) DEFAULT NULL COMMENT '值',
-  `config_col_id` int(10) DEFAULT NULL COMMENT '栏目标识',
+  `config_group_id` int(10) DEFAULT NULL COMMENT '配置组标识',
   `type` varchar(50) DEFAULT NULL COMMENT '配置项类型',
   `param` varchar(100) DEFAULT NULL COMMENT '参数',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='基本配置表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
 -- ----------------------------
 -- Records of config
 -- ----------------------------
+INSERT INTO `config` VALUES ('1', 'test2', '123', null, '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('2', 'test1', '', null, '2', 'checkbox', '', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -219,12 +221,12 @@ CREATE TABLE `sys_col` (
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
-INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('2', '系统', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '1', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('2', '系统', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', '', '', '', 'pro', 'show', '100', null, null, null, null);
