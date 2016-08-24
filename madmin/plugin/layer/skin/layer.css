@@ -623,6 +623,7 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-loading {
+    width: 60px !important;
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: 0;
