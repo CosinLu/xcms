@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-24 23:25:27
+Date: 2016-08-25 18:38:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,13 +53,11 @@ CREATE TABLE `config` (
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', 'test2', '123', null, '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('2', 'test1', '', null, '2', 'checkbox', '', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -72,13 +70,11 @@ CREATE TABLE `config_group` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='配置组';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='配置组';
 
 -- ----------------------------
 -- Records of config_group
 -- ----------------------------
-INSERT INTO `config_group` VALUES ('1', '测试', 'hide', '', '100');
-INSERT INTO `config_group` VALUES ('2', '测试1', 'show', '备注1', '100');
 
 -- ----------------------------
 -- Table structure for info_article
@@ -254,6 +250,9 @@ CREATE TABLE `sys_col_auth` (
 -- Records of sys_col_auth
 -- ----------------------------
 INSERT INTO `sys_col_auth` VALUES ('7', 'look');
+INSERT INTO `sys_col_auth` VALUES ('7', 'del');
+INSERT INTO `sys_col_auth` VALUES ('7', 'update');
+INSERT INTO `sys_col_auth` VALUES ('7', 'insert');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -305,16 +304,19 @@ CREATE TABLE `sys_role` (
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
   `role_type` tinyint(1) DEFAULT '0' COMMENT '角色类型：0=普通管理员，1=超级管理员【拥有所有生产者的权限】',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
+INSERT INTO `sys_role` VALUES ('1', '123123', '0', '1234214234', '100', null, null, null, null);
+INSERT INTO `sys_role` VALUES ('2', 'asdf', '0', 'asdfa', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role_auth
