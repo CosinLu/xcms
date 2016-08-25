@@ -12,7 +12,7 @@ class Sys_col extends MY_Controller
     {
         parent::__construct();
         $this->load->model('sys_col_model', 'sys_col');
-        $this->load->library('category', array('tb_name' => 'sys_col'),'category');
+        $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
         $this->set_url();
     }
 
@@ -54,9 +54,9 @@ class Sys_col extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['sys_col'] = $this->category->insert_option($id);
-        $data['auth'] = $this->sys_dict->checkbox(1, 'auth');
-        $data['user_type'] = $this->sys_dict->radio(6, 'user_type');
-        $data['display'] = $this->sys_dict->radio(9, 'display');
+        $data['auth'] = $this->sys_dict->checkbox_list(1, 'auth');
+        $data['user_type'] = $this->sys_dict->radio_button_list(6, 'user_type');
+        $data['display'] = $this->sys_dict->radio_button_list(9, 'display');
         $this->load->view('sys_col/insert.html', $data);
     }
 
@@ -66,9 +66,9 @@ class Sys_col extends MY_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->sys_col->update();
         $data['sys_col'] = $this->category->update_option($id, $data['item']['pid']);
-        $data['auth'] = $this->sys_dict->checkbox(1, 'auth', $data['item']['sys_col_auth']);
-        $data['user_type'] = $this->sys_dict->radio(6, 'user_type', $data['item']['user_type']);
-        $data['display'] = $this->sys_dict->radio(9, 'display', $data['item']['display']);
+        $data['auth'] = $this->sys_dict->checkbox_list(1, 'auth', $data['item']['sys_col_auth']);
+        $data['user_type'] = $this->sys_dict->radio_button_list(6, 'user_type', $data['item']['user_type']);
+        $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $this->load->view('sys_col/update.html', $data);
     }
 

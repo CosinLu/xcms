@@ -29,7 +29,7 @@ class Sys_dict
      * @param string $check_val 选中值
      * @return string
      */
-    public function radio($pid = 0, $name = '', $check_val = '')
+    public function radio_button_list($pid = 0, $name = '', $check_val = '')
     {
         $str = '';
         $res = $this->all($pid);
@@ -51,7 +51,7 @@ class Sys_dict
      * @param string $check_val 选中值
      * @return string
      */
-    public function checkbox($pid = 0, $name = '', $check_val = '')
+    public function checkbox_list($pid = 0, $name = '', $check_val = '')
     {
         $str = '';
         $check_val_arr = explode(',', $check_val);
@@ -74,7 +74,7 @@ class Sys_dict
      * @param string $select_val 选中值
      * @return string
      */
-    public function select($pid = 0, $name = '', $select_val = '')
+    public function droplist($pid = 0, $name = '', $select_val = '')
     {
         $str = '';
         $res = $this->all($pid);

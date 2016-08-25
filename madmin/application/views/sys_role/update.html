@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugin/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugin/mtree/css/mtree.css">
-    <link rel="stylesheet" href="plugin/colorpicker/css/bootstrap-colorpicker.min.css">
     <link rel="stylesheet" href="css/style.css">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="plugin/lib/js/html5shiv.min.js"></script>
@@ -65,24 +64,6 @@
 <script type="text/javascript" src="plugin/lib/js/jquery.min.js"></script>
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
-<script type="text/javascript" src="plugin/colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript" src="plugin/lib/js/common.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('[data-name="colorpicker"]').colorpicker({
-            input: 'input[name="color"]',
-            colorSelectors: {
-                '#333': '#333',//default
-                '#337ab7': '#337ab7',//primary
-                '#5cb85c': '#5cb85c',//success
-                '#5bc0de': '#5bc0de',//info
-                '#f0ad4e': '#f0ad4e',//warning
-                '#d9534f': '#d9534f'//danger
-            }
-        }).on('changeColor', function (e) {
-            $('input[name="name"]').css('color', e.color.toHex());
-        });
-    })
-</script>
 </body>
 </html>
