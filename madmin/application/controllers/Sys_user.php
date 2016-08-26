@@ -46,13 +46,17 @@ class Sys_user extends MY_Controller
     //新增
     public function insert()
     {
-        $this->load->view('sys_user/insert.html');
+        $data['sys_role'] = dropdown_list($this->sys_user->sys_role(), 'sys_role_id');
+        $data['state'] = $this->sys_dict->radio_button_list(18, 'state');
+        $this->load->view('sys_user/insert.html', $data);
     }
 
     //更新
     public function update()
     {
         $data['item'] = $this->sys_user->update();
+        $data['sys_role'] = dropdown_list($this->sys_user->sys_role(), 'sys_role_id', $data['item']['sys_role_id']);
+        $data['state'] = $this->sys_dict->radio_button_list(18, 'state', $data['item']['state']);
         $this->load->view('sys_user/update.html', $data);
     }
 

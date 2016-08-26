@@ -4,13 +4,13 @@
  Released under the UploadiFive Standard License <http://www.uploadify.com/uploadifive-standard-license>
  */
 ;
-(function($) {
+(function ($) {
 
     var methods = {
 
-        init: function(options) {
+        init: function (options) {
 
-            return this.each(function() {
+            return this.each(function () {
 
                 // Create a reference to the jQuery DOM object
                 var $this = $(this);
@@ -108,7 +108,7 @@
                     });
 
                 // Create a new input
-                $data.createInput = function() {
+                $data.createInput = function () {
 
                     // Create a clone of the file input
                     var input = $data.inputTemplate.clone();
@@ -119,7 +119,7 @@
                         input.attr('multiple', true);
                     }
                     // Set the onchange event for the input
-                    input.bind('change', function() {
+                    input.bind('change', function () {
                         $data.queue.selected = 0;
                         $data.queue.replaced = 0;
                         $data.queue.errors = 0;
@@ -161,14 +161,14 @@
                 }
 
                 // Remove an input
-                $data.destroyInput = function(key) {
+                $data.destroyInput = function (key) {
                     $($data.inputs[key]).remove();
                     delete $data.inputs[key];
                     $data.inputCount--;
                 }
 
                 // Drop a file into the queue
-                $data.drop = function(e) {
+                $data.drop = function (e) {
                     $data.queue.selected = 0;
                     $data.queue.replaced = 0;
                     $data.queue.errors = 0;
@@ -215,7 +215,7 @@
                 }
 
                 // Check if a filename exists in the queue
-                $data.fileExistsInQueue = function(file) {
+                $data.fileExistsInQueue = function (file) {
                     for (var key in $data.inputs) {
                         input = $data.inputs[key];
                         limit = input.files.length;
@@ -231,7 +231,7 @@
                 }
 
                 // Remove an existing file in the queue
-                $data.removeExistingFile = function(file) {
+                $data.removeExistingFile = function (file) {
                     for (var key in $data.inputs) {
                         input = $data.inputs[key];
                         limit = input.files.length;
@@ -260,7 +260,7 @@
                 }
 
                 // Add an item to the queue
-                $data.addQueueItem = function(file) {
+                $data.addQueueItem = function (file) {
                     if ($.inArray('onAddQueueItem', settings.overrideEvents) < 0) {
                         // Check if the filename already exists in the queue
                         $data.removeExistingFile(file);
@@ -269,7 +269,7 @@
                         // Add an ID to the queue item
                         file.queueItem.attr('id', settings.id + '-file-' + $data.fileID++);
                         // Bind the close event to the close button
-                        file.queueItem.find('.close-item').bind('click', function() {
+                        file.queueItem.find('.close-item').bind('click', function () {
                             methods.cancel.call($this, file);
                             return false;
                         });
@@ -333,7 +333,7 @@
                 }
 
                 // Remove an item from the queue
-                $data.removeQueueItem = function(file, instant, delay) {
+                $data.removeQueueItem = function (file, instant, delay) {
                     // Set the default delay
                     if (!delay) delay = 0;
                     var fadeTime = instant ? 0 : 500;
@@ -342,7 +342,7 @@
                             file.queueItem.find('.fileinfo').html('Cancelled');
                         }
                         file.queueItem.find('.progress-bar').width(0);
-                        file.queueItem.delay(delay).fadeOut(fadeTime, function() {
+                        file.queueItem.delay(delay).fadeOut(fadeTime, function () {
                             $(this).remove();
                         });
                         delete file.queueItem;
@@ -351,7 +351,7 @@
                 }
 
                 // Count the number of files that need to be uploaded
-                $data.filesToUpload = function() {
+                $data.filesToUpload = function () {
                     var filesToUpload = 0;
                     for (var key in $data.inputs) {
                         input = $data.inputs[key];
@@ -367,15 +367,15 @@
                 }
 
                 // Check if a file exists
-                $data.checkExists = function(file) {
+                $data.checkExists = function (file) {
                     if ($.inArray('onCheck', settings.overrideEvents) < 0) {
                         // This request needs to be synchronous
                         $.ajaxSetup({
                             'async': false
                         });
                         // Send the filename to the check script
-                        var checkData = $.extend(settings.formData, { filename: file.name });
-                        $.post(settings.checkScript, checkData, function(fileExists) {
+                        var checkData = $.extend(settings.formData, {filename: file.name});
+                        $.post(settings.checkScript, checkData, function (fileExists) {
                             file.exists = parseInt(fileExists);
                         });
                         if (file.exists) {
@@ -394,7 +394,7 @@
                 }
 
                 // Upload a single file
-                $data.uploadFile = function(file, uploadAll) {
+                $data.uploadFile = function (file, uploadAll) {
                     if (!file.skip && !file.complete && !file.uploading) {
                         file.uploading = true;
                         $data.uploads.current++;
@@ -422,14 +422,14 @@
                             xhr.open(settings.method, settings.uploadScript, true);
 
                             // On progress function
-                            xhr.upload.addEventListener('progress', function(e) {
+                            xhr.upload.addEventListener('progress', function (e) {
                                 if (e.lengthComputable) {
                                     $data.progress(e, file);
                                 }
                             }, false);
 
                             // On complete function
-                            xhr.addEventListener('load', function(e) {
+                            xhr.addEventListener('load', function (e) {
                                 if (this.readyState == 4) {
                                     file.uploading = false;
                                     if (this.status == 200) {
@@ -455,7 +455,7 @@
 
                             // Send as binary
                             var reader = new FileReader();
-                            reader.onload = function(e) {
+                            reader.onload = function (e) {
 
                                 // Set some file builder variables
                                 var boundary = '-------------------------' + (new Date).getTime(),
@@ -483,12 +483,12 @@
                                 binFile += dashes + boundary + dashes + eol;
 
                                 // On progress function
-                                xhr.upload.addEventListener('progress', function(e) {
+                                xhr.upload.addEventListener('progress', function (e) {
                                     $data.progress(e, file);
                                 }, false);
 
                                 // On complete function
-                                xhr.addEventListener('load', function(e) {
+                                xhr.addEventListener('load', function (e) {
                                     file.uploading = false;
                                     var status = this.status;
                                     if (status == 404) {
@@ -526,7 +526,7 @@
                 }
 
                 // Update a file upload's progress
-                $data.progress = function(e, file) {
+                $data.progress = function (e, file) {
                     if ($.inArray('onProgress', settings.overrideEvents) < 0) {
                         if (e.lengthComputable) {
                             var percent = Math.round((e.loaded / e.total) * 100);
@@ -541,7 +541,7 @@
                 }
 
                 // Trigger an error
-                $data.error = function(errorType, file, uploadAll) {
+                $data.error = function (errorType, file, uploadAll) {
                     if ($.inArray('onError', settings.overrideEvents) < 0) {
                         // Get the error message
                         switch (errorType) {
@@ -564,8 +564,10 @@
 
                         // Add the error class to the queue item
                         file.queueItem.addClass('error')
-                            // Output the error in the queue item
+                        // Output the error in the queue item
                             .find('.fileinfo').html(' - ' + errorMsg);
+                        file.queueItem.addClass('error')
+                            .find('.thumbnail').addClass('alert-danger');
                         // Hide the
                         file.queueItem.find('.progress').remove();
                     }
@@ -585,7 +587,7 @@
                 }
 
                 // Trigger when a single file upload is complete
-                $data.uploadComplete = function(e, file, uploadAll) {
+                $data.uploadComplete = function (e, file, uploadAll) {
                     if ($.inArray('onUploadComplete', settings.overrideEvents) < 0) {
                         file.queueItem.find('.progress-bar').css('width', '100%');
                         file.queueItem.find('.fileinfo').html('Completed');
@@ -597,7 +599,9 @@
                         settings.onUploadComplete.call($this, file, file.xhr.responseText);
                     }
                     if (settings.removeCompleted) {
-                        setTimeout(function() { methods.cancel.call($this, file); }, 3000);
+                        setTimeout(function () {
+                            methods.cancel.call($this, file);
+                        }, 3000);
                     }
                     file.complete = true;
                     $data.uploads.successful++;
@@ -610,7 +614,7 @@
                 }
 
                 // Trigger when all the files are done uploading
-                $data.queueComplete = function() {
+                $data.queueComplete = function () {
                     // Trigger the queueComplete event
                     if (typeof settings.onQueueComplete === 'function') {
                         settings.onQueueComplete.call($this, $data.uploads);
@@ -642,7 +646,7 @@
 
                     // Insert the button above the file input
                     $this.before($data.button)
-                        // Add the file input to the button
+                    // Add the file input to the button
                         .appendTo($data.button)
                         // Modify the styles of the file input
                         .hide();
@@ -662,17 +666,17 @@
                     // Add drag and drop functionality
                     if (settings.dnd) {
                         var $dropTarget = settings.dropTarget ? $(settings.dropTarget) : $data.queueEl.get(0);
-                        $dropTarget.addEventListener('dragleave', function(e) {
+                        $dropTarget.addEventListener('dragleave', function (e) {
                             // Stop FireFox from opening the dropped file(s)
                             e.preventDefault();
                             e.stopPropagation();
                         }, false);
-                        $dropTarget.addEventListener('dragenter', function(e) {
+                        $dropTarget.addEventListener('dragenter', function (e) {
                             // Stop FireFox from opening the dropped file(s)
                             e.preventDefault();
                             e.stopPropagation();
                         }, false);
-                        $dropTarget.addEventListener('dragover', function(e) {
+                        $dropTarget.addEventListener('dragover', function (e) {
                             // Stop FireFox from opening the dropped file(s)
                             e.preventDefault();
                             e.stopPropagation();
@@ -682,10 +686,11 @@
 
                     // Send as binary workaround for Chrome
                     if (!XMLHttpRequest.prototype.sendAsBinary) {
-                        XMLHttpRequest.prototype.sendAsBinary = function(datastr) {
+                        XMLHttpRequest.prototype.sendAsBinary = function (datastr) {
                             function byteValue(x) {
                                 return x.charCodeAt(0) & 0xff;
                             }
+
                             var ords = Array.prototype.map.call(datastr, byteValue);
                             var ui8a = new Uint8Array(ords);
                             this.send(ui8a.buffer);
@@ -713,9 +718,9 @@
 
 
         // Write some data to the console
-        debug: function() {
+        debug: function () {
 
-            return this.each(function() {
+            return this.each(function () {
 
                 console.log($(this).data('uploadifive'));
 
@@ -724,9 +729,9 @@
         },
 
         // Clear all the items from the queue
-        clearQueue: function() {
+        clearQueue: function () {
 
-            this.each(function() {
+            this.each(function () {
 
                 var $this = $(this),
                     $data = $this.data('uploadifive'),
@@ -750,9 +755,9 @@
         },
 
         // Cancel a file upload in progress or remove a file from the queue
-        cancel: function(file, fast) {
+        cancel: function (file, fast) {
 
-            this.each(function() {
+            this.each(function () {
 
                 var $this = $(this),
                     $data = $this.data('uploadifive'),
@@ -789,9 +794,9 @@
         },
 
         // Upload the files in the queue
-        upload: function(file, keepVars) {
+        upload: function (file, keepVars) {
 
-            this.each(function() {
+            this.each(function () {
 
                 var $this = $(this),
                     $data = $this.data('uploadifive'),
@@ -817,7 +822,7 @@
                         }
 
                         // Loop through the files
-                        $('#' + settings.queueID).find('.uploadifive-queue-item').not('.error, .complete').each(function() {
+                        $('#' + settings.queueID).find('.uploadifive-queue-item').not('.error, .complete').each(function () {
                             _file = $(this).data('file');
                             // Check if the simUpload limit was reached
                             if (($data.uploads.current >= settings.simUploadLimit && settings.simUploadLimit !== 0) || ($data.uploads.current >= settings.uploadLimit && settings.uploadLimit !== 0) || ($data.uploads.count >= settings.uploadLimit && settings.uploadLimit !== 0)) {
@@ -859,9 +864,9 @@
         },
 
         // Destroy an instance of UploadiFive
-        destroy: function() {
+        destroy: function () {
 
-            this.each(function() {
+            this.each(function () {
 
                 var $this = $(this),
                     $data = $this.data('uploadifive'),
@@ -875,7 +880,7 @@
                 $this.siblings('input').remove();
                 // Show the original file input
                 $this.show()
-                    // Move the file input out of the button
+                // Move the file input out of the button
                     .insertBefore($data.button);
                 // Delete the button
                 $data.button.remove();
@@ -890,7 +895,7 @@
 
     }
 
-    $.fn.uploadifive = function(method) {
+    $.fn.uploadifive = function (method) {
 
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));

@@ -7,13 +7,13 @@
  */
 
 /**
- * 下拉框
+ * 下拉列表
  * @param array $data 原始数据
  * @param string $name 元素名称
  * @param int $select_val 选中值
  * @return string
  */
-function droplist($data = array(), $name = '', $select_val = 0)
+function dropdown_list($data = array(), $name = '', $select_val = 0)
 {
     $str = '';
     $str .= '<select name="' . $name . '" class="form-control">';

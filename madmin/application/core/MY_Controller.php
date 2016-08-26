@@ -87,6 +87,7 @@ class MY_Controller extends CI_Controller
     public function sys_col()
     {
         $this->db->from('sys_col');
+        $this->db->where('display','show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get()->result_array();
         return $res;

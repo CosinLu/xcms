@@ -23,7 +23,7 @@ class Sys_dict
     }
 
     /**
-     * 单选框
+     * 单选按钮列表
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $check_val 选中值
@@ -45,7 +45,7 @@ class Sys_dict
     }
 
     /**
-     * 复选框
+     * 复选框列表
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $check_val 选中值
@@ -68,13 +68,13 @@ class Sys_dict
     }
 
     /**
-     * 下拉菜单
+     * 下拉列表
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $select_val 选中值
      * @return string
      */
-    public function droplist($pid = 0, $name = '', $select_val = '')
+    public function dropdown_list($pid = 0, $name = '', $select_val = '')
     {
         $str = '';
         $res = $this->all($pid);

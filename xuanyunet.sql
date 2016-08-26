@@ -10,32 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-25 18:38:48
+Date: 2016-08-26 20:31:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for banner
--- ----------------------------
-DROP TABLE IF EXISTS `banner`;
-CREATE TABLE `banner` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
-  `image` int(10) DEFAULT NULL COMMENT '上传文件标识',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Banner表';
-
--- ----------------------------
--- Records of banner
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for config
@@ -142,11 +120,14 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
+INSERT INTO `info_col` VALUES ('4', '1', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('5', '2', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('7', '3', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_single
@@ -184,10 +165,33 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for slide
+-- ----------------------------
+DROP TABLE IF EXISTS `slide`;
+CREATE TABLE `slide` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
+  `image` int(10) DEFAULT NULL COMMENT '上传文件标识',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+
+-- ----------------------------
+-- Records of slide
 -- ----------------------------
 
 -- ----------------------------
@@ -231,11 +235,11 @@ INSERT INTO `sys_col` VALUES ('11', '配置信息', '2', '2', '', 'config', '', 
 INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'banner', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'pro', 'hide', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -272,7 +276,7 @@ CREATE TABLE `sys_dict` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -294,6 +298,9 @@ INSERT INTO `sys_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', ''
 INSERT INTO `sys_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('18', '用户状态', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -344,19 +351,15 @@ CREATE TABLE `sys_user` (
   `realname` varchar(50) DEFAULT NULL COMMENT '姓名',
   `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `forzen` tinyint(1) DEFAULT '1' COMMENT '冻结：0=冻结，1=正常',
+  `state` char(6) DEFAULT NULL COMMENT '状态：normal=正常，forzen=冻结',
   `user_type` varchar(10) DEFAULT 'producter' COMMENT '用户类型：developer=开发者，producter=生产者',
   `sys_manager` tinyint(1) DEFAULT '0' COMMENT '默认管理员【不在后台显示，拥有系统所有权限】：0=否，1=是',
-  `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
-  `login_ip` varchar(20) DEFAULT NULL COMMENT '登录IP',
-  `last_login_time` int(10) DEFAULT NULL COMMENT '最后一次登录时间',
-  `last_login_ip` varchar(20) DEFAULT NULL COMMENT '最后一次登录IP',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user

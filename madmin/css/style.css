@@ -2,55 +2,37 @@
 @import "bootstrap.e.css";
 
 /*登录页头部*/
-.header_container {
-    width: 600px;
-    padding: 45px 0 0 0;
-}
-
-.header_container .logo {
-    float: left;
-    font-size: 22px;
-    color: #337ab7;
-}
-
-.header_container .expressway {
-    float: right;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    font-size: 14px;
-    color: #7f7f7f;
-}
-
-.header_container .expressway a {
-    color: #7f7f7f;
-}
-
-.header_container .expressway i {
-    padding: 0 5px;
-}
 
 /*登录面板*/
-.form_login {
+.login_container {
     width: 320px;
-    margin: 100px auto 0px;
+    margin: 100px auto 100px;
+}
+.login_container .page-header{
+    margin: 0 0 15px;
+    padding-bottom:5px;
 }
 
-.form_login .form-control {
+.login_container .page-header h2 {
+    font-weight: 300;
+    font-size: 24px;
+}
+
+.login_container .form-control {
     height: 48px;
 }
 
-.form_login .form-group {
+.login_container .form-group {
     margin-bottom: 0px;
 }
 
-.form_login .form_alert {
+.login_container .form_alert {
     height: 22px;
     padding: 2px 0 0 0;
     font-size: 12px;
 }
 
-.form_login .btn {
+.login_container .btn {
     width: 100%;
     height: 48px;
     font-size: 15px;
@@ -58,11 +40,11 @@
     margin: 10px 0 0 0;
 }
 
-.form_login .txtcode {
+.login_container .txtcode {
     text-transform: uppercase;
 }
 
-.form_login .input-group-addon {
+.login_container .input-group-addon {
     background: #fff;
 }
 

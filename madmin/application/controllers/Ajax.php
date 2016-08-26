@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 16:31
  * Email: 1056811341@qq.com
  */
-class Ajax extends MY_Controller
+class Ajax extends CI_Controller
 {
     public function __construct()
     {

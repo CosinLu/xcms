@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 16:32
  * Email: 1056811341@qq.com
  */
-class Ajax_model extends MY_Model
+class Ajax_model extends CI_Model
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class Ajax_model extends MY_Model
     {
         $tbname = $this->input->post('tbname');
         $id = $this->input->post('id');
-        $primary = (!empty($this->input->post('primary'))) ? $this->input->post('primary') : 'id';
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
         $this->db->where($primary, $id);
         $this->db->delete($tbname);
         $rows = $this->db->affected_rows();
@@ -32,7 +32,7 @@ class Ajax_model extends MY_Model
         $tbname = $this->input->post('tbname');
         $id = $this->input->post('id');
         $id_arr = explode(',', $id);
-        $primary = (!empty($this->input->post('primary'))) ? $this->input->post('primary') : 'id';
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
         $this->db->where_in($primary, $id_arr);
         $this->db->delete($tbname);
         $rows = $this->db->affected_rows();

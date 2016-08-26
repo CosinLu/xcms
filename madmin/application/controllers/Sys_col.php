@@ -41,9 +41,9 @@ class Sys_col extends MY_Controller
             $method = ($val['method']) ? $val['method'] : '';
             $param = ($val['param']) ? '?' . $val['param'] : '';
             $data['list']['list'][$key]['url'] = $dir . $ctrl . $method . $param;
-            $data['list']['list'][$key]['update_btn'] = '<a href="' . site_url('sys_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>';
             $data['list']['list'][$key]['insert_next_btn'] = '<a href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>';
-            $data['list']['list'][$key]['del_btn'] = '<a href="javascript:;" data-name="del" data-id="' . $val['id'] . '">删除</a>';
+            $data['list']['list'][$key]['update_btn'] = '<a href="' . site_url('sys_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>';
+            $data['list']['list'][$key]['del_btn'] = '<a href="javascript:;" data-name="delCol" data-id="' . $val['id'] . '">删除</a>';
             $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . ((!empty($val['level'] - 1) ? '└─&nbsp;' : ''));
         }
         echo json_encode($data);

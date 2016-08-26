@@ -30,45 +30,41 @@
                     <form class="form-horizontal" action="<?=$save_url?>" method="post">
                         <input type="hidden" name="id" value="<?=$item['id']?>">
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">角色</div>
+                            <div class="col-xs-2 control-label">所属栏目</div>
                             <div class="col-xs-3">
-                                <?=$sys_role?>
+                                <select class="form-control" name="pid">
+                                    <?=$info_col?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">用户名</div>
+                            <div class="col-xs-2 control-label">名称</div>
                             <div class="col-xs-3">
-                                <input type="text" name="username" value="<?=$item['username']?>" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">密码</div>
-                            <div class="col-xs-3">
-                                <input type="password" name="password" class="form-control">
-                                <span class="help-block">不填写则不修改</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">真实姓名</div>
-                            <div class="col-xs-3">
-                                <input type="text" name="realname" value="<?=$item['realname']?>" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">用户状态</div>
-                            <div class="col-xs-3 radio">
-                                <?=$state?>
+                                <input type="text" name="name" value="<?=$item['name']?>" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-2 control-label">备注</div>
                             <div class="col-xs-5">
-                                <textarea name="remark" class="form-control" rows="3"><?=$item['remark']?></textarea>
+                                <textarea class="form-control" name="remark" rows="3"><?=$item['remark']?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">显示</div>
+                            <div class="col-xs-5 radio">
+                                <?=$display?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">排序</div>
+                            <div class="col-xs-1">
+                                <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-8">
-                                <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">保存
+                                <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">
+                                    保存
                                 </button>
                             </div>
                         </div>

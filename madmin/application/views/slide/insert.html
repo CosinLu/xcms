@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugin/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugin/mtree/css/mtree.css">
+    <link rel="stylesheet" href="plugin/uploadifive/css/uploadifive.me.css">
     <link rel="stylesheet" href="css/style.css">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="plugin/lib/js/html5shiv.min.js"></script>
@@ -28,48 +29,51 @@
             <div class="container-fluid section_container">
                 <div class="row form_container">
                     <form class="form-horizontal" action="<?=$save_url?>" method="post">
-                        <input type="hidden" name="id" value="<?=$item['id']?>">
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">角色</div>
+                            <div class="col-xs-2 control-label">名称</div>
                             <div class="col-xs-3">
-                                <?=$sys_role?>
+                                <input type="text" name="name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">用户名</div>
-                            <div class="col-xs-3">
-                                <input type="text" name="username" value="<?=$item['username']?>" class="form-control">
+                            <div class="col-xs-2 control-label">图片</div>
+                            <div class="col-xs-8">
+                                <!--<div data-name="uploadify">
+                                    <input type="file" name="file_upload" id="file_upload_image">
+                                </div>-->
+                                <div class="row" id="queue"></div>
+                                <input id="file_upload" name="file_upload" type="file" multiple="true">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">密码</div>
+                            <div class="col-xs-2 control-label">URL</div>
                             <div class="col-xs-3">
-                                <input type="password" name="password" class="form-control">
-                                <span class="help-block">不填写则不修改</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">真实姓名</div>
-                            <div class="col-xs-3">
-                                <input type="text" name="realname" value="<?=$item['realname']?>" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">用户状态</div>
-                            <div class="col-xs-3 radio">
-                                <?=$state?>
+                                <input type="text" name="url" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-2 control-label">备注</div>
                             <div class="col-xs-5">
-                                <textarea name="remark" class="form-control" rows="3"><?=$item['remark']?></textarea>
+                                <textarea name="remark" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">状态</div>
+                            <div class="col-xs-8 radio">
+                                <?=$display?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">排序</div>
+                            <div class="col-xs-1">
+                                <input type="text" name="sort" value="100" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-8">
                                 <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">保存
                                 </button>
+                                <button type="submit" name="is_save" value="2" class="btn btn-default">保存并新增</button>
                             </div>
                         </div>
                     </form>
@@ -83,5 +87,7 @@
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/lib/js/common.js"></script>
+<script type="text/javascript" src="plugin/uploadifive/js/jquery.uploadifive.me.js"></script>
+<script type="text/javascript" src="plugin/uploadifive/js/do_uploadifive.js"></script>
 </body>
 </html>

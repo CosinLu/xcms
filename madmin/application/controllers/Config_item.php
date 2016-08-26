@@ -45,7 +45,7 @@ class Config_item extends MY_Controller
     //新增
     public function insert()
     {
-        $data['config_group'] = droplist($this->config_item->config_group(), 'config_group_id');
+        $data['config_group'] = dropdown_list($this->config_item->config_group(), 'config_group_id');
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display');
         $data['type'] = $this->sys_dict->radio_button_list(12, 'type');
         $this->load->view('config_item/insert.html', $data);
@@ -55,7 +55,7 @@ class Config_item extends MY_Controller
     public function update()
     {
         $data['item'] = $this->config_item->update();
-        $data['config_group'] = droplist($this->config_item->config_group(), 'config_group_id', $data['item']['config_group_id']);
+        $data['config_group'] = dropdown_list($this->config_item->config_group(), 'config_group_id', $data['item']['config_group_id']);
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $data['type'] = $this->sys_dict->radio_button_list(12, 'type', $data['item']['type']);
         $this->load->view('config_item/update.html', $data);

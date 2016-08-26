@@ -48,7 +48,7 @@
                                 </label>
                             </th>
                             <th>用户名</th>
-                            <th width="10%">角色</th>
+                            <th width="15%">角色</th>
                             <th width="25%">备注</th>
                             <th width="10%">状态</th>
                             <th width="10%">操作</th>
@@ -64,9 +64,9 @@
                                     </label>
                                 </td>
                                 <td>{{val.username}}</td>
-                                <td>{{val.name}}</td>
+                                <td>{{val.sys_role_name}}</td>
                                 <td>{{val.remark}}</td>
-                                <td>{{#val.is_forzen}}</td>
+                                <td style="color:{{val.state_color}}">{{val.state_name}}</td>
                                 <td>
                                     {{#val.update_btn}}
                                     {{#val.del_btn}}

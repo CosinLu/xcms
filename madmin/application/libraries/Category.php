@@ -443,6 +443,9 @@ class Category
             return FALSE;
         }
         $children_id = $this->children_id(array(), $id, TRUE);//获得当前所有下级分类id【包括当前分类id】
+        if (empty($children_id)) {
+            return FALSE;
+        }
         $this->CI->db->where_in($this->id_name, $children_id);
         $this->CI->db->delete($this->tb_name);
         $rows = $this->CI->db->affected_rows();
