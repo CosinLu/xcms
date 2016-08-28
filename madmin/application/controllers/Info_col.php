@@ -49,6 +49,7 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['info_col'] = $this->category->insert_option($id);
+        $data['info_type'] = dropdown_list($this->info_col->info_type(), 'info_type_id');
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display');
         $this->load->view('info_col/insert.html', $data);
     }
@@ -58,6 +59,7 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->post('id');
         $data['item'] = $this->info_col->update();
+        $data['info_type'] = dropdown_list($this->info_col->info_type(), 'info_type_id', $data['item']['info_type_id']);
         $data['info_col'] = $this->category->update_option($id, $data['item']['pid']);
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $this->load->view('info_col/update.html', $data);
@@ -87,7 +89,8 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->post('id');
         $rows = $this->category->del($id);//删除栏目
-        var_dump($rows);die;
+        var_dump($rows);
+        die;
         echo $rows;
     }
 

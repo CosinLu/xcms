@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-26 20:31:23
+Date: 2016-08-28 21:00:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -120,13 +120,12 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('4', '1', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('5', '2', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('4', '1', null, '1', '8', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('7', '3', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
@@ -165,11 +164,12 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
 -- ----------------------------
+INSERT INTO `info_type` VALUES ('8', '123', '', '', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -359,11 +359,12 @@ CREATE TABLE `sys_user` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
+INSERT INTO `sys_user` VALUES ('3', null, 'xuanyunet', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'producter', '0', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for upload
