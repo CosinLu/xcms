@@ -28,9 +28,7 @@
             <div class="container-fluid section_container">
                 <div class="search_bar">
                     <div class="form-inline">
-                        <div class="btn-group" role="group">
-                            <?=$insert_btn?>
-                        </div>
+                        <?=$insert_btn?>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -110,7 +108,7 @@
         }
 
         //删除
-        $(document).on('click','[data-name="delCol"]', function () {
+        $(document).on('click', '[data-name="delCol"]', function () {
             var id = $(this).data('id');
             layer.confirm('确定删除？此操作不可恢复！<br/>如有下级也将随之删除', {icon: 3, title: '删除'}, function () {
                 $.post('<?=$del_url?>', {id: id}, function (data) {

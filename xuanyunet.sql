@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : phpstudy
-Source Server Version : 50547
+Source Server         : wamp
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : xuanyunet
 
 Target Server Type    : MYSQL
-Target Server Version : 50547
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-28 21:00:30
+Date: 2016-08-29 18:53:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -323,7 +323,6 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '123123', '0', '1234214234', '100', null, null, null, null);
-INSERT INTO `sys_role` VALUES ('2', 'asdf', '0', 'asdfa', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role_auth

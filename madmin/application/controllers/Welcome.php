@@ -115,7 +115,7 @@ class Welcome extends CI_Controller
     public function check_password()
     {
         $userinfo = $this->welcome->user_info();
-        if (empty($userinfo)) {
+        if (empty($userinfo) && $this->password != '') {
             $this->form_validation->set_message('check_password', '{field} 输入错误。');
             return FALSE;
         } else {
