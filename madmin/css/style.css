@@ -8,9 +8,10 @@
     width: 320px;
     margin: 100px auto 100px;
 }
-.login_container .page-header{
+
+.login_container .page-header {
     margin: 0 0 15px;
-    padding-bottom:5px;
+    padding-bottom: 5px;
 }
 
 .login_container .page-header h2 {
@@ -167,45 +168,40 @@
     left: 0;
 }
 
-/*内容模块*/
-/*.main_container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+/*内容区侧边栏*/
+.iframe-main-sidebar-title {
+    background: #d9dee4;
+    height: 40px;
+    margin: 0;
+    text-indent: 20px;
+    line-height: 40px;
 }
 
-.main_container .main_sidebar_mdl {
+.iframe-main-sidebar-tree {
     position: absolute;
-    width: 200px;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    border-right: #ccc solid 1px;
-    overflow: auto;
-}
-
-.main_container .main_sidebar_mdl + .main_section_mdl {
-    left: 200px;
-}
-
-.main_container .main_section_mdl {
-    position: absolute;
-    top: 0;
+    top: 40px;
     bottom: 0;
     left: 0;
     right: 0;
     overflow: auto;
 }
-.main_container .main_section_mdl .main_section_container{
-    position: absolute;
-    top:40px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
-}*/
+
+.iframe-main-sidebar-tree.mtree ul {
+    margin: 0;
+}
+
+.iframe-main-sidebar-tree.mtree a {
+    color: #333;
+    line-height: 40px;
+}
+
+.iframe-main-sidebar-tree.mtree a:hover {
+    background: #F7FAFA;
+}
+
+.iframe-main-sidebar-tree.mtree a.current {
+    background: #fff;
+}
 
 /*面包屑导航*/
 .section_name_mdl {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-29 18:53:25
+Date: 2016-08-29 23:21:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -120,13 +120,20 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('4', '1', null, '1', '8', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('7', '3', '0', '1', null, null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('11', '2', '0', '1', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('10', '1', '0', '1', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('12', '3', '0', '1', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('13', '1-1', '10', '2', '9', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('14', '1-2', '10', '2', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('15', '2-1', '11', '2', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('16', '2-2', '11', '2', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('17', '3-1', '12', '2', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('18', '3-2', '12', '2', '0', null, null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_single
@@ -164,12 +171,12 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
 -- ----------------------------
-INSERT INTO `info_type` VALUES ('8', '123', '', '', '', 'show', '100', null, null, null, null);
+INSERT INTO `info_type` VALUES ('9', '图片', '', 'info_article', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -233,7 +240,7 @@ INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', ''
 INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', 'config_item', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('11', '配置信息', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'info_article', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -257,6 +264,10 @@ INSERT INTO `sys_col_auth` VALUES ('7', 'look');
 INSERT INTO `sys_col_auth` VALUES ('7', 'del');
 INSERT INTO `sys_col_auth` VALUES ('7', 'update');
 INSERT INTO `sys_col_auth` VALUES ('7', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('13', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('13', 'update');
+INSERT INTO `sys_col_auth` VALUES ('13', 'del');
+INSERT INTO `sys_col_auth` VALUES ('13', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -317,12 +328,12 @@ CREATE TABLE `sys_role` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '123123', '0', '1234214234', '100', null, null, null, null);
+INSERT INTO `sys_role` VALUES ('3', '超级管理员', '0', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role_auth
@@ -330,8 +341,8 @@ INSERT INTO `sys_role` VALUES ('1', '123123', '0', '1234214234', '100', null, nu
 DROP TABLE IF EXISTS `sys_role_auth`;
 CREATE TABLE `sys_role_auth` (
   `sys_role_id` int(10) DEFAULT NULL COMMENT '角色标识',
-  `sys_cg_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
-  `sys_cg_auth_id` int(10) DEFAULT NULL COMMENT '系统栏目权限标识'
+  `sys_col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
+  `sys_col_auth_id` int(10) DEFAULT NULL COMMENT '系统栏目权限标识'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统角色权限表';
 
 -- ----------------------------
@@ -358,7 +369,7 @@ CREATE TABLE `sys_user` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user

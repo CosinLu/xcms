@@ -89,8 +89,6 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->post('id');
         $rows = $this->category->del($id);//删除栏目
-        var_dump($rows);
-        die;
         echo $rows;
     }
 

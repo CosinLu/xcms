@@ -97,3 +97,57 @@ class MY_Controller extends CI_Controller
 
 
 }
+
+//信息控制器
+class MY_info_Controller extends MY_Controller
+{
+    protected $info_cid;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
+        $this->info_cid = $this->input->get('info_cid');
+        $this->info_col_sidebar();
+    }
+
+    //获得信息栏目
+    public function info_col_sidebar()
+    {
+        $this->db->select('info_col.*');
+        $this->db->select('info_type.sys_ctrl');
+        $this->db->from('info_col');
+        $this->db->join('info_type', 'info_type.id=info_col.info_type_id', 'left');
+        $this->db->where('info_col.display', 'show');
+        $info_col_res = $this->db->get()->result_array();
+        $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
+        $str = '';
+        $parent_level = 0;
+        foreach ($info_col_sort as $val) {
+            $level = $val['level'];
+            $current = ($val['id'] == $this->info_cid) ? 'current' : '';
+            if ($level < $parent_level) {
+                $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+            } elseif ($level > $parent_level) {
+                $str .= '<ul data-level="' . ($level) . '">';
+            } else {
+                $str .= '</li>';
+            }
+            $str .= '<li>';
+            if ($val['sys_ctrl'] == '') {
+                $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtree_link">';
+            } else {
+                $str .= '<a class="' . $current . '" href="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&info_cid=' . $val['id']) . '" data-name="mtree_link">';
+            }
+            $str .= '<span data-name="mtree_indent"></span>';
+            $str .= '<span data-name="mtree_btn"></span>';
+            $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
+            $str .= '</a>';
+            $parent_level = $level;
+        }
+        $str .= str_repeat('</li></ul>', $parent_level + 1);
+        $data['info_col_sidebar'] = $str;
+        $this->load->vars($data);
+    }
+
+}
