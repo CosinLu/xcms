@@ -21,28 +21,12 @@
     <?php require_once(VIEWPATH.'include/sidebar.html');?>
     <!-- 主面板 -->
     <div class="iframe-main">
-        <div class="iframe-main-sidebar">
-            <div class="iframe-main-sidebar-title">信息栏目</div>
-            <div class="iframe-main-sidebar-tree mtree" data-name="mtree">
-                <?=$main_sidebar?>
-            </div>
-        </div>
         <div class="iframe-main-section">
             <div class="section_name_mdl">
-                <h5 class="section_name"><?=$main_section_name?></h5>
+                <h5 class="section_name"><?=$section_name?></h5>
             </div>
             <div class="container-fluid section_container">
-                <div class="search_bar">
-                    <div class="form-inline">
-                        <?=$insert_btn?>
-                        <?=$del_btn?>
-                        <div class="form-group">
-                            <input type="text" name="key" class="form-control">
-                        </div>
-                        <?=$search_btn?>
-                    </div>
-                </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default mt15">
                     <table class="table table-bordered table-hover table_list" data-name="list">
                         <thead>
                         <tr>
@@ -52,36 +36,30 @@
                                 </label>
                             </th>
                             <th>名称</th>
-                            <th width="10%">状态</th>
-                            <th width="10%">排序</th>
-                            <th width="10%">操作</th>
+                            <th width="45%">权限</th>
                         </tr>
                         </thead>
                         <tbody id="list"></tbody>
                         <script id="list_tpl" type="text/html">
-                            {{each list.list as val}}
-                            <tr>
+                            {{each list as val}}
+                            <tr data-level="{{val.level}}">
                                 <td>
                                     <label><input type="checkbox" name="id[]" value="{{val.id}}">
                                         <ins></ins>
                                     </label>
                                 </td>
-                                <td>{{val.name}}</td>
-                                <td style="color:{{val.display_color}}">{{val.display_name}}</td>
-                                <td>{{val.sort}}</td>
-                                <td>
-                                    {{#val.update_btn}}
-                                    {{#val.del_btn}}
-                                </td>
+                                <td>{{val.prefix + val.name}}</td>
+                                <td>{{#val.auth}}</td>
                             </tr>
                             {{/each}}
                         </script>
                     </table>
                 </div>
-                <div class="pagination_box" id="pagination"></div>
-                <script id="pagination_tpl" type="text/html">
-                    {{#list.pagination}}
-                </script>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <button class="btn btn-primary mb15">更新权限</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -96,25 +74,10 @@
 <script type="text/javascript">
     $(function () {
         get_list();
-
-        //分页
-        $(document).on({
-            click: function (e) {
-                get_list($(this).data('page'));
-            }
-        }, '[data-name="pagination"] li[class!="active"] a');
-
-        //搜索
-        $('[data-name="searchbtn"]').click(function () {
-            get_list();
-        });
-
         //获得列表
-        function get_list(pageIndex) {
+        function get_list() {
             var data = {
-                r: Math.random(),
-                page: pageIndex,
-                key: $('input[name="key"]').val()
+                r: Math.random()
             }
             $.ajax({
                 url: '<?=$get_list_url?>',
@@ -128,15 +91,38 @@
                 },
                 success: function (data) {
                     $('[data-name="loading"],[data-name="nodata"]').remove();
-                    if (data.list.list.length) {
+                    if (data.list.length) {
                         $('#list').html(template('list_tpl', data));
-                        $('#pagination').html(template('pagination_tpl', data));
                     } else {
                         $('[data-name="list"]').after('<?=MYNODATA?>');
                     }
                 }
             })
         }
+
+        //选中
+        $(document).on('click', 'input[type="checkbox"]', function () {
+            var state = $(this).is(':checked');
+            var tr = $(this).closest('tr');
+            var level = tr.data('level');
+            var next = tr.next('tr');
+            var prev = tr.prev('tr');
+            //选中下级
+            while ($(next).attr('data-level') > level) {
+                next.find(':checkbox').prop('checked', state);
+                next = next.next();
+            }
+            //选中上级
+            if (level > 0) {
+                while ($(prev).attr('data-level') < level) {
+                    prev.find(':checkbox').prop('checked', state);
+                    prev = prev.prev();
+                }
+            }
+            //选中当前行
+            tr.find(':checkbox').prop('checked', state);
+        });
+
     })
 </script>
 </body>

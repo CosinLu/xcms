@@ -98,6 +98,7 @@ class MY_Controller extends CI_Controller
 
 }
 
+
 //信息控制器
 class MY_info_Controller extends MY_Controller
 {
@@ -144,9 +145,12 @@ class MY_info_Controller extends MY_Controller
             $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
             $str .= '</a>';
             $parent_level = $level;
+            if ($val['id'] == $this->info_cid) {
+                $data['main_section_name'] = $val['name'];
+            }
         }
         $str .= str_repeat('</li></ul>', $parent_level + 1);
-        $data['info_col_sidebar'] = $str;
+        $data['main_sidebar'] = $str;
         $this->load->vars($data);
     }
 

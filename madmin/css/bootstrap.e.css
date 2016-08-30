@@ -205,4 +205,8 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     outline: none;
 }
 
+/*面板*/
+.panel{
+    margin-bottom:15px;
+}
 

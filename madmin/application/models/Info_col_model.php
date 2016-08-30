@@ -49,6 +49,7 @@ class Info_col_model extends MY_Model
         $vals = array(
             'info_type_id' => $this->input->post('info_type_id'),
             'name' => $this->input->post('name'),
+            'pic' => $this->input->post('pic'),
             'remark' => $this->input->post('remark'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
