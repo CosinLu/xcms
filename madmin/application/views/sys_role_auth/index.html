@@ -101,24 +101,22 @@
         }
 
         //选中
-        $(document).on('click', 'input[type="checkbox"]', function () {
+        $(document).on('click', 'input[type="checkbox"][name^="id"]', function () {
             var state = $(this).is(':checked');
             var tr = $(this).closest('tr');
             var level = tr.data('level');
             var next = tr.next('tr');
-            var prev = tr.prev('tr');
+            //var prev = tr.prev('tr');
             //选中下级
             while ($(next).attr('data-level') > level) {
                 next.find(':checkbox').prop('checked', state);
                 next = next.next();
             }
             //选中上级
-            if (level > 0) {
-                while ($(prev).attr('data-level') < level) {
-                    prev.find(':checkbox').prop('checked', state);
-                    prev = prev.prev();
-                }
-            }
+            /*while ($(prev).attr('data-level') < level) {
+                prev.find(':checkbox').prop('checked', state);
+                prev = prev.prev();
+            }*/
             //选中当前行
             tr.find(':checkbox').prop('checked', state);
         });
