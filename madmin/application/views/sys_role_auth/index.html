@@ -26,40 +26,30 @@
                 <h5 class="section_name"><?=$section_name?></h5>
             </div>
             <div class="container-fluid section_container">
-                <div class="panel panel-default mt15">
-                    <table class="table table-bordered table-hover table_list" data-name="list">
-                        <thead>
-                        <tr>
-                            <th width="5%">
-                                <label><input type="checkbox" name="checkAll" data-checkname="id">
+                <form action="<?=$save_url?>" method="post">
+                    <div class="panel panel-default mt15 treeview">
+                        <table class="table table-bordered table-hover table_list">
+                            <thead>
+                            <tr>
+                                <th width="5%"><label><input type="checkbox" name="checkAll">
                                     <ins></ins>
-                                </label>
-                            </th>
-                            <th>名称</th>
-                            <th width="45%">权限</th>
-                        </tr>
-                        </thead>
-                        <tbody id="list"></tbody>
-                        <script id="list_tpl" type="text/html">
-                            {{each list as val}}
-                            <tr data-level="{{val.level}}">
-                                <td>
-                                    <label><input type="checkbox" name="id[]" value="{{val.id}}">
-                                        <ins></ins>
-                                    </label>
-                                </td>
-                                <td>{{val.prefix + val.name}}</td>
-                                <td>{{#val.auth}}</td>
+                                </label></th>
+                                <th>名称</th>
+                                <th width="45%">权限</th>
                             </tr>
-                            {{/each}}
+                            </thead>
+                        </table>
+                        <div class="treeview" id="list"></div>
+                        <script type="text/html" id="list_tpl">
+                            {{#list}}
                         </script>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 text-right">
-                        <button class="btn btn-primary mb15">更新权限</button>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-primary mb15">更新权限</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -100,26 +90,96 @@
             })
         }
 
-        //选中
-        $(document).on('click', 'input[type="checkbox"][name^="id"]', function () {
+        //复选框
+        //1.全选
+        $(document).on('click', 'input[name="checkAll"]', function () {
             var state = $(this).is(':checked');
-            var tr = $(this).closest('tr');
-            var level = tr.data('level');
-            var next = tr.next('tr');
-            //var prev = tr.prev('tr');
-            //选中下级
-            while ($(next).attr('data-level') > level) {
-                next.find(':checkbox').prop('checked', state);
-                next = next.next();
-            }
-            //选中上级
-            /*while ($(prev).attr('data-level') < level) {
-                prev.find(':checkbox').prop('checked', state);
-                prev = prev.prev();
-            }*/
-            //选中当前行
-            tr.find(':checkbox').prop('checked', state);
+            var checkbox = $(this).closest('table').next('#list').find('input[type="checkbox"]');//全部复选框
+            checkbox.prop('checked', state);
         });
+
+        $(document).on("click change", 'input[name^="id"]', function () {
+            var prevAuthCheckedLen = $(this).closest('ul').prev('table').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
+            //关联上级
+            if (prevAuthCheckedLen == 0) {
+                checkedPrev($(this));
+            }
+            //关联下级
+            checkedNext($(this));
+            //关联当前行
+            checkedInline($(this));
+        });
+
+        //关联行首
+        $(document).on('click', 'input[name^="auth"]', function () {
+            var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
+            var state = $(this).is(':checked');//状态：true=选中，false=未选中
+            var prevCheckbox = $(this).closest('tr').find('input[name^="id"]');//上级name为id[]的复选框
+            var prevAuthCheckedLen = $(this).closest('ul').prev('table').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
+            var nextAuthCheckedLen = $(this).closest('table').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
+            if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
+                prevCheckbox.prop('checked', state);
+            } else {
+                prevCheckbox.prop('checked', true);
+            }
+            //关联上级
+            if (prevAuthCheckedLen == 0 && siblingsCheckedLen == 0) {
+                authCheckedPrev(prevCheckbox);
+            }
+            //关联下级[取消选中时有效]
+            //checkedNextCancel(prevCheckbox);
+        });
+
+        //关联当前行
+        function checkedInline(obj) {
+            var state = obj.is(':checked');
+            obj.closest('td').siblings().find('input[type="checkbox"]').prop('checked', state);
+        }
+
+        //关联下级
+        function checkedNext(obj) {
+            var state = obj.is(':checked');
+            obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', state);
+        }
+
+        //关联下级[取消选中时有效]
+        /*function checkedNextCancel(obj) {
+         var state = obj.is(':checked');
+         if (!state) {
+         obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', state);
+         }
+         }*/
+
+        //关联上级
+        function checkedPrev(obj) {
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('table').find('input[type="checkbox"][name^="id"]');
+            var checkboxLen = checkbox.length;
+            if (checkboxLen > 0) {
+                if (checkedLen > 0) {
+                    checkbox.prop('checked', true);
+                } else {
+                    checkbox.prop('checked', false);
+                }
+                checkedPrev(checkbox);
+            }
+        }
+
+        //权限关联上级
+        function authCheckedPrev(obj) {
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('table').find('input[type="checkbox"][name^="id"]');
+            var checkboxLen = checkbox.length;
+            if (checkboxLen > 0) {
+                if (checkedLen > 0) {
+                    checkbox.prop('checked', true);
+                } else {
+                    checkbox.prop('checked', false);
+                }
+                checkedPrev(checkbox);
+            }
+        }
+
 
     })
 </script>

@@ -200,11 +200,11 @@ $(function () {
      * @return {[type]}     [description]
      */
     function _getParentsCheckbox(obj) {
-        var checkenLen = obj.closest('ul').find('input[type="checkbox"]:enabled:checked').length;
+        var checkedLen = obj.closest('ul').find('input[type="checkbox"]:enabled:checked').length;
         var checkbox = obj.closest('ul').prev('a').find('input[type="checkbox"]:enabled'); //当前复选框父节点上级兄弟节点中的复选框
         var checkboxLen = checkbox.length;
         if (checkboxLen > 0) {
-            if (checkenLen > 0) {
+            if (checkedLen > 0) {
                 checkbox.prop('checked', true);
             } else {
                 checkbox.prop('checked', false);

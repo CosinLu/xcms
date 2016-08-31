@@ -22,7 +22,7 @@ class Sys_role_auth extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['save_url'] = site_url('sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
+        $url['save_url'] = site_url('sys_role_auth/save?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
         $url['get_list_url'] = site_url('sys_role_auth/get_list?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
         $this->load->vars($url);
     }
@@ -35,12 +35,42 @@ class Sys_role_auth extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->sys_role_auth->get_list();
-        foreach ($data['list'] as $key => $val) {
-            //$data['list'][$key]['parent_id'] = implode('_', $this->category->parent_id($data['list'], $val['id'], TRUE));
-            $data['list'][$key]['auth'] = $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id']);
-            $data['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . ((!empty($val['level'] - 1) ? '└─&nbsp;' : ''));
+        $list = $this->sys_role_auth->get_list();
+        foreach ($list as $key => $val) {
+            $list[$key]['auth'] = $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id']);
+            $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . ((!empty($val['level'] - 1) ? '└─&nbsp;' : ''));
         }
+        $str = '';
+        $start_level = -1;
+        $parent_level = 0;
+        foreach ($list as $val) {
+            $level = $val['level'];
+            if ($start_level < 0) {
+                $start_level = $level;
+            }
+            if ($level < $parent_level) {
+                $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+            } elseif ($level > $parent_level) {
+                $str .= '<ul data-level="' . ($level) . '">';
+            } else {
+                $str .= '</li>';
+            }
+            $str .= '<li>';
+            $str .= '<table width="100%" class="table_list">';
+            $str .= '<tbody>';
+            $str .= '<tr>';
+            $str .= '<td width="5%">';
+            $str .= '<label><input type="checkbox" name="id[]" value="' . $val['id'] . '"><ins></ins></label>';
+            $str .= '</td>';
+            $str .= '<td>' . $val['prefix'] . $val['name'] . '</td>';
+            $str .= '<td width="45%">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id']) . '</td>';
+            $str .= '</tr>';
+            $str .= '</tbody>';
+            $str .= '</table>';
+            $parent_level = $level;
+        }
+        $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
+        $data['list'] = $str;
         echo json_encode($data);
     }
 
@@ -56,6 +86,12 @@ class Sys_role_auth extends MY_Controller
             }
         }
         return $auth;
+    }
+
+    //保存
+    public function save()
+    {
+        
     }
 
 }

@@ -123,10 +123,14 @@ class MY_info_Controller extends MY_Controller
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
         $str = '';
+        $start_level = -1;
         $parent_level = 0;
         foreach ($info_col_sort as $val) {
             $level = $val['level'];
             $current = ($val['id'] == $this->info_cid) ? 'current' : '';
+            if ($start_level < 0) {
+                $start_level = $level;
+            }
             if ($level < $parent_level) {
                 $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
             } elseif ($level > $parent_level) {
@@ -149,7 +153,7 @@ class MY_info_Controller extends MY_Controller
                 $data['main_section_name'] = $val['name'];
             }
         }
-        $str .= str_repeat('</li></ul>', $parent_level + 1);
+        $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
         $data['main_sidebar'] = $str;
         $this->load->vars($data);
     }
