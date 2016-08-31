@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-30 18:47:29
+Date: 2016-08-31 23:14:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -360,12 +360,20 @@ DROP TABLE IF EXISTS `sys_role_auth`;
 CREATE TABLE `sys_role_auth` (
   `sys_role_id` int(10) DEFAULT NULL COMMENT '角色标识',
   `sys_col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
-  `sys_col_auth_id` int(10) DEFAULT NULL COMMENT '系统栏目权限标识'
+  `sys_col_auth_ident` varchar(10) DEFAULT NULL COMMENT '系统栏目权限标识'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统角色权限表';
 
 -- ----------------------------
 -- Records of sys_role_auth
 -- ----------------------------
+INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
+INSERT INTO `sys_role_auth` VALUES ('3', '7', 'del');
+INSERT INTO `sys_role_auth` VALUES ('3', '7', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('3', '7', 'update');
+INSERT INTO `sys_role_auth` VALUES ('3', '21', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('3', '21', 'del');
+INSERT INTO `sys_role_auth` VALUES ('3', '21', 'look');
+INSERT INTO `sys_role_auth` VALUES ('3', '21', 'update');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -392,7 +400,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('3', null, 'xuanyunet', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'producter', '0', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('3', '3', 'xuanyunet', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'producter', '0', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for upload

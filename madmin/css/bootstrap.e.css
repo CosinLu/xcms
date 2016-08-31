@@ -14,7 +14,7 @@
 .input-group-addon,
 .progress,
 kbd,
-.navbar-toggle{
+.navbar-toggle {
     border-radius: 0 !important;
 }
 
@@ -63,6 +63,8 @@ kbd {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+    font-size: 12px;
 }
 
 .navbar-brand {
@@ -206,7 +208,7 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
 }
 
 /*面板*/
-.panel{
-    margin-bottom:15px;
+.panel {
+    margin-bottom: 15px;
 }
 
