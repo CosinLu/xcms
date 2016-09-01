@@ -22,7 +22,7 @@ class Sys_user_model extends MY_Model
         $this->db->select('t1.name as sys_role_name');
         $this->db->select('t2.name as state_name,t2.color as state_color');
         $this->db->from('sys_user as t');
-        $this->db->join('sys_role as t1', 't1.id=t.sys_role_id', 'left');
+        $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
         $this->db->join('sys_dict as t2', 't2.ident=t.state', 'left');
         if ($key) {
             $this->db->like('t.username', $key);
@@ -55,7 +55,7 @@ class Sys_user_model extends MY_Model
         $password = ($this->input->post('password')) ? md5($this->input->post('password')) : '';
         $vals = array_filter(
             array(
-                'sys_role_id' => $this->input->post('sys_role_id'),
+                'role_id' => $this->input->post('role_id'),
                 'username' => $this->input->post('username'),
                 'password' => $password,
                 'nickname' => $this->input->post('nickname'),

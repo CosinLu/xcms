@@ -59,10 +59,10 @@ class Sys_role_auth extends MY_Controller
             $str .= '<tbody>';
             $str .= '<tr>';
             $str .= '<td width="5%">';
-            $str .= '<label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['sys_col_id']) . '><ins></ins></label>';
+            $str .= '<label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label>';
             $str .= '</td>';
             $str .= '<td>' . $val['prefix'] . $val['name'] . '</td>';
-            $str .= '<td width="45%">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['sys_col_auth_ident_str']) . '</td>';
+            $str .= '<td width="45%">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</td>';
             $str .= '</tr>';
             $str .= '</tbody>';
             $str .= '</table>';
@@ -74,14 +74,14 @@ class Sys_role_auth extends MY_Controller
     }
 
     //拼接权限
-    public function split_auth($ident, $name, $sys_col_id, $checked = '')
+    public function split_auth($ident, $name, $col_id, $checked = '')
     {
         $auth = '';
         if (!empty($ident) && !empty($name)) {
             $ident_arr = explode(',', $ident);
             $name_arr = explode(',', $name);
             foreach ($ident_arr as $key => $val) {
-                $auth .= '<label><input type="checkbox" name="auth[' . $sys_col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins></ins>' . $name_arr[$key] . '</label>';
+                $auth .= '<label><input type="checkbox" name="auth[' . $col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins></ins>' . $name_arr[$key] . '</label>';
             }
         }
         return $auth;
@@ -94,7 +94,7 @@ class Sys_role_auth extends MY_Controller
         $rows = $this->sys_role_auth->del();
         //添加
         $bool = $this->sys_role_auth->add();
-        if ($bool) {
+        if ($bool OR $rows) {
             $this->prompt->success('操作成功！', site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id));
         } else {
             $this->prompt->error('操作失败！', site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id));

@@ -18,14 +18,14 @@ class Sys_col_model extends MY_Model
     public function get_list()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as user_type');
+        $this->db->select('t1.name as user_type,t1.color as user_type_color');
         $this->db->select('t2.name as display_name,t2.color as display_color');
-        $this->db->select('group_concat(concat("<kbd>",t4.name,"</kbd>") SEPARATOR "&nbsp;") as sys_col_auth');
+        $this->db->select('group_concat(concat("<kbd>",t4.name,"</kbd>") SEPARATOR "&nbsp;") as col_auth');
         $this->db->from('sys_col as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.user_type', 'left');
         $this->db->join('sys_dict as t2', 't2.ident=t.display', 'left');
-        $this->db->join('sys_col_auth as t3', 't3.sys_col_id=t.id', 'left');
-        $this->db->join('sys_dict as t4', 't4.ident=t3.sys_col_auth', 'left');
+        $this->db->join('sys_col_auth as t3', 't3.col_id=t.id', 'left');
+        $this->db->join('sys_dict as t4', 't4.ident=t3.col_auth', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -38,9 +38,9 @@ class Sys_col_model extends MY_Model
     public function update()
     {
         $id = $this->input->get('id');
-        $this->db->select('t.*,group_concat(t1.sys_col_auth) as sys_col_auth');
+        $this->db->select('t.*,group_concat(t1.col_auth) as col_auth');
         $this->db->from('sys_col as t');
-        $this->db->join('sys_col_auth as t1', 't1.sys_col_id=t.id', 'left');
+        $this->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
         $this->db->where('t.id', $id);
         $res = $this->db->get()->row_array();
         return $res;
@@ -49,7 +49,7 @@ class Sys_col_model extends MY_Model
     //保存
     public function save()
     {
-        $id = $sys_col_id = $this->input->post('id');
+        $id = $col_id = $this->input->post('id');
         $pid = $this->input->post('pid');
         $vals = array(
             'name' => $this->input->post('name'),
@@ -65,28 +65,28 @@ class Sys_col_model extends MY_Model
         if ($id) {
             $bool = $this->category->update($id, $pid, $vals);
         } else {
-            $bool = $sys_col_id = $this->category->insert($pid, $vals);
+            $bool = $col_id = $this->category->insert($pid, $vals);
         }
-        $this->set_sys_col_auth($sys_col_id, $this->input->post('auth'));//设置系统栏目权限
+        $this->set_col_auth($col_id, $this->input->post('auth'));//设置系统栏目权限
         return $bool;
     }
 
     /**
      * 设置系统栏目权限
-     * @param $sys_col_id   系统栏目id
-     * @param $sys_col_auth 系统栏目权限
+     * @param $col_id   系统栏目id
+     * @param $col_auth 系统栏目权限
      */
-    public function set_sys_col_auth($sys_col_id, $sys_col_auth)
+    public function set_col_auth($col_id, $col_auth)
     {
-        $this->del_sys_col_auth($sys_col_id);//删除栏目权限
-        if (empty($sys_col_auth)) {
+        $this->del_col_auth($col_id);//删除栏目权限
+        if (empty($col_auth)) {
             return;
         }
         //设置写入数据
-        foreach ($sys_col_auth as $val) {
+        foreach ($col_auth as $val) {
             $vals[] = array(
-                'sys_col_id' => $sys_col_id,
-                'sys_col_auth' => $val
+                'col_id' => $col_id,
+                'col_auth' => $val
             );
         }
         $this->db->insert_batch('sys_col_auth', $vals);
@@ -94,12 +94,12 @@ class Sys_col_model extends MY_Model
 
     /**
      * 删除系统栏目权限
-     * @param $sys_col_id   系统栏目id
+     * @param $col_id   系统栏目id
      * @return mixed
      */
-    public function del_sys_col_auth($sys_col_id)
+    public function del_col_auth($col_id)
     {
-        $this->db->where('sys_col_id', $sys_col_id);
+        $this->db->where('col_id', $col_id);
         $this->db->delete('sys_col_auth');
         $rows = $this->db->affected_rows();
         return $rows;

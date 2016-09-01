@@ -20,7 +20,11 @@ class MY_Controller extends CI_Controller
         $this->sys_cid = $this->input->get('sys_cid');
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->is_save = ($this->input->post('is_save') == '') ? '1' : $this->input->post('is_save');
-        $this->load->library('sys_auth');
+        $this->load->library('sys_auth', array(
+            'user_info' => $this->sys_session,
+            'sys_cid' => $this->sys_cid
+        ));
+        //var_dump($this->sys_session);
         $this->load->vars($this->sys_auth->menu());
         $this->load->vars($this->sys_auth->sidebar());
     }

@@ -65,7 +65,7 @@ class Sys_col extends MY_Controller
     {
         $data['item'] = $this->sys_col->update();
         $data['sys_col'] = $this->category->update_option($data['item']['id'], $data['item']['pid']);
-        $data['auth'] = $this->sys_dict->checkbox_list(1, 'auth', $data['item']['sys_col_auth']);
+        $data['auth'] = $this->sys_dict->checkbox_list(1, 'auth', $data['item']['col_auth']);
         $data['user_type'] = $this->sys_dict->radio_button_list(6, 'user_type', $data['item']['user_type']);
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $this->load->view('sys_col/update.html', $data);
@@ -94,7 +94,7 @@ class Sys_col extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $this->sys_col->del_sys_col_auth($id);//删除系统栏目权限
+        $this->sys_col->del_col_auth($id);//删除系统栏目权限
         $rows = $this->category->del($id);//删除系统栏目
         echo $rows;
     }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-01 18:43:04
+Date: 2016-09-01 23:20:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -235,7 +235,7 @@ INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro'
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', 'config_item', '', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -255,8 +255,8 @@ INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', 'info_col_pic'
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_col_auth`;
 CREATE TABLE `sys_col_auth` (
-  `sys_col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
-  `sys_col_auth` varchar(10) DEFAULT NULL COMMENT '系统栏目权限标识'
+  `col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
+  `col_auth` varchar(10) DEFAULT NULL COMMENT '系统栏目权限标识'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统栏目权限表';
 
 -- ----------------------------
@@ -308,7 +308,7 @@ INSERT INTO `sys_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', '', '1
 INSERT INTO `sys_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('6', '用户类型', '0', '1', '', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('7', '生产者', '6', '2', 'pro', '#333333', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('8', '开发者', '6', '2', 'dev', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('8', '开发者', '6', '2', 'dev', '#337ab7', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('9', '显示', '0', '1', '', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '', '100', null, null, null, null);
@@ -353,18 +353,14 @@ INSERT INTO `sys_role` VALUES ('3', '超级管理员', '0', '', '100', null, nul
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_auth`;
 CREATE TABLE `sys_role_auth` (
-  `sys_role_id` int(10) DEFAULT NULL COMMENT '角色标识',
-  `sys_col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
-  `sys_col_auth_ident` varchar(10) DEFAULT NULL COMMENT '系统栏目权限标识'
+  `role_id` int(10) DEFAULT NULL COMMENT '角色标识',
+  `col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
+  `col_auth` varchar(10) DEFAULT NULL COMMENT '系统栏目权限'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统角色权限表';
 
 -- ----------------------------
 -- Records of sys_role_auth
 -- ----------------------------
-INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
-INSERT INTO `sys_role_auth` VALUES ('3', '7', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '8', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '8', 'del');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -372,15 +368,15 @@ INSERT INTO `sys_role_auth` VALUES ('3', '8', 'del');
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `sys_role_id` int(10) unsigned DEFAULT NULL COMMENT '角色标识',
+  `role_id` int(10) unsigned DEFAULT NULL COMMENT '角色标识',
   `username` varchar(50) DEFAULT NULL COMMENT '用户名',
   `password` varchar(50) DEFAULT NULL COMMENT '密码',
   `realname` varchar(50) DEFAULT NULL COMMENT '姓名',
   `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `state` char(6) DEFAULT NULL COMMENT '状态：normal=正常，forzen=冻结',
-  `user_type` varchar(10) DEFAULT 'producter' COMMENT '用户类型：developer=开发者，producter=生产者',
-  `sys_manager` tinyint(1) DEFAULT '0' COMMENT '默认管理员【不在后台显示，拥有系统所有权限】：0=否，1=是',
+  `user_type` varchar(10) DEFAULT 'pro' COMMENT '用户类型：dev=开发者，pro=生产者',
+  `sys_manager` tinyint(1) DEFAULT '0' COMMENT '默认管理员【拥有生产者所有权限】：0=否，1=是',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
@@ -391,7 +387,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('3', '3', 'xuanyunet', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'producter', '0', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('3', '3', 'xuanyunet', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'dev', '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for upload

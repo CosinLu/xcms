@@ -10,55 +10,59 @@ class Sys_auth
 {
     protected $CI;
     protected $sys_cid;
-    protected $tb_sys_col;
-    protected $tb_sys_col_auth;
-    protected $tb_sys_role_auth;
+    protected $user_info;
 
-    public function __construct()
+    public function __construct($params = array())
     {
         $this->CI = &get_instance();
-        $this->sys_cid = $this->CI->input->get('sys_cid');
-        $this->tb_sys_col = $this->CI->db->dbprefix . 'sys_col';
-        $this->tb_sys_col_auth = $this->CI->db->dbprefix . 'sys_col_auth';
-        $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
+        $this->sys_cid = (isset($params['sys_cid'])) ? $params['sys_cid'] : '';
+        $this->user_info = (isset($params['user_info'])) ? $params['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
+        //var_dump($this->sys_session);
+        //die;
     }
 
     //根据权限获得系统栏目
-    public function sys_col($user_info = array())
+    public function sys_col()
     {
-        if ($user_info['user_type'] = 'dev') {//开发者
-            $sql = "select *
-                from (
-                        select t1.*
-                        from " . $this->tb_sys_col_auth . " as t1
-                        inner join " . $this->tb_sys_col . " as t2 on t2.id = t1.sys_col_id
-                        where t2.display = 'show'
-                    ) t
-                group by id order by sort asc,id asc";
-        } elseif ($user_info['sys_manager'] = '1') {//系统默认
-            $sql = "select *
-                from (
-                        select t1.*
-                        from " . $this->tb_sys_col_auth . " as t1
-                        inner join " . $this->tb_sys_col . " as t2 on t2.id = t1.sys_col_id
-                        where t2.display = 'show' and t1.user_type = '" . $user_info['user_type'] . "'
-                    ) t
-                group by id order by sort asc,id asc";
+        $user_type = $this->user_info['user_type'];
+        $sys_manager = $this->user_info['sys_manager'];
+        $role_id = $this->user_info['role_id'];
+        if ($user_type == 'dev') {//开发者
+            $this->CI->db->select('t1.*');
+            $this->CI->db->select('group_concat(t2.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t1');
+            $this->CI->db->join('sys_col_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->where(array(
+                't1.display' => 'show'
+            ));
+        } elseif ($user_type == 'pro' && $sys_manager == '1') {//系统默认
+            $this->CI->db->select('t1.*');
+            $this->CI->db->select('group_concat(t2.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t1');
+            $this->CI->db->join('sys_col_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->where(array(
+                't1.display' => 'show',
+                't1.user_type' => $user_type
+            ));
         } else {//普通
-            $sql = "select *
-                from (
-                        select t1.*
-                        from " . $this->tb_sys_role_auth . " as t1
-                        inner join " . $this->tb_sys_col . " as t2 on t2.sys_col_id = t1.id
-                        where t2.sys_role_id = " . $user_info['sys_role_id'] . " and t2.display = 'show' and t2.user_type = '" . $user_info['user_type'] . "'
-                    ) t
-                group by id order by sort asc,id asc";
+            $this->CI->db->select();
+            $this->CI->db->from('sys_col as t1');
+            $this->CI->db->join('sys_role_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->where(array(
+                't1.display' => 'show',
+                't1.user_type' => $user_type,
+                't2.role_id' => $role_id
+            ));
         }
-        $res = $this->CI->db->query($sql)->result_array();
+        $this->CI->db->group_by('t1.id');
+        $this->CI->db->order_by('t1.sort asc,t1.id asc');
+        $res = $this->CI->db->get()->result_array();
+        //var_dump($res);
+        //die;
         return $res;
 
-        /*$this->CI->db->from('sys_col');
+        /*this->CI->db->from('sys_col');
         $this->CI->db->where('display', 'show');
         $this->CI->db->order_by('sort asc,id asc');
         $res = $this->CI->db->get()->result_array();

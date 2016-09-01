@@ -73,7 +73,7 @@ class Code
         if (!isset($_SESSION)) {
             session_start();
         }
-        $sys_session['sys_session']['code'] = $this->code;
+        $sys_session['sys_code'] = $this->code;
         $this->CI->session->set_userdata($sys_session);
     }
 

@@ -30,10 +30,10 @@ class Welcome_model extends CI_Model
     //获的用户信息
     public function user_info()
     {
-        $this->db->select('t.*,t.id as sys_user_id');
+        $this->db->select('t.*,t.id as user_id');
         $this->db->select('t1.role_type');
         $this->db->from('sys_user as t');
-        $this->db->join('sys_role as t1', 't1.id=t.sys_role_id', 'left');
+        $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
         $this->db->where(array(
             't.username' => $this->username,
             't.password' => md5($this->password)
