@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-31 23:14:26
+Date: 2016-09-01 18:43:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -224,7 +224,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -233,9 +233,9 @@ INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro'
 INSERT INTO `sys_col` VALUES ('2', '系统', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', 'config_item', '', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -249,7 +249,6 @@ INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', ''
 INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'pro', 'hide', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', 'info_col_pic', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('21', '123', '7', '3', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -278,10 +277,6 @@ INSERT INTO `sys_col_auth` VALUES ('20', 'look');
 INSERT INTO `sys_col_auth` VALUES ('8', 'update');
 INSERT INTO `sys_col_auth` VALUES ('8', 'del');
 INSERT INTO `sys_col_auth` VALUES ('8', 'look');
-INSERT INTO `sys_col_auth` VALUES ('21', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('21', 'update');
-INSERT INTO `sys_col_auth` VALUES ('21', 'del');
-INSERT INTO `sys_col_auth` VALUES ('21', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -346,7 +341,7 @@ CREATE TABLE `sys_role` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -367,13 +362,9 @@ CREATE TABLE `sys_role_auth` (
 -- Records of sys_role_auth
 -- ----------------------------
 INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
-INSERT INTO `sys_role_auth` VALUES ('3', '7', 'del');
 INSERT INTO `sys_role_auth` VALUES ('3', '7', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '7', 'update');
-INSERT INTO `sys_role_auth` VALUES ('3', '21', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '21', 'del');
-INSERT INTO `sys_role_auth` VALUES ('3', '21', 'look');
-INSERT INTO `sys_role_auth` VALUES ('3', '21', 'update');
+INSERT INTO `sys_role_auth` VALUES ('3', '8', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('3', '8', 'del');
 
 -- ----------------------------
 -- Table structure for sys_user

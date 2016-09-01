@@ -9,34 +9,51 @@
 class Sys_role_auth_model extends MY_Model
 {
     protected $role_id;
+    protected $tb_sys_col;
+    protected $tb_sys_col_auth;
+    protected $tb_sys_dict;
+    protected $tb_sys_role_auth;
 
     public function __construct()
     {
         parent::__construct();
         $this->role_id = $this->input->get('role_id');
+        $this->tb_sys_col = $this->db->dbprefix . 'sys_col';
+        $this->tb_sys_col_auth = $this->db->dbprefix . 'sys_col_auth';
+        $this->tb_sys_dict = $this->db->dbprefix . 'sys_dict';
+        $this->tb_sys_role_auth = $this->db->dbprefix . 'sys_role_auth';
         $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
     }
 
     //获得列表
     public function get_list()
     {
-        $this->db->select('sys_col.*');
-        $this->db->select('GROUP_CONCAT(sys_dict.name) as auth_name_str,GROUP_CONCAT(sys_dict.ident) as auth_ident_str');
-        $this->db->select('GROUP_CONCAT(sys_role_auth.sys_col_auth_ident) as sys_col_auth_ident_str,sys_role_auth.sys_col_id');
-        $this->db->from('sys_col');
-        $this->db->join('sys_col_auth', 'sys_col_auth.sys_col_id = sys_col.id', 'left');
-        $this->db->join('sys_dict', 'sys_dict.ident = sys_col_auth.sys_col_auth', 'left');
-        $this->db->join('sys_role_auth', 'sys_role_auth.sys_col_id=sys_col.id and sys_role_auth.sys_role_id=' . $this->role_id, 'left');
-        $this->db->where(array(
-            'sys_col.display' => "show",
-            'sys_col.user_type' => 'pro'
-        ));
-        $this->db->group_by('sys_col.id');
-        $res = $this->db->get()->result_array();
+        $sql = "SELECT
+                t.*, GROUP_CONCAT(t2.name) AS auth_name_str,
+                GROUP_CONCAT(t2.ident) AS auth_ident_str,
+                    t3.sys_col_auth_ident_str,
+                t3.sys_col_id
+            FROM
+                " . $this->tb_sys_col . " as t
+            LEFT JOIN " . $this->tb_sys_col_auth . " as t1 ON t1.sys_col_id = t.id
+            LEFT JOIN " . $this->tb_sys_dict . " as t2 ON t2.ident = t1.sys_col_auth
+            LEFT JOIN (
+                SELECT
+                    GROUP_CONCAT(sys_col_auth_ident) AS sys_col_auth_ident_str,
+                    sys_col_id
+                FROM
+                    " . $this->tb_sys_role_auth . "
+                WHERE sys_role_id=" . $this->role_id . "
+                GROUP BY
+                    sys_col_id
+            ) AS t3 ON t3.sys_col_id = t.id
+            WHERE
+                t.display = 'show'
+            AND t.user_type = 'pro'
+            GROUP BY
+                t.id";
+        $res = $this->db->query($sql)->result_array();
         $list = $this->category->children($res);
-        echo $this->db->last_query();
-        var_dump($list);
-        die;
         return $list;
     }
 

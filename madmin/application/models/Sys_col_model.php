@@ -17,17 +17,17 @@ class Sys_col_model extends MY_Model
     //获得列表
     public function get_list()
     {
-        $this->db->select('sys_col.*');
-        $this->db->select('sd1.name as user_type');
-        $this->db->select('sd2.name as display_name,sd2.color as display_color');
-        $this->db->select('group_concat(concat("<kbd>",sd3.name,"</kbd>") SEPARATOR "&nbsp;") as sys_col_auth');
-        $this->db->from('sys_col');
-        $this->db->join('sys_dict as sd1', 'sd1.ident=sys_col.user_type', 'left');
-        $this->db->join('sys_dict as sd2', 'sd2.ident=sys_col.display', 'left');
-        $this->db->join('sys_col_auth', 'sys_col_auth.sys_col_id=sys_col.id', 'left');
-        $this->db->join('sys_dict as sd3', 'sd3.ident=sys_col_auth.sys_col_auth', 'left');
-        $this->db->order_by('sys_col.sort asc,sys_col.id asc');
-        $this->db->group_by('sys_col.id');
+        $this->db->select('t.*');
+        $this->db->select('t1.name as user_type');
+        $this->db->select('t2.name as display_name,t2.color as display_color');
+        $this->db->select('group_concat(concat("<kbd>",t4.name,"</kbd>") SEPARATOR "&nbsp;") as sys_col_auth');
+        $this->db->from('sys_col as t');
+        $this->db->join('sys_dict as t1', 't1.ident=t.user_type', 'left');
+        $this->db->join('sys_dict as t2', 't2.ident=t.display', 'left');
+        $this->db->join('sys_col_auth as t3', 't3.sys_col_id=t.id', 'left');
+        $this->db->join('sys_dict as t4', 't4.ident=t3.sys_col_auth', 'left');
+        $this->db->order_by('t.sort asc,t.id asc');
+        $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
         $data['total'] = count($res);
@@ -38,10 +38,10 @@ class Sys_col_model extends MY_Model
     public function update()
     {
         $id = $this->input->get('id');
-        $this->db->select('sys_col.*,group_concat(sys_col_auth.sys_col_auth) as sys_col_auth');
-        $this->db->from('sys_col');
-        $this->db->join('sys_col_auth', 'sys_col_auth.sys_col_id=sys_col.id', 'left');
-        $this->db->where('sys_col.id', $id);
+        $this->db->select('t.*,group_concat(t1.sys_col_auth) as sys_col_auth');
+        $this->db->from('sys_col as t');
+        $this->db->join('sys_col_auth as t1', 't1.sys_col_id=t.id', 'left');
+        $this->db->where('t.id', $id);
         $res = $this->db->get()->row_array();
         return $res;
     }

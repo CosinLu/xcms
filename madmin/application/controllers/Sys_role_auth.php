@@ -74,14 +74,14 @@ class Sys_role_auth extends MY_Controller
     }
 
     //拼接权限
-    public function split_auth($ident, $name, $sys_col_id, $sys_col_auth_ident_str)
+    public function split_auth($ident, $name, $sys_col_id, $checked = '')
     {
         $auth = '';
         if (!empty($ident) && !empty($name)) {
             $ident_arr = explode(',', $ident);
             $name_arr = explode(',', $name);
             foreach ($ident_arr as $key => $val) {
-                $auth .= '<label><input type="checkbox" name="auth[' . $sys_col_id . '][]" value="' . $val . '" ' . checked($val, $sys_col_auth_ident_str) . '><ins></ins>' . $name_arr[$key] . '</label>';
+                $auth .= '<label><input type="checkbox" name="auth[' . $sys_col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins></ins>' . $name_arr[$key] . '</label>';
             }
         }
         return $auth;

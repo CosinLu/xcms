@@ -18,18 +18,18 @@ class Info_type_model extends MY_Model
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $this->db->select('info_type.*');
-        $this->db->select('sys_dict.name as display_name,sys_dict.color as display_color');
-        $this->db->from('info_type');
-        $this->db->join('sys_dict', 'sys_dict.ident=info_type.display', 'left');
+        $this->db->select('t.*');
+        $this->db->select('t1.name as display_name,t1.color as display_color');
+        $this->db->from('info_type as t');
+        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         if ($key) {
-            $this->db->like('info_type.name', $key);
+            $this->db->like('t.name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('info_type.sort asc,info_type.id asc');
+        $this->db->order_by('t.sort asc,t.id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();

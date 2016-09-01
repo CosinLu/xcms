@@ -18,20 +18,20 @@ class Sys_user_model extends MY_Model
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $this->db->select('sys_user.*');
-        $this->db->select('sys_role.name as sys_role_name');
-        $this->db->select('sys_dict.name as state_name,sys_dict.color as state_color');
-        $this->db->from('sys_user');
-        $this->db->join('sys_role', 'sys_role.id=sys_user.sys_role_id', 'left');
-        $this->db->join('sys_dict', 'sys_dict.ident=sys_user.state', 'left');
+        $this->db->select('t.*');
+        $this->db->select('t1.name as sys_role_name');
+        $this->db->select('t2.name as state_name,t2.color as state_color');
+        $this->db->from('sys_user as t');
+        $this->db->join('sys_role as t1', 't1.id=t.sys_role_id', 'left');
+        $this->db->join('sys_dict as t2', 't2.ident=t.state', 'left');
         if ($key) {
-            $this->db->like('sys_user.username', $key);
+            $this->db->like('t.username', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('sys_user.id asc');
+        $this->db->order_by('t.id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();

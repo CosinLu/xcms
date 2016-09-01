@@ -374,6 +374,38 @@ class Category
     }
 
     /**
+     * 多级分类的第一个有效url
+     * @param array $data
+     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param int $num url个数
+     * @param bool $self 是否包含自身
+     * @return array
+     */
+    public function first_url($data = array(), $pid = 0, $num = 1, $self = TRUE)
+    {
+        if (empty($data)) {
+            $data = $this->all();
+        }
+        $children_all = $this->children($data, $pid, $self);
+        $children = array();
+        foreach ($children_all as $key => $val) {
+            $children[$key] = $this->children($data, $val[$this->id_name], $self);
+            foreach ($children[$key] as $val) {
+                if ($val['url']) {
+                    $url[$key] = site_url($val['url']);
+                    break;
+                } else {
+                    $url[$key] = 'javascript:;';
+                }
+            }
+        }
+        if ($num > 0) {
+            $url = array_slice($url, 0, $num);
+        }
+        return $url;
+    }
+
+    /**
      * 新增分类
      * @param int $pid 上级分类标识
      * @param array $vals 插入的数据

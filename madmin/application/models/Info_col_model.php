@@ -17,14 +17,14 @@ class Info_col_model extends MY_Model
     //获得列表
     public function get_list()
     {
-        $this->db->select('info_col.*');
-        $this->db->select('sd1.name as display_name,sd1.color as display_color');
-        $this->db->select('info_type.name as info_type_name');
-        $this->db->from('info_col');
-        $this->db->join('sys_dict as sd1', 'sd1.ident=info_col.display', 'left');
-        $this->db->join('info_type', 'info_type.id=info_col.info_type_id', 'left');
-        $this->db->order_by('info_col.sort asc,info_col.id asc');
-        $this->db->group_by('info_col.id');
+        $this->db->select('t.*');
+        $this->db->select('t1.name as display_name,t1.color as display_color');
+        $this->db->select('t2.name as info_type_name');
+        $this->db->from('info_col as t');
+        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('info_type as t2', 't2.id=t.info_type_id', 'left');
+        $this->db->order_by('t.sort asc,t.id asc');
+        $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
         $data['total'] = count($res);

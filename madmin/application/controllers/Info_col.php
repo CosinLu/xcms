@@ -58,10 +58,9 @@ class Info_col extends MY_Controller
     //更新
     public function update()
     {
-        $id = $this->input->post('id');
         $data['item'] = $this->info_col->update();
         $data['info_type'] = dropdown_list($this->info_col->info_type(), 'info_type_id', $data['item']['info_type_id']);
-        $data['info_col'] = $this->category->update_option($id, $data['item']['pid']);
+        $data['info_col'] = $this->category->update_option($data['item']['id'], $data['item']['pid']);
         $data['pic'] = $this->sys_dict->radio_button_list(21, 'pic', $data['item']['pic']);
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $this->load->view('info_col/update.html', $data);

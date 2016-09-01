@@ -63,9 +63,8 @@ class Sys_col extends MY_Controller
     //更新
     public function update()
     {
-        $id = $this->input->get('id');
         $data['item'] = $this->sys_col->update();
-        $data['sys_col'] = $this->category->update_option($id, $data['item']['pid']);
+        $data['sys_col'] = $this->category->update_option($data['item']['id'], $data['item']['pid']);
         $data['auth'] = $this->sys_dict->checkbox_list(1, 'auth', $data['item']['sys_col_auth']);
         $data['user_type'] = $this->sys_dict->radio_button_list(6, 'user_type', $data['item']['user_type']);
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
