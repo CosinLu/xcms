@@ -93,7 +93,7 @@ class Sys_role_auth extends MY_Controller
         //删除
         $rows = $this->sys_role_auth->del();
         //添加
-        $bool = $this->sys_role_auth->add();
+        $bool = $this->sys_role_auth->insert();
         if ($bool OR $rows) {
             $this->prompt->success('操作成功！', site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id));
         } else {

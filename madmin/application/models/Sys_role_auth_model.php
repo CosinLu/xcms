@@ -67,7 +67,7 @@ class Sys_role_auth_model extends MY_Model
     }
 
     //添加权限
-    public function add()
+    public function insert()
     {
         $col_id_arr = $this->input->post('id');
         $col_auth_arr = $this->input->post('auth');

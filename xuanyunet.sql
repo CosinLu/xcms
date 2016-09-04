@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-02 18:27:32
+Date: 2016-09-04 21:51:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,11 +31,12 @@ CREATE TABLE `config` (
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='基本配置表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
 -- ----------------------------
 -- Records of config
 -- ----------------------------
+INSERT INTO `config` VALUES ('1', '阿斯蒂芬飞士大夫', '', null, '1', 'text', '', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -48,11 +49,12 @@ CREATE TABLE `config_group` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='配置组';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='配置组';
 
 -- ----------------------------
 -- Records of config_group
 -- ----------------------------
+INSERT INTO `config_group` VALUES ('1', '阿斯蒂芬', 'show', '', '100');
 
 -- ----------------------------
 -- Table structure for info_article
@@ -244,10 +246,10 @@ INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', ''
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'info_article', '', 'info_cid=13', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'pro', 'hide', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', 'info_col_pic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
@@ -277,6 +279,14 @@ INSERT INTO `sys_col_auth` VALUES ('20', 'look');
 INSERT INTO `sys_col_auth` VALUES ('8', 'update');
 INSERT INTO `sys_col_auth` VALUES ('8', 'del');
 INSERT INTO `sys_col_auth` VALUES ('8', 'look');
+INSERT INTO `sys_col_auth` VALUES ('9', 'look');
+INSERT INTO `sys_col_auth` VALUES ('9', 'del');
+INSERT INTO `sys_col_auth` VALUES ('9', 'update');
+INSERT INTO `sys_col_auth` VALUES ('9', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('10', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('10', 'update');
+INSERT INTO `sys_col_auth` VALUES ('10', 'del');
+INSERT INTO `sys_col_auth` VALUES ('10', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict

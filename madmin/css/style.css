@@ -316,6 +316,8 @@ div[data-name="nodata"] {
     margin-right: 10px;
 }
 
+.table_list th:first-child label,
+.table_list td:first-child label,
 .table_list .checkbox,
 .table_list .radio {
     margin: 0;

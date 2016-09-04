@@ -54,3 +54,26 @@ function checked($initial_val = '', $current_val = '')
     }
     return $checked;
 }
+
+/**
+ * 多维数组转一维数组
+ * @param array $multi_arr 原始数据
+ * @param array $num 判断是否为第一次执行此函数，防止多次转换时存在冗余
+ * @return array
+ */
+function multi_turn_one($multi_arr = array(), $num = 1)
+{
+    static $result = array();
+    //第一次执行时清空数组
+    if ($num == 1) {
+        $result = array();
+    }
+    foreach ($multi_arr as $key => $val) {
+        if (is_array($val)) {
+            $this->multi_to_one($val, $num++);
+        } else {
+            $result[] = $val;
+        }
+    }
+    return $result;
+}

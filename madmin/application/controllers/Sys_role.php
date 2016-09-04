@@ -19,9 +19,9 @@ class Sys_role extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_role/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = '<a class="btn btn-primary" href="' . site_url('sys_role/insert?sys_cid=' . $this->sys_cid) . '">新增</a>';
-        $url['del_btn'] = '<a class="btn btn-default" href="javascript:;" data-name="batchDel" data-tb="sys_role" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>';
-        $url['search_btn'] = '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>';
+        $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary" href="' . site_url('sys_role/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-default" href="javascript:;" data-name="batchDel" data-tb="sys_role" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>');
         $url['save_url'] = site_url('sys_role/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -36,9 +36,9 @@ class Sys_role extends MY_Controller
     {
         $data['list'] = $this->sys_role->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['auth_btn'] = '<a href="' . site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $val['id']) . '">设置权限</a>';
-            $data['list']['list'][$key]['update_btn'] = '<a href="' . site_url('sys_role/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>';
-            $data['list']['list'][$key]['del_btn'] = '<a href="javascript:;" data-name="del" data-tb="sys_role" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del') . '">删除</a>';
+            $data['list']['list'][$key]['auth_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a href="' . site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $val['id']) . '">设置权限</a>', '<a href="javascript:;" class="disabled">设置权限</a>');
+            $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_role/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_role" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
