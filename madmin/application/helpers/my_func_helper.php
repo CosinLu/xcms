@@ -11,12 +11,13 @@
  * @param array $data 原始数据
  * @param string $name 元素名称
  * @param int $select_val 选中值
+ * @param int $disabled 禁用
  * @return string
  */
-function dropdown_list($data = array(), $name = '', $select_val = 0)
+function dropdown_list($data = array(), $name = '', $select_val = 0, $disabled = '')
 {
     $str = '';
-    $str .= '<select name="' . $name . '" class="form-control">';
+    $str .= '<select name="' . $name . '" class="form-control" '.$disabled.'>';
     $str .= '<option value="0">-请选择-</option>';
     foreach ($data as $val) {
         $selected = ($val['id'] == $select_val) ? 'selected' : '';

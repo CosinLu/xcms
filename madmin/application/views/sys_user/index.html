@@ -57,7 +57,7 @@
                             {{each list.list as val}}
                             <tr>
                                 <td>
-                                    <label><input type="checkbox" name="id[]" value="{{val.id}}">
+                                    <label><input type="checkbox" name="id[]" value="{{val.id}}" {{val.disabled}}>
                                         <ins></ins>
                                     </label>
                                 </td>

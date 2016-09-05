@@ -19,11 +19,16 @@ textarea:focus,
 button:focus {
     outline: none !important;
 }
-label{
+
+label {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+textarea {
+    resize: none;
 }
 
 ul,
@@ -47,10 +52,11 @@ a.disabled {
 }
 
 /* mcheck */
-label{
+label {
     font-weight: normal;
-    margin-right:10px;
+    margin-right: 10px;
 }
+
 @media screen and (min-width: 0px) and (max-width: 9999px) {
     input[type="radio"],
     input[type="checkbox"] {
@@ -74,7 +80,7 @@ label{
     }
 
     input[type="radio"]:checked + ins,
-    input[type="checkbox"]:checked + ins{
+    input[type="checkbox"]:checked + ins {
         border-color: #337AB7;
     }
 
@@ -115,8 +121,8 @@ label{
         /*border-color: transparent transparent #337AB7 #337AB7;
         border-width: 1px;
         border-style: solid;*/
-        border-left:#337AB7 solid 2px;
-        border-bottom:#337AB7 solid 2px;
+        border-left: #337AB7 solid 2px;
+        border-bottom: #337AB7 solid 2px;
         transform: rotate(-45deg);
         top: -3px;
     }

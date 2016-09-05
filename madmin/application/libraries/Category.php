@@ -283,6 +283,13 @@ class Category
         return $str;
     }
 
+    /**
+     * 新增时所用下拉列表
+     * @param int $id 信息id
+     * @param array $data
+     * @param bool $root 是否显示跟目录
+     * @return string
+     */
     public function insert_option($id = 0, $data = array(), $root = TRUE)
     {
         $str = '';
@@ -309,6 +316,14 @@ class Category
         return $str;
     }
 
+    /**
+     * 修改是所用下拉列表
+     * @param int $id 信息标识
+     * @param int $pid 上级栏目标识
+     * @param array $data
+     * @param bool $root 是否显示跟目录
+     * @return string
+     */
     public function update_option($id = 0, $pid = 0, $data = array(), $root = TRUE)
     {
         $str = '';
@@ -392,10 +407,10 @@ class Category
             $children[$key] = $this->children($data, $val[$this->id_name], $self);
             foreach ($children[$key] as $val) {
                 if ($val['url']) {
-                    $url[$key] = site_url($val['url']);
+                    $url[$key] = $val['url'];
                     break;
                 } else {
-                    $url[$key] = 'javascript:;';
+                    $url[$key] = '';
                 }
             }
         }

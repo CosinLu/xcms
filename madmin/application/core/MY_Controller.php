@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->is_save = ($this->input->post('is_save') == '') ? '1' : $this->input->post('is_save');
         $this->col_auth = '';
-        $this->load->library('category');
+        $this->load->library('category',array(),'my_category');
         $this->load->library('sys_auth', array(
             'user_info' => $this->sys_session,
             'sys_cid' => $this->sys_cid
@@ -35,8 +35,8 @@ class MY_Controller extends CI_Controller
     public function menu()
     {
         $sys_col = $this->sys_auth->sys_col();//系统栏目
-        $sys_col_parent_id = $this->category->parent_id($sys_col, $this->sys_cid, TRUE);//获得栏目所有上级id
-        $sys_col_url = $this->category->children_url($sys_col);//主菜单有效url
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得栏目所有上级id
+        $sys_col_url = $this->my_category->children_url($sys_col);//主菜单有效url
         foreach ($sys_col as $key => $val) {
             if ($val['pid'] == 0) {
                 $data['menu'][$key] = $val;
@@ -58,8 +58,8 @@ class MY_Controller extends CI_Controller
         $str = '';
         $parent_level = 0;
         $sys_col = $this->sys_auth->sys_col();//系统栏目
-        $sys_col_parent_id = $this->category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
-        $sys_col_chidren = $this->category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
+        $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
         foreach ($sys_col_chidren as $val) {
             $level = $val['level'];
             $dir = ($val['dir']) ? $val['dir'] . '/' : '';

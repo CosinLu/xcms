@@ -27,9 +27,10 @@ class Sys_dict
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $check_val 选中值
+     * @param string $disabled 禁用
      * @return string
      */
-    public function radio_button_list($pid = 0, $name = '', $check_val = '')
+    public function radio_button_list($pid = 0, $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
         $res = $this->all($pid);
@@ -39,7 +40,7 @@ class Sys_dict
             } else {
                 $checked = ($val['ident'] == $check_val) ? 'checked' : '';
             }
-            $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . '><ins></ins>' . $val['name'] . '</label>';
+            $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins></ins>' . $val['name'] . '</label>';
         }
         return $str;
     }
@@ -49,9 +50,10 @@ class Sys_dict
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $check_val 选中值
+     * @param string $disabled 禁用
      * @return string
      */
-    public function checkbox_list($pid = 0, $name = '', $check_val = '')
+    public function checkbox_list($pid = 0, $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
         $check_val_arr = explode(',', $check_val);
@@ -62,7 +64,7 @@ class Sys_dict
             } else {
                 $checked = ($val['ident'] == $check_val) ? 'checked' : '';
             }
-            $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . '><ins></ins>' . $val['name'] . '</label>';
+            $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins></ins>' . $val['name'] . '</label>';
         }
         return $str;
     }
@@ -72,13 +74,14 @@ class Sys_dict
      * @param int $pid 属性上级id
      * @param string $name 元素名称
      * @param string $select_val 选中值
+     * @param string $disabled 禁用
      * @return string
      */
-    public function dropdown_list($pid = 0, $name = '', $select_val = '')
+    public function dropdown_list($pid = 0, $name = '', $select_val = '', $disabled = '')
     {
         $str = '';
         $res = $this->all($pid);
-        $str .= '<select name="' . $name . '" class="form-control">';
+        $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
         $str .= '<option value="0">-请选择-</option>';
         foreach ($res as $val) {
             $selected = ($val['ident'] == $select_val) ? 'selected' : '';
