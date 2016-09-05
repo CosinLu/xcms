@@ -6,7 +6,9 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Info_article extends MY_info_Controller
+require_once 'Information.php';
+
+class Info_article extends Information
 {
     public function __construct()
     {

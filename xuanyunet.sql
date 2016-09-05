@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-05 19:05:16
+Date: 2016-09-05 23:16:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -139,20 +139,21 @@ INSERT INTO `info_col` VALUES ('8', '行业动态', '2', '2', '2', 'nopic', null
 -- ----------------------------
 DROP TABLE IF EXISTS `info_single`;
 CREATE TABLE `info_single` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `info_col_id` int(10) unsigned DEFAULT NULL COMMENT '信息栏目标识',
+  `info_col_id` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`info_col_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
 
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
+INSERT INTO `info_single` VALUES ('6', '组织机构', '<p>组织机构阿萨发撒的发斯蒂芬发送到发阿斯蒂芬阿斯蒂芬</p>', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '公司简介', '', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_type

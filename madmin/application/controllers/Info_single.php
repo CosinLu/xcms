@@ -6,7 +6,9 @@
  * Date: 2016/9/5
  * Time: 18:28
  */
-class Info_single extends MY_info_Controller
+require_once 'Information.php';
+
+class Info_single extends Information
 {
     public function __construct()
     {
@@ -18,7 +20,7 @@ class Info_single extends MY_info_Controller
     //设置url
     public function set_url()
     {
-        $url['save_url'] = '';
+        $url['save_url'] = site_url('info_single/save?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid);
         $this->load->vars($url);
     }
 
@@ -27,5 +29,24 @@ class Info_single extends MY_info_Controller
         $data['item'] = $this->info_single->index();
         $this->load->view('info_single/update.html', $data);
     }
+
+    //保存
+    public function save()
+    {
+        $bool = $this->info_single->save();
+        if ($bool) {
+            switch ($this->is_save) {
+                case '1':
+                    $this->prompt->success('操作成功！', site_url('info_single?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid));
+                    break;
+                case '2':
+                    $this->prompt->success('操作成功！', $this->peferer);
+                    break;
+            }
+        } else {
+            $this->prompt->error('操作失败！', site_url('info_single?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid));
+        }
+    }
+
 
 }
