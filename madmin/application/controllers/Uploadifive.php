@@ -11,6 +11,7 @@ class Uploadifive extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('uploadifive_model', 'uploadifive');
     }
 
     public function do_upload()
@@ -24,6 +25,7 @@ class Uploadifive extends CI_Controller
         $this->upload->do_upload('file_upload');
         $data = $this->upload->data();
         $data['errors'] = $this->upload->display_errors();
+        $data['id'] = $this->uploadifive->save($data);
         //$data['file_upload'] = $_FILES['file_upload'];
         echo json_encode($data);
     }

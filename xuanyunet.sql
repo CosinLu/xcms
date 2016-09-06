@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : phpstudy
+Source Server         : wamp
 Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : xuanyunet
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-06 19:09:52
+Date: 2016-09-06 23:16:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -434,28 +434,31 @@ INSERT INTO `sys_user` VALUES ('2', '1', 'admin', 'e10adc3949ba59abbe56e057f20f8
 INSERT INTO `sys_user` VALUES ('3', '2', 'article', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'pro', '0', null, null, null, null);
 
 -- ----------------------------
--- Table structure for upload
+-- Table structure for uploads
 -- ----------------------------
-DROP TABLE IF EXISTS `upload`;
-CREATE TABLE `upload` (
+DROP TABLE IF EXISTS `uploads`;
+CREATE TABLE `uploads` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章ID',
-  `name` varchar(100) DEFAULT NULL COMMENT '含后缀名的文件名',
-  `type` varchar(20) DEFAULT NULL COMMENT ' MIME 类型',
-  `path` varchar(255) DEFAULT NULL COMMENT '绝对路径',
-  `full_path` varchar(255) DEFAULT NULL COMMENT '包含文件名的绝对路径',
-  `relative_path` varchar(255) DEFAULT NULL COMMENT '相对路径',
-  `full_relative_path` varchar(255) DEFAULT NULL COMMENT '包含文件名的相对路径',
-  `raw_name` varchar(100) DEFAULT NULL COMMENT '不含后缀名的文件名',
-  `orig_name` varchar(100) DEFAULT NULL COMMENT '原始的文件名【只有在使用了 encrypt_name 参数时该值才有用】',
-  `client_name` varchar(100) DEFAULT NULL COMMENT '未作任何处理的文件名',
-  `ext` varchar(10) DEFAULT NULL COMMENT '含句点的后缀名',
-  `size` double(10,2) DEFAULT NULL COMMENT '大小【单位 kb】',
-  `image` tinyint(1) DEFAULT NULL COMMENT '图片：0=不是，1=是',
-  `width` tinyint(20) DEFAULT NULL COMMENT '图片宽度',
-  `height` tinyint(20) DEFAULT NULL COMMENT '图片高度',
+  `name` varchar(255) DEFAULT NULL COMMENT '上传后的文件名',
+  `type` varchar(50) DEFAULT NULL COMMENT 'MIME类型',
+  `abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径【不含文件名】',
+  `full_abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径【含文件名】',
+  `path` varchar(255) DEFAULT NULL COMMENT '相对路径【不含文件名】',
+  `full_path` varchar(255) DEFAULT NULL COMMENT '相对路径【含文件名】',
+  `raw_name` varchar(255) DEFAULT NULL COMMENT '文件名，不含后缀名',
+  `orig_name` varchar(255) DEFAULT NULL COMMENT '原始的文件名，只有在使用了 encrypt_name 参数时该值才有用',
+  `client_name` varchar(255) DEFAULT NULL COMMENT '	用户提交过来的文件名，还没有对该文件名做任何处理',
+  `ext` varchar(10) DEFAULT NULL COMMENT '文件后缀名，包括句点',
+  `size` double(20,2) DEFAULT NULL COMMENT '文件大小（单位 kb）',
+  `is_image` tinyint(1) DEFAULT NULL COMMENT '文件是否为图片（1 = image. 0 = not.）',
+  `image_width` tinyint(20) DEFAULT NULL COMMENT '图片宽度',
+  `image_height` tinyint(20) DEFAULT NULL COMMENT '图片高度',
+  `image_type` varchar(50) DEFAULT NULL COMMENT '图片类型（通常是不带句点的文件后缀名）',
+  `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
+  `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
--- Records of upload
+-- Records of uploads
 -- ----------------------------

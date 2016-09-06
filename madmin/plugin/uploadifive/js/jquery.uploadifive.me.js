@@ -277,7 +277,7 @@
                         if (fileName.length > settings.truncateLength && settings.truncateLength != 0) {
                             fileName = fileName.substring(0, settings.truncateLength) + '...';
                         }
-                        file.queueItem.find('.filename').html(fileName);
+                        file.queueItem.find('.filename').html(fileName).attr('title', fileName);
 
 
                         /*以下添加文件大小检测*/
@@ -339,7 +339,7 @@
                     var fadeTime = instant ? 0 : 500;
                     if (file.queueItem) {
                         if (file.queueItem.find('.fileinfo').html() != 'Completed') {
-                            file.queueItem.find('.fileinfo').html('Cancelled');
+                            file.queueItem.find('.fileinfo').html(' - Cancelled');
                         }
                         file.queueItem.find('.progress-bar').width(0);
                         file.queueItem.delay(delay).fadeOut(fadeTime, function () {
@@ -565,7 +565,7 @@
                         // Add the error class to the queue item
                         file.queueItem.addClass('error')
                         // Output the error in the queue item
-                            .find('.fileinfo').html(' - ' + errorMsg);
+                            .find('.fileinfo').html(' - ' + errorMsg).attr('title', errorMsg);
                         file.queueItem.addClass('error')
                             .find('.thumbnail').addClass('alert-danger');
                         // Hide the
@@ -590,7 +590,7 @@
                 $data.uploadComplete = function (e, file, uploadAll) {
                     if ($.inArray('onUploadComplete', settings.overrideEvents) < 0) {
                         file.queueItem.find('.progress-bar').css('width', '100%');
-                        file.queueItem.find('.fileinfo').html('Completed');
+                        file.queueItem.find('.fileinfo').html(' - Completed');
                         file.queueItem.find('.progress').slideUp(250);
                         file.queueItem.addClass('complete');
                     }
