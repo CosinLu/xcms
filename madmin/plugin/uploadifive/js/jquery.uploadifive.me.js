@@ -591,7 +591,7 @@
                     if ($.inArray('onUploadComplete', settings.overrideEvents) < 0) {
                         file.queueItem.find('.progress-bar').css('width', '100%');
                         file.queueItem.find('.fileinfo').html('Completed');
-                        // file.queueItem.find('.progress').slideUp(250);
+                        file.queueItem.find('.progress').slideUp(250);
                         file.queueItem.addClass('complete');
                     }
                     // Trigger the complete event

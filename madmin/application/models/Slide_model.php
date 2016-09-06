@@ -60,8 +60,7 @@ class Slide_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('slide', $vals);
         } else {
-            $this->db->insert('slide', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('slide', $vals);
         }
         return $bool;
     }

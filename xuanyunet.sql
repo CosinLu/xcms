@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : wamp
+Source Server         : phpstudy
 Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : xuanyunet
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-05 23:16:34
+Date: 2016-09-06 19:09:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -126,7 +126,7 @@ CREATE TABLE `info_col` (
 -- Records of info_col
 -- ----------------------------
 INSERT INTO `info_col` VALUES ('1', '关于', '0', '1', '0', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('2', '新闻', '0', '1', '2', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('2', '新闻', '0', '1', '0', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('3', '案例', '0', '1', '3', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('4', '下载', '0', '1', '4', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('5', '公司简介', '1', '2', '1', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
@@ -152,8 +152,8 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-INSERT INTO `info_single` VALUES ('6', '组织机构', '<p>组织机构阿萨发撒的发斯蒂芬发送到发阿斯蒂芬阿斯蒂芬</p>', null, null, null, null);
-INSERT INTO `info_single` VALUES ('5', '公司简介', '', null, null, null, null);
+INSERT INTO `info_single` VALUES ('6', '组织机构', '<p>组织机构内容</p>', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '公司简介', '<p>公司简介内容</p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_type
@@ -172,7 +172,7 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
@@ -181,6 +181,7 @@ INSERT INTO `info_type` VALUES ('1', '单页', 'single', 'info_single', '', 'sho
 INSERT INTO `info_type` VALUES ('2', '文章', 'article', 'info_article', '', 'show', '100', null, null, null, null);
 INSERT INTO `info_type` VALUES ('3', '图片', 'picture', 'info_picture', '', 'show', '100', null, null, null, null);
 INSERT INTO `info_type` VALUES ('4', '下载', 'download', 'info_download', '', 'show', '100', null, null, null, null);
+INSERT INTO `info_type` VALUES ('5', '案例', 'case', 'info_case', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -227,7 +228,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -251,7 +252,9 @@ INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '',
 INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('19', '修改密码', '6', '2', '', 'password', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', 'info_col_pic', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'onepic', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -273,10 +276,10 @@ INSERT INTO `sys_col_auth` VALUES ('13', 'look');
 INSERT INTO `sys_col_auth` VALUES ('13', 'del');
 INSERT INTO `sys_col_auth` VALUES ('13', 'update');
 INSERT INTO `sys_col_auth` VALUES ('13', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('20', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('20', 'update');
-INSERT INTO `sys_col_auth` VALUES ('20', 'del');
-INSERT INTO `sys_col_auth` VALUES ('20', 'look');
+INSERT INTO `sys_col_auth` VALUES ('25', 'update');
+INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('24', 'look');
+INSERT INTO `sys_col_auth` VALUES ('24', 'update');
 INSERT INTO `sys_col_auth` VALUES ('8', 'update');
 INSERT INTO `sys_col_auth` VALUES ('8', 'del');
 INSERT INTO `sys_col_auth` VALUES ('8', 'look');
@@ -313,6 +316,8 @@ INSERT INTO `sys_col_auth` VALUES ('16', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('16', 'update');
 INSERT INTO `sys_col_auth` VALUES ('16', 'del');
 INSERT INTO `sys_col_auth` VALUES ('16', 'look');
+INSERT INTO `sys_col_auth` VALUES ('25', 'del');
+INSERT INTO `sys_col_auth` VALUES ('25', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict

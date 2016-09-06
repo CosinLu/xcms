@@ -68,8 +68,7 @@ class Sys_user_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('sys_user', $vals);
         } else {
-            $this->db->insert('sys_user', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('sys_user', $vals);
         }
         return $bool;
     }

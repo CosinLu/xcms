@@ -55,8 +55,7 @@ class Sys_role_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('sys_role', $vals);
         } else {
-            $this->db->insert('sys_role', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('sys_role', $vals);
         }
         return $bool;
     }

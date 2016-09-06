@@ -65,8 +65,7 @@ class Config_item_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('config', $vals);
         } else {
-            $this->db->insert('config', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('config', $vals);
         }
         return $bool;
     }

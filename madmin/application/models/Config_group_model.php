@@ -59,8 +59,7 @@ class Config_group_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('config_group', $vals);
         } else {
-            $this->db->insert('config_group', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('config_group', $vals);
         }
         return $bool;
     }

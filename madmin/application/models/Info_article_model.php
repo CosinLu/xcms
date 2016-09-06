@@ -51,7 +51,8 @@ class Info_article_model extends MY_Model
     {
         $id = $this->input->post('id');
         $vals = array(
-            'name' => $this->input->post('name'),
+            'info_col_id' => $this->input->get('info_cid'),
+            'title' => $this->input->post('name'),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),
             'sort' => $this->input->post('sort')
@@ -59,8 +60,7 @@ class Info_article_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('info_article', $vals);
         } else {
-            $this->db->insert('info_article', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('info_article', $vals);
         }
         return $bool;
     }

@@ -8,16 +8,16 @@ $(function () {
         'buttonClass': 'btn btn-success',
         'buttonText': '选择文件',
         'height': 34,
-        //'checkScript': 'plugin/uploadifive/check-exists.php',
-        'fileObjName'      : 'file_upload',
+        //'checkScript': 'index.php/uploadifive/check_exists',
+        'fileObjName': 'file_upload',
         'formData': {
             'timestamp': timestamp,
-            'token': Math.random()
+            'tokenuploadScript': Math.random()
         },
         'queueID': 'queue',
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
-                                <img src="">\
+                                <img src="" data-src="holder.js/138x80">\
                                 <div class="caption">\
                                     <p class="filename"></p>\
                                     <p><span class="filesize"></span>&nbsp;&nbsp;<span class="fileinfo"></span></p>\
@@ -28,10 +28,18 @@ $(function () {
                                 </div>\
                             </div>\
                         </div>',
-        'uploadScript': 'index.php/uploadifive/upload',
+        'fileSizeLimit': '2GB',
+        'fileType': ['jpg', 'jpeg', 'gif', 'png', 'zip'],
+        'uploadScript': 'index.php/uploadifive/do_upload',
         'onUploadComplete': function (file, data) {
-            console.log(data);
-            //file.queueItem.find('img').attr('src',file.name);
+            var json = $.parseJSON(data);
+            console.log(json);
+            Holder.run();
+            file.queueItem.find('img').attr('src', json.full_path).jqthumb({
+                width: 138,
+                height: 80
+            });
         }
     });
+
 });

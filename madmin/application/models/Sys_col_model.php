@@ -38,7 +38,8 @@ class Sys_col_model extends MY_Model
     public function update()
     {
         $id = $this->input->get('id');
-        $this->db->select('t.*,group_concat(t1.col_auth) as col_auth');
+        $this->db->select('t.*');
+        $this->db->select('group_concat(t1.col_auth) as col_auth');
         $this->db->from('sys_col as t');
         $this->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
         $this->db->where('t.id', $id);

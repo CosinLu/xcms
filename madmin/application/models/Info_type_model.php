@@ -61,8 +61,7 @@ class Info_type_model extends MY_Model
         if ($id) {
             $bool = $this->db->where('id', $id)->update('info_type', $vals);
         } else {
-            $this->db->insert('info_type', $vals);
-            $bool = $this->db->insert_id();
+            $bool = $this->db->insert('info_type', $vals);
         }
         return $bool;
     }
