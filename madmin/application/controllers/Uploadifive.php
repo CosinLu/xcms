@@ -22,7 +22,7 @@ class Uploadifive extends CI_Controller
             'file_name' => md5(uniqid(microtime(TRUE), TRUE))
         );
         $this->load->library('upload', $config);
-        $this->upload->do_upload('file_upload');
+        $this->upload->do_upload('image');
         $data = $this->upload->data();
         $data['errors'] = $this->upload->display_errors();
         $data['id'] = $this->uploadifive->save($data);

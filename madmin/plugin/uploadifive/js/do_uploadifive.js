@@ -3,21 +3,42 @@
  */
 $(function () {
     var timestamp = new Date().getTime();
-    $('#file_upload').uploadifive({
+    var uploadifive = '[data-name="uploadifive"]';
+    var $_uploadifive = $(uploadifive);
+    var fileName;
+
+    //设置容器
+    $_uploadifive.each(function () {
+        var name = $(this).prop('name');
+        var queueBoxName = $(this).prop('name') + '-queue';
+        $(this).attr('id', name);
+        //容器
+        if ($('#' + queueBoxName).length == 0) {
+            $(this).before('<div class="row uploadifive-queue" id="' + queueBoxName + '"></div>');
+        }
+    });
+
+    //当前触发的控件
+    $(document).on('click', '.uploadifive-button', function () {
+        fileName = $(this).find(uploadifive).prop('name');
+    });
+
+    //实例化
+    $_uploadifive.uploadifive({
         // 'auto': false,
         'buttonClass': 'btn btn-success',
         'buttonText': '选择文件',
         'height': 34,
         //'checkScript': 'index.php/uploadifive/check_exists',
-        'fileObjName': 'file_upload',
+        //'fileObjName':'image',
+        //'queueID': 'image-queue',
         'formData': {
             'timestamp': timestamp,
             'tokenuploadScript': Math.random()
         },
-        'queueID': 'queue',
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
-                                <img src="" data-src="holder.js/138x80?theme=primary">\
+                                <img src="" data-src="holder.js/138x80?theme=primary" class="img">\
                                 <div class="caption">\
                                     <p class="filename"></p>\
                                     <p><span class="filesize"></span><span class="fileinfo"></span></p>\
@@ -33,14 +54,26 @@ $(function () {
         'fileType': false,
         'uploadScript': 'index.php/uploadifive/do_upload',
         'onUploadComplete': function (file, data) {
+            //console.log(data);
             var json = $.parseJSON(data);
-            //console.log(json);
-            file.queueItem.find('input').val(json.id);
-            if (json.is_image) {
-                file.queueItem.find('img').attr('src', json.full_path).jqthumb({width: 138, height: 80});
-            } else {
-                Holder.addTheme("primary", {bg: '#337AB7', fg: '#fff', text: 'File type is ' + json.ext}).run();
+            var item = file.queueItem;
+            item.find('input').val(json.id);
+
+            if (json.is_image) {//图片自动缩放
+                item.find('img').prop('src', json.full_path).jqthumb({width: 138, height: 80});
+            } else {//生成图片
+                Holder.run({
+                    themes: {
+                        "primary": {
+                            bg: "#337AB7",
+                            fg: "#fff",
+                            text: 'File type is ' + json.ext
+                        }
+                    },
+                    images: '#' + item[0]['id'] + ' img'
+                });
             }
+
         }
     });
 
