@@ -2,7 +2,6 @@
  * Created by MengXianghan on 2016/8/10.
  */
 $(function () {
-    var timestamp = new Date().getTime();
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
     var fileName;
@@ -25,17 +24,19 @@ $(function () {
 
     //实例化
     $_uploadifive.uploadifive({
-        // 'auto': false,
+        //'auto': false,
         'buttonClass': 'btn btn-success',
         'buttonText': '选择文件',
         'height': 34,
         //'checkScript': 'index.php/uploadifive/check_exists',
-        //'fileObjName':'image',
-        //'queueID': 'image-queue',
+        // 'fileObjName': 'image',
+        // 'queueID': 'image-queue',
         'formData': {
-            'timestamp': timestamp,
-            'tokenuploadScript': Math.random()
+            'timestamp': new Date().getTime(),
+            'tokenuploadScript': Math.random(),
+            'fileInput': 'image'
         },
+        'multi': true,
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
                                 <img src="" data-src="holder.js/138x80?theme=primary" class="img">\

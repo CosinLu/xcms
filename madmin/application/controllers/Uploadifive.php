@@ -16,13 +16,14 @@ class Uploadifive extends CI_Controller
 
     public function do_upload()
     {
+        $file_input = $this->input->post('fileInput');
         $config = array(
             'upload_path' => '/uploads/',
             'allowed_types' => '*',
             'file_name' => md5(uniqid(microtime(TRUE), TRUE))
         );
         $this->load->library('upload', $config);
-        $this->upload->do_upload('image');
+        $this->upload->do_upload($file_input);
         $data = $this->upload->data();
         $data['errors'] = $this->upload->display_errors();
         $data['id'] = $this->uploadifive->save($data);
