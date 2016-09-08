@@ -52,6 +52,7 @@ class Slide_model extends MY_Model
         $id = $this->input->post('id');
         $vals = array(
             'name' => $this->input->post('name'),
+            'image' => implode(',', $this->input->post('image')),
             'url' => $this->input->post('url'),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),

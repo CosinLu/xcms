@@ -128,19 +128,25 @@ class Welcome extends CI_Controller
     //验证系统栏目权限
     public function check_col_auth()
     {
-        $this->load->library('sys_auth', array('user_info' => $this->welcome->user_info()));
-        $sys_col = $this->sys_auth->sys_col();
-        $frist_sys_col = array();
-        foreach ($sys_col as $val) {
-            if ($val['level'] == 1) {
-                $frist_sys_col[] = $val;
+        $user_info = $this->welcome->user_info();
+        if (!empty($user_info)) {
+            $this->load->library('sys_auth', array('user_info' => $user_info));
+            $sys_col = $this->sys_auth->sys_col();
+            $frist_sys_col = array();
+            foreach ($sys_col as $val) {
+                if ($val['level'] == 1) {
+                    $frist_sys_col[] = $val;
+                }
             }
-        }
-        if (empty($frist_sys_col)) {
+            if (empty($frist_sys_col)) {
+                $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
             $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
             return FALSE;
-        } else {
-            return TRUE;
         }
     }
 

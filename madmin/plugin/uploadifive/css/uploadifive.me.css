@@ -14,7 +14,8 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 
 .uploadifive-queue-item .thumbnail {
     padding: 5px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 0;
 }
 
 .uploadifive-queue-item .thumbnail img {

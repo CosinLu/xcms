@@ -44,7 +44,8 @@
                     'checkScript': false, // Path to the script that checks for existing file names
                     'dnd': true, // Allow drag and drop into the queue
                     'dropTarget': false, // Selector for the drop target
-                    'fileObjName': 'Filedata', // The name of the file object to use in your server-side script
+                    //'fileObjName': 'Filedata', // The name of the file object to use in your server-side script
+                    'fileObjName': false, // The name of the file object to use in your server-side script
                     'fileSizeLimit': 0, // Maximum allowed size of files to upload
                     'fileType': false, // Type of files allowed (image, etc)
                     'formData': {}, // Additional data to send to the upload script
@@ -115,9 +116,18 @@
                     // Create a unique name for the input item
                     var inputName = input.name = 'input' + $data.inputCount++;
                     // Set the multiple attribute
+                    /*if (settings.multi) {
+                     input.attr('multiple', true);
+                     }*/
+
+                    //设置是否多文件上传
+                    settings.multi = $this.data('multi');
                     if (settings.multi) {
                         input.attr('multiple', true);
+                    } else {
+                        input.attr('multiple', false);
                     }
+
                     // Set the onchange event for the input
                     input.bind('change', function () {
                         $data.queue.selected = 0;
@@ -279,8 +289,7 @@
                         }
                         file.queueItem.find('.filename').html(fileName).attr('title', fileName);
 
-
-                        /*以下添加文件大小检测*/
+                        /*检测添加的文件大小*/
                         var fileSize = Math.round(file.size / 1024);
                         var suffix = 'KB';
                         if (fileSize > 1000) {
@@ -294,17 +303,23 @@
                         }
                         fileSize += suffix;
                         file.queueItem.find('.filesize').html(fileSize);
-                        /*以上添加文件大小检测*/
-
 
                         // Add a reference to the file
                         file.queueItem.data('file', file);
-                        $data.queueEl.append(file.queueItem);
+                        //$data.queueEl.append(file.queueItem);
+
+                        //向容器中添加文件
+                        if (settings.multi) {
+                            $data.queueEl.append(file.queueItem);
+                        } else {
+                            $data.queueEl.html(file.queueItem);
+                        }
                     }
                     // Trigger the addQueueItem event
                     if (typeof settings.onAddQueueItem === 'function') {
                         settings.onAddQueueItem.call($this, file);
                     }
+
                     // Check the filetype
                     if (settings.fileType) {
                         if ($.isArray(settings.fileType)) {
@@ -323,6 +338,7 @@
                             }
                         }
                     }
+
                     // Check the filesize
                     if (file.size > settings.fileSizeLimit && settings.fileSizeLimit != 0) {
                         $data.error('FILE_SIZE_LIMIT_EXCEEDED', file);
@@ -395,6 +411,13 @@
 
                 // Upload a single file
                 $data.uploadFile = function (file, uploadAll) {
+
+                    // 设置fileObjName
+                    if (!settings.fileObjName) {
+                        settings.fileObjName = $this.attr('name');
+                        settings.formData.fileObjName = settings.fileObjName;
+                    }
+
                     if (!file.skip && !file.complete && !file.uploading) {
                         file.uploading = true;
                         $data.uploads.current++;
@@ -628,7 +651,19 @@
                 // Check if HTML5 is available
                 if (window.File && window.FileList && window.Blob && (window.FileReader || window.FormData)) {
                     // Assign an ID to the object
-                    settings.id = 'uploadifive-' + $this.attr('id');
+                    //settings.id = 'uploadifive-' + $this.attr('id');
+
+                    //将一个标识分配给对象
+                    settings.id = 'uploadifive-' + $this.attr('name');
+
+                    //设置按钮文字
+                    if ($this.data('button-text')) {
+                        settings.buttonText = $this.data('button-text');
+                    }
+                    //设置按钮样式
+                    if ($this.data('button-class')) {
+                        settings.buttonClass = $this.data('button-class');
+                    }
 
                     // Wrap the file input in a div with overflow set to hidden
                     $data.button = $('<div id="' + settings.id + '" class="uploadifive-button">' + settings.buttonText + '</div>');
@@ -655,9 +690,18 @@
                     $data.createInput.call($this);
 
                     // Create the queue container
+                    /*if (!settings.queueID) {
+                     settings.queueID = settings.id + '-queue';
+                     $data.queueEl = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
+                     $data.button.after($data.queueEl);
+                     } else {
+                     $data.queueEl = $('#' + settings.queueID);
+                     }*/
+
+                    //创建一个容器
                     if (!settings.queueID) {
                         settings.queueID = settings.id + '-queue';
-                        $data.queueEl = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
+                        $data.queueEl = $('<div id="' + settings.queueID + '" class="row uploadifive-queue" />');
                         $data.button.after($data.queueEl);
                     } else {
                         $data.queueEl = $('#' + settings.queueID);

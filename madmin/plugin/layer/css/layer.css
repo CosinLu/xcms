@@ -63,7 +63,7 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-load {
-    background: url('default/loading.gif') center center no-repeat #FFF
+    background: url('../images/loading.gif') center center no-repeat #FFF
 }
 
 .layui-layer-btn a, .layui-layer-dialog .layui-layer-ico, .layui-layer-setwin a {
