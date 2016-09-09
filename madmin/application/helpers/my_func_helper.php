@@ -17,7 +17,7 @@
 function dropdown_list($data = array(), $name = '', $select_val = 0, $disabled = '')
 {
     $str = '';
-    $str .= '<select name="' . $name . '" class="form-control" '.$disabled.'>';
+    $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
     $str .= '<option value="0">-请选择-</option>';
     foreach ($data as $val) {
         $selected = ($val['id'] == $select_val) ? 'selected' : '';
@@ -77,4 +77,18 @@ function multi_turn_one($multi_arr = array(), $num = 1)
         }
     }
     return $result;
+}
+
+
+/**
+ * 格式化文件大小d单位
+ * @param int $size
+ * @param int $num
+ * @return string
+ */
+function format_bytes($size = 0, $num = 1)
+{
+    $units = array(' B', ' KB', ' MB', ' GB', ' TB');
+    for ($i = 0; $size >= 1024 && $i < 4; $i++) $size /= 1024;
+    return round($size, $num) . $units[$i];
 }

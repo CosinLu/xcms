@@ -12,11 +12,11 @@ class Sys_auth
     protected $sys_cid;
     protected $user_info;
 
-    public function __construct($params = array())
+    public function __construct($arr = array())
     {
         $this->CI = &get_instance();
-        $this->sys_cid = (isset($params['sys_cid'])) ? $params['sys_cid'] : '';
-        $this->user_info = (isset($params['user_info'])) ? $params['user_info'] : '';
+        $this->sys_cid = (isset($arr['sys_cid'])) ? $arr['sys_cid'] : '';
+        $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
     }
 

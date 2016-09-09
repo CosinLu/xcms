@@ -17,7 +17,7 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->sys_session = $this->session->sys_session;
+        $this->sys_session = $_SESSION['sys_session'];
         $this->sys_cid = $this->input->get('sys_cid');
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';

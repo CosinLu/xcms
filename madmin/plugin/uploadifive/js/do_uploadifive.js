@@ -6,10 +6,18 @@ $(function () {
     var $_uploadifive = $(uploadifive);
     var fileObjName;
 
-    //当前触发的控件
-    $(document).on('click', '.uploadifive-button', function () {
-        fileObjName = $(this).find(uploadifive).prop('name');
+    //删除元素
+    $(document).on('click', '.close-item', function () {
+        $_uploadifive.data('uploadifive').removeQueueItem($(this));
     });
+
+    //缩略图
+    $('.uploadifive-queue-item').each(function () {
+        var img = $(this).find('img');
+        if (img.length > 0 && img.data('src').length <= 0) {
+            img.jqthumb({width: 138, height: 80});
+        }
+    })
 
     //实例化
     $_uploadifive.uploadifive({
@@ -35,7 +43,7 @@ $(function () {
                             </div>\
                             <input type="hidden" name="" value="">\
                         </div>',
-        'fileSizeLimit': '2GB',
+        'fileSizeLimit': '100MB',
         'fileType': false,
         'uploadScript': 'index.php/uploadifive/do_upload',
         'onUploadComplete': function (file, data) {

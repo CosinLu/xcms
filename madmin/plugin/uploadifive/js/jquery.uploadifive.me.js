@@ -290,18 +290,22 @@
                         file.queueItem.find('.filename').html(fileName).attr('title', fileName);
 
                         /*检测添加的文件大小*/
-                        var fileSize = Math.round(file.size / 1024);
-                        var suffix = 'KB';
-                        if (fileSize > 1000) {
-                            fileSize = Math.round(fileSize / 1000);
-                            suffix = 'MB';
-                        }
-                        var fileSizeParts = fileSize.toString().split('.');
-                        fileSize = fileSizeParts[0];
-                        if (fileSizeParts.length > 1) {
-                            fileSize += '.' + fileSizeParts[1].substr(0, 2);
-                        }
-                        fileSize += suffix;
+                        /*var fileSize = Math.round(file.size / 1024);
+                         var suffix = 'KB';
+                         if (fileSize > 1000) {
+                         fileSize = Math.round(fileSize / 1000);
+                         suffix = 'MB';
+                         }
+                         var fileSizeParts = fileSize.toString().split('.');
+                         fileSize = fileSizeParts[0];
+                         if (fileSizeParts.length > 1) {
+                         fileSize += '.' + fileSizeParts[1].substr(0, 2);
+                         }
+                         fileSize += suffix;*/
+                        var units = [' B', ' KB', ' MB', ' GB', ' TB'];
+                        var fileSize = file.size;
+                        for (var i = 0; fileSize >= 1024 && i < 4; i++)  fileSize /= 1024;
+                        var fileSize = fileSize.toFixed(1) + units[i];
                         file.queueItem.find('.filesize').html(fileSize);
 
                         // Add a reference to the file
@@ -349,19 +353,49 @@
                 }
 
                 // Remove an item from the queue
+                /*$data.removeQueueItem = function (file, instant, delay) {
+                 // Set the default delay
+                 if (!delay) delay = 0;
+                 var fadeTime = instant ? 0 : 500;
+                 if (file.queueItem) {
+                 if (file.queueItem.find('.fileinfo').html() != 'Completed') {
+                 file.queueItem.find('.fileinfo').html(' - Cancelled');
+                 }
+                 file.queueItem.find('.progress-bar').width(0);
+                 file.queueItem.delay(delay).fadeOut(fadeTime, function () {
+                 $(this).remove();
+                 });
+                 delete file.queueItem;
+                 $data.queue.count--;
+                 }
+                 }*/
+
+                //删除列队中的项目
                 $data.removeQueueItem = function (file, instant, delay) {
                     // Set the default delay
                     if (!delay) delay = 0;
                     var fadeTime = instant ? 0 : 500;
                     if (file.queueItem) {
-                        if (file.queueItem.find('.fileinfo').html() != 'Completed') {
-                            file.queueItem.find('.fileinfo').html(' - Cancelled');
+                        if (file.queueItem) {
+                            if (file.queueItem.find('.fileinfo').html() != 'Completed') {
+                                file.queueItem.find('.fileinfo').html(' - Cancelled');
+                            }
+                            file.queueItem.find('.progress-bar').width(0);
+                            file.queueItem.delay(delay).fadeOut(fadeTime, function () {
+                                $(this).remove();
+                            });
+                            delete file.queueItem;
+                            $data.queue.count--;
                         }
-                        file.queueItem.find('.progress-bar').width(0);
-                        file.queueItem.delay(delay).fadeOut(fadeTime, function () {
+                    } else {
+                        if (file.closest('.uploadifive-queue-item').find('.fileinfo').html() != 'Completed') {
+                            file.closest('.uploadifive-queue-item').find('.fileinfo').html(' - Cancelled');
+                        }
+                        file.closest('.uploadifive-queue-item').find('.progress-bar').width(0);
+                        file.closest('.uploadifive-queue-item').delay(delay).fadeOut(fadeTime, function () {
                             $(this).remove();
                         });
-                        delete file.queueItem;
+                        delete file.closest('.uploadifive-queue-item');
                         $data.queue.count--;
                     }
                 }
@@ -701,10 +735,11 @@
                     //创建一个容器
                     if (!settings.queueID) {
                         settings.queueID = settings.id + '-queue';
-                        $data.queueEl = $('<div id="' + settings.queueID + '" class="row uploadifive-queue" />');
+                        $queueEl = $('<div id="' + settings.queueID + '" class="row uploadifive-queue"></div>');
                         if ($('#' + settings.queueID).length <= 0) {
-                            $data.button.after($data.queueEl);
+                            $data.button.after($queueEl);
                         }
+                        $data.queueEl = $('#' + settings.queueID);
                     } else {
                         $data.queueEl = $('#' + settings.queueID);
                     }

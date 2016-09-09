@@ -26,20 +26,20 @@ class Category
      * Category constructor.
      * @param array $arr 参数名，如果没定义，则采用默认值
      */
-    public function __construct($params = array())
+    public function __construct($arr = array())
     {
         $this->CI =& get_instance();
-        $this->tb_name = (isset($params['tb_name'])) ? $params['tb_name'] : 'sys_col';
-        $this->id_name = (isset($params['id_name'])) ? $params['id_name'] : 'id';
-        $this->category_name = (isset($params['category_name'])) ? $params['category_name'] : 'name';
-        $this->level_name = (isset($params['level_name'])) ? $params['level_name'] : 'level';
-        $this->pid_name = (isset($params['pid_name'])) ? $params['pid_name'] : 'pid';
-        $this->sort_name = (isset($params['sort_name'])) ? $params['sort_name'] : 'sort';
-        $this->pid = (isset($params['pid'])) ? $params['pid'] : 0;
-        $this->level = (isset($params['level'])) ? $params['level'] : 1;
-        $this->slevel = (isset($params['slevel'])) ? $params['slevel'] : 0;
-        $this->depth = (isset($params['depth'])) ? $params['depth'] : 0;
-        $this->self = (isset($params['self'])) ? $params['self'] : 0;
+        $this->tb_name = (isset($arr['tb_name'])) ? $arr['tb_name'] : 'sys_col';
+        $this->id_name = (isset($arr['id_name'])) ? $arr['id_name'] : 'id';
+        $this->category_name = (isset($arr['category_name'])) ? $arr['category_name'] : 'name';
+        $this->level_name = (isset($arr['level_name'])) ? $arr['level_name'] : 'level';
+        $this->pid_name = (isset($arr['pid_name'])) ? $arr['pid_name'] : 'pid';
+        $this->sort_name = (isset($arr['sort_name'])) ? $arr['sort_name'] : 'sort';
+        $this->pid = (isset($arr['pid'])) ? $arr['pid'] : 0;
+        $this->level = (isset($arr['level'])) ? $arr['level'] : 1;
+        $this->slevel = (isset($arr['slevel'])) ? $arr['slevel'] : 0;
+        $this->depth = (isset($arr['depth'])) ? $arr['depth'] : 0;
+        $this->self = (isset($arr['self'])) ? $arr['self'] : 0;
     }
 
     /**

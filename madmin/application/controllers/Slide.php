@@ -12,6 +12,7 @@ class Slide extends MY_Controller
     {
         parent::__construct();
         $this->load->model('slide_model', 'slide');
+        $this->load->library('uploadifive');
         $this->set_url();
     }
 
@@ -54,6 +55,7 @@ class Slide extends MY_Controller
     {
         $data['item'] = $this->slide->update();
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
+        $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $this->load->view('slide/update.html', $data);
     }
 
