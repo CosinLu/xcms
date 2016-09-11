@@ -22,7 +22,7 @@ class Config_group_model extends MY_Model
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->from('config_group as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
-        if ($key) {
+        if ($key != '') {
             $this->db->like('t.name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);

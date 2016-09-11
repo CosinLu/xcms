@@ -24,7 +24,7 @@ class Config_item_model extends MY_Model
         $this->db->from('config as t');
         $this->db->join('sys_dict as t1', 't1.ident = t.display', 'left');
         $this->db->join('config_group as t2', 't2.id=t.config_group_id', 'left');
-        if ($key) {
+        if ($key != '') {
             $this->db->like('t.title', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
@@ -73,7 +73,7 @@ class Config_item_model extends MY_Model
     //配置组
     public function config_group()
     {
-        $this->db->where('display','show');
+        $this->db->where('display', 'show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get('config_group')->result_array();
         return $res;

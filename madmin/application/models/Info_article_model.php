@@ -22,7 +22,7 @@ class Info_article_model extends MY_Model
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->from('info_article as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
-        if ($key) {
+        if ($key != '') {
             $this->db->like('t.name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
@@ -50,12 +50,15 @@ class Info_article_model extends MY_Model
     public function save()
     {
         $id = $this->input->post('id');
+        $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
         $vals = array(
             'info_col_id' => $this->input->get('info_cid'),
             'title' => $this->input->post('name'),
+            'image'=>$image_arr,
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort')
+            'sort' => $this->input->post('sort'),
+            'content' => $this->input->post('content'),
         );
         if ($id) {
             $bool = $this->db->where('id', $id)->update('info_article', $vals);

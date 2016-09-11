@@ -12,7 +12,7 @@ class Sys_dict
 
     public function __construct()
     {
-        $this->CI = &get_instance();
+        $this->CI =& get_instance();
     }
 
     public function all($pid = 0)

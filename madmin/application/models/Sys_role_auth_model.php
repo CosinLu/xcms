@@ -71,7 +71,7 @@ class Sys_role_auth_model extends MY_Model
     {
         $col_id_arr = $this->input->post('id');
         $col_auth_arr = $this->input->post('auth');
-        if(!empty($col_id_arr) && !empty($col_auth_arr)) {
+        if (!empty($col_id_arr) && !empty($col_auth_arr)) {
             $vals = array();
             foreach ($col_id_arr as $val) {
                 if (empty($col_auth_arr[$val])) {

@@ -55,6 +55,7 @@ class Info_article extends Information
     public function update()
     {
         $data['item'] = $this->info_article->update();
+        $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
         $this->load->view('info_article/update.html', $data);
     }

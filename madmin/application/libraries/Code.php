@@ -36,7 +36,7 @@ class Code
      */
     public function __construct($arr = array())
     {
-        $this->CI = &get_instance();
+        $this->CI =& get_instance();
         $width = '';
         $height = '';
         $code_len = '';
@@ -69,11 +69,11 @@ class Code
         for ($i = 0; $i < $this->code_len; $i++) {
             $code .= $this->code_str [mt_rand(0, strlen($this->code_str) - 1)];
         }
-        $this->code = strtoupper($code);
-        if (!isset($_SESSION)) {
+        $sys_session['sys_session']['sys_code'] = $this->code = strtoupper($code);
+        /*if (!isset($_SESSION)) {
             session_start();
-        }
-        $_SESSION['sys_session']['sys_code'] = $this->code;
+        }*/
+        $this->CI->session->set_userdata($sys_session);
     }
 
     /**

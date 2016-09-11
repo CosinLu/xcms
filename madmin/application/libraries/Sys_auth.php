@@ -14,7 +14,7 @@ class Sys_auth
 
     public function __construct($arr = array())
     {
-        $this->CI = &get_instance();
+        $this->CI =& get_instance();
         $this->sys_cid = (isset($arr['sys_cid'])) ? $arr['sys_cid'] : '';
         $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');

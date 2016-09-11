@@ -64,11 +64,12 @@ class Welcome extends CI_Controller
             $this->load->view('welcome/index.html');
         } else {
             //登录成功
-            $_SESSION['sys_session'] = $this->welcome->user_info();
+            $sys_session['sys_session'] = $user_info = $this->welcome->user_info();
+            $this->session->set_userdata($sys_session);
             if ($this->pre_url == '') {
                 //redirect(site_url('home/?sys_cid=7'));
                 //定义登录成功后跳转url
-                $this->load->library('sys_auth', array('user_info' => $this->welcome->user_info()));
+                $this->load->library('sys_auth', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth->sys_col();
                 $url = $this->category->children_url($sys_col);
                 redirect($url[0]);
@@ -82,7 +83,7 @@ class Welcome extends CI_Controller
     public function check_code()
     {
         $code = strtoupper($this->input->post('code'));
-        if ($code != $_SESSION['sys_session']['sys_code'] && $code != '') {
+        if ($code != $this->session->sys_session['sys_code'] && $code != '') {
             $this->form_validation->set_message('check_code', '{field} 输入错误。');
             return FALSE;
         } else {
@@ -151,8 +152,8 @@ class Welcome extends CI_Controller
     //登出
     public function logout()
     {
-        unset($_SESSION['sys_session']);
-        //session_destroy();
+        //销毁session
+        $this->session->unset_userdata('sys_session');
         redirect(site_url());
     }
 }

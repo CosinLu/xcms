@@ -20,9 +20,11 @@ class Slide_model extends MY_Model
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
+        $this->db->select('t2.full_path');
         $this->db->from('slide as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
-        if ($key) {
+        $this->db->join('uploads as t2', 't2.id=t.image', 'left');
+        if ($key != '') {
             $this->db->like('t.name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
@@ -50,9 +52,10 @@ class Slide_model extends MY_Model
     public function save()
     {
         $id = $this->input->post('id');
+        $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
         $vals = array(
             'name' => $this->input->post('name'),
-            'image' => implode(',', $this->input->post('image')),
+            'image' => $image_arr,
             'url' => $this->input->post('url'),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),

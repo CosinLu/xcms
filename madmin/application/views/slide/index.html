@@ -46,6 +46,7 @@
                                     <ins></ins>
                                 </label>
                             </th>
+                            <th width="10%">缩略图</th>
                             <th>名称</th>
                             <th width="30%">URL</th>
                             <th width="10%">状态</th>
@@ -62,6 +63,7 @@
                                         <ins></ins>
                                     </label>
                                 </td>
+                                <td><img src="{{val.full_path}}"></td>
                                 <td>{{val.name}}</td>
                                 <td>{{val.url}}</td>
                                 <td style="color:{{val.display_color}}">{{val.display_name}}</td>
@@ -89,6 +91,7 @@
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
 <script type="text/javascript" src="plugin/layer/js/layer.js"></script>
+<script type="text/javascript" src="plugin/jqthumb.min.js"></script>
 <script type="text/javascript" src="plugin/common.js"></script>
 <script type="text/javascript">
     $(function () {
@@ -126,8 +129,9 @@
                 success: function (data) {
                     $('[data-name="loading"],[data-name="nodata"]').remove();
                     if (data.list.list.length) {
-                        $('#list').html(template('list_tpl', data));
+                        $('#list').html(template('list_tpl', data)).find('img').jqthumb({width: 120, height: 80});
                         $('#pagination').html(template('pagination_tpl', data));
+                        //$('#list img').jqthumb({width: 120, height: 80});
                     } else {
                         $('[data-name="list"]').after('<?=MYNODATA?>');
                     }

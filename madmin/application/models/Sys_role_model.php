@@ -19,7 +19,7 @@ class Sys_role_model extends MY_Model
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
         $this->db->from('sys_role');
-        if ($key) {
+        if ($key != '') {
             $this->db->like('name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
