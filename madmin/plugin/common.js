@@ -105,6 +105,12 @@ $(function () {
     $('[data-name="sidebar_hidden"]').on('click', function () {
         $('[data-name="sidebar"]').toggleClass('sidebar_hidden');
     });
+    
+    //实例化编辑器
+    $('[data-name="editor"]').each(function(){
+        var id=$(this).attr('id');
+        var ue = UE.getEditor(id);
+    });
 
 })
 
