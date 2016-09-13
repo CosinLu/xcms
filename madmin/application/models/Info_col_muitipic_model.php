@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_article_model extends MY_Model
+class Info_col_muitipic_model extends MY_Model
 {
     public function __construct()
     {
@@ -20,8 +20,12 @@ class Info_article_model extends MY_Model
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_article as t');
+        $this->db->select('t2.name as info_col_name');
+        $this->db->select('t3.full_path');
+        $this->db->from('info_col_muitipic as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('info_col as t2', 't2.id=t.cid', 'left');
+        $this->db->join('uploads as t3', 't3.id=t.cid', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
@@ -29,7 +33,7 @@ class Info_article_model extends MY_Model
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('t.sort asc,t.id asc');
+        $this->db->order_by('t.cid asc,t.sort asc,t.id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
@@ -42,7 +46,7 @@ class Info_article_model extends MY_Model
     {
         $id = $this->input->get('id');
         $this->db->where('id', $id);
-        $res = $this->db->get('info_article')->row_array();
+        $res = $this->db->get('info_col_muitipic')->row_array();
         return $res;
     }
 
@@ -52,21 +56,32 @@ class Info_article_model extends MY_Model
         $id = $this->input->post('id');
         $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
         $vals = array(
-            'cid' => $this->input->get('cid'),
-            'title' => $this->input->post('title'),
+            'cid' => $this->input->post('cid'),
+            'name' => $this->input->post('name'),
             'image' => $image_arr,
+            'url' => $this->input->post('url'),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort'),
-            'content' => $this->input->post('content'),
-            'update_time' => time(),
+            'sort' => $this->input->post('sort')
         );
         if ($id) {
-            $bool = $this->db->where('id', $id)->update('info_article', $vals);
+            $bool = $this->db->where('id', $id)->update('info_col_muitipic', $vals);
         } else {
-            $bool = $this->db->insert('info_article', $vals);
+            $bool = $this->db->insert('info_col_muitipic', $vals);
         }
         return $bool;
+    }
+
+    //信息栏目
+    public function info_col()
+    {
+        $this->db->order_by('sort asc,id asc');
+        $this->db->where(array(
+            'pic' => 'muitipic',
+            'display' => 'show'
+        ));
+        $res = $this->db->get('info_col')->result_array();
+        return $res;
     }
 
 }

@@ -44,7 +44,7 @@ class Info_col_model extends MY_Model
     //保存
     public function save()
     {
-        $id = $info_col_id = $this->input->post('id');
+        $id = $cid = $this->input->post('id');
         $pid = $this->input->post('pid');
         $vals = array(
             'info_type_id' => $this->input->post('info_type_id'),
@@ -57,7 +57,7 @@ class Info_col_model extends MY_Model
         if ($id) {
             $bool = $this->category->update($id, $pid, $vals);
         } else {
-            $bool = $info_col_id = $this->category->insert($pid, $vals);
+            $bool = $cid = $this->category->insert($pid, $vals);
         }
         return $bool;
     }

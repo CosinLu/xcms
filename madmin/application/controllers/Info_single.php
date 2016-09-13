@@ -20,7 +20,7 @@ class Info_single extends Information
     //设置url
     public function set_url()
     {
-        $url['save_url'] = site_url('info_single/save?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid);
+        $url['save_url'] = site_url('info_single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         $this->load->vars($url);
     }
 
@@ -37,14 +37,14 @@ class Info_single extends Information
         if ($bool) {
             switch ($this->is_save) {
                 case '1':
-                    $this->prompt->success('操作成功！', site_url('info_single?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid));
+                    $this->prompt->success('操作成功！', site_url('info_single?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
                     break;
                 case '2':
                     $this->prompt->success('操作成功！', $this->peferer);
                     break;
             }
         } else {
-            $this->prompt->error('操作失败！', site_url('info_single?sys_cid=' . $this->sys_cid . '&info_cid=' . $this->info_cid));
+            $this->prompt->error('操作失败！', site_url('info_single?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
         }
     }
 

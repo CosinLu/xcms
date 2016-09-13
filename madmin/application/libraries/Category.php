@@ -389,14 +389,15 @@ class Category
     }
 
     /**
-     * 多级分类的第一个有效url
+     * 获取分类中符合条件的有效字符串
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
      * @param int $num url个数
      * @param bool $self 是否包含自身
+     * @$field bool $self 条件
      * @return array
      */
-    public function first_url($data = array(), $pid = 0, $num = 1, $self = TRUE)
+    public function valid_str($data = array(), $pid = 0, $num = 1, $self = TRUE, $field = array('url'))
     {
         if (empty($data)) {
             $data = $this->all();
@@ -405,17 +406,25 @@ class Category
         $children = array();
         foreach ($children_all as $key => $val) {
             $children[$key] = $this->children($data, $val[$this->id_name], $self);
-            foreach ($children[$key] as $val) {
-                if ($val['url']) {
-                    $url[$key] = $val['url'];
+            foreach ($children[$key] as $k => $v) {
+                $url[$key] = '';
+                foreach ($field as $item) {
+                    if ($v[$item]) {
+                        $url[$key][$item] = $v[$item];
+                    } else {
+                        $url[$key][$item] = '';
+                    }
+                }
+                if (!empty($url[$key][$field[0]])) {
                     break;
-                } else {
-                    $url[$key] = '';
                 }
             }
         }
         if ($num > 0) {
             $url = array_slice($url, 0, $num);
+            if ($num == 1) {
+                $url = $url[0];
+            }
         }
         return $url;
     }

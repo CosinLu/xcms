@@ -8,12 +8,12 @@
  */
 class Information extends MY_Controller
 {
-    protected $info_cid;
+    protected $cid;
 
     public function __construct()
     {
         parent::__construct();
-        $this->info_cid = $this->input->get('info_cid');
+        $this->cid = $this->input->get('cid');
         $this->load->model('information_model', 'information');
         $this->load->library('category', array('tb_name' => 'info_col'), 'category');
         $this->main_sidebar();
@@ -27,7 +27,7 @@ class Information extends MY_Controller
             $children[$key] = $this->category->children($data, $val['pid'], TRUE);
             foreach ($children[$key] as $val) {
                 if ($val['sys_ctrl']) {
-                    $url[$key] = $val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&info_cid=' . $val['id'];
+                    $url[$key] = $val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
                     break;
                 } else {
                     $url[$key] = '';
@@ -53,7 +53,7 @@ class Information extends MY_Controller
         $parent_level = 0;
         foreach ($info_col_sort as $val) {
             $level = $val['level'];
-            $current = ($val['id'] == $this->info_cid) ? 'current' : '';
+            $current = ($val['id'] == $this->cid) ? 'current' : '';
             if ($start_level < 0) {
                 $start_level = $level;
             }
@@ -68,14 +68,14 @@ class Information extends MY_Controller
             if ($val['sys_ctrl'] == '') {
                 $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtree_link">';
             } else {
-                $str .= '<a class="' . $current . '" href="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&info_cid=' . $val['id']) . '" data-name="mtree_link">';
+                $str .= '<a class="' . $current . '" href="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtree_link">';
             }
             $str .= '<span data-name="mtree_indent"></span>';
             $str .= '<span data-name="mtree_btn"></span>';
             $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
             $str .= '</a>';
             $parent_level = $level;
-            if ($val['id'] == $this->info_cid) {
+            if ($val['id'] == $this->cid) {
                 $data['main_section_name'] = $val['name'];
             }
         }

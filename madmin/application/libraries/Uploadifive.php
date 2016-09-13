@@ -54,10 +54,10 @@ class Uploadifive
     {
         $str = '';
         foreach ($data as $key => $val) {
-            $str .= '<div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-image-file-"' . $key . '>';
+            $str .= '<div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-image-file-' . $key . '">';
             $str .= '<div class="thumbnail">';
             if ($val['is_image']) {
-                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/138x80?bg=337AB7&text=No Image" class="img">';
+                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="" class="img">';
             } else {
                 $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/138x80?bg=337AB7&text=File type is ' . $val['ext'] . '" class="img">';
             }

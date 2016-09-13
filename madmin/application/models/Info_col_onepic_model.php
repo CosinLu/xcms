@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_article_model extends MY_Model
+class Info_col_onepic_model extends MY_Model
 {
     public function __construct()
     {
@@ -18,13 +18,16 @@ class Info_article_model extends MY_Model
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_article as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->select('t.id,t.name');
+        $this->db->select('t1.url,t1.remark');
+        $this->db->select('t2.full_path');
+        $this->db->from('info_col as t');
+        $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
+        $this->db->join('uploads as t2', 't2.id=t1.image', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
+        $this->db->where('t.pic', 'onepic');
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
@@ -40,32 +43,28 @@ class Info_article_model extends MY_Model
     //更新
     public function update()
     {
-        $id = $this->input->get('id');
-        $this->db->where('id', $id);
-        $res = $this->db->get('info_article')->row_array();
+        $cid = $this->input->get('cid');
+        $this->db->select('t.id,t.name');
+        $this->db->select('t1.*');
+        $this->db->from('info_col as t');
+        $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
+        $this->db->where('t.id', $cid);
+        $res = $this->db->get()->row_array();
         return $res;
     }
 
     //保存
     public function save()
     {
-        $id = $this->input->post('id');
+        $cid = $this->input->post('cid');
         $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
         $vals = array(
-            'cid' => $this->input->get('cid'),
-            'title' => $this->input->post('title'),
+            'cid' => $cid,
             'image' => $image_arr,
-            'display' => $this->input->post('display'),
-            'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort'),
-            'content' => $this->input->post('content'),
-            'update_time' => time(),
+            'url' => $this->input->post('url'),
+            'remark' => $this->input->post('remark')
         );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('info_article', $vals);
-        } else {
-            $bool = $this->db->insert('info_article', $vals);
-        }
+        $bool = $this->db->replace('info_col_onepic', $vals);
         return $bool;
     }
 

@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_article_model extends MY_Model
+class Info_products_model extends MY_Model
 {
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Info_article_model extends MY_Model
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_article as t');
+        $this->db->from('info_products as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
@@ -42,7 +42,7 @@ class Info_article_model extends MY_Model
     {
         $id = $this->input->get('id');
         $this->db->where('id', $id);
-        $res = $this->db->get('info_article')->row_array();
+        $res = $this->db->get('info_products')->row_array();
         return $res;
     }
 
@@ -62,9 +62,9 @@ class Info_article_model extends MY_Model
             'update_time' => time(),
         );
         if ($id) {
-            $bool = $this->db->where('id', $id)->update('info_article', $vals);
+            $bool = $this->db->where('id', $id)->update('info_products', $vals);
         } else {
-            $bool = $this->db->insert('info_article', $vals);
+            $bool = $this->db->insert('info_products', $vals);
         }
         return $bool;
     }
