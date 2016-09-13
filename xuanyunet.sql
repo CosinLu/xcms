@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-11 22:26:33
+Date: 2016-09-13 18:49:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,12 +36,12 @@ CREATE TABLE `config` (
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', '标题', 'title', null, '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('2', '关键字', 'keyword', null, '1', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('3', '描述', 'description', null, '1', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('4', '版权', 'copyright', null, '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', null, '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('6', '统计代码', 'count_code', null, '1', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('1', '标题', 'title', '山东郓城晶艺包装有限公司', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '', '1', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('3', '描述', 'description', '', '1', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('4', '版权', 'copyright', '© 2016 郓城晶艺包装有限公司', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '鲁ICP备 12457896-1 号', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('6', '统计代码', 'count_code', '', '1', 'textarea', '', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -67,9 +67,9 @@ INSERT INTO `config_group` VALUES ('1', '站点配置', 'show', '', '100');
 DROP TABLE IF EXISTS `info_article`;
 CREATE TABLE `info_article` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `info_col_id` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传图片标识',
+  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
+  `title` varchar(500) DEFAULT NULL COMMENT '标题',
+  `image` int(10) DEFAULT NULL COMMENT '上传图片标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
@@ -90,12 +90,12 @@ CREATE TABLE `info_article` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_banner`;
 CREATE TABLE `info_banner` (
-  `info_col_id` int(10) NOT NULL COMMENT '信息栏目标识',
+  `cid` int(10) NOT NULL COMMENT '信息栏目标识',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `image` int(10) DEFAULT NULL COMMENT '上传文件标识',
   `url` varchar(255) DEFAULT NULL COMMENT '图片链接',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`info_col_id`)
+  PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目Banner表';
 
 -- ----------------------------
@@ -127,16 +127,19 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '公司简介', '0', '1', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('1', '关于我们', '0', '1', '0', 'nopic', '', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('2', '产品中心', '0', '1', '2', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('3', '新闻资讯', '0', '1', '3', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('4', '联系我们', '0', '1', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('5', '车间场景', '1', '2', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('6', '公司简介', '1', '2', '1', 'onepic', null, null, null, '', 'show', '1', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('7', '公司动态', '3', '2', '3', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('8', '行业动态', '3', '2', '3', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -144,7 +147,7 @@ INSERT INTO `info_col` VALUES ('5', '车间场景', '1', '2', '1', 'onepic', nul
 DROP TABLE IF EXISTS `info_col_muitipic`;
 CREATE TABLE `info_col_muitipic` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `info_col_id` int(11) DEFAULT NULL COMMENT '信息栏目标识',
+  `cid` int(11) DEFAULT NULL COMMENT '信息栏目标识',
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
   `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
@@ -167,7 +170,7 @@ CREATE TABLE `info_col_muitipic` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_col_onepic`;
 CREATE TABLE `info_col_onepic` (
-  `info_col_id` int(10) NOT NULL COMMENT '信息栏目标识',
+  `cid` int(10) NOT NULL COMMENT '信息栏目标识',
   `image` varchar(100) DEFAULT NULL COMMENT '上传图片标识',
   `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
@@ -175,7 +178,7 @@ CREATE TABLE `info_col_onepic` (
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`info_col_id`)
+  PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目单图表';
 
 -- ----------------------------
@@ -188,9 +191,9 @@ CREATE TABLE `info_col_onepic` (
 DROP TABLE IF EXISTS `info_products`;
 CREATE TABLE `info_products` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `info_col_id` int(10) DEFAULT NULL COMMENT '信息栏目标识',
+  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
   `title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传图片标识',
+  `image` int(10) DEFAULT NULL COMMENT '上传图片标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
@@ -211,20 +214,19 @@ CREATE TABLE `info_products` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_single`;
 CREATE TABLE `info_single` (
-  `info_col_id` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
+  `cid` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`info_col_id`)
+  PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
 
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-INSERT INTO `info_single` VALUES ('1', '', '<p style=\"text-align: left;\">　　山东郓城晶艺包装有限公司坐落在著名的武术书画之乡，水浒故里---山东郓城。这里资源丰富、人杰地灵，日东、济广高速在此交汇，京九铁路纵贯全境。公司所在地距日兰（G15）高速231入口仅3公里。地理位置优越，交通十分便利。</p><p style=\"text-align: left;\"><br/></p><p style=\"text-align: left;\">　　公司斥资引进晶白料手工生产线一条。全自动喷涂、烤花线一条。晶白料烤花加工生产线一条，专业生产高档晶白料手工玻璃瓶、玻璃盖，及各种高档瓶盖。始建之初，公司就以高起点、高品质、严要求赢得了广大客户的青睐。目前品种已达500余种，年产高档瓶盖3500多万支，烤花瓶3000余万支，产品销往全国各地及出口韩国、俄罗斯、东南亚等国家，满足了客户一条龙服务的需求。</p><p style=\"text-align: left;\"><br/></p><p style=\"text-align: left;\">　　公司先进的生产设备，雄厚的技术力量，齐全的检测手段，完善的管理机制，为生产高质量的产品打下了坚实的基础。产品投放市场以来，以时尚新颖、精巧的造型，完美的创意设计和优质的服务在广大客户中树立了良好的企业形象。</p><p style=\"text-align: left;\"><br/></p><p style=\"text-align: left;\">　　晶艺包装携全体员工热忱欢迎新老客户光临惠顾、洽谈合作、共谋发展。</p><p style=\"text-align: left;\"><br/></p><p style=\"text-align: center;\"><img src=\"/upload/ueditor/image/20160911/1473563964255608.jpg\" title=\"1473563964255608.jpg\" alt=\"dm.jpg\"/></p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_type
@@ -243,14 +245,11 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
 -- ----------------------------
-INSERT INTO `info_type` VALUES ('1', '单页', 'single', 'info_single', '', 'show', '100', null, null, null, null);
-INSERT INTO `info_type` VALUES ('2', '图片', 'products', 'info_products', '', 'show', '100', null, null, null, null);
-INSERT INTO `info_type` VALUES ('3', '文章', 'article', 'info_article', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -297,32 +296,34 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
 INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '1', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('2', '系统', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('2', '网站', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('6', '用户', '0', '1', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('7', '后台首页', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('6', '角色权限', '2', '2', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置组', '2', '2', '', 'config_group', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '2', '2', '', 'config_item', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('11', '配置信息', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '26', '3', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '26', '3', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('11', '网站配置', '26', '3', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '3', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '3', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('26', '配置', '2', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('27', '模块管理', '2', '2', '', 'mdl', '', '', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -355,10 +356,10 @@ INSERT INTO `sys_col_auth` VALUES ('9', 'look');
 INSERT INTO `sys_col_auth` VALUES ('9', 'del');
 INSERT INTO `sys_col_auth` VALUES ('9', 'update');
 INSERT INTO `sys_col_auth` VALUES ('9', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('10', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('10', 'update');
-INSERT INTO `sys_col_auth` VALUES ('10', 'del');
 INSERT INTO `sys_col_auth` VALUES ('10', 'look');
+INSERT INTO `sys_col_auth` VALUES ('10', 'del');
+INSERT INTO `sys_col_auth` VALUES ('10', 'update');
+INSERT INTO `sys_col_auth` VALUES ('10', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('11', 'update');
 INSERT INTO `sys_col_auth` VALUES ('17', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('17', 'update');
@@ -386,6 +387,10 @@ INSERT INTO `sys_col_auth` VALUES ('16', 'del');
 INSERT INTO `sys_col_auth` VALUES ('16', 'look');
 INSERT INTO `sys_col_auth` VALUES ('25', 'update');
 INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('27', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('27', 'update');
+INSERT INTO `sys_col_auth` VALUES ('27', 'del');
+INSERT INTO `sys_col_auth` VALUES ('27', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -525,10 +530,8 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', '0f816a0efe1bd5b62340fef306d7bedc.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20160911/', 'D:/wamp/www/uploads/20160911/0f816a0efe1bd5b62340fef306d7bedc.jpg', '/uploads/20160911/', '/uploads/20160911/0f816a0efe1bd5b62340fef306d7bedc.jpg', '0f816a0efe1bd5b62340fef306d7bedc', '0f816a0efe1bd5b62340fef306d7bedc.jpg', 'ewm.jpg', '.jpg', '8.01', '1', '108', '108', 'jpeg', 'width=\"108\" height=\"108\"', '');
-INSERT INTO `uploads` VALUES ('2', '7682061a890bdc65c72daec6566cde5b.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20160911/', 'D:/wamp/www/uploads/20160911/7682061a890bdc65c72daec6566cde5b.jpg', '/uploads/20160911/', '/uploads/20160911/7682061a890bdc65c72daec6566cde5b.jpg', '7682061a890bdc65c72daec6566cde5b', '7682061a890bdc65c72daec6566cde5b.jpg', 'ewm.jpg', '.jpg', '8.01', '1', '108', '108', 'jpeg', 'width=\"108\" height=\"108\"', '');
