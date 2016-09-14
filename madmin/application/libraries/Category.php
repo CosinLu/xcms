@@ -182,9 +182,9 @@ class Category
         }
         $parent_arr = $this->_parent($data, $pid);
         if ($self) {
-            return array_merge($parent_arr, $self_arr);
+            $parent_arr = array_merge($self_arr, $parent_arr);
         }
-        return $parent_arr;
+        return array_reverse($parent_arr);
     }
 
     /**
@@ -208,6 +208,7 @@ class Category
         foreach ($data as $val) {
             if ($val[$this->id_name] == $id) {
                 $parent_arr[] = $val;
+                break;
             }
         }
         //如果上级分类不存在则结束
@@ -221,7 +222,8 @@ class Category
                 $res_arr = array_merge($res_arr, $temp);
             }
         }
-        return array_reverse($res_arr);
+        //return array_reverse($res_arr);
+        return $res_arr;
     }
 
     /**

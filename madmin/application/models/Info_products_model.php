@@ -8,14 +8,19 @@
  */
 class Info_products_model extends MY_Model
 {
+    protected $cid;
+
     public function __construct()
     {
         parent::__construct();
+        $this->cid = $this->input->get('cid');
+        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
     }
 
     //获得列表
     public function get_list()
     {
+        $parent_id_arr = $this->category->parent_id(array(), $this->cid, TRUE);
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
@@ -25,6 +30,7 @@ class Info_products_model extends MY_Model
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
+        $this->db->where_in('t.cid', $parent_id_arr);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;

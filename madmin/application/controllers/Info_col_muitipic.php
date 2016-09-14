@@ -47,7 +47,7 @@ class Info_col_muitipic extends MY_Controller
     public function insert()
     {
         $data['info_col'] = dropdown_list($this->info_col_muitipic->info_col(), 'cid');
-        $data['display'] = $this->sys_dict->radio_button_list(9, 'display');
+        $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
         $this->load->view('info_col_muitipic/insert.html', $data);
     }
 
@@ -57,7 +57,7 @@ class Info_col_muitipic extends MY_Controller
         $data['item'] = $this->info_col_muitipic->update();
         $data['info_col'] = dropdown_list($this->info_col_muitipic->info_col(), 'cid', $data['item']['cid']);
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
-        $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
+        $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
         $this->load->view('info_col_muitipic/update.html', $data);
     }
 

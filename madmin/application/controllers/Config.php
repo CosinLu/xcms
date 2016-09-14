@@ -13,9 +13,9 @@ class Config extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->set_url();
         $this->load->model('config_model');
         $this->config_group_id = $this->input->get('config_group_id');
+        $this->set_url();
     }
 
     //设置url

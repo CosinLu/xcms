@@ -15,25 +15,28 @@ class Sys_dict
         $this->CI =& get_instance();
     }
 
-    public function all($pid = 0)
+    public function all($ident = '')
     {
-        $this->CI->db->where('pid', $pid);
+        $this->CI->db->from('sys_dict as t');
+        $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
+        $this->CI->db->where('t.ident', $ident);
+        $this->CI->db->group_by('t1.id');
         $res = $this->CI->db->get('sys_dict')->result_array();
         return $res;
     }
 
     /**
      * 单选按钮列表
-     * @param int $pid 属性上级id
+     * @param int $ident 属性上级标识
      * @param string $name 元素名称
      * @param string $check_val 选中值
      * @param string $disabled 禁用
      * @return string
      */
-    public function radio_button_list($pid = 0, $name = '', $check_val = '', $disabled = '')
+    public function radio_button_list($ident = '', $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
-        $res = $this->all($pid);
+        $res = $this->all($ident);
         foreach ($res as $key => $val) {
             if ($check_val == '') {
                 $checked = ($key == 0) ? 'checked' : '';
@@ -47,17 +50,17 @@ class Sys_dict
 
     /**
      * 复选框列表
-     * @param int $pid 属性上级id
+     * @param int $ident 属性上级标识
      * @param string $name 元素名称
      * @param string $check_val 选中值
      * @param string $disabled 禁用
      * @return string
      */
-    public function checkbox_list($pid = 0, $name = '', $check_val = '', $disabled = '')
+    public function checkbox_list($ident = '', $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
         $check_val_arr = explode(',', $check_val);
-        $res = $this->all($pid);
+        $res = $this->all($ident);
         foreach ($res as $val) {
             if (is_array($check_val_arr)) {
                 $checked = (in_array($val['ident'], $check_val_arr)) ? 'checked' : '';
@@ -71,16 +74,16 @@ class Sys_dict
 
     /**
      * 下拉列表
-     * @param int $pid 属性上级id
+     * @param int $ident 属性上级标识
      * @param string $name 元素名称
      * @param string $select_val 选中值
      * @param string $disabled 禁用
      * @return string
      */
-    public function dropdown_list($pid = 0, $name = '', $select_val = '', $disabled = '')
+    public function dropdown_list($ident = '', $name = '', $select_val = '', $disabled = '')
     {
         $str = '';
-        $res = $this->all($pid);
+        $res = $this->all($ident);
         $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
         $str .= '<option value="0">-请选择-</option>';
         foreach ($res as $val) {

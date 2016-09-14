@@ -488,7 +488,10 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-btn a:active {
-    opacity: .7
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 .layui-layer-btn .layui-layer-btn0 {
@@ -498,6 +501,11 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-btn .layui-layer-btn0:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+.layui-layer-btn .layui-layer-btn0:active {
     color: #fff;
     background-color: #286090;
     border-color: #204d74;

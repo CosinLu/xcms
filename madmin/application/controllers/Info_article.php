@@ -48,7 +48,7 @@ class Info_article extends Information
     //新增
     public function insert()
     {
-        $data['display'] = $this->sys_dict->radio_button_list(9, 'display');
+        $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
         $this->load->view('info_article/insert.html', $data);
     }
 
@@ -57,7 +57,7 @@ class Info_article extends Information
     {
         $data['item'] = $this->info_article->update();
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
-        $data['display'] = $this->sys_dict->radio_button_list(9, 'display', $data['item']['display']);
+        $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
         $this->load->view('info_article/update.html', $data);
     }
 

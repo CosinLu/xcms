@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-13 18:49:36
+Date: 2016-09-14 18:12:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,17 +31,19 @@ CREATE TABLE `config` (
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', '标题', 'title', '山东郓城晶艺包装有限公司', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('1', '标题', 'title', 'MCMS演示站', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '', '1', 'textarea', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('3', '描述', 'description', '', '1', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('4', '版权', 'copyright', '© 2016 郓城晶艺包装有限公司', '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '鲁ICP备 12457896-1 号', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('4', '版权', 'copyright', '© Copyright 2015 轩宇网络 All Rights Reserved', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('6', '统计代码', 'count_code', '', '1', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('7', '状态', 'state', '1', '2', 'radio', '1|正常,0|关闭', '', 'show', '100');
+INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', '2', 'textarea', '', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -54,12 +56,13 @@ CREATE TABLE `config_group` (
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='配置组';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='配置组';
 
 -- ----------------------------
 -- Records of config_group
 -- ----------------------------
-INSERT INTO `config_group` VALUES ('1', '站点配置', 'show', '', '100');
+INSERT INTO `config_group` VALUES ('1', '基本配置', 'show', '', '100');
+INSERT INTO `config_group` VALUES ('2', '网站状态', 'show', '', '100');
 
 -- ----------------------------
 -- Table structure for info_article
@@ -134,7 +137,7 @@ CREATE TABLE `info_col` (
 -- ----------------------------
 INSERT INTO `info_col` VALUES ('1', '关于我们', '0', '1', '0', 'nopic', '', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('2', '产品中心', '0', '1', '2', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('3', '新闻资讯', '0', '1', '3', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('3', '新闻资讯', '0', '1', '0', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('4', '联系我们', '0', '1', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('5', '车间场景', '1', '2', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('6', '公司简介', '1', '2', '1', 'onepic', null, null, null, '', 'show', '1', null, null, null, null, '1', '1', '1');
@@ -245,11 +248,14 @@ CREATE TABLE `info_type` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
 
 -- ----------------------------
 -- Records of info_type
 -- ----------------------------
+INSERT INTO `info_type` VALUES ('1', '单页', 'single', 'info_single', '', 'show', '100', null, null, null, null);
+INSERT INTO `info_type` VALUES ('2', '图片', 'products', 'info_products', '', 'show', '100', null, null, null, null);
+INSERT INTO `info_type` VALUES ('3', '文章', 'news', 'info_article', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -296,7 +302,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -305,25 +311,25 @@ INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro'
 INSERT INTO `sys_col` VALUES ('2', '网站', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('5', '菜单', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('6', '角色权限', '2', '2', '', '', '', '', '', 'pro', 'show', '3', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('6', '角色权限', '2', '2', '', '', '', '', '', 'pro', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('8', '系统数据字典', '1', '2', '', 'sys_dict', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置组', '26', '3', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '26', '3', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('11', '网站配置', '26', '3', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', 'dev', 'show', '300', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '29', '4', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '29', '4', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('16', '后台栏目', '5', '2', '', 'sys_col', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('16', '后台菜单', '28', '3', '', 'sys_col', '', '', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '3', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '3', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('26', '配置', '2', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('27', '模块管理', '2', '2', '', 'mdl', '', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('27', '模块管理', '2', '2', '', 'mdl', '', '', '', 'pro', 'hide', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('29', '配置管理', '28', '3', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -337,7 +343,7 @@ CREATE TABLE `sys_col_auth` (
 -- ----------------------------
 -- Records of sys_col_auth
 -- ----------------------------
-INSERT INTO `sys_col_auth` VALUES ('8', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('8', 'look');
 INSERT INTO `sys_col_auth` VALUES ('7', 'del');
 INSERT INTO `sys_col_auth` VALUES ('7', 'update');
 INSERT INTO `sys_col_auth` VALUES ('7', 'insert');
@@ -349,9 +355,9 @@ INSERT INTO `sys_col_auth` VALUES ('25', 'look');
 INSERT INTO `sys_col_auth` VALUES ('25', 'del');
 INSERT INTO `sys_col_auth` VALUES ('24', 'look');
 INSERT INTO `sys_col_auth` VALUES ('24', 'update');
-INSERT INTO `sys_col_auth` VALUES ('8', 'update');
 INSERT INTO `sys_col_auth` VALUES ('8', 'del');
-INSERT INTO `sys_col_auth` VALUES ('8', 'look');
+INSERT INTO `sys_col_auth` VALUES ('8', 'update');
+INSERT INTO `sys_col_auth` VALUES ('8', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('9', 'look');
 INSERT INTO `sys_col_auth` VALUES ('9', 'del');
 INSERT INTO `sys_col_auth` VALUES ('9', 'update');
@@ -369,10 +375,10 @@ INSERT INTO `sys_col_auth` VALUES ('18', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('18', 'update');
 INSERT INTO `sys_col_auth` VALUES ('18', 'del');
 INSERT INTO `sys_col_auth` VALUES ('18', 'look');
-INSERT INTO `sys_col_auth` VALUES ('12', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('12', 'update');
-INSERT INTO `sys_col_auth` VALUES ('12', 'del');
 INSERT INTO `sys_col_auth` VALUES ('12', 'look');
+INSERT INTO `sys_col_auth` VALUES ('12', 'del');
+INSERT INTO `sys_col_auth` VALUES ('12', 'update');
+INSERT INTO `sys_col_auth` VALUES ('12', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('14', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('14', 'update');
 INSERT INTO `sys_col_auth` VALUES ('14', 'del');
@@ -381,16 +387,16 @@ INSERT INTO `sys_col_auth` VALUES ('15', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('15', 'update');
 INSERT INTO `sys_col_auth` VALUES ('15', 'del');
 INSERT INTO `sys_col_auth` VALUES ('15', 'look');
-INSERT INTO `sys_col_auth` VALUES ('16', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('16', 'update');
-INSERT INTO `sys_col_auth` VALUES ('16', 'del');
 INSERT INTO `sys_col_auth` VALUES ('16', 'look');
+INSERT INTO `sys_col_auth` VALUES ('16', 'del');
+INSERT INTO `sys_col_auth` VALUES ('16', 'update');
+INSERT INTO `sys_col_auth` VALUES ('16', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('25', 'update');
 INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('27', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('27', 'update');
-INSERT INTO `sys_col_auth` VALUES ('27', 'del');
 INSERT INTO `sys_col_auth` VALUES ('27', 'look');
+INSERT INTO `sys_col_auth` VALUES ('27', 'del');
+INSERT INTO `sys_col_auth` VALUES ('27', 'update');
+INSERT INTO `sys_col_auth` VALUES ('27', 'insert');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -415,27 +421,27 @@ CREATE TABLE `sys_dict` (
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES ('1', '系统菜单权限', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('1', '后台栏目权限', '0', '1', 'sys_col_auth', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('3', '修改', '1', '2', 'update', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('6', '用户类型', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('6', '用户类型', '0', '1', 'user_type', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('7', '生产者', '6', '2', 'pro', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('8', '开发者', '6', '2', 'dev', '#337ab7', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('9', '显示', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('12', '配置项类型', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('18', '用户状态', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('18', '用户状态', '0', '1', 'user_state', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', '', '100', null, null, null, null);
-INSERT INTO `sys_dict` VALUES ('21', '图片', '0', '1', '', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('21', '图片', '0', '1', 'image', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('22', '无图', '21', '2', 'nopic', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('23', '单图', '21', '2', 'onepic', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333', '', '100', null, null, null, null);
