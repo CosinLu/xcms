@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-14 18:12:24
+Date: 2016-09-19 18:07:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -258,6 +258,45 @@ INSERT INTO `info_type` VALUES ('2', '图片', 'products', 'info_products', '', 
 INSERT INTO `info_type` VALUES ('3', '文章', 'news', 'info_article', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
+-- Table structure for mdl
+-- ----------------------------
+DROP TABLE IF EXISTS `mdl`;
+CREATE TABLE `mdl` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
+  `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
+  `info_type_id` int(11) DEFAULT NULL COMMENT '信息类型标识',
+  `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
+  `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `add_next_auth` tinyint(1) DEFAULT '1' COMMENT '新增下级权限：0=禁止，1=允许',
+  `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
+  `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='前台模块表';
+
+-- ----------------------------
+-- Records of mdl
+-- ----------------------------
+INSERT INTO `mdl` VALUES ('1', '关于我们', '0', '1', '0', 'nopic', '', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('2', '产品中心', '0', '1', '2', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('3', '新闻资讯', '0', '1', '0', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('4', '联系我们', '0', '1', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('5', '车间场景', '1', '2', '1', 'onepic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('6', '公司简介', '1', '2', '1', 'onepic', null, null, null, '', 'show', '1', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('7', '公司动态', '3', '2', '3', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `mdl` VALUES ('8', '行业动态', '3', '2', '3', 'nopic', null, null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+
+-- ----------------------------
 -- Table structure for slide
 -- ----------------------------
 DROP TABLE IF EXISTS `slide`;
@@ -294,6 +333,7 @@ CREATE TABLE `sys_col` (
   `method` varchar(20) DEFAULT NULL COMMENT '方法',
   `param` varchar(100) DEFAULT NULL COMMENT '参数',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `menu_type` varchar(5) DEFAULT NULL COMMENT '菜单类型',
   `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型：developer=开发者，producter=生产者',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
@@ -302,34 +342,34 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
-INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '1', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('2', '网站', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('6', '角色权限', '2', '2', '', '', '', '', '', 'pro', 'show', '200', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'home', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', 'dev', 'show', '300', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置组', '29', '4', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '29', '4', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('16', '后台菜单', '28', '3', '', 'sys_col', '', '', '', 'dev', 'show', '200', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '3', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '3', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('27', '模块管理', '2', '2', '', 'mdl', '', '', '', 'pro', 'hide', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('29', '配置管理', '28', '3', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', null, 'pro', 'show', '1', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('2', '网站', '0', '1', '', '', '', '', '', null, 'pro', 'show', '2', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', '', null, 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('6', '角色权限', '2', '2', '', '', '', '', '', null, 'pro', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'home', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', null, 'dev', 'show', '300', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '29', '4', '', 'config_group', '', '', '', null, 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '29', '4', '', 'config_item', '', '', '', null, 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('14', '信息类型', '3', '2', '', 'info_type', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('16', '后台菜单', '28', '3', '', 'sys_col', '', '', '', null, 'dev', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '3', '', 'sys_role', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('18', '管理员管理', '6', '3', '', 'sys_user', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('30', '新闻', '0', '1', '', '', '', '', '', null, 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('29', '配置管理', '28', '3', '', '', '', '', '', null, 'dev', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -393,10 +433,6 @@ INSERT INTO `sys_col_auth` VALUES ('16', 'update');
 INSERT INTO `sys_col_auth` VALUES ('16', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('25', 'update');
 INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
-INSERT INTO `sys_col_auth` VALUES ('27', 'look');
-INSERT INTO `sys_col_auth` VALUES ('27', 'del');
-INSERT INTO `sys_col_auth` VALUES ('27', 'update');
-INSERT INTO `sys_col_auth` VALUES ('27', 'insert');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -416,7 +452,7 @@ CREATE TABLE `sys_dict` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -445,6 +481,9 @@ INSERT INTO `sys_dict` VALUES ('21', '图片', '0', '1', 'image', '#333333', '',
 INSERT INTO `sys_dict` VALUES ('22', '无图', '21', '2', 'nopic', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('23', '单图', '21', '2', 'onepic', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('26', '菜单类型', '0', '1', 'menu_type', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('27', '普通菜单', '26', '2', 'menu', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('28', '模块', '26', '2', 'mdl', '#333333', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role

@@ -54,6 +54,7 @@ class Sys_col extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['sys_col'] = $this->category->insert_option($id);
+        $data['menu_type'] = $this->sys_dict->radio_button_list('menu_type', 'menu_type');
         $data['auth'] = $this->sys_dict->checkbox_list('sys_col_auth', 'auth');
         $data['user_type'] = $this->sys_dict->radio_button_list('user_type', 'user_type');
         $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
@@ -65,6 +66,7 @@ class Sys_col extends MY_Controller
     {
         $data['item'] = $this->sys_col->update();
         $data['sys_col'] = $this->category->update_option($data['item']['id'], $data['item']['pid']);
+        $data['menu_type'] = $this->sys_dict->radio_button_list('menu_type', 'menu_type', $data['item']['menu_type']);
         $data['auth'] = $this->sys_dict->checkbox_list('sys_col_auth', 'auth', $data['item']['col_auth']);
         $data['user_type'] = $this->sys_dict->radio_button_list('user_type', 'user_type', $data['item']['user_type']);
         $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
