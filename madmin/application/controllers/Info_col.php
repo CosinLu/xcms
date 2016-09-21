@@ -51,6 +51,7 @@ class Info_col extends MY_Controller
         $data['info_col'] = $this->category->insert_option($id);
         $data['info_type'] = dropdown_list($this->info_col->info_type(), 'info_type_id');
         $data['pic'] = $this->sys_dict->radio_button_list('image', 'pic');
+        $data['location'] = $this->sys_dict->checkbox_list('location', 'location');
         $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
         $this->load->view('info_col/insert.html', $data);
     }
@@ -62,6 +63,7 @@ class Info_col extends MY_Controller
         $data['info_type'] = dropdown_list($this->info_col->info_type(), 'info_type_id', $data['item']['info_type_id']);
         $data['info_col'] = $this->category->update_option($data['item']['id'], $data['item']['pid']);
         $data['pic'] = $this->sys_dict->radio_button_list('image', 'pic', $data['item']['pic']);
+        $data['location'] = $this->sys_dict->checkbox_list('location', 'location', $data['item']['location']);
         $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
         $this->load->view('info_col/update.html', $data);
     }

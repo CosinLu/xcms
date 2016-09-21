@@ -57,10 +57,10 @@ class Info_col_onepic_model extends MY_Model
     public function save()
     {
         $cid = $this->input->post('cid');
-        $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
+        $image = $this->input->post('image');
         $vals = array(
             'cid' => $cid,
-            'image' => $image_arr,
+            'image' => (!empty($image)) ? implode(',', $image) : '',
             'url' => $this->input->post('url'),
             'remark' => $this->input->post('remark')
         );

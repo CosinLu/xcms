@@ -359,6 +359,47 @@ class Category
     }
 
     /**
+     * 获取分类中符合条件的有效字符串
+     * @param array $data
+     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param bool $field 要获取的参数
+     * @param int $num url个数
+     * @param bool $self 是否包含自身
+     * @return array
+     */
+    public function valid_str($data = array(), $pid = 0, $field = array('url'), $num = 1, $self = TRUE)
+    {
+        if (empty($data)) {
+            $data = $this->all();
+        }
+        $children_all = $this->children($data, $pid, $self);
+        $children = array();
+        foreach ($children_all as $key => $val) {
+            $children[$key] = $this->children($data, $val[$this->id_name], $self);
+            foreach ($children[$key] as $k => $v) {
+                $str[$key] = '';
+                foreach ($field as $item) {
+                    if ($v[$item]) {
+                        $str[$key][$item] = $v[$item];
+                    } else {
+                        $str[$key][$item] = '';
+                    }
+                }
+                if (!empty($str[$key][$field[0]])) {
+                    break;
+                }
+            }
+        }
+        if ($num > 0) {
+            $str = array_slice($str, 0, $num);
+            if ($num == 1) {
+                $str = $str[0];
+            }
+        }
+        return $str;
+    }
+
+    /**
      * 获取下级url
      * @param array $data 初始数据
      * @return mixed
@@ -385,47 +426,6 @@ class Category
                         $url[$key] = 'javascript:;';
                     }
                 }
-            }
-        }
-        return $url;
-    }
-
-    /**
-     * 获取分类中符合条件的有效字符串
-     * @param array $data
-     * @param int $pid 当前分类的id即为下级分类的pid
-     * @param int $num url个数
-     * @param bool $self 是否包含自身
-     * @$field bool $self 条件
-     * @return array
-     */
-    public function valid_str($data = array(), $pid = 0, $num = 1, $self = TRUE, $field = array('url'))
-    {
-        if (empty($data)) {
-            $data = $this->all();
-        }
-        $children_all = $this->children($data, $pid, $self);
-        $children = array();
-        foreach ($children_all as $key => $val) {
-            $children[$key] = $this->children($data, $val[$this->id_name], $self);
-            foreach ($children[$key] as $k => $v) {
-                $url[$key] = '';
-                foreach ($field as $item) {
-                    if ($v[$item]) {
-                        $url[$key][$item] = $v[$item];
-                    } else {
-                        $url[$key][$item] = '';
-                    }
-                }
-                if (!empty($url[$key][$field[0]])) {
-                    break;
-                }
-            }
-        }
-        if ($num > 0) {
-            $url = array_slice($url, 0, $num);
-            if ($num == 1) {
-                $url = $url[0];
             }
         }
         return $url;

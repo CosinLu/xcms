@@ -49,12 +49,16 @@ class Config_model extends MY_Model
     {
         $rows = 1;
         $vals = $this->input->post();
+        $value = array();
         if (!empty($vals)) {
             foreach ($vals as $key => $val) {
-                $value = (is_array($val)) ? implode(',', $val) : $val;
-                $this->db->where(array('name' => $key))->update('config', array('value' => $value));
-                $rows += $this->db->affected_rows();
+                $value[] = array(
+                    'name' => $key,
+                    'value' => (is_array($val)) ? implode(',', $val) : $val
+                );
             }
+            $this->db->update_batch('config', $value, 'name');
+            $rows += $this->db->affected_rows();
         }
         return $rows;
     }

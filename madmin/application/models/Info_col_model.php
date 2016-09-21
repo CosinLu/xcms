@@ -46,11 +46,13 @@ class Info_col_model extends MY_Model
     {
         $id = $cid = $this->input->post('id');
         $pid = $this->input->post('pid');
+        $location = $this->input->post('location');
         $vals = array(
             'info_type_id' => $this->input->post('info_type_id'),
             'name' => $this->input->post('name'),
             'pic' => $this->input->post('pic'),
             'remark' => $this->input->post('remark'),
+            'location' => (!empty($location)) ? implode(',', $location) : '',
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
         );

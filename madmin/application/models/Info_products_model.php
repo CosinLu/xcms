@@ -56,11 +56,11 @@ class Info_products_model extends MY_Model
     public function save()
     {
         $id = $this->input->post('id');
-        $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
+        $image = $this->input->post('image');
         $vals = array(
             'cid' => $this->input->get('cid'),
             'title' => $this->input->post('title'),
-            'image' => $image_arr,
+            'image' => (!empty($image)) ? implode(',', $image) : '',
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),
             'sort' => $this->input->post('sort'),

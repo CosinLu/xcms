@@ -52,10 +52,10 @@ class Slide_model extends MY_Model
     public function save()
     {
         $id = $this->input->post('id');
-        $image_arr = ($this->input->post('image')) ? implode(',', $this->input->post('image')) : '';
+        $image = $this->input->post('image');
         $vals = array(
             'name' => $this->input->post('name'),
-            'image' => $image_arr,
+            'image' => (!empty($image)) ? implode(',', $image) : '',
             'url' => $this->input->post('url'),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),

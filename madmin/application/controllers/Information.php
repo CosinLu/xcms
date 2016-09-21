@@ -35,7 +35,7 @@ class Information extends MY_Controller
             }
         }
         $url = array_slice($url, 0, 1);
-        redirect($url);
+        redirect(site_url($url));
     }
 
     //获得信息栏目
