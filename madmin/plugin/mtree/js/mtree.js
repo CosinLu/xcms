@@ -13,15 +13,14 @@ $(function () {
     var $_mtreeIndent = $(mtreeIndent); //缩进对象
     var $_mtreeLevel = $(mtreeLevel); //等级对象
     var $_mtreeName = $(mtreeName); //文字对象
-    var showLevel = $_mtree.data('show'); //设置显示几级：空=显示全部，0=显示主级，1=显示一级，2=显示两级...
+    var showLevel = $_mtree.data('show'); //设置默认显示：空=显示全部，1=显示一级，2=显示两级...
     //showLevel = (showLevel == 'undefined' || showLevel == null) ? 0 : parseInt(showLevel);
-    var openIcon = 'fa fa-caret-right'; //隐藏时显示的打开图标 openIcon
-    var closeIcon = 'fa fa-caret-down'; //显示时显示的关闭图标 closeIcon
+    var openIcon = 'fa fa-angle-right'; //隐藏时显示的打开图标 openIcon
+    var closeIcon = 'fa fa-angle-down'; //显示时显示的关闭图标 closeIcon
     var siblingsStatus = false; //展开/关闭时，同级是否改变状态：false=不改变，true=改变
     var currentName = 'current'; //高亮当前点击的元素
     var isShowCheckbox = $_mtreeCheckbox.length; //是否显示复选框
     var indent = 15; //缩进
-
     /**
      * [设置title]
      * @param  {[type]} e){                 	$(this).attr('title',$(this).text());    } [description]
@@ -68,7 +67,7 @@ $(function () {
         if (parseInt($(this).data('level')) <= showLevel && showLevel > 0) {
             $(this).show();
         }
-        if (showLevel == 'undefined' || showLevel == null) {
+        if (showLevel == 'undefined' || showLevel == null || showLevel == '') {
             $(this).show();
         }
     });
