@@ -19,7 +19,7 @@ class Info_col_model extends MY_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.name as info_type_name');
+        $this->db->select('t2.name as info_type_name,t2.ctrl');
         $this->db->from('info_col as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('info_type as t2', 't2.id=t.info_type_id', 'left');
@@ -49,7 +49,9 @@ class Info_col_model extends MY_Model
         $location = $this->input->post('location');
         $vals = array(
             'info_type_id' => $this->input->post('info_type_id'),
+            'url' => $this->input->post('url'),
             'name' => $this->input->post('name'),
+            'ident' => $this->input->post('ident'),
             'pic' => $this->input->post('pic'),
             'remark' => $this->input->post('remark'),
             'location' => (!empty($location)) ? implode(',', $location) : '',
