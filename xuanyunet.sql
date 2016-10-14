@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-09-23 19:03:55
+Date: 2016-10-14 17:05:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,7 +82,7 @@ CREATE TABLE `info_article` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of info_article
@@ -112,11 +112,12 @@ DROP TABLE IF EXISTS `info_col`;
 CREATE TABLE `info_col` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `ident` varchar(50) DEFAULT NULL COMMENT '唯一标识',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
   `info_type_id` int(11) DEFAULT NULL COMMENT '信息类型标识',
-  `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
   `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
   `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
@@ -136,14 +137,14 @@ CREATE TABLE `info_col` (
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '关于我们', '0', '1', '0', 'nopic', '', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('2', '产品中心', '0', '1', '2', 'onepic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('3', '新闻资讯', '0', '1', '0', 'onepic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('4', '联系我们', '0', '1', '1', 'onepic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('5', '车间场景', '1', '2', '1', 'onepic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('6', '公司简介', '1', '2', '1', 'onepic', null, null, null, '', '', 'show', '1', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('7', '公司动态', '3', '2', '3', 'nopic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('8', '行业动态', '3', '2', '3', 'nopic', null, null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('1', '关于我们', '', '0', '1', '0', 'http://www.baidu.com/', 'onepic', null, null, '', '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('2', '产品中心', null, '0', '1', '2', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('3', '新闻资讯', null, '0', '1', '0', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('4', '联系我们', null, '0', '1', '1', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('5', '车间场景', null, '1', '2', '1', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('6', '公司简介', null, '1', '2', '1', null, 'onepic', null, null, '', '', 'show', '1', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('7', '公司动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('8', '行业动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -188,6 +189,7 @@ CREATE TABLE `info_col_onepic` (
 -- ----------------------------
 -- Records of info_col_onepic
 -- ----------------------------
+INSERT INTO `info_col_onepic` VALUES ('6', '1', '', '', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_products
@@ -207,7 +209,7 @@ CREATE TABLE `info_products` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息产品表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息产品表';
 
 -- ----------------------------
 -- Records of info_products
@@ -541,8 +543,10 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
+INSERT INTO `uploads` VALUES ('1', '9ea6d206ce5830a19103ae09fe8e7ae4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161012/', 'D:/wamp/www/uploads/20161012/9ea6d206ce5830a19103ae09fe8e7ae4.jpg', '/uploads/20161012/', '/uploads/20161012/9ea6d206ce5830a19103ae09fe8e7ae4.jpg', '9ea6d206ce5830a19103ae09fe8e7ae4', '9ea6d206ce5830a19103ae09fe8e7ae4.jpg', 'abcde.jpg', '.jpg', '160.97', '1', '127', '127', 'jpeg', 'width=\"1920\" height=\"585\"', '');
+INSERT INTO `uploads` VALUES ('2', 'd665c6a7bf8407c206d32f99dd288e97.png', 'image/png', 'D:/wamp/www/uploads/20161013/', 'D:/wamp/www/uploads/20161013/d665c6a7bf8407c206d32f99dd288e97.png', '/uploads/20161013/', '/uploads/20161013/d665c6a7bf8407c206d32f99dd288e97.png', 'd665c6a7bf8407c206d32f99dd288e97', 'd665c6a7bf8407c206d32f99dd288e97.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');

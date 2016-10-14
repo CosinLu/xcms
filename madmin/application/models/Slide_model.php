@@ -53,10 +53,11 @@ class Slide_model extends MY_Model
     {
         $id = $this->input->post('id');
         $image = $this->input->post('image');
+        $url = $this->input->post('url');
         $vals = array(
             'name' => $this->input->post('name'),
             'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => $this->input->post('url'),
+            'url' => ($url) ? $url : prep_url($url),
             'display' => $this->input->post('display'),
             'remark' => $this->input->post('remark'),
             'sort' => $this->input->post('sort')

@@ -45,7 +45,7 @@ class Info_type extends MY_Controller
     //新增
     public function insert()
     {
-        $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
+        $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('info_type/insert.html', $data);
     }
 
@@ -53,7 +53,7 @@ class Info_type extends MY_Controller
     public function update()
     {
         $data['item'] = $this->info_type->update();
-        $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
+        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('info_type/update.html', $data);
     }
 

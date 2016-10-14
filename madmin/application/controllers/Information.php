@@ -84,4 +84,11 @@ class Information extends MY_Controller
         $this->load->vars($data);
     }
 
+    //获得当前栏目的信息类型标识
+    public function info_type_id()
+    {
+        $res = $this->information->info_type_id();
+        return $res;
+    }
+
 }

@@ -33,7 +33,7 @@ class Sys_dict
      * @param string $disabled 禁用
      * @return string
      */
-    public function radio_button_list($ident = '', $name = '', $check_val = '', $disabled = '')
+    public function rbl($ident = '', $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
         $res = $this->all($ident);
@@ -56,7 +56,7 @@ class Sys_dict
      * @param string $disabled 禁用
      * @return string
      */
-    public function checkbox_list($ident = '', $name = '', $check_val = '', $disabled = '')
+    public function cbl($ident = '', $name = '', $check_val = '', $disabled = '')
     {
         $str = '';
         $check_val_arr = explode(',', $check_val);
@@ -80,7 +80,7 @@ class Sys_dict
      * @param string $disabled 禁用
      * @return string
      */
-    public function dropdown_list($ident = '', $name = '', $select_val = '', $disabled = '')
+    public function ddl($ident = '', $name = '', $select_val = '', $disabled = '')
     {
         $str = '';
         $res = $this->all($ident);

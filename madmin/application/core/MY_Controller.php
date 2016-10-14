@@ -35,7 +35,7 @@ class MY_Controller extends CI_Controller
     //登录验证
     public function check_login()
     {
-        $pre_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         if (empty($this->sys_session)) {
             $this->prompt->error('登录超时！', site_url('welcome?url=' . $pre_url));
         }

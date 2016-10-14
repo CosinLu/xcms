@@ -47,9 +47,10 @@ class Info_col_model extends MY_Model
         $id = $cid = $this->input->post('id');
         $pid = $this->input->post('pid');
         $location = $this->input->post('location');
+        $url = $this->input->post('url');
         $vals = array(
             'info_type_id' => $this->input->post('info_type_id'),
-            'url' => $this->input->post('url'),
+            'url' => ($url) ? $url : prep_url($url),
             'name' => $this->input->post('name'),
             'ident' => $this->input->post('ident'),
             'pic' => $this->input->post('pic'),

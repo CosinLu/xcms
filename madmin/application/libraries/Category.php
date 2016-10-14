@@ -140,7 +140,7 @@ class Category
     }
 
     /**
-     * 获得下级分类id
+     * 获得下级分类标识
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
@@ -159,7 +159,7 @@ class Category
     /**
      * 获得上级分类
      * @param array $data
-     * @param int $id 当前分类的id
+     * @param int $id 当前分类的标识
      * @param bool $self
      * @return array
      */
@@ -190,7 +190,7 @@ class Category
     /**
      * 递归获得上级分类
      * @param array $data
-     * @param int $id 当前分类的pid即为上级分类的id
+     * @param int $id 当前分类的pid即为上级分类的标识
      * @return array
      */
     public function _parent($data = array(), $id = 0)
@@ -227,9 +227,9 @@ class Category
     }
 
     /**
-     * 获得上级分类id
+     * 获得上级分类标识
      * @param array $data
-     * @param int $id 当前分类的id
+     * @param int $id 当前分类的标识
      * @param bool $self
      * @return array
      */
@@ -287,14 +287,16 @@ class Category
 
     /**
      * 新增时所用下拉列表
-     * @param int $id 信息id
+     * @param int $id 信息标识
      * @param array $data
      * @param bool $root 是否显示跟目录
+     * @param int $info_type_id 信息类型标识
      * @return string
      */
-    public function insert_option($id = 0, $data = array(), $root = TRUE)
+    /*public function insert_ddl($name = '', $id = 0, $data = array(), $root = TRUE, $info_type_id = '')
     {
         $str = '';
+        $str .= '<select name="' . $name . '" class="form-control">';
         $start_level = 1;
         $root_arr = array(
             array(
@@ -313,10 +315,16 @@ class Category
             $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
             //选中
             $selected = ($val[$this->id_name] == $id) ? 'selected' : '';
-            $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
+            //禁止选择[用于只允许选择相同信息类型]
+            $disabled = '';
+            if (!empty($info_type_id)) {
+                $disabled = ($val['info_type_id'] != $info_type_id) ? 'disabled' : '';
+            }
+            $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
+        $str .= '</select>';
         return $str;
-    }
+    }*/
 
     /**
      * 修改是所用下拉列表
@@ -324,11 +332,13 @@ class Category
      * @param int $pid 上级栏目标识
      * @param array $data
      * @param bool $root 是否显示跟目录
+     * @param int $info_type_id 信息类型标识
      * @return string
      */
-    public function update_option($id = 0, $pid = 0, $data = array(), $root = TRUE)
+    /*public function update_ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $info_type_id = '')
     {
         $str = '';
+        $str .= '<select name="' . $name . '" class="form-control">';
         $start_level = 1;
         $root_arr = array(
             array(
@@ -353,8 +363,64 @@ class Category
             $selected = ($val[$this->id_name] == $pid) ? 'selected' : '';
             //禁止选择
             $disabled = (in_array($val[$this->id_name], $children_id)) ? 'disabled' : '';
+            //禁止选择[用于只允许选择相同信息类型]
+            if (!empty($info_type_id)) {
+                $disabled = ($val['info_type_id'] != $info_type_id) ? 'disabled' : '';
+            }
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
+        $str .= '</select>';
+        return $str;
+    }*/
+
+    /**
+     * 修改是所用下拉列表
+     * @param int $id 信息标识
+     * @param int $pid 上级栏目标识
+     * @param array $data
+     * @param bool $root 是否显示跟目录
+     * @param int $info_type_id 信息类型标识
+     * @return string
+     */
+    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $info_type_id = '')
+    {
+        $str = '';
+        $str .= '<select name="' . $name . '" class="form-control">';
+        $start_level = 1;
+        $root_arr = array(
+            array(
+                $this->id_name => 0,
+                $this->category_name => '根目录',
+                $this->pid_name => -1,
+                $this->level_name => 0,
+            )
+        );
+        $data = $this->children($data, 0, TRUE);
+        if ($root) {
+            $data = array_merge($root_arr, $data);
+            $start_level = 0;
+        }
+        //获取当前分类的所有下级
+        if (!empty($id)) {
+            $children_id = $this->children_id($data, $id, TRUE);
+        }
+        foreach ($data as $val) {
+            $prefix = ($val[$this->level_name] > $start_level) ? '└─&nbsp;' : '';
+            $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
+            //选中
+            $selected = ($val[$this->id_name] == $pid) ? 'selected' : '';
+            //禁止选择
+            $disabled = '';
+            if (!empty($id)) {
+                $disabled = (in_array($val[$this->id_name], $children_id)) ? 'disabled' : '';
+            }
+            //禁止选择[用于只允许选择相同信息类型]
+            if (!empty($info_type_id)) {
+                $disabled = ($val['info_type_id'] != $info_type_id) ? 'disabled' : '';
+            }
+            $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
+        }
+        $str .= '</select>';
         return $str;
     }
 

@@ -17,7 +17,7 @@ class Welcome extends CI_Controller
         parent::__construct();
         $this->username = $this->input->post('username');
         $this->password = $this->input->post('password');
-        $this->pre_url = $this->input->get('url');
+        $this->pre_url = urldecode($this->input->get('url'));
         $this->set_url();
         $this->load->model('welcome_model', 'welcome');
         $this->load->library('form_validation');

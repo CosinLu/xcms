@@ -58,7 +58,7 @@ class Info_article_model extends MY_Model
         $id = $this->input->post('id');
         $image = $this->input->post('image');
         $vals = array(
-            'cid' => $this->input->get('cid'),
+            'cid' => $this->input->post('cid'),
             'title' => $this->input->post('title'),
             'image' => (!empty($image)) ? implode(',', $image) : '',
             'display' => $this->input->post('display'),

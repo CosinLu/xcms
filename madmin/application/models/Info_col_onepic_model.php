@@ -58,10 +58,11 @@ class Info_col_onepic_model extends MY_Model
     {
         $cid = $this->input->post('cid');
         $image = $this->input->post('image');
+        $url = $this->input->post('url');
         $vals = array(
             'cid' => $cid,
             'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => $this->input->post('url'),
+            'url' => ($url) ? $url : prep_url($url),
             'remark' => $this->input->post('remark')
         );
         $bool = $this->db->replace('info_col_onepic', $vals);

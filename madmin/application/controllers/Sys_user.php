@@ -52,8 +52,8 @@ class Sys_user extends MY_Controller
     //新增
     public function insert()
     {
-        $data['sys_role'] = dropdown_list($this->sys_user->sys_role(), 'role_id');
-        $data['state'] = $this->sys_dict->radio_button_list('user_state', 'state');
+        $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id');
+        $data['state'] = $this->sys_dict->rbl('user_state', 'state');
         $this->load->view('sys_user/insert.html', $data);
     }
 
@@ -62,8 +62,8 @@ class Sys_user extends MY_Controller
     {
         $data['item'] = $this->sys_user->update();
         $data['disabled'] = ($data['item']['user_type'] == 'pro' && $data['item']['sys_manager'] == '1') ? 'disabled' : '';
-        $data['sys_role'] = dropdown_list($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
-        $data['state'] = $this->sys_dict->radio_button_list('user_state', 'state', $data['item']['state'], $data['disabled']);
+        $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
+        $data['state'] = $this->sys_dict->rbl('user_state', 'state', $data['item']['state'], $data['disabled']);
         $this->load->view('sys_user/update.html', $data);
     }
 

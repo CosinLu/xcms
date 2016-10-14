@@ -46,7 +46,7 @@ class Slide extends MY_Controller
     //新增
     public function insert()
     {
-        $data['display'] = $this->sys_dict->radio_button_list('display', 'display');
+        $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('slide/insert.html', $data);
     }
 
@@ -54,7 +54,7 @@ class Slide extends MY_Controller
     public function update()
     {
         $data['item'] = $this->slide->update();
-        $data['display'] = $this->sys_dict->radio_button_list('display', 'display', $data['item']['display']);
+        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $this->load->view('slide/update.html', $data);
     }

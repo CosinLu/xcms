@@ -14,14 +14,16 @@
  * @param int $disabled 禁用
  * @return string
  */
-function dropdown_list($data = array(), $name = '', $select_val = 0, $disabled = '')
+function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
 {
     $str = '';
     $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
     $str .= '<option value="0">-请选择-</option>';
-    foreach ($data as $val) {
-        $selected = ($val['id'] == $select_val) ? 'selected' : '';
-        $str .= '<option value="' . $val['id'] . '" ' . $selected . '>' . $val['name'] . '</option>';
+    if (!empty($data)) {
+        foreach ($data as $val) {
+            $selected = ($val['id'] == $select_val) ? 'selected' : '';
+            $str .= '<option value="' . $val['id'] . '" ' . $selected . '>' . $val['name'] . '</option>';
+        }
     }
     $str .= '</select>';
     return $str;
