@@ -59,7 +59,6 @@ class Sys_col_model extends MY_Model
             'method' => $this->input->post('method'),
             'param' => $this->input->post('param'),
             'remark' => $this->input->post('remark'),
-            'menu_type' => $this->input->post('menu_type'),
             'user_type' => $this->input->post('user_type'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),

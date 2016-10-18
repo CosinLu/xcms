@@ -40,6 +40,7 @@ class Info_products extends Information
     {
         $data['list'] = $this->info_products->get_list();
         foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['title'] = $val['title'] . upload_icon(array('image' => $val['image']));
             $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_products/update?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="info_products" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
@@ -49,7 +50,7 @@ class Info_products extends Information
     //新增
     public function insert()
     {
-        $data['info_col'] = $this->category->insert_ddl('cid',0, $this->cid, array(), FALSE, $this->info_type_id());
+        $data['info_col'] = $this->category->insert_ddl('cid', 0, $this->cid, array(), FALSE, $this->info_type_id());
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('info_products/insert.html', $data);
     }
@@ -58,7 +59,7 @@ class Info_products extends Information
     public function update()
     {
         $data['item'] = $this->info_products->update();
-        $data['info_col'] = $this->category->insert_ddl('cid',0, $data['item']['cid'], array(), FALSE, $this->info_type_id());
+        $data['info_col'] = $this->category->insert_ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_type_id());
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('info_products/update.html', $data);

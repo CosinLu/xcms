@@ -94,3 +94,34 @@ function format_bytes($size = 0, $num = 1)
     for ($i = 0; $size >= 1024 && $i < 4; $i++) $size /= 1024;
     return round($size, $num) . $units[$i];
 }
+
+/**
+ * 通过上传文件类型，获得文件icon
+ * @param string $arr 文件类型:array('文件类型'=>'值')
+ * @return string
+ */
+function upload_icon($arr = array())
+{
+    $str = '';
+    if (empty($arr)) return $str;
+    foreach ($arr as $key => $val) {
+        if (!empty($val)) {
+            switch ($key) {
+                case 'image':
+                    $str .= '&nbsp;&nbsp;<i class="fa fa-image" title="图片"></i>';
+                    break;
+                case 'file':
+                    $str .= '&nbsp;&nbsp;<i class="fa fa-file-o" title="文件"></i>';
+                    break;
+                case 'muiltimage':
+                    $str .= '&nbsp;&nbsp;<i class="fa fa-th" title="多图"></i>';
+                    break;
+                default:
+                    //默认为图片
+                    $str .= '&nbsp;&nbsp;<i class="fa fa-image" title="图片"></i>';
+                    break;
+            }
+        }
+    }
+    return $str;
+}

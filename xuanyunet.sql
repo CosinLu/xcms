@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-10-14 17:05:50
+Date: 2016-10-18 17:34:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,11 +82,12 @@ CREATE TABLE `info_article` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of info_article
 -- ----------------------------
+INSERT INTO `info_article` VALUES ('7', '7', 'test1', '3', null, '<p>test1</p>', 'show', '100', null, null, '1476672948', null);
 
 -- ----------------------------
 -- Table structure for info_banner
@@ -122,6 +123,7 @@ CREATE TABLE `info_col` (
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `location` varchar(20) DEFAULT NULL COMMENT '栏目位置',
+  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
@@ -137,14 +139,14 @@ CREATE TABLE `info_col` (
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '关于我们', '', '0', '1', '0', 'http://www.baidu.com/', 'onepic', null, null, '', '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('2', '产品中心', null, '0', '1', '2', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('3', '新闻资讯', null, '0', '1', '0', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('4', '联系我们', null, '0', '1', '1', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('5', '车间场景', null, '1', '2', '1', null, 'onepic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('6', '公司简介', null, '1', '2', '1', null, 'onepic', null, null, '', '', 'show', '1', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('7', '公司动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('8', '行业动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('1', '关于我们', '', '0', '1', '0', 'http://www.baidu.com/', 'onepic', null, null, '', '', '_blank', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('2', '产品中心', null, '0', '1', '2', null, 'onepic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('3', '新闻资讯', null, '0', '1', '0', null, 'onepic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('4', '联系我们', null, '0', '1', '1', null, 'onepic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('5', '车间场景', null, '1', '2', '1', null, 'onepic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('6', '公司简介', '', '1', '2', '1', '', 'onepic', null, null, '', '', '_self', 'show', '1', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('7', '公司动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('8', '行业动态', null, '3', '2', '3', null, 'nopic', null, null, '', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -282,12 +284,12 @@ CREATE TABLE `slide` (
 -- ----------------------------
 -- Records of slide
 -- ----------------------------
-INSERT INTO `slide` VALUES ('1', '新浪/百度', null, 'http://www.sina.com.cn,http://www.baidu.com', null, null, null, null, null, null, null);
-INSERT INTO `slide` VALUES ('2', '新浪', null, 'http://www.sina.com.cn', null, null, null, null, null, null, null);
-INSERT INTO `slide` VALUES ('3', '百度糯米', null, 'http://www.baidu.com/nuomi', null, null, null, null, null, null, null);
-INSERT INTO `slide` VALUES ('5', '百度糯米', null, 'http://www.baidu.com/nuomi', null, null, null, null, null, null, null);
-INSERT INTO `slide` VALUES ('6', '百度', null, 'http://www.baidu.com', null, null, null, null, null, null, null);
-INSERT INTO `slide` VALUES ('7', '百度', null, 'http://www.baidu.com', null, null, null, null, null, null, null);
+INSERT INTO `slide` VALUES ('1', '新浪', '', 'http://www.sina.com.cn', '', 'show', '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('2', '新浪', '12', 'http://www.sina.com.cn', '', 'show', '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('3', '百度糯米', '8', 'http://www.baidu.com/nuomi', '', 'show', '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('5', '百度糯米', null, 'http://www.baidu.com/nuomi', null, null, '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('6', '百度', null, 'http://www.baidu.com', null, null, '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('7', '百度', null, 'http://www.baidu.com', null, null, '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col
@@ -420,7 +422,7 @@ CREATE TABLE `sys_dict` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -452,6 +454,9 @@ INSERT INTO `sys_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333',
 INSERT INTO `sys_dict` VALUES ('26', '位置', '0', '1', 'location', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('27', '顶部导航', '26', '2', 'tnav', '#333333', '', '100', null, null, null, null);
 INSERT INTO `sys_dict` VALUES ('28', '底部导航', '26', '2', 'bnav', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', '', '100', null, null, null, null);
+INSERT INTO `sys_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -543,10 +548,20 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', '9ea6d206ce5830a19103ae09fe8e7ae4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161012/', 'D:/wamp/www/uploads/20161012/9ea6d206ce5830a19103ae09fe8e7ae4.jpg', '/uploads/20161012/', '/uploads/20161012/9ea6d206ce5830a19103ae09fe8e7ae4.jpg', '9ea6d206ce5830a19103ae09fe8e7ae4', '9ea6d206ce5830a19103ae09fe8e7ae4.jpg', 'abcde.jpg', '.jpg', '160.97', '1', '127', '127', 'jpeg', 'width=\"1920\" height=\"585\"', '');
-INSERT INTO `uploads` VALUES ('2', 'd665c6a7bf8407c206d32f99dd288e97.png', 'image/png', 'D:/wamp/www/uploads/20161013/', 'D:/wamp/www/uploads/20161013/d665c6a7bf8407c206d32f99dd288e97.png', '/uploads/20161013/', '/uploads/20161013/d665c6a7bf8407c206d32f99dd288e97.png', 'd665c6a7bf8407c206d32f99dd288e97', 'd665c6a7bf8407c206d32f99dd288e97.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('1', '6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '/uploads/20161018/', '/uploads/20161018/6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '6bef2b73bd646f3a2b4ce8a5f9f90ae6', '6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
+INSERT INTO `uploads` VALUES ('2', '8f5d3ee1a394ce571fc3f6044dd81e12.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/8f5d3ee1a394ce571fc3f6044dd81e12.png', '/uploads/20161018/', '/uploads/20161018/8f5d3ee1a394ce571fc3f6044dd81e12.png', '8f5d3ee1a394ce571fc3f6044dd81e12', '8f5d3ee1a394ce571fc3f6044dd81e12.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('3', '735cae2269a92567732070444edcf6ad.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/735cae2269a92567732070444edcf6ad.png', '/uploads/20161018/', '/uploads/20161018/735cae2269a92567732070444edcf6ad.png', '735cae2269a92567732070444edcf6ad', '735cae2269a92567732070444edcf6ad.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('4', '5ed6a29dff20a9d00b6ef8c7b9990017.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/5ed6a29dff20a9d00b6ef8c7b9990017.png', '/uploads/20161018/', '/uploads/20161018/5ed6a29dff20a9d00b6ef8c7b9990017.png', '5ed6a29dff20a9d00b6ef8c7b9990017', '5ed6a29dff20a9d00b6ef8c7b9990017.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('5', '3ab1f8a36eed91bf2ce46f776fa288c7.js', 'text/plain', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/3ab1f8a36eed91bf2ce46f776fa288c7.js', '/uploads/20161018/', '/uploads/20161018/3ab1f8a36eed91bf2ce46f776fa288c7.js', '3ab1f8a36eed91bf2ce46f776fa288c7', '3ab1f8a36eed91bf2ce46f776fa288c7.js', 'countTo.js', '.js', '3.17', '0', null, null, '', '', '');
+INSERT INTO `uploads` VALUES ('6', '6d1080e436f7ff74748ee9b7efd920e7.js', 'text/plain', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6d1080e436f7ff74748ee9b7efd920e7.js', '/uploads/20161018/', '/uploads/20161018/6d1080e436f7ff74748ee9b7efd920e7.js', '6d1080e436f7ff74748ee9b7efd920e7', '6d1080e436f7ff74748ee9b7efd920e7.js', 'jquery.min.js', '.js', '93.74', '0', null, null, '', '', '');
+INSERT INTO `uploads` VALUES ('7', '460cc51538e9aa863eaf65c7de7c3a5d.rar', 'application/x-rar', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/460cc51538e9aa863eaf65c7de7c3a5d.rar', '/uploads/20161018/', '/uploads/20161018/460cc51538e9aa863eaf65c7de7c3a5d.rar', '460cc51538e9aa863eaf65c7de7c3a5d', '460cc51538e9aa863eaf65c7de7c3a5d.rar', '浮动固定位置插件.rar', '.rar', '44.25', '0', null, null, '', '', '');
+INSERT INTO `uploads` VALUES ('8', '6e83f2fd299521aaf25cdec89c725cfc.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6e83f2fd299521aaf25cdec89c725cfc.jpg', '/uploads/20161018/', '/uploads/20161018/6e83f2fd299521aaf25cdec89c725cfc.jpg', '6e83f2fd299521aaf25cdec89c725cfc', '6e83f2fd299521aaf25cdec89c725cfc.jpg', '未标题-1.jpg', '.jpg', '14.88', '1', '125', '67', 'jpeg', 'width=\"125\" height=\"67\"', '');
+INSERT INTO `uploads` VALUES ('9', '662d93d72528ff4f97f94d153426dd37.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/662d93d72528ff4f97f94d153426dd37.png', '/uploads/20161018/', '/uploads/20161018/662d93d72528ff4f97f94d153426dd37.png', '662d93d72528ff4f97f94d153426dd37', '662d93d72528ff4f97f94d153426dd37.png', 'QQ截图20160616162124.png', '.png', '5.12', '1', '41', '46', 'png', 'width=\"41\" height=\"46\"', '');
+INSERT INTO `uploads` VALUES ('10', '5b6d7940433b83687cc2110af76085f6.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/5b6d7940433b83687cc2110af76085f6.jpg', '/uploads/20161018/', '/uploads/20161018/5b6d7940433b83687cc2110af76085f6.jpg', '5b6d7940433b83687cc2110af76085f6', '5b6d7940433b83687cc2110af76085f6.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
+INSERT INTO `uploads` VALUES ('11', '159a98ce61262b11e05791990b071ee2.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/159a98ce61262b11e05791990b071ee2.png', '/uploads/20161018/', '/uploads/20161018/159a98ce61262b11e05791990b071ee2.png', '159a98ce61262b11e05791990b071ee2', '159a98ce61262b11e05791990b071ee2.png', 'QQ截图20160616142927.png', '.png', '4.08', '1', '57', '29', 'png', 'width=\"57\" height=\"29\"', '');
+INSERT INTO `uploads` VALUES ('12', 'dd7abbf43aa68ed9c482bc14263a6047.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/dd7abbf43aa68ed9c482bc14263a6047.png', '/uploads/20161018/', '/uploads/20161018/dd7abbf43aa68ed9c482bc14263a6047.png', 'dd7abbf43aa68ed9c482bc14263a6047', 'dd7abbf43aa68ed9c482bc14263a6047.png', 'QQ截图20160616142937.png', '.png', '5.72', '1', '62', '38', 'png', 'width=\"62\" height=\"38\"', '');

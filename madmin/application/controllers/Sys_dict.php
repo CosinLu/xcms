@@ -52,7 +52,7 @@ class Sys_dict extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['sys_dict_type'] = $this->sys_dict->sys_dict_type();
-        $data['sys_dict_col'] = $this->category->ddl('pid',0, $id, $data['sys_dict_type']);
+        $data['sys_dict_col'] = $this->category->ddl('pid', 0, $id, $data['sys_dict_type']);
         $this->load->view('sys_dict/insert.html', $data);
     }
 

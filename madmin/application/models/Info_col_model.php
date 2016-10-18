@@ -20,9 +20,11 @@ class Info_col_model extends MY_Model
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.name as info_type_name,t2.ctrl');
+        $this->db->select('t3.name as target_name');
         $this->db->from('info_col as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('info_type as t2', 't2.id=t.info_type_id', 'left');
+        $this->db->join('sys_dict as t3', 't3.ident=t.target', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -56,6 +58,7 @@ class Info_col_model extends MY_Model
             'pic' => $this->input->post('pic'),
             'remark' => $this->input->post('remark'),
             'location' => (!empty($location)) ? implode(',', $location) : '',
+            'target' => $this->input->post('target'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
         );

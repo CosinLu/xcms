@@ -27,7 +27,7 @@ class Welcome extends CI_Controller
     //设置url
     function set_url()
     {
-        $url['login_url'] = site_url('welcome/login?url=' . $this->pre_url);
+        $url['login_url'] = site_url('welcome/login?url=' . urlencode($this->pre_url));
         $url['code'] = site_url('welcome/code');
         $this->load->vars($url);
     }

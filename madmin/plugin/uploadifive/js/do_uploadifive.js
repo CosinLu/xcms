@@ -4,7 +4,6 @@
 $(function () {
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
-    var fileObjName;
 
     //删除元素
     $(document).on('click', '.close-item', function () {
@@ -19,10 +18,10 @@ $(function () {
         }
     })
 
-    //实例化
+    //本地浏览
     $_uploadifive.uploadifive({
         'buttonClass': 'btn btn-success',
-        'buttonText': '选择文件',
+        'buttonText': '本地浏览',
         'height': 34,
         //'checkScript': 'index.php/uploadifive/check_exists',
         'formData': {
@@ -31,7 +30,7 @@ $(function () {
         },
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
-                                <img src="" data-src="holder.js/138x80?theme=primary" class="img">\
+                                <img src="" data-src="holder.js/100px80?theme=primary">\
                                 <div class="caption">\
                                     <p class="filename"></p>\
                                     <p><span class="filesize"></span><span class="fileinfo"></span></p>\
@@ -53,7 +52,7 @@ $(function () {
             item.find('input').prop('name', json.file_obj_name + '[]').val(json.id);
 
             if (json.is_image) {//图片自动缩放
-                item.find('img').prop('src', json.full_path).jqthumb({width: 138, height: 80});
+                item.find('img').prop('src', json.full_path).jqthumb({width: '100%', height: '80'});
             } else {//生成图片
                 Holder.run({
                     themes: {
@@ -70,5 +69,18 @@ $(function () {
         }
     });
 
+    //在线浏览
+    var uploadonline = '[data-name="uploadonline"]';
+    var $_uploadonline = $(uploadonline);
+    $_uploadonline.on('click', function () {
+        var multi = $(this).data('multi');
+        var name = $(this).attr('name');
+        layer.open({
+            type: 2,
+            title: '在线浏览',
+            area: ['740px', '500px'],
+            content: 'index.php/uploadifive/online?multi=' + multi + '&name=' + name
+        });
+    });
 
 });

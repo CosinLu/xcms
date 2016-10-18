@@ -21,4 +21,21 @@ class Uploadifive_model extends CI_Model
         return $insert_id;
     }
 
+    //获取上传文件列表
+    public function get_list()
+    {
+        $page = ($this->input->post('page')) ?: 1;
+        $this->db->select('*');
+        $this->db->from('uploads');
+        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        $config['per_page'] = 16;
+        $config['cur_page'] = $page;
+        $this->pagination->initialize($config);
+        $this->db->order_by('id desc');
+        $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
+        $data['list'] = $this->db->get()->result_array();
+        //$data['pagination'] = $this->pagination->create_ajax_links();
+        return $data;
+    }
+
 }

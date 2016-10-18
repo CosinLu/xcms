@@ -204,8 +204,8 @@
 }
 
 /*标志*/
-.navbar-primary .navbar-brand{
-    width:200px;
+.navbar-primary .navbar-brand {
+    width: 200px;
 }
 
 /*面包屑导航*/
@@ -316,9 +316,16 @@ div[data-name="nodata"] {
     text-align: center;
     padding: 80px 0;
 }
-.table_list a {
+
+.table_list a + a {
     display: inline-block;
-    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.table_list a + a:before {
+    content: '|';
+    margin-right: 8px;
+    color: #ddd;
 }
 
 .table_list th:first-child label,
@@ -400,4 +407,131 @@ div[data-name="nodata"] {
 
 .treeview tr {
     border-bottom: 1px solid #ddd;
+}
+
+/*文件上传*/
+.uploadifive-button {
+    padding: 0;
+    overflow: hidden;
+}
+
+.uploadifive-queue-item {
+    width: 180px;
+}
+
+.uploadifive-queue-item .thumbnail {
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.uploadifive-queue-item .thumbnail img {
+    width: 100%;
+    height: 80px;
+    /*margin: 0 0 5px;*/
+}
+
+.uploadifive-queue-item .caption {
+    padding: 0;
+}
+
+.uploadifive-queue-item p {
+    margin: 0 0 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.uploadifive-queue-item .filename {
+    margin: 0;
+}
+
+.uploadifive-queue-item .progress {
+    margin: 5px 0 0 0;
+    height: 8px;
+}
+
+.uploadifive-queue-item .progress-bar {
+    box-shadow: none;
+}
+
+/*在线管理*/
+.online_container {
+    overflow: hidden;
+    overflow-y: auto;
+    padding-top: 15px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 55px;
+}
+
+.online_container .col-xs-3 {
+    position: relative;
+    cursor: default;
+}
+
+.online_container .thumbnail {
+    margin-bottom: 15px;
+}
+
+.online_container .thumbnail.checked:before {
+    content: '';
+    border-style: solid;
+    border-color: #5CB85C #5CB85C transparent transparent;
+    border-width: 18px;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 999;
+}
+
+.online_container .thumbnail.checked:after {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    color: #fff;
+    position: absolute;
+    right: 18px;
+    top: 0;
+    z-index: 999;
+    font-size: 14px;
+}
+
+.online_container .caption {
+    padding: 0;
+}
+
+.online_container img {
+    width: 100%;
+    height: 80px;
+}
+
+.online_container p {
+    margin: 0 0 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.online_container .filename {
+    margin: 5px 0 0 0;
+}
+
+.online_btn_group {
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #ddd;
+    pointer-events: auto;
+    text-align: right;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 9999;
+}
+
+.online_btn_group button {
+    margin: 0 5px;
 }
