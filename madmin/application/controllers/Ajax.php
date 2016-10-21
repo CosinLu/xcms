@@ -9,18 +9,20 @@ defined('BASEPATH') OR exit('Error');
  */
 class Ajax extends MY_Controller
 {
+    protected $col_name;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('ajax_model', 'ajax');
+        $this->col_name = (urldecode($this->input->get('col_name'))) ?: $this->section_name;
     }
 
     //删除
     public function del()
     {
         $rows = $this->ajax->del();
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        $this->sys_log->insert($this->col_name, '3', $rows);//日志
         echo $rows;
     }
 
@@ -28,7 +30,7 @@ class Ajax extends MY_Controller
     public function batch_del()
     {
         $rows = $this->ajax->batch_del();
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        $this->sys_log->insert($this->col_name, '3', $rows);//日志
         echo $rows;
     }
 }
