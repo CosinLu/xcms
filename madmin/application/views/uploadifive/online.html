@@ -22,7 +22,8 @@
                  data-full-path="{{val.full_path}}"
                  data-client-name="{{val.client_name}}"
                  data-ext="{{val.ext}}"
-                 data-is-image="{{val.is_image}}">
+                 data-is-image="{{val.is_image}}"
+                 data-is-file="{{val.is_file}}">
                 {{#val.file}}
                 <div class="caption">
                     <p class="filename" title="{{val.client_name}}">{{val.client_name}}</p>
@@ -40,11 +41,14 @@
         {{each list as val i}}
         <div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-image-file-{{i}}">
             <div class="thumbnail">
-                {{if val.isImage}}
-                <img src="{{val.fullPath}}" title="{{val.clientName}}">
-                {{else}}
-                <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
-                     title="{{val.clientName}}">
+                {{if val.isFile}}<!--文件存在-->
+                    {{if val.isImage}}<!--文件是图片-->
+                    <img src="{{val.fullPath}}" title="{{val.clientName}}">
+                    {{else}}<!--文件不是图片-->
+                    <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}" title="{{val.clientName}}">
+                    {{/if}}
+                {{else}}<!--文件不存在-->
+                    <img data-src="holder.js/100px80?theme=danger&text=File does not exist" title="{{val.clientName}}">
                 {{/if}}
                 <div class="caption">
                     <p class="filename" title="{{val.clientName}}">{{val.clientName}}</p>
@@ -109,18 +113,26 @@
                                 width: '100%',
                                 height: 80
                             });
+                            //为没有预览图的文件自动生成缩略图
                             Holder.run({
                                 themes: {
                                     "primary": {
                                         bg: "#337AB7",
                                         fg: "#fff",
+                                    },
+                                    "danger": {
+                                        bg: "#a94442",
+                                        fg: "#fff",
                                     }
                                 }
                             });
                         } else {
+                            //锁定
                             me.lock();
+                            //解锁
                             me.noData();
                         }
+                        //重置
                         me.resetload();
                     }
                 })
@@ -154,6 +166,7 @@
                 arrCurrent['clientName'] = $(this).data('client-name');
                 arrCurrent['fileExt'] = $(this).data('ext');
                 arrCurrent['isImage'] = $(this).data('is-image');
+                arrCurrent['isFile'] = $(this).data('is-file');
                 //将不与父框架中重复的数据push到数组
                 if ($.inArray(parseInt(arrCurrent['fileId']), queueInputVal) < 0) {
                     arrChecked['list'].push(arrCurrent);
@@ -161,10 +174,15 @@
             });
             if (arrChecked.list.length) {
                 $('#item').append(template('item_tpl', arrChecked));
+                //为没有预览图的文件自动生成缩略图
                 Holder.run({
                     themes: {
                         "primary": {
                             bg: "#337AB7",
+                            fg: "#fff",
+                        },
+                        "danger": {
+                            bg: "#a94442",
                             fg: "#fff",
                         }
                     }

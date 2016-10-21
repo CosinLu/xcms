@@ -56,11 +56,10 @@ class Info_col_onepic_model extends MY_Model
     //保存
     public function save()
     {
-        $cid = $this->input->post('cid');
         $image = $this->input->post('image');
         $url = $this->input->post('url');
         $vals = array(
-            'cid' => $cid,
+            'cid' => $this->input->post('cid'),
             'image' => (!empty($image)) ? implode(',', $image) : '',
             'url' => ($url) ? $url : prep_url($url),
             'remark' => $this->input->post('remark')

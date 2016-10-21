@@ -54,6 +54,7 @@ class Info_col_onepic extends MY_Controller
     public function save()
     {
         $bool = $this->info_col_onepic->save();
+        $this->sys_log->insert($this->section_name, '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':

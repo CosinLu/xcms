@@ -13,6 +13,7 @@ class MY_Controller extends CI_Controller
     protected $prferer;//上一个页面url
     protected $is_save;//保存：1=保存，2=保存并继续新增
     protected $col_auth;
+    protected $section_name;//栏目名称
 
     public function __construct()
     {
@@ -59,6 +60,7 @@ class MY_Controller extends CI_Controller
                 $this->col_auth = $val['col_auth'];
             }
         }
+        $this->section_name = $data['section_name'];
         $this->load->vars($data);
     }
 

@@ -7,8 +7,9 @@ defined('BASEPATH') OR exit('Error');
  * Time: 16:31
  * Email: 1056811341@qq.com
  */
-class Ajax extends CI_Controller
+class Ajax extends MY_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -19,6 +20,7 @@ class Ajax extends CI_Controller
     public function del()
     {
         $rows = $this->ajax->del();
+        $this->sys_log->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }
 
@@ -26,6 +28,7 @@ class Ajax extends CI_Controller
     public function batch_del()
     {
         $rows = $this->ajax->batch_del();
+        $this->sys_log->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }
 }

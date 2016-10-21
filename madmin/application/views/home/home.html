@@ -31,10 +31,10 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">用户信息</div>
                             <ul class="list-group">
-                                <li class="list-group-item">用户名：</li>
-                                <li class="list-group-item">真实姓名：</li>
-                                <li class="list-group-item">上次登录时间：</li>
-                                <li class="list-group-item">上次登录IP：</li>
+                                <li class="list-group-item">用户名：<?=$username?></li>
+                                <li class="list-group-item">真实姓名：<?=$realname?></li>
+                                <li class="list-group-item">上次登录时间：<?=$last_login_time?></li>
+                                <li class="list-group-item">上次登录IP：<?=$last_login_ip?></li>
                             </ul>
                         </div>
                     </div>
@@ -62,8 +62,8 @@
                             <ul class="list-group">
                                 <li class="list-group-item">域名：<a href="http://localhost/"
                                                                   target="_blank">localhost</a></li>
-                                <li class="list-group-item">服务器信息：</li>
-                                <li class="list-group-item">操作系统：</li>
+                                <li class="list-group-item">服务器信息：<?=$server_info?></li>
+                                <li class="list-group-item">操作系统：<?=$operating_system?></li>
                                 <li class="list-group-item">文件上传目录：/uploads/</li>
                                 <li class="list-group-item">支持上传的图片类型：jpg,png,gif</li>
                                 <li class="list-group-item">支持上传的最大图片：2MB</li>

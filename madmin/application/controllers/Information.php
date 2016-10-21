@@ -9,6 +9,7 @@
 class Information extends MY_Controller
 {
     protected $cid;
+    protected $main_section_name;
 
     public function __construct()
     {
@@ -81,6 +82,7 @@ class Information extends MY_Controller
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
         $data['main_sidebar'] = $str;
+        $this->main_section_name = $data['main_section_name'];
         $this->load->vars($data);
     }
 

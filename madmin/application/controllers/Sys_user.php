@@ -42,7 +42,7 @@ class Sys_user extends MY_Controller
                 $data['list']['list'][$key]['disabled'] = 'disabled';
             } else {
                 $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_user/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-                $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_user" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+                $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_user" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
                 $data['list']['list'][$key]['disabled'] = '';
             }
         }
@@ -53,7 +53,7 @@ class Sys_user extends MY_Controller
     public function insert()
     {
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id');
-        $data['state'] = $this->sys_dict->rbl('user_state', 'state');
+        $data['status'] = $this->sys_dict->rbl('user_status', 'status');
         $this->load->view('sys_user/insert.html', $data);
     }
 
@@ -63,7 +63,7 @@ class Sys_user extends MY_Controller
         $data['item'] = $this->sys_user->update();
         $data['disabled'] = ($data['item']['user_type'] == 'pro' && $data['item']['sys_manager'] == '1') ? 'disabled' : '';
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
-        $data['state'] = $this->sys_dict->rbl('user_state', 'state', $data['item']['state'], $data['disabled']);
+        $data['status'] = $this->sys_dict->rbl('user_status', 'status', $data['item']['status'], $data['disabled']);
         $this->load->view('sys_user/update.html', $data);
     }
 
@@ -71,6 +71,7 @@ class Sys_user extends MY_Controller
     public function save()
     {
         $bool = $this->sys_user->save();
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':

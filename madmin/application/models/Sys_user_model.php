@@ -20,10 +20,10 @@ class Sys_user_model extends MY_Model
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as sys_role_name');
-        $this->db->select('t2.name as state_name,t2.color as state_color');
+        $this->db->select('t2.name as status_name,t2.color as status_color');
         $this->db->from('sys_user as t');
         $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
-        $this->db->join('sys_dict as t2', 't2.ident=t.state', 'left');
+        $this->db->join('sys_dict as t2', 't2.ident=t.status', 'left');
         $this->db->where('t.user_type', 'pro');
         if ($key != '') {
             $this->db->like('t.username', $key);
@@ -61,7 +61,7 @@ class Sys_user_model extends MY_Model
                 'password' => $password,
                 'nickname' => $this->input->post('nickname'),
                 'realname' => $this->input->post('realname'),
-                'state' => $this->input->post('state'),
+                'status' => $this->input->post('status'),
                 'remark' => $this->input->post('remark')
             )
         );

@@ -76,6 +76,7 @@ class Sys_col extends MY_Controller
     public function save()
     {
         $bool = $this->sys_col->save();
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':
@@ -96,6 +97,7 @@ class Sys_col extends MY_Controller
         $id = $this->input->post('id');
         $this->sys_col->del_col_auth($id);//删除系统栏目权限
         $rows = $this->category->del($id);//删除系统栏目
+        $this->sys_log->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }
 

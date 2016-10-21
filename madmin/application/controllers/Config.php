@@ -86,6 +86,7 @@ class Config extends MY_Controller
     public function save()
     {
         $rows = $this->config_model->save();
+        $this->sys_log->insert($this->section_name, '2', 1);//日志
         if ($rows) {
             $this->prompt->success('操作成功！', site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id));
         } else {

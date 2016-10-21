@@ -94,6 +94,7 @@ class Sys_role_auth extends MY_Controller
         $rows = $this->sys_role_auth->del();
         //添加
         $bool = $this->sys_role_auth->insert();
+        $this->sys_log->insert('角色权限', '2', $bool);//日志
         if ($bool OR $rows) {
             $this->prompt->success('操作成功！', site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id));
         } else {

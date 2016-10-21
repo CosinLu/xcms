@@ -71,6 +71,7 @@ class Sys_dict extends MY_Controller
     public function save()
     {
         $bool = $this->sys_dict->save();
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':
@@ -90,6 +91,7 @@ class Sys_dict extends MY_Controller
     {
         $id = $this->input->post('id');
         $rows = $this->category->del($id);
+        $this->sys_log->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }
 

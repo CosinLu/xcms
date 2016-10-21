@@ -65,9 +65,10 @@ class Welcome extends CI_Controller
         } else {
             //登录成功
             $sys_session['sys_session'] = $user_info = $this->welcome->user_info();
+            //添加登录日志
+            $this->welcome->insert_login_log($user_info['user_id']);
             $this->session->set_userdata($sys_session);
             if ($this->pre_url == '') {
-                //redirect(site_url('home/?sys_cid=7'));
                 //定义登录成功后跳转url
                 $this->load->library('sys_auth', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth->sys_col();
@@ -83,7 +84,7 @@ class Welcome extends CI_Controller
     public function check_code()
     {
         $code = strtoupper($this->input->post('code'));
-        if ($code != $this->session->sys_session['sys_code'] && $code != '') {
+        if ($code != $this->session->sys_code && $code != '') {
             $this->form_validation->set_message('check_code', '{field} 输入错误。');
             return FALSE;
         } else {
@@ -101,7 +102,7 @@ class Welcome extends CI_Controller
                 return FALSE;
             } else {
                 $userinfo = $this->welcome->user_info();
-                if ($userinfo['state'] == 'forzen') {
+                if ($userinfo['status'] == 'forzen') {
                     $this->form_validation->set_message('check_username', '{field} 被冻结。');
                     return FALSE;
                 } else {

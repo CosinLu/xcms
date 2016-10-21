@@ -34,6 +34,7 @@ class Info_single extends Information
     public function save()
     {
         $bool = $this->info_single->save();
+        $this->sys_log->insert($this->main_section_name, '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':

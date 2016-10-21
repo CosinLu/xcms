@@ -31,13 +31,17 @@ class Welcome_model extends CI_Model
     public function user_info()
     {
         $this->db->select('t.*,t.id as user_id');
+        $this->db->select('(ifnull(t.realname,t.username)) as welcome_name');
         $this->db->select('t1.role_type');
+        $this->db->select('t2.login_time as last_login_time,t2.login_ip as last_login_ip');
         $this->db->from('sys_user as t');
         $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
+        $this->db->join('sys_login_log as t2', 't2.user_id=t.id', 'left');
         $this->db->where(array(
             't.username' => $this->username,
             't.password' => md5($this->password)
         ));
+        $this->db->order_by('t2.id desc');
         $result = $this->db->get()->row_array();
         return $result;
     }
@@ -50,6 +54,19 @@ class Welcome_model extends CI_Model
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get()->result_array();
         return $res;
+    }
+
+    //添加登录日志
+    public function insert_login_log($user_id = '')
+    {
+        if (!empty($user_id)) {
+            $vals = array(
+                'user_id' => $user_id,
+                'login_ip' => $this->input->ip_address(),
+                'login_time' => time()
+            );
+            $this->db->insert('sys_login_log', $vals);
+        }
     }
 
 }

@@ -44,7 +44,7 @@ class Sys_role extends MY_Controller
             } else {
                 $data['list']['list'][$key]['auth_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a href="' . site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $val['id']) . '">设置权限</a>', '<a href="javascript:;" class="disabled">设置权限</a>');
                 $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_role/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-                $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_role" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+                $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_role" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid='.$this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
                 $data['list']['list'][$key]['disabled'] = '';
             }
         }
@@ -68,6 +68,7 @@ class Sys_role extends MY_Controller
     public function save()
     {
         $bool = $this->sys_role->save();
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
         if ($bool) {
             switch ($this->is_save) {
                 case '1':

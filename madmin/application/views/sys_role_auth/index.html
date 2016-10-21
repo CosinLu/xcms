@@ -94,9 +94,9 @@
         //复选框
         //1.全选
         $(document).on('click', 'input[name="checkAll"]', function () {
-            var state = $(this).is(':checked');
+            var status = $(this).is(':checked');
             var checkbox = $(this).closest('table').next('#list').find('input[type="checkbox"]');//全部复选框
-            checkbox.prop('checked', state);
+            checkbox.prop('checked', status);
         });
 
         $(document).on("click change", 'input[name^="id"]', function () {
@@ -114,12 +114,12 @@
         //关联行首
         $(document).on('click', 'input[name^="auth"]', function () {
             var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
-            var state = $(this).is(':checked');//状态：true=选中，false=未选中
+            var status = $(this).is(':checked');//状态：true=选中，false=未选中
             var prevCheckbox = $(this).closest('tr').find('input[name^="id"]');//上级name为id[]的复选框
             var prevAuthCheckedLen = $(this).closest('ul').prev('table').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
             var nextAuthCheckedLen = $(this).closest('table').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
             if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
-                prevCheckbox.prop('checked', state);
+                prevCheckbox.prop('checked', status);
             } else {
                 prevCheckbox.prop('checked', true);
             }
@@ -133,21 +133,21 @@
 
         //关联当前行
         function checkedInline(obj) {
-            var state = obj.is(':checked');
-            obj.closest('td').siblings().find('input[type="checkbox"]').prop('checked', state);
+            var status = obj.is(':checked');
+            obj.closest('td').siblings().find('input[type="checkbox"]').prop('checked', status);
         }
 
         //关联下级
         function checkedNext(obj) {
-            var state = obj.is(':checked');
-            obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', state);
+            var status = obj.is(':checked');
+            obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', status);
         }
 
         //关联下级[取消选中时有效]
         /*function checkedNextCancel(obj) {
-         var state = obj.is(':checked');
-         if (!state) {
-         obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', state);
+         var status = obj.is(':checked');
+         if (!status) {
+         obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', status);
          }
          }*/
 

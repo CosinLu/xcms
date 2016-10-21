@@ -69,7 +69,7 @@ class Code
         for ($i = 0; $i < $this->code_len; $i++) {
             $code .= $this->code_str [mt_rand(0, strlen($this->code_str) - 1)];
         }
-        $sys_session['sys_session']['sys_code'] = $this->code = strtoupper($code);
+        $sys_session['sys_code'] = $this->code = strtoupper($code);
         /*if (!isset($_SESSION)) {
             session_start();
         }*/
