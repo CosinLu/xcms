@@ -19,7 +19,6 @@ class Sys_log extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_log/get_list?sys_cid=' . $this->sys_cid);
-        $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-default" href="javascript:;" data-name="batchDel" data-tb="sys_log" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
         $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>');
         $this->load->vars($url);
     }

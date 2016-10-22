@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="plugin/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugin/layer/css/layer.css">
     <link rel="stylesheet" href="plugin/mtree/css/mtree.css">
+    <link rel="stylesheet" href="plugin/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/style.css">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="plugin/html5shiv.min.js"></script>
@@ -29,9 +30,9 @@
             <div class="container-fluid section_container">
                 <div class="search_bar">
                     <div class="form-inline">
-                        <?=$del_btn?>
                         <div class="form-group">
-                            <input type="text" name="key" class="form-control">
+                            <input type="text" name="start_time" class="form-control">
+                            <input type="text" name="stop_time" class="form-control">
                         </div>
                         <?=$search_btn?>
                     </div>
@@ -76,6 +77,7 @@
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
+<script type="text/javascript" src="plugin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="plugin/layer/js/layer.js"></script>
 <script type="text/javascript" src="plugin/common.js"></script>
 <script type="text/javascript">
@@ -122,6 +124,11 @@
                 }
             })
         }
+
+        //日期
+
+
+
     })
 </script>
 </body>
