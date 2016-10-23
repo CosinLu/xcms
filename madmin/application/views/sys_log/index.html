@@ -31,8 +31,8 @@
                 <div class="search_bar">
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" name="start_time" class="form-control">
-                            <input type="text" name="stop_time" class="form-control">
+                            <input type="text" name="start_time" class="form-control" placeholder="开始时间">
+                            <input type="text" name="stop_time" class="form-control" placeholder="截止时间">
                         </div>
                         <?=$search_btn?>
                     </div>
@@ -78,6 +78,7 @@
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
 <script type="text/javascript" src="plugin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="plugin/layer/js/layer.js"></script>
 <script type="text/javascript" src="plugin/common.js"></script>
 <script type="text/javascript">
@@ -101,7 +102,8 @@
             var data = {
                 r: Math.random(),
                 page: pageIndex,
-                key: $('input[name="key"]').val()
+                start_time: $('input[name="start_time"]').val(),
+                stop_time: $('input[name="stop_time"]').val()
             }
             $.ajax({
                 url: '<?=$get_list_url?>',
@@ -125,8 +127,25 @@
             })
         }
 
-        //日期
-
+        //日期时间
+        $('input[name="start_time"]').datetimepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            minView: "month",
+            todayBtn: true,
+            language: 'zh-CN',
+        }).on("click", function (ev) {
+            $('input[name="start_time"]').datetimepicker("setEndDate", $('input[name="stop_time"]').val());
+        });
+        $('input[name="stop_time"]').datetimepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            minView: "month",
+            todayBtn: true,
+            language: 'zh-CN',
+        }).on("click", function (ev) {
+            $('input[name="stop_time"]').datetimepicker("setStartDate", $('input[name="start_time"]').val());
+        });
 
 
     })

@@ -18,7 +18,6 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->sys_session = $this->session->sys_session;
         $this->sys_cid = $this->input->get('sys_cid');
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
@@ -26,7 +25,7 @@ class MY_Controller extends CI_Controller
         $this->col_auth = '';
         $this->load->library('category', array(), 'my_category');
         $this->load->library('sys_auth', array(
-            'user_info' => $this->sys_session,
+            'user_info' => $this->session->sys_session,
             'sys_cid' => $this->sys_cid
         ));
         $this->menu();
@@ -37,7 +36,7 @@ class MY_Controller extends CI_Controller
     public function check_login()
     {
         $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        if (empty($this->sys_session)) {
+        if (empty($this->session->sys_session)) {
             $this->prompt->error('登录超时！', site_url('welcome?url=' . $pre_url));
         }
     }

@@ -1,8 +1,6 @@
 @import "common.css";
 @import "bootstrap.e.css";
 
-/*登录页头部*/
-
 /*登录面板*/
 .login_container {
     width: 320px;
@@ -47,6 +45,23 @@
 
 .login_container .input-group-addon {
     background: #fff;
+}
+
+/*顶部导航*/
+.header_mdl .dropdown-menu {
+    min-width: 120px;
+    background: #286090;
+    border: none;
+    left: 0px;
+    right: 0px;
+}
+
+.header_mdl .dropdown-menu > li > a {
+    color: #fff;
+}
+
+.header_mdl .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    background: #337AB7;
 }
 
 /*框架*/
