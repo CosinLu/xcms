@@ -20,7 +20,9 @@ class Info_single extends Information
     //设置url
     public function set_url()
     {
-        $url['save_url'] = site_url('info_single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
+        $url['save_url'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, site_url('info_single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
+        $url['save_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">保存
+                                </button>');
         $this->load->vars($url);
     }
 

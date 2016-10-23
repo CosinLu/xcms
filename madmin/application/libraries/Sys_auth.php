@@ -27,34 +27,35 @@ class Sys_auth
         $sys_manager = $this->user_info['sys_manager'];
         $role_id = $this->user_info['role_id'];
         if ($user_type == 'dev') {//开发者
-            $this->CI->db->select('t1.*');
-            $this->CI->db->select('group_concat(t2.col_auth) as col_auth');
-            $this->CI->db->from('sys_col as t1');
-            $this->CI->db->join('sys_col_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t');
+            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
             $this->CI->db->where(array(
-                't1.display' => 'show'
+                't.display' => 'show'
             ));
         } elseif ($user_type == 'pro' && $sys_manager == '1') {//系统默认
-            $this->CI->db->select('t1.*');
-            $this->CI->db->select('group_concat(t2.col_auth) as col_auth');
-            $this->CI->db->from('sys_col as t1');
-            $this->CI->db->join('sys_col_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t');
+            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
             $this->CI->db->where(array(
-                't1.display' => 'show',
-                't1.user_type' => $user_type
+                't.display' => 'show',
+                't.user_type' => $user_type
             ));
         } else {//普通
-            $this->CI->db->select();
-            $this->CI->db->from('sys_col as t1');
-            $this->CI->db->join('sys_role_auth as t2', 't2.col_id=t1.id', 'left');
+            $this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t');
+            $this->CI->db->join('sys_role_auth as t1', 't1.col_id=t.id', 'left');
             $this->CI->db->where(array(
-                't1.display' => 'show',
-                't1.user_type' => $user_type,
-                't2.role_id' => $role_id
+                't.display' => 'show',
+                't.user_type' => $user_type,
+                't1.role_id' => $role_id
             ));
         }
-        $this->CI->db->group_by('t1.id');
-        $this->CI->db->order_by('t1.sort asc,t1.id asc');
+        $this->CI->db->group_by('t.id');
+        $this->CI->db->order_by('t.sort asc,t.id asc');
         $res = $this->CI->db->get()->result_array();
         $res_sort = $this->CI->sys_auth_category->children($res);
         return $res_sort;
@@ -70,9 +71,16 @@ class Sys_auth
      */
     public function set_auth($initial_auth = '', $current_auth = '', $have_auth_str = '', $no_auth_str = '')
     {
+        //$peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $current_auth_arr = explode(',', strtolower($current_auth));
-        if (in_array(strtolower($initial_auth), $current_auth_arr)) {
-            return $have_auth_str;
+        if ($have_auth_str != '') {
+            if (in_array(strtolower($initial_auth), $current_auth_arr)) {
+                return $have_auth_str;
+            }
+        } else {
+            if (!in_array(strtolower($initial_auth), $current_auth_arr)) {
+                $this->CI->prompt->error('非法操作！', site_url('welcome/logout'));
+            }
         }
         return $no_auth_str;
     }
