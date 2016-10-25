@@ -44,19 +44,23 @@ class MY_Controller extends CI_Controller
     //主菜单
     public function menu()
     {
+        $data['menu'] = array();
+        $data['section_name'] = '';
         $sys_col = $this->sys_auth->sys_col();//系统栏目
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得栏目所有上级id
-        $sys_col_url = $this->my_category->children_url($sys_col);//主菜单有效url
-        foreach ($sys_col as $key => $val) {
-            if ($val['pid'] == 0) {
-                $data['menu'][$key] = $val;
-                $data['menu'][$key]['url'] = $sys_col_url[$key];
-                $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
-                $data['menu'][$key]['color'] = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
-            }
-            if ($val['id'] == $this->sys_cid) {
-                $data['section_name'] = $val['name'];
-                $this->col_auth = $val['col_auth'];
+        if (!empty($sys_col_parent_id)) {
+            $sys_col_url = $this->my_category->children_url($sys_col);//主菜单有效url
+            foreach ($sys_col as $key => $val) {
+                if ($val['pid'] == 0) {
+                    $data['menu'][$key] = $val;
+                    $data['menu'][$key]['url'] = $sys_col_url[$key];
+                    $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
+                    $data['menu'][$key]['color'] = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
+                }
+                if ($val['id'] == $this->sys_cid) {
+                    $data['section_name'] = $val['name'];
+                    $this->col_auth = $val['col_auth'];
+                }
             }
         }
         $this->section_name = $data['section_name'];
@@ -70,35 +74,37 @@ class MY_Controller extends CI_Controller
         $parent_level = 0;
         $sys_col = $this->sys_auth->sys_col();//系统栏目
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
-        $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
-        foreach ($sys_col_chidren as $val) {
-            $level = $val['level'];
-            $dir = ($val['dir']) ? $val['dir'] . '/' : '';
-            $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
-            $method = ($val['method']) ? $val['method'] . '/' : '';
-            $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
-            $color = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
-            $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
-            if ($level < $parent_level) {
-                $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
-            } elseif ($level > $parent_level) {
-                $str .= '<ul data-level="' . ($level - 1) . '">';
-            } else {
-                $str .= '</li>';
+        if (!empty($sys_col_parent_id)) {
+            $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
+            foreach ($sys_col_chidren as $val) {
+                $level = $val['level'];
+                $dir = ($val['dir']) ? $val['dir'] . '/' : '';
+                $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
+                $method = ($val['method']) ? $val['method'] . '/' : '';
+                $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
+                $color = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
+                $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
+                if ($level < $parent_level) {
+                    $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+                } elseif ($level > $parent_level) {
+                    $str .= '<ul data-level="' . ($level - 1) . '">';
+                } else {
+                    $str .= '</li>';
+                }
+                $str .= '<li>';
+                if ($dir == '' && $sys_ctrl == '' && $method == '') {
+                    $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtree_link">';
+                } else {
+                    $str .= '<a href="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtree_link">';
+                }
+                $str .= '<span data-name="mtree_indent"></span>';
+                $str .= '<span data-name="mtree_btn"></span>';
+                $str .= '<span data-name="mtree_name" style="color:' . $color . '">' . $val['name'] . '</span>';
+                $str .= '</a>';
+                $parent_level = $level;
             }
-            $str .= '<li>';
-            if ($dir == '' && $sys_ctrl == '' && $method == '') {
-                $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtree_link">';
-            } else {
-                $str .= '<a href="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtree_link">';
-            }
-            $str .= '<span data-name="mtree_indent"></span>';
-            $str .= '<span data-name="mtree_btn"></span>';
-            $str .= '<span data-name="mtree_name" style="color:' . $color . '">' . $val['name'] . '</span>';
-            $str .= '</a>';
-            $parent_level = $level;
+            $str .= str_repeat('</li></ul>', $parent_level + 1);
         }
-        $str .= str_repeat('</li></ul>', $parent_level + 1);
         $data['sidebar'] = $str;
         $this->load->vars($data);
     }

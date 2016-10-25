@@ -20,7 +20,7 @@ class Sys_col_model extends MY_Model
         $this->db->select('t.*');
         $this->db->select('t1.name as user_type,t1.color as user_type_color');
         $this->db->select('t2.name as display_name,t2.color as display_color');
-        $this->db->select('group_concat(concat("<kbd>",t4.name,"</kbd>") order by t4.name SEPARATOR "&nbsp;") as col_auth');
+        $this->db->select('group_concat(concat("<kbd>",t4.name,"</kbd>") order by t4.ident SEPARATOR "&nbsp;") as col_auth');
         $this->db->from('sys_col as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.user_type', 'left');
         $this->db->join('sys_dict as t2', 't2.ident=t.display', 'left');

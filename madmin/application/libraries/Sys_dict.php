@@ -21,6 +21,7 @@ class Sys_dict
         $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
         $this->CI->db->where('t.ident', $ident);
         $this->CI->db->group_by('t1.id');
+        $this->CI->db->order_by('t1.ident asc');
         $res = $this->CI->db->get('sys_dict')->result_array();
         return $res;
     }

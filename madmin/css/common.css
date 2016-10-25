@@ -57,15 +57,25 @@ label {
     margin-right: 10px;
 }
 
+label input[type="radio"],
+label input[type="checkbox"] {
+    vertical-align: -2px;
+    margin: 0 5px 0 0;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    margin-top: 4px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    label {
+        position: relative;
+    }
+
     label input[type="radio"],
     label input[type="checkbox"] {
         opacity: 0;
-    }
-
-    .table_list label input[type="radio"] + ins,
-    .table_list label input[type="checkbox"] + ins {
-        margin: 0 5px 0 -13px !important;
     }
 
     label input[type="radio"] + ins,
@@ -77,6 +87,7 @@ label {
         position: relative;
         margin: 0 5px 0 -20px;
         vertical-align: -2px;
+        background: #fff;
     }
 
     label input[type="radio"]:checked + ins,
