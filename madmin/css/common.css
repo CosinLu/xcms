@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+    font-family: 'PingFang SC',Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
 }
 
 input,
@@ -129,9 +129,6 @@ label input[type="checkbox"] {
     label input[type="checkbox"]:checked + ins:before {
         width: 10px;
         height: 6px;
-        /*border-color: transparent transparent #337AB7 #337AB7;
-        border-width: 1px;
-        border-style: solid;*/
         border-left: #337AB7 solid 2px;
         border-bottom: #337AB7 solid 2px;
         transform: rotate(-45deg);

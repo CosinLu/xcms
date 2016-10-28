@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-10-21 12:25:36
+Date: 2016-10-28 18:17:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +42,7 @@ INSERT INTO `config` VALUES ('3', '描述', 'description', '', '1', 'textarea', 
 INSERT INTO `config` VALUES ('4', '版权', 'copyright', '© Copyright 2015 轩宇网络 All Rights Reserved', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('6', '统计代码', 'count_code', '', '1', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('7', '状态', 'state', '1', '2', 'radio', '1|正常,0|关闭', '', 'show', '100');
+INSERT INTO `config` VALUES ('7', '状态', 'status', '1', '2', 'radio', '1|正常,0|关闭', '', 'show', '100');
 INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', '2', 'textarea', '', '', 'show', '100');
 
 -- ----------------------------
@@ -87,8 +87,7 @@ CREATE TABLE `info_article` (
 -- ----------------------------
 -- Records of info_article
 -- ----------------------------
-INSERT INTO `info_article` VALUES ('7', '7', 'test1', '3', null, '<p>test1</p>', 'show', '100', null, null, '1476672948', null);
-INSERT INTO `info_article` VALUES ('10', '8', '13443方式的范德萨发', '0', null, '', 'show', '100', null, null, '1477022917', null);
+INSERT INTO `info_article` VALUES ('7', '7', '测试信息1', '3', null, '<p>测试信息1</p>', 'show', '100', null, null, '1477621922', null);
 
 -- ----------------------------
 -- Table structure for info_banner
@@ -212,7 +211,7 @@ CREATE TABLE `info_products` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息产品表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息产品表';
 
 -- ----------------------------
 -- Records of info_products
@@ -236,6 +235,7 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
+INSERT INTO `info_single` VALUES ('6', '', '', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_type
@@ -401,6 +401,7 @@ INSERT INTO `sys_col_auth` VALUES ('25', 'update');
 INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('31', 'del');
 INSERT INTO `sys_col_auth` VALUES ('31', 'look');
+INSERT INTO `sys_col_auth` VALUES ('11', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -477,7 +478,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -499,6 +500,25 @@ INSERT INTO `sys_log` VALUES ('14', '1', 'xuanyunet', '幻灯片', 'insert', 'su
 INSERT INTO `sys_log` VALUES ('15', '1', 'xuanyunet', '', 'del', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477023091');
 INSERT INTO `sys_log` VALUES ('16', '1', 'xuanyunet', '幻灯片', 'insert', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477023128');
 INSERT INTO `sys_log` VALUES ('17', '1', 'xuanyunet', '幻灯片', 'del', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477023132');
+INSERT INTO `sys_log` VALUES ('18', '1', 'xuanyunet', '行业动态', 'del', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477024377');
+INSERT INTO `sys_log` VALUES ('19', '1', 'xuanyunet', '公司简介', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477024463');
+INSERT INTO `sys_log` VALUES ('20', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477365921');
+INSERT INTO `sys_log` VALUES ('21', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477366120');
+INSERT INTO `sys_log` VALUES ('22', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477366487');
+INSERT INTO `sys_log` VALUES ('23', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477367387');
+INSERT INTO `sys_log` VALUES ('24', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477367406');
+INSERT INTO `sys_log` VALUES ('25', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477367435');
+INSERT INTO `sys_log` VALUES ('26', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477367659');
+INSERT INTO `sys_log` VALUES ('27', '1', 'xuanyunet', '后台菜单', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477369111');
+INSERT INTO `sys_log` VALUES ('28', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477369234');
+INSERT INTO `sys_log` VALUES ('29', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477369244');
+INSERT INTO `sys_log` VALUES ('30', '1', 'xuanyunet', '角色权限', 'update', 'success', 'Internet Explorer', '11.0', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477369252');
+INSERT INTO `sys_log` VALUES ('31', '1', 'xuanyunet', '产品中心', 'insert', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477621533');
+INSERT INTO `sys_log` VALUES ('32', '1', 'xuanyunet', '产品中心', 'del', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477621546');
+INSERT INTO `sys_log` VALUES ('33', '1', 'xuanyunet', '公司动态', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477621922');
+INSERT INTO `sys_log` VALUES ('34', '3', 'article', '网站配置', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477629102');
+INSERT INTO `sys_log` VALUES ('35', '1', 'xuanyunet', '配置项', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477638704');
+INSERT INTO `sys_log` VALUES ('36', '1', 'xuanyunet', '网站配置', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477638712');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -510,7 +530,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -538,6 +558,29 @@ INSERT INTO `sys_login_log` VALUES ('35', '1', '::1', '1476949880');
 INSERT INTO `sys_login_log` VALUES ('36', '1', '::1', '1476950169');
 INSERT INTO `sys_login_log` VALUES ('37', '1', '::1', '1477012701');
 INSERT INTO `sys_login_log` VALUES ('38', '1', '::1', '1477020354');
+INSERT INTO `sys_login_log` VALUES ('39', '1', '::1', '1477300429');
+INSERT INTO `sys_login_log` VALUES ('40', '1', '::1', '1477365909');
+INSERT INTO `sys_login_log` VALUES ('41', '3', '::1', '1477365933');
+INSERT INTO `sys_login_log` VALUES ('42', '3', '::1', '1477366466');
+INSERT INTO `sys_login_log` VALUES ('43', '1', '::1', '1477367368');
+INSERT INTO `sys_login_log` VALUES ('44', '3', '::1', '1477367381');
+INSERT INTO `sys_login_log` VALUES ('45', '3', '::1', '1477367425');
+INSERT INTO `sys_login_log` VALUES ('46', '3', '::1', '1477367672');
+INSERT INTO `sys_login_log` VALUES ('47', '3', '::1', '1477367682');
+INSERT INTO `sys_login_log` VALUES ('48', '3', '::1', '1477367701');
+INSERT INTO `sys_login_log` VALUES ('49', '1', '::1', '1477370220');
+INSERT INTO `sys_login_log` VALUES ('50', '1', '::1', '1477391508');
+INSERT INTO `sys_login_log` VALUES ('51', '1', '::1', '1477446135');
+INSERT INTO `sys_login_log` VALUES ('52', '1', '::1', '1477462467');
+INSERT INTO `sys_login_log` VALUES ('53', '1', '::1', '1477533592');
+INSERT INTO `sys_login_log` VALUES ('54', '1', '::1', '1477559558');
+INSERT INTO `sys_login_log` VALUES ('55', '1', '::1', '1477621054');
+INSERT INTO `sys_login_log` VALUES ('56', '1', '::1', '1477626541');
+INSERT INTO `sys_login_log` VALUES ('57', '1', '::1', '1477628988');
+INSERT INTO `sys_login_log` VALUES ('58', '3', '::1', '1477629096');
+INSERT INTO `sys_login_log` VALUES ('59', '1', '::1', '1477629115');
+INSERT INTO `sys_login_log` VALUES ('60', '1', '::1', '1477634557');
+INSERT INTO `sys_login_log` VALUES ('61', '1', '::1', '1477637213');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -575,6 +618,28 @@ CREATE TABLE `sys_role_auth` (
 -- ----------------------------
 -- Records of sys_role_auth
 -- ----------------------------
+INSERT INTO `sys_role_auth` VALUES ('2', '2', '');
+INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look');
+INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '3', '');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'look');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '13', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '13', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('2', '13', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '14', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '14', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('2', '14', 'look');
+INSERT INTO `sys_role_auth` VALUES ('2', '14', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '20', '');
+INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look');
+INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update');
 
 -- ----------------------------
 -- Table structure for sys_user

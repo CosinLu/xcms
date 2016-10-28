@@ -18,28 +18,6 @@ kbd,
     border-radius: 0 !important;
 }
 
-/*字重*/
-/*body,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.checkbox label,
-.radio label,
-option,
-.btn,
-.dropdown-menu > li > a {
-    font-weight: 300;
-}*/
-
 /*分页*/
 .pagination {
     vertical-align: middle;
@@ -65,10 +43,6 @@ kbd {
     box-shadow: none;
     font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
     font-size: 12px;
-}
-
-.navbar-brand {
-    font-weight: 100;
 }
 
 .dropdown-menu > li > a {

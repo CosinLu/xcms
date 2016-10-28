@@ -13,7 +13,6 @@
 }
 
 .login_container .page-header h2 {
-    font-weight: 300;
     font-size: 24px;
 }
 
@@ -436,14 +435,13 @@ div[data-name="nodata"] {
 
 .uploadifive-queue-item .thumbnail {
     padding: 5px;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 0;
 }
 
 .uploadifive-queue-item .thumbnail img {
     width: 100%;
     height: 80px;
-    /*margin: 0 0 5px;*/
 }
 
 .uploadifive-queue-item .caption {

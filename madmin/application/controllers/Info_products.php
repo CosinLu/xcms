@@ -50,7 +50,7 @@ class Info_products extends Information
     //新增
     public function insert()
     {
-        $data['info_col'] = $this->category->insert_ddl('cid', 0, $this->cid, array(), FALSE, $this->info_type_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_type_id());
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('info_products/insert.html', $data);
     }
@@ -59,7 +59,7 @@ class Info_products extends Information
     public function update()
     {
         $data['item'] = $this->info_products->update();
-        $data['info_col'] = $this->category->insert_ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_type_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_type_id());
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('info_products/update.html', $data);

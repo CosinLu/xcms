@@ -29,8 +29,8 @@ class Sys_role_auth_model extends MY_Model
     public function get_list()
     {
         $sql = "SELECT
-                t.*, GROUP_CONCAT(t2.name order by t2.ident) AS auth_name_str,
-                GROUP_CONCAT(t2.ident order by t2.ident) AS auth_ident_str,
+                t.*, GROUP_CONCAT(t2.name order by t2.sort asc,t2.id asc) AS auth_name_str,
+                GROUP_CONCAT(t2.ident order by t2.sort asc,t2.id asc) AS auth_ident_str,
                     t3.col_auth_str,
                 t3.col_id
             FROM
