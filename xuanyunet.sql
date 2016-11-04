@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-10-28 18:17:39
+Date: 2016-11-04 17:15:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -530,7 +530,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -581,6 +581,7 @@ INSERT INTO `sys_login_log` VALUES ('58', '3', '::1', '1477629096');
 INSERT INTO `sys_login_log` VALUES ('59', '1', '::1', '1477629115');
 INSERT INTO `sys_login_log` VALUES ('60', '1', '::1', '1477634557');
 INSERT INTO `sys_login_log` VALUES ('61', '1', '::1', '1477637213');
+INSERT INTO `sys_login_log` VALUES ('62', '1', '::1', '1477650074');
 
 -- ----------------------------
 -- Table structure for sys_role
