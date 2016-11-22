@@ -17,7 +17,7 @@ class Sys_dict
 
     public function all($ident = '')
     {
-    	$this->CI->db->select('t1.*');
+        $this->CI->db->select('t1.*');
         $this->CI->db->from('sys_dict as t');
         $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
         $this->CI->db->where('t.ident', $ident);
