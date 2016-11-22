@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : wamp
-Source Server Version : 50617
+Source Server         : localhost
+Source Server Version : 50714
 Source Host           : localhost:3306
 Source Database       : xuanyunet
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-11-04 17:15:14
+Date: 2016-11-22 12:29:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -87,7 +87,7 @@ CREATE TABLE `info_article` (
 -- ----------------------------
 -- Records of info_article
 -- ----------------------------
-INSERT INTO `info_article` VALUES ('7', '7', '测试信息1', '3', null, '<p>测试信息1</p>', 'show', '100', null, null, '1477621922', null);
+INSERT INTO `info_article` VALUES ('7', '7', '测试信息1', '13', null, '<p>测试信息1</p>', 'show', '100', null, null, '1478253463', null);
 
 -- ----------------------------
 -- Table structure for info_banner
@@ -211,11 +211,12 @@ CREATE TABLE `info_products` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息产品表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息产品表';
 
 -- ----------------------------
 -- Records of info_products
 -- ----------------------------
+INSERT INTO `info_products` VALUES ('3', '2', '12324435', '12', null, '', 'show', '100', null, null, '1478485220', null);
 
 -- ----------------------------
 -- Table structure for info_single
@@ -280,7 +281,7 @@ CREATE TABLE `slide` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
@@ -478,7 +479,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -519,6 +520,10 @@ INSERT INTO `sys_log` VALUES ('33', '1', 'xuanyunet', '公司动态', 'update', 
 INSERT INTO `sys_log` VALUES ('34', '3', 'article', '网站配置', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477629102');
 INSERT INTO `sys_log` VALUES ('35', '1', 'xuanyunet', '配置项', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477638704');
 INSERT INTO `sys_log` VALUES ('36', '1', 'xuanyunet', '网站配置', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1477638712');
+INSERT INTO `sys_log` VALUES ('37', '1', 'xuanyunet', '公司动态', 'update', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1478253463');
+INSERT INTO `sys_log` VALUES ('38', '1', 'xuanyunet', '产品中心', 'insert', 'success', 'Chrome', '54.0.2840.59', 'Windows 10', 'DESKTOP-VD45ACM', '::1', '1478485220');
+INSERT INTO `sys_log` VALUES ('39', '1', 'xuanyunet', '幻灯片', 'insert', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1479787716');
+INSERT INTO `sys_log` VALUES ('40', '1', 'xuanyunet', '幻灯片', 'del', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1479787742');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -530,7 +535,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -582,6 +587,10 @@ INSERT INTO `sys_login_log` VALUES ('59', '1', '::1', '1477629115');
 INSERT INTO `sys_login_log` VALUES ('60', '1', '::1', '1477634557');
 INSERT INTO `sys_login_log` VALUES ('61', '1', '::1', '1477637213');
 INSERT INTO `sys_login_log` VALUES ('62', '1', '::1', '1477650074');
+INSERT INTO `sys_login_log` VALUES ('63', '1', '::1', '1478253374');
+INSERT INTO `sys_login_log` VALUES ('64', '1', '::1', '1478484562');
+INSERT INTO `sys_login_log` VALUES ('65', '1', '::1', '1479785771');
+INSERT INTO `sys_login_log` VALUES ('66', '1', '::1', '1479787138');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -695,20 +704,47 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', '6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '/uploads/20161018/', '/uploads/20161018/6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '6bef2b73bd646f3a2b4ce8a5f9f90ae6', '6bef2b73bd646f3a2b4ce8a5f9f90ae6.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
-INSERT INTO `uploads` VALUES ('2', '8f5d3ee1a394ce571fc3f6044dd81e12.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/8f5d3ee1a394ce571fc3f6044dd81e12.png', '/uploads/20161018/', '/uploads/20161018/8f5d3ee1a394ce571fc3f6044dd81e12.png', '8f5d3ee1a394ce571fc3f6044dd81e12', '8f5d3ee1a394ce571fc3f6044dd81e12.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
-INSERT INTO `uploads` VALUES ('3', '735cae2269a92567732070444edcf6ad.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/735cae2269a92567732070444edcf6ad.png', '/uploads/20161018/', '/uploads/20161018/735cae2269a92567732070444edcf6ad.png', '735cae2269a92567732070444edcf6ad', '735cae2269a92567732070444edcf6ad.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
-INSERT INTO `uploads` VALUES ('4', '5ed6a29dff20a9d00b6ef8c7b9990017.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/5ed6a29dff20a9d00b6ef8c7b9990017.png', '/uploads/20161018/', '/uploads/20161018/5ed6a29dff20a9d00b6ef8c7b9990017.png', '5ed6a29dff20a9d00b6ef8c7b9990017', '5ed6a29dff20a9d00b6ef8c7b9990017.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
-INSERT INTO `uploads` VALUES ('5', '3ab1f8a36eed91bf2ce46f776fa288c7.js', 'text/plain', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/3ab1f8a36eed91bf2ce46f776fa288c7.js', '/uploads/20161018/', '/uploads/20161018/3ab1f8a36eed91bf2ce46f776fa288c7.js', '3ab1f8a36eed91bf2ce46f776fa288c7', '3ab1f8a36eed91bf2ce46f776fa288c7.js', 'countTo.js', '.js', '3.17', '0', null, null, '', '', '');
-INSERT INTO `uploads` VALUES ('6', '6d1080e436f7ff74748ee9b7efd920e7.js', 'text/plain', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6d1080e436f7ff74748ee9b7efd920e7.js', '/uploads/20161018/', '/uploads/20161018/6d1080e436f7ff74748ee9b7efd920e7.js', '6d1080e436f7ff74748ee9b7efd920e7', '6d1080e436f7ff74748ee9b7efd920e7.js', 'jquery.min.js', '.js', '93.74', '0', null, null, '', '', '');
-INSERT INTO `uploads` VALUES ('7', '460cc51538e9aa863eaf65c7de7c3a5d.rar', 'application/x-rar', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/460cc51538e9aa863eaf65c7de7c3a5d.rar', '/uploads/20161018/', '/uploads/20161018/460cc51538e9aa863eaf65c7de7c3a5d.rar', '460cc51538e9aa863eaf65c7de7c3a5d', '460cc51538e9aa863eaf65c7de7c3a5d.rar', '浮动固定位置插件.rar', '.rar', '44.25', '0', null, null, '', '', '');
-INSERT INTO `uploads` VALUES ('8', '6e83f2fd299521aaf25cdec89c725cfc.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/6e83f2fd299521aaf25cdec89c725cfc.jpg', '/uploads/20161018/', '/uploads/20161018/6e83f2fd299521aaf25cdec89c725cfc.jpg', '6e83f2fd299521aaf25cdec89c725cfc', '6e83f2fd299521aaf25cdec89c725cfc.jpg', '未标题-1.jpg', '.jpg', '14.88', '1', '125', '67', 'jpeg', 'width=\"125\" height=\"67\"', '');
-INSERT INTO `uploads` VALUES ('9', '662d93d72528ff4f97f94d153426dd37.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/662d93d72528ff4f97f94d153426dd37.png', '/uploads/20161018/', '/uploads/20161018/662d93d72528ff4f97f94d153426dd37.png', '662d93d72528ff4f97f94d153426dd37', '662d93d72528ff4f97f94d153426dd37.png', 'QQ截图20160616162124.png', '.png', '5.12', '1', '41', '46', 'png', 'width=\"41\" height=\"46\"', '');
-INSERT INTO `uploads` VALUES ('10', '5b6d7940433b83687cc2110af76085f6.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/5b6d7940433b83687cc2110af76085f6.jpg', '/uploads/20161018/', '/uploads/20161018/5b6d7940433b83687cc2110af76085f6.jpg', '5b6d7940433b83687cc2110af76085f6', '5b6d7940433b83687cc2110af76085f6.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
-INSERT INTO `uploads` VALUES ('11', '159a98ce61262b11e05791990b071ee2.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/159a98ce61262b11e05791990b071ee2.png', '/uploads/20161018/', '/uploads/20161018/159a98ce61262b11e05791990b071ee2.png', '159a98ce61262b11e05791990b071ee2', '159a98ce61262b11e05791990b071ee2.png', 'QQ截图20160616142927.png', '.png', '4.08', '1', '57', '29', 'png', 'width=\"57\" height=\"29\"', '');
-INSERT INTO `uploads` VALUES ('12', 'dd7abbf43aa68ed9c482bc14263a6047.png', 'image/png', 'D:/wamp/www/uploads/20161018/', 'D:/wamp/www/uploads/20161018/dd7abbf43aa68ed9c482bc14263a6047.png', '/uploads/20161018/', '/uploads/20161018/dd7abbf43aa68ed9c482bc14263a6047.png', 'dd7abbf43aa68ed9c482bc14263a6047', 'dd7abbf43aa68ed9c482bc14263a6047.png', 'QQ截图20160616142937.png', '.png', '5.72', '1', '62', '38', 'png', 'width=\"62\" height=\"38\"', '');
+INSERT INTO `uploads` VALUES ('1', 'd41c1e131a6262e7f55477fe3f34f357.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/d41c1e131a6262e7f55477fe3f34f357.jpg', '/uploads/20161107/', '/uploads/20161107/d41c1e131a6262e7f55477fe3f34f357.jpg', 'd41c1e131a6262e7f55477fe3f34f357', 'd41c1e131a6262e7f55477fe3f34f357.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
+INSERT INTO `uploads` VALUES ('2', '5ecbd98e94c7dadf25e2594f079b383d.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/5ecbd98e94c7dadf25e2594f079b383d.png', '/uploads/20161107/', '/uploads/20161107/5ecbd98e94c7dadf25e2594f079b383d.png', '5ecbd98e94c7dadf25e2594f079b383d', '5ecbd98e94c7dadf25e2594f079b383d.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('3', 'e1e1ce8a887f00a9bff4423c3457bd30.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/e1e1ce8a887f00a9bff4423c3457bd30.png', '/uploads/20161107/', '/uploads/20161107/e1e1ce8a887f00a9bff4423c3457bd30.png', 'e1e1ce8a887f00a9bff4423c3457bd30', 'e1e1ce8a887f00a9bff4423c3457bd30.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('4', '7ee871ab743b5acb46a1912748157aab.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/7ee871ab743b5acb46a1912748157aab.png', '/uploads/20161107/', '/uploads/20161107/7ee871ab743b5acb46a1912748157aab.png', '7ee871ab743b5acb46a1912748157aab', '7ee871ab743b5acb46a1912748157aab.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('5', '78764df0774b99944a45ef6da041ffd7.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/78764df0774b99944a45ef6da041ffd7.png', '/uploads/20161107/', '/uploads/20161107/78764df0774b99944a45ef6da041ffd7.png', '78764df0774b99944a45ef6da041ffd7', '78764df0774b99944a45ef6da041ffd7.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('6', 'f2dc07db7b2f889f1953c461d3855e7f.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/f2dc07db7b2f889f1953c461d3855e7f.png', '/uploads/20161107/', '/uploads/20161107/f2dc07db7b2f889f1953c461d3855e7f.png', 'f2dc07db7b2f889f1953c461d3855e7f', 'f2dc07db7b2f889f1953c461d3855e7f.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('7', 'c8cb30fe06c18afd32312fbafedc0014.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/c8cb30fe06c18afd32312fbafedc0014.png', '/uploads/20161107/', '/uploads/20161107/c8cb30fe06c18afd32312fbafedc0014.png', 'c8cb30fe06c18afd32312fbafedc0014', 'c8cb30fe06c18afd32312fbafedc0014.png', 'QQ截图20160616142917.png', '.png', '3.27', '1', '49', '27', 'png', 'width=\"49\" height=\"27\"', '');
+INSERT INTO `uploads` VALUES ('8', '39d3221ef0634b8e29e79450831a1a71.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/39d3221ef0634b8e29e79450831a1a71.png', '/uploads/20161107/', '/uploads/20161107/39d3221ef0634b8e29e79450831a1a71.png', '39d3221ef0634b8e29e79450831a1a71', '39d3221ef0634b8e29e79450831a1a71.png', 'QQ截图20160616142927.png', '.png', '4.08', '1', '57', '29', 'png', 'width=\"57\" height=\"29\"', '');
+INSERT INTO `uploads` VALUES ('9', 'f4beea23456dd6b9178342cfb143fdd3.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/f4beea23456dd6b9178342cfb143fdd3.png', '/uploads/20161107/', '/uploads/20161107/f4beea23456dd6b9178342cfb143fdd3.png', 'f4beea23456dd6b9178342cfb143fdd3', 'f4beea23456dd6b9178342cfb143fdd3.png', 'QQ截图20160615155453.png', '.png', '3.55', '1', '43', '43', 'png', 'width=\"43\" height=\"43\"', '');
+INSERT INTO `uploads` VALUES ('10', '962dd381ea4e51635c8732c084bc6ba7.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/962dd381ea4e51635c8732c084bc6ba7.png', '/uploads/20161107/', '/uploads/20161107/962dd381ea4e51635c8732c084bc6ba7.png', '962dd381ea4e51635c8732c084bc6ba7', '962dd381ea4e51635c8732c084bc6ba7.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('11', '3bd3f3b2bd1de7043111917d244446d1.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/3bd3f3b2bd1de7043111917d244446d1.png', '/uploads/20161107/', '/uploads/20161107/3bd3f3b2bd1de7043111917d244446d1.png', '3bd3f3b2bd1de7043111917d244446d1', '3bd3f3b2bd1de7043111917d244446d1.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('12', '163097baceadd48b3546992806fe4d4e.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/163097baceadd48b3546992806fe4d4e.png', '/uploads/20161107/', '/uploads/20161107/163097baceadd48b3546992806fe4d4e.png', '163097baceadd48b3546992806fe4d4e', '163097baceadd48b3546992806fe4d4e.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('13', '9aaafd4cbf66b23a49862eb8ade363fe.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/9aaafd4cbf66b23a49862eb8ade363fe.png', '/uploads/20161107/', '/uploads/20161107/9aaafd4cbf66b23a49862eb8ade363fe.png', '9aaafd4cbf66b23a49862eb8ade363fe', '9aaafd4cbf66b23a49862eb8ade363fe.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('14', 'ab5d66d4ebeaf383dbd97e7dd23649ed.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/ab5d66d4ebeaf383dbd97e7dd23649ed.png', '/uploads/20161107/', '/uploads/20161107/ab5d66d4ebeaf383dbd97e7dd23649ed.png', 'ab5d66d4ebeaf383dbd97e7dd23649ed', 'ab5d66d4ebeaf383dbd97e7dd23649ed.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('15', '52a9de6ebfb296d9987e382e719a1013.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/52a9de6ebfb296d9987e382e719a1013.png', '/uploads/20161107/', '/uploads/20161107/52a9de6ebfb296d9987e382e719a1013.png', '52a9de6ebfb296d9987e382e719a1013', '52a9de6ebfb296d9987e382e719a1013.png', 'QQ截图20160615130019.png', '.png', '7.16', '1', '82', '50', 'png', 'width=\"82\" height=\"50\"', '');
+INSERT INTO `uploads` VALUES ('16', '79a2972111825936857eb269bb7f90f0.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/79a2972111825936857eb269bb7f90f0.png', '/uploads/20161107/', '/uploads/20161107/79a2972111825936857eb269bb7f90f0.png', '79a2972111825936857eb269bb7f90f0', '79a2972111825936857eb269bb7f90f0.png', 'QQ图片20160615101006.png', '.png', '23.75', '1', '127', '77', 'png', 'width=\"179\" height=\"77\"', '');
+INSERT INTO `uploads` VALUES ('17', 'af555e71fb768b74f213e1b5de9e82c1.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/af555e71fb768b74f213e1b5de9e82c1.png', '/uploads/20161107/', '/uploads/20161107/af555e71fb768b74f213e1b5de9e82c1.png', 'af555e71fb768b74f213e1b5de9e82c1', 'af555e71fb768b74f213e1b5de9e82c1.png', '截图-1.png', '.png', '3.95', '1', '39', '41', 'png', 'width=\"39\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('18', 'b29780d9be2a7c548fd7b289b59e581a.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/b29780d9be2a7c548fd7b289b59e581a.png', '/uploads/20161107/', '/uploads/20161107/b29780d9be2a7c548fd7b289b59e581a.png', 'b29780d9be2a7c548fd7b289b59e581a', 'b29780d9be2a7c548fd7b289b59e581a.png', '未标-1.png', '.png', '20.12', '1', '127', '107', 'png', 'width=\"199\" height=\"107\"', '');
+INSERT INTO `uploads` VALUES ('19', '038edad203619cb02a6973e8d8b562c9.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/038edad203619cb02a6973e8d8b562c9.jpg', '/uploads/20161107/', '/uploads/20161107/038edad203619cb02a6973e8d8b562c9.jpg', '038edad203619cb02a6973e8d8b562c9', '038edad203619cb02a6973e8d8b562c9.jpg', '未标题-1.jpg', '.jpg', '14.88', '1', '125', '67', 'jpeg', 'width=\"125\" height=\"67\"', '');
+INSERT INTO `uploads` VALUES ('20', 'fd09ff0eb140fc10276f1c905a68ca91.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/fd09ff0eb140fc10276f1c905a68ca91.png', '/uploads/20161107/', '/uploads/20161107/fd09ff0eb140fc10276f1c905a68ca91.png', 'fd09ff0eb140fc10276f1c905a68ca91', 'fd09ff0eb140fc10276f1c905a68ca91.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('21', '9400a3462ab9b206d0f6e0ecc70e628f.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/9400a3462ab9b206d0f6e0ecc70e628f.png', '/uploads/20161107/', '/uploads/20161107/9400a3462ab9b206d0f6e0ecc70e628f.png', '9400a3462ab9b206d0f6e0ecc70e628f', '9400a3462ab9b206d0f6e0ecc70e628f.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('22', '6ceaff099a7b613e9f2f1b9a75a087e6.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/6ceaff099a7b613e9f2f1b9a75a087e6.png', '/uploads/20161107/', '/uploads/20161107/6ceaff099a7b613e9f2f1b9a75a087e6.png', '6ceaff099a7b613e9f2f1b9a75a087e6', '6ceaff099a7b613e9f2f1b9a75a087e6.png', 'QQ截图20160615130019.png', '.png', '7.16', '1', '82', '50', 'png', 'width=\"82\" height=\"50\"', '');
+INSERT INTO `uploads` VALUES ('23', 'b43d6affe76c4f59944397fe4c38089f.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/b43d6affe76c4f59944397fe4c38089f.png', '/uploads/20161107/', '/uploads/20161107/b43d6affe76c4f59944397fe4c38089f.png', 'b43d6affe76c4f59944397fe4c38089f', 'b43d6affe76c4f59944397fe4c38089f.png', 'QQ截图20160617113902.png', '.png', '9.07', '1', '127', '127', 'png', 'width=\"164\" height=\"158\"', '');
+INSERT INTO `uploads` VALUES ('24', '6083f67224150fd2992a9f2f0d743202.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/6083f67224150fd2992a9f2f0d743202.png', '/uploads/20161107/', '/uploads/20161107/6083f67224150fd2992a9f2f0d743202.png', '6083f67224150fd2992a9f2f0d743202', '6083f67224150fd2992a9f2f0d743202.png', 'QQ截图20160617135144.png', '.png', '22.52', '1', '127', '77', 'png', 'width=\"141\" height=\"77\"', '');
+INSERT INTO `uploads` VALUES ('25', 'f6e0d606a72d24dfc5281614d62fcc6a.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/f6e0d606a72d24dfc5281614d62fcc6a.png', '/uploads/20161107/', '/uploads/20161107/f6e0d606a72d24dfc5281614d62fcc6a.png', 'f6e0d606a72d24dfc5281614d62fcc6a', 'f6e0d606a72d24dfc5281614d62fcc6a.png', 'QQ截图20160617115652.png', '.png', '7.93', '1', '61', '53', 'png', 'width=\"61\" height=\"53\"', '');
+INSERT INTO `uploads` VALUES ('26', '67d63dbd244c8fd8057c6deb31734a03.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/67d63dbd244c8fd8057c6deb31734a03.png', '/uploads/20161107/', '/uploads/20161107/67d63dbd244c8fd8057c6deb31734a03.png', '67d63dbd244c8fd8057c6deb31734a03', '67d63dbd244c8fd8057c6deb31734a03.png', 'QQ截图20160617135625.png', '.png', '14.65', '1', '127', '68', 'png', 'width=\"135\" height=\"68\"', '');
+INSERT INTO `uploads` VALUES ('27', 'df8d56cfaaea1e5dc963be903e15cd80.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/df8d56cfaaea1e5dc963be903e15cd80.png', '/uploads/20161107/', '/uploads/20161107/df8d56cfaaea1e5dc963be903e15cd80.png', 'df8d56cfaaea1e5dc963be903e15cd80', 'df8d56cfaaea1e5dc963be903e15cd80.png', 'QQ截图20160617115804.png', '.png', '3.62', '1', '48', '25', 'png', 'width=\"48\" height=\"25\"', '');
+INSERT INTO `uploads` VALUES ('28', '6a36a1614358f039d3ce1ada33073f2b.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/6a36a1614358f039d3ce1ada33073f2b.png', '/uploads/20161107/', '/uploads/20161107/6a36a1614358f039d3ce1ada33073f2b.png', '6a36a1614358f039d3ce1ada33073f2b', '6a36a1614358f039d3ce1ada33073f2b.png', 'QQ截图20160627093635.png', '.png', '7.05', '1', '91', '51', 'png', 'width=\"91\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('29', '871beef958c17dc6f7f652ad59e32cec.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/871beef958c17dc6f7f652ad59e32cec.png', '/uploads/20161107/', '/uploads/20161107/871beef958c17dc6f7f652ad59e32cec.png', '871beef958c17dc6f7f652ad59e32cec', '871beef958c17dc6f7f652ad59e32cec.png', 'QQ图片20160615101006.png', '.png', '23.75', '1', '127', '77', 'png', 'width=\"179\" height=\"77\"', '');
+INSERT INTO `uploads` VALUES ('30', 'c040b1dd85175a92320ab91610d4566d.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/c040b1dd85175a92320ab91610d4566d.png', '/uploads/20161107/', '/uploads/20161107/c040b1dd85175a92320ab91610d4566d.png', 'c040b1dd85175a92320ab91610d4566d', 'c040b1dd85175a92320ab91610d4566d.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('31', 'b65bd146e4ed87ae2b32220d584b08d6.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/b65bd146e4ed87ae2b32220d584b08d6.png', '/uploads/20161107/', '/uploads/20161107/b65bd146e4ed87ae2b32220d584b08d6.png', 'b65bd146e4ed87ae2b32220d584b08d6', 'b65bd146e4ed87ae2b32220d584b08d6.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('32', '6583972b924c7ebf29b6b04bb8ca4875.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/6583972b924c7ebf29b6b04bb8ca4875.png', '/uploads/20161107/', '/uploads/20161107/6583972b924c7ebf29b6b04bb8ca4875.png', '6583972b924c7ebf29b6b04bb8ca4875', '6583972b924c7ebf29b6b04bb8ca4875.png', 'QQ截图20160615115334.png', '.png', '11.81', '1', '92', '55', 'png', 'width=\"92\" height=\"55\"', '');
+INSERT INTO `uploads` VALUES ('33', '77f58b9726861b32b9601c86ae706884.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/77f58b9726861b32b9601c86ae706884.png', '/uploads/20161107/', '/uploads/20161107/77f58b9726861b32b9601c86ae706884.png', '77f58b9726861b32b9601c86ae706884', '77f58b9726861b32b9601c86ae706884.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('34', '5b54e448eee213fc1a3f85e4f2d446c9.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/5b54e448eee213fc1a3f85e4f2d446c9.png', '/uploads/20161107/', '/uploads/20161107/5b54e448eee213fc1a3f85e4f2d446c9.png', '5b54e448eee213fc1a3f85e4f2d446c9', '5b54e448eee213fc1a3f85e4f2d446c9.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('35', '22a5c92907ed4ba892e173891563f4ea.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/22a5c92907ed4ba892e173891563f4ea.png', '/uploads/20161107/', '/uploads/20161107/22a5c92907ed4ba892e173891563f4ea.png', '22a5c92907ed4ba892e173891563f4ea', '22a5c92907ed4ba892e173891563f4ea.png', 'QQ截图20160615115044.png', '.png', '6.43', '1', '71', '41', 'png', 'width=\"71\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('36', 'e57cdfb5b0d84a2f0fd6862030109ceb.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/e57cdfb5b0d84a2f0fd6862030109ceb.png', '/uploads/20161107/', '/uploads/20161107/e57cdfb5b0d84a2f0fd6862030109ceb.png', 'e57cdfb5b0d84a2f0fd6862030109ceb', 'e57cdfb5b0d84a2f0fd6862030109ceb.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('37', '774d4c748bb38b40a13dd11a7b94dd83.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/774d4c748bb38b40a13dd11a7b94dd83.png', '/uploads/20161107/', '/uploads/20161107/774d4c748bb38b40a13dd11a7b94dd83.png', '774d4c748bb38b40a13dd11a7b94dd83', '774d4c748bb38b40a13dd11a7b94dd83.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
+INSERT INTO `uploads` VALUES ('38', 'a199f9cb7c48e943927b7b84717c5995.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/a199f9cb7c48e943927b7b84717c5995.jpg', '/uploads/20161107/', '/uploads/20161107/a199f9cb7c48e943927b7b84717c5995.jpg', 'a199f9cb7c48e943927b7b84717c5995', 'a199f9cb7c48e943927b7b84717c5995.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
+INSERT INTO `uploads` VALUES ('39', '86bb38a11a81cc2276207068bfc92739.png', 'image/png', 'E:/wamp64/www/uploads/20161122/', 'E:/wamp64/www/uploads/20161122/86bb38a11a81cc2276207068bfc92739.png', '/uploads/20161122/', '/uploads/20161122/86bb38a11a81cc2276207068bfc92739.png', '86bb38a11a81cc2276207068bfc92739', '86bb38a11a81cc2276207068bfc92739.png', '截图-1.png', '.png', '3.95', '1', '39', '41', 'png', 'width=\"39\" height=\"41\"', '');

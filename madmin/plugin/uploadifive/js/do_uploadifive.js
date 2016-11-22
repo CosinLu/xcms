@@ -16,7 +16,7 @@ $(function () {
         if (img.length > 0 && img.data('src').length <= 0) {
             img.jqthumb({width: 138, height: 80});
         }
-    })
+    });
 
     //本地浏览
     $_uploadifive.uploadifive({
@@ -51,6 +51,7 @@ $(function () {
             var item = file.queueItem;
             item.find('input').prop('name', json.file_obj_name + '[]').val(json.id);
 
+            //生成缩略图
             if (json.is_image) {//图片自动缩放
                 item.find('img').prop('src', json.full_path).jqthumb({width: '100%', height: '80'});
             } else {//生成图片
