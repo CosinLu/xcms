@@ -6,7 +6,7 @@
  * Date: 2016/8/27
  * Time: 10:47
  */
-class Welcome_model extends CI_Model
+class Login_model extends CI_Model
 {
     protected $username;
     protected $password;
@@ -31,7 +31,7 @@ class Welcome_model extends CI_Model
     public function user_info()
     {
         $this->db->select('t.*,t.id as user_id');
-        $this->db->select('(ifnull(t.realname,t.username)) as welcome_name');
+        $this->db->select('(ifnull(t.realname,t.username)) as valid_username');
         $this->db->select('t1.role_type');
         $this->db->select('t2.login_time as last_login_time,t2.login_ip as last_login_ip');
         $this->db->from('sys_user as t');
