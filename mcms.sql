@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-11-30 11:20:50
+Date: 2016-12-07 16:06:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43613,6 +43613,7 @@ CREATE TABLE `info_single` (
 -- Records of info_single
 -- ----------------------------
 INSERT INTO `info_single` VALUES ('6', '', '', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '', '<p><br/></p>_editor_page_break_tag_<p><br/></p>_editor_page_break_tag_<p><br/></p>_editor_page_break_tag_<p><br/></p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_type
@@ -43855,7 +43856,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -43904,6 +43905,7 @@ INSERT INTO `sys_log` VALUES ('41', '1', 'xuanyunet', '公司简介', 'update', 
 INSERT INTO `sys_log` VALUES ('42', '1', 'xuanyunet', '公司简介', 'update', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1479789463');
 INSERT INTO `sys_log` VALUES ('43', '1', 'xuanyunet', '公司简介', 'update', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1479789468');
 INSERT INTO `sys_log` VALUES ('44', '1', 'xuanyunet', '公司简介', 'update', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1479789473');
+INSERT INTO `sys_log` VALUES ('45', '1', 'xuanyunet', '车间场景', 'update', 'success', 'Chrome', '54.0.2840.99', 'Windows 10', 'DESKTOP-QLUIAMR', '::1', '1480580097');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -43915,7 +43917,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -43977,6 +43979,11 @@ INSERT INTO `sys_login_log` VALUES ('69', '1', '::1', '1480053673');
 INSERT INTO `sys_login_log` VALUES ('70', '1', '::1', '1480059685');
 INSERT INTO `sys_login_log` VALUES ('71', '1', '::1', '1480320992');
 INSERT INTO `sys_login_log` VALUES ('72', '1', '::1', '1480390757');
+INSERT INTO `sys_login_log` VALUES ('73', '1', '::1', '1480496278');
+INSERT INTO `sys_login_log` VALUES ('74', '1', '::1', '1480497448');
+INSERT INTO `sys_login_log` VALUES ('75', '1', '::1', '1480497526');
+INSERT INTO `sys_login_log` VALUES ('76', '1', '::1', '1480497661');
+INSERT INTO `sys_login_log` VALUES ('77', '1', '::1', '1480579825');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -44090,7 +44097,7 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
@@ -44134,3 +44141,4 @@ INSERT INTO `uploads` VALUES ('36', 'e57cdfb5b0d84a2f0fd6862030109ceb.png', 'ima
 INSERT INTO `uploads` VALUES ('37', '774d4c748bb38b40a13dd11a7b94dd83.png', 'image/png', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/774d4c748bb38b40a13dd11a7b94dd83.png', '/uploads/20161107/', '/uploads/20161107/774d4c748bb38b40a13dd11a7b94dd83.png', '774d4c748bb38b40a13dd11a7b94dd83', '774d4c748bb38b40a13dd11a7b94dd83.png', 'QQ截图20160615115028.png', '.png', '9.81', '1', '89', '51', 'png', 'width=\"89\" height=\"51\"', '');
 INSERT INTO `uploads` VALUES ('38', 'a199f9cb7c48e943927b7b84717c5995.jpg', 'image/jpeg', 'D:/wamp/www/uploads/20161107/', 'D:/wamp/www/uploads/20161107/a199f9cb7c48e943927b7b84717c5995.jpg', '/uploads/20161107/', '/uploads/20161107/a199f9cb7c48e943927b7b84717c5995.jpg', 'a199f9cb7c48e943927b7b84717c5995', 'a199f9cb7c48e943927b7b84717c5995.jpg', '9463df9191e7fea174158c440ee7145a.jpg', '.jpg', '459.53', '1', '127', '127', 'jpeg', 'width=\"2272\" height=\"1704\"', '');
 INSERT INTO `uploads` VALUES ('39', '86bb38a11a81cc2276207068bfc92739.png', 'image/png', 'E:/wamp64/www/uploads/20161122/', 'E:/wamp64/www/uploads/20161122/86bb38a11a81cc2276207068bfc92739.png', '/uploads/20161122/', '/uploads/20161122/86bb38a11a81cc2276207068bfc92739.png', '86bb38a11a81cc2276207068bfc92739', '86bb38a11a81cc2276207068bfc92739.png', '截图-1.png', '.png', '3.95', '1', '39', '41', 'png', 'width=\"39\" height=\"41\"', '');
+INSERT INTO `uploads` VALUES ('40', '784c9638efe768b098ba31db28ccb625.png', 'image/png', 'E:/wamp/www/uploads/20161201/', 'E:/wamp/www/uploads/20161201/784c9638efe768b098ba31db28ccb625.png', '/uploads/20161201/', '/uploads/20161201/784c9638efe768b098ba31db28ccb625.png', '784c9638efe768b098ba31db28ccb625', '784c9638efe768b098ba31db28ccb625.png', 'QQ截图20161201161128.png', '.png', '24.26', '1', '127', '127', 'png', 'width=\"389\" height=\"258\"', '');

@@ -80,11 +80,11 @@
     bottom: 0;
     left: 0;
     overflow: auto;
-    width: 200px;
+    width: 250px;
 }
 
 .iframe-container .iframe-sidebar-hidden {
-    left: -200px;
+    left: -250px;
 }
 
 .iframe-container .iframe-sidebar-hidden + .iframe-main {
@@ -96,7 +96,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 200px;
+    left: 250px;
     overflow: auto;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .iframe-container .iframe-main-sidebar + .iframe-main-section {
-    left: 200px;
+    left: 250px;
 }
 
 .iframe-container .iframe-main-section {

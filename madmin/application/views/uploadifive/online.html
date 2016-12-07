@@ -110,7 +110,7 @@
                     data: data,
                     success: function (data) {
                         if (data.list.list.length) {
-                            $('#list').append(template('list_tpl', data)).find('img').jqthumb({
+                            $('#list').append(template('list_tpl', data)).find('img').not('[data-src]').jqthumb({
                                 width: '100%',
                                 height: 80
                             });
@@ -141,12 +141,12 @@
         });
 
         //选择文件
-        $(document).on('click', 'div[data-name="item"]', function () {
+        $(document).on('click', 'div[data-name="file"]', function () {
             if (multi == 'false') {//单选
-                $(this).children('div[data-name="file"]').toggleClass('checked');
-                $(this).siblings('div[data-name="item"]').children('div[data-name="file"]').removeClass('checked');
+                $(this).toggleClass('checked');
+                $(this).closest('div[data-name="item"]').siblings('div[data-name="item"]').children('div[data-name="file"]').removeClass('checked');
             } else {//多选
-                $(this).children('div[data-name="file"]').toggleClass('checked');
+                $(this).toggleClass('checked');
             }
             //选中文件数量
             $('span[data-name="checked_nums"]').html('已选中&nbsp;' + $('.checked').length + '&nbsp;个文件');
