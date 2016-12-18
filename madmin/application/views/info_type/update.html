@@ -36,14 +36,29 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">控制器</div>
+                            <div class="col-xs-2 control-label">列表页</div>
                             <div class="col-xs-3">
-                                <input type="text" name="ctrl" value="<?=$item['ctrl']?>"
-                                       class="form-control">
+                                <input type="text" name="list_ctrl" value="<?=$item['list_ctrl']?>"
+                                       class="form-control" placeholder="控制器">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" name="list_method" value="<?=$item['list_method']?>"
+                                       class="form-control" placeholder="方法">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">系统控制器</div>
+                            <div class="col-xs-2 control-label">详情页</div>
+                            <div class="col-xs-3">
+                                <input type="text" name="show_ctrl" value="<?=$item['show_ctrl']?>"
+                                       class="form-control" placeholder="控制器">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" name="show_method" value="<?=$item['show_method']?>"
+                                       class="form-control" placeholder="方法">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">系统页</div>
                             <div class="col-xs-3">
                                 <input type="text" name="sys_ctrl" value="<?=$item['sys_ctrl']?>"
                                        class="form-control">

@@ -20,7 +20,7 @@ class Info_article_model extends MY_Model
     //获得列表
     public function get_list()
     {
-        $parent_id_arr = $this->category->parent_id(array(), $this->cid, TRUE);
+        $parent_id_arr = $this->category->children_id(array(), $this->cid, TRUE);
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');

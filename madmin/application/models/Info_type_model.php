@@ -52,7 +52,10 @@ class Info_type_model extends MY_Model
         $id = $this->input->post('id');
         $vals = array(
             'name' => $this->input->post('name'),
-            'ctrl' => $this->input->post('ctrl'),
+            'list_ctrl' => $this->input->post('list_ctrl'),
+            'list_method' => $this->input->post('list_method'),
+            'show_ctrl' => $this->input->post('show_ctrl'),
+            'show_method' => $this->input->post('show_method'),
             'sys_ctrl' => $this->input->post('sys_ctrl'),
             'remark' => $this->input->post('remark'),
             'display' => $this->input->post('display'),
