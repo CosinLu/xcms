@@ -37,7 +37,7 @@ class MY_Controller extends CI_Controller
     {
         $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         if (empty($this->session->sys_session)) {
-            $this->prompt->error('登录超时！', site_url('welcome?url=' . $pre_url));
+            $this->prompt->error('登录超时！', site_url('index?url=' . $pre_url));
         }
     }
 

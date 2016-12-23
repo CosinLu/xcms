@@ -6,7 +6,7 @@
  * Date: 2016/8/26
  * Time: 19:43
  */
-class Login extends CI_Controller
+class Index extends CI_Controller
 {
     protected $sys_session;
     protected $username;
@@ -19,7 +19,7 @@ class Login extends CI_Controller
         $this->password = $this->input->post('password');
         $this->pre_url = urldecode($this->input->get('url'));
         $this->set_url();
-        $this->load->model('login_model', 'login');
+        $this->load->model('index_model', 'index');
         $this->load->library('form_validation');
         $this->load->library('category');
     }
@@ -27,14 +27,14 @@ class Login extends CI_Controller
     //设置url
     function set_url()
     {
-        $url['login_url'] = site_url('login/login?url=' . urlencode($this->pre_url));
-        $url['code'] = site_url('login/code');
+        $url['login_url'] = site_url('index/login?url=' . urlencode($this->pre_url));
+        $url['code'] = site_url('index/code');
         $this->load->vars($url);
     }
 
     public function index()
     {
-        $this->load->view('login/index.html');
+        $this->load->view('index/index.html');
     }
 
     //验证码
@@ -44,7 +44,7 @@ class Login extends CI_Controller
             'width' => 80,
             'height' => 30,
             'font_size' => 16,
-            'code_len' => 1
+            'code_len' => 4
         );
         $this->load->library('code', $config);
         $this->code->show();
@@ -61,12 +61,12 @@ class Login extends CI_Controller
         //执行表单验证
         $bool = $this->form_validation->run();
         if (!$bool) {
-            $this->load->view('login/index.html');
+            $this->load->view('index/index.html');
         } else {
             //登录成功
-            $sys_session['sys_session'] = $user_info = $this->login->user_info();
+            $sys_session['sys_session'] = $user_info = $this->index->user_info();
             //添加登录日志
-            $this->login->insert_login_log($user_info['user_id']);
+            $this->index->insert_login_log($user_info['user_id']);
             $this->session->set_userdata($sys_session);
             if ($this->pre_url == '') {
                 //定义登录成功后跳转url
@@ -96,12 +96,12 @@ class Login extends CI_Controller
     public function check_username()
     {
         if ($this->username != '') {
-            $rows = $this->login->check_username();
+            $rows = $this->index->check_username();
             if ($rows == 0) {
                 $this->form_validation->set_message('check_username', '{field} 不存在。');
                 return FALSE;
             } else {
-                $userinfo = $this->login->user_info();
+                $userinfo = $this->index->user_info();
                 if ($userinfo['status'] == 'forzen') {
                     $this->form_validation->set_message('check_username', '{field} 被冻结。');
                     return FALSE;
@@ -116,7 +116,7 @@ class Login extends CI_Controller
     //验证密码
     public function check_password()
     {
-        $userinfo = $this->login->user_info();
+        $userinfo = $this->index->user_info();
         if (empty($userinfo) && $this->password != '') {
             $this->form_validation->set_message('check_password', '{field} 输入错误。');
             return FALSE;
@@ -128,7 +128,7 @@ class Login extends CI_Controller
     //验证系统栏目权限
     public function check_col_auth()
     {
-        $user_info = $this->login->user_info();
+        $user_info = $this->index->user_info();
         if (!empty($user_info)) {
             $this->load->library('sys_auth', array('user_info' => $user_info));
             $sys_col = $this->sys_auth->sys_col();

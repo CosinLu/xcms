@@ -25,7 +25,9 @@
                  data-ext="{{val.ext}}"
                  data-is-image="{{val.is_image}}"
                  data-is-file="{{val.is_file}}">
-                {{#val.file}}
+                <div class="thumb">
+                    {{#val.file}}
+                </div>
                 <div class="caption">
                     <p class="filename" title="{{val.client_name}}">{{val.client_name}}</p>
                     <p>
@@ -35,30 +37,39 @@
                 </div>
             </div>
         </div>
+        </div>
         {{/each}}
     </script>
     <div id="item" style="visibility: hidden;"></div>
     <script id="item_tpl" type="text/html">
         {{each list as val i}}
-        <div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-image-file-{{i}}">
+        <div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-<?=$name?>-file-{{i}}">
             <div class="thumbnail">
-                {{if val.isFile}}<!--文件存在-->
-                {{if val.isImage}}<!--文件是图片-->
-                <img src="{{val.fullPath}}" title="{{val.clientName}}">
-                {{else}}<!--文件不是图片-->
-                <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
-                     title="{{val.clientName}}">
-                {{/if}}
-                {{else}}<!--文件不存在-->
-                <img data-src="holder.js/100px80?theme=danger&text=File does not exist" title="{{val.clientName}}">
-                {{/if}}
+                <div class="thumb">
+                    <!--{{if val.isFile}}&lt;!&ndash;文件存在&ndash;&gt;
+                    {{if val.isImage}}&lt;!&ndash;文件是图片&ndash;&gt;
+                    <img src="{{val.fullPath}}" title="{{val.clientName}}">
+                    {{else}}&lt;!&ndash;文件不是图片&ndash;&gt;
+                    <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
+                         title="{{val.clientName}}">
+                    {{/if}}
+                    {{else}}&lt;!&ndash;文件不存在&ndash;&gt;
+                    <img data-src="holder.js/100px80?theme=danger&text=File does not exist" title="{{val.clientName}}">
+                    {{/if}}-->
+                    {{if val.isImage}}<!--文件是图片-->
+                    <img src="{{val.fullPath}}" title="{{val.clientName}}">
+                    {{else}}<!--文件不是图片-->
+                    <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
+                         title="{{val.clientName}}">
+                    {{/if}}
+                </div>
                 <div class="caption">
                     <p class="filename" title="{{val.clientName}}">{{val.clientName}}</p>
                     <p><span class="filesize">{{val.fileSize}}</span></p>
                     <button type="button" class="close-item btn btn-danger btn-sm">删除</button>
                 </div>
+                <input type="hidden" name="<?=$name?>[]" value="{{val.fileId}}">
             </div>
-            <input type="hidden" name="<?=$name?>[]" value="{{val.fileId}}">
         </div>
         {{/each}}
     </script>
@@ -69,13 +80,14 @@
     <button class="btn btn-default" data-name="cancel">取消</button>
 </div>
 <script type="text/javascript" src="plugin/jquery.min.js"></script>
+<script type="text/javascript" src="plugin/dragsort/jquery.dragsort-0.5.2.min.js"></script>
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/layer/js/layer.js"></script>
 <script type="text/javascript" src="plugin/jqthumb.min.js"></script>
 <script type="text/javascript" src="plugin/holder.min.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
-<script type="text/javascript" src="plugin/dropload/dropload.min.js"></script>
 <script type="text/javascript" src="plugin/common.js"></script>
+<script type="text/javascript" src="plugin/dropload/dropload.min.js"></script>
 <script type="text/javascript">
     $(function () {
         var index = parent.layer.getFrameIndex(window.name);
@@ -110,9 +122,14 @@
                     data: data,
                     success: function (data) {
                         if (data.list.list.length) {
-                            $('#list').append(template('list_tpl', data)).find('img').not('[data-src]').jqthumb({
-                                width: '100%',
-                                height: 80
+                            $('#list').append(template('list_tpl', data));
+                            $('#list').find('img').each(function () {
+                                if ($(this).is(':visible')) {
+                                    $(this).not('[data-src]').jqthumb({
+                                        width: '100%',
+                                        height: 80
+                                    });
+                                }
                             });
                             //为没有预览图的文件自动生成缩略图
                             Holder.run({
@@ -194,7 +211,10 @@
                     $(queueName, window.parent.document).append($('#item').html());
                 }
             }
-            parent.layer.close(index);//关闭窗口
+            //拖拽
+            window.parent.dragsort(queueName);
+            //关闭窗口
+            parent.layer.close(index);
         })
 
     })

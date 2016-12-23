@@ -430,13 +430,21 @@ div[data-name="nodata"] {
 }
 
 .uploadifive-queue-item {
-    width: 180px;
+    width: 150px;
+    margin:0 15px;
+    padding:0;
 }
 
 .uploadifive-queue-item .thumbnail {
+    width: 150px;
+    height: 167px;
     padding: 5px;
     margin-top: 10px;
     margin-bottom: 0;
+}
+
+.uploadifive-queue-item .thumbnail.placeholder {
+    border-style: dashed;
 }
 
 .uploadifive-queue-item .thumbnail img {

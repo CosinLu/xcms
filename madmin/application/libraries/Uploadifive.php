@@ -26,7 +26,7 @@ class Uploadifive
     {
         $uploads_id_arr = explode(',', $uploads_id);
         $this->CI->db->where_in('id', $uploads_id_arr);
-        $this->CI->db->order_by('id asc');
+        $this->CI->db->order_by("instr('" . $uploads_id . "',id)");
         $res = $this->CI->db->get($this->tb_name)->result_array();
         return $res;
     }
@@ -54,9 +54,10 @@ class Uploadifive
     {
         $str = '';
         foreach ($data as $key => $val) {
-            $str .= '<div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-image-file-' . $key . '">';
+            $str .= '<div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-' . $name . '-file-' . $key . '">';
             $str .= '<div class="thumbnail">';
-            if (is_file($val['full_abs_path'])) {
+            $str .= '<div class="thumb">';
+            /*if (is_file($val['full_abs_path'])) {
                 if ($val['is_image']) {
                     $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="">';
                 } else {
@@ -64,14 +65,20 @@ class Uploadifive
                 }
             } else {
                 $str .= '<img title="' . $val['client_name'] . '"  data-src="holder.js/100px80?bg=a94442&text=File does not exist">';
+            }*/
+            if ($val['is_image']) {
+                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="">';
+            } else {
+                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/100px80?bg=337AB7&text=File type is ' . $val['ext'] . '" class="img">';
             }
+            $str .= '</div>';
             $str .= '<div class="caption"><p class="filename" title="' . $val['client_name'] . '">' . $val['client_name'] . '</p>';
             $str .= '<p><span class="filesize">' . format_bytes($val['size'] * 1024) . '</span>';
             $str .= '</p>';
             $str .= '<button type="button" class="close-item btn btn-danger btn-sm">删除</button>';
             $str .= '</div>';
-            $str .= '</div>';
             $str .= '<input type="hidden" name="' . $name . '[]" value="' . $val['id'] . '">';
+            $str .= '</div>';
             $str .= '</div>';
         }
         return $str;

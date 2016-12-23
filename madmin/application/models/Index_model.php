@@ -6,7 +6,7 @@
  * Date: 2016/8/27
  * Time: 10:47
  */
-class Login_model extends CI_Model
+class Index_model extends CI_Model
 {
     protected $username;
     protected $password;
@@ -59,7 +59,7 @@ class Login_model extends CI_Model
     //添加登录日志
     public function insert_login_log($user_id = '')
     {
-        if (!empty($user_id)) {
+        if (!empty($user_id) && ENVIRONMENT != 'development') {
             $vals = array(
                 'user_id' => $user_id,
                 'login_ip' => $this->input->ip_address(),

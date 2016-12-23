@@ -4,9 +4,11 @@
 $(function () {
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
+    var fileName = '';
 
     //删除元素
-    $(document).on('click', '.close-item', function () {
+    $(document).on('click', '.close-item', function (e) {
+        e.stopPropagation();
         $_uploadifive.data('uploadifive').removeQueueItem($(this));
     });
 
@@ -15,6 +17,15 @@ $(function () {
         var img = $(this).find('img');
         if (img.length > 0 && img.data('src').length <= 0) {
             img.jqthumb({width: 138, height: 80});
+        }
+    });
+
+    //拖拽排序
+    $(uploadifive).each(function () {
+        var id = '#uploadifive-' + $(this).attr('name') + '-queue';
+        var multi = $(this).data('multi');
+        if (multi) {
+            dragsort(id);
         }
     });
 
@@ -30,7 +41,7 @@ $(function () {
         },
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
-                                <img src="" data-src="holder.js/100px80?theme=primary">\
+                                <div class="thumb"><img src="" data-src="holder.js/100px80?theme=primary"></div>\
                                 <div class="caption">\
                                     <p class="filename"></p>\
                                     <p><span class="filesize"></span><span class="fileinfo"></span></p>\
@@ -39,8 +50,8 @@ $(function () {
                                         <div class="progress-bar progress-bar-success"></div>\
                                     </div>\
                                 </div>\
+                                <input type="hidden" name="" value="">\
                             </div>\
-                            <input type="hidden" name="" value="">\
                         </div>',
         'fileSizeLimit': '100MB',
         'fileType': false,
@@ -66,7 +77,10 @@ $(function () {
                     images: '#' + item[0]['id'] + ' img'
                 });
             }
-
+            fileName = json.file_obj_name;
+        },
+        'onQueueComplete': function (uploads) {
+            dragsort("#uploadifive-" + fileName + "-queue");
         }
     });
 
@@ -85,3 +99,12 @@ $(function () {
     });
 
 });
+
+//拖拽排序
+function dragsort(id) {
+    $(id).dragsort({
+        dragSelector: "div.uploadifive-queue-item .thumb",
+        dragSelectorExclude: "button",
+        placeHolderTemplate: "<div class='uploadifive-queue-item col-xs-3'><div class='thumbnail placeholder'></div></div>"
+    });
+}

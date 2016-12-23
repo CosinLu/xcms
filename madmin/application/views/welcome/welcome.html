@@ -60,8 +60,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">系统信息</div>
                             <ul class="list-group">
-                                <li class="list-group-item">域名：<a href="http://localhost/"
-                                                                  target="_blank">localhost</a></li>
+                                <li class="list-group-item">域名：<a href="<?=prep_url($server_name)?>"
+                                                                  target="_blank"><?=$server_name?></a></li>
                                 <li class="list-group-item">服务器信息：<?=$server_info?></li>
                                 <li class="list-group-item">操作系统：<?=$operating_system?></li>
                                 <li class="list-group-item">文件上传目录：/uploads/</li>

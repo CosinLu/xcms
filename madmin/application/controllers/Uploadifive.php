@@ -57,7 +57,7 @@ class Uploadifive extends CI_Controller
     {
         $data['list'] = $this->uploadifive->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            //文件存在
+            /*//文件存在
             if (is_file($val['full_abs_path'])) {
                 $data['list']['list'][$key]['is_file'] = 1;
                 //图片文件
@@ -71,6 +71,15 @@ class Uploadifive extends CI_Controller
             } else {//文件不存在
                 $data['list']['list'][$key]['is_file'] = 0;
                 $data['list']['list'][$key]['file'] = '<img title="' . $val['client_name'] . '"  data-src="holder.js/100px80?theme=danger&text=File does not exist">';
+            }*/
+            $data['list']['list'][$key]['is_file'] = 1;
+            //图片文件
+            if ($val['is_image']) {
+                $data['list']['list'][$key]['file'] = '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '">';
+                $data['list']['list'][$key]['size_str_diy'] = '&nbsp;-&nbsp;' . $val['image_width'] . '×' . $val['image_height'] . 'px';
+            } else {//非图片文件
+                $data['list']['list'][$key]['file'] = '<img title="' . $val['client_name'] . '" data-src="holder.js/100px80?theme=primary&text=File type is ' . $val['ext'] . '">';
+                $data['list']['list'][$key]['size_str_diy'] = '';
             }
             $data['list']['list'][$key]['size'] = format_bytes($val['size'] * 1024);
         }

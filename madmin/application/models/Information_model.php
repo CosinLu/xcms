@@ -23,7 +23,7 @@ class Information_model extends MY_Model
         $this->db->select('t.*');
         $this->db->select('t1.sys_ctrl');
         $this->db->from('info_col as t');
-        $this->db->join('info_type as t1', 't1.id=t.info_type_id', 'left');
+        $this->db->join('sys_tpl as t1', 't1.id=t.sys_tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
@@ -31,13 +31,13 @@ class Information_model extends MY_Model
         return $res;
     }
 
-    //获得当前栏目的信息类型标识
-    public function info_type_id()
+    //获得当前栏目的模板类型标识
+    public function sys_tpl_id()
     {
-        $this->db->select('info_type_id');
+        $this->db->select('sys_tpl_id');
         $this->db->where(array('id' => $this->cid));
         $res = $this->db->get('info_col')->row_array();
-        return $res['info_type_id'];
+        return $res['sys_tpl_id'];
     }
 
 }

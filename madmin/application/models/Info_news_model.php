@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_article_model extends MY_Model
+class Info_news_model extends MY_Model
 {
     protected $cid;
 
@@ -20,17 +20,17 @@ class Info_article_model extends MY_Model
     //获得列表
     public function get_list()
     {
-        $parent_id_arr = $this->category->children_id(array(), $this->cid, TRUE);
+        $children_id_arr = $this->category->children_id(array(), $this->cid, TRUE);
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_article as t');
+        $this->db->from('info_news as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
-        $this->db->where_in('t.cid', $parent_id_arr);
+        $this->db->where_in('t.cid', $children_id_arr);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
@@ -48,7 +48,7 @@ class Info_article_model extends MY_Model
     {
         $id = $this->input->get('id');
         $this->db->where('id', $id);
-        $res = $this->db->get('info_article')->row_array();
+        $res = $this->db->get('info_news')->row_array();
         return $res;
     }
 
@@ -56,21 +56,20 @@ class Info_article_model extends MY_Model
     public function save()
     {
         $id = $this->input->post('id');
-        $image = $this->input->post('image');
         $vals = array(
             'cid' => $this->input->post('cid'),
             'title' => $this->input->post('title'),
-            'image' => (!empty($image)) ? implode(',', $image) : '',
+            'summary' => $this->input->post('summary'),
+            'target' => $this->input->post('target'),
             'display' => $this->input->post('display'),
-            'remark' => $this->input->post('remark'),
             'sort' => $this->input->post('sort'),
             'content' => $this->input->post('content'),
             'update_time' => time(),
         );
         if ($id) {
-            $bool = $this->db->where('id', $id)->update('info_article', $vals);
+            $bool = $this->db->where('id', $id)->update('info_news', $vals);
         } else {
-            $bool = $this->db->insert('info_article', $vals);
+            $bool = $this->db->insert('info_news', $vals);
         }
         return $bool;
     }

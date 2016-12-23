@@ -35,31 +35,33 @@ class Sys_log
      */
     public function insert($col_name = '', $opera_code = '', $status = '')
     {
-        switch ($opera_code) {
-            case '1':
-                $opera = 'insert';
-                break;
-            case '2':
-                $opera = 'update';
-                break;
-            case '3':
-                $opera = 'del';
-                break;
+        if (ENVIRONMENT != 'development') {
+            switch ($opera_code) {
+                case '1':
+                    $opera = 'insert';
+                    break;
+                case '2':
+                    $opera = 'update';
+                    break;
+                case '3':
+                    $opera = 'del';
+                    break;
+            }
+            $vals = array(
+                'user_id' => $this->user_id,
+                'username' => $this->username,
+                'col_name' => $col_name,
+                'opera' => $opera,
+                'status' => ($status) ? 'success' : 'fail',
+                'browser' => $this->browser,
+                'version' => $this->version,
+                'platform' => $this->platform,
+                'hostname' => gethostbyaddr($_SERVER['REMOTE_ADDR']),
+                'ip' => $this->ip,
+                'time' => time()
+            );
+            $this->CI->db->insert('sys_log', $vals);
         }
-        $vals = array(
-            'user_id' => $this->user_id,
-            'username' => $this->username,
-            'col_name' => $col_name,
-            'opera' => $opera,
-            'status' => ($status) ? 'success' : 'fail',
-            'browser' => $this->browser,
-            'version' => $this->version,
-            'platform' => $this->platform,
-            'hostname' => gethostbyaddr($_SERVER['REMOTE_ADDR']),
-            'ip' => $this->ip,
-            'time' => time()
-        );
-        $this->CI->db->insert('sys_log', $vals);
     }
 
 

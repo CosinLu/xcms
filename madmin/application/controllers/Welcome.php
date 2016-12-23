@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:32
  */
-class Home extends MY_Controller
+class Welcome extends MY_Controller
 {
     public function __construct()
     {
@@ -22,7 +22,8 @@ class Home extends MY_Controller
         $data['last_login_ip'] = ($this->session->sys_session['last_login_ip']) ?: '-';
         $data['server_info'] = $_SERVER['SERVER_SOFTWARE'];
         $data['operating_system'] = PHP_OS;
-        $this->load->view('home/home.html', $data);
+        $data['server_name'] = $_SERVER['SERVER_NAME'];
+        $this->load->view('welcome/welcome.html', $data);
     }
 
 }

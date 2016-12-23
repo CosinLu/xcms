@@ -35,7 +35,7 @@
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         , toolbars: [[
             'fullscreen', 'source', 'undo', 'redo',
-            'bold', 'italic', 'underline', /*'fontborder',*/ 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist',  'cleardoc',
+            'bold', 'italic', 'underline', /*'fontborder',*/ 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'cleardoc',
             /*'rowspacingtop', 'rowspacingbottom',*/ 'lineheight',
             'customstyle', 'paragraph', 'fontfamily', 'fontsize',
             /*'directionalityltr', 'directionalityrtl', 'indent',*/
@@ -61,14 +61,13 @@
         //,theme:'default'
         //,themePath:URL +"themes/"
 
-        ,zIndex : 99999     //编辑器层级的基数,默认是900
+        , zIndex: 99999     //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
         //,charset:"utf-8"
 
         //若实例化编辑器的页面手动修改的domain，此处需要设置为true
         //,customDomain:false
-
         //常用配置项目
         //,isShow : true    //默认显示编辑器
 
@@ -81,16 +80,16 @@
         //,focus:false //初始化时，是否让编辑器获得焦点true或false
 
         //如果自定义，最好给p标签如下的行高，要不输入中文时，会有跳动感
-        ,initialStyle:'*{font-size:14px;font-family:Microsoft YaHei,arial}'//编辑器层级的基数,可以用来改变字体等
+        , initialStyle: '*{font-size:14px;font-family:Microsoft YaHei,arial}'//编辑器层级的基数,可以用来改变字体等
 
-        ,iframeCssUrl: URL + '/themes/iframe.css' //给编辑器内部引入一个css文件
+        , iframeCssUrl: URL + '/themes/iframe.css' //给编辑器内部引入一个css文件
 
         //indentValue
         //首行缩进距离,默认是2em
         //,indentValue:'2em'
 
         //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        ,initialFrameHeight:350  //初始化编辑器高度,默认320
+        , initialFrameHeight: 350  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
@@ -105,7 +104,7 @@
 
         //,imagePopup:true      //图片操作的浮层开关，默认打开
 
-        ,autoSyncData:false //自动同步编辑器要提交的数据
+        , autoSyncData: false //自动同步编辑器要提交的数据
         //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
         //粘贴只保留标签，去除标签所有属性
@@ -171,29 +170,29 @@
         //}
         //,listDefaultPaddingLeft : '30'//默认的左边缩进的基数倍
         //,listiconpath : 'http://bs.baidu.com/listicon/'//自定义标号的路径
-        ,maxListLevel : -1 //限制可以tab的级数, 设置-1为不限制
+        , maxListLevel: -1 //限制可以tab的级数, 设置-1为不限制
 
         //,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签
 
         //fontfamily
         //字体设置 label留空支持多语言自动切换，若配置，则以配置值为准
-        ,'fontfamily':[
-           { label:'',name:'songti',val:'宋体,SimSun'},
-           { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
-           { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
-           { label:'',name:'heiti',val:'黑体, SimHei'},
-           //{ label:'',name:'lishu',val:'隶书, SimLi'},
-           { label:'',name:'andaleMono',val:'andale mono'},
-           { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
-           { label:'',name:'arialBlack',val:'arial black,avant garde'},
-           { label:'',name:'comicSansMs',val:'comic sans ms'},
-           { label:'',name:'impact',val:'impact,chicago'},
-           { label:'',name:'timesNewRoman',val:'times new roman'}
+        , 'fontfamily': [
+            {label: '', name: 'songti', val: '宋体,SimSun'},
+            {label: '', name: 'kaiti', val: '楷体,楷体_GB2312, SimKai'},
+            {label: '', name: 'yahei', val: '微软雅黑,Microsoft YaHei'},
+            {label: '', name: 'heiti', val: '黑体, SimHei'},
+            //{ label:'',name:'lishu',val:'隶书, SimLi'},
+            {label: '', name: 'andaleMono', val: 'andale mono'},
+            {label: '', name: 'arial', val: 'arial, helvetica,sans-serif'},
+            {label: '', name: 'arialBlack', val: 'arial black,avant garde'},
+            {label: '', name: 'comicSansMs', val: 'comic sans ms'},
+            {label: '', name: 'impact', val: 'impact,chicago'},
+            {label: '', name: 'timesNewRoman', val: 'times new roman'}
         ]
 
         //fontsize
         //字号
-        ,'fontsize':[12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]
+        , 'fontsize': [12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]
 
         //paragraph
         //段落格式 值留空时支持多语言自动识别，若配置，则以配置值为准
@@ -247,10 +246,10 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        ,elementPathEnabled : false
+        , elementPathEnabled: false
 
         //wordCount
-        ,wordCount:false          //是否开启字数统计
+        , wordCount: false          //是否开启字数统计
         //,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
@@ -277,7 +276,7 @@
 
         //autoHeightEnabled
         // 是否自动长高,默认true
-        ,autoHeightEnabled:false
+        , autoHeightEnabled: false
 
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
@@ -295,33 +294,33 @@
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_
-        ,pageBreakTag:'_editor_page_break_tag_'
+        , pageBreakTag: '_editor_page_break_tag_'
 
         //autotypeset
         //自动排版参数
-        ,autotypeset: {
-           mergeEmptyline: true,           //合并空行
-           removeClass: true,              //去掉冗余的class
-           removeEmptyline: true,         //去掉空行
-           textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
-           imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
-           pasteFilter: true,             //根据规则过滤没事粘贴进来的内容
-           clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
-           clearFontFamily: true,         //去掉所有的内嵌字体，使用编辑器默认的字体
-           removeEmptyNode: true,         // 去掉空节点
-           //可以去掉的标签
-           removeTagNames: {标签名字:1},
-           indent: false,                  // 行首缩进
-           indentValue : '2em',            //行首缩进的大小
-           bdc2sb: false,
-           tobdc: false
+        , autotypeset: {
+            mergeEmptyline: true,           //合并空行
+            removeClass: true,              //去掉冗余的class
+            removeEmptyline: true,         //去掉空行
+            textAlign: "left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+            imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+            pasteFilter: true,             //根据规则过滤没事粘贴进来的内容
+            clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+            clearFontFamily: true,         //去掉所有的内嵌字体，使用编辑器默认的字体
+            removeEmptyNode: true,         // 去掉空节点
+            //可以去掉的标签
+            removeTagNames: {标签名字: 1},
+            indent: false,                  // 行首缩进
+            indentValue: '2em',            //行首缩进的大小
+            bdc2sb: false,
+            tobdc: false
         }
 
         //tableDragable
         //表格是否可以拖拽
         //,tableDragable: true
 
-        ,disabledTableInTable:false  //禁止表格嵌套
+        , disabledTableInTable: false  //禁止表格嵌套
 
         //sourceEditor
         //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
@@ -355,7 +354,7 @@
 
         var configPath = document.getElementsByTagName('script');
 
-        return configPath[ configPath.length - 1 ].src;
+        return configPath[configPath.length - 1].src;
 
     }
 
@@ -382,7 +381,7 @@
 
     function optimizationPath(path) {
 
-        var protocol = /^[a-z]+:\/\//.exec(path)[ 0 ],
+        var protocol = /^[a-z]+:\/\//.exec(path)[0],
             tmp = null,
             res = [];
 
@@ -390,7 +389,7 @@
 
         path = path.replace(/\\/g, '/').split(/\//);
 
-        path[ path.length - 1 ] = "";
+        path[path.length - 1] = "";
 
         while (path.length) {
 

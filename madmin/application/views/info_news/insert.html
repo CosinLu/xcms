@@ -35,7 +35,6 @@
             <div class="container-fluid section_container">
                 <div class="row form_container">
                     <form class="form-horizontal" action="<?=$save_url?>" method="post">
-                        <input type="hidden" name="id" value="<?=$item['id']?>">
                         <div class="form-group">
                             <div class="col-xs-2 control-label">所属栏目</div>
                             <div class="col-xs-3">
@@ -45,26 +44,25 @@
                         <div class="form-group">
                             <div class="col-xs-2 control-label">标题</div>
                             <div class="col-xs-8">
-                                <input type="text" name="title" value="<?=$item['title']?>" class="form-control">
+                                <input type="text" name="title" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-2 control-label">图片</div>
+                            <div class="col-xs-2 control-label">摘要</div>
                             <div class="col-xs-8">
-                                <button type="button" data-name="uploadonline" data-multi="false" name="image"
-                                        class="btn btn-info">在线浏览
-                                </button>
-                                <input data-name="uploadifive" data-multi="false" name="image" type="file">
-                                <div id="uploadifive-image-queue" class="row uploadifive-queue">
-                                    <?=$image?>
-                                </div>
+                                <textarea name="summary" rows="3" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-2 control-label">内容</div>
                             <div class="col-xs-8">
-                                <script id="content" data-name="editor" name="content"
-                                        type="text/plain"><?=$item['content']?></script>
+                                <script id="content" data-name="editor" name="content" type="text/plain"></script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-2 control-label">打开方式</div>
+                            <div class="col-xs-5 radio">
+                                <?=$target?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,13 +74,14 @@
                         <div class="form-group">
                             <div class="col-xs-2 control-label">排序</div>
                             <div class="col-xs-2">
-                                <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
+                                <input type="text" name="sort" value="100" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-8">
                                 <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">保存
                                 </button>
+                                <button type="submit" name="is_save" value="2" class="btn btn-default">保存并新增</button>
                             </div>
                         </div>
                     </form>
@@ -95,14 +94,10 @@
 <script type="text/javascript" src="plugin/jquery.min.js"></script>
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
-<script type="text/javascript" src="plugin/jqthumb.min.js"></script>
-<script type="text/javascript" src="plugin/holder.min.js"></script>
 <script type="text/javascript" src="plugin/layer/js/layer.js"></script>
 <script type="text/javascript" src="plugin/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="plugin/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript" src="plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="plugin/uploadifive/js/jquery.uploadifive.me.js"></script>
-<script type="text/javascript" src="plugin/uploadifive/js/do_uploadifive.js"></script>
 <script type="text/javascript" src="plugin/common.js"></script>
 </body>
 </html>
