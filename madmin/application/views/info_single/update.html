@@ -7,12 +7,7 @@
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugin/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="plugin/mtree/css/mtree.css">
     <link rel="stylesheet" href="css/style.css">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="plugin/html5shiv.min.js"></script>
-    <script type="text/javascript" src="plugin/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <?php require_once(VIEWPATH.'include/header.html');?>
@@ -33,7 +28,8 @@
             </div>
             <div class="container-fluid section_container">
                 <div class="row form_container">
-                    <form class="form-horizontal" action="<?=$save_url?>" method="post">
+                    <form class="form-horizontal" id="myform" data-form="ajaxForm" action="<?=$save_url?>"
+                          method="post">
                         <input type="hidden" name="cid" value="<?=$item['id']?>">
                         <div class="form-group">
                             <div class="col-xs-2 control-label">名称</div>
@@ -66,12 +62,14 @@
     </div>
 </div>
 
-<script type="text/javascript" src="plugin/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="plugin/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript" src="plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="plugin/common.js"></script>
+<script type="text/javascript" src="plugin/jquery.form.min.js"></script>
+<script type="text/javascript" src="plugin/layer/layer.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>

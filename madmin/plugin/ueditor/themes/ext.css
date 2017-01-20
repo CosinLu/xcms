@@ -1,6 +1,6 @@
 /*可以在这里添加你自己的css*/
 * {
-    font-family: FontAwesome, 'PingFang SC', Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+    font-family: FontAwesome, Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
 }
 
 .edui-default .edui-editor {
@@ -477,7 +477,8 @@
 }
 
 .edui-default .edui-for-insertimage .edui-icon:before {
-    content: "\f00a"
+    /*content: "\f00a"*/
+    content: "\f03e"
 }
 
 .edui-default .edui-for-insertframe .edui-icon:before {

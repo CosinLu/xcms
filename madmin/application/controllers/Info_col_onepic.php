@@ -55,17 +55,21 @@ class Info_col_onepic extends MY_Controller
     {
         $bool = $this->info_col_onepic->save();
         $this->sys_log->insert($this->section_name, '2', $bool);//日志
+        $config['icon'] = 1;
+        $config['url'] = site_url('info_col_onepic?sys_cid=' . $this->sys_cid);
         if ($bool) {
             switch ($this->is_save) {
                 case '1':
-                    $this->prompt->success('操作成功！', site_url('info_col_onepic?sys_cid=' . $this->sys_cid));
+                    echo json_encode($config);
                     break;
                 case '2':
-                    $this->prompt->success('操作成功！', $this->peferer);
+                    $config['url'] = $this->peferer;
+                    echo json_encode($config);
                     break;
             }
         } else {
-            $this->prompt->error('操作失败！', site_url('info_col_onepic?sys_cid=' . $this->sys_cid));
+            $config['icon'] = 2;
+            echo json_encode($config);
         }
     }
 

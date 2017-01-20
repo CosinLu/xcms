@@ -76,17 +76,21 @@ class Info_cases extends Information
     {
         $bool = $this->info_cases->save();
         $this->sys_log->insert($this->main_section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        $config['icon'] = 1;
+        $config['url'] = site_url('info_cases?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         if ($bool) {
             switch ($this->is_save) {
                 case '1':
-                    $this->prompt->success('操作成功！', site_url('info_cases?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
+                    echo json_encode($config);
                     break;
                 case '2':
-                    $this->prompt->success('操作成功！', $this->peferer);
+                    $config['url'] = $this->peferer;
+                    echo json_encode($config);
                     break;
             }
         } else {
-            $this->prompt->error('操作失败！', site_url('info_cases?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
+            $config['icon'] = 2;
+            echo json_encode($config);
         }
     }
 

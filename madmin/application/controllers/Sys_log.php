@@ -40,37 +40,4 @@ class Sys_log extends MY_Controller
         echo json_encode($data);
     }
 
-    //新增
-    public function insert()
-    {
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
-        $this->load->view('sys_log/insert.html', $data);
-    }
-
-    //更新
-    public function update()
-    {
-        $data['item'] = $this->sys_log->update();
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
-        $this->load->view('sys_log/update.html', $data);
-    }
-
-    //保存
-    public function save()
-    {
-        $bool = $this->sys_log->save();
-        if ($bool) {
-            switch ($this->is_save) {
-                case '1':
-                    $this->prompt->success('操作成功！', site_url('sys_log?sys_cid=' . $this->sys_cid));
-                    break;
-                case '2':
-                    $this->prompt->success('操作成功！', $this->peferer);
-                    break;
-            }
-        } else {
-            $this->prompt->error('操作失败！', site_url('sys_log?sys_cid=' . $this->sys_cid));
-        }
-    }
-
 }

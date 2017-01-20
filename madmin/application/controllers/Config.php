@@ -87,10 +87,13 @@ class Config extends MY_Controller
     {
         $rows = $this->config_model->save();
         $this->sys_log->insert($this->section_name, '2', 1);//日志
+        $config['icon'] = 1;
+        $config['url'] = site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id);
         if ($rows) {
-            $this->prompt->success('操作成功！', site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id));
+            echo json_encode($config);
         } else {
-            $this->prompt->error('操作失败！', site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id));
+            $config['icon'] = 2;
+            echo json_encode($config);
         }
     }
 

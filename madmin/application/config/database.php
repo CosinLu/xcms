@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-if(ENVIRONMENT=='development') {
+if (ENVIRONMENT == 'development') {
     $db['default'] = array(
         'dsn' => '',
         'hostname' => 'localhost',
@@ -95,7 +95,7 @@ if(ENVIRONMENT=='development') {
         'failover' => array(),
         'save_queries' => TRUE
     );
-}else {
+} else {
     $db['default'] = array(
         'dsn' => '',
         'hostname' => 'localhost',

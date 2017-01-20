@@ -48,33 +48,4 @@ class Sys_log_model extends MY_Model
         return $data;
     }
 
-    //更新
-    public function update()
-    {
-        $id = $this->input->get('id');
-        $this->db->where('id', $id);
-        $res = $this->db->get('sys_log')->row_array();
-        return $res;
-    }
-
-    //保存
-    public function save()
-    {
-        $id = $this->input->post('id');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'ctrl' => $this->input->post('ctrl'),
-            'sys_ctrl' => $this->input->post('sys_ctrl'),
-            'remark' => $this->input->post('remark'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('sys_log', $vals);
-        } else {
-            $bool = $this->db->insert('sys_log', $vals);
-        }
-        return $bool;
-    }
-
 }
