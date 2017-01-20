@@ -16,4 +16,7 @@ blockquote {
     font-size: 100%;
     background-color: #f1f1f1;
 }
-
+hr{
+    height: 0px;
+    border-top: none;
+}

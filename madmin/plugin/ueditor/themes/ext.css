@@ -1,6 +1,6 @@
 /*可以在这里添加你自己的css*/
 * {
-    font-family: FontAwesome, Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+    font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
 }
 
 .edui-default .edui-editor {
@@ -38,7 +38,6 @@
     text-align: center;
     line-height: 24px;
     font-size: 14px;
-    background-image: none;
 }
 
 .edui-default .edui-toolbar .edui-combox .edui-combox-body {
@@ -100,18 +99,9 @@
 .edui-default .edui-toolbar .edui-splitbutton-body .edui-arrow,
 .edui-default .edui-toolbar .edui-menubutton-body .edui-arrow,
 .edui-default .edui-toolbar .edui-combox-body .edui-arrow {
-    background: none;
-    height: auto;
-    line-height: 24px;
+    height: 24px;
     width: 12px;
     text-align: center;
-}
-
-.edui-default .edui-toolbar .edui-splitbutton-body .edui-arrow:before,
-.edui-default .edui-toolbar .edui-menubutton-body .edui-arrow:before,
-.edui-default .edui-toolbar .edui-combox-body .edui-arrow:before {
-    content: "\f0d7";
-    font-size: 12px;
 }
 
 .edui-default .edui-popup .edui-bordereraser,
@@ -185,11 +175,7 @@
     line-height: 24px;
     text-align: center;
     float: right;
-    background: none;
-}
-
-.edui-default .edui-hassubmenu .edui-arrow:before {
-    content: "\f0da"
+    background: url(default/images/icons.png) no-repeat;
 }
 
 .edui-default .edui-menuseparator {
@@ -213,7 +199,6 @@
     background: #fff;
     position: relative;
     cursor: move;
-    /*margin: 0 -1px;*/
 }
 
 .edui-default .edui-dialog-draghandle {
@@ -246,10 +231,6 @@
 
 .edui-default .edui-dialog-closebutton .edui-state-hover .edui-button-body {
     background: #eaedf1;
-}
-
-.edui-default .edui-dialog-closebutton .edui-button-body:before {
-    content: "\f00d";
 }
 
 .edui-default .edui-state-checked .edui-menuitem-body {
@@ -311,180 +292,158 @@
     text-align: center;
 }
 
-/*icon*/
-.edui-default .edui-for-source .edui-icon:before {
-    content: "\f121";
+.edui-default .edui-toolbar .edui-splitbutton-body .edui-arrow, .edui-default .edui-toolbar .edui-menubutton-body .edui-arrow {
+    background-position: -400px 2px;
 }
 
-.edui-default .edui-for-undo .edui-icon:before {
-    content: "\f0e2";
+.edui-default .edui-toolbar .edui-combox-body .edui-arrow {
+    background-position: -70px 4px;
 }
 
-.edui-default .edui-for-redo .edui-icon:before {
-    content: "\f01e";
+.edui-default .edui-hassubmenu .edui-arrow {
+    background-position: -438px 2px;
 }
 
-.edui-default .edui-for-bold .edui-icon:before {
-    content: "\f032"
+.edui-default .edui-for-source .edui-icon {
+    background-position: -570px 2px;
 }
 
-.edui-default .edui-for-italic .edui-icon:before {
-    content: "\f033"
+.edui-default .edui-for-undo .edui-icon {
+    background-position: 2px 2px;
 }
 
-.edui-default .edui-for-underline .edui-icon:before {
-    content: "\f0cd"
+.edui-default .edui-for-redo .edui-icon {
+    background-position: -152px -20px;
 }
 
-.edui-default .edui-for-strikethrough .edui-icon:before {
-    content: "\f0cc"
+.edui-default .edui-for-bold .edui-icon {
+    background-position: -372px 2px;
 }
 
-.edui-default .edui-for-superscript .edui-icon:before {
-    content: "\f12b"
+.edui-default .edui-for-italic .edui-icon {
+    background-position: -878px 2px;
 }
 
-.edui-default .edui-for-subscript .edui-icon:before {
-    content: "\f12c"
+.edui-default .edui-for-underline .edui-icon {
+    background-position: -218px 2px;
 }
 
-.edui-default .edui-for-removeformat .edui-icon:before {
-    content: "\f12d"
+.edui-default .edui-for-strikethrough .edui-icon {
+    background-position: -86px 2px;
 }
 
-.edui-default .edui-for-pasteplain .edui-icon:before {
-    content: "\f0f6"
+.edui-default .edui-for-superscript .edui-icon {
+    background-position: -130px 2px;
 }
 
-.edui-default .edui-for-forecolor .edui-icon:before {
-    content: "\f031"
+.edui-default .edui-for-subscript .edui-icon {
+    background-position: -108px 4px;
 }
 
-.edui-default .edui-for-insertorderedlist .edui-icon:before {
-    content: "\f0cb"
+.edui-default .edui-for-removeformat .edui-icon {
+    background-position: -679px 2px;
 }
 
-.edui-default .edui-for-insertunorderedlist .edui-icon:before {
-    content: "\f0ca"
+.edui-default .edui-for-formatmatch .edui-icon {
+    background-position: -86px -20px;
 }
 
-.edui-default .edui-for-cleardoc .edui-icon:before {
-    content: "\f016"
+.edui-default .edui-for-autotypeset .edui-icon {
+    background-position: -944px 1px;
 }
 
-.edui-default .edui-for-lineheight .edui-icon:before {
-    content: "\f034"
+.edui-default .edui-for-blockquote .edui-icon {
+    background-position: -130px -20px;
 }
 
-.edui-default .edui-for-fullscreen .edui-icon:before {
-    content: "\f0b2"
+.edui-default .edui-for-pasteplain .edui-icon {
+    background-position: -768px 2px;
 }
 
-.edui-default .edui-for-simpleupload .edui-icon:before {
-    content: "\f03e"
+.edui-default .edui-for-forecolor .edui-icon {
+    background-position: -812px 2px;
 }
 
-.edui-default .edui-for-justifyleft .edui-icon:before {
-    content: "\f036"
+.edui-default .edui-for-backcolor .edui-icon {
+    background-position: -196px 1px;
 }
 
-.edui-default .edui-for-justifycenter .edui-icon:before {
-    content: "\f037"
+.edui-default .edui-for-insertorderedlist .edui-icon {
+    background-position: -900px 2px;
 }
 
-.edui-default .edui-for-justifyright .edui-icon:before {
-    content: "\f038"
+.edui-default .edui-for-insertunorderedlist .edui-icon {
+    background-position: -922px 2px;
 }
 
-.edui-default .edui-for-justifyjustify .edui-icon:before {
-    content: "\f039"
+.edui-default .edui-for-cleardoc .edui-icon {
+    background-position: -746px 2px;
 }
 
-.edui-default .edui-for-link .edui-icon:before {
-    content: "\f0c1"
+.edui-default .edui-for-lineheight .edui-icon {
+    background-position: -174px 2px;
 }
 
-.edui-default .edui-for-unlink .edui-icon:before {
-    content: "\f127"
+.edui-default .edui-for-fullscreen .edui-icon {
+    background-position: -350px 2px;
 }
 
-.edui-default .edui-for-imageleft .edui-icon:before {
-    content: "\f03b"
+.edui-default .edui-for-justifyleft .edui-icon {
+    background-position: -284px 2px;
 }
 
-.edui-default .edui-for-imageright .edui-icon:before {
-    content: "\f03c"
+.edui-default .edui-for-justifycenter .edui-icon {
+    background-position: -240px 2px;
 }
 
-.edui-default .edui-for-music .edui-icon:before {
-    content: "\f001"
+.edui-default .edui-for-justifyright .edui-icon {
+    background-position: -306px 2px;
 }
 
-.edui-default .edui-for-insertvideo .edui-icon:before {
-    content: "\f03d"
+.edui-default .edui-for-justifyjustify .edui-icon {
+    background-position: -262px 2px;
 }
 
-.edui-default .edui-for-print .edui-icon:before {
-    content: "\f02f"
+.edui-default .edui-for-link .edui-icon {
+    background-position: -482px 2px;
 }
 
-.edui-default .edui-for-searchreplace .edui-icon:before {
-    content: "\f002"
+.edui-default .edui-for-unlink .edui-icon {
+    background-position: -503px 2px;
 }
 
-.edui-default .edui-for-drafts .edui-icon:before {
-    content: "\f1b2"
+.edui-default .edui-for-anchor .edui-icon {
+    background-position: -328px 2px;
 }
 
-.edui-default .edui-for-backcolor .edui-icon:before {
-    content: "\f043"
+.edui-default .edui-for-insertimage .edui-icon {
+    background-position: -835px 2px;
 }
 
-.edui-default .edui-for-formatmatch .edui-icon:before {
-    content: "\f1fc"
+.edui-default .edui-for-attachment .edui-icon {
+    background-position: -109px -20px;
 }
 
-.edui-default .edui-for-inserttable .edui-icon:before {
-    content: "\f0ce"
+.edui-default .edui-for-map .edui-icon {
+    background-position: -966px 2px;
 }
 
-.edui-default .edui-for-autotypeset .edui-icon:before {
-    content: "\f0d0"
+.edui-default .edui-for-insertframe .edui-icon {
+    background-position: -593px 2px;
 }
 
-.edui-default .edui-for-horizontal .edui-icon:before {
-    content: "\f068"
+.edui-default .edui-for-pagebreak .edui-icon {
+    background-position: -548px 2px;
 }
 
-.edui-default .edui-for-anchor .edui-icon:before {
-    content: "\f13d"
+.edui-default .edui-for-horizontal .edui-icon {
+    background-position: -64px -20px;
 }
 
-.edui-default .edui-for-map .edui-icon:before {
-    content: "\f279"
+.edui-default .edui-for-inserttable .edui-icon {
+    background-position: -151px 2px;
 }
 
-.edui-default .edui-for-attachment .edui-icon:before {
-    content: "\f0c6"
-}
-
-.edui-default .edui-for-blockquote .edui-icon:before {
-    content: "\f1dd"
-}
-
-.edui-default .edui-for-background .edui-icon:before {
-    content: "\f042"
-}
-
-.edui-default .edui-for-insertimage .edui-icon:before {
-    /*content: "\f00a"*/
-    content: "\f03e"
-}
-
-.edui-default .edui-for-insertframe .edui-icon:before {
-    content: "\f0db"
-}
-
-.edui-default .edui-for-pagebreak .edui-icon:before {
-    content: "\f24d"
+.edui-default .edui-for-print .edui-icon {
+    background-position: -174px -20px;
 }
