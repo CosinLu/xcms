@@ -1,14 +1,3 @@
-@font-face {
-    font-family: "layericon";
-    src: url('icon/iconfont.eot?t=1484889127735');
-    /* IE9*/
-    src: url('icon/iconfont.eot?t=1484889127735#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('icon/iconfont.woff?t=1484889127735') format('woff'), /* chrome, firefox */
-    url('icon/iconfont.ttf?t=1484889127735') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('icon/iconfont.svg?t=1484889127735#iconfont') format('svg');
-    /* iOS 4.1- */
-}
-
 body {
     font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
     font-size: 14px;
@@ -41,7 +30,7 @@ body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content {
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-padding {
-    padding-left: 65px;
+    padding-left: 60px;
 }
 
 body .layer-ext-bootcss .layui-layer-btn {
@@ -75,73 +64,36 @@ body .layer-ext-bootcss .layui-layer-btn a:active {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
-body .layer-ext-bootcss .layui-layer-ico {
-    background: transparent;
-    font-family: 'layericon' !important;
-    font-size: 36px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    line-height: 30px;
+body .layer-ext-bootcss .layui-layer-ico{
+    background: url("icon.png") no-repeat;
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico {
-    top: 18px;
-    width: 38px;
+    top: 14px;
+    width: 36px;
+    height:36px;
 }
 
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico:before,
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico1:before {
-    content: "\e622";
-    color: #5CB85C;
+body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico,
+body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico1 {
+    background-position: -1px 0;
 }
 
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico2:before {
-    content: "\e62a";
-    color: #D9534F;
+body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico2 {
+    background-position: -41px 0;
 }
 
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico3:before {
-    content: "\e626";
-    color: #337AB7;
+body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico3 {
+    background-position: -82px 0;
 }
 
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico4:before {
-    content: "\e621";
-    color: #F0AD4E;
+body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico4 {
+    background-position: -123px 0;
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico16 {
     background: url(loading-black.svg) no-repeat center;
     background-size: cover;
-}
-
-body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico.layui-layer-ico16 {
-    -webkit-animation: spin 1s infinite steps(8);
-    animation: spin 1s infinite steps(8);
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
-}
-
-@keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
 }
 
 body .layer-ext-bootcss .layui-layer-setwin {
@@ -150,15 +102,6 @@ body .layer-ext-bootcss .layui-layer-setwin {
 
 body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close1,
 body .layer-ext-bootcss .layui-layer-setwin a {
-    line-height: 16px;
-    color: #333;
-    text-decoration: none;
-    font-size: 12px;
-    font-family: 'layericon' !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     opacity: .5;
 }
 
@@ -166,26 +109,33 @@ body .layer-ext-bootcss .layui-layer-setwin a:hover {
     opacity: .8;
 }
 
-body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close1:before {
-    content: "\e61f";
-    font-size: 16px;
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close1 {
+    background-position: -2px -80px;
 }
 
-body .layer-ext-bootcss .layui-layer-setwin .layui-layer-max:before {
-    content: "\e62b";
-    line-height: 19px;
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close2{
+    right: -51px;
+    top: -13px;
+    width: 36px;
+    height: 36px;
+    background-position: -41px -42px;
+    opacity:1;
+}
+
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-max {
+    background-position: -77px -80px;
 }
 
 body .layer-ext-bootcss .layui-layer-setwin .layui-layer-min cite {
     display: none;
 }
 
-body .layer-ext-bootcss .layui-layer-setwin .layui-layer-min:before {
-    content: "\e62c";
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-min {
+    background: url("icon.png") no-repeat -26px -80px;
 }
 
-body .layer-ext-bootcss .layui-layer-setwin .layui-layer-maxmin:before {
-    content: "\e62d";
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-maxmin {
+    background-position: -52px -79px;
 }
 
 body .layer-ext-bootcss.layui-layer-msg {

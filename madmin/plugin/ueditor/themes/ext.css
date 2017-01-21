@@ -3,6 +3,10 @@
     font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
 }
 
+.edui-default .edui-dialog-modalmask {
+    background: #000;
+}
+
 .edui-default .edui-editor {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -184,13 +188,13 @@
 
 .edui-default .edui-dialog-shadow {
     background-color: #fff;
-    border: 1px solid #ccc;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
 }
 
 .edui-default .edui-dialog-titlebar {
@@ -221,16 +225,18 @@
 }
 
 .edui-default .edui-dialog-closebutton .edui-button-body {
-    background: none;
+    background: url("default/images/icons.png") no-repeat -196px -19px;
     width: 24px;
     height: 24px;
     line-height: 24px;
     text-align: center;
     margin: 2px 0 0 0;
+    opacity: .5;
 }
 
 .edui-default .edui-dialog-closebutton .edui-state-hover .edui-button-body {
-    background: #eaedf1;
+    background: #eaedf1 url("default/images/icons.png") no-repeat -196px -19px;
+    opacity: .8;
 }
 
 .edui-default .edui-state-checked .edui-menuitem-body {
