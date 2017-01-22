@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-12-30 12:21:41
+Date: 2017-01-22 18:45:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,7 +41,7 @@ INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '网站制作,网页�
 INSERT INTO `config` VALUES ('3', '描述', 'description', '轩宇网络工作室，打造行业领军品牌，高端网站建设', '1', 'textarea', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('4', '版权', 'copyright', '© Copyright 2015 轩宇网络 All Rights Reserved', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('6', '统计/商桥', 'count_code', '<script type=\"text/javascript\">\r\nvar cnzz_protocol = ((\"https:\" == document.location.protocol) ? \" https://\" : \" http://\");document.write(unescape(\"%3Cspan id=\'cnzz_stat_icon_1261011855\'%3E%3C/span%3E%3Cscript src=\'\" + cnzz_protocol + \"s95.cnzz.com/stat.php%3Fid%3D1261011855\' type=\'text/javascript\'%3E%3C/script%3E\"));\r\n</script>', '1', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('6', '统计/商桥', 'count_code', '<script type=\"text/javascript\">\nvar cnzz_protocol = ((\"https:\" == document.location.protocol) ? \" https://\" : \" http://\");document.write(unescape(\"%3Cspan id=\'cnzz_stat_icon_1261011855\'%3E%3C/span%3E%3Cscript src=\'\" + cnzz_protocol + \"s95.cnzz.com/stat.php%3Fid%3D1261011855\' type=\'text/javascript\'%3E%3C/script%3E\"));\n</script>', '1', 'textarea', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('7', '状态', 'status', '1', '2', 'radio', '1|正常,0|关闭', '', 'show', '100');
 INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', '2', 'textarea', '', '', 'show', '100');
 
@@ -109,7 +109,7 @@ CREATE TABLE `info_cases` (
 -- ----------------------------
 INSERT INTO `info_cases` VALUES ('1', '3', '德州三生设计工作室', '1', '4,6,5,2,7,3,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,23,25,27,26,28,29,30,31,32,33,34', 'http://www.sheji100.cn/', '_blank', '<p style=\"text-indent: 2em; text-align: left;\">三生设计工作室是专注于企业品牌形象建设与提升的专业设计机构。主创人员来自各大美院，拥有一线设计公司多年工作经验！一直以来我们以先进的设计理念与国际化视野，为客户创造了更具高度、更具审美、更具商业价值的作品，并积累了丰富的商业设计经验，被众多企业认可。我们坚信好的设计可以创造无限价值！</p>', '_blank', 'show', '100', null, null, '1482306361', null);
 INSERT INTO `info_cases` VALUES ('2', '3', '北京鑫洲隆源商贸有限公司', '35', '', 'http://www.dzxvip.com/', '_blank', '<p style=\"text-align: left; text-indent: 2em;\">&quot;北京鑫洲隆源商贸有限公司&quot;是一家通过实体店面和互联网相结合销售阳澄湖大闸蟹节日礼品、礼品卡的商贸公司。公司采取实体店和网络相结合的销售模式已经长达5年，借助于互联网这个平台，从事阳澄湖大闸蟹产品的订购、销售与服务的网站，拥有丰富的行业操作经验及互联网电子商务运营经验，有着极其完整的客户购买及用户体验系统。主打产品阳澄湖大闸蟹 、是阳澄湖大闸蟹行业上百品牌中的佼佼者。</p>', '_self', 'show', '100', null, null, '1482309077', null);
-INSERT INTO `info_cases` VALUES ('3', '3', '亨通（北京）文化传媒有限公司', '36', '', 'http://www.hengtongtv.com/', '_blank', '<p style=\"text-indent: 2em; text-align: left;\">亨通（北京）文化传媒有限公司，集品牌策划、创意、媒体为一体，在中国为国际及国内的知名客户提供全方位的广告服务。</p>', '_self', 'show', '100', null, null, '1482310812', null);
+INSERT INTO `info_cases` VALUES ('3', '3', '亨通（北京）文化传媒有限公司', '36', '', 'http://www.hengtongtv.com/', '_blank', null, '_self', 'show', '100', null, null, '1484810701', null);
 
 -- ----------------------------
 -- Table structure for info_col
@@ -139,7 +139,7 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
@@ -148,6 +148,7 @@ INSERT INTO `info_col` VALUES ('1', '案例', 'cases', '0', '1', '2', '', 'nopic
 INSERT INTO `info_col` VALUES ('2', '文章', 'news', '0', '1', '1', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0');
 INSERT INTO `info_col` VALUES ('3', '企业官网', 'website', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('4', '平台门户', 'workportal', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('5', '关于我们', '', '0', '1', '3', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -217,7 +218,7 @@ CREATE TABLE `info_news` (
 -- Records of info_news
 -- ----------------------------
 INSERT INTO `info_news` VALUES ('1', '2', '在2017年将会更加风行的6个Web开拓趋势', '每到岁尾，人们总爱好瞻望下一年，Web 开拓范畴也不例外。在 Web 开拓范畴，技巧革新的速率堪比光速，将来老是超乎咱们的设想，咱们只能尽本身所能做一些正当的猜测。', '<p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">每到岁尾，人们总爱好瞻望下一年，Web 开拓范畴也不例外。在 Web 开拓范畴，技巧革新的速率堪比光速，将来老是超乎咱们的设想，咱们只能尽本身所能做一些正当的猜测。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">如下是咱们必要存眷的一些趋势：</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">1、<span style=\"font-size: 16px;\">更加挪动优先</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/13180010d89b007df373\" img_width=\"500\" img_height=\"311\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">相应式计划明显是今朝 Web 开拓范畴的重要趋势之一，而且这一趋势还将连续一段时间。固然如今的相应式计划大部分还因此 PC 版优先，但是，假如有一天咱们把 PC 版放到比挪动版次要的地位上，也没什么猎奇异的。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">许多 Web 开拓者曾经开端转向以挪动优先计划来做他们的相应式计划和开拓。这意味一个重大转变，值得咱们跟进。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">2、<span style=\"font-size: 16px;\">更多应用疾速原型开拓对象</span></p><p style=\"text-align:center\"><img src=\"http://p9.pstatp.com/large/12d1000ec6e8d87be42c\" img_width=\"640\" img_height=\"480\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">咱们在 2016 年开端测验考试应用疾速原型开拓对象，而 2017 年将是这类技巧真正迸发的一年。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">“UXpin、Webflow、Invision 和别的许多疾速原型开拓对象，让计划师不消写一行代码，就能为网站和办事疾速创立低保真和高保真原型，便于计划师权衡它们的可用性和雅观性。” Web 计划师 Jamie Leeson says 如是说，“许多对象也容许你在阅读器中计划原型并从对象里真正启动网站本身。”</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">疾速原型对象的一个长处是它们能让开拓者/计划师与终极用户同时获益。两边可以或许提早对产物页面和交互杀青同等，防止了终极交付的产物和用户预期的不符。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">3、<span style=\"font-size: 16px;\">简化的 Web 计划</span></p><p style=\"text-align:center\"><img src=\"http://p2.pstatp.com/large/131a0010d4356e9e8402\" img_width=\"640\" img_height=\"440\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">在 2016 年，咱们看到简化的 Web 计划获得普遍承认。现实上极简计划成为大部分行业的重要趋势。在 2017 年，预期极简计划会继承风行，纵然有变更也是一些微小的转变。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">固然页面上留白将继承被认为是有代价的，然则也不消奇异有些网站开端回归到应用基于文本内容的笔墨添补。你可以或许找到更多类似于如许的网页，它们正当地结合了留白和文本，创造出一个视觉上简略，而信息内容很丰硕的网页，也带给用户很好的体验。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">4、<span style=\"font-size: 16px;\">更加看重人工智能</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/131b000dad68c5245dea\" img_width=\"640\" img_height=\"398\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">你曾经听说了人工智能（AI），然则你对 Web 计划和开拓中的人工智能认识吗？在 2017 年，咱们等待 Web 与 AI 的碰撞，带来更强大的网页，为网站主和用户同时带来代价。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">供给收集主机办事的 Wix，是这一范畴的领头羊。他们如今供给了一个进程来扣问用户一些成绩，而后应用一个基于 AI 的平台依据用户的答复供给给用户最相符他们必要的 Web 计划。这异常酷，值得一看。</p><p style=\"text-align:center\"><img src=\"http://p1.pstatp.com/large/13170010dd80543a1019\" img_width=\"640\" img_height=\"414\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">5、<span style=\"font-size: 16px;\">更多单页站点</span></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">如今不风行那种有各类 Tab 页和许多子页面的网站了。在 2017 年，你可以或许等待看到更多的单页站点。因为用户更爱好用滚屏方法阅读网页，各公司将会惹起看重并结束浪费时间在计划和开拓用户不爱好的层层相套的子页面上。这一趋势将简化互联网并带来更迷人和身临其境的网页阅读体验，每个人都邑感觉到愉悦。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">6、<span style=\"font-size: 16px;\">虚拟现实</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/12cb0009b8cc3b69d3fb\" img_width=\"640\" img_height=\"428\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">假如要评论辩论 2017 年技巧趋势，怎能不提到虚拟现实（VR）？2017 年将是 VR 成为主流的一年，这意味着 Web 开拓者将经由过程 VR 来吸引用户。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">咱们曾经看到一些公司好比 Mozilla 和 Google 投资开拓 VR 与 Web 之间的 API。愈来愈多的 VR 应用程序将在接下来的几个月里相继问世，以是假如看到愈来愈多的虚拟现实元素出如今 Web 上，也别感到奇异。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">7、<span style=\"font-size: 16px;\">总结</span></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">当你开端做 2017 年的名目时，将这些 Web 趋势铭刻于心。整体的现实是在接下来几个月里，许多器械都邑迎来成长和变更。多往前看一步，你可以或许确保你老是立足于潮水之巅。</p>', '_self', 'show', '100', null, null, '1482225575', null);
-INSERT INTO `info_news` VALUES ('2', '2', 'HTML5、多边平台，企业不死的两个互联网机遇', '11月底，Facebook Messenger推出H5游戏平台Instant Games，首批放出17个H5游戏（包括吃豆人、太空侵入者等）。从现在起，Facebook用户可以在聊天时发起即时游戏，并', '<p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/12ce0010e8168e3e4eef\" img_width=\"800\" img_height=\"540\" alt=\"HTML5、多边平台，企业不死的两个互联网机遇\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">11月底，Facebook Messenger推出H5游戏平台Instant Games，首批放出17个H5游戏（包含吃豆人、太空侵入者等）。从如今起，Facebook用户能够在聊地利提议即时游戏，并和石友停止竞争排名。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">感到这个场景素昧平生？就和前段时间人人爱在微信同伙圈玩打飞机，比谁分数高同样的事理，只是游戏变“轻”了，再也不需要下载装置。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">同期，业界哄传腾讯、阿里巴巴要进军H5手游范畴。前者筹划凋谢微信/QQ作为进口，后者将贡献出付出宝作为进口。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">你能够越看越不懂，为甚么这些平台都要蹭H5这个热门？</p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/132a0001e60e75979661\" img_width=\"514\" img_height=\"290\" alt=\"HTML5、多边平台，企业不死的两个互联网机遇\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">截图出自Facebook Instant Games鼓吹视频</p><h2 style=\"margin: 1em 0px 0px; padding: 0px; font-weight: 500; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">1、HTML5，平台创新的机遇</h2><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">依据SimilarWeb最新的环球网站排名数据，今朝世界排名前十的网站依次为：google（搜索引擎）、Facebook（交际平台）、Youtube（视频平台）、雅虎（新闻媒体平台）、VK（交际平台）、维基百科（收集百科）、instagram（交际平台）、亚马逊（电商平台）、Live.com（办公办事）、Twitter（交际平台）。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">十个平台，无一破例把网站做成为了产物。此中，两个破例值得注意：</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">（1）除俄罗斯的VK.com，其余网站用的都是HTML5尺度。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">实在估量VK也快了，由于本年11月起就有许多人反应只需关上VK的视频，苹果手机就会宕机！</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">早年在乔布斯的授意下，苹果装备不停对Flash不友好（重要由于Flash对电池的消耗大与存在安全漏洞）。而近期苹果浏览器Safari又加大对Flash的限定力度，给迟迟不转型的互联网平台棒头一击。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">除Safari外，本年googleChrome、微软Edge等浏览器巨擘，也时时传出要周全屏障Flash，转而支撑HTML5尺度的新闻。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">以是，HTML5究竟有甚么魔力？</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">（2）除微软旗下的Live.com，其余企业都是靠它们的网站名声大噪的。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">你能够没听说过Live.com，实在它便是把Word、Excel、Powerpoint等系列办公软件的功效搭建为一个HTML5网站，让咱们不需要下载几个G的装置包，也能利用雷同的办事。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">曩昔这类Web利用办事，少说也需要下载几个插件能力在浏览器上完成。但HTML5尺度分歧，它界说了许多新的标志和属性，并供给各类强大的利用接口，而后把衬着网页的职责交给浏览器。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">是以，有了浏览器的支撑，通俗网页也能供给利用程序的功效，并经由过程开辟上的设置装备摆设顺应分歧类型的装备。简略地说，HTML5让浏览器成为了一个超等体系。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">除网站，平台还包含PC软件、挪动APP等情势，好比称霸环球的APP Store。但为了让平台办事的获得更简便、快捷，加之互联网成长的大势所趋，利用HTML5供给云端办事是不可避免的。</p><h2 style=\"margin: 1em 0px 0px; padding: 0px; font-weight: 500; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">2、平台多边化，传统企业进军的契机</h2><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">后面提到的各类平台，似乎没传统制造业甚么事，缘故原由有二：</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">（1）平台是收集化、凋谢的。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">传统财产的品牌专无意识太强。你不会去叫万达开一个视频平台，同时卖华谊的影视资本；你也不会让万科去开房地产交易平台，同时卖保利、绿地的楼盘。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">（2）平台的构建，需要开辟者思想。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">如今把平台玩好的企业，平日创始人不是学技巧出生便是很懂得技巧。他们从技巧的角度思虑产物的功效和体验，能力让用户不请自来。好比昔日头条，假如张一鸣不是码农出生，怎样想出这么完美的个性化保举机制？</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">那末，传统财产处于甚么地位？</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">环球经济团体主席David S. Evans和董事Richard Schmalensee克日出了本旧书《Matchmakers: The New Economics of Multisided Platforms》，深刻浅出地先容了多边平台下的新经济。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">书中有一个紧张概念：</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">和传统企业分歧，多边平台其实不追求商品销售的最大好处化，而是经由过程勉励主顾介入，让用户间的接洽发生代价。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">甚么接洽？</p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/132a0001e60f393c68d1\" img_width=\"800\" img_height=\"608\" alt=\"HTML5、多边平台，企业不死的两个互联网机遇\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">下面是H5告白业内一位小有名气的自力设计师，在对象平台iH5上的小我主页。你会看到他的小我先容异常简略，一句“价钱15k起步”，先容下方是他设计过的案例制品。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">对付企业而言，那行先容阁下谁人按钮“发送私信”，便是树立接洽的进口。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">平台开辟业余的制造对象，招徕优良的设计师用户；而后把设计师资本经由过程作品展示的情势凋谢，吸引有需要的企业或告白代理商追求互助。这便是典型的双边平台情势，制造现金流的贸易用户、利用对象的设计师用户，各占一边、缺一不可。</p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/12ce0010e8181f37b884\" img_width=\"752\" img_height=\"502\" alt=\"HTML5、多边平台，企业不死的两个互联网机遇\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">繁杂些的，另有阿里巴巴的三边情势，经由过程淘宝、天猫、聚划算、环球速卖通、阿里巴巴等网站，为买家、批发卖家、批发卖家办事。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">已有的传统企业在这些平台眼中，便是用户；但这些五花八门的平台，对付企业也是一个个市场机遇。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">固然，假如企业能够找到所临盆的商品与用户的需要点，创造出新的“商品”，也能本身制造多边平台。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">近一点的，好比摩拜单车实在本应是自行车行业激发的反动，本身临盆自行车，利用平台租赁。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">远一点的，好比将来的3D打印机厂商，本身临盆打印机，就有需要扶植3D打印文件的交易平台。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">以是，对付大部分传统企业而言，所要做的不是盲目地自建平台，而是应当对分歧平台停止调研，实时进入。同时，HTML5充足简便、快捷的特色，也是这些企业掌握新型平台的紧张市场机遇。</p>', '_self', 'show', '100', null, null, '1482224999', null);
+INSERT INTO `info_news` VALUES ('2', '2', 'HTML5、多边平台，企业不死的两个互联网机遇', '11月底，Facebook Messenger推出H5游戏平台Instant Games，首批放出17个H5游戏（包括吃豆人、太空侵入者等）。从现在起，Facebook用户可以在聊天时发起即时游戏，并', '', '_self', 'show', '100', null, null, '1485078219', null);
 
 -- ----------------------------
 -- Table structure for info_single
@@ -237,34 +238,7 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-
--- ----------------------------
--- Table structure for info_type_copy
--- ----------------------------
-DROP TABLE IF EXISTS `info_type_copy`;
-CREATE TABLE `info_type_copy` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `list_ctrl` varchar(20) DEFAULT NULL COMMENT '列表页控制器',
-  `list_method` varchar(20) DEFAULT NULL COMMENT '列表页方法',
-  `show_ctrl` varchar(20) DEFAULT NULL COMMENT '详情页控制器',
-  `show_method` varchar(20) DEFAULT NULL COMMENT '详情页方法',
-  `sys_ctrl` varchar(20) DEFAULT NULL COMMENT '系统控制器',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息类型表';
-
--- ----------------------------
--- Records of info_type_copy
--- ----------------------------
-INSERT INTO `info_type_copy` VALUES ('1', '文章', 'news', 'lists', 'news', 'show', 'info_news', '', 'show', '100', null, null, null, null);
-INSERT INTO `info_type_copy` VALUES ('2', '案例', 'cases', 'lists', 'cases', 'show', 'info_cases', '', 'show', '100', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '关于我们123', '<p>这样就可以就行操作了这样就对了，你造吗阿萨德法师打发</p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -283,11 +257,12 @@ CREATE TABLE `slide` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
 -- ----------------------------
+INSERT INTO `slide` VALUES ('1', '1', '37', 'http://www.baidu.com/', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col
@@ -311,7 +286,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -339,6 +314,12 @@ INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_one
 INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('31', '操作日志', '1', '2', '', 'sys_log', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('29', '配置管理', '28', '3', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('32', '微信', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('33', '自定义菜单', '32', '2', '', 'wx_menu', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('34', '自动回复', '32', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('35', '被添加自动回复', '34', '3', '', 'wx_beadded', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('36', '消息自动恢复', '34', '3', '', 'wx_autoreply', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('37', '关键词自动回复', '34', '3', '', 'wx_smartreply', '', '', '', 'dev', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -403,6 +384,22 @@ INSERT INTO `sys_col_auth` VALUES ('25', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('31', 'del');
 INSERT INTO `sys_col_auth` VALUES ('31', 'look');
 INSERT INTO `sys_col_auth` VALUES ('11', 'look');
+INSERT INTO `sys_col_auth` VALUES ('32', 'look');
+INSERT INTO `sys_col_auth` VALUES ('32', 'del');
+INSERT INTO `sys_col_auth` VALUES ('32', 'update');
+INSERT INTO `sys_col_auth` VALUES ('32', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('33', 'look');
+INSERT INTO `sys_col_auth` VALUES ('33', 'del');
+INSERT INTO `sys_col_auth` VALUES ('33', 'update');
+INSERT INTO `sys_col_auth` VALUES ('33', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('35', 'look');
+INSERT INTO `sys_col_auth` VALUES ('35', 'update');
+INSERT INTO `sys_col_auth` VALUES ('36', 'look');
+INSERT INTO `sys_col_auth` VALUES ('36', 'update');
+INSERT INTO `sys_col_auth` VALUES ('37', 'look');
+INSERT INTO `sys_col_auth` VALUES ('37', 'del');
+INSERT INTO `sys_col_auth` VALUES ('37', 'update');
+INSERT INTO `sys_col_auth` VALUES ('37', 'insert');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -595,13 +592,14 @@ CREATE TABLE `sys_tpl` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='模板类型表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模板类型表';
 
 -- ----------------------------
 -- Records of sys_tpl
 -- ----------------------------
 INSERT INTO `sys_tpl` VALUES ('1', '文章', 'news', 'lists', 'news', 'show', 'info_news', '', 'show', '100', null, null, null, null);
 INSERT INTO `sys_tpl` VALUES ('2', '案例', 'cases', 'lists', 'cases', 'show', 'info_cases', '', 'show', '100', null, null, null, null);
+INSERT INTO `sys_tpl` VALUES ('3', '单页', '', '', '', '', 'info_single', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -656,7 +654,7 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
@@ -697,3 +695,61 @@ INSERT INTO `uploads` VALUES ('33', '1e2f611a4ac2bf36ef5882ef4c349f2f.jpg', 'ima
 INSERT INTO `uploads` VALUES ('34', '51411a566844ea7f79f763f10166e9a5.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20161221/', 'E:/wamp/www/uploads/20161221/51411a566844ea7f79f763f10166e9a5.jpg', '/uploads/20161221/', '/uploads/20161221/51411a566844ea7f79f763f10166e9a5.jpg', '51411a566844ea7f79f763f10166e9a5', '51411a566844ea7f79f763f10166e9a5.jpg', '三生设计_33.jpg', '.jpg', '1.49', '1', '127', '30', 'jpeg', 'width=\"1060\" height=\"30\"', '');
 INSERT INTO `uploads` VALUES ('35', '2b4cc2e974b1613192b5782bd4e4641d.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20161221/', 'E:/wamp/www/uploads/20161221/2b4cc2e974b1613192b5782bd4e4641d.jpg', '/uploads/20161221/', '/uploads/20161221/2b4cc2e974b1613192b5782bd4e4641d.jpg', '2b4cc2e974b1613192b5782bd4e4641d', '2b4cc2e974b1613192b5782bd4e4641d.jpg', '阳澄湖大闸蟹缩略图.jpg', '.jpg', '39.24', '1', '127', '127', 'jpeg', 'width=\"390\" height=\"260\"', '');
 INSERT INTO `uploads` VALUES ('36', '4bde68e5b05ad74efcd35dbd463c0525.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20161221/', 'E:/wamp/www/uploads/20161221/4bde68e5b05ad74efcd35dbd463c0525.jpg', '/uploads/20161221/', '/uploads/20161221/4bde68e5b05ad74efcd35dbd463c0525.jpg', '4bde68e5b05ad74efcd35dbd463c0525', '4bde68e5b05ad74efcd35dbd463c0525.jpg', '亨通传媒.jpg', '.jpg', '31.89', '1', '127', '127', 'jpeg', 'width=\"390\" height=\"260\"', '');
+INSERT INTO `uploads` VALUES ('37', 'dd7c17727760e3816aa228853ff604be.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170119/', 'E:/wamp/www/uploads/20170119/dd7c17727760e3816aa228853ff604be.jpg', '/uploads/20170119/', '/uploads/20170119/dd7c17727760e3816aa228853ff604be.jpg', 'dd7c17727760e3816aa228853ff604be', 'dd7c17727760e3816aa228853ff604be.jpg', '1444721343607.jpg', '.jpg', '22.43', '1', '127', '127', 'jpeg', 'width=\"390\" height=\"260\"', '');
+
+-- ----------------------------
+-- Table structure for wx_beadded
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_beadded`;
+CREATE TABLE `wx_beadded` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
+  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='微信被添加自动回复表';
+
+-- ----------------------------
+-- Records of wx_beadded
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for wx_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_menu`;
+CREATE TABLE `wx_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `ident` varchar(50) DEFAULT NULL COMMENT '唯一标识',
+  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
+  `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
+  `sys_tpl_id` int(11) DEFAULT NULL COMMENT '模板类型标识',
+  `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
+  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `location` varchar(20) DEFAULT NULL COMMENT '栏目位置',
+  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `add_next_auth` tinyint(1) DEFAULT '1' COMMENT '新增下级权限：0=禁止，1=允许',
+  `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
+  `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义菜单表';
+
+-- ----------------------------
+-- Records of wx_menu
+-- ----------------------------
