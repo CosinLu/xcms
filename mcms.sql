@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-01-22 18:45:46
+Date: 2017-01-23 17:43:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -238,7 +238,7 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-INSERT INTO `info_single` VALUES ('5', '关于我们123', '<p>这样就可以就行操作了这样就对了，你造吗阿萨德法师打发</p>', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '关于我们123', '<p>关于我们</p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -257,7 +257,7 @@ CREATE TABLE `slide` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
