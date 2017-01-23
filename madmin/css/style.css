@@ -996,3 +996,14 @@ div[data-name="nodata"] {
 .online_btn_group button {
     margin: 0 5px;
 }
+
+/*颜色选择器*/
+.colorpicker-element input.form-control{
+    border-right:none;
+}
+.colorpicker-element .input-group-addon{
+    background: none;
+}
+.colorpicker-element .input-group-addon i{
+    vertical-align: middle;
+}

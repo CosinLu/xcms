@@ -39,14 +39,7 @@ class Info_single extends Information
         $this->sys_log->insert($this->main_section_name, '2', $bool);//日志
         $config['icon'] = 1;
         if ($bool) {
-            switch ($this->is_save) {
-                case '1':
-                    echo json_encode($config);
-                    break;
-                case '2':
-                    echo json_encode($config);
-                    break;
-            }
+            echo json_encode($config);
         } else {
             $config['icon'] = 2;
             echo json_encode($config);
