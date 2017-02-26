@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=MYTITLE?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php require_once(VIEWPATH.'include/header.html');?>
+<!-- 主内容区域 -->
+<div class="container-fluid iframe-container iframe-inverse">
+    <?php require_once(VIEWPATH.'include/sidebar.html');?>
+    <!-- 主面板 -->
+    <div class="iframe-main">
+        <div class="iframe-main-section">
+            <div class="section_name_mdl">
+                <h5 class="section_name"><?=$section_name?></h5>
+            </div>
+            <div class="container-fluid section_container">
+                <div class="search_bar">
+                    <div class="form-inline">
+                        <?=$insert_btn?>
+                        <?=$del_btn?>
+                        <div class="form-group">
+                            <input type="text" name="key" class="form-control">
+                        </div>
+                        <?=$search_btn?>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-hover table_list" data-name="list">
+                        <thead>
+                        <tr>
+                            <th width="5%">
+                                <label><input type="checkbox" name="checkAll" data-checkname="id">
+                                    <ins></ins>
+                                </label>
+                            </th>
+                            <th width="10%">缩略图</th>
+                            <th>名称</th>
+                            <th width="30%">URL</th>
+                            <th width="10%">状态</th>
+                            <th width="10%">排序</th>
+                            <th width="10%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list"></tbody>
+                        <script id="list_tpl" type="text/html">
+                            {{each list.list as val}}
+                            <tr>
+                                <td>
+                                    <label><input type="checkbox" name="id[]" value="{{val.id}}">
+                                        <ins></ins>
+                                    </label>
+                                </td>
+                                <td><img src="{{val.full_path}}"></td>
+                                <td>{{val.name}}</td>
+                                <td>{{val.url}}</td>
+                                <td style="color:{{val.display_color}}">{{val.display_name}}</td>
+                                <td>{{val.sort}}</td>
+                                <td>
+                                    {{#val.update_btn}}
+                                    {{#val.del_btn}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </script>
+                    </table>
+                </div>
+                <div class="pagination_box" id="pagination"></div>
+                <script id="pagination_tpl" type="text/html">
+                    {{#list.pagination}}
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="plugin/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugin/mtree/js/mtree.js"></script>
+<script type="text/javascript" src="plugin/holder.min.js"></script>
+<script type="text/javascript" src="plugin/template.js"></script>
+<script type="text/javascript" src="plugin/layer/layer.js"></script>
+<script type="text/javascript" src="plugin/jqthumb.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    $(function () {
+        get_list();
+
+        //分页
+        $(document).on({
+            click: function (e) {
+                get_list($(this).data('page'));
+            }
+        }, '[data-name="pagination"] li[class!="active"] a');
+
+        //搜索
+        $('[data-name="searchbtn"]').click(function () {
+            get_list();
+        });
+
+        //获得列表
+        function get_list(pageIndex) {
+            var data = {
+                r: Math.random(),
+                page: pageIndex,
+                key: $('input[name="key"]').val()
+            }
+            $.ajax({
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('#list,#pagination').html('');
+                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                },
+                success: function (data) {
+                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    if (data.list.list.length) {
+                        $('#list').html(template('list_tpl', data)).find('img').jqthumb({width: 120, height: 80});
+                        $('#pagination').html(template('pagination_tpl', data));
+                        Holder.run();
+                        //$('#list img').jqthumb({width: 120, height: 80});
+                    } else {
+                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                    }
+                }
+            })
+        }
+    })
+</script>
+</body>
+</html>
