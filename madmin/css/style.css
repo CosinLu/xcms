@@ -57,13 +57,12 @@ a.disabled {
 /* mcheck */
 label {
     font-weight: normal;
-    margin-right: 10px;
 }
 
 label input[type="radio"],
 label input[type="checkbox"] {
     vertical-align: -2px;
-    margin: 0 5px 0 0;
+    margin: 0 10px 0 0;
 }
 
 .checkbox label input[type="checkbox"],
@@ -71,14 +70,19 @@ label input[type="checkbox"] {
     margin-top: 4px;
 }
 
+.checkbox label,
+.radio label {
+    padding-left: 0;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
     label {
-        position: relative;
+
     }
 
     label input[type="radio"],
     label input[type="checkbox"] {
-        opacity: 0;
+        display: none;
     }
 
     label input[type="radio"] + ins,
@@ -88,7 +92,7 @@ label input[type="checkbox"] {
         border: #333 solid 1px;
         display: inline-block;
         position: relative;
-        margin: 0 5px 0 -20px;
+        margin: 0 5px 0 0;
         vertical-align: -2px;
         background: #fff;
     }
@@ -238,8 +242,8 @@ kbd,
     text-align: right;
 }
 
-.checkbox label, .radio label {
-    margin-right: 12px;
+label + label, label + label {
+    margin-left: 15px;
 }
 
 kbd {
@@ -392,7 +396,7 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
 }
 
 /*表格*/
-.table thead th{
+.table thead th {
     background: #f5f5f5;
 }
 
@@ -655,6 +659,7 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
 .mtree a.current {
     background: #ccc;
 }
+
 /********************************mtree end****************************/
 
 /*标志*/
@@ -802,10 +807,6 @@ div[data-name="nodata"] {
 .form_container {
     padding-top: 15px;
     padding-bottom: 15px;
-}
-
-.form_container label {
-    margin: 0 10px 0 0;
 }
 
 /*设置权限*/
@@ -998,12 +999,14 @@ div[data-name="nodata"] {
 }
 
 /*颜色选择器*/
-.colorpicker-element input.form-control{
-    border-right:none;
+.colorpicker-element input.form-control {
+    border-right: none;
 }
-.colorpicker-element .input-group-addon{
+
+.colorpicker-element .input-group-addon {
     background: none;
 }
-.colorpicker-element .input-group-addon i{
+
+.colorpicker-element .input-group-addon i {
     vertical-align: middle;
 }

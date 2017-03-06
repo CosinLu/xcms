@@ -1,35 +1,31 @@
 $(function () {
-    layer.ready(function(){
+    layer.ready(function () {
         layer.config({
-            extend:'bootcss/style.css',
-            skin:'layer-ext-bootcss'
+            extend: 'bootcss/style.css',
+            skin: 'layer-ext-bootcss'
         });
     });
     //全选
-    $(document).on({
-        click: function () {
-            var name = $(this).data('checkname');
-            var is_checked = $(this).is(':checked');
-            $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', is_checked);
-        }
-    }, 'input[type="checkbox"][data-checkname]');
+    $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
+        var name = $(this).data('checkname');
+        var is_checked = $(this).is(':checked');
+        $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', is_checked);
+    });
     //关联全选
-    $(document).on({
-        click: function () {
-            var name = $(this).attr('name').replace(/\[.*\]/, '');
-            var checkbox = $('input[type="checkbox"][data-checkname="' + name + '"]:enabled');
-            if (checkbox.length == 0) {
-                return;
-            }
-            var checkedLen = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
-            var checkboxLen = $('input[type="checkbox"][name^="' + name + '"]:enabled').length;
-            if (checkedLen < checkboxLen) {
-                checkbox.prop('checked', false);
-            } else {
-                checkbox.prop('checked', true);
-            }
+    $(document).on('click', 'input[type="checkbox"]', function () {
+        var name = $(this).attr('name').replace(/\[.*\]/, '');
+        var checkbox = $('input[type="checkbox"][data-checkname="' + name + '"]:enabled');
+        if (checkbox.length == 0) {
+            return;
         }
-    }, 'input[type="checkbox"]');
+        var checkedLen = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
+        var checkboxLen = $('input[type="checkbox"][name^="' + name + '"]:enabled').length;
+        if (checkedLen < checkboxLen) {
+            checkbox.prop('checked', false);
+        } else {
+            checkbox.prop('checked', true);
+        }
+    });
 
     //回车搜索
     $(document).keydown(function (e) {
@@ -39,73 +35,69 @@ $(function () {
     });
 
     //删除
-    $(document).on({
-        click: function () {
-            var tbname = $(this).data('tb');
-            var id = $(this).data('id');
-            var url = $(this).data('url');
-            var primary = $(this).data('primary');
-            if (tbname == '' || id == '' || url == '') {
-                layer.msg('删除失败！', {icon: 2});
-                return;
-            }
-            layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '删除'}, function () {
-                $.ajax({
-                    url: url,
-                    type: 'post',
-                    data: {tbname: tbname, id: id, primary: primary},
-                    success: function (data) {
-                        if (parseInt(data) > 0) {
-                            layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
-                                $('[data-name="searchbtn"]').click();
-                            });
-                        } else {
-                            layer.msg('删除失败！', {icon: 2});
-                        }
-                    }
-                });
-            });
+    $(document).on('click', '[data-name="del"]', function () {
+        var tbname = $(this).data('tb');
+        var id = $(this).data('id');
+        var url = $(this).data('url');
+        var primary = $(this).data('primary');
+        if (tbname == '' || id == '' || url == '') {
+            layer.msg('删除失败！', {icon: 2});
+            return;
         }
-    }, '[data-name="del"]');
+        layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '删除'}, function () {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {tbname: tbname, id: id, primary: primary},
+                success: function (data) {
+                    if (parseInt(data) > 0) {
+                        layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
+                            $('[data-name="searchbtn"]').click();
+                        });
+                    } else {
+                        layer.msg('删除失败！', {icon: 2});
+                    }
+                }
+            });
+        });
+    });
 
     //批量删除
-    $(document).on({
-        click: function () {
-            var tbname = $(this).data('tb');
-            var url = $(this).data('url');
-            var primary = $(this).data('primary');
-            var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
-            var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
-            var id = '';
-            //遍历已选中checkbox并获得val
-            checkbox.each(function () {
-                id += $(this).val() + ',';
-            });
-            id = id.substring(0, id.length - 1);
-            //没有选中项
-            if (id.length == 0) {
-                layer.msg('没有选中项！', {icon: 4});
-                return;
-            }
-            layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '批量删除'}, function () {
-                $.ajax({
-                    url: url,
-                    type: 'post',
-                    data: {tbname: tbname, id: id, primary: primary},
-                    success: function (data) {
-                        if (parseInt(data) > 0) {
-                            layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
-                                $('[data-name="searchbtn"]').click();
-                                $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
-                            });
-                        } else {
-                            layer.msg('删除失败！', {icon: 2});
-                        }
-                    }
-                });
-            });
+    $(document).on('click', '[data-name="batchDel"]', function () {
+        var tbname = $(this).data('tb');
+        var url = $(this).data('url');
+        var primary = $(this).data('primary');
+        var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
+        var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
+        var id = '';
+        //遍历已选中checkbox并获得val
+        checkbox.each(function () {
+            id += $(this).val() + ',';
+        });
+        id = id.substring(0, id.length - 1);
+        //没有选中项
+        if (id.length == 0) {
+            layer.msg('没有选中项！', {icon: 4});
+            return;
         }
-    }, '[data-name="batchDel"]');
+        layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '批量删除'}, function () {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {tbname: tbname, id: id, primary: primary},
+                success: function (data) {
+                    if (parseInt(data) > 0) {
+                        layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
+                            $('[data-name="searchbtn"]').click();
+                            $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
+                        });
+                    } else {
+                        layer.msg('删除失败！', {icon: 2});
+                    }
+                }
+            });
+        });
+    });
 
     //隐藏侧边栏
     $('[data-name="sidebar_hidden"]').on('click', function () {

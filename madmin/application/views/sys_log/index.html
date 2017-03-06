@@ -93,11 +93,11 @@
         //获得列表
         function get_list(pageIndex) {
             var data = {
-                r: Math.random(),
+                x: Math.random(),
                 page: pageIndex,
                 start_time: $('input[name="start_time"]').val(),
                 stop_time: $('input[name="stop_time"]').val()
-            }
+            };
             $.ajax({
                 url: '<?=$get_list_url?>',
                 type: 'post',

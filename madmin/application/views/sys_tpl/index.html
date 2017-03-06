@@ -106,10 +106,10 @@
         //获得列表
         function get_list(pageIndex) {
             var data = {
-                r: Math.random(),
+                x: Math.random(),
                 page: pageIndex,
                 key: $('input[name="key"]').val()
-            }
+            };
             $.ajax({
                 url: '<?=$get_list_url?>',
                 type: 'post',

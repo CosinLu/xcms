@@ -20,7 +20,8 @@ class Uploads_model extends MY_Model
         $page = ($this->input->post('page')) ?: 1;
         $this->db->from('uploads');
         if ($key != '') {
-            $this->db->like('name', $key);
+            $this->db->like('client_name', $key);
+            $this->db->or_like('full_path', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
@@ -34,35 +35,47 @@ class Uploads_model extends MY_Model
         return $data;
     }
 
-    //更新
-    public function update()
+    //删除
+    public function del()
     {
-        $id = $this->input->get('id');
-        $this->db->where('id', $id);
-        $res = $this->db->get('uploads')->row_array();
-        return $res;
+        $tbname = $this->input->post('tbname');
+        $id = $this->input->post('id');
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
+        $this->del_file($id);
+        $this->db->where($primary, $id);
+        $this->db->delete($tbname);
+        $rows = $this->db->affected_rows();
+        return $rows;
     }
 
-    //保存
-    public function save()
+    //批量删除
+    public function batch_del()
     {
+        $tbname = $this->input->post('tbname');
         $id = $this->input->post('id');
-        $image = $this->input->post('image');
-        $url = $this->input->post('url');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => ($url) ? $url : prep_url($url),
-            'display' => $this->input->post('display'),
-            'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('uploads', $vals);
-        } else {
-            $bool = $this->db->insert('uploads', $vals);
+        $id_arr = explode(',', $id);
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
+        $this->del_file($id);
+        $this->db->where_in($primary, $id_arr);
+        $this->db->delete($tbname);
+        $rows = $this->db->affected_rows();
+        return $rows;
+    }
+
+    //删除文件
+    public function del_file($id = '')
+    {
+        $id_arr = explode(',', $id);
+        $this->db->select('full_abs_path');
+        $this->db->where_in('id', $id_arr);
+        $res = $this->db->get('uploads')->result_array();
+        if (!empty($res)) {
+            foreach ($res as $val) {
+                if (is_file($val['full_abs_path'])) {
+                    unlink($val['full_abs_path']);
+                }
+            }
         }
-        return $bool;
     }
 
 }

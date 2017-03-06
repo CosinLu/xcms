@@ -107,9 +107,9 @@
             loadDownFn: function (me) {
                 pageIndex++;
                 var data = {
-                    r: Math.random(),
+                    x: Math.random(),
                     page: pageIndex
-                }
+                };
                 $.ajax({
                     url: '<?=$get_list_url?>',
                     type: 'post',

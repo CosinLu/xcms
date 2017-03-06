@@ -41,9 +41,8 @@
                             </th>
                             <th width="10%">缩略图</th>
                             <th>名称</th>
-                            <th width="30%">URL</th>
-                            <th width="10%">状态</th>
-                            <th width="10%">排序</th>
+                            <th width="35%">位置</th>
+                            <th width="10%">文件大小</th>
                             <th width="10%">操作</th>
                         </tr>
                         </thead>
@@ -57,12 +56,10 @@
                                     </label>
                                 </td>
                                 <td><img src="{{val.full_path}}"></td>
-                                <td>{{val.name}}</td>
-                                <td>{{val.url}}</td>
-                                <td style="color:{{val.display_color}}">{{val.display_name}}</td>
-                                <td>{{val.sort}}</td>
+                                <td>{{val.client_name}}</td>
+                                <td>{{val.full_path}}</td>
+                                <td>{{val.size}} KB</td>
                                 <td>
-                                    {{#val.update_btn}}
                                     {{#val.del_btn}}
                                 </td>
                             </tr>
@@ -106,10 +103,10 @@
         //获得列表
         function get_list(pageIndex) {
             var data = {
-                r: Math.random(),
+                x: Math.random(),
                 page: pageIndex,
                 key: $('input[name="key"]').val()
-            }
+            };
             $.ajax({
                 url: '<?=$get_list_url?>',
                 type: 'post',
