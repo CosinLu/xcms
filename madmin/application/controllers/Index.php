@@ -42,7 +42,7 @@ class Index extends CI_Controller
     {
         $config = array(
             'width' => 80,
-            'height' => 30,
+            'height' => 32,
             'font_size' => 16,
             'code_len' => 4
         );

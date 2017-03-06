@@ -1,4 +1,5 @@
 @import "../plugin/fontawesome/css/font-awesome.min.css";
+
 /********************************common start****************************/
 
 * {
@@ -8,6 +9,7 @@
 
 body {
     font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+    background: #ecf0f5;
 }
 
 input,
@@ -40,7 +42,9 @@ li {
     list-style: none;
 }
 
+
 /*a标签*/
+
 a,
 a:hover,
 a:focus,
@@ -54,7 +58,9 @@ a.disabled {
     cursor: not-allowed;
 }
 
+
 /* mcheck */
+
 label {
     font-weight: normal;
 }
@@ -76,38 +82,30 @@ label input[type="checkbox"] {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    label {
-
-    }
-
     label input[type="radio"],
     label input[type="checkbox"] {
         display: none;
     }
-
     label input[type="radio"] + ins,
     label input[type="checkbox"] + ins {
         width: 14px;
         height: 14px;
-        border: #333 solid 1px;
+        border: #ccc solid 1px;
         display: inline-block;
         position: relative;
         margin: 0 5px 0 0;
         vertical-align: -2px;
         background: #fff;
     }
-
     label input[type="radio"]:checked + ins,
     label input[type="checkbox"]:checked + ins {
         border-color: #337AB7;
     }
-
     label input[type="radio"]:disabled + ins,
     label input[type="checkbox"]:disabled + ins {
         opacity: 0.3;
         background: #ccc;
     }
-
     label input[type="radio"]:checked + ins:before,
     label input[type="checkbox"]:checked + ins:before {
         content: "";
@@ -121,17 +119,14 @@ label input[type="checkbox"] {
         left: 0;
         right: 0;
     }
-
     /* 单选框 */
     label input[type="radio"] + ins {
         border-radius: 12px;
     }
-
     label input[type="radio"]:checked + ins:before {
         background: #337AB7;
         border-radius: 6px;
     }
-
     /* 复选框 */
     label input[type="checkbox"]:checked + ins:before {
         width: 10px;
@@ -143,7 +138,9 @@ label input[type="checkbox"] {
     }
 }
 
+
 /*滚动条*/
+
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px
@@ -203,11 +200,15 @@ label input[type="checkbox"] {
     padding-left: 15px;
 }
 
+
 /********************************common end****************************/
+
 
 /********************************bootcss start****************************/
 
+
 /*圆角*/
+
 .pagination > li:first-child > a,
 .pagination > li:first-child > span,
 .pagination > li:last-child > a,
@@ -227,7 +228,9 @@ kbd,
     border-radius: 0 !important;
 }
 
+
 /*分页*/
+
 .pagination {
     vertical-align: middle;
 }
@@ -242,7 +245,8 @@ kbd,
     text-align: right;
 }
 
-label + label, label + label {
+label + label,
+label + label {
     margin-left: 15px;
 }
 
@@ -258,7 +262,9 @@ kbd {
     padding: 8px 20px;
 }
 
+
 /*导航*/
+
 .navbar-primary {
     border: none;
     background-color: #337ab7;
@@ -331,28 +337,23 @@ kbd {
     .navbar-primary .navbar-nav .open .dropdown-menu > .dropdown-header {
         border-color: #337ab7;
     }
-
     .navbar-primary .navbar-nav .open .dropdown-menu .divider {
         background-color: #337ab7;
     }
-
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a {
         color: #fff;
     }
-
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #fff;
         background-color: transparent;
     }
-
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: #fff;
         background-color: #286090;
     }
-
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a,
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a:focus {
@@ -385,69 +386,76 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     color: #444;
 }
 
+
 /*按钮*/
-.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
     outline: none;
 }
 
+
 /*面板*/
+
 .panel {
     margin-bottom: 15px;
 }
 
+
 /*表格*/
+
 .table thead th {
     background: #f5f5f5;
 }
 
+
 /********************************bootcss end****************************/
 
+
 /*登录面板*/
-.login_container {
-    width: 320px;
-    margin: 100px auto 100px;
-}
 
-.login_container .page-header {
-    margin: 0 0 15px;
-    padding-bottom: 5px;
-}
-
-.login_container .page-header h2 {
-    font-size: 24px;
-}
-
-.login_container .form-control {
-    height: 48px;
-}
-
-.login_container .form-group {
-    margin-bottom: 0px;
-}
-
-.login_container .form_alert {
-    height: 22px;
-    padding: 2px 0 0 0;
-    font-size: 12px;
-}
-
-.login_container .btn {
-    width: 100%;
-    height: 48px;
-    font-size: 15px;
-    letter-spacing: 5px;
-    margin: 10px 0 0 0;
-}
-
-.login_container .txtcode {
-    text-transform: uppercase;
-}
-
-.login_container .input-group-addon {
+.login_panel {
     background: #fff;
+    width: 350px;
+    margin: 80px auto 0;
+    border: none;
+    box-shadow: none;
 }
+
+.login_header {
+    margin: 15px 0;
+    padding: 0 0 15px;
+    text-align: center;
+}
+
+.login_panel form {
+    width: 310px;
+    margin: 0 auto;
+}
+
+.login_panel .btn {
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 5px;
+}
+
+.login_panel .panel-body {
+    padding-bottom: 60px;
+}
+
+.login_panel .input-group-addon {
+    background: #fff;
+    padding: 0 0 0 5px;
+    border: none;
+}
+
 
 /*顶部导航*/
+
 .header_mdl .dropdown-menu {
     min-width: 120px;
     background: #286090;
@@ -460,11 +468,14 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     color: #fff;
 }
 
-.header_mdl .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+.header_mdl .dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
     background: #337AB7;
 }
 
+
 /*框架*/
+
 .iframe-container {
     position: absolute;
     top: 50px;
@@ -539,9 +550,12 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #edf0f2;
 }
 
+
 /*模块侧边栏*/
+
 .iframe-sidebar::-webkit-scrollbar-thumb {
-    background-color: #37424f; /*#293038*/
+    background-color: #37424f;
+    /*#293038*/
 }
 
 .iframe-sidebar {
@@ -583,7 +597,9 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     left: 0;
 }
 
+
 /*内容区侧边栏*/
+
 .iframe-main-sidebar-title {
     background: #d9dee4;
     height: 40px;
@@ -618,7 +634,9 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #fff;
 }
 
+
 /********************************mtree start****************************/
+
 .mtree ul {
     display: none;
 }
@@ -660,14 +678,19 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #ccc;
 }
 
+
 /********************************mtree end****************************/
 
+
 /*标志*/
+
 .navbar-primary .navbar-brand {
     width: 200px;
 }
 
+
 /*面包屑导航*/
+
 .section_name_mdl {
     height: 40px;
     background: #fff;
@@ -696,7 +719,9 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     padding: 10px 15px 0;
 }
 
+
 /*分页*/
+
 .pagination_box {
     text-align: right;
     margin: 0 0 20px;
@@ -731,7 +756,9 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     z-index: 4;
 }
 
+
 /*主内容区*/
+
 .section_container {
     position: absolute;
     top: 40px;
@@ -759,17 +786,23 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     color: #f0ad4e;
 }
 
+
 /*站点配置*/
+
 .config_menubar {
     padding: 20px 0;
 }
 
+
 /*检索*/
+
 .search_bar {
     padding: 10px 0;
 }
 
+
 /*列表*/
+
 div[data-name="loading"],
 div[data-name="nodata"] {
     text-align: center;
@@ -803,18 +836,24 @@ div[data-name="nodata"] {
     height: 80px;
 }
 
+
 /*操作区*/
+
 .form_container {
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
+
 /*设置权限*/
+
 .updata_auth {
     padding: 0 0 20px;
 }
 
+
 /*内容区侧边栏*/
+
 .main_sidebar_title {
     background: #d9dee4;
     height: 40px;
@@ -846,7 +885,9 @@ div[data-name="nodata"] {
     background: #fff;
 }
 
+
 /*treeview*/
+
 .treeview > ul {
     margin-bottom: -1px;
 }
@@ -864,7 +905,9 @@ div[data-name="nodata"] {
     border-bottom: 1px solid #ddd;
 }
 
+
 /*文件上传*/
+
 .uploadifive-button {
     padding: 0;
     overflow: hidden;
@@ -917,7 +960,9 @@ div[data-name="nodata"] {
     box-shadow: none;
 }
 
+
 /*在线管理*/
+
 .online_container {
     overflow: hidden;
     overflow-y: auto;
@@ -998,7 +1043,9 @@ div[data-name="nodata"] {
     margin: 0 5px;
 }
 
+
 /*颜色选择器*/
+
 .colorpicker-element input.form-control {
     border-right: none;
 }
