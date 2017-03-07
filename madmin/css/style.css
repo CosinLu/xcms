@@ -42,7 +42,6 @@ li {
     list-style: none;
 }
 
-
 /*a标签*/
 
 a,
@@ -57,7 +56,6 @@ a.disabled {
     color: #999;
     cursor: not-allowed;
 }
-
 
 /* mcheck */
 
@@ -86,6 +84,7 @@ label input[type="checkbox"] {
     label input[type="checkbox"] {
         display: none;
     }
+
     label input[type="radio"] + ins,
     label input[type="checkbox"] + ins {
         width: 14px;
@@ -97,15 +96,18 @@ label input[type="checkbox"] {
         vertical-align: -2px;
         background: #fff;
     }
+
     label input[type="radio"]:checked + ins,
     label input[type="checkbox"]:checked + ins {
         border-color: #337AB7;
     }
+
     label input[type="radio"]:disabled + ins,
     label input[type="checkbox"]:disabled + ins {
         opacity: 0.3;
         background: #ccc;
     }
+
     label input[type="radio"]:checked + ins:before,
     label input[type="checkbox"]:checked + ins:before {
         content: "";
@@ -119,14 +121,17 @@ label input[type="checkbox"] {
         left: 0;
         right: 0;
     }
+
     /* 单选框 */
     label input[type="radio"] + ins {
         border-radius: 12px;
     }
+
     label input[type="radio"]:checked + ins:before {
         background: #337AB7;
         border-radius: 6px;
     }
+
     /* 复选框 */
     label input[type="checkbox"]:checked + ins:before {
         width: 10px;
@@ -137,7 +142,6 @@ label input[type="checkbox"] {
         top: -3px;
     }
 }
-
 
 /*滚动条*/
 
@@ -200,12 +204,9 @@ label input[type="checkbox"] {
     padding-left: 15px;
 }
 
-
 /********************************common end****************************/
 
-
 /********************************bootcss start****************************/
-
 
 /*圆角*/
 
@@ -227,7 +228,6 @@ kbd,
 .navbar-toggle {
     border-radius: 0 !important;
 }
-
 
 /*分页*/
 
@@ -261,7 +261,6 @@ kbd {
 .dropdown-menu > li > a {
     padding: 8px 20px;
 }
-
 
 /*导航*/
 
@@ -337,23 +336,28 @@ kbd {
     .navbar-primary .navbar-nav .open .dropdown-menu > .dropdown-header {
         border-color: #337ab7;
     }
+
     .navbar-primary .navbar-nav .open .dropdown-menu .divider {
         background-color: #337ab7;
     }
+
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a {
         color: #fff;
     }
+
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #fff;
         background-color: transparent;
     }
+
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: #fff;
         background-color: #286090;
     }
+
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a,
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a:hover,
     .navbar-primary .navbar-nav .open .dropdown-menu > .disabled > a:focus {
@@ -386,7 +390,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     color: #444;
 }
 
-
 /*按钮*/
 
 .btn.active.focus,
@@ -398,13 +401,11 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     outline: none;
 }
 
-
 /*面板*/
 
 .panel {
     margin-bottom: 15px;
 }
-
 
 /*表格*/
 
@@ -412,9 +413,7 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #f5f5f5;
 }
 
-
 /********************************bootcss end****************************/
-
 
 /*登录面板*/
 
@@ -441,6 +440,7 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     font-size: 17px;
     font-weight: 300;
     letter-spacing: 5px;
+    margin-top: 30px;
 }
 
 .login_panel .panel-body {
@@ -453,6 +453,13 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     border: none;
 }
 
+.login_panel .form-control {
+    height: 42px;
+}
+
+.login_panel .form-control.txtcode {
+    text-transform: uppercase;
+}
 
 /*顶部导航*/
 
@@ -472,7 +479,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
 .dropdown-menu > li > a:hover {
     background: #337AB7;
 }
-
 
 /*框架*/
 
@@ -550,7 +556,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #edf0f2;
 }
 
-
 /*模块侧边栏*/
 
 .iframe-sidebar::-webkit-scrollbar-thumb {
@@ -597,7 +602,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     left: 0;
 }
 
-
 /*内容区侧边栏*/
 
 .iframe-main-sidebar-title {
@@ -633,7 +637,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
 .iframe-main-sidebar-tree.mtree a.current {
     background: #fff;
 }
-
 
 /********************************mtree start****************************/
 
@@ -678,16 +681,13 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     background: #ccc;
 }
 
-
 /********************************mtree end****************************/
-
 
 /*标志*/
 
 .navbar-primary .navbar-brand {
     width: 200px;
 }
-
 
 /*面包屑导航*/
 
@@ -718,7 +718,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     margin: 0;
     padding: 10px 15px 0;
 }
-
 
 /*分页*/
 
@@ -756,7 +755,6 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     z-index: 4;
 }
 
-
 /*主内容区*/
 
 .section_container {
@@ -786,20 +784,17 @@ fieldset[disabled] .navbar-primary .btn-link:focus {
     color: #f0ad4e;
 }
 
-
 /*站点配置*/
 
 .config_menubar {
     padding: 20px 0;
 }
 
-
 /*检索*/
 
 .search_bar {
     padding: 10px 0;
 }
-
 
 /*列表*/
 
@@ -836,7 +831,6 @@ div[data-name="nodata"] {
     height: 80px;
 }
 
-
 /*操作区*/
 
 .form_container {
@@ -844,13 +838,11 @@ div[data-name="nodata"] {
     padding-bottom: 15px;
 }
 
-
 /*设置权限*/
 
 .updata_auth {
     padding: 0 0 20px;
 }
-
 
 /*内容区侧边栏*/
 
@@ -885,7 +877,6 @@ div[data-name="nodata"] {
     background: #fff;
 }
 
-
 /*treeview*/
 
 .treeview > ul {
@@ -904,7 +895,6 @@ div[data-name="nodata"] {
 .treeview tr {
     border-bottom: 1px solid #ddd;
 }
-
 
 /*文件上传*/
 
@@ -959,7 +949,6 @@ div[data-name="nodata"] {
 .uploadifive-queue-item .progress-bar {
     box-shadow: none;
 }
-
 
 /*在线管理*/
 
@@ -1042,7 +1031,6 @@ div[data-name="nodata"] {
 .online_btn_group button {
     margin: 0 5px;
 }
-
 
 /*颜色选择器*/
 
