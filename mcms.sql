@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-03-06 13:18:58
+Date: 2017-03-14 13:44:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -212,13 +212,14 @@ CREATE TABLE `info_news` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of info_news
 -- ----------------------------
 INSERT INTO `info_news` VALUES ('1', '2', '在2017年将会更加风行的6个Web开拓趋势', '每到岁尾，人们总爱好瞻望下一年，Web 开拓范畴也不例外。在 Web 开拓范畴，技巧革新的速率堪比光速，将来老是超乎咱们的设想，咱们只能尽本身所能做一些正当的猜测。', '<p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">每到岁尾，人们总爱好瞻望下一年，Web 开拓范畴也不例外。在 Web 开拓范畴，技巧革新的速率堪比光速，将来老是超乎咱们的设想，咱们只能尽本身所能做一些正当的猜测。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">如下是咱们必要存眷的一些趋势：</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">1、<span style=\"font-size: 16px;\">更加挪动优先</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/13180010d89b007df373\" img_width=\"500\" img_height=\"311\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">相应式计划明显是今朝 Web 开拓范畴的重要趋势之一，而且这一趋势还将连续一段时间。固然如今的相应式计划大部分还因此 PC 版优先，但是，假如有一天咱们把 PC 版放到比挪动版次要的地位上，也没什么猎奇异的。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">许多 Web 开拓者曾经开端转向以挪动优先计划来做他们的相应式计划和开拓。这意味一个重大转变，值得咱们跟进。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">2、<span style=\"font-size: 16px;\">更多应用疾速原型开拓对象</span></p><p style=\"text-align:center\"><img src=\"http://p9.pstatp.com/large/12d1000ec6e8d87be42c\" img_width=\"640\" img_height=\"480\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">咱们在 2016 年开端测验考试应用疾速原型开拓对象，而 2017 年将是这类技巧真正迸发的一年。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">“UXpin、Webflow、Invision 和别的许多疾速原型开拓对象，让计划师不消写一行代码，就能为网站和办事疾速创立低保真和高保真原型，便于计划师权衡它们的可用性和雅观性。” Web 计划师 Jamie Leeson says 如是说，“许多对象也容许你在阅读器中计划原型并从对象里真正启动网站本身。”</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">疾速原型对象的一个长处是它们能让开拓者/计划师与终极用户同时获益。两边可以或许提早对产物页面和交互杀青同等，防止了终极交付的产物和用户预期的不符。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">3、<span style=\"font-size: 16px;\">简化的 Web 计划</span></p><p style=\"text-align:center\"><img src=\"http://p2.pstatp.com/large/131a0010d4356e9e8402\" img_width=\"640\" img_height=\"440\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">在 2016 年，咱们看到简化的 Web 计划获得普遍承认。现实上极简计划成为大部分行业的重要趋势。在 2017 年，预期极简计划会继承风行，纵然有变更也是一些微小的转变。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">固然页面上留白将继承被认为是有代价的，然则也不消奇异有些网站开端回归到应用基于文本内容的笔墨添补。你可以或许找到更多类似于如许的网页，它们正当地结合了留白和文本，创造出一个视觉上简略，而信息内容很丰硕的网页，也带给用户很好的体验。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">4、<span style=\"font-size: 16px;\">更加看重人工智能</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/131b000dad68c5245dea\" img_width=\"640\" img_height=\"398\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">你曾经听说了人工智能（AI），然则你对 Web 计划和开拓中的人工智能认识吗？在 2017 年，咱们等待 Web 与 AI 的碰撞，带来更强大的网页，为网站主和用户同时带来代价。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">供给收集主机办事的 Wix，是这一范畴的领头羊。他们如今供给了一个进程来扣问用户一些成绩，而后应用一个基于 AI 的平台依据用户的答复供给给用户最相符他们必要的 Web 计划。这异常酷，值得一看。</p><p style=\"text-align:center\"><img src=\"http://p1.pstatp.com/large/13170010dd80543a1019\" img_width=\"640\" img_height=\"414\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">5、<span style=\"font-size: 16px;\">更多单页站点</span></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">如今不风行那种有各类 Tab 页和许多子页面的网站了。在 2017 年，你可以或许等待看到更多的单页站点。因为用户更爱好用滚屏方法阅读网页，各公司将会惹起看重并结束浪费时间在计划和开拓用户不爱好的层层相套的子页面上。这一趋势将简化互联网并带来更迷人和身临其境的网页阅读体验，每个人都邑感觉到愉悦。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">6、<span style=\"font-size: 16px;\">虚拟现实</span></p><p style=\"text-align:center\"><img src=\"http://p3.pstatp.com/large/12cb0009b8cc3b69d3fb\" img_width=\"640\" img_height=\"428\" alt=\"在2017年将会更加风行的6个Web开拓趋势\" style=\"margin: 1em auto; padding: 0px; max-width: 100%; border: 0px; display: block;\"/></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">假如要评论辩论 2017 年技巧趋势，怎能不提到虚拟现实（VR）？2017 年将是 VR 成为主流的一年，这意味着 Web 开拓者将经由过程 VR 来吸引用户。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">咱们曾经看到一些公司好比 Mozilla 和 Google 投资开拓 VR 与 Web 之间的 API。愈来愈多的 VR 应用程序将在接下来的几个月里相继问世，以是假如看到愈来愈多的虚拟现实元素出如今 Web 上，也别感到奇异。</p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">7、<span style=\"font-size: 16px;\">总结</span></p><p style=\"margin-top: 1em; margin-bottom: 0px; padding: 0px; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); color: rgb(34, 34, 34); text-align: left; text-indent: 2em;\">当你开端做 2017 年的名目时，将这些 Web 趋势铭刻于心。整体的现实是在接下来几个月里，许多器械都邑迎来成长和变更。多往前看一步，你可以或许确保你老是立足于潮水之巅。</p>', '_self', 'show', '100', null, null, '1482225575', null);
-INSERT INTO `info_news` VALUES ('2', '2', 'HTML5、多边平台，企业不死的两个互联网机遇', '11月底，Facebook Messenger推出H5游戏平台Instant Games，首批放出17个H5游戏（包括吃豆人、太空侵入者等）。从现在起，Facebook用户可以在聊天时发起即时游戏，并', '', '_self', 'show', '100', null, null, '1485078219', null);
+INSERT INTO `info_news` VALUES ('2', '2', 'HTML5、多边平台，企业不死的两个互联网机遇', '11月底，Facebook Messenger推出H5游戏平台Instant Games，首批放出17个H5游戏（包括吃豆人、太空侵入者等）。从现在起，Facebook用户可以在聊天时发起即时游戏，并', '123', '_self', 'show', '100', null, null, '1485078219', null);
+INSERT INTO `info_news` VALUES ('3', '2', '', '', null, '_self', 'show', '100', null, null, '1489129272', null);
 
 -- ----------------------------
 -- Table structure for info_single
@@ -238,7 +239,7 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-INSERT INTO `info_single` VALUES ('5', '关于我们123', '<p>关于我们</p>', null, null, null, null);
+INSERT INTO `info_single` VALUES ('5', '关于我们摘要', '<p>关于我们的内容</p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -299,8 +300,8 @@ INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', ''
 INSERT INTO `sys_col` VALUES ('6', '权限管理', '2', '2', '', '', '', '', '', 'pro', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'welcome', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', 'dev', 'show', '300', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置组', '29', '4', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '29', '4', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '29', '3', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '29', '3', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -313,7 +314,7 @@ INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', ''
 INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('31', '操作日志', '1', '2', '', 'sys_log', '', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('29', '配置管理', '28', '3', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('29', '配置管理', '1', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('32', '微信', '0', '1', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('33', '自定义菜单', '32', '2', '', 'wx_menu', '', '', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('34', '自动回复', '32', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null);
@@ -479,11 +480,30 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES ('1', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('2', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('3', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('4', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('5', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('6', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('7', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('8', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('9', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('10', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('11', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('12', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('13', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('14', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('15', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('16', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('17', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('18', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_log` VALUES ('19', null, 'sdfasdfasdf', null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -539,27 +559,23 @@ CREATE TABLE `sys_role_auth` (
 -- Records of sys_role_auth
 -- ----------------------------
 INSERT INTO `sys_role_auth` VALUES ('2', '2', '');
-INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '3', '');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del');
 INSERT INTO `sys_role_auth` VALUES ('2', '12', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update');
-INSERT INTO `sys_role_auth` VALUES ('2', '13', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'insert');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'update');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'del');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'look');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '13', 'del');
 INSERT INTO `sys_role_auth` VALUES ('2', '20', '');
-INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update');
-INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look');
 INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
 INSERT INTO `sys_role_auth` VALUES ('3', '7', 'look');
 INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del');
