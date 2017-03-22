@@ -66,18 +66,14 @@ class Config extends MY_Controller
         $str = '';
         //多余一个按钮时显示按钮组
         if (count($res) > 1) {
-            $str .= '<div class="col-xs-10 col-xs-offset-2">';
-            $str .= '<div class="btn-group">';
             foreach ($res as $key => $val) {
                 if ($this->config_group_id == '') {
                     $active = ($key == 0) ? 'active' : '';
                 } else {
                     $active = ($val['id'] == $this->config_group_id) ? 'active' : '';
                 }
-                $str .= '<a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $val['id']) . '" class="btn btn-default ' . $active . '">' . $val['name'] . '</a>';
+                $str .= '<li class="' . $active . '"><a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $val['id']) . '">' . $val['name'] . '</a></li>';
             }
-            $str .= '</div>';
-            $str .= '</div>';
         }
         return $str;
     }

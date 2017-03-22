@@ -23,6 +23,7 @@ class Welcome extends MY_Controller
         $data['server_info'] = $_SERVER['SERVER_SOFTWARE'];
         $data['operating_system'] = PHP_OS;
         $data['server_name'] = $_SERVER['SERVER_NAME'];
+        $data['upload'] = $this->config->item('upload');
         $this->load->view('welcome/welcome.html', $data);
     }
 

@@ -26,7 +26,7 @@ class Uploadifive extends CI_Controller
     {
         $file_obj_name = $this->input->post('fileObjName');
         $config = array(
-            'upload_path' => '/uploads/' . date('Ymd', time()) . '/',//上传路径
+            'upload_path' => $this->config->item('upload') . date('Ymd', time()) . '/',//上传路径
             'allowed_types' => '*',//允许上传文件类型：*=所有类型
             'file_name' => md5(uniqid(microtime(TRUE), TRUE))//新文件名
         );

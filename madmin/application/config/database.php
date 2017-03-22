@@ -79,7 +79,7 @@ if (ENVIRONMENT == 'development') {
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'mcms',
+        'database' => 'newtheme',
         'dbdriver' => 'mysqli',
         'dbprefix' => '',
         'pconnect' => FALSE,

@@ -1,35 +1,47 @@
 <!-- 顶部 -->
-<nav class="navbar navbar-primary navbar-fixed-top header_mdl">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="javascript:;" class="navbar-brand" data-name="sidebar_hidden"><?=MYTITLE?></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <?php foreach($menu as $val):?>
-                <li class="<?=$val['active']?>"><a href="<?=$val['url']?>"
-                                                   style="color:<?=$val['color']?>"><?=$val['name']?></a></li>
-                <?php endforeach;?>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true"
-                       aria-expanded="false">欢迎：<?=$_SESSION['sys_session']['valid_username']?><span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="../" target="_blank">网站首页</a></li>
-                        <li><a href="<?=site_url('index/logout')?>">退出</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="javascript:;" class="navbar-brand"><?=MYTITLE?></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+            <?php foreach($menu as $val):?>
+            <li class="<?=$val['active']?>">
+                <a href="<?=$val['url']?>" style="color:<?=$val['color']?>"><?=$val['name']?></a></li>
+            <?php endforeach;?>
+        </ul>
+        <ul class="nav navbar-nav navbar-right dropdown_user">
+            <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <div class="username"><?=$header['valid_username']?></div>
+                    <span><i class="fa fa-user"></i></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="../" target="_blank">网站首页</a></li>
+                    <li><a href="<?=site_url('index/logout')?>">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right dropdown_lang">
+            <li class="dropdowm">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><img
+                        src="images/<?=$lang['current']['0']?>.png">&nbsp;<?=$lang['current']['1']?></a>
+                <?php if(count($lang['other'])):?>
+                <ul class="dropdown-menu">
+                    <?php foreach($lang['other'] as $key=>$val):?>
+                    <li><a href="<?=$lang['url'].'&lang='.$key?>"><img src="images/<?=$key?>.png">&nbsp;<?=$val?></a>
+                    </li>
+                    <?php endforeach;?>
+                </ul>
+                <?php endif;?>
+            </li>
+        </ul>
     </div>
 </nav>

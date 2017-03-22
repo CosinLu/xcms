@@ -16,86 +16,91 @@
     <!-- 主面板 -->
     <div class="iframe-main">
         <div class="iframe-main-section">
-            <div class="section_name_mdl">
-                <h5 class="section_name"><?=$section_name?></h5>
-            </div>
             <div class="container-fluid section_container">
-                <div class="row form_container">
-                    <form class="form-horizontal" data-form="ajaxForm" action="<?=$save_url?>" method="post">
-                        <div class="form-group">
-                            <?=$config_group_btn?>
+                <div class="panel mt15">
+                    <div class="panel-heading">
+                        <div class="panel-control">
+                            <ul class="nav nav-tabs">
+                                <?=$config_group_btn?>
+                            </ul>
                         </div>
-                        <?php
+                        <div class="panel-title"><?=$section_name?></div>
+                    </div>
+                    <form class="form-horizontal" data-form="ajaxForm" action="<?=$save_url?>" method="post">
+                        <div class="panel-body">
+                            <?php
                             foreach($config_item as $val):
                             $help_block = ($val['remark']=='') ? '' : '<span class="help-block">
-                        '.$val['remark'].'</span>';
-                        ?>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label"><?=$val['title']?></div>
-                            <?php if($val['type']=='text'):?>
-                            <div class="col-xs-6">
-                                <input type="text" name="<?=$val['name']?>" value="<?=$val['val']?>"
-                                       class="form-control">
-                                <?=$help_block?>
-                            </div>
-                            <?php elseif($val['type']=='radio'):?>
-                            <div class="col-xs-6 radio">
-                                <?php
+                            '.$val['remark'].'</span>';
+                            ?>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label"><?=$val['title']?></div>
+                                <?php if($val['type']=='text'):?>
+                                <div class="col-xs-6">
+                                    <input type="text" name="<?=$val['name']?>" value="<?=$val['val']?>"
+                                           class="form-control">
+                                    <?=$help_block?>
+                                </div>
+                                <?php elseif($val['type']=='radio'):?>
+                                <div class="col-xs-6 radio">
+                                    <?php
                                 foreach($val['param_arr'] as $item):
                                 $checked = ($val['val'] == $item['value']) ? 'checked' : '';
                                 ?>
-                                <label><input type="radio" name="<?=$val['name']?>"
-                                              value="<?=$item['value']?>" <?=$checked?>>
-                                    <ins></ins>
-                                    <?=$item['name']?></label>
-                                <?php endforeach;?>
-                                <?=$help_block?>
-                            </div>
-                            <?php elseif($val['type']=='checkbox'):?>
-                            <div class="col-xs-6 checkbox">
-                                <?php
+                                    <label><input type="radio" name="<?=$val['name']?>"
+                                                  value="<?=$item['value']?>" <?=$checked?>>
+                                        <ins></ins>
+                                        <?=$item['name']?></label>
+                                    <?php endforeach;?>
+                                    <?=$help_block?>
+                                </div>
+                                <?php elseif($val['type']=='checkbox'):?>
+                                <div class="col-xs-6 checkbox">
+                                    <?php
                                 foreach($val['param_arr'] as $item):
                                 $checked = (in_array($item['value'],$val['val'])) ? 'checked' : '';
                                 ?>
-                                <label><input type="checkbox" name="<?=$val['name']?>[]"
-                                              value="<?=$item['value']?>" <?=$checked?>>
-                                    <ins></ins>
-                                    <?=$item['name']?></label>
-                                <?php endforeach;?>
-                                <?=$help_block?>
-                            </div>
-                            <?php elseif($val['type']=='select'):?>
-                            <div class="col-xs-3">
-                                <select name="<?=$val['name']?>" class="form-control">
-                                    <option value="0">-请选择-</option>
-                                    <?php
-                                    foreach($val['param_arr'] as $item):
-                                    $selected = ($val['val'] == $item['value']) ? 'selected' : '';
-                                    ?>
-                                    <option value="<?=$item['value']?>"
-                                    <?=$selected?>><?=$item['name']?></option>
+                                    <label><input type="checkbox" name="<?=$val['name']?>[]"
+                                                  value="<?=$item['value']?>" <?=$checked?>>
+                                        <ins></ins>
+                                        <?=$item['name']?></label>
                                     <?php endforeach;?>
-                                </select>
-                                <?=$help_block?>
-                            </div>
-                            <?php elseif($val['type']=='textarea'):?>
-                            <div class="col-xs-6">
+                                    <?=$help_block?>
+                                </div>
+                                <?php elseif($val['type']=='select'):?>
+                                <div class="col-xs-3">
+                                    <select name="<?=$val['name']?>" class="form-control">
+                                        <option value="0">-请选择-</option>
+                                        <?php
+                                        foreach($val['param_arr'] as $item):
+                                        $selected = ($val['val'] == $item['value']) ? 'selected' : '';
+                                        ?>
+                                        <option value="<?=$item['value']?>" <?=$selected?>><?=$item['name']?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?=$help_block?>
+                                </div>
+                                <?php elseif($val['type']=='textarea'):?>
+                                <div class="col-xs-6">
                                 <textarea name="<?=$val['name']?>" class="form-control"
-                                          rows="3"><?=$val['val']?></textarea>
-                                <?=$help_block?>
+                                          rows="4"><?=$val['val']?></textarea>
+                                    <?=$help_block?>
+                                </div>
+                                <?php endif; ?>
+                                <div class="col-xs-2">
+                                    <div class="form-control-static"><?=$val['name']?></div>
+                                </div>
                             </div>
-                            <?php endif; ?>
-                            <div class="col-xs-2">
-                                <div class="form-control-static"><?=$val['name']?></div>
-                            </div>
-                        </div>
-                        <?php
+                            <?php
                             endforeach;
-                            if(!empty($config_item)):
                         ?>
-                        <div class="form-group">
-                            <div class="col-xs-offset-2 col-xs-8">
-                                <?=$save_btn?>
+                        </div>
+                        <?php if(!empty($config_item)):?>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-xs-offset-2 col-xs-8">
+                                    <?=$save_btn?>
+                                </div>
                             </div>
                         </div>
                         <?php endif;?>

@@ -22,6 +22,7 @@ class Index extends CI_Controller
         $this->load->model('index_model', 'index');
         $this->load->library('form_validation');
         $this->load->library('category');
+        $this->session->unset_userdata('sys_session');
     }
 
     //设置url
@@ -64,17 +65,34 @@ class Index extends CI_Controller
             $this->load->view('index/index.html');
         } else {
             //登录成功
-            $sys_session['sys_session'] = $user_info = $this->index->user_info();
+            $user_info = $this->index->user_info();
+            $session['sys_session']['user_id'] = $user_info['id'];
+            $session['sys_session']['role_id'] = $user_info['role_id'];
+            $session['sys_session']['username'] = $user_info['username'];
+            $session['sys_session']['password'] = $user_info['password'];
+            $session['sys_session']['realname'] = $user_info['realname'];
+            $session['sys_session']['nickname'] = $user_info['nickname'];
+            $session['sys_session']['user_type'] = $user_info['user_type'];
+            $session['sys_session']['sys_manager'] = $user_info['sys_manager'];
+            $session['sys_session']['valid_username'] = $user_info['valid_username'];
+            $session['sys_session']['role_type'] = $user_info['role_type'];
+            $session['sys_session']['last_login_time'] = $user_info['last_login_time'];
+            $session['sys_session']['last_login_ip'] = $user_info['last_login_ip'];
+            $session['sys_session']['lang'] = $this->config->item('language');
             //添加登录日志
             $this->index->insert_login_log($user_info['user_id']);
-            $this->session->set_userdata($sys_session);
+            $this->session->set_userdata($session);
             if ($this->pre_url == '') {
                 //定义登录成功后跳转url
                 $this->load->library('sys_auth', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth->sys_col();
                 $url = $this->category->children_url($sys_col);
+                $session['sys_session']['home_url'] = $url[0];
+                $this->session->set_userdata($session);
                 redirect($url[0]);
             } else {
+                $session['sys_session']['home_url'] = $this->pre_url;
+                $this->session->set_userdata($session);
                 redirect($this->pre_url);
             }
         }

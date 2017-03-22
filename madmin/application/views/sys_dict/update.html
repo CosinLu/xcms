@@ -17,59 +17,65 @@
     <!-- 主面板 -->
     <div class="iframe-main">
         <div class="iframe-main-section">
-            <div class="section_name_mdl">
-                <h5 class="section_name"><?=$section_name?></h5>
-            </div>
             <div class="container-fluid section_container">
-                <div class="row form_container">
+                <div class="panel mt15">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name?></div>
+                    </div>
                     <form class="form-horizontal" data-form="ajaxForm" action="<?=$save_url?>" method="post">
-                        <input type="hidden" name="id" value="<?=$item['id']?>">
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">所属栏目</div>
-                            <div class="col-xs-3">
-                                <?=$sys_dict_col?>
+                        <div class="panel-body">
+                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">栏目</div>
+                                <div class="col-xs-3">
+                                    <?=$sys_dict_col?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">名称</div>
-                            <div class="col-xs-3">
-                                <div class="input-group" data-name="colorpicker">
-                                    <input type="text" name="name" class="form-control" data-name="name"
-                                           value="<?=$item['name']?>" style="color:<?=$item['color']?>">
-                                    <input type="hidden" name="color" value="<?=$item['color']?>">
-                                    <div class="input-group-addon"><i title="颜色选择器"></i></div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">名称</div>
+                                <div class="col-xs-3">
+                                    <div class="input-group" data-name="colorpicker">
+                                        <input type="text" name="name" class="form-control" data-name="name"
+                                               value="<?=$item['name']?>" style="color:<?=$item['color']?>">
+                                        <input type="hidden" name="color" value="<?=$item['color']?>">
+                                        <div class="input-group-addon"><i title="颜色选择器"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">唯一标识</div>
+                                <div class="col-xs-2">
+                                    <input type="text" name="ident" class="form-control" value="<?=$item['ident']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">备注</div>
+                                <div class="col-xs-5">
+                                    <textarea class="form-control" name="remark"
+                                              rows="3"><?=$item['remark']?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">排序</div>
+                                <div class="col-xs-2">
+                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">唯一标识</div>
-                            <div class="col-xs-2">
-                                <input type="text" name="ident" class="form-control" value="<?=$item['ident']?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">备注</div>
-                            <div class="col-xs-5">
-                                    <textarea class="form-control" name="remark"
-                                              rows="3"><?=$item['remark']?></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-2 control-label">排序</div>
-                            <div class="col-xs-2">
-                                <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-2 col-xs-8">
-                                <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">
-                                    保存
-                                </button>
-                                <button type="submit" name="is_save" value="2" class="btn btn-default">保存并新增
-                                </button>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-xs-offset-2 col-xs-8">
+                                    <button type="submit" name="is_save" value="1" class="btn btn-default btn-primary">
+                                        保存
+                                    </button>
+                                    <button type="submit" name="is_save" value="2" class="btn btn-default">保存并新增
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="row form_container">
                 </div>
             </div>
         </div>

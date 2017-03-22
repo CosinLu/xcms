@@ -84,15 +84,17 @@ $(function () {
     $_mtreeBtn.each(function () {
         var $_this = $(this);
         var $_currentEle = $_this.closest('a');
-        var $_isNull = $_currentEle.next('ul').text(); //下级是否存在内容
-        var $_isHidden = $_currentEle.next('ul').is(':hidden'); //下级是否隐藏
-        if ($_isNull) {
-            if (!$_isHidden) {
+        var isNull = $_currentEle.next('ul').text(); //下级是否存在内容
+        var isHidden = $_currentEle.next('ul').is(':hidden'); //下级是否隐藏
+        if (isNull) {
+            if (!isHidden) {
                 $_this.addClass(closeIcon);
                 $_this.closest('a').removeClass('slide_up').addClass('slide_down');
+                $_this.closest('li').addClass(currentName);
             } else {
                 $_this.addClass(openIcon);
                 $_this.closest('a').removeClass('slide_down').addClass('slide_up');
+                $_this.closest('li').removeClass(currentName);
             }
         }
     });
@@ -108,35 +110,41 @@ $(function () {
             var $_className = $_this.hasClass(openIcon); //当前状态：true=隐藏，false=显示
             var $_currentLevel = $_this.closest('a').next('ul'); //当前下级
             var $_currentSiblingsLevel = $_currentLevel.closest('li').siblings(); //兄弟节点下级
-            var $_isNullNext = $_currentLevel.text(); //下级是否存在内容
-            var $_isNullSiblings = $_currentSiblingsLevel.children('ul').text(); //兄弟节点下级是否存在内容
+            var isNullNext = $_currentLevel.text(); //下级是否存在内容
+            var isNullSiblings = $_currentSiblingsLevel.children('ul').text(); //兄弟节点下级是否存在内容
             var isSlideToggle = $_this.closest(mtree).data('slide-toggle'); //下级是否可以切换状态：false=不可以，true=可以
             isSlideToggle = (isSlideToggle == 'undefined' || isSlideToggle == null || isSlideToggle == "1") ? true : false;
             if (!isSlideToggle) return false;
             //下级存在内容执行
-            if ($_isNullNext) {
+            if (isNullNext) {
                 if ($_className) {
-                    //1.显示下级
+                    //显示下级
                     $_currentLevel.slideDown(150);
-                    //2.改变icon
+                    //改变icon
                     $_this.removeClass(openIcon).addClass(closeIcon);
-                    //3.给当前栏目设置样式
-                    $_this.closest('a').removeClass('slide_up').addClass('slide_down');
+                    //给当前栏目设置样式
+                    $_this.closest('a').removeClass('slide_up ').addClass('slide_down');
+                    //给当前上级设置样式
+                    $_this.closest('li').addClass(currentName);
                 } else {
-                    //1.隐藏下级
+                    //隐藏下级
                     $_currentLevel.slideUp(150);
-                    //2.改变icon
+                    //改变icon
                     $_this.removeClass(closeIcon).addClass(openIcon);
-                    //3.给当前栏目设置样式
+                    //给当前栏目设置样式
                     $_this.closest('a').removeClass('slide_down').addClass('slide_up');
+                    //给当前上级设置样式
+                    $_this.closest('li').removeClass(currentName);
                 }
-                if (siblingsStatus) {
-                    //1.隐藏兄弟节点下级
+                if (isNullSiblings && !$_currentSiblingsLevel.children('ul').is(':hidden')) {
+                    //隐藏兄弟节点下级
                     $_currentSiblingsLevel.children('ul').slideUp(150);
-                    //2.改变节点元素icon
+                    $_currentSiblingsLevel.removeClass(currentName);
+                    //改变节点元素icon
                     $_currentSiblingsLevel.each(function () {
+                        //alert($(this).children('ul').text());
                         if ($(this).children('ul').text()) {
-                            $(this).find(mtreeBtn).removeClass(closeIcon).addClass(openIcon);
+                            $(this).children('a').find(mtreeBtn).removeClass(closeIcon).addClass(openIcon);
                         }
                     })
                 }

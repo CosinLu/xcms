@@ -16,34 +16,23 @@
     <!-- 主面板 -->
     <div class="iframe-main">
         <div class="iframe-main-section">
-            <div class="section_name_mdl">
-                <h5 class="section_name"><?=$section_name?></h5>
-            </div>
             <div class="container-fluid section_container">
-                <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
-                    <div class="panel panel-default mt15 treeview">
-                        <table class="table table-bordered table-hover table_list">
-                            <thead>
-                            <tr>
-                                <th width="5%"><label><input type="checkbox" name="checkAll">
-                                    <ins></ins>
-                                </label></th>
-                                <th>名称</th>
-                                <th width="45%">权限</th>
-                            </tr>
-                            </thead>
-                        </table>
-                        <div class="treeview" id="list"></div>
-                        <script type="text/html" id="list_tpl">
-                            {{#list}}
-                        </script>
+                <div class="panel mt15">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name?></div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 text-right">
-                            <button type="submit" class="btn btn-primary mb15">保存</button>
+                    <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
+                        <div class="panel-body">
+                            <div class="role_auth_list" id="list"></div>
+                            <script type="text/html" id="list_tpl">
+                                {{#list}}
+                            </script>
                         </div>
-                    </div>
-                </form>
+                        <div class="panel-footer text-right">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -89,12 +78,12 @@
         //1.全选
         $(document).on('click', 'input[name="checkAll"]', function () {
             var status = $(this).is(':checked');
-            var checkbox = $(this).closest('table').next('#list').find('input[type="checkbox"]');//全部复选框
+            var checkbox = $(this).closest('[data-name="table"]').next('#list').find('input[type="checkbox"]');//全部复选框
             checkbox.prop('checked', status);
         });
 
         $(document).on("click change", 'input[name^="id"]', function () {
-            var prevAuthCheckedLen = $(this).closest('ul').prev('table').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
+            var prevAuthCheckedLen = $(this).closest('ul').prev('[data-name="table"]').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
             //关联上级
             if (prevAuthCheckedLen == 0) {
                 checkedPrev($(this));
@@ -109,9 +98,9 @@
         $(document).on('click', 'input[name^="auth"]', function () {
             var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
             var status = $(this).is(':checked');//状态：true=选中，false=未选中
-            var prevCheckbox = $(this).closest('tr').find('input[name^="id"]');//上级name为id[]的复选框
-            var prevAuthCheckedLen = $(this).closest('ul').prev('table').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
-            var nextAuthCheckedLen = $(this).closest('table').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
+            var prevCheckbox = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
+            var prevAuthCheckedLen = $(this).closest('ul').prev('[data-name="table"]').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
+            var nextAuthCheckedLen = $(this).closest('[data-name="table"]').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
             if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
                 prevCheckbox.prop('checked', status);
             } else {
@@ -134,7 +123,7 @@
         //关联下级
         function checkedNext(obj) {
             var status = obj.is(':checked');
-            obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', status);
+            obj.closest('[data-name="table"]').next('ul').find('input[type="checkbox"]').prop('checked', status);
         }
 
         //关联下级[取消选中时有效]
@@ -148,7 +137,7 @@
         //关联上级
         function checkedPrev(obj) {
             var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('table').find('input[type="checkbox"][name^="id"]');
+            var checkbox = obj.closest('ul').prev('[data-name="table"]').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {
@@ -163,7 +152,7 @@
         //权限关联上级
         function authCheckedPrev(obj) {
             var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('table').find('input[type="checkbox"][name^="id"]');
+            var checkbox = obj.closest('ul').prev('[data-name="table"]').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {

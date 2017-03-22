@@ -55,17 +55,11 @@ class Sys_role_auth extends MY_Controller
                 $str .= '</li>';
             }
             $str .= '<li>';
-            $str .= '<table width="100%" class="table_list">';
-            $str .= '<tbody>';
-            $str .= '<tr>';
-            $str .= '<td width="5%">';
-            $str .= '<label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label>';
-            $str .= '</td>';
-            $str .= '<td>' . $val['prefix'] . $val['name'] . '</td>';
-            $str .= '<td width="45%">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</td>';
-            $str .= '</tr>';
-            $str .= '</tbody>';
-            $str .= '</table>';
+            $str .= '<div data-name="table">';
+            $str .= '<div class="auth_control"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
+            $str .= '<div class="auth_type">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</div>';
+            $str .= '<div class="auth_name">' . $val['prefix'] . $val['name'] . '</div>';
+            $str .= '</div>';
             $parent_level = $level;
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);

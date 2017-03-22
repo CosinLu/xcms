@@ -43,9 +43,9 @@ class Information extends MY_Controller
     public function main_sidebar()
     {
         $this->db->select('info_col.*');
-        $this->db->select('sys_tpl.sys_ctrl');
+        $this->db->select('tpl.sys_ctrl');
         $this->db->from('info_col');
-        $this->db->join('sys_tpl', 'sys_tpl.id=info_col.sys_tpl_id', 'left');
+        $this->db->join('tpl', 'tpl.id=info_col.tpl_id', 'left');
         $this->db->where('info_col.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
@@ -87,9 +87,9 @@ class Information extends MY_Controller
     }
 
     //获得当前栏目的模板类型标识
-    public function sys_tpl_id()
+    public function tpl_id()
     {
-        $res = $this->information->sys_tpl_id();
+        $res = $this->information->tpl_id();
         return $res;
     }
 

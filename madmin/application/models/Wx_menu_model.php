@@ -19,11 +19,11 @@ class Wx_menu_model extends MY_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.name as sys_tpl_name');
+        $this->db->select('t2.name as tpl_name');
         $this->db->select('t3.name as target_name');
         $this->db->from('wx_menu as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('sys_tpl as t2', 't2.id=t.sys_tpl_id', 'left');
+        $this->db->join('tpl as t2', 't2.id=t.tpl_id', 'left');
         $this->db->join('sys_dict as t3', 't3.ident=t.target', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
@@ -51,7 +51,7 @@ class Wx_menu_model extends MY_Model
         $location = $this->input->post('location');
         $url = $this->input->post('url');
         $vals = array(
-            'sys_tpl_id' => $this->input->post('sys_tpl_id'),
+            'tpl_id' => $this->input->post('tpl_id'),
             'url' => ($url) ? $url : prep_url($url),
             'name' => $this->input->post('name'),
             'remark' => $this->input->post('remark'),
@@ -67,10 +67,10 @@ class Wx_menu_model extends MY_Model
     }
 
     //模板类型
-    public function sys_tpl()
+    public function tpl()
     {
         $this->db->where('display', 'show');
-        $res = $this->db->get('sys_tpl')->result_array();
+        $res = $this->db->get('tpl')->result_array();
         return $res;
     }
 

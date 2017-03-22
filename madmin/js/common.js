@@ -2,7 +2,8 @@ $(function () {
     layer.ready(function () {
         layer.config({
             extend: 'bootcss/style.css',
-            skin: 'layer-ext-bootcss'
+            skin: 'layer-ext-bootcss',
+            shade: 0.75
         });
     });
     //全选
@@ -41,21 +42,21 @@ $(function () {
         var url = $(this).data('url');
         var primary = $(this).data('primary');
         if (tbname == '' || id == '' || url == '') {
-            layer.msg('删除失败！', {icon: 2});
+            layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
             return;
         }
-        layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '删除'}, function () {
+        layer.confirm('删除所选数据？', {icon: 3, title: '删除'}, function () {
             $.ajax({
                 url: url,
                 type: 'post',
                 data: {tbname: tbname, id: id, primary: primary},
                 success: function (data) {
                     if (parseInt(data) > 0) {
-                        layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
+                        layer.msg('删除成功！', {icon: 1, shade: 0.75, shadeClose: true, time: 1000}, function () {
                             $('[data-name="searchbtn"]').click();
                         });
                     } else {
-                        layer.msg('删除失败！', {icon: 2});
+                        layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
                     }
                 }
             });
@@ -77,22 +78,22 @@ $(function () {
         id = id.substring(0, id.length - 1);
         //没有选中项
         if (id.length == 0) {
-            layer.msg('没有选中项！', {icon: 4});
+            layer.msg('没有选择数据！', {icon: 4, shade: 0.75, shadeClose: true});
             return;
         }
-        layer.confirm('确定删除？此操作不可恢复！', {icon: 3, title: '批量删除'}, function () {
+        layer.confirm('删除所选数据？', {icon: 3, title: '批量删除'}, function () {
             $.ajax({
                 url: url,
                 type: 'post',
                 data: {tbname: tbname, id: id, primary: primary},
                 success: function (data) {
                     if (parseInt(data) > 0) {
-                        layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
+                        layer.msg('删除成功！', {icon: 1, shade: 0.75, shadeClose: true, time: 1000}, function () {
                             $('[data-name="searchbtn"]').click();
                             $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
                         });
                     } else {
-                        layer.msg('删除失败！', {icon: 2});
+                        layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
                     }
                 }
             });
@@ -157,7 +158,7 @@ function ajaxFormShowStatus(responseData) {
     }
     //停留时间
     var time = (responseData.time) ? responseData.time : 1000;
-    layer.msg(msg, {icon: icon, time: time}, function () {
+    layer.msg(msg, {icon: icon, shade: 0.75, shadeClose: true, time: time}, function () {
         if (responseData.url) {
             location.href = responseData.url;
         }

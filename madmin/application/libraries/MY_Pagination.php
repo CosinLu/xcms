@@ -21,7 +21,7 @@ class MY_Pagination extends CI_Pagination
     protected $next_tag_close = '</li>';
     protected $num_tag_open = '<li>';
     protected $num_tag_close = '</li>';
-    protected $cur_tag_open = '<li class="active"><a href="javascript:;">';
+    protected $cur_tag_open = '<li class="active"><a href="javascript:void(0);">';
     protected $cur_tag_close = '</a></li>';
     protected $data_page_attr = 'data-page';
     protected $use_page_numbers = TRUE;
@@ -237,7 +237,7 @@ class MY_Pagination extends CI_Pagination
         // Kill double slashes. Note: Sometimes we can end up with a double slash
         // in the penultimate link so we'll kill all double slashes.
         $output = preg_replace('#([^:"])//+#', '\\1/', $output);
-        $output = preg_replace('/href=\"[^"]*\"/', 'href="javasctipt:;"', $output);
+        $output = preg_replace('/href=\"[^"]*\"/', 'href="javascript:void(0);"', $output);
 
         // Add the wrapper HTML if exists
         return $overview . $this->full_tag_open . $output . $this->full_tag_close;

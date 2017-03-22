@@ -19,7 +19,7 @@ class Info_single_model extends MY_Model
     public function index()
     {
         $this->db->select('t.name,t.id');
-        $this->db->select('t1.remark,t1.content');
+        $this->db->select('t1.summary,t1.content');
         $this->db->from('info_col as t');
         $this->db->where('t.id', $this->cid);
         $this->db->join('info_single as t1', 't1.cid=t.id', 'left');
@@ -32,7 +32,7 @@ class Info_single_model extends MY_Model
     {
         $vals = array(
             'cid' => $this->input->post('cid'),
-            'remark' => $this->input->post('remark'),
+            'summary' => $this->input->post('summary'),
             'content' => $this->input->post('content')
         );
         $bool = $this->db->replace('info_single', $vals);

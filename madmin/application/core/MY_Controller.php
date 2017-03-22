@@ -18,6 +18,7 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('language');
         $this->sys_cid = $this->input->get('sys_cid');
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
@@ -28,6 +29,8 @@ class MY_Controller extends CI_Controller
             'user_info' => $this->session->sys_session,
             'sys_cid' => $this->sys_cid
         ));
+        $this->set_lang();
+        $this->switch_lang();
         $this->menu();
         $this->sidebar();
     }
@@ -37,7 +40,7 @@ class MY_Controller extends CI_Controller
     {
         $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         if (empty($this->session->sys_session)) {
-            $this->prompt->error('登录超时！', site_url('index?url=' . $pre_url));
+            $this->prompt->error('登录超时', site_url('index?url=' . $pre_url));
         }
     }
 
@@ -55,7 +58,8 @@ class MY_Controller extends CI_Controller
                     $data['menu'][$key] = $val;
                     $data['menu'][$key]['url'] = $sys_col_url[$key];
                     $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
-                    $data['menu'][$key]['color'] = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
+                    //$data['menu'][$key]['color'] = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#337AB7' : '';
+                    $data['menu'][$key]['color'] = '';
                 }
                 if ($val['id'] == $this->sys_cid) {
                     $data['section_name'] = $val['name'];
@@ -64,6 +68,7 @@ class MY_Controller extends CI_Controller
             }
         }
         $this->section_name = $data['section_name'];
+        $data['header']['valid_username'] = $this->session->sys_session['valid_username'];
         $this->load->vars($data);
     }
 
@@ -82,7 +87,8 @@ class MY_Controller extends CI_Controller
                 $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
                 $method = ($val['method']) ? $val['method'] . '/' : '';
                 $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
-                $color = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#35ebff' : '';
+                //$color = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#337AB7' : '';
+                $color = '';
                 $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
@@ -106,6 +112,31 @@ class MY_Controller extends CI_Controller
             $str .= str_repeat('</li></ul>', $parent_level + 1);
         }
         $data['sidebar'] = $str;
+        $this->load->vars($data);
+    }
+
+    //设置语言
+    public function set_lang()
+    {
+        $lang = $this->input->get('lang');
+        if ($lang) {
+            $session['sys_session'] = array_merge($this->session->sys_session, array('lang' => $lang));
+            $this->session->set_userdata($session);
+        }
+    }
+
+    //切换语言
+    public function switch_lang()
+    {
+        $arr_lang = array(
+            'zh-cn' => '简体中文',
+            'English' => 'English'
+        );
+        $lang = $this->session->sys_session['lang'];
+        $data['lang']['current'] = array($lang, $arr_lang[$lang]);
+        unset($arr_lang[$lang]);
+        $data['lang']['other'] = $arr_lang;
+        $data['lang']['url'] = $this->session->sys_session['home_url'];
         $this->load->vars($data);
     }
 
