@@ -64,7 +64,7 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['info_col'] = $this->category->ddl('pid', 0, $id);
-        $data['tpl'] = ddl($this->info_col->tpl(), 'tpl_id');
+        $data['info_model'] = ddl($this->info_col->info_model(), 'info_model_id');
         $data['pic'] = $this->sys_dict->rbl('image', 'pic');
         $data['location'] = $this->sys_dict->cbl('location', 'location');
         $data['target'] = $this->sys_dict->rbl('target', 'target');
@@ -76,7 +76,7 @@ class Info_col extends MY_Controller
     public function update()
     {
         $data['item'] = $this->info_col->update();
-        $data['tpl'] = ddl($this->info_col->tpl(), 'tpl_id', $data['item']['tpl_id']);
+        $data['info_model'] = ddl($this->info_col->info_model(), 'info_model_id', $data['item']['info_model_id']);
         $data['info_col'] = $this->category->ddl('pid', $data['item']['id'], $data['item']['pid']);
         $data['pic'] = $this->sys_dict->rbl('image', 'pic', $data['item']['pic']);
         $data['location'] = $this->sys_dict->cbl('location', 'location', $data['item']['location']);

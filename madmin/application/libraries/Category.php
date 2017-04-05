@@ -290,10 +290,10 @@ class Category
      * @param int $id 信息标识
      * @param array $data
      * @param bool $root 是否显示跟目录
-     * @param int $tpl_id 模板类型标识
+     * @param int $info_model_id 模型标识
      * @return string
      */
-    /*public function insert_ddl($name = '', $id = 0, $data = array(), $root = TRUE, $tpl_id = '')
+    /*public function insert_ddl($name = '', $id = 0, $data = array(), $root = TRUE, $info_model_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -315,10 +315,10 @@ class Category
             $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
             //选中
             $selected = ($val[$this->id_name] == $id) ? 'selected' : '';
-            //禁止选择[用于只允许选择相同模板类型]
+            //禁止选择[用于只允许选择相同模型]
             $disabled = '';
-            if (!empty($tpl_id)) {
-                $disabled = ($val['tpl_id'] != $tpl_id) ? 'disabled' : '';
+            if (!empty($info_model_id)) {
+                $disabled = ($val['info_model_id'] != $info_model_id) ? 'disabled' : '';
             }
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
@@ -332,10 +332,10 @@ class Category
      * @param int $pid 上级栏目标识
      * @param array $data
      * @param bool $root 是否显示跟目录
-     * @param int $tpl_id 模板类型标识
+     * @param int $info_model_id 模型标识
      * @return string
      */
-    /*public function update_ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $tpl_id = '')
+    /*public function update_ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $info_model_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -363,9 +363,9 @@ class Category
             $selected = ($val[$this->id_name] == $pid) ? 'selected' : '';
             //禁止选择
             $disabled = (in_array($val[$this->id_name], $children_id)) ? 'disabled' : '';
-            //禁止选择[用于只允许选择相同模板类型]
-            if (!empty($tpl_id)) {
-                $disabled = ($val['tpl_id'] != $tpl_id) ? 'disabled' : '';
+            //禁止选择[用于只允许选择相同模型]
+            if (!empty($info_model_id)) {
+                $disabled = ($val['info_model_id'] != $info_model_id) ? 'disabled' : '';
             }
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
@@ -379,10 +379,10 @@ class Category
      * @param int $pid 上级栏目标识
      * @param array $data
      * @param bool $root 是否显示跟目录
-     * @param int $tpl_id 模板类型标识
+     * @param int $info_model_id 模型标识
      * @return string
      */
-    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $tpl_id = '')
+    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $info_model_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -414,9 +414,9 @@ class Category
             if (!empty($id)) {
                 $disabled = (in_array($val[$this->id_name], $children_id)) ? 'disabled' : '';
             }
-            //禁止选择[用于只允许选择相同模板类型]
-            if (!empty($tpl_id)) {
-                $disabled = ($val['tpl_id'] != $tpl_id) ? 'disabled' : '';
+            //禁止选择[用于只允许选择相同模型]
+            if (!empty($info_model_id)) {
+                $disabled = ($val['info_model_id'] != $info_model_id) ? 'disabled' : '';
             }
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }

@@ -130,14 +130,14 @@ class Wx extends CI_Controller
                                 <FromUserName><![CDATA[%s]]></FromUserName>
                                 <CreateTime>%s</CreateTime>
                                 <MsgType><![CDATA[%s]]></MsgType>
-                                <ArticleCount>'.count($arrContent).'</ArticleCount>
+                                <ArticleCount>' . count($arrContent) . '</ArticleCount>
                                 <Articles>';
                 foreach ($arrContent as $val) {
                     $template .= '<item>
-                                <Title><![CDATA['.$val['title'].']]></Title> 
-                                <Description><![CDATA['.$val['desc'].']]></Description>
-                                <PicUrl><![CDATA['.$val['picUrl'].']]></PicUrl>
-                                <Url><![CDATA['.$val['url'].']]></Url>
+                                <Title><![CDATA[' . $val['title'] . ']]></Title> 
+                                <Description><![CDATA[' . $val['desc'] . ']]></Description>
+                                <PicUrl><![CDATA[' . $val['picUrl'] . ']]></PicUrl>
+                                <Url><![CDATA[' . $val['url'] . ']]></Url>
                             </item>';
                 }
                 $template .= '</Articles>

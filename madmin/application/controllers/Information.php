@@ -42,11 +42,11 @@ class Information extends MY_Controller
     //获得信息栏目
     public function main_sidebar()
     {
-        $this->db->select('info_col.*');
-        $this->db->select('tpl.sys_ctrl');
-        $this->db->from('info_col');
-        $this->db->join('tpl', 'tpl.id=info_col.tpl_id', 'left');
-        $this->db->where('info_col.display', 'show');
+        $this->db->select('t.*');
+        $this->db->select('t1.sys_ctrl');
+        $this->db->from('info_col as t');
+        $this->db->join('info_model as t1', 't1.id=t.info_model_id', 'left');
+        $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
         $str = '';
@@ -86,10 +86,10 @@ class Information extends MY_Controller
         $this->load->vars($data);
     }
 
-    //获得当前栏目的模板类型标识
-    public function tpl_id()
+    //获得当前栏目的模型标识
+    public function info_model_id()
     {
-        $res = $this->information->tpl_id();
+        $res = $this->information->info_model_id();
         return $res;
     }
 

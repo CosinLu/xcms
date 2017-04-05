@@ -45,7 +45,7 @@ $(function () {
             layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
             return;
         }
-        layer.confirm('删除所选数据？', {icon: 3, title: '删除'}, function () {
+        layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
             $.ajax({
                 url: url,
                 type: 'post',
@@ -78,10 +78,10 @@ $(function () {
         id = id.substring(0, id.length - 1);
         //没有选中项
         if (id.length == 0) {
-            layer.msg('没有选择数据！', {icon: 4, shade: 0.75, shadeClose: true});
+            layer.msg('没有数据！', {icon: 4, shade: 0.75, shadeClose: true});
             return;
         }
-        layer.confirm('删除所选数据？', {icon: 3, title: '批量删除'}, function () {
+        layer.confirm('删除数据？', {icon: 3, title: '批量删除'}, function () {
             $.ajax({
                 url: url,
                 type: 'post',
@@ -147,7 +147,7 @@ function ajaxFormShowStatus(responseData) {
                 msg = '操作失败！';
                 break;
             default:
-                msg = '提示';
+                msg = '提示！！！';
                 break;
         }
     }

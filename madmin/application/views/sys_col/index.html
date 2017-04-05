@@ -110,14 +110,14 @@
             //删除
             $(document).on('click', '[data-name="delCol"]', function () {
                 var id = $(this).data('id');
-                layer.confirm('确定删除？此操作不可恢复！<br/>如有下级也将随之删除', {icon: 3, title: '删除'}, function () {
+                layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
                     $.post('<?=$del_url?>', {id: id}, function (data) {
                         if (data) {
-                            layer.msg('删除成功', {icon: 1}, function () {
+                            layer.msg('删除成功！', {icon: 1}, function () {
                                 get_list();
                             });
                         } else {
-                            layer.msg('删除失败', {icon: 2});
+                            layer.msg('删除失败！', {icon: 2});
                         }
                     })
                 })

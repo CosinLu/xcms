@@ -522,7 +522,6 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-
 /*
  * 后台配置
  */

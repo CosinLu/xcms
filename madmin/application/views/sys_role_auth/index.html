@@ -19,6 +19,7 @@
             <div class="container-fluid section_container">
                 <div class="panel mt15">
                     <div class="panel-heading">
+                        <div class="panel-control">当前角色：</div>
                         <div class="panel-title"><?=$section_name?></div>
                     </div>
                     <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
@@ -117,7 +118,7 @@
         //关联当前行
         function checkedInline(obj) {
             var status = obj.is(':checked');
-            obj.closest('td').siblings().find('input[type="checkbox"]').prop('checked', status);
+            obj.closest('div').siblings().find('input[type="checkbox"]').prop('checked', status);
         }
 
         //关联下级

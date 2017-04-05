@@ -33,7 +33,7 @@
                                     <th>名称</th>
                                     <th width="30%">URL</th>
                                     <th width="10%">目标窗口</th>
-                                    <th width="10%">类型</th>
+                                    <th width="10%">模型</th>
                                     <th width="5%">状态</th>
                                     <th width="5%">排序</th>
                                     <th width="18%">操作</th>
@@ -47,7 +47,7 @@
                                         <td>{{val.prefix + val.name}}</td>
                                         <td>{{val.url}}</td>
                                         <td>{{val.target_name}}</td>
-                                        <td>{{val.tpl_name}}</td>
+                                        <td>{{val.info_model_name}}</td>
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
@@ -111,14 +111,14 @@
         //删除
         $(document).on('click', '[data-name="delCol"]', function () {
             var id = $(this).data('id');
-            layer.confirm('确定删除？此操作不可恢复！<br/>如有下级也将随之删除', {icon: 3, title: '删除'}, function () {
+            layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
                 $.post('<?=$del_url?>', {id: id}, function (data) {
                     if (data) {
-                        layer.msg('删除成功', {icon: 1}, function () {
+                        layer.msg('删除成功！', {icon: 1}, function () {
                             get_list();
                         });
                     } else {
-                        layer.msg('删除失败', {icon: 2});
+                        layer.msg('删除失败！', {icon: 2});
                     }
                 })
             })

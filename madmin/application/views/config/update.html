@@ -75,7 +75,8 @@
                                         foreach($val['param_arr'] as $item):
                                         $selected = ($val['val'] == $item['value']) ? 'selected' : '';
                                         ?>
-                                        <option value="<?=$item['value']?>" <?=$selected?>><?=$item['name']?></option>
+                                        <option value="<?=$item['value']?>"
+                                        <?=$selected?>><?=$item['name']?></option>
                                         <?php endforeach;?>
                                     </select>
                                     <?=$help_block?>

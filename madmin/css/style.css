@@ -315,14 +315,13 @@ label input[type="checkbox"] {
     margin: 0;
 }
 
-.navbar .dropdown_user span {
-    float: left;
+.navbar .dropdown_user i {
+    width: 15px;
 }
 
-.navbar .username {
-    white-space: nowrap;
-    margin: 0 10px;
-    display: inline-block;
+.navbar .dropdown_user i:before {
+    font-size: 16px;
+    vertical-align: -2px;
 }
 
 .navbar .dropdown_lang img {
@@ -456,13 +455,13 @@ label input[type="checkbox"] {
 
 .iframe-sidebar .mtree a {
     color: #b4b6bd;
-    line-height: 38px;
+    line-height: 40px;
     position: relative;
     font-size: 13px;
 }
 
 .iframe-sidebar .mtree li {
-    border: transparent solid 1px;
+    border: 0;
 }
 
 .iframe-sidebar .mtree > ul > li.current {
@@ -479,12 +478,13 @@ label input[type="checkbox"] {
 
 .iframe-sidebar .mtree a.current {
     color: #fff;
+    /*background: rgba(0, 0, 0, .15);*/
     background: transparent;
 }
 
 .iframe-sidebar .mtree a.current:before {
     content: '';
-    width: 2px;
+    width: 4px;
     height: 100%;
     display: inline-block;
     position: absolute;
