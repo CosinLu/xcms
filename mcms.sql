@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-03-22 17:16:22
+Date: 2017-04-14 18:13:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,7 +107,7 @@ CREATE TABLE `info_col` (
   `dir` varchar(50) DEFAULT NULL COMMENT '目录',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
-  `tpl_id` int(11) DEFAULT NULL COMMENT '模板类型标识',
+  `info_model_id` int(11) DEFAULT NULL COMMENT '模型标识',
   `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
   `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
   `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
@@ -180,6 +180,36 @@ CREATE TABLE `info_col_onepic` (
 -- ----------------------------
 -- Records of info_col_onepic
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_model
+-- ----------------------------
+DROP TABLE IF EXISTS `info_model`;
+CREATE TABLE `info_model` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` char(50) DEFAULT NULL COMMENT '名称',
+  `list_ctrl` varchar(20) DEFAULT NULL COMMENT '列表页控制器',
+  `list_method` varchar(20) DEFAULT NULL COMMENT '列表页方法',
+  `show_ctrl` varchar(20) DEFAULT NULL COMMENT '详情页控制器',
+  `show_method` varchar(20) DEFAULT NULL COMMENT '详情页方法',
+  `sys_ctrl` varchar(20) DEFAULT NULL COMMENT '系统控制器',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
+
+-- ----------------------------
+-- Records of info_model
+-- ----------------------------
+INSERT INTO `info_model` VALUES ('1', '文章', 'news', 'lists', 'news', 'show', 'info_news', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `info_model` VALUES ('2', '案例', 'cases', 'lists', 'cases', 'show', 'info_cases', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `info_model` VALUES ('3', '单页', '', '', '', '', 'info_single', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for info_news
@@ -283,23 +313,22 @@ CREATE TABLE `sys_col` (
 -- Records of sys_col
 -- ----------------------------
 INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '1', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('2', '网站', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('3', '信息', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('4', '扩展', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('2', '系统管理', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('3', '内容管理', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('4', '模块管理', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('6', '权限管理', '2', '2', '', '', '', '', '', 'pro', 'show', '200', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'welcome', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('9', '配置组', '28', '3', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('10', '配置项', '28', '3', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('12', '信息栏目', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('12', '栏目管理', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('14', '模板管理', '1', '2', '', 'tpl', '', '', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('14', '模型管理', '3', '2', '', 'info_model', '', '', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('16', '后台菜单', '28', '3', '', 'sys_col', '', '', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('17', '角色管理', '6', '3', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('18', '用户管理', '6', '3', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('17', '角色管理', '2', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('18', '用户管理', '2', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
@@ -347,10 +376,9 @@ INSERT INTO `sys_col_auth` VALUES ('10', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('10', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('10', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('11', 'update', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('17', 'insert', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('17', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('17', 'del', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('17', 'look', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('17', 'update', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('17', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'update', 'zh-cn');
@@ -394,6 +422,7 @@ INSERT INTO `sys_col_auth` VALUES ('37', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('37', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('38', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('38', 'del', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('17', 'look', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -534,28 +563,21 @@ CREATE TABLE `sys_role_auth` (
 -- ----------------------------
 -- Records of sys_role_auth
 -- ----------------------------
-INSERT INTO `sys_role_auth` VALUES ('2', '2', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '3', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '12', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '13', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'del', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'insert', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '14', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '13', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '20', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '4', '', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '15', 'insert', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '15', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '15', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '1', '', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '7', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del', 'zh-cn');
@@ -570,6 +592,14 @@ INSERT INTO `sys_role_auth` VALUES ('3', '12', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '13', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '13', 'update', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('3', '13', 'look', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '15', 'look', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'insert', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '3', '', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '2', '', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -602,36 +632,6 @@ INSERT INTO `sys_user` VALUES ('2', '1', 'admin', 'e10adc3949ba59abbe56e057f20f8
 INSERT INTO `sys_user` VALUES ('3', '3', 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo', null, null, 'normal', 'pro', '0', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
--- Table structure for tpl
--- ----------------------------
-DROP TABLE IF EXISTS `tpl`;
-CREATE TABLE `tpl` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `list_ctrl` varchar(20) DEFAULT NULL COMMENT '列表页控制器',
-  `list_method` varchar(20) DEFAULT NULL COMMENT '列表页方法',
-  `show_ctrl` varchar(20) DEFAULT NULL COMMENT '详情页控制器',
-  `show_method` varchar(20) DEFAULT NULL COMMENT '详情页方法',
-  `sys_ctrl` varchar(20) DEFAULT NULL COMMENT '系统控制器',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模板表';
-
--- ----------------------------
--- Records of tpl
--- ----------------------------
-INSERT INTO `tpl` VALUES ('1', '文章', 'news', 'lists', 'news', 'show', 'info_news', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `tpl` VALUES ('2', '案例', 'cases', 'lists', 'cases', 'show', 'info_cases', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `tpl` VALUES ('3', '单页', '', '', '', '', 'info_single', '', 'show', '100', null, null, null, null, 'zh-cn');
-
--- ----------------------------
 -- Table structure for uploads
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -661,27 +661,6 @@ CREATE TABLE `uploads` (
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('39', 'd1cfda930b11c178449fffa4dd282e63.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/d1cfda930b11c178449fffa4dd282e63.jpg', '/uploads/20170228/', '/uploads/20170228/d1cfda930b11c178449fffa4dd282e63.jpg', 'd1cfda930b11c178449fffa4dd282e63', 'd1cfda930b11c178449fffa4dd282e63.jpg', '亨通传媒_01.jpg', '.jpg', '34.49', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('40', '386ab7831daf14ad13dc4913475f480b.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/386ab7831daf14ad13dc4913475f480b.jpg', '/uploads/20170228/', '/uploads/20170228/386ab7831daf14ad13dc4913475f480b.jpg', '386ab7831daf14ad13dc4913475f480b', '386ab7831daf14ad13dc4913475f480b.jpg', '亨通传媒_02.jpg', '.jpg', '49.46', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('41', '8f6622b4585edad3bb205c39f99ae4f9.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/8f6622b4585edad3bb205c39f99ae4f9.jpg', '/uploads/20170228/', '/uploads/20170228/8f6622b4585edad3bb205c39f99ae4f9.jpg', '8f6622b4585edad3bb205c39f99ae4f9', '8f6622b4585edad3bb205c39f99ae4f9.jpg', '亨通传媒_05.jpg', '.jpg', '57.37', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('42', '136385aa61888e869940d080b6e667d0.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/136385aa61888e869940d080b6e667d0.jpg', '/uploads/20170228/', '/uploads/20170228/136385aa61888e869940d080b6e667d0.jpg', '136385aa61888e869940d080b6e667d0', '136385aa61888e869940d080b6e667d0.jpg', '亨通传媒_03.jpg', '.jpg', '70.29', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('43', '51c556940b8a772828e7a5372e4d7046.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/51c556940b8a772828e7a5372e4d7046.jpg', '/uploads/20170228/', '/uploads/20170228/51c556940b8a772828e7a5372e4d7046.jpg', '51c556940b8a772828e7a5372e4d7046', '51c556940b8a772828e7a5372e4d7046.jpg', '亨通传媒_04.jpg', '.jpg', '49.16', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('44', '196c3112f5b76a7b90ac914660ba17bc.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/196c3112f5b76a7b90ac914660ba17bc.jpg', '/uploads/20170228/', '/uploads/20170228/196c3112f5b76a7b90ac914660ba17bc.jpg', '196c3112f5b76a7b90ac914660ba17bc', '196c3112f5b76a7b90ac914660ba17bc.jpg', '亨通传媒_06.jpg', '.jpg', '82.95', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('45', 'd9e1922798ff2547a03b457dfcef70b8.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/d9e1922798ff2547a03b457dfcef70b8.jpg', '/uploads/20170228/', '/uploads/20170228/d9e1922798ff2547a03b457dfcef70b8.jpg', 'd9e1922798ff2547a03b457dfcef70b8', 'd9e1922798ff2547a03b457dfcef70b8.jpg', '亨通传媒_07.jpg', '.jpg', '83.96', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('46', 'ae348789f921e1ca960c8b81b8eca474.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/ae348789f921e1ca960c8b81b8eca474.jpg', '/uploads/20170228/', '/uploads/20170228/ae348789f921e1ca960c8b81b8eca474.jpg', 'ae348789f921e1ca960c8b81b8eca474', 'ae348789f921e1ca960c8b81b8eca474.jpg', '亨通传媒_08.jpg', '.jpg', '66.12', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('47', 'f636e4286eed7e68fd911983224bcb41.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/f636e4286eed7e68fd911983224bcb41.jpg', '/uploads/20170228/', '/uploads/20170228/f636e4286eed7e68fd911983224bcb41.jpg', 'f636e4286eed7e68fd911983224bcb41', 'f636e4286eed7e68fd911983224bcb41.jpg', '亨通传媒_10.jpg', '.jpg', '72.65', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('48', '7dcdc68483fbebc11ff4f4f9bbe3ee65.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/7dcdc68483fbebc11ff4f4f9bbe3ee65.jpg', '/uploads/20170228/', '/uploads/20170228/7dcdc68483fbebc11ff4f4f9bbe3ee65.jpg', '7dcdc68483fbebc11ff4f4f9bbe3ee65', '7dcdc68483fbebc11ff4f4f9bbe3ee65.jpg', '亨通传媒_09.jpg', '.jpg', '66.58', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('49', 'c0f911cd5800c413eccf6fd8246d602f.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/c0f911cd5800c413eccf6fd8246d602f.jpg', '/uploads/20170228/', '/uploads/20170228/c0f911cd5800c413eccf6fd8246d602f.jpg', 'c0f911cd5800c413eccf6fd8246d602f', 'c0f911cd5800c413eccf6fd8246d602f.jpg', '亨通传媒_12.jpg', '.jpg', '75.23', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('50', 'd6a49a069f806f5819dbf734a7d87894.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/d6a49a069f806f5819dbf734a7d87894.jpg', '/uploads/20170228/', '/uploads/20170228/d6a49a069f806f5819dbf734a7d87894.jpg', 'd6a49a069f806f5819dbf734a7d87894', 'd6a49a069f806f5819dbf734a7d87894.jpg', '亨通传媒_11.jpg', '.jpg', '86.90', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('51', '6ff695329193227993dcfa8a769bcbb2.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/6ff695329193227993dcfa8a769bcbb2.jpg', '/uploads/20170228/', '/uploads/20170228/6ff695329193227993dcfa8a769bcbb2.jpg', '6ff695329193227993dcfa8a769bcbb2', '6ff695329193227993dcfa8a769bcbb2.jpg', '亨通传媒_13.jpg', '.jpg', '43.10', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('52', 'fe472a35e930becb722cd6710db80602.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/fe472a35e930becb722cd6710db80602.jpg', '/uploads/20170228/', '/uploads/20170228/fe472a35e930becb722cd6710db80602.jpg', 'fe472a35e930becb722cd6710db80602', 'fe472a35e930becb722cd6710db80602.jpg', '亨通传媒_16.jpg', '.jpg', '49.27', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('53', '7eb6d898fe7ae517d5cf1416c9bbfb9c.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/7eb6d898fe7ae517d5cf1416c9bbfb9c.jpg', '/uploads/20170228/', '/uploads/20170228/7eb6d898fe7ae517d5cf1416c9bbfb9c.jpg', '7eb6d898fe7ae517d5cf1416c9bbfb9c', '7eb6d898fe7ae517d5cf1416c9bbfb9c.jpg', '亨通传媒_14.jpg', '.jpg', '22.64', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('54', '880d69be7fc2e58727385713fc06f2fb.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/880d69be7fc2e58727385713fc06f2fb.jpg', '/uploads/20170228/', '/uploads/20170228/880d69be7fc2e58727385713fc06f2fb.jpg', '880d69be7fc2e58727385713fc06f2fb', '880d69be7fc2e58727385713fc06f2fb.jpg', '亨通传媒_15.jpg', '.jpg', '53.57', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('55', '4d04b9715a75ec4407ec498b59a79c29.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/4d04b9715a75ec4407ec498b59a79c29.jpg', '/uploads/20170228/', '/uploads/20170228/4d04b9715a75ec4407ec498b59a79c29.jpg', '4d04b9715a75ec4407ec498b59a79c29', '4d04b9715a75ec4407ec498b59a79c29.jpg', '亨通传媒_18.jpg', '.jpg', '41.10', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('56', '27869051ef809e53a241fb9c758e41d0.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/27869051ef809e53a241fb9c758e41d0.jpg', '/uploads/20170228/', '/uploads/20170228/27869051ef809e53a241fb9c758e41d0.jpg', '27869051ef809e53a241fb9c758e41d0', '27869051ef809e53a241fb9c758e41d0.jpg', '亨通传媒_19.jpg', '.jpg', '1.30', '1', '127', '9', 'jpeg', 'width=\"1060\" height=\"9\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('57', '59ebd5c99d2a7cc9ab99aecca3eef8ca.jpg', 'image/jpeg', 'E:/wamp/www/uploads/20170228/', 'E:/wamp/www/uploads/20170228/59ebd5c99d2a7cc9ab99aecca3eef8ca.jpg', '/uploads/20170228/', '/uploads/20170228/59ebd5c99d2a7cc9ab99aecca3eef8ca.jpg', '59ebd5c99d2a7cc9ab99aecca3eef8ca', '59ebd5c99d2a7cc9ab99aecca3eef8ca.jpg', '亨通传媒_17.jpg', '.jpg', '54.89', '1', '127', '127', 'jpeg', 'width=\"1060\" height=\"250\"', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('58', '1f70eb2d1b9caeaff35f6d01903f4d64.bmp', 'image/x-ms-bmp', 'D:/wamp/www/uploads/20170322/', 'D:/wamp/www/uploads/20170322/1f70eb2d1b9caeaff35f6d01903f4d64.bmp', '/uploads/20170322/', '/uploads/20170322/1f70eb2d1b9caeaff35f6d01903f4d64.bmp', '1f70eb2d1b9caeaff35f6d01903f4d64', '1f70eb2d1b9caeaff35f6d01903f4d64.bmp', 'images_off.bmp', '.bmp', '15.68', '0', null, null, '', '', '', 'zh-cn');
-INSERT INTO `uploads` VALUES ('59', '4ea4acae8c1e7e17ae3431129e1b465c.png', 'image/png', 'D:/wamp/www/uploads/20170322/', 'D:/wamp/www/uploads/20170322/4ea4acae8c1e7e17ae3431129e1b465c.png', '/uploads/20170322/', '/uploads/20170322/4ea4acae8c1e7e17ae3431129e1b465c.png', '4ea4acae8c1e7e17ae3431129e1b465c', '4ea4acae8c1e7e17ae3431129e1b465c.png', 'English.png', '.png', '3.51', '1', '86', '57', 'png', 'width=\"86\" height=\"57\"', '', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for wx_beadded
