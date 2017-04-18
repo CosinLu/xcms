@@ -73,7 +73,7 @@ function multi_turn_one($multi_arr = array(), $num = 1)
     }
     foreach ($multi_arr as $key => $val) {
         if (is_array($val)) {
-            $this->multi_to_one($val, $num++);
+            $this->multi_turn_one($val, $num++);
         } else {
             $result[] = $val;
         }
