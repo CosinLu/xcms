@@ -1,5 +1,6 @@
 /**
  * Created by Admin on 2017/4/11.
+ * mtree-v.2.0 by MengXianghan
  */
 +(function ($) {
     var defaults = {
@@ -11,7 +12,7 @@
         currentId: '',
         currentClass: 'current',
         speed: 100,
-        onHandler: function (obj, url) {
+        onClick: function (obj, url) {
         }
     };
     var _mtree_ = {
@@ -81,7 +82,7 @@
                     .show();
             }
         },
-        handleEvent: function () {
+        onClick: function () {
             var _self = this;
             var openIcon = this.ops.openIcon;
             var closeIcon = this.ops.closeIcon;
@@ -107,7 +108,7 @@
                 } else {
                     var url = $(this).data('url');
                     if (url.replace(/javascript:;|(#)*/, "")) {
-                        _self.ops.onHandler.call(_self, $(this), $(this).data('url'));
+                        _self.ops.onClick.call(_self, $(this), $(this).data('url'));
                     }
                     _self.find('[data-name="mtreeLink"]')
                         .removeClass(_self.ops.currentClass)
@@ -124,6 +125,6 @@
     $.fn.mtree = function (ops) {
         this.ops = $.extend({}, defaults, ops);
         _mtree_.init.call(this);
-        _mtree_.handleEvent.call(this)
+        _mtree_.onClick.call(this)
     }
 })(jQuery);
