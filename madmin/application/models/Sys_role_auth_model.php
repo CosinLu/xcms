@@ -49,7 +49,6 @@ class Sys_role_auth_model extends MY_Model
             ) AS t3 ON t3.col_id = t.id
             WHERE
                 t.display = 'show'
-            AND t.user_type = 'pro'
             GROUP BY
                 t.id";
         $res = $this->db->query($sql)->result_array();

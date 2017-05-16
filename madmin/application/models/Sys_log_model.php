@@ -29,13 +29,6 @@ class Sys_log_model extends MY_Model
             $this->db->where('time >', strtotime($start_time));
             $this->db->where('time <', strtotime($stop_time));
         }
-        if ($this->session->sys_session['user_type'] == 'pro') {
-            if ($this->session->sys_session['sys_manager'] == '0') {
-                $this->db->where('user_id', $this->session->sys_session['user_id']);
-            } else {
-                $this->db->where('user_id > ', '1');
-            }
-        }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;

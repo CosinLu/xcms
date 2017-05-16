@@ -23,10 +23,9 @@ class Sys_auth
     //根据权限获得系统栏目
     public function sys_col()
     {
-        $user_type = $this->user_info['user_type'];
-        $sys_manager = $this->user_info['sys_manager'];
+        $role_type = $this->user_info['role_type'];
         $role_id = $this->user_info['role_id'];
-        if ($user_type == 'dev') {//开发者
+        if ($role_type == '1') {//系统默认
             $this->CI->db->select('t.*');
             $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
             $this->CI->db->from('sys_col as t');
@@ -34,23 +33,13 @@ class Sys_auth
             $this->CI->db->where(array(
                 't.display' => 'show'
             ));
-        } elseif ($user_type == 'pro' && $sys_manager == '1') {//系统默认
-            $this->CI->db->select('t.*');
-            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
-            $this->CI->db->from('sys_col as t');
-            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
-            $this->CI->db->where(array(
-                't.display' => 'show',
-                't.user_type' => $user_type
-            ));
-        } else {//普通
+        } else {//其他
             $this->CI->db->select('t.*');
             $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
             $this->CI->db->from('sys_col as t');
             $this->CI->db->join('sys_role_auth as t1', 't1.col_id=t.id', 'left');
             $this->CI->db->where(array(
                 't.display' => 'show',
-                't.user_type' => $user_type,
                 't1.role_id' => $role_id
             ));
         }

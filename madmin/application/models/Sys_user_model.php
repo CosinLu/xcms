@@ -24,9 +24,6 @@ class Sys_user_model extends MY_Model
         $this->db->from('sys_user as t');
         $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
         $this->db->join('sys_dict as t2', 't2.ident=t.status', 'left');
-        if ($this->session->sys_session['user_type'] == 'pro') {
-            $this->db->where('t.user_type', $this->session->sys_session['user_type']);
-        }
         if ($key != '') {
             $this->db->like('t.username', $key);
         }

@@ -58,8 +58,6 @@ class MY_Controller extends CI_Controller
                     $data['menu'][$key] = $val;
                     $data['menu'][$key]['url'] = $sys_col_url[$key];
                     $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
-                    //$data['menu'][$key]['color'] = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#337AB7' : '';
-                    $data['menu'][$key]['color'] = '';
                 }
                 if ($val['id'] == $this->sys_cid) {
                     $data['section_name'] = $val['name'];
@@ -87,8 +85,6 @@ class MY_Controller extends CI_Controller
                 $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
                 $method = ($val['method']) ? $val['method'] . '/' : '';
                 $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
-                //$color = ($val['user_type'] == 'dev' OR $val['display'] == 'hide') ? '#337AB7' : '';
-                $color = '';
                 $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
@@ -105,7 +101,7 @@ class MY_Controller extends CI_Controller
                 }
                 $str .= '<span data-name="mtree_indent"></span>';
                 $str .= '<span data-name="mtree_btn"></span>';
-                $str .= '<span data-name="mtree_name" style="color:' . $color . '">' . $val['name'] . '</span>';
+                $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
                 $str .= '</a>';
                 $parent_level = $level;
             }

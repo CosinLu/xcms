@@ -17,12 +17,12 @@
     <div class="iframe-main">
         <div class="iframe-main-section">
             <div class="container-fluid section_container">
-                <div class="panel mt15">
+                <div class="panel mt">
                     <div class="panel-heading">
                         <div class="panel-title"><?=$section_name?></div>
                     </div>
                     <div class="panel-body">
-                        <div class="form-inline pb15">
+                        <div class="form-inline pb">
                             <?=$insert_btn?>
                         </div>
                         <div class="table-responsive">
@@ -33,7 +33,6 @@
                                     <th>名称</th>
                                     <th width="20%">权限</th>
                                     <th width="20%">URL</th>
-                                    <th width="10%">用户</th>
                                     <th width="5%">状态</th>
                                     <th width="5%">排序</th>
                                     <th width="18%">操作</th>
@@ -47,7 +46,6 @@
                                         <td>{{val.prefix + val.name}}</td>
                                         <td>{{#val.col_auth}}</td>
                                         <td>{{#val.url}}</td>
-                                        <td style="color:{{val.user_type_color}}">{{#val.user_type}}</td>
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>

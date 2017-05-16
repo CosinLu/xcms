@@ -73,7 +73,6 @@ class Index extends CI_Controller
             $session['sys_session']['realname'] = $user_info['realname'];
             $session['sys_session']['nickname'] = $user_info['nickname'];
             $session['sys_session']['user_type'] = $user_info['user_type'];
-            $session['sys_session']['sys_manager'] = $user_info['sys_manager'];
             $session['sys_session']['valid_username'] = $user_info['valid_username'];
             $session['sys_session']['role_type'] = $user_info['role_type'];
             $session['sys_session']['last_login_time'] = $user_info['last_login_time'];

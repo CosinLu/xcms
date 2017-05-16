@@ -36,7 +36,7 @@ class Sys_user extends MY_Controller
     {
         $data['list'] = $this->sys_user->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            if (($val['user_type'] == 'pro' && $val['sys_manager'] == '1') or $val['user_type'] == 'dev') {
+            if ($val['user_type'] == 'default') {
                 $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_user/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
                 $data['list']['list'][$key]['del_btn'] = '<a href="javascript:;" class="disabled">删除</a>';
                 $data['list']['list'][$key]['disabled'] = 'disabled';
@@ -61,7 +61,7 @@ class Sys_user extends MY_Controller
     public function update()
     {
         $data['item'] = $this->sys_user->update();
-        $data['disabled'] = (($data['item']['user_type'] == 'pro' && $data['item']['sys_manager'] == '1') or $data['item']['user_type'] == 'dev') ? 'disabled' : '';
+        $data['disabled'] = ($data['item']['user_type'] == 'default') ? 'disabled' : '';
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
         $data['status'] = $this->sys_dict->rbl('user_status', 'status', $data['item']['status'], $data['disabled']);
         $this->load->view('sys_user/update.html', $data);
