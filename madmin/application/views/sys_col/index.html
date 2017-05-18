@@ -11,7 +11,7 @@
 <body>
 <?php require_once(VIEWPATH.'include/header.html');?>
 <!-- 主内容区域 -->
-<div class="container-fluid iframe-container iframe-inverse">
+<div class="container-fluid iframe-container">
     <?php require_once(VIEWPATH.'include/sidebar.html');?>
     <!-- 主面板 -->
     <div class="iframe-main">
@@ -33,7 +33,6 @@
                                     <th>名称</th>
                                     <th width="20%">权限</th>
                                     <th width="20%">URL</th>
-                                    <th width="10%">用户</th>
                                     <th width="5%">状态</th>
                                     <th width="5%">排序</th>
                                     <th width="18%">操作</th>
@@ -47,7 +46,6 @@
                                         <td>{{val.prefix + val.name}}</td>
                                         <td>{{#val.col_auth}}</td>
                                         <td>{{#val.url}}</td>
-                                        <td style="color:{{val.user_type_color}}">{{#val.user_type}}</td>
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>

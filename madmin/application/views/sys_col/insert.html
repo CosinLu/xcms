@@ -11,7 +11,7 @@
 <body>
 <?php require_once(VIEWPATH.'include/header.html');?>
 <!-- 主内容区域 -->
-<div class="container-fluid iframe-container iframe-inverse">
+<div class="container-fluid iframe-container">
     <?php require_once(VIEWPATH.'include/sidebar.html');?>
     <!-- 主面板 -->
     <div class="iframe-main">
@@ -69,12 +69,6 @@
                                 <div class="col-xs-2 control-label">权限</div>
                                 <div class="col-xs-5 checkbox">
                                     <?=$auth?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">类型</div>
-                                <div class="col-xs-5 radio">
-                                    <?=$user_type?>
                                 </div>
                             </div>
                             <div class="form-group">
