@@ -75,7 +75,7 @@ class Sys_role_auth extends MY_Controller
             $ident_arr = explode(',', $ident);
             $name_arr = explode(',', $name);
             foreach ($ident_arr as $key => $val) {
-                $auth .= '<label><input type="checkbox" name="auth[' . $col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins></ins>' . $name_arr[$key] . '</label>';
+                $auth .= '<label><input type="checkbox" name="auth[' . $col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins>' . $name_arr[$key] . '</ins></label>';
             }
         }
         return $auth;

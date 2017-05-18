@@ -49,6 +49,12 @@ a {
 
 /*bootstrap组件开始*/
 
+/*表格*/
+.table-bordered > thead > tr > td,
+.table-bordered > thead > tr > th {
+    border-bottom-width: 1px;
+}
+
 /*按钮*/
 .btn {
     border-radius: @border-radius;
@@ -69,8 +75,8 @@ a {
 .form-control {
     border-radius: @border-radius;
     outline: none !important;
-    box-shadow: none!important;
-    &:focus{
+    box-shadow: none !important;
+    &:focus {
         border-color: @color-primary;
     }
 }
@@ -141,6 +147,8 @@ a {
                 display: inline-block;
                 text-decoration: none;
                 line-height: 16px;
+                min-width: 16px;
+                min-height: 16px;
                 &:before {
                     content: '';
                     width: 16px;
@@ -638,8 +646,72 @@ a {
 
 /*内容区开始*/
 .section_container {
-    //margin: @spacing;
+    > .panel {
+        margin-bottom: 0;
+    }
+    .table {
+        label {
+            margin-bottom: 0px;
+            display: flex;
+        }
+    }
 }
 
 /*内容区结束*/
+
+/*权限分配开始*/
+.role_auth_list {
+    border: @border-color solid 1px;
+    ul{
+        margin-bottom:0;
+    }
+    li {
+        > div {
+            height: 40px;
+            border-top: 1px solid @border-color;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.075);
+            }
+            > div {
+                padding: 10px 8px;
+            }
+        }
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    }
+    > ul {
+        > li {
+            &:first-child {
+                > div {
+                    border-top: none;
+                }
+            }
+        }
+    }
+    .auth_control {
+        width: 40px;
+        height: 100%;
+        float: left;
+        border-right: @border-color solid 1px;
+        label {
+            margin-bottom: 0;
+            display: flex;
+        }
+    }
+    .auth_type {
+        width: 300px;
+        height: 100%;
+        float: right;
+        border-left: @border-color solid 1px;
+    }
+    .auth_name {
+        display: block;
+        margin-left: 48px;
+    }
+}
+
+/*权限分配结束*/
 

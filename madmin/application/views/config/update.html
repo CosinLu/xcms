@@ -50,7 +50,7 @@
                                     <label><input type="radio" name="<?=$val['name']?>"
                                                   value="<?=$item['value']?>" <?=$checked?>>
                                         <ins><?=$item['name']?></ins>
-                                        </label>
+                                    </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
                                 </div>
@@ -63,7 +63,7 @@
                                     <label><input type="checkbox" name="<?=$val['name']?>[]"
                                                   value="<?=$item['value']?>" <?=$checked?>>
                                         <ins><?=$item['name']?></ins>
-                                        </label>
+                                    </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
                                 </div>
@@ -95,16 +95,14 @@
                             <?php
                             endforeach;
                         ?>
-                        </div>
-                        <?php if(!empty($config_item)):?>
-                        <div class="panel-footer">
-                            <div class="row">
+                            <?php if(!empty($config_item)):?>
+                            <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-8">
                                     <?=$save_btn?>
                                 </div>
                             </div>
+                            <?php endif;?>
                         </div>
-                        <?php endif;?>
                     </form>
                 </div>
             </div>
