@@ -148,22 +148,6 @@ a.disabled {
 /*框架*/
 
 
-.iframe-container
-
-.iframe-container
-
-.iframe-container .iframe-sidebar-hidden
-
-.iframe-container
-
-.iframe-container .iframe-main
-
-.iframe-container
-
-.iframe-container .iframe-main-sidebar
-
-.iframe-container
-
 .iframe-inverse .iframe-sidebar {
     background: url("../images/nav-profile.png") no-repeat center top #263238;
     background-size: 100% auto;
@@ -198,35 +182,18 @@ a.disabled {
     color: #fff;
 }
 
-.iframe-sidebar .mtree a.current {
-    color: #fff;
-    /*background: rgba(0, 0, 0, .15);*/
-    background: transparent;
-}
+.iframe-sidebar .mtree a
 
-.iframe-sidebar .mtree a.current:before {
-    content: '';
-    width: 4px;
-    height: 100%;
-    display: inline-block;
-    position: absolute;
-    background: #337ab7;
-    left: 0;
-    top: 0;
-}
+.iframe-sidebar .mtree a.current
 
 .iframe-sidebar .mtree span[data-name="mtree_btn"] {
     width: 40px;
     line-height: 40px;
 }
 
-.iframe-sidebar.sidebar_hidden {
-    left: -220px;
-}
+.iframe-sidebar
 
-.iframe-sidebar.sidebar_hidden + .iframe-main {
-    left: 0;
-}
+.iframe-sidebar.sidebar_hidden
 
 /*内容区侧边栏*/
 .iframe-main-sidebar > .panel {

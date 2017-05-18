@@ -1,46 +1,50 @@
 <!-- 顶部 -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a href="javascript:;" class="navbar-brand"><?=MYTITLE?></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav">
-            <?php foreach($menu as $val):?>
-            <li class="<?=$val['active']?>">
-                <a href="<?=$val['url']?>"><?=$val['name']?></a></li>
-            <?php endforeach;?>
-        </ul>
-        <ul class="nav navbar-nav navbar-right dropdown_user">
-            <li class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-user"></i>
-                    <?=$header['valid_username']?>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="../" target="_blank">网站首页</a></li>
-                    <li><a href="<?=site_url('index/logout')?>">退出登录</a></li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right dropdown_lang">
-            <li class="dropdowm">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><!--<img src="images/<?=$lang['current']['0']?>.png">&nbsp;<?=$lang['current']['1']?>--></a>
-                <?php if(count($lang['other'])):?>
-                <ul class="dropdown-menu">
-                    <?php foreach($lang['other'] as $key=>$val):?>
-                    <li><a href="<?=$lang['url'].'&lang='.$key?>"><img src="images/<?=$key?>.png">&nbsp;<?=$val?></a>
-                    </li>
-                    <?php endforeach;?>
-                </ul>
-                <?php endif;?>
-            </li>
-        </ul>
-    </div>
-</nav>
+<div class="iframe-header">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="javascript:;" class="navbar-brand"><?=MYTITLE?></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <?php foreach($menu as $val):?>
+                <li class="<?=$val['active']?>">
+                    <a href="<?=$val['url']?>"><?=$val['name']?></a></li>
+                <?php endforeach;?>
+            </ul>
+            <ul class="nav navbar-nav navbar-right dropdown_user">
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                        <?=$header['valid_username']?>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../" target="_blank">网站首页</a></li>
+                        <li><a href="<?=site_url('index/logout')?>">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right dropdown_lang">
+                <li class="dropdowm">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <!--<img src="images/<?=$lang['current']['0']?>.png">&nbsp;<?=$lang['current']['1']?>--></a>
+                    <?php if(count($lang['other'])):?>
+                    <ul class="dropdown-menu">
+                        <?php foreach($lang['other'] as $key=>$val):?>
+                        <li><a href="<?=$lang['url'].'&lang='.$key?>"><img src="images/<?=$key?>.png">&nbsp;<?=$val?>
+                        </a>
+                        </li>
+                        <?php endforeach;?>
+                    </ul>
+                    <?php endif;?>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

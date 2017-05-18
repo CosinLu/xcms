@@ -16,8 +16,8 @@
     <!-- 主面板 -->
     <div class="iframe-main">
         <div class="iframe-main-section">
-            <div class="container-fluid section_container">
-                <div class="panel mt15">
+            <div class="section_container">
+                <div class="panel">
                     <div class="panel-heading">
                         <div class="panel-control">
                             <ul class="nav nav-tabs">
@@ -49,8 +49,8 @@
                                 ?>
                                     <label><input type="radio" name="<?=$val['name']?>"
                                                   value="<?=$item['value']?>" <?=$checked?>>
-                                        <ins></ins>
-                                        <?=$item['name']?></label>
+                                        <ins><?=$item['name']?></ins>
+                                        </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
                                 </div>
@@ -62,8 +62,8 @@
                                 ?>
                                     <label><input type="checkbox" name="<?=$val['name']?>[]"
                                                   value="<?=$item['value']?>" <?=$checked?>>
-                                        <ins></ins>
-                                        <?=$item['name']?></label>
+                                        <ins><?=$item['name']?></ins>
+                                        </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
                                 </div>

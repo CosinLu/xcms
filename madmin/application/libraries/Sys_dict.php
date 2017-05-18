@@ -45,7 +45,7 @@ class Sys_dict
             } else {
                 $checked = ($val['ident'] == $check_val) ? 'checked' : '';
             }
-            $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins></ins>' . $val['name'] . '</label>';
+            $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
         return $str;
     }
@@ -69,7 +69,7 @@ class Sys_dict
             } else {
                 $checked = ($val['ident'] == $check_val) ? 'checked' : '';
             }
-            $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins></ins>' . $val['name'] . '</label>';
+            $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
         return $str;
     }
