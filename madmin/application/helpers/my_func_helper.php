@@ -125,3 +125,24 @@ function upload_icon($arr = array())
     }
     return $str;
 }
+
+/**
+ * url转数组
+ * @param string $url
+ * @param array $arr
+ */
+function url_to_arr($url = '', $arr = array())
+{
+    //welcome?&sys_cid=7&a=1
+    $reg = '/\?&|\?|&/';
+    $url = preg_replace($reg, '/', $url);
+    $n = strpos($url, '#');
+    $url = ($n) ? strpos($url, '#') : $url;
+    $arr_url = explode('/', $url);
+    $new_arr = array();
+    foreach ($arr as $k => $v) {
+        array_push($new_arr, $k . '=' . $v);
+    }
+    return array_unique(array_merge($arr_url, $new_arr));
+
+}

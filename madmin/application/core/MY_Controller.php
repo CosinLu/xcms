@@ -26,8 +26,7 @@ class MY_Controller extends CI_Controller
         $this->col_auth = '';
         $this->load->library('category', array(), 'my_category');
         $this->load->library('sys_auth', array(
-            'user_info' => $this->session->sys_session,
-            'sys_cid' => $this->sys_cid
+            'user_info' => $this->session->sys_session
         ));
         $this->set_lang();
         $this->switch_lang();
@@ -81,10 +80,8 @@ class MY_Controller extends CI_Controller
             $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
             foreach ($sys_col_chidren as $val) {
                 $level = $val['level'];
-                $dir = ($val['dir']) ? $val['dir'] . '/' : '';
-                $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
-                $method = ($val['method']) ? $val['method'] . '/' : '';
-                $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
+                $n = strpos($val['url'], '?');
+                $conn = ($n) ? '&' : '?';
                 $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
@@ -94,10 +91,10 @@ class MY_Controller extends CI_Controller
                     $str .= '</li>';
                 }
                 $str .= '<li>';
-                if ($dir == '' && $sys_ctrl == '' && $method == '') {
+                if (empty($val['url'])) {
                     $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtreeLink">';
                 } else {
-                    $str .= '<a href="javascript:;" data-url="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtreeLink">';
+                    $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . '" data-name="mtreeLink">';
                 }
                 $str .= '<span data-name="mtreeIndent"></span>';
                 $str .= '<span data-name="mtreeBtn"></span>';

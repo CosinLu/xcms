@@ -53,10 +53,7 @@ class Sys_col_model extends MY_Model
         $vals = array(
             'name' => $this->input->post('name'),
             'icon' => $this->input->post('icon'),
-            'dir' => $this->input->post('dir'),
-            'ctrl' => $this->input->post('ctrl'),
-            'method' => $this->input->post('method'),
-            'param' => $this->input->post('param'),
+            'url' => $this->input->post('url'),
             'remark' => $this->input->post('remark'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
