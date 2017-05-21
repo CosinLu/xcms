@@ -481,12 +481,8 @@ class Category
             if ($val[$this->pid_name] == 0) {
                 $children[$key] = $this->children($data, $val[$this->id_name], TRUE);
                 foreach ($children[$key] as $val) {
-                    if ($val['dir'] OR $val['ctrl'] OR $val['method']) {
-                        $dir = ($val['dir']) ? $val['dir'] . '/' : '';
-                        $ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
-                        $method = ($val['method']) ? $val['method'] . '/' : '';
-                        $param = ($val['param']) ? '?sys_cid=' . $val['id'] . '&' . $val['param'] : '?sys_cid=' . $val['id'];
-                        $url[$key] = site_url($dir . $ctrl . $method . $param);
+                    if ($val['url']) {
+                        $url[$key] = site_url($val['url'] . '?sys_cid=' . $val['id']);
                         break;
                     } else {
                         $url[$key] = 'javascript:;';

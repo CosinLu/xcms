@@ -77,15 +77,14 @@ class MY_Controller extends CI_Controller
         $parent_level = 0;
         $sys_col = $this->sys_auth->sys_col();//系统栏目
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
+        $current_url_arr = url_to_arr($this->uri->uri_string(), $this->input->get());
         if (!empty($sys_col_parent_id)) {
             $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
             foreach ($sys_col_chidren as $val) {
                 $level = $val['level'];
-                $dir = ($val['dir']) ? $val['dir'] . '/' : '';
-                $sys_ctrl = ($val['ctrl']) ? $val['ctrl'] . '/' : '';
-                $method = ($val['method']) ? $val['method'] . '/' : '';
-                $param = (!empty($val['param'])) ? '&' . $val['param'] : '';
-                $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
+                $url_arr = url_to_arr($val['url']);
+                //$current = ($val['id'] == $this->sys_cid) ? 'current' : '';
+                $current = (empty(array_diff($url_arr, $current_url_arr))) ? 'current' : '';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
                 } elseif ($level > $parent_level) {
@@ -94,10 +93,10 @@ class MY_Controller extends CI_Controller
                     $str .= '</li>';
                 }
                 $str .= '<li>';
-                if ($dir == '' && $sys_ctrl == '' && $method == '') {
+                if (!$val['url']) {
                     $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtreeLink">';
                 } else {
-                    $str .= '<a href="javascript:;" data-url="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtreeLink">';
+                    $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . '?sys_cid=' . $val['id']) . '" class="' . $current . '" data-name="mtreeLink">';
                 }
                 $str .= '<span data-name="mtreeIndent"></span>';
                 $str .= '<span data-name="mtreeBtn"></span>';
