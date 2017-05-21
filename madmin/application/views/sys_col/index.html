@@ -22,7 +22,7 @@
                         <div class="panel-title"><?=$section_name?></div>
                     </div>
                     <div class="panel-body">
-                        <div class="form-inline pb15">
+                        <div class="form-inline pb">
                             <?=$insert_btn?>
                         </div>
                         <div class="table-responsive">
@@ -43,7 +43,7 @@
                                     {{each list.list as val}}
                                     <tr>
                                         <td>{{val.id}}</td>
-                                        <td>{{val.prefix + val.name}}</td>
+                                        <td>{{val.prefix}}<i class="{{val.icon}}">&nbsp;</i>{{val.name}}</td>
                                         <td>{{#val.col_auth}}</td>
                                         <td>{{#val.url}}</td>
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
@@ -58,7 +58,6 @@
                                 </script>
                             </table>
                         </div>
-                        <hr>
                         <div class="pagination_box" id="pagination"></div>
                         <script id="pagination_tpl" type="text/html">
                             <div class="pagination_info">共有{{list.total}}条</div>
@@ -71,10 +70,10 @@
 
     <script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
     <script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="plugin/mtree-1.0/js/mtree.js"></script>
+    <script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
     <script type="text/javascript" src="plugin/template.js"></script>
     <script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/core.js"></script>
     <script type="text/javascript">
         $(function () {
             get_list();

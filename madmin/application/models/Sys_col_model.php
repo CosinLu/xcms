@@ -52,6 +52,7 @@ class Sys_col_model extends MY_Model
         $pid = $this->input->post('pid');
         $vals = array(
             'name' => $this->input->post('name'),
+            'icon' => $this->input->post('icon'),
             'dir' => $this->input->post('dir'),
             'ctrl' => $this->input->post('ctrl'),
             'method' => $this->input->post('method'),

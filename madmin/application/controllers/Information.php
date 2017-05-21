@@ -49,7 +49,7 @@ class Information extends MY_Controller
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
-        $str = '';
+        $str = '<div class="mtree" data-name="mtreeMainSidebar">';
         $start_level = -1;
         $parent_level = 0;
         foreach ($info_col_sort as $val) {
@@ -67,13 +67,13 @@ class Information extends MY_Controller
             }
             $str .= '<li>';
             if ($val['sys_ctrl'] == '') {
-                $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtree_link">';
+                $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtreeLink">';
             } else {
-                $str .= '<a class="' . $current . '" href="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtree_link">';
+                $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
             }
-            $str .= '<span data-name="mtree_indent"></span>';
-            $str .= '<span data-name="mtree_btn"></span>';
-            $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
+            $str .= '<span data-name="mtreeIndent"></span>';
+            $str .= '<span data-name="mtreeBtn"></span>';
+            $str .= '<span data-name="mtreeName">' . $val['name'] . '</span>';
             $str .= '</a>';
             $parent_level = $level;
             if ($val['id'] == $this->cid) {
@@ -81,6 +81,7 @@ class Information extends MY_Controller
             }
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
+        $str .= '</div>';
         $data['main_sidebar'] = $str;
         $this->main_section_name = $data['main_section_name'];
         $this->load->vars($data);

@@ -1,17 +1,41 @@
 $(function () {
-    layer.ready(function () {
-        layer.config({
-            extend: 'bootcss/style.css',
-            skin: 'layer-ext-bootcss',
-            shade: 0.75
+
+    //配置layer
+    if (isInclude('layer.js')) {
+        layer.ready(function () {
+            layer.config({
+                extend: 'bootcss/style.css',
+                skin: 'layer-ext-bootcss',
+                shade: 0.75
+            });
         });
-    });
+    }
+
+    //sidebar
+    if (isInclude('mtree.js')) {
+        $('[data-name="mtreeSidebar"]').mtree({
+            html: true,
+            display: 2,
+            onClick: function (obj, url) {
+                window.location.href = url;
+            }
+        });
+        $('[data-name="mtreeMainSidebar"]').mtree({
+            html: true,
+            display: 2,
+            onClick: function (obj, url) {
+                window.location.href = url;
+            }
+        });
+    }
+
     //全选
     $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
         var name = $(this).data('checkname');
         var is_checked = $(this).is(':checked');
         $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', is_checked);
     });
+
     //关联全选
     $(document).on('click', 'input[type="checkbox"]', function () {
         var name = $(this).attr('name').replace(/\[.*\]/, '');
@@ -151,11 +175,13 @@ function ajaxFormShowStatus(responseData) {
                 break;
         }
     }
+
     //icon
     var icon = -1;
     if (responseData.icon) {
         icon = responseData.icon;
     }
+
     //停留时间
     var time = (responseData.time) ? responseData.time : 1000;
     layer.msg(msg, {icon: icon, shade: 0.75, shadeClose: true, time: time}, function () {
@@ -176,5 +202,14 @@ function syncEditorToTxtarea(ue, id) {
     } else {
         $('#' + id).after('<textarea class="hidden" name="' + id + '">' + editorContent + '</textarea>');
     }
+}
+
+//文件是否被引用
+function isInclude(name) {
+    var js = /js$/i.test(name);
+    var es = document.getElementsByTagName(js ? 'script' : 'link');
+    for (var i = 0; i < es.length; i++)
+        if (es[i][js ? 'src' : 'href'].indexOf(name) != -1) return true;
+    return false;
 }
 

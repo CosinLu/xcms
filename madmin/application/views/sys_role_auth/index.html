@@ -19,7 +19,6 @@
             <div class="section_container">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div class="panel-control">当前角色：</div>
                         <div class="panel-title"><?=$section_name?></div>
                     </div>
                     <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
@@ -28,9 +27,7 @@
                             <script type="text/html" id="list_tpl">
                                 {{#list}}
                             </script>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <button type="submit" class="btn btn-primary">保存</button>
+                            <button type="submit" class="btn btn-primary mt">保存</button>
                         </div>
                     </form>
                 </div>
@@ -41,11 +38,11 @@
 
 <script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
 <script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/mtree-1.0/js/mtree.js"></script>
+<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
 <script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
 <script type="text/javascript" src="plugin/jquery.form.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
 <script type="text/javascript">
     $(function () {
         get_list();

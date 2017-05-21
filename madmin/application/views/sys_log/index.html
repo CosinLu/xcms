@@ -27,7 +27,7 @@
                         <div class="panel-title"><?=$section_name?></div>
                     </div>
                     <div class="panel-body">
-                        <div class="form-inline mb15">
+                        <div class="form-inline mb">
                             <div class="form-group">
                                 <input type="text" name="start_time" class="form-control" placeholder="开始时间">
                                 <input type="text" name="stop_time" class="form-control" placeholder="结束时间">
@@ -38,7 +38,7 @@
                             <table class="table table-bordered table-hover table_list" data-name="list">
                                 <thead>
                                 <tr>
-                                    <th width="15%">新增时间</th>
+                                    <th width="15%">时间</th>
                                     <th>内容</th>
                                     <th width="10%">操作系统</th>
                                     <th width="15%">浏览器</th>
@@ -61,7 +61,6 @@
                                 </script>
                             </table>
                         </div>
-                        <hr>
                         <div class="pagination_box" id="pagination"></div>
                         <script id="pagination_tpl" type="text/html">
                             {{#list.pagination}}
@@ -75,12 +74,12 @@
 
 <script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
 <script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/mtree-1.0/js/mtree.js"></script>
+<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
 <script type="text/javascript" src="plugin/template.js"></script>
 <script type="text/javascript" src="plugin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
 <script type="text/javascript">
     $(function () {
         get_list();

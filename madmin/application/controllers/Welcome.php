@@ -16,12 +16,11 @@ class Welcome extends MY_Controller
 
     public function index()
     {
-        $data['username'] = $this->session->sys_session['username'];
-        $data['realname'] = ($this->session->sys_session['realname']) ?: '-';
+        $data['valid_username'] = $this->session->sys_session['valid_username'];
+        $data['role_name'] = $this->session->sys_session['role_name'];
         $data['last_login_time'] = ($this->session->sys_session['last_login_time']) ? date('Y-m-d H:i:s', $this->session->sys_session['last_login_time']) : '-';
         $data['last_login_ip'] = ($this->session->sys_session['last_login_ip']) ?: '-';
         $data['server_info'] = $_SERVER['SERVER_SOFTWARE'];
-        $data['operating_system'] = PHP_OS;
         $data['server_name'] = $_SERVER['SERVER_NAME'];
         $data['upload'] = $this->config->item('upload');
         $this->load->view('welcome/welcome.html', $data);

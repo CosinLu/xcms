@@ -16,23 +16,39 @@
     <!-- 主面板 -->
     <div class="iframe-main">
         <div class="iframe-main-section">
-            <div class="section_container pa">
-                <!--<h3 class="page-header"><?=$section_name?></h3>-->
-                <div class="row">
-                    <div class="col-md-6 col-xs-12">
-                        <div class="panel bs">
+            <div class="section_container">
+                <div class="media account">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="images/avatar.svg">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">欢迎您，<?=$valid_username?><span><?=$role_name?></span></h4>
+                        <p><i class="fa fa-bell"></i>&nbsp;上次登录时间：<?=$last_login_time?>，上次登录IP：<?=$last_login_ip?>
+                            ，详细信息请查看<a href="<?=site_url('sys_log/?sys_cid=31')?>">日志</a>，如不是您本人登录，请及时<a
+                                    href="">修改密码</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row introduce">
+                    <div class="col-md-7">
+                        <div class="panel">
                             <div class="panel-heading">
-                                <div class="panel-title">用户信息</div>
+                                <div class="panel-control"></div>
+                                <div class="panel-title">系统信息</div>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item">用户名：<?=$username?></li>
-                                <li class="list-group-item">真实姓名：<?=$realname?></li>
-                                <li class="list-group-item">上次登录时间：<?=$last_login_time?></li>
-                                <li class="list-group-item">上次登录IP：<?=$last_login_ip?></li>
+                                <li class="list-group-item">域名：<a href="<?=prep_url($server_name)?>"
+                                                                  target="_blank"><?=$server_name?></a></li>
+                                <li class="list-group-item">运行环境：<?=$server_info?></li>
+                                <li class="list-group-item">上传目录：<?=$upload?></li>
+                                <li class="list-group-item">上传类型：--</li>
+                                <li class="list-group-item">上传上限：--</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xs-12">
+                    <div class="col-md-5">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-control"></div>
@@ -43,30 +59,12 @@
                                 </li>
                                 <li class="list-group-item">程序开发：Meng Xianghan</li>
                                 <li class="list-group-item">交互设计：Meng Xianghan</li>
-                                <li class="list-group-item">提交反馈：
+                                <li class="list-group-item">讨论区：
                                     <a target="_blank"
                                        href="http://wpa.qq.com/msgrd?v=3&amp;uin=1056811341&amp;site=qq&amp;menu=yes"
-                                       title="提交反馈"><i class="fa fa-qq"></i>&nbsp;QQ交谈</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a target="_blank"
-                                       href="http://shang.qq.com/wpa/qunwpa?idkey=0d129222878ba69e9aae2ddd6d84f0800e985f83bfd19467ebb73e92c76badf9"
-                                       title="轩宇网络工作室"><i class="fa fa-group"></i>&nbsp;加入QQ群</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-control"></div>
-                                <div class="panel-title">系统信息</div>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">域名：<a href="<?=prep_url($server_name)?>"
-                                                                  target="_blank"><?=$server_name?></a></li>
-                                <li class="list-group-item">服务器：<?=$server_info?></li>
-                                <li class="list-group-item">操作系统：<?=$operating_system?></li>
-                                <li class="list-group-item">上传目录：<?=$upload?></li>
-                                <li class="list-group-item">上传文件类型：--</li>
-                                <li class="list-group-item">最大上传文件：--</li>
+                                       title="讨论区"><a target="_blank"
+                                                       href="http://shang.qq.com/wpa/qunwpa?idkey=0d129222878ba69e9aae2ddd6d84f0800e985f83bfd19467ebb73e92c76badf9"
+                                                       title="轩宇网络工作室"><i class="fa fa-qq"></i>&nbsp;QQ群</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,6 +75,7 @@
 </div>
 <script src="js/jquery.min-1.11.1.js"></script>
 <script src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="plugin/mtree-1.0/js/mtree.js"></script>
+<script src="plugin/mtree-2.0/js/mtree.js"></script>
+<script src="js/core.js"></script>
 </body>
 </html>

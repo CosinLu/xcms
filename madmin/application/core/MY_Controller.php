@@ -95,13 +95,14 @@ class MY_Controller extends CI_Controller
                 }
                 $str .= '<li>';
                 if ($dir == '' && $sys_ctrl == '' && $method == '') {
-                    $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtree_link">';
+                    $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtreeLink">';
                 } else {
-                    $str .= '<a href="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtree_link">';
+                    $str .= '<a href="javascript:;" data-url="' . site_url($dir . $sys_ctrl . $method . '?sys_cid=' . $val['id'] . $param) . '" class="' . $current . '" data-name="mtreeLink">';
                 }
-                $str .= '<span data-name="mtree_indent"></span>';
-                $str .= '<span data-name="mtree_btn"></span>';
-                $str .= '<span data-name="mtree_name">' . $val['name'] . '</span>';
+                $str .= '<span data-name="mtreeIndent"></span>';
+                $str .= '<span data-name="mtreeBtn"></span>';
+                $str .= '<span data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></span>';
+                $str .= '<span data-name="mtreeName">' . $val['name'] . '</span>';
                 $str .= '</a>';
                 $parent_level = $level;
             }

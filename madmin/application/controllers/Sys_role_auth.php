@@ -56,8 +56,8 @@ class Sys_role_auth extends MY_Controller
             }
             $str .= '<li>';
             $str .= '<div data-name="table">';
-            $str .= '<div class="auth_control"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
-            $str .= '<div class="auth_type">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</div>';
+            $str .= '<div class="auth_control checkbox"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
+            $str .= '<div class="auth_type checkbox">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</div>';
             $str .= '<div class="auth_name">' . $val['prefix'] . $val['name'] . '</div>';
             $str .= '</div>';
             $parent_level = $level;
