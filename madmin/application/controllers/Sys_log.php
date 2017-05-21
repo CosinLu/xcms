@@ -19,7 +19,7 @@ class Sys_log extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_log/get_list?sys_cid=' . $this->sys_cid);
-        $url['search_btn'] = '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>';
+        $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>');
         $this->load->vars($url);
     }
 
