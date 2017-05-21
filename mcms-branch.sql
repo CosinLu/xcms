@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-18 18:44:26
+Date: 2017-05-21 23:57:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -88,7 +88,7 @@ CREATE TABLE `info_cases` (
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息案例表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='信息案例表';
 
 -- ----------------------------
 -- Records of info_cases
@@ -96,6 +96,7 @@ CREATE TABLE `info_cases` (
 INSERT INTO `info_cases` VALUES ('1', '3', '德州三生设计工作室', '1', '4,6,5,2,7,3,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,23,25,27,26,28,29,30,31,32,33,34', 'http://www.sheji100.cn/', '_blank', '<p style=\"text-indent: 2em; text-align: left;\">三生设计工作室是专注于企业品牌形象建设与提升的专业设计机构。主创人员来自各大美院，拥有一线设计公司多年工作经验！一直以来我们以先进的设计理念与国际化视野，为客户创造了更具高度、更具审美、更具商业价值的作品，并积累了丰富的商业设计经验，被众多企业认可。我们坚信好的设计可以创造无限价值！</p>', '_blank', 'show', '100', null, null, '1482306361', null, 'zh-cn');
 INSERT INTO `info_cases` VALUES ('2', '3', '北京鑫洲隆源商贸有限公司', '35', '', 'http://www.dzxvip.com/', '_blank', '<p style=\"text-align: left; text-indent: 2em;\">&quot;北京鑫洲隆源商贸有限公司&quot;是一家通过实体店面和互联网相结合销售阳澄湖大闸蟹节日礼品、礼品卡的商贸公司。公司采取实体店和网络相结合的销售模式已经长达5年，借助于互联网这个平台，从事阳澄湖大闸蟹产品的订购、销售与服务的网站，拥有丰富的行业操作经验及互联网电子商务运营经验，有着极其完整的客户购买及用户体验系统。主打产品阳澄湖大闸蟹 、是阳澄湖大闸蟹行业上百品牌中的佼佼者。</p>', '_self', 'show', '100', null, null, '1482309077', null, 'zh-cn');
 INSERT INTO `info_cases` VALUES ('3', '3', '亨通（北京）文化传媒有限公司', '40', '42,43,41,44', 'http://www.hengtongtv.com/', '_blank', '', '_self', 'show', '100', null, null, '1490169144', null, 'zh-cn');
+INSERT INTO `info_cases` VALUES ('4', '4', '123', '0', '', '', '_self', '', '_self', 'show', '100', null, null, '1495381655', null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for info_col
@@ -131,7 +132,7 @@ CREATE TABLE `info_col` (
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '案例', 'cases', '0', '1', '2', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
+INSERT INTO `info_col` VALUES ('1', '案例', '', '0', '1', '0', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
 INSERT INTO `info_col` VALUES ('2', '文章', 'news', '0', '1', '1', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
 INSERT INTO `info_col` VALUES ('3', '企业官网', 'website', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
 INSERT INTO `info_col` VALUES ('4', '平台门户', 'workportal', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
@@ -282,7 +283,6 @@ CREATE TABLE `slide` (
 -- ----------------------------
 -- Records of slide
 -- ----------------------------
-INSERT INTO `slide` VALUES ('1', '美国', '59', 'http://www.baidu.com/', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_col
@@ -291,14 +291,11 @@ DROP TABLE IF EXISTS `sys_col`;
 CREATE TABLE `sys_col` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
+  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
   `pid` int(10) DEFAULT '0' COMMENT '上级标识',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `dir` varchar(20) DEFAULT NULL COMMENT '目录',
-  `ctrl` varchar(20) DEFAULT NULL COMMENT '控制器',
-  `method` varchar(20) DEFAULT NULL COMMENT '方法',
-  `param` varchar(100) DEFAULT NULL COMMENT '参数',
+  `url` varchar(255) DEFAULT NULL COMMENT '链接',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型：developer=开发者，producter=生产者',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
@@ -312,34 +309,28 @@ CREATE TABLE `sys_col` (
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
-INSERT INTO `sys_col` VALUES ('1', '首页', '0', '1', '', '', '', '', '', 'pro', 'show', '1', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('2', '系统管理', '0', '1', '', '', '', '', '', 'pro', 'show', '2', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('3', '内容管理', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('4', '模块管理', '0', '1', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('28', '后台管理', '1', '2', '', '', '', '', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('7', '我的面板', '1', '2', '', 'welcome', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('8', '数据字典', '28', '3', '', 'sys_dict', '', '', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('9', '配置组', '28', '3', '', 'config_group', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('10', '配置项', '28', '3', '', 'config_item', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('11', '网站配置', '2', '2', '', 'config', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('12', '栏目管理', '3', '2', '', 'info_col', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('13', '信息管理', '3', '2', '', 'information', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('14', '模型管理', '3', '2', '', 'info_model', '', '', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('15', '幻灯片', '4', '2', '', 'slide', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('16', '后台菜单', '28', '3', '', 'sys_col', '', '', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('17', '角色管理', '2', '2', '', 'sys_role', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('18', '用户管理', '2', '2', '', 'sys_user', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('20', '栏目图片', '3', '2', '', '', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('24', '单图管理', '20', '3', '', 'info_col_onepic', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('25', '多图管理', '20', '3', '', 'info_col_muitipic', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('31', '操作日志', '1', '2', '', 'sys_log', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('32', '微信', '0', '1', '', '', '', '', '', 'dev', 'hide', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('33', '自定义菜单', '32', '2', '', 'wx_menu', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('34', '自动回复', '32', '2', '', '', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('35', '被添加自动回复', '34', '3', '', 'wx_beadded', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('36', '消息自动恢复', '34', '3', '', 'wx_autoreply', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('37', '关键词自动回复', '34', '3', '', 'wx_smartreply', '', '', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('38', '文件管理', '4', '2', '', 'uploads', '', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('1', '首页', 'fa fa-home', '0', '1', '', '', 'show', '1', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-gear', '0', '1', '', '', 'show', '2', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-file-text', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-columns', '1', '2', '', '', 'show', '200', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-file-text', '1', '2', 'welcome', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('8', '数据字典', null, '28', '3', 'sys_dict', '', 'show', '300', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('9', '配置组', null, '28', '3', 'config_group', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('10', '配置项', null, '28', '3', 'config_item', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-th-list', '3', '2', 'info_col', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-file-text', '3', '2', 'information', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('14', '模型管理', 'fa fa-columns', '3', '2', 'info_model', '', 'show', '300', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'show', '200', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('20', '栏目图片', 'fa fa-picture-o', '3', '2', '', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-file-text-o', '1', '2', 'sys_log', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text', '4', '2', 'uploads', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -375,10 +366,8 @@ INSERT INTO `sys_col_auth` VALUES ('10', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('10', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('10', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('10', 'insert', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('11', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('17', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('17', 'update', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('17', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('18', 'update', 'zh-cn');
@@ -391,23 +380,18 @@ INSERT INTO `sys_col_auth` VALUES ('14', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('14', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('14', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('14', 'insert', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('15', 'insert', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('15', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('15', 'del', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('15', 'look', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('15', 'update', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('15', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('16', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('16', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('16', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('16', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('25', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('25', 'insert', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('31', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('31', 'look', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('11', 'look', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('32', 'look', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('32', 'del', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('32', 'update', 'zh-cn');
-INSERT INTO `sys_col_auth` VALUES ('32', 'insert', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('31', 'del', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('11', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('33', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('33', 'del', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('33', 'update', 'zh-cn');
@@ -422,7 +406,10 @@ INSERT INTO `sys_col_auth` VALUES ('37', 'update', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('37', 'insert', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('38', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('38', 'del', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('17', 'insert', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('11', 'look', 'zh-cn');
 INSERT INTO `sys_col_auth` VALUES ('17', 'look', 'zh-cn');
+INSERT INTO `sys_col_auth` VALUES ('15', 'look', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -498,11 +485,40 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES ('1', '2', 'admin', '幻灯片', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495289227', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('2', '2', 'admin', '用户管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495292969', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('3', '3', 'demo', '网站配置', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495293017', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('4', '3', 'demo', '网站配置', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495293032', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('5', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495305463', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('6', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495305485', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('7', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495305503', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('8', '2', 'admin', '角色管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495338048', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('9', '2', 'admin', '角色管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495338053', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('10', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495347396', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('11', '2', 'admin', '角色管理', 'del', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495363667', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('12', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495363699', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('13', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495363711', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('14', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495364954', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('15', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495365369', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('16', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495365426', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('17', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495365441', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('18', '2', 'admin', '角色权限', 'update', 'fail', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367136', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('19', '2', 'admin', '角色权限', 'update', 'success', 'Spartan', '15.15063', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367221', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('20', '2', 'admin', '角色权限', 'update', 'success', 'Spartan', '15.15063', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367233', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('21', '2', 'admin', '角色权限', 'update', 'success', 'Spartan', '15.15063', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367240', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('22', '2', 'admin', '角色权限', 'update', 'success', 'Spartan', '15.15063', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367253', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('23', '2', 'admin', '角色权限', 'update', 'success', 'Spartan', '15.15063', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495367272', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('24', '2', 'admin', '幻灯片', 'del', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495377989', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('25', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495379371', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('26', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495380889', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('27', '2', 'admin', '平台门户', 'insert', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495381655', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('28', '2', 'admin', '菜单管理', 'del', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495381997', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('29', '2', 'admin', '配置组', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495382208', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -515,11 +531,37 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
+INSERT INTO `sys_login_log` VALUES ('1', '2', '::1', '1495289358', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('2', '2', '::1', '1495289369', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('3', '2', '::1', '1495291087', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('4', '2', '::1', '1495291116', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('5', '2', '::1', '1495292959', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('6', '3', '::1', '1495292983', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('7', '2', '::1', '1495293052', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('8', '2', '::1', '1495304154', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('9', '2', '::1', '1495337293', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('10', '2', '::1', '1495363650', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('11', '3', '::1', '1495363981', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('12', '2', '::1', '1495364936', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('13', '3', '::1', '1495366721', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('14', '2', '::1', '1495367128', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('15', '3', '::1', '1495367147', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('16', '2', '::1', '1495367182', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('17', '3', '::1', '1495367379', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('18', '2', '::1', '1495369369', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('19', '2', '::1', '1495369452', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('20', '2', '::1', '1495369473', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('21', '2', '::1', '1495369643', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('22', '3', '::1', '1495379938', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('23', '2', '::1', '1495380429', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('24', '2', '::1', '1495380565', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('25', '2', '::1', '1495380743', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('26', '2', '::1', '1495380761', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -543,7 +585,6 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '超级管理员', '1', '拥有所有权限', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_role` VALUES ('2', '文章管理员', '0', '', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_role` VALUES ('3', '演示', '0', '演示使用', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
@@ -560,6 +601,8 @@ CREATE TABLE `sys_role_auth` (
 -- ----------------------------
 -- Records of sys_role_auth
 -- ----------------------------
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '12', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '13', 'update', 'zh-cn');
@@ -568,6 +611,12 @@ INSERT INTO `sys_role_auth` VALUES ('2', '20', '', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '1', '', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '4', '', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '15', 'insert', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '15', 'update', 'zh-cn');
+INSERT INTO `sys_role_auth` VALUES ('3', '15', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look', 'zh-cn');
@@ -575,23 +624,7 @@ INSERT INTO `sys_role_auth` VALUES ('2', '4', '', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '15', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '15', 'update', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '15', 'del', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '1', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '7', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '31', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '2', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '11', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '11', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '3', '', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '12', 'insert', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '12', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '12', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '13', 'insert', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '13', 'update', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('3', '13', 'look', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '15', 'look', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'del', 'zh-cn');
-INSERT INTO `sys_role_auth` VALUES ('2', '12', 'update', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '12', 'insert', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '3', '', 'zh-cn');
 INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look', 'zh-cn');
@@ -624,7 +657,22 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('2', '1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', 'default', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_user` VALUES ('3', '3', 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo', null, null, 'normal', null, null, null, null, null, 'zh-cn');
+INSERT INTO `sys_user` VALUES ('3', '3', 'demo', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal', null, null, null, null, null, 'zh-cn');
+
+-- ----------------------------
+-- Table structure for sys_user_auth
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_auth`;
+CREATE TABLE `sys_user_auth` (
+  `user_id` int(10) DEFAULT NULL COMMENT '角色标识',
+  `col_id` int(10) DEFAULT NULL COMMENT '系统栏目标识',
+  `col_auth` varchar(10) DEFAULT NULL COMMENT '系统栏目权限',
+  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统用户权限表';
+
+-- ----------------------------
+-- Records of sys_user_auth
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for uploads
@@ -651,7 +699,7 @@ CREATE TABLE `uploads` (
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads

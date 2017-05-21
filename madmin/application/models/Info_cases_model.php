@@ -62,7 +62,6 @@ class Info_cases_model extends MY_Model
             'cid' => $this->input->post('cid'),
             'title' => $this->input->post('title'),
             'case_url' => $this->input->post('case_url'),
-            'case_target' => $this->input->post('case_target'),
             'image' => (!empty($image)) ? implode(',', $image) : '',
             'images' => (!empty($images)) ? implode(',', $images) : '',
             'target' => $this->input->post('target'),

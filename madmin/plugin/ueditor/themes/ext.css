@@ -15,22 +15,22 @@
 
 .edui-default .edui-editor {
     border-color: #d4d4d4;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 
 .edui-default .edui-editor-toolbarbox {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 2px 2px 0 0;
 }
 
 .edui-default .edui-editor-toolbarboxouter {
     background: #fff;
     background-image: none;
-    border-radius: 0;
+    border-radius: 0 0 2px 2px;
     box-shadow: none;
 }
 

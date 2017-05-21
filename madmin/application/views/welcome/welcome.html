@@ -26,8 +26,7 @@
                     <div class="media-body">
                         <h4 class="media-heading">欢迎您，<?=$valid_username?><span><?=$role_name?></span></h4>
                         <p><i class="fa fa-bell"></i>&nbsp;上次登录时间：<?=$last_login_time?>，上次登录IP：<?=$last_login_ip?>
-                            ，详细信息请查看<a href="<?=site_url('sys_log/?sys_cid=31')?>">日志</a>，如不是您本人登录，请及时<a
-                                    href="">修改密码</a>
+                            ，详细信息请查看<a href="<?=site_url('sys_log/?sys_cid=31')?>">日志</a>
                         </p>
                     </div>
                 </div>
@@ -45,8 +44,6 @@
                                 <li class="list-group-item">上传目录：<?=$upload?></li>
                                 <li class="list-group-item">上传类型：--</li>
                                 <li class="list-group-item">上传上限：--</li>
-                                <li class="list-group-item"><?=current_url()?></li>
-                                <li class="list-group-item"><?php var_dump($this->input->get())?></li>
                             </ul>
                         </div>
                     </div>
