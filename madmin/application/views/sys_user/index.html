@@ -43,7 +43,7 @@
                                     <th width="15%">角色</th>
                                     <th width="25%">备注</th>
                                     <th width="10%">状态</th>
-                                    <th width="10%">操作</th>
+                                    <th width="20%">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody id="list"></tbody>
@@ -61,6 +61,7 @@
                                         <td>{{val.remark}}</td>
                                         <td style="color:{{val.status_color}}">{{val.status_name}}</td>
                                         <td>
+                                            {{#val.auth_btn}}
                                             {{#val.update_btn}}
                                             {{#val.del_btn}}
                                         </td>

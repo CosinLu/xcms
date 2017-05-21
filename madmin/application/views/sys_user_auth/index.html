@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=MYTITLE?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php require_once(VIEWPATH.'include/header.html');?>
+<!-- 主内容区域 -->
+<div class="container-fluid iframe-container">
+    <?php require_once(VIEWPATH.'include/sidebar.html');?>
+    <!-- 主面板 -->
+    <div class="iframe-main">
+        <div class="iframe-main-section">
+            <div class="section_container">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name?></div>
+                    </div>
+                    <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
+                        <div class="panel-body">
+                            <div class="role_auth_list" id="list"></div>
+                            <script type="text/html" id="list_tpl">
+                                {{#list}}
+                            </script>
+                            <button type="submit" class="btn btn-primary mt">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
+<script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
+<script type="text/javascript" src="plugin/template.js"></script>
+<script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
+<script type="text/javascript" src="plugin/jquery.form.min.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript">
+    $(function () {
+        get_list();
+        //获得列表
+        function get_list() {
+            var data = {
+                x: Math.random()
+            };
+            $.ajax({
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('#list,#pagination').html('');
+                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                },
+                success: function (data) {
+                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    if (data.list.length) {
+                        $('#list').html(template('list_tpl', data));
+                    } else {
+                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                    }
+                }
+            })
+        }
+
+        //复选框
+        //1.全选
+        $(document).on('click', 'input[name="checkAll"]', function () {
+            var status = $(this).is(':checked');
+            var checkbox = $(this).closest('[data-name="table"]').next('#list').find('input[type="checkbox"]');//全部复选框
+            checkbox.prop('checked', status);
+        });
+
+        $(document).on("click change", 'input[name^="id"]', function () {
+            var prevAuthCheckedLen = $(this).closest('ul').prev('[data-name="table"]').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
+            //关联上级
+            if (prevAuthCheckedLen == 0) {
+                checkedPrev($(this));
+            }
+            //关联下级
+            checkedNext($(this));
+            //关联当前行
+            checkedInline($(this));
+        });
+
+        //关联行首
+        $(document).on('click', 'input[name^="auth"]', function () {
+            var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
+            var status = $(this).is(':checked');//状态：true=选中，false=未选中
+            var prevCheckbox = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
+            var prevAuthCheckedLen = $(this).closest('ul').prev('[data-name="table"]').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
+            var nextAuthCheckedLen = $(this).closest('[data-name="table"]').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
+            if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
+                prevCheckbox.prop('checked', status);
+            } else {
+                prevCheckbox.prop('checked', true);
+            }
+            //关联上级
+            if (prevAuthCheckedLen == 0 && siblingsCheckedLen == 0) {
+                authCheckedPrev(prevCheckbox);
+            }
+            //关联下级[取消选中时有效]
+            //checkedNextCancel(prevCheckbox);
+        });
+
+        //关联当前行
+        function checkedInline(obj) {
+            var status = obj.is(':checked');
+            obj.closest('div').siblings().find('input[type="checkbox"]').prop('checked', status);
+        }
+
+        //关联下级
+        function checkedNext(obj) {
+            var status = obj.is(':checked');
+            obj.closest('[data-name="table"]').next('ul').find('input[type="checkbox"]').prop('checked', status);
+        }
+
+        //关联下级[取消选中时有效]
+        /*function checkedNextCancel(obj) {
+         var status = obj.is(':checked');
+         if (!status) {
+         obj.closest('table').next('ul').find('input[type="checkbox"]').prop('checked', status);
+         }
+         }*/
+
+        //关联上级
+        function checkedPrev(obj) {
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('[data-name="table"]').find('input[type="checkbox"][name^="id"]');
+            var checkboxLen = checkbox.length;
+            if (checkboxLen > 0) {
+                if (checkedLen > 0) {
+                    checkbox.prop('checked', true);
+                } else {
+                    checkbox.prop('checked', false);
+                }
+                checkedPrev(checkbox);
+            }
+        }
+
+        //权限关联上级
+        function authCheckedPrev(obj) {
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('[data-name="table"]').find('input[type="checkbox"][name^="id"]');
+            var checkboxLen = checkbox.length;
+            if (checkboxLen > 0) {
+                if (checkedLen > 0) {
+                    checkbox.prop('checked', true);
+                } else {
+                    checkbox.prop('checked', false);
+                }
+                checkedPrev(checkbox);
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>
