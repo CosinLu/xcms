@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-22 11:08:26
+Date: 2017-05-22 16:53:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `config` (
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
 -- ----------------------------
 -- Records of config
@@ -291,7 +291,7 @@ DROP TABLE IF EXISTS `sys_col`;
 CREATE TABLE `sys_col` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
-  `icon` varchar(20) DEFAULT NULL COMMENT '图标',
+  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `pid` int(10) DEFAULT '0' COMMENT '上级标识',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别',
   `url` varchar(255) DEFAULT NULL COMMENT '链接',
@@ -313,13 +313,13 @@ INSERT INTO `sys_col` VALUES ('1', '首页', 'fa fa-home', '0', '1', '', '', 'sh
 INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-gear', '0', '1', '', '', 'show', '2', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-file-text', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-columns', '1', '2', '', '', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-file-text', '1', '2', 'welcome', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-desktop', '1', '2', '', '', 'show', '200', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-th', '1', '2', 'welcome', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('8', '数据字典', null, '28', '3', 'sys_dict', '', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('9', '配置组', null, '28', '3', 'config_group', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('10', '配置项', null, '28', '3', 'config_item', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-th-list', '3', '2', 'info_col', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-list-ul', '3', '2', 'info_col', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-file-text', '3', '2', 'information', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('14', '模型管理', 'fa fa-columns', '3', '2', 'info_model', '', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'show', '100', null, null, null, null, 'zh-cn');
@@ -329,7 +329,7 @@ INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys
 INSERT INTO `sys_col` VALUES ('20', '栏目图片', 'fa fa-picture-o', '3', '2', '', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-file-text-o', '1', '2', 'sys_log', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-file-text', '1', '2', 'sys_log', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text', '4', '2', 'uploads', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
@@ -485,7 +485,7 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -525,6 +525,21 @@ INSERT INTO `sys_log` VALUES ('32', '2', 'admin', '关于我们', 'update', 'suc
 INSERT INTO `sys_log` VALUES ('33', '2', 'admin', '配置组', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495416843', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('34', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495417184', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('35', '2', 'admin', '角色权限', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495417275', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('36', '2', 'admin', '配置组', 'insert', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423530', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('37', '2', 'admin', '配置组', 'del', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423645', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('38', '2', 'admin', '配置组', 'insert', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423661', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('39', '2', 'admin', '配置组', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423702', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('40', '2', 'admin', '配置组', 'del', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423740', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('41', '2', 'admin', '配置组', 'insert', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423830', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('42', '2', 'admin', '配置组', 'del', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495423845', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('43', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439420', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('44', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439466', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('45', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439478', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('46', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439520', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('47', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439620', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('48', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439681', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('49', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439870', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('50', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439975', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -537,7 +552,7 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -578,6 +593,8 @@ INSERT INTO `sys_login_log` VALUES ('33', '3', '::1', '1495420432', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('34', '2', '::1', '1495421859', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('35', '3', '::1', '1495422387', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('36', '2', '::1', '1495422403', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('37', '2', '::1', '1495425196', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('38', '2', '::1', '1495437710', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role

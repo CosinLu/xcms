@@ -78,7 +78,7 @@ $db['default'] = array(
     'hostname' => (ENVIRONMENT == 'development') ? 'localhost' : '',
     'username' => (ENVIRONMENT == 'development') ? 'root' : '',
     'password' => (ENVIRONMENT == 'development') ? '' : '',
-    'database' => (ENVIRONMENT == 'development') ? 'mcms' : '',
+    'database' => (ENVIRONMENT == 'development') ? 'mcms-branch' : '',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,

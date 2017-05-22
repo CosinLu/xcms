@@ -57,7 +57,6 @@ class Info_col_model extends MY_Model
             'dir' => $this->input->post('dir'),
             'pic' => $this->input->post('pic'),
             'remark' => $this->input->post('remark'),
-            'location' => (!empty($location)) ? implode(',', $location) : '',
             'target' => $this->input->post('target'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
