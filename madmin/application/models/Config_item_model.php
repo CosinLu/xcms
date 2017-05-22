@@ -17,6 +17,7 @@ class Config_item_model extends MY_Model
     public function get_list()
     {
         $key = $this->input->post('key');
+        $group_id = $this->input->get('group_id');
         $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
@@ -26,6 +27,9 @@ class Config_item_model extends MY_Model
         $this->db->join('config_group as t2', 't2.id=t.config_group_id', 'left');
         if ($key != '') {
             $this->db->like('t.title', $key);
+        }
+        if ($group_id != '') {
+            $this->db->where('config_group_id', $group_id);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
