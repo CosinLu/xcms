@@ -28,10 +28,9 @@ class MY_Controller extends CI_Controller
         $this->load->library('sys_auth', array(
             'user_info' => $this->session->sys_session
         ));
-        $this->set_lang();
-        $this->switch_lang();
         $this->menu();
         $this->sidebar();
+        $this->lang();
     }
 
     //登录验证
@@ -109,28 +108,11 @@ class MY_Controller extends CI_Controller
         $this->load->vars($data);
     }
 
-    //设置语言
-    public function set_lang()
+    //语言
+    public function lang()
     {
-        $lang = $this->input->get('lang');
-        if ($lang) {
-            $session['sys_session'] = array_merge($this->session->sys_session, array('lang' => $lang));
-            $this->session->set_userdata($session);
-        }
-    }
-
-    //切换语言
-    public function switch_lang()
-    {
-        $arr_lang = array(
-            'zh-cn' => '简体中文',
-            'English' => 'English'
-        );
-        $lang = $this->session->sys_session['lang'];
-        $data['lang']['current'] = array($lang, $arr_lang[$lang]);
-        unset($arr_lang[$lang]);
-        $data['lang']['other'] = $arr_lang;
-        $data['lang']['url'] = $this->session->sys_session['home_url'];
+        $data['lang']['name'] = $this->session->sys_session['lang_name'];
+        $data['lang']['val'] = $this->session->sys_session['lang_val'];
         $this->load->vars($data);
     }
 

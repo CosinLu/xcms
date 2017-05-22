@@ -34,15 +34,15 @@ class Sys_role_auth_model extends MY_Model
                     t3.col_auth_str,
                 t3.col_id
             FROM
-                " . $this->tb_sys_col . " as t
-            LEFT JOIN " . $this->tb_sys_col_auth . " as t1 ON t1.col_id = t.id
-            LEFT JOIN " . $this->tb_sys_dict . " as t2 ON t2.ident = t1.col_auth
+                {$this->tb_sys_col} as t
+            LEFT JOIN {$this->tb_sys_col_auth} as t1 ON t1.col_id = t.id
+            LEFT JOIN {$this->tb_sys_dict} as t2 ON t2.ident = t1.col_auth
             LEFT JOIN (
                 SELECT
                     GROUP_CONCAT(col_auth) AS col_auth_str,
                     col_id
                 FROM
-                    " . $this->tb_sys_role_auth . "
+                    {$this->tb_sys_role_auth}
                 WHERE role_id=" . $this->role_id . "
                 GROUP BY
                     col_id

@@ -52,7 +52,9 @@
                                         <td>{{val.url}}</td>
                                         <td>{{val.remark}}</td>
                                         <td>
-                                            {{#val.update_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

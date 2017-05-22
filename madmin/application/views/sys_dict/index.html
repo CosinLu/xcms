@@ -45,9 +45,9 @@
                                         <td>{{val.ident}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
-                                            {{#val.insert_next_btn}}
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

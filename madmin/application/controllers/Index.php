@@ -78,7 +78,8 @@ class Index extends CI_Controller
             $session['sys_session']['role_name'] = $user_info['role_name'];
             $session['sys_session']['last_login_time'] = $user_info['last_login_time'];
             $session['sys_session']['last_login_ip'] = $user_info['last_login_ip'];
-            $session['sys_session']['lang'] = $this->config->item('language');
+            $session['sys_session']['lang_name'] = '中文简体';
+            $session['sys_session']['lang_val'] = 'zh-cn';
             //添加登录日志
             $this->index->insert_login_log($user_info['user_id']);
             $this->session->set_userdata($session);

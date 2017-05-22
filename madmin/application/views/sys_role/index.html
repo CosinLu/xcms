@@ -59,9 +59,9 @@
                                         <td>{{val.remark}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
-                                            {{#val.auth_btn}}
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

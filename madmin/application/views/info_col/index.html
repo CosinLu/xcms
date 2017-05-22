@@ -51,9 +51,9 @@
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
-                                            {{#val.insert_next_btn}}
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}
@@ -113,11 +113,11 @@
             layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
                 $.post('<?=$del_url?>', {id: id}, function (data) {
                     if (data) {
-                        layer.msg('删除成功！', {icon: 1, time: 1000}, function () {
+                        layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
                             get_list();
                         });
                     } else {
-                        layer.msg('删除失败！', {icon: 2});
+                        layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
                     }
                 })
             })

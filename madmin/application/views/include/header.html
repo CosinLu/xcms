@@ -36,23 +36,11 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right dropdown_lang">
-                <li class="dropdown">
-                    <a href="javascript:;"
-                       class="dropdown-toggle"
-                       data-toggle="dropdown"
-                       title="<?=$lang['current']['1']?>">
+                <li>
+                    <a href="javascript:;" title="<?=$lang['name']?>">
                         <i class="fa fa-globe"></i>
-                        <span><?=$lang['current']['1']?></span>
+                        <span><?=$lang['name']?></span>
                     </a>
-                    <?php if(count($lang['other'])):?>
-                    <ul class="dropdown-menu">
-                        <?php foreach($lang['other'] as $key=>$val):?>
-                        <li><a href="<?=$lang['url'].'&lang='.$key?>"><img src="images/<?=$key?>.png">&nbsp;<?=$val?>
-                        </a>
-                        </li>
-                        <?php endforeach;?>
-                    </ul>
-                    <?php endif;?>
                 </li>
             </ul>
         </div>

@@ -62,8 +62,9 @@
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

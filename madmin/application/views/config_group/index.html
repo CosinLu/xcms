@@ -42,7 +42,7 @@
                                     <th>名称</th>
                                     <th width="10%">状态</th>
                                     <th width="10%">排序</th>
-                                    <th width="10%">操作</th>
+                                    <th width="20%">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody id="list"></tbody>
@@ -58,8 +58,9 @@
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                                {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

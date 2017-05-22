@@ -61,9 +61,9 @@
                                         <td>{{val.remark}}</td>
                                         <td style="color:{{val.status_color}}">{{val.status_name}}</td>
                                         <td>
-                                            {{#val.auth_btn}}
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

@@ -67,8 +67,9 @@
                                         <td>{{val.sort}}</td>
                                         <td>{{val.time}}</td>
                                         <td>
-                                            {{#val.update_btn}}
-                                            {{#val.del_btn}}
+                                            {{each val.opera_btn as btn}}
+                                            {{#btn}}
+                                            {{/each}}
                                         </td>
                                     </tr>
                                     {{/each}}

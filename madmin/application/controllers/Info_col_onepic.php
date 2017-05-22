@@ -37,7 +37,7 @@ class Info_col_onepic extends MY_Controller
     {
         $data['list'] = $this->info_col_onepic->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['update_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_col_onepic/update?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_col_onepic/update?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
         }
         echo json_encode($data);
     }

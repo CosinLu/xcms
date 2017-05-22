@@ -10,10 +10,16 @@ class Sys_auth
 {
     protected $CI;
     protected $user_info;
+    protected $tb_sys_col;
+    protected $tb_sys_role_auth;
+    protected $tb_sys_user_auth;
 
     public function __construct($arr = array())
     {
         $this->CI =& get_instance();
+        $this->tb_sys_col = $this->CI->db->dbprefix . 'sys_col';
+        $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
+        $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
         $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
     }
@@ -47,8 +53,8 @@ FROM
 					t1.col_auth ASC
 			) AS col_auth
 		FROM
-			`sys_col` AS `t`
-		LEFT JOIN `sys_role_auth` AS `t1` ON `t1`.`col_id` = `t`.`id`
+			`{$this->tb_sys_col}` AS `t`
+		LEFT JOIN `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
 		WHERE
 			`t`.`display` = 'show'
 		AND `t1`.`role_id` = '" . $role_id . "'
@@ -62,8 +68,8 @@ FROM
 						t1.col_auth ASC
 				) AS col_auth
 			FROM
-				`sys_col` AS `t`
-			LEFT JOIN `sys_user_auth` AS `t1` ON `t1`.`col_id` = `t`.`id`
+				`{$this->tb_sys_col}` AS `t`
+			LEFT JOIN `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
 			WHERE
 				`t`.`display` = 'show'
 			AND `t1`.`user_id` = '" . $user_id . "'
