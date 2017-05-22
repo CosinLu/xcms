@@ -16,12 +16,14 @@ $(function () {
     if (isInclude('mtree.js')) {
         $('[data-name="mtreeSidebar"]').mtree({
             html: true,
+            display: 2,
             onClick: function (obj, url) {
                 window.location.href = url;
             }
         });
         $('[data-name="mtreeMainSidebar"]').mtree({
             html: true,
+            display: 2,
             onClick: function (obj, url) {
                 window.location.href = url;
             }

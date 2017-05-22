@@ -25,6 +25,9 @@
         return this.each(function () {
             element = this;
             if (!settings.buttonOnly && $(this).data("iconPicker") == undefined) {
+                if($(this).val!=''){
+                    defaultIcon = $(this).val();
+                }
                 $this = $(this).addClass("form-control").val(defaultIcon);
                 $wraper = $("<div/>", {class: "input-group"});
                 $this.wrap($wraper);
