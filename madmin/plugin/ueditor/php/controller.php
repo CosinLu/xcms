@@ -5,11 +5,11 @@ date_default_timezone_set("Asia/chongqing");
 error_reporting(E_ERROR);
 header("Content-Type: text/html; charset=utf-8");
 
-$str_config_json = file_get_contents("config.json");
-$str_config_txt = file_get_contents('config.txt');
-$str_new_config = str_replace('//', '/', str_replace('{upload}', $str_config_txt, $str_config_json));
-$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", $str_new_config), true);
-//$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("config.json")), true);
+$config_json = file_get_contents("config.json");
+$my_config_json = json_decode(file_get_contents('my.config.json'));
+$new_config = str_replace('//', '/', str_replace('{upload}', $my_config_json->upload, $config_json));
+$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", $new_config), true);
+////$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("config.json")), true);
 $action = $_GET['action'];
 
 switch ($action) {

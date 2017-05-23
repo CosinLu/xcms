@@ -27,8 +27,8 @@ class Information extends MY_Controller
         foreach ($data as $key => $val) {
             $children[$key] = $this->category->children($data, $val['pid'], TRUE);
             foreach ($children[$key] as $val) {
-                if ($val['sys_ctrl']) {
-                    $url[$key] = $val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
+                if ($val['sys_tpl']) {
+                    $url[$key] = $val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
                     break;
                 } else {
                     $url[$key] = '';
@@ -43,9 +43,9 @@ class Information extends MY_Controller
     public function main_sidebar()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.sys_ctrl');
+        $this->db->select('t1.sys_tpl');
         $this->db->from('info_col as t');
-        $this->db->join('info_model as t1', 't1.id=t.info_model_id', 'left');
+        $this->db->join('info_tpl as t1', 't1.id=t.info_tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
@@ -66,10 +66,10 @@ class Information extends MY_Controller
                 $str .= '</li>';
             }
             $str .= '<li>';
-            if ($val['sys_ctrl'] == '') {
+            if ($val['sys_tpl'] == '') {
                 $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtreeLink">';
             } else {
-                $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_ctrl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
+                $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
             }
             $str .= '<span data-name="mtreeIndent"></span>';
             $str .= '<span data-name="mtreeBtn"></span>';
@@ -87,10 +87,10 @@ class Information extends MY_Controller
         $this->load->vars($data);
     }
 
-    //获得当前栏目的模型标识
-    public function info_model_id()
+    //获得当前栏目的模板标识
+    public function info_tpl_id()
     {
-        $res = $this->information->info_model_id();
+        $res = $this->information->info_tpl_id();
         return $res;
     }
 

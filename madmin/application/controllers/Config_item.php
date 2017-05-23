@@ -26,6 +26,7 @@ class Config_item extends MY_Controller
         $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-default" href="javascript:;" data-name="batchDel" data-tb="config" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">删除</a>');
         $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" data-name="searchbtn" class="btn btn-default">搜索</button>');
         $url['save_url'] = site_url('config_item/save?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
+        $url['back_btn'] = ($this->group_id) ? '<a href="javascript:history.back();" class="btn btn-default">返回</a>' : '';
         $this->load->vars($url);
     }
 

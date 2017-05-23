@@ -51,7 +51,7 @@ class Info_cases extends Information
     //新增
     public function insert()
     {
-        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_model_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('info_cases/insert.html', $data);
@@ -61,7 +61,7 @@ class Info_cases extends Information
     public function update()
     {
         $data['item'] = $this->info_cases->update();
-        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_model_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_tpl_id());
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['images'] = $this->uploadifive->get_list($data['item']['images'], 'images');
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);

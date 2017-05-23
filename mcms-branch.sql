@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-22 16:53:55
+Date: 2017-05-23 14:46:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -108,13 +108,12 @@ CREATE TABLE `info_col` (
   `dir` varchar(50) DEFAULT NULL COMMENT '目录',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
-  `info_model_id` int(11) DEFAULT NULL COMMENT '模型标识',
+  `info_tpl_id` int(11) DEFAULT NULL COMMENT '模板标识',
   `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
   `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
   `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `location` varchar(20) DEFAULT NULL COMMENT '栏目位置',
   `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
@@ -132,11 +131,11 @@ CREATE TABLE `info_col` (
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '案例', '', '0', '1', '0', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
-INSERT INTO `info_col` VALUES ('2', '文章', 'news', '0', '1', '1', '', 'nopic', null, null, '', 'tnav', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
-INSERT INTO `info_col` VALUES ('3', '企业官网', 'website', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
-INSERT INTO `info_col` VALUES ('4', '平台门户', 'workportal', '1', '2', '2', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
-INSERT INTO `info_col` VALUES ('5', '关于我们', '', '0', '1', '3', '', 'nopic', null, null, '', '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
+INSERT INTO `info_col` VALUES ('1', '案例', '', '0', '1', '0', '', 'nopic', null, null, '', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
+INSERT INTO `info_col` VALUES ('2', '文章', 'news', '0', '1', '1', '', 'nopic', null, null, '', '_self', 'show', '100', null, null, null, null, '1', '1', '0', null);
+INSERT INTO `info_col` VALUES ('3', '企业官网', 'website', '1', '2', '2', '', 'onepic', null, null, '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
+INSERT INTO `info_col` VALUES ('4', '平台门户', 'workportal', '1', '2', '2', '', 'muitipic', null, null, '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
+INSERT INTO `info_col` VALUES ('5', '关于我们', '', '0', '1', '3', '', 'nopic', null, null, '', '_self', 'show', '100', null, null, null, null, '1', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -181,36 +180,6 @@ CREATE TABLE `info_col_onepic` (
 -- ----------------------------
 -- Records of info_col_onepic
 -- ----------------------------
-
--- ----------------------------
--- Table structure for info_model
--- ----------------------------
-DROP TABLE IF EXISTS `info_model`;
-CREATE TABLE `info_model` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `list_ctrl` varchar(20) DEFAULT NULL COMMENT '列表页控制器',
-  `list_method` varchar(20) DEFAULT NULL COMMENT '列表页方法',
-  `show_ctrl` varchar(20) DEFAULT NULL COMMENT '详情页控制器',
-  `show_method` varchar(20) DEFAULT NULL COMMENT '详情页方法',
-  `sys_ctrl` varchar(20) DEFAULT NULL COMMENT '系统控制器',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
-
--- ----------------------------
--- Records of info_model
--- ----------------------------
-INSERT INTO `info_model` VALUES ('1', '文章', 'news', 'lists', 'news', 'show', 'info_news', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `info_model` VALUES ('2', '案例', 'cases', 'lists', 'cases', 'show', 'info_cases', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `info_model` VALUES ('3', '单页', '', '', '', '', 'info_single', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for info_news
@@ -258,7 +227,35 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
-INSERT INTO `info_single` VALUES ('5', '关于我们的摘要', '<p><img src=\"/uploads/ueditor/image/20170322/1490154851924968.bmp\" alt=\"1490154851924968.bmp\"/>关于我们</p>', null, null, null, null, 'zh-cn');
+INSERT INTO `info_single` VALUES ('5', '关于我们的摘要', '<p><img src=\"/uploads/ueditor/image/20170523/1495521249493445.png\" alt=\"English.png\" title=\"1495521249493445.png\"/>关于我们</p>', null, null, null, null, 'zh-cn');
+
+-- ----------------------------
+-- Table structure for info_tpl
+-- ----------------------------
+DROP TABLE IF EXISTS `info_tpl`;
+CREATE TABLE `info_tpl` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` char(50) DEFAULT NULL COMMENT '名称',
+  `list_tpl` varchar(20) DEFAULT NULL COMMENT '列表模板',
+  `show_tpl` varchar(20) DEFAULT NULL COMMENT '详细模板',
+  `sys_tpl` varchar(20) DEFAULT NULL COMMENT '后台模板',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='内容模型表';
+
+-- ----------------------------
+-- Records of info_tpl
+-- ----------------------------
+INSERT INTO `info_tpl` VALUES ('1', '新闻模板', 'news', 'news/show', 'info_news', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `info_tpl` VALUES ('2', '案例模板', 'cases', 'cases/show', 'info_cases', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `info_tpl` VALUES ('3', '单页模板', 'single', '', 'info_single', '', 'show', '100', null, null, null, null, 'zh-cn');
 
 -- ----------------------------
 -- Table structure for slide
@@ -314,19 +311,19 @@ INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-gear', '0', '1', '', '
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-file-text', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-desktop', '1', '2', '', '', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-th', '1', '2', 'welcome', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-th-large', '1', '2', 'welcome', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('8', '数据字典', null, '28', '3', 'sys_dict', '', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('9', '配置组', null, '28', '3', 'config_group', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('10', '配置项', null, '28', '3', 'config_item', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-list-ul', '3', '2', 'info_col', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-file-text', '3', '2', 'information', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('14', '模型管理', 'fa fa-columns', '3', '2', 'info_model', '', 'show', '300', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('14', '模板管理', 'fa fa-folder', '3', '2', 'info_tpl', '', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'show', '200', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('20', '栏目图片', 'fa fa-picture-o', '3', '2', '', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2', '', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-file-text', '1', '2', 'sys_log', '', 'show', '100', null, null, null, null, 'zh-cn');
@@ -485,7 +482,7 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -540,6 +537,20 @@ INSERT INTO `sys_log` VALUES ('47', '2', 'admin', '菜单管理', 'update', 'suc
 INSERT INTO `sys_log` VALUES ('48', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439681', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('49', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439870', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('50', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495439975', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('51', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495509592', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('52', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495517014', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('53', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495517021', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('54', '2', 'admin', '模型管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518198', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('55', '2', 'admin', '模型管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518208', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('56', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518682', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('57', '2', 'admin', '模板管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518700', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('58', '2', 'admin', '模板管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518709', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('59', '2', 'admin', '模板管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518718', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('60', '2', 'admin', '模板管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495518727', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('61', '2', 'admin', '模板管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495519035', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('62', '2', 'admin', '关于我们', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521263', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('63', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521698', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('64', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521827', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -552,7 +563,7 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -595,6 +606,15 @@ INSERT INTO `sys_login_log` VALUES ('35', '3', '::1', '1495422387', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('36', '2', '::1', '1495422403', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('37', '2', '::1', '1495425196', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('38', '2', '::1', '1495437710', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('39', '2', '::1', '1495505779', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('40', '2', '::1', '1495519825', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('41', '2', '::1', '1495519984', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('42', '2', '::1', '1495520070', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('43', '2', '::1', '1495520518', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('44', '2', '::1', '1495521544', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('45', '2', '::1', '1495521560', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('46', '2', '::1', '1495521580', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('47', '2', '::1', '1495521617', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -743,8 +763,10 @@ CREATE TABLE `uploads` (
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
+INSERT INTO `uploads` VALUES ('67', '8b281335313a9300fe2c2e934bf932e7.png', 'image/png', 'D:/wamp/www/uploads/20170523/', 'D:/wamp/www/uploads/20170523/8b281335313a9300fe2c2e934bf932e7.png', '/uploads/20170523/', '/uploads/20170523/8b281335313a9300fe2c2e934bf932e7.png', '8b281335313a9300fe2c2e934bf932e7', '8b281335313a9300fe2c2e934bf932e7.png', 'English.png', '.png', '3.51', '1', '86', '57', 'png', 'width=\"86\" height=\"57\"', '', 'zh-cn');
+INSERT INTO `uploads` VALUES ('68', '6d70186ad394565523462961a506983e.png', 'image/png', 'D:/wamp/www/uploads/20170523/', 'D:/wamp/www/uploads/20170523/6d70186ad394565523462961a506983e.png', '/uploads/20170523/', '/uploads/20170523/6d70186ad394565523462961a506983e.png', '6d70186ad394565523462961a506983e', '6d70186ad394565523462961a506983e.png', 'Korean.png', '.png', '3.30', '1', '86', '57', 'png', 'width=\"86\" height=\"57\"', '', 'zh-cn');

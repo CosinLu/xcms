@@ -36,7 +36,7 @@ class Config_group extends MY_Controller
     {
         $data['list'] = $this->config_group->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_item?sys_cid=' . $this->sys_cid . '&group_id=' . $val['id']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_item?sys_cid=10&group_id=' . $val['id']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_group/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="config_group" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }

@@ -50,7 +50,7 @@ class Info_news extends Information
     //新增
     public function insert()
     {
-        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_model_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('info_news/insert.html', $data);
@@ -60,7 +60,7 @@ class Info_news extends Information
     public function update()
     {
         $data['item'] = $this->info_news->update();
-        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_model_id());
+        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('info_news/update.html', $data);

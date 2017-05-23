@@ -21,7 +21,7 @@ class Ueditor
     public function edit_upload_path()
     {
         $upload = trim($this->CI->config->item('upload'));
-        $config_txt_path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/config.txt'));
+        $config_txt_path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config'));
         file_put_contents($config_txt_path, $upload);
     }
 

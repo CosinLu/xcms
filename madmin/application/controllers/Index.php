@@ -65,6 +65,7 @@ class Index extends CI_Controller
             $this->load->view('index/index.html');
         } else {
             //登录成功
+            $this->config_upload_path();
             $user_info = $this->index->user_info();
             $session['sys_session']['user_id'] = $user_info['id'];
             $session['sys_session']['role_id'] = $user_info['role_id'];
@@ -175,5 +176,17 @@ class Index extends CI_Controller
         //销毁session
         $this->session->unset_userdata('sys_session');
         redirect(site_url());
+    }
+
+    //配置上传路径
+    public function config_upload_path()
+    {
+        $path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config.json'));
+        if (!is_file($path)) {
+            $config_json = '{
+            "upload": "' . trim($this->config->item('upload')) . '"
+        }';
+            file_put_contents($path, $config_json);
+        }
     }
 }
