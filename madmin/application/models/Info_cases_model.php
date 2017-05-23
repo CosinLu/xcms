@@ -68,7 +68,7 @@ class Info_cases_model extends MY_Model
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
             'content' => $this->input->post('content'),
-            'update_time' => time(),
+            'create_time' => strtotime($this->input->post('create_time'))
         );
         if ($id) {
             $bool = $this->db->where('id', $id)->update('info_cases', $vals);

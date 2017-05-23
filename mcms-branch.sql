@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-23 18:42:33
+Date: 2017-05-23 22:56:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -95,7 +95,7 @@ CREATE TABLE `info_cases` (
 -- ----------------------------
 INSERT INTO `info_cases` VALUES ('1', '3', '德州三生设计工作室', '1', '4,6,5,2,7,3,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,23,25,27,26,28,29,30,31,32,33,34', 'http://www.sheji100.cn/', '_blank', '<p style=\"text-indent: 2em; text-align: left;\">三生设计工作室是专注于企业品牌形象建设与提升的专业设计机构。主创人员来自各大美院，拥有一线设计公司多年工作经验！一直以来我们以先进的设计理念与国际化视野，为客户创造了更具高度、更具审美、更具商业价值的作品，并积累了丰富的商业设计经验，被众多企业认可。我们坚信好的设计可以创造无限价值！</p>', '_blank', 'show', '100', null, null, '1482306361', null, 'zh-cn');
 INSERT INTO `info_cases` VALUES ('2', '3', '北京鑫洲隆源商贸有限公司', '35', '', 'http://www.dzxvip.com/', '_blank', '<p style=\"text-align: left; text-indent: 2em;\">&quot;北京鑫洲隆源商贸有限公司&quot;是一家通过实体店面和互联网相结合销售阳澄湖大闸蟹节日礼品、礼品卡的商贸公司。公司采取实体店和网络相结合的销售模式已经长达5年，借助于互联网这个平台，从事阳澄湖大闸蟹产品的订购、销售与服务的网站，拥有丰富的行业操作经验及互联网电子商务运营经验，有着极其完整的客户购买及用户体验系统。主打产品阳澄湖大闸蟹 、是阳澄湖大闸蟹行业上百品牌中的佼佼者。</p>', '_self', 'show', '100', null, null, '1482309077', null, 'zh-cn');
-INSERT INTO `info_cases` VALUES ('3', '3', '亨通（北京）文化传媒有限公司', '40', '42,43,41,44', 'http://www.hengtongtv.com/', '_blank', '', '_self', 'show', '100', null, null, '1490169144', null, 'zh-cn');
+INSERT INTO `info_cases` VALUES ('3', '3', '亨通（北京）文化传媒有限公司', '0', '', 'http://www.hengtongtv.com/', '_blank', '', '_self', 'show', '100', '1495551202', null, '1490169144', null, 'zh-cn');
 INSERT INTO `info_cases` VALUES ('4', '4', '123', '0', '', '', '_self', '', '_self', 'show', '100', null, null, '1495381655', null, 'zh-cn');
 
 -- ----------------------------
@@ -482,7 +482,7 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -551,6 +551,8 @@ INSERT INTO `sys_log` VALUES ('61', '2', 'admin', '模板管理', 'update', 'suc
 INSERT INTO `sys_log` VALUES ('62', '2', 'admin', '关于我们', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521263', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('63', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521698', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('64', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '58.0.3029.96', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1495521827', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('65', '2', 'admin', '企业官网', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495550988', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('66', '2', 'admin', '企业官网', 'update', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495551203', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log

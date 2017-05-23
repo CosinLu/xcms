@@ -30,6 +30,17 @@ $(function () {
         });
     }
 
+    //时间插件
+    if(isInclude('bootstrap-datetimepicker.min.js')){
+        $('input[name$="_time"]').datetimepicker({
+            language:'zh-CN',
+            format:'yyyy-mm-dd hh:ii:ss',
+            pickerPosition:'top-right',
+            autoclose:true,
+            todayBtn:true
+        });
+    }
+
     //全选
     $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
         var name = $(this).data('checkname');

@@ -41,7 +41,7 @@ class Info_cases extends Information
         $data['list'] = $this->info_cases->get_list();
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['title'] = $val['title'];
-            $data['list']['list'][$key]['time'] = date('m/d H:i', $val['update_time']);
+            $data['list']['list'][$key]['time'] = date('Y-m-d H:i', $val['create_time']);
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_cases/update?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="info_cases" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid . '&col_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
@@ -54,6 +54,7 @@ class Info_cases extends Information
         $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['create_time'] = date('Y-m-d H:i:s',time());
         $this->load->view('info_cases/insert.html', $data);
     }
 
@@ -66,6 +67,7 @@ class Info_cases extends Information
         $data['images'] = $this->uploadifive->get_list($data['item']['images'], 'images');
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['create_time'] = date('Y-m-d H:i:s',$data['item']['create_time']);
         $this->load->view('info_cases/update.html', $data);
     }
 
