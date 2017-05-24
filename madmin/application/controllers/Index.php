@@ -6,6 +6,7 @@
  * Date: 2016/8/26
  * Time: 19:43
  */
+
 class Index extends CI_Controller
 {
     protected $sys_session;
