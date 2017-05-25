@@ -12,7 +12,7 @@ require.config({
         , 'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN'
         , 'dragsort': 'plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min'
         , 'dropload': 'plugin/dropload-0.9.0/dropload.min'
-        , 'iconpicker': 'plugin/iconpicker/js/iconPicker.min'
+        , 'iconpicker': 'plugin/iconpicker/js/iconPicker'
         , 'layer': 'plugin/layer-3.0.1/layer'
         , 'mtree': 'plugin/mtree-2.0/js/mtree'
         , 'ueditor': 'plugin/ueditor/ueditor.all.min'
@@ -77,6 +77,9 @@ require.config({
         , 'holder': {
             deps: ['jquery'
                 , 'jqthumb']
+        }
+        , 'template': {
+            deps: ['jquery']
         }
     }
 
@@ -223,7 +226,7 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], fun
         $('[data-form="ajaxForm"]').ajaxForm({
             type: 'post',
             dataType: 'json',
-            success: function (responseData,$form) {
+            success: function (responseData, $form) {
                 //提示
                 var msg;
                 if (responseData.msg) {

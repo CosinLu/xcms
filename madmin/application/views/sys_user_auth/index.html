@@ -39,36 +39,35 @@
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template','unit'], function (template,unit) {
-        $(function () {
-            get_list();
-            //获得列表
-            function get_list() {
-                var data = {
-                    x: Math.random()
-                };
-                $.ajax({
-                    url: '<?=$get_list_url?>',
-                    type: 'post',
-                    dataType: 'json',
-                    data: data,
-                    beforeSend: function () {
-                        $('[data-name="nodata"],[data-name="loading"]').remove();
-                        $('#list,#pagination').html('');
-                        $('[data-name="list"]').after('<?=MYLOADING?>');
-                    },
-                    success: function (data) {
-                        $('[data-name="loading"],[data-name="nodata"]').remove();
-                        if (data.list.length) {
-                            $('#list').html(template('list_tpl', data));
-                        } else {
-                            $('[data-name="list"]').after('<?=MYNODATA?>');
-                        }
+    require(['template', 'unit'], function (template, unit) {
+        get_list();
+        //获得列表
+        function get_list() {
+            var data = {
+                x: Math.random()
+            };
+            $.ajax({
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('#list,#pagination').html('');
+                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                },
+                success: function (data) {
+                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    if (data.list.length) {
+                        $('#list').html(template('list_tpl', data));
+                    } else {
+                        $('[data-name="list"]').after('<?=MYNODATA?>');
                     }
-                })
-            }
-            unit.authCheck();
-        });
+                }
+            })
+        }
+
+        unit.authCheck();
     });
 </script>
 </body>

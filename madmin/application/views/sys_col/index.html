@@ -73,50 +73,48 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['template'], function (template) {
-        $(function () {
-            get_list();
-            //获得列表
-            function get_list() {
-                var data = {
-                    x: Math.random()
-                };
-                $.ajax({
-                    url: '<?=$get_list_url?>',
-                    type: 'post',
-                    dataType: 'json',
-                    data: data,
-                    beforeSend: function () {
-                        $('[data-name="nodata"],[data-name="loading"]').remove();
-                        $('#list,#pagination').html('');
-                        $('[data-name="list"]').after('<?=MYLOADING?>');
-                    },
-                    success: function (data) {
-                        $('[data-name="loading"],[data-name="nodata"]').remove();
-                        if (data.list.list.length) {
-                            $('#list').html(template('list_tpl', data));
-                            $('#pagination').html(template('pagination_tpl', data));
-                        } else {
-                            $('[data-name="list"]').after('<?=MYNODATA?>');
-                        }
+        get_list();
+        //获得列表
+        function get_list() {
+            var data = {
+                x: Math.random()
+            };
+            $.ajax({
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('#list,#pagination').html('');
+                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                },
+                success: function (data) {
+                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    if (data.list.list.length) {
+                        $('#list').html(template('list_tpl', data));
+                        $('#pagination').html(template('pagination_tpl', data));
+                    } else {
+                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                    }
+                }
+            })
+        }
+
+        //删除
+        $(document).on('click', '[data-name="delCol"]', function () {
+            var id = $(this).data('id');
+            layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
+                $.post('<?=$del_url?>', {id: id}, function (data) {
+                    if (data) {
+                        layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
+                            get_list();
+                        });
+                    } else {
+                        layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
                     }
                 })
-            }
-
-            //删除
-            $(document).on('click', '[data-name="delCol"]', function () {
-                var id = $(this).data('id');
-                layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
-                    $.post('<?=$del_url?>', {id: id}, function (data) {
-                        if (data) {
-                            layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                                get_list();
-                            });
-                        } else {
-                            layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
-                        }
-                    })
-                })
-            });
+            })
         });
     });
 </script>

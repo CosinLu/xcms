@@ -84,51 +84,49 @@
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template'],function(template){
-        $(function () {
-            get_list();
+    require(['template'], function (template) {
+        get_list();
 
-            //分页
-            $(document).on({
-                click: function (e) {
-                    get_list($(this).data('page'));
-                }
-            }, '[data-name="pagination"] li[class!="active"] a');
-
-            //搜索
-            $('[data-name="searchbtn"]').click(function () {
-                get_list();
-            });
-
-            //获得列表
-            function get_list(pageIndex) {
-                var data = {
-                    x: Math.random(),
-                    page: pageIndex,
-                    key: $('input[name="key"]').val()
-                };
-                $.ajax({
-                    url: '<?=$get_list_url?>',
-                    type: 'post',
-                    dataType: 'json',
-                    data: data,
-                    beforeSend: function () {
-                        $('[data-name="nodata"],[data-name="loading"]').remove();
-                        $('#list,#pagination').html('');
-                        $('[data-name="list"]').after('<?=MYLOADING?>');
-                    },
-                    success: function (data) {
-                        $('[data-name="loading"],[data-name="nodata"]').remove();
-                        if (data.list.list.length) {
-                            $('#list').html(template('list_tpl', data));
-                            $('#pagination').html(template('pagination_tpl', data));
-                        } else {
-                            $('[data-name="list"]').after('<?=MYNODATA?>');
-                        }
-                    }
-                })
+        //分页
+        $(document).on({
+            click: function (e) {
+                get_list($(this).data('page'));
             }
+        }, '[data-name="pagination"] li[class!="active"] a');
+
+        //搜索
+        $('[data-name="searchbtn"]').click(function () {
+            get_list();
         });
+
+        //获得列表
+        function get_list(pageIndex) {
+            var data = {
+                x: Math.random(),
+                page: pageIndex,
+                key: $('input[name="key"]').val()
+            };
+            $.ajax({
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('#list,#pagination').html('');
+                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                },
+                success: function (data) {
+                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    if (data.list.list.length) {
+                        $('#list').html(template('list_tpl', data));
+                        $('#pagination').html(template('pagination_tpl', data));
+                    } else {
+                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                    }
+                }
+            })
+        }
     });
 </script>
 </body>

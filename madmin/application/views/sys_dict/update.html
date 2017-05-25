@@ -83,21 +83,19 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['colorpicker'], function () {
-        $(function () {
-            $('[data-name="colorpicker"]').colorpicker({
-                input: 'input[name="color"]',
-                colorSelectors: {
-                    '#333': '#333',//default
-                    '#337ab7': '#337ab7',//primary
-                    '#5cb85c': '#5cb85c',//success
-                    '#5bc0de': '#5bc0de',//info
-                    '#f0ad4e': '#f0ad4e',//warning
-                    '#d9534f': '#d9534f'//danger
-                }
-            }).on('changeColor', function (e) {
-                $('input[name="name"]').css('color', e.color.toHex());
-            });
-        })
+        $('[data-name="colorpicker"]').colorpicker({
+            input: 'input[name="color"]',
+            colorSelectors: {
+                '#333': '#333',//default
+                '#337ab7': '#337ab7',//primary
+                '#5cb85c': '#5cb85c',//success
+                '#5bc0de': '#5bc0de',//info
+                '#f0ad4e': '#f0ad4e',//warning
+                '#d9534f': '#d9534f'//danger
+            }
+        }).on('changeColor', function (e) {
+            $('input[name="name"]').css('color', e.color.toHex());
+        });
     });
 </script>
 </body>
