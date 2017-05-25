@@ -35,7 +35,7 @@ class Info_news_model extends MY_Model
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('t.sort desc,t.id desc');
+        $this->db->order_by('t.sort desc,t.create_time desc,t.id desc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
@@ -64,7 +64,7 @@ class Info_news_model extends MY_Model
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
             'content' => $this->input->post('content'),
-            'update_time' => time(),
+            'create_time' => strtotime($this->input->post('create_time'))
         );
         if ($id) {
             $bool = $this->db->where('id', $id)->update('info_news', $vals);

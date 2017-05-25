@@ -5,7 +5,6 @@
     <title>在线浏览</title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap-3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugin/dropload-0.9.0/dropload.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -41,19 +40,9 @@
         <div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-<?=$name?>-file-{{i}}">
             <div class="thumbnail">
                 <div class="thumb">
-                    <!--{{if val.isFile}}&lt;!&ndash;文件存在&ndash;&gt;
-                    {{if val.isImage}}&lt;!&ndash;文件是图片&ndash;&gt;
+                    {{if val.isImage}}<!--图片-->
                     <img src="{{val.fullPath}}" title="{{val.clientName}}">
-                    {{else}}&lt;!&ndash;文件不是图片&ndash;&gt;
-                    <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
-                         title="{{val.clientName}}">
-                    {{/if}}
-                    {{else}}&lt;!&ndash;文件不存在&ndash;&gt;
-                    <img data-src="holder.js/100px80?theme=danger&text=File does not exist" title="{{val.clientName}}">
-                    {{/if}}-->
-                    {{if val.isImage}}<!--文件是图片-->
-                    <img src="{{val.fullPath}}" title="{{val.clientName}}">
-                    {{else}}<!--文件不是图片-->
+                    {{else}}<!--不是图片-->
                     <img data-src="holder.js/100px80?theme=primary&text=File type is {{val.fileExt}}"
                          title="{{val.clientName}}">
                     {{/if}}
@@ -74,144 +63,140 @@
     <button class="btn btn-primary" data-name="confirm">确定</button>
     <button class="btn btn-default" data-name="cancel">取消</button>
 </div>
-<script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
-<script type="text/javascript" src="plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min.js"></script>
-<script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-<script type="text/javascript" src="plugin/jqthumb.min.js"></script>
-<script type="text/javascript" src="plugin/holder.min.js"></script>
-<script type="text/javascript" src="plugin/template.js"></script>
-<script type="text/javascript" src="js/core.js"></script>
-<script type="text/javascript" src="plugin/dropload-0.9.0/dropload.min.js"></script>
+
+<script type="text/javascript" src="js/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    $(function () {
-        var index = parent.layer.getFrameIndex(window.name);
-        var multi = '<?=$multi?>';
-        var queueName = '#uploadifive-<?=$name?>-queue';
-        var queueInputVal = [];
-        var arrChecked = [];
-        arrChecked['list'] = [];
+    require(['template', 'dragsort', 'jqthumb', 'holder', 'dropload'], function (template, dragsort, jqthumb, Holder) {
+        $(function () {
+            var index = parent.layer.getFrameIndex(window.name);
+            var multi = '<?=$multi?>';
+            var queueName = '#uploadifive-<?=$name?>-queue';
+            var queueInputVal = [];
+            var arrChecked = [];
+            arrChecked['list'] = [];
 
-        //关闭窗口
-        $('button[data-name=cancel]').on('click', function () {
-            parent.layer.close(index);
-        });
+            //关闭窗口
+            $('button[data-name=cancel]').on('click', function () {
+                parent.layer.close(index);
+            });
 
-        //加载数据
-        var pageIndex = 0;
-        $('.online_container').dropload({
-            domDown: {
-                domRefresh: '',
-                domNoData: '<div class="dropload-noData">没有了...</div>'
-            },
-            loadDownFn: function (me) {
-                pageIndex++;
-                var data = {
-                    x: Math.random(),
-                    page: pageIndex
-                };
-                $.ajax({
-                    url: '<?=$get_list_url?>',
-                    type: 'post',
-                    dataType: 'json',
-                    data: data,
-                    success: function (data) {
-                        if (data.list.list.length) {
-                            $('#list').append(template('list_tpl', data));
-                            $('#list').find('img').each(function () {
-                                if ($(this).is(':visible')) {
-                                    $(this).not('[data-src]').jqthumb({
-                                        width: '100%',
-                                        height: 80
-                                    });
-                                }
-                            });
-                            //为没有预览图的文件自动生成缩略图
-                            Holder.run({
-                                themes: {
-                                    "primary": {
-                                        bg: "#337AB7",
-                                        fg: "#fff",
-                                    },
-                                    "danger": {
-                                        bg: "#a94442",
-                                        fg: "#fff",
+            //加载数据
+            var pageIndex = 0;
+            $('.online_container').dropload({
+                domDown: {
+                    domRefresh: '',
+                    domNoData: '<div class="dropload-noData">没有了...</div>'
+                },
+                loadDownFn: function (me) {
+                    pageIndex++;
+                    var data = {
+                        x: Math.random(),
+                        page: pageIndex
+                    };
+                    $.ajax({
+                        url: '<?=$get_list_url?>',
+                        type: 'post',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            if (data.list.list.length) {
+                                $('#list').append(template('list_tpl', data));
+                                $('#list').find('img').each(function () {
+                                    if ($(this).is(':visible')) {
+                                        $(this).not('[data-src]').jqthumb({
+                                            width: '100%',
+                                            height: 80
+                                        });
                                     }
-                                }
-                            });
-                        } else {
-                            //锁定
-                            me.lock();
-                            //解锁
-                            me.noData();
+                                });
+                                //为没有预览图的文件自动生成缩略图
+                                Holder.run({
+                                    themes: {
+                                        "primary": {
+                                            bg: "#337AB7",
+                                            fg: "#fff",
+                                        },
+                                        "danger": {
+                                            bg: "#a94442",
+                                            fg: "#fff",
+                                        }
+                                    }
+                                });
+                            } else {
+                                //锁定
+                                me.lock();
+                                //解锁
+                                me.noData();
+                            }
+                            //重置
+                            me.resetload();
                         }
-                        //重置
-                        me.resetload();
-                    }
-                })
-            }
-        });
-
-        //选择文件
-        $(document).on('click', 'div[data-name="file"]', function () {
-            if (multi == 'false') {//单选
-                $(this).toggleClass('checked');
-                $(this).closest('div[data-name="item"]').siblings('div[data-name="item"]').children('div[data-name="file"]').removeClass('checked');
-            } else {//多选
-                $(this).toggleClass('checked');
-            }
-            //选中文件数量
-            $('span[data-name="checkedNums"]').html('已选中&nbsp;' + $('.checked').length + '&nbsp;个文件');
-        });
-
-        //获取父框架中上传文件列表值
-        $(queueName, window.parent.document).find('input').each(function (e) {
-            queueInputVal[e] = parseInt($(this).val());
-        });
-
-        //确定
-        $('button[data-name="confirm"]').on('click', function () {
-            $('.checked').each(function () {
-                var arrCurrent = [];
-                arrCurrent['fileId'] = $(this).data('val');
-                arrCurrent['fileSize'] = $(this).data('size');
-                arrCurrent['fullPath'] = $(this).data('full-path');
-                arrCurrent['clientName'] = $(this).data('client-name');
-                arrCurrent['fileExt'] = $(this).data('ext');
-                arrCurrent['isImage'] = $(this).data('is-image');
-                arrCurrent['isFile'] = $(this).data('is-file');
-                //将不与父框架中重复的数据push到数组
-                if ($.inArray(parseInt(arrCurrent['fileId']), queueInputVal) < 0) {
-                    arrChecked['list'].push(arrCurrent);
+                    })
                 }
             });
-            if (arrChecked.list.length) {
-                $('#item').append(template('item_tpl', arrChecked));
-                //为没有预览图的文件自动生成缩略图
-                Holder.run({
-                    themes: {
-                        "primary": {
-                            bg: "#337AB7",
-                            fg: "#fff",
-                        },
-                        "danger": {
-                            bg: "#a94442",
-                            fg: "#fff",
-                        }
+
+            //选择文件
+            $(document).on('click', 'div[data-name="file"]', function () {
+                if (multi == 'false') {//单选
+                    $(this).toggleClass('checked');
+                    $(this).closest('div[data-name="item"]').siblings('div[data-name="item"]').children('div[data-name="file"]').removeClass('checked');
+                } else {//多选
+                    $(this).toggleClass('checked');
+                }
+                //选中文件数量
+                $('span[data-name="checkedNums"]').html('已选中&nbsp;' + $('.checked').length + '&nbsp;个文件');
+            });
+
+            //获取父框架中上传文件列表值
+            $(queueName, window.parent.document).find('input').each(function (e) {
+                queueInputVal[e] = parseInt($(this).val());
+            });
+
+            //确定
+            $('button[data-name="confirm"]').on('click', function () {
+                $('.checked').each(function () {
+                    var arrCurrent = [];
+                    arrCurrent['fileId'] = $(this).data('val');
+                    arrCurrent['fileSize'] = $(this).data('size');
+                    arrCurrent['fullPath'] = $(this).data('full-path');
+                    arrCurrent['clientName'] = $(this).data('client-name');
+                    arrCurrent['fileExt'] = $(this).data('ext');
+                    arrCurrent['isImage'] = $(this).data('is-image');
+                    arrCurrent['isFile'] = $(this).data('is-file');
+                    //将不与父框架中重复的数据push到数组
+                    if ($.inArray(parseInt(arrCurrent['fileId']), queueInputVal) < 0) {
+                        arrChecked['list'].push(arrCurrent);
                     }
                 });
-                if (multi == 'false') {//单文件
-                    $(queueName, window.parent.document).html($('#item').html());
-                } else {//多文件
-                    $(queueName, window.parent.document).append($('#item').html());
+                if (arrChecked.list.length) {
+                    $('#item').append(template('item_tpl', arrChecked));
+                    //为没有预览图的文件自动生成缩略图
+                    Holder.run({
+                        themes: {
+                            "primary": {
+                                bg: "#337AB7",
+                                fg: "#fff",
+                            },
+                            "danger": {
+                                bg: "#a94442",
+                                fg: "#fff",
+                            }
+                        }
+                    });
+                    if (multi == 'false') {//单文件
+                        $(queueName, window.parent.document).html($('#item').html());
+                    } else {//多文件
+                        $(queueName, window.parent.document).append($('#item').html());
+                    }
                 }
-            }
-            //拖拽
-            window.parent.dragsort(queueName);
-            //关闭窗口
-            parent.layer.close(index);
-        })
+                //拖拽
+                window.parent.dragsort(queueName);
+                //关闭窗口
+                parent.layer.close(index);
+            })
 
+        });
     })
 </script>
 </body>

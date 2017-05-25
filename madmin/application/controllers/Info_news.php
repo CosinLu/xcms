@@ -53,6 +53,7 @@ class Info_news extends Information
         $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_news/insert.html', $data);
     }
 
@@ -63,6 +64,7 @@ class Info_news extends Information
         $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
         $this->load->view('info_news/update.html', $data);
     }
 

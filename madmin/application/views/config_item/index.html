@@ -90,57 +90,55 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
-<script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
-<script type="text/javascript" src="plugin/template.js"></script>
-<script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    $(function () {
-        get_list();
-
-        //分页
-        $(document).on({
-            click: function (e) {
-                get_list($(this).data('page'));
-            }
-        }, '[data-name="pagination"] li[class!="active"] a');
-
-        //搜索
-        $('[data-name="searchbtn"]').click(function () {
+    require(['template'], function (template) {
+        $(function () {
             get_list();
-        });
 
-        //获得列表
-        function get_list(pageIndex) {
-            var data = {
-                x: Math.random(),
-                page: pageIndex,
-                key: $('input[name="key"]').val()
-            };
-            $.ajax({
-                url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
-                beforeSend: function () {
-                    $('[data-name="nodata"],[data-name="loading"]').remove();
-                    $('#list,#pagination').html('');
-                    $('[data-name="list"]').after('<?=MYLOADING?>');
-                },
-                success: function (data) {
-                    $('[data-name="loading"],[data-name="nodata"]').remove();
-                    if (data.list.list.length) {
-                        $('#list').html(template('list_tpl', data));
-                        $('#pagination').html(template('pagination_tpl', data));
-                    } else {
-                        $('[data-name="list"]').after('<?=MYNODATA?>');
-                    }
+            //分页
+            $(document).on({
+                click: function (e) {
+                    get_list($(this).data('page'));
                 }
-            })
-        }
-    })
+            }, '[data-name="pagination"] li[class!="active"] a');
+
+            //搜索
+            $('[data-name="searchbtn"]').click(function () {
+                get_list();
+            });
+
+            //获得列表
+            function get_list(pageIndex) {
+                var data = {
+                    x: Math.random(),
+                    page: pageIndex,
+                    key: $('input[name="key"]').val()
+                };
+                $.ajax({
+                    url: '<?=$get_list_url?>',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    beforeSend: function () {
+                        $('[data-name="nodata"],[data-name="loading"]').remove();
+                        $('#list,#pagination').html('');
+                        $('[data-name="list"]').after('<?=MYLOADING?>');
+                    },
+                    success: function (data) {
+                        $('[data-name="loading"],[data-name="nodata"]').remove();
+                        if (data.list.list.length) {
+                            $('#list').html(template('list_tpl', data));
+                            $('#pagination').html(template('pagination_tpl', data));
+                        } else {
+                            $('[data-name="list"]').after('<?=MYNODATA?>');
+                        }
+                    }
+                })
+            }
+        });
+    });
 </script>
 </body>
 </html>

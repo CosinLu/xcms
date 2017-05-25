@@ -6,7 +6,6 @@
     <title><?=MYTITLE?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap-3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugin/iconpicker/css/iconpicker.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -89,17 +88,15 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
-<script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
-<script type="text/javascript" src="plugin/jquery.form.min.js"></script>
-<script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-<script src="plugin/iconpicker/js/iconpicker.min.js"></script>
-<script type="text/javascript" src="js/core.js"></script>
-<script>
-    $(function () {
-        $("#icon").iconPicker();
-    })
+
+<script type="text/javascript" src="js/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['iconpicker'], function () {
+        $(function () {
+            $("#icon").iconPicker();
+        });
+    });
 </script>
 </body>
 </html>

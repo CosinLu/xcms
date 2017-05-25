@@ -57,19 +57,10 @@ class Uploadifive
             $str .= '<div class="uploadifive-queue-item col-xs-3 complete" id="uploadifive-' . $name . '-file-' . $key . '">';
             $str .= '<div class="thumbnail">';
             $str .= '<div class="thumb">';
-            /*if (is_file($val['full_abs_path'])) {
-                if ($val['is_image']) {
-                    $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="">';
-                } else {
-                    $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/100px80?bg=337AB7&text=File type is ' . $val['ext'] . '" class="img">';
-                }
-            } else {
-                $str .= '<img title="' . $val['client_name'] . '"  data-src="holder.js/100px80?bg=a94442&text=File does not exist">';
-            }*/
             if ($val['is_image']) {
                 $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="">';
             } else {
-                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/100px80?bg=337AB7&text=File type is ' . $val['ext'] . '" class="img">';
+                $str .= '<img title="' . $val['client_name'] . '" src="' . $val['full_path'] . '" data-src="holder.js/100px80?theme=sky&text=文件类型 ' . $val['ext'] . '" class="img">';
             }
             $str .= '</div>';
             $str .= '<div class="caption"><p class="filename" title="' . $val['client_name'] . '">' . $val['client_name'] . '</p>';

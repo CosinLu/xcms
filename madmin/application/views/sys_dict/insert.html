@@ -6,7 +6,6 @@
     <title><?=MYTITLE?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap-3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugin/colorpicker-2.3.3/css/bootstrap-colorpicker.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -75,30 +74,27 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min-1.11.1.js"></script>
-<script type="text/javascript" src="plugin/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="plugin/mtree-2.0/js/mtree.js"></script>
-<script type="text/javascript" src="plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min.js"></script>
-<script type="text/javascript" src="plugin/jquery.form.min.js"></script>
-<script type="text/javascript" src="plugin/layer-3.0.1/layer.js"></script>
-<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('[data-name="colorpicker"]').colorpicker({
-            input: 'input[name="color"]',
-            color: "#333",
-            colorSelectors: {
-                '#333': '#333',//default
-                '#337ab7': '#337ab7',//primary
-                '#5cb85c': '#5cb85c',//success
-                '#5bc0de': '#5bc0de',//info
-                '#f0ad4e': '#f0ad4e',//warning
-                '#d9534f': '#d9534f'//danger
-            }
-        }).on('changeColor', function (e) {
-            $('input[name="name"]').css('color', e.color.toHex());
-        });
-    })
+    require(['colorpicker'], function () {
+        $(function () {
+            $('[data-name="colorpicker"]').colorpicker({
+                input: 'input[name="color"]',
+                color: "#333",
+                colorSelectors: {
+                    '#333': '#333',//default
+                    '#337ab7': '#337ab7',//primary
+                    '#5cb85c': '#5cb85c',//success
+                    '#5bc0de': '#5bc0de',//info
+                    '#f0ad4e': '#f0ad4e',//warning
+                    '#d9534f': '#d9534f'//danger
+                }
+            }).on('changeColor', function (e) {
+                $('input[name="name"]').css('color', e.color.toHex());
+            });
+        })
+    });
 </script>
 </body>
 </html>

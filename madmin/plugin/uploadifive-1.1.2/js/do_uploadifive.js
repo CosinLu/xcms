@@ -41,7 +41,7 @@ $(function () {
         },
         'itemTemplate': '<div class="uploadifive-queue-item col-xs-3">\
                             <div class="thumbnail">\
-                                <div class="thumb"><img src="" data-src="holder.js/100px80?theme=primary"></div>\
+                                <div class="thumb"><img src=""></div>\
                                 <div class="caption">\
                                     <p class="filename"></p>\
                                     <p><span class="filesize"></span><span class="fileinfo"></span></p>\
@@ -64,18 +64,14 @@ $(function () {
 
             //生成缩略图
             if (json.is_image) {//图片自动缩放
-                item.find('img').prop('src', json.full_path).jqthumb({width: '100%', height: '80'});
+                item.find('img').attr('src', json.full_path).jqthumb({width: '100%', height: '80'});
             } else {//生成图片
-                Holder.run({
-                    themes: {
-                        "primary": {
-                            bg: "#337AB7",
-                            fg: "#fff",
-                            text: 'File type is ' + json.ext
-                        }
-                    },
-                    images: '#' + item[0]['id'] + ' img'
-                });
+                item.find('img').attr('data-src', 'holder.js/100px80?theme=sky&text=文件类型 ' + json.ext);
+                require(['holder'], function (Holder) {
+                    Holder.run({
+                        images: '#' + item[0]['id'] + ' img'
+                    });
+                })
             }
             fileName = json.file_obj_name;
         },
