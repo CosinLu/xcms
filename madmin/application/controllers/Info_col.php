@@ -54,7 +54,7 @@ class Info_col extends MY_Controller
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
-            $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . ((!empty($val['level'] - 1) ? '└─&nbsp;' : ''));
+            $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         echo json_encode($data);
     }
