@@ -48,6 +48,14 @@ a {
 
 /*bootstrap组件开始*/
 
+/*弹出框*/
+.popover {
+    border-radius: @border-radius;
+    .popover-title {
+        border-radius: @border-radius @border-radius 0 0;
+    }
+}
+
 /*datetimepiker*/
 .datetimepicker {
     td, th {
@@ -298,6 +306,22 @@ label {
 /*bootstrap组件结束*/
 
 /*自定义组件开始*/
+
+/*iconpicker*/
+.iconpicker-popover {
+    &.popover {
+        width: 280px !important;
+        .popover-title {
+            padding: 5px;
+        }
+        .iconpicker {
+            .iconpicker-item {
+                border-radius: @border-radius;
+                padding: 8px;
+            }
+        }
+    }
+}
 
 /*加载，暂无数据*/
 div[data-name="loading"],
@@ -650,8 +674,8 @@ div[data-name="nodata"] {
                 margin: 15px 0;
                 padding: 0 0 15px;
                 text-align: center;
-                img{
-                    margin-bottom:10px;
+                img {
+                    margin-bottom: 10px;
                 }
             }
             form {
@@ -685,13 +709,13 @@ div[data-name="nodata"] {
             h2 {
                 font-size: 28px;
                 font-weight: 400;
-                margin-top:150px;
+                margin-top: 150px;
                 margin-bottom: 40px;
             }
             p {
                 height: 20px;
                 position: relative;
-                padding-left:40px;
+                padding-left: 40px;
                 & + p {
                     margin-top: 30px;
                 }
@@ -701,7 +725,7 @@ div[data-name="nodata"] {
                     position: absolute;
                     width: 20px;
                     height: 20px;
-                    left:0;
+                    left: 0;
                     background: url("../images/checkmark.png") no-repeat left center;
                     background-size: 100%;
                 }

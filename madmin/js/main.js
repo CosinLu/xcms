@@ -6,15 +6,15 @@ require.config({
     paths: {
         'css': 'plugin/css.min'
         , 'jquery': 'js/jquery.min-1.11.1'
-        , 'unit': 'js/unit'
+        , 'unit': 'js/unit.min'
         , 'bootstrap': 'plugin/bootstrap-3.3.5/js/bootstrap.min'
         , 'colorpicker': 'plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min'
         , 'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN'
         , 'dragsort': 'plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min'
         , 'dropload': 'plugin/dropload-0.9.0/dropload.min'
-        , 'iconpicker': 'plugin/iconpicker/js/iconPicker'
+        , 'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min'
         , 'layer': 'plugin/layer-3.0.1/layer'
-        , 'mtree': 'plugin/mtree-2.0/js/mtree'
+        , 'mtree': 'plugin/mtree-2.0/js/mtree.min'
         , 'ueditor': 'plugin/ueditor/ueditor.all.min'
         , 'uploadifive': 'plugin/uploadifive-1.1.2/js/do_uploadifive'
         , 'holder': 'plugin/holder.min'
@@ -49,7 +49,7 @@ require.config({
         , 'iconpicker': {
             deps: ['jquery'
                 , 'bootstrap'
-                , 'css!plugin/iconpicker/css/iconpicker.min.css']
+                , 'css!plugin/iconpicker/css/fontawesome-iconpicker.min.css']
         }
         , 'layer': {
             deps: ['jquery']
@@ -106,7 +106,7 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], fun
     //配置layer
     layer.config({
         path: 'plugin/layer-3.0.1/',
-        extend: 'bootcss/style.css',
+        extend: 'bootcss/style.min.css',
         skin: 'layer-ext-bootcss',
         shade: 0.75,
         shadeClose: true
