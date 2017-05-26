@@ -4,6 +4,19 @@
 define(['jquery'], function ($) {
     return {
 
+        //通用日期插件
+        date: function () {
+            require(['datetimepicker'],function(){
+                $('input[data-name="datetimepicker"]').datetimepicker({
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    pickerPosition: 'top-right',
+                    autoclose: true,
+                    todayBtn: true
+                });
+            });
+        },
+
         //同步编辑器内容到textarea
         //解决ajaxForm提交表单无法获取编辑器内容
         syncEditorToTxtarea: function (ue, id) {

@@ -85,7 +85,7 @@ require.config({
 
 });
 
-require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], function ($) {
+require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
 
     //sidebar
     $('[data-name="mtreeSidebar"]').mtree({
@@ -110,15 +110,6 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], fun
         skin: 'layer-ext-bootcss',
         shade: 0.75,
         shadeClose: true
-    });
-
-    //时间插件
-    $('input[data-name="datetimepicker"]').datetimepicker({
-        language: 'zh-CN',
-        format: 'yyyy-mm-dd hh:ii:ss',
-        pickerPosition: 'top-right',
-        autoclose: true,
-        todayBtn: true
     });
 
     //全选
