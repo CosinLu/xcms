@@ -4,61 +4,61 @@
 window.UEDITOR_HOME_URL = document.getElementsByTagName('base')[0].href + '/plugin/ueditor/';
 require.config({
     paths: {
-        'css': 'plugin/css.min'
-        , 'jquery': 'js/jquery.min-1.11.1'
-        , 'unit': 'js/unit.min'
-        , 'bootstrap': 'plugin/bootstrap-3.3.5/js/bootstrap.min'
-        , 'colorpicker': 'plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min'
-        , 'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN'
-        , 'dragsort': 'plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min'
-        , 'dropload': 'plugin/dropload-0.9.0/dropload.min'
-        , 'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min'
-        , 'layer': 'plugin/layer-3.0.1/layer'
-        , 'mtree': 'plugin/mtree-2.0/js/mtree.min'
-        , 'ueditor': 'plugin/ueditor/ueditor.all.min'
-        , 'uploadifive': 'plugin/uploadifive-1.1.2/js/do_uploadifive'
-        , 'holder': 'plugin/holder.min'
-        , 'jqthumb': 'plugin/jqthumb.min'
-        , 'form': 'plugin/jquery.form.min'
-        , 'sortable': 'plugin/jquery.sortable'
-        , 'template': 'plugin/template'
+        'css': 'plugin/css.min',
+        'jquery': 'js/jquery.min-1.11.1',
+        'unit': 'js/unit',
+        'bootstrap': 'plugin/bootstrap-3.3.5/js/bootstrap.min',
+        'colorpicker': 'plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min',
+        'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
+        'dragsort': 'plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min',
+        'dropload': 'plugin/dropload-0.9.0/dropload.min',
+        'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min',
+        'layer': 'plugin/layer-3.0.1/layer',
+        'mtree': 'plugin/mtree-2.0/js/mtree.min',
+        'ueditor': 'plugin/ueditor/ueditor.all.min',
+        'uploadifive': 'plugin/uploadifive-1.1.2/js/do_uploadifive',
+        'holder': 'plugin/holder.min',
+        'jqthumb': 'plugin/jqthumb.min',
+        'form': 'plugin/jquery.form.min',
+        'sortable': 'plugin/jquery.sortable',
+        'template': 'plugin/template'
     },
     shim: {
         'bootstrap': {
             deps: ['jquery'
                 , 'css!plugin/font-awesome-4.7.0/css/font-awesome.min.css']
-        }
-        , 'colorpicker': {
+        },
+        'colorpicker': {
             deps: ['jquery'
                 , 'bootstrap'
                 , 'css!plugin/colorpicker-2.3.3/css/bootstrap-colorpicker.min.css']
-        }
-        , 'datetimepicker': {
+        },
+        'datetimepicker': {
             deps: ['jquery'
                 , 'bootstrap'
                 , 'plugin/datetimepicker/js/bootstrap-datetimepicker.min'
                 , 'css!plugin/datetimepicker/css/bootstrap-datetimepicker.min.css']
-        }
-        , 'dragsort': {
+        },
+        'dragsort': {
             deps: ['jquery']
-        }
-        , 'dropload': {
+        },
+        'dropload': {
             deps: ['jquery'
                 , 'css!plugin/dropload-0.9.0/dropload.css']
-        }
-        , 'iconpicker': {
+        },
+        'iconpicker': {
             deps: ['jquery'
                 , 'bootstrap'
                 , 'css!plugin/iconpicker/css/fontawesome-iconpicker.min.css']
-        }
-        , 'layer': {
+        },
+        'layer': {
             deps: ['jquery']
-        }
-        , 'mtree': {
+        },
+        'mtree': {
             deps: ['jquery'
                 , 'css!plugin/mtree-2.0/css/mtree.css']
-        }
-        , 'ueditor': {
+        },
+        'ueditor': {
             deps: ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js'
                 , 'plugin/ueditor/ueditor.config.js'],
             exports: 'UE',
@@ -66,19 +66,19 @@ require.config({
                 //导出到全局变量，供ueditor使用
                 window.ZeroClipboard = ZeroClipboard;
             }
-        }
-        , 'uploadifive': {
+        },
+        'uploadifive': {
             deps: ['jquery'
                 , 'plugin/uploadifive-1.1.2/js/jquery.uploadifive.me'
                 , 'jqthumb'
                 , 'holder'
                 , 'dragsort']
-        }
-        , 'holder': {
+        },
+        'holder': {
             deps: ['jquery'
                 , 'jqthumb']
-        }
-        , 'template': {
+        },
+        'template': {
             deps: ['jquery']
         }
     }
