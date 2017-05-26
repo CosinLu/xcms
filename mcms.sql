@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : mcms-branch
+Source Database       : mcms
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-25 15:43:18
+Date: 2017-05-26 23:00:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -489,11 +489,15 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
+INSERT INTO `sys_login_log` VALUES ('1', '2', '::1', '1495713076', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('2', '2', '::1', '1495755035', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('3', '2', '::1', '1495803429', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('4', '2', '::1', '1495810746', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role
