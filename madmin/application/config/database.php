@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn' => '',
-    'hostname' => (ENVIRONMENT == 'development') ? 'localhost' : '',
-    'username' => (ENVIRONMENT == 'development') ? 'root' : '',
-    'password' => (ENVIRONMENT == 'development') ? '' : '',
-    'database' => (ENVIRONMENT == 'development') ? 'mcms' : '',
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'mcms-branch',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
