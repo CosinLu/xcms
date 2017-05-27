@@ -55,6 +55,7 @@ class Information extends MY_Controller
         foreach ($info_col_sort as $val) {
             $level = $val['level'];
             $current = ($val['id'] == $this->cid) ? 'current' : '';
+            $indent = (15 * ($level - 2)) . 'px';
             if ($start_level < 0) {
                 $start_level = $level;
             }
@@ -71,9 +72,9 @@ class Information extends MY_Controller
             } else {
                 $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
             }
-            $str .= '<span data-name="mtreeIndent"></span>';
-            $str .= '<span data-name="mtreeBtn"></span>';
-            $str .= '<span data-name="mtreeName">' . $val['name'] . '</span>';
+            $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
+            $str .= '<div data-name="mtreeBtn"></div>';
+            $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
             $str .= '</a>';
             $parent_level = $level;
             if ($val['id'] == $this->cid) {

@@ -62,14 +62,16 @@
         },
         initIdent: function () {
             var _this = this;
-            $('[data-name="mtreeLink"]', this._$ele).each(function (e) {
-                var closestUl = $(this).closest('ul');
-                var level = closestUl.data('level');
-                var indent = (level - 1) * _this.ops.indent;
-                $('[data-name="mtreeIndent"]', $(this)).css({
-                    width: indent
-                });
-            })
+            if (_this.ops.indent) {
+                $('[data-name="mtreeLink"]', this._$ele).each(function (e) {
+                    var closestUl = $(this).closest('ul');
+                    var level = closestUl.data('level');
+                    var indent = (level - 1) * _this.ops.indent;
+                    $('[data-name="mtreeIndent"]', $(this)).css({
+                        width: indent
+                    });
+                })
+            }
         },
         clearRedundancy: function () {
             $('[data-name="mtreeLink"]', this._$ele).each(function () {

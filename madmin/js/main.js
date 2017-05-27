@@ -91,6 +91,7 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
     $('[data-name="mtreeSidebar"]').mtree({
         html: true,
         display: 2,
+        indent: 0,
         onClick: function (obj, url) {
             window.location.href = url;
         }
@@ -98,6 +99,7 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
     $('[data-name="mtreeMainSidebar"]').mtree({
         html: true,
         display: 2,
+        indent: 0,
         onClick: function (obj, url) {
             window.location.href = url;
         }
