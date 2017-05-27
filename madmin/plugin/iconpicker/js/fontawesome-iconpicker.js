@@ -460,7 +460,7 @@
             popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
             footer: '<div class="popover-footer"></div>',
             buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">Cancel</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">Accept</button>',
-            search: '<input type="search" class="form-control iconpicker-search" placeholder="Type to filter" />',
+            search: '<input type="search" class="form-control iconpicker-search" placeholder="搜索" />',
             iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
             iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>'
         }

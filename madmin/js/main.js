@@ -14,7 +14,7 @@ require.config({
         'dropload': 'plugin/dropload-0.9.0/dropload.min',
         'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min',
         'layer': 'plugin/layer-3.0.1/layer',
-        'mtree': 'plugin/mtree-2.0/js/mtree.min',
+        'mtree': 'plugin/mtree-2.0/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
         'uploadifive': 'plugin/uploadifive-1.1.2/js/do_uploadifive',
         'holder': 'plugin/holder.min',
