@@ -6,7 +6,7 @@ define(['jquery'], function ($) {
 
         //通用日期插件
         date: function () {
-            require(['datetimepicker'],function(){
+            require(['datetimepicker'], function () {
                 $('input[data-name="datetimepicker"]').datetimepicker({
                     language: 'zh-CN',
                     format: 'yyyy-mm-dd hh:ii:ss',
@@ -15,19 +15,6 @@ define(['jquery'], function ($) {
                     todayBtn: true
                 });
             });
-        },
-
-        //同步编辑器内容到textarea
-        //解决ajaxForm提交表单无法获取编辑器内容
-        syncEditorToTxtarea: function (ue, id) {
-            var txt = $('textarea[name="' + id + '"]');
-            var txtLen = txt.length;
-            var editorContent = ue.getContent();
-            if (txtLen > 0) {
-                txt.val(editorContent);
-            } else {
-                $('#' + id).after('<textarea class="hidden" name="' + id + '">' + editorContent + '</textarea>');
-            }
         },
 
         //编辑器
@@ -40,15 +27,28 @@ define(['jquery'], function ($) {
                     var ue = UE.getEditor(id);
                     //编辑器准备就绪后会触发该事件
                     ue.ready(function () {
-                        _this.syncEditorToTxtarea(ue, id);
+                        _this._syncEditorToTxtarea(ue, id);
                     });
                     //1.编辑器内部选区发生改变时，将触发该事件
                     //2.编辑器内容发生改变时会触发该事件
                     ue.addListener('selectionchange contentChange', function () {
-                        _this.syncEditorToTxtarea(ue, id);
+                        _this._syncEditorToTxtarea(ue, id);
                     });
                 });
             });
+        },
+
+        //同步编辑器内容到textarea
+        //解决ajaxForm提交表单无法获取编辑器内容
+        _syncEditorToTxtarea: function (ue, id) {
+            var txt = $('textarea[name="' + id + '"]');
+            var txtLen = txt.length;
+            var editorContent = ue.getContent();
+            if (txtLen > 0) {
+                txt.val(editorContent);
+            } else {
+                $('#' + id).after('<textarea class="hidden" name="' + id + '">' + editorContent + '</textarea>');
+            }
         },
 
         //权限选择器
