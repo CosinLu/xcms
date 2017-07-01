@@ -24,7 +24,7 @@
                 </div>
                 <form action="<?=$login_url?>" method="post">
                     <div class="form-group">
-                        <input type="text" value="<?=set_value('username')?>" class="form-control" name="username"
+                        <input type="text" value="<?=set_value('username','admin')?>" class="form-control" name="username"
                                autofocus
                                autocomplete="off" placeholder="用户名">
                         <div class="form_alert text-danger">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" value="<?=set_value('password')?>" class="form-control" name="password"
+                        <input type="password" value="<?=set_value('password','123456')?>" class="form-control" name="password"
                                autocomplete="off" placeholder="密码">
                         <div class="form_alert text-danger">
                             <?=form_error('password')?>
