@@ -726,8 +726,22 @@ div[data-name="nodata"] {
                     width: 20px;
                     height: 20px;
                     left: 0;
-                    background: url("../images/checkmark.png") no-repeat left center;
-                    background-size: 100%;
+                    background: #2cd865;
+                    border-radius: 50%;
+                    /*background: url("../images/checkmark.png") no-repeat left center;
+                    background-size: 100%;*/
+                }
+                &:after {
+                    content: '';
+                    width: 10px;
+                    height: 5px;
+                    border-left: rgba(255,255,255,.8) solid 2px;
+                    border-bottom: rgba(255,255,255,.8) solid 2px;
+                    position:absolute;
+                    display: inline-block;
+                    left:5px;
+                    top:7px;
+                    transform:rotate(-45deg)
                 }
             }
             max-width: 80%;
