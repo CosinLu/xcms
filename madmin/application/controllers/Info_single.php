@@ -6,9 +6,9 @@
  * Date: 2016/9/5
  * Time: 18:28
  */
-require_once 'Information.php';
+require_once 'Info.php';
 
-class Info_single extends Information
+class Info_single extends Info
 {
     public function __construct()
     {
