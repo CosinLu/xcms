@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-26 23:00:27
+Date: 2017-07-09 21:50:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -121,7 +121,7 @@ CREATE TABLE `info_col` (
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
@@ -265,7 +265,7 @@ CREATE TABLE `slide` (
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
@@ -307,7 +307,7 @@ INSERT INTO `sys_col` VALUES ('9', '配置组', null, '28', '3', 'config_group',
 INSERT INTO `sys_col` VALUES ('10', '配置项', null, '28', '3', 'config_item', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-list-ul', '3', '2', 'info_col', '', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-file-text', '3', '2', 'information', '', 'show', '100', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-file-text', '3', '2', 'info', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('14', '模板管理', 'fa fa-folder', '3', '2', 'info_tpl', '', 'show', '300', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'show', '100', null, null, null, null, 'zh-cn');
 INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'show', '200', null, null, null, null, 'zh-cn');
@@ -472,11 +472,21 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES ('1', '2', 'admin', '幻灯片', 'insert', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495893482', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('2', '2', 'admin', '幻灯片', 'del', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495893503', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('3', '2', 'admin', '文件管理', 'del', 'success', 'Chrome', '58.0.3029.110', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1495893619', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('4', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499478882', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('5', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499478896', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('6', '2', 'admin', '栏目管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499478917', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('7', '2', 'admin', '栏目管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499478939', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('8', '2', 'admin', '菜单管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499479167', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('9', '2', 'admin', '栏目管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499479226', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('10', '2', 'admin', '栏目管理', 'del', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1499479250', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -489,7 +499,7 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -498,6 +508,14 @@ INSERT INTO `sys_login_log` VALUES ('1', '2', '::1', '1495713076', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('2', '2', '::1', '1495755035', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('3', '2', '::1', '1495803429', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('4', '2', '::1', '1495810746', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('5', '2', '::1', '1495888499', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('6', '2', '::1', '1495890758', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('7', '2', '::1', '1498899557', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('8', '2', '::1', '1498958802', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('9', '2', '::1', '1498958850', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('10', '2', '::1', '1498975697', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('11', '2', '::1', '1498977862', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('12', '2', '::1', '1499477583', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -642,7 +660,7 @@ CREATE TABLE `uploads` (
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
