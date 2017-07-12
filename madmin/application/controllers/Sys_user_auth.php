@@ -37,7 +37,7 @@ class Sys_user_auth extends MY_Controller
         $list = $this->sys_user_auth->get_list();
         foreach ($list as $key => $val) {
             $list[$key]['auth'] = $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id']);
-            $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . ((!empty($val['level'] - 1) ? '└─&nbsp;' : ''));
+            $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         $str = '';
         $start_level = -1;

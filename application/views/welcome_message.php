@@ -40,6 +40,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             display: block;
             margin: 14px 0 14px 0;
             padding: 12px 10px 12px 10px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;;
         }
 
         #body {
@@ -59,6 +62,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             margin: 10px;
             border: 1px solid #D0D0D0;
             box-shadow: 0 0 8px #D0D0D0;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -85,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p>文件 madmin/application/config/config.php</p>
             <p>$config['base_url'] ='';</p>
         </code>
-        <p>初始用户名：admin，密码：123456； <a href="madmin">后台入口</a></p>
+        <p>初始用户名：admin，密码：123456； <a href="madmin" target="_blank">后台入口</a></p>
         <p>其他信息请参考官方 <a href="http://codeigniter.org.cn/user_guide/" target="_blank">用户手册</a></p>
     </div>
 

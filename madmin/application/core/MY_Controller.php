@@ -82,6 +82,7 @@ class MY_Controller extends CI_Controller
                 $n = strpos($val['url'], '?');
                 $conn = ($n) ? '&' : '?';
                 $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
+                $indent = (15 * ($level - 2)) . 'px';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
                 } elseif ($level > $parent_level) {
@@ -95,10 +96,10 @@ class MY_Controller extends CI_Controller
                 } else {
                     $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . '" data-name="mtreeLink">';
                 }
-                $str .= '<span data-name="mtreeIndent"></span>';
-                $str .= '<span data-name="mtreeBtn"></span>';
-                $str .= '<span data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></span>';
-                $str .= '<span data-name="mtreeName">' . $val['name'] . '</span>';
+                $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
+                $str .= '<div data-name="mtreeBtn"></div>';
+                $str .= '<div data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></div>';
+                $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
                 $str .= '</a>';
                 $parent_level = $level;
             }

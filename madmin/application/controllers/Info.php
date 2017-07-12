@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 16:53
  */
-class Information extends MY_Controller
+class Info extends MY_Controller
 {
     protected $cid;
     protected $main_section_name;
@@ -15,14 +15,14 @@ class Information extends MY_Controller
     {
         parent::__construct();
         $this->cid = $this->input->get('cid');
-        $this->load->model('information_model', 'information');
+        $this->load->model('info_model', 'info');
         $this->load->library('category', array('tb_name' => 'info_col'), 'category');
         $this->main_sidebar();
     }
 
     public function index()
     {
-        $data = $this->information->info_col();
+        $data = $this->info->info_col();
         $children = array();
         foreach ($data as $key => $val) {
             $children[$key] = $this->category->children($data, $val['pid'], TRUE);
@@ -55,6 +55,7 @@ class Information extends MY_Controller
         foreach ($info_col_sort as $val) {
             $level = $val['level'];
             $current = ($val['id'] == $this->cid) ? 'current' : '';
+            $indent = (15 * ($level - 1)) . 'px';
             if ($start_level < 0) {
                 $start_level = $level;
             }
@@ -71,9 +72,9 @@ class Information extends MY_Controller
             } else {
                 $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
             }
-            $str .= '<span data-name="mtreeIndent"></span>';
-            $str .= '<span data-name="mtreeBtn"></span>';
-            $str .= '<span data-name="mtreeName">' . $val['name'] . '</span>';
+            $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
+            $str .= '<div data-name="mtreeBtn"></div>';
+            $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
             $str .= '</a>';
             $parent_level = $level;
             if ($val['id'] == $this->cid) {
@@ -90,7 +91,7 @@ class Information extends MY_Controller
     //获得当前栏目的模板标识
     public function info_tpl_id()
     {
-        $res = $this->information->info_tpl_id();
+        $res = $this->info->info_tpl_id();
         return $res;
     }
 

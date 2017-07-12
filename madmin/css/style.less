@@ -14,7 +14,7 @@
 @border-color: #ddd;
 @border-radius: 2px;
 @box-shadow: 0 0 4px rgba(0, 0, 0, .05), 0 6px 10px rgba(0, 0, 0, .08);
-@font-family: Roboto, 'Segoe UI', Arial, 'PingFang SC', 'Microsoft Yahei', sans-serif;
+@font-family: "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
 @iframe-header-height: 50px;
 @iframe-sidebar-width: 220px;
 @iframe-mian-sidebar-width: 220px;
@@ -59,7 +59,7 @@ a {
 /*datetimepiker*/
 .datetimepicker {
     td, th {
-        border-radius: @border-radius;
+        border-radius: @border-radius !important;
     }
     table {
         tr {
@@ -71,7 +71,7 @@ a {
                 &.active.disabled:hover {
                     background: @color-primary !important;
                     background-image: none !important;
-                    text-shadow: none;
+                    text-shadow: none !important;
                     border-radius: @border-radius;
                 }
             }
@@ -262,10 +262,10 @@ label {
             height: 0;
             left: 0;
             right: 0;
+            bottom:-1px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.07);
         }
         .panel-title {
-            /*height: 100%;*/
             line-height: 42px;
             padding: 0 @spacing;
         }
@@ -312,7 +312,7 @@ label {
     &.popover {
         width: 280px !important;
         .popover-title {
-            padding: 5px;
+            padding: 5px !important;
         }
         .iconpicker {
             .iconpicker-item {
@@ -726,8 +726,22 @@ div[data-name="nodata"] {
                     width: 20px;
                     height: 20px;
                     left: 0;
-                    background: url("../images/checkmark.png") no-repeat left center;
-                    background-size: 100%;
+                    background: #2cd865;
+                    border-radius: 50%;
+                    /*background: url("../images/checkmark.png") no-repeat left center;
+                    background-size: 100%;*/
+                }
+                &:after {
+                    content: '';
+                    width: 10px;
+                    height: 5px;
+                    border-left: rgba(255,255,255,.8) solid 2px;
+                    border-bottom: rgba(255,255,255,.8) solid 2px;
+                    position:absolute;
+                    display: inline-block;
+                    left:5px;
+                    top:7px;
+                    transform:rotate(-45deg)
                 }
             }
             max-width: 80%;
@@ -769,6 +783,11 @@ div[data-name="nodata"] {
                 color: rgba(255, 255, 255, .8);
                 &:hover {
                     background: darken(@color-primary, 4);
+                }
+                i.fa {
+                    width: 18px;
+                    text-align: center;
+                    display: inline-block;
                 }
             }
             .dropdown {
@@ -854,7 +873,7 @@ div[data-name="nodata"] {
                 background: rgba(0, 0, 0, .2);
                 &:before {
                     content: '';
-                    width: 2px;
+                    width: 3px;
                     height: 100%;
                     display: inline-block;
                     position: absolute;
@@ -863,7 +882,7 @@ div[data-name="nodata"] {
                     top: 0;
                 }
             }
-            span {
+            div {
                 &[data-name="mtreeBtn"] {
                     position: absolute;
                     right: 10px;
@@ -895,7 +914,7 @@ div[data-name="nodata"] {
                 background: lighten(@color-primary, 50%);
                 color: @color-primary;
             }
-            span {
+            div {
                 &[data-name="mtreeBtn"] {
                     margin-right: 5px;
                 }

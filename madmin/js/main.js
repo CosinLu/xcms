@@ -14,7 +14,7 @@ require.config({
         'dropload': 'plugin/dropload-0.9.0/dropload.min',
         'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min',
         'layer': 'plugin/layer-3.0.1/layer',
-        'mtree': 'plugin/mtree-2.0/js/mtree.min',
+        'mtree': 'plugin/mtree-2.0/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
         'uploadifive': 'plugin/uploadifive-1.1.2/js/do_uploadifive',
         'holder': 'plugin/holder.min',
@@ -85,12 +85,13 @@ require.config({
 
 });
 
-require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], function ($) {
+require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
 
     //sidebar
     $('[data-name="mtreeSidebar"]').mtree({
         html: true,
         display: 2,
+        indent: 0,
         onClick: function (obj, url) {
             window.location.href = url;
         }
@@ -98,6 +99,7 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], fun
     $('[data-name="mtreeMainSidebar"]').mtree({
         html: true,
         display: 2,
+        indent: 0,
         onClick: function (obj, url) {
             window.location.href = url;
         }
@@ -110,15 +112,6 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'datetimepicker', 'form'], fun
         skin: 'layer-ext-bootcss',
         shade: 0.75,
         shadeClose: true
-    });
-
-    //时间插件
-    $('input[data-name="datetimepicker"]').datetimepicker({
-        language: 'zh-CN',
-        format: 'yyyy-mm-dd hh:ii:ss',
-        pickerPosition: 'top-right',
-        autoclose: true,
-        todayBtn: true
     });
 
     //全选

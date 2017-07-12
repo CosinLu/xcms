@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 17:34
  */
-class Information_model extends MY_Model
+class Info_model extends MY_Model
 {
     protected $cid;
 

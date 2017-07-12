@@ -41,7 +41,7 @@
                                     </th>
                                     <th>名称</th>
                                     <th width="30%">备注</th>
-                                    <th width="5%">排序</th>
+                                    <th width="5%" class="text-right">排序</th>
                                     <th width="20%">操作</th>
                                 </tr>
                                 </thead>
@@ -57,7 +57,7 @@
                                         </td>
                                         <td>{{val.name}}</td>
                                         <td>{{val.remark}}</td>
-                                        <td>{{val.sort}}</td>
+                                        <td class="text-right">{{val.sort}}</td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}
