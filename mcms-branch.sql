@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-07-21 16:51:32
+Date: 2017-07-21 18:13:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -292,7 +292,7 @@ CREATE TABLE `sys_col` (
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -476,7 +476,7 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -509,6 +509,8 @@ INSERT INTO `sys_log` VALUES ('25', '4', 'madmin', '菜单管理', 'update', 'su
 INSERT INTO `sys_log` VALUES ('26', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1500625894', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('27', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1500626135', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('28', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1500626577', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('29', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1500628147', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('30', '4', 'madmin', '菜单管理', 'del', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1500628153', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
