@@ -13,6 +13,7 @@ class Sys_auth
     protected $tb_sys_col;
     protected $tb_sys_role_auth;
     protected $tb_sys_user_auth;
+    protected $tb_sys_dict;
 
     public function __construct($arr = array())
     {
@@ -20,6 +21,7 @@ class Sys_auth
         $this->tb_sys_col = $this->CI->db->dbprefix . 'sys_col';
         $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
         $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
+        $this->tb_sys_dict = $this->CI->db->dbprefix . 'sys_dict';
         $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
     }
@@ -30,7 +32,7 @@ class Sys_auth
         $role_type = $this->user_info['role_type'];
         $role_id = $this->user_info['role_id'];
         $user_id = $this->user_info['user_id'];
-        if ($role_type == '1') {//系统默认
+        if ($role_type == 0) {//开发者
             $this->CI->db->select('t.*');
             $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
             $this->CI->db->from('sys_col as t');
@@ -41,17 +43,29 @@ class Sys_auth
             $this->CI->db->group_by('t.id');
             $this->CI->db->order_by('t.sort asc,t.id asc');
             $res = $this->CI->db->get()->result_array();
-        } else {//其他
+        } elseif ($role_type == 1) {//系统默认，超级管理员
+            $this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $this->CI->db->from('sys_col as t');
+            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
+            $this->CI->db->where(array(
+                't.display' => 'show',
+                't.user_type' => 'pro'
+            ));
+            $this->CI->db->group_by('t.id');
+            $this->CI->db->order_by('t.sort asc,t.id asc');
+            $res = $this->CI->db->get()->result_array();
+        } elseif ($role_type == 2) {//普通管理员
             $sql = "SELECT
 	*, group_concat(col_auth) AS col_auth
 FROM
 	(
 		SELECT
 			`t`.*, group_concat(
-				t1.col_auth
+				`t1`.`col_auth`
 				ORDER BY
-					t1.col_auth ASC
-			) AS col_auth
+					`t1`.`col_auth` ASC
+			) AS `col_auth`
 		FROM
 			`{$this->tb_sys_col}` AS `t`
 		LEFT JOIN `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
@@ -63,10 +77,10 @@ FROM
 		UNION ALL
 			SELECT
 				`t`.*, group_concat(
-					t1.col_auth
+					`t1`.`col_auth`
 					ORDER BY
-						t1.col_auth ASC
-				) AS col_auth
+						`t1`.`col_auth` ASC
+				) AS `col_auth`
 			FROM
 				`{$this->tb_sys_col}` AS `t`
 			LEFT JOIN `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`

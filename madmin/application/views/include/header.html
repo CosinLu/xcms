@@ -15,16 +15,19 @@
             <ul class="nav navbar-nav">
                 <?php foreach($menu as $val):?>
                 <li class="<?=$val['active']?>">
-                    <a href="<?=$val['url']?>"><i class="<?=$val['icon']?>">&nbsp;</i><?=$val['name']?></a></li>
+                    <a href="<?=$val['url']?>">
+                        <?php if($val['icon']):?>
+                        <i class="<?=$val['icon']?>"></i>
+                        <?php endif;?>
+                        <?=$val['name']?>
+                        <?php if($val['user_type']=='dev'):?>
+                        <span class="label label-danger"><?=$val['user_type']?></span>
+                        <?php endif;?>
+                    </a>
+                </li>
                 <?php endforeach;?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <!--<li>
-                    <a href="javascript:;" title="<?=$lang['name']?>">
-                        <i class="fa fa-globe"></i>
-                        <span><?=$lang['name']?></span>
-                    </a>
-                </li>-->
                 <li>
                     <a href="../"
                        target="_blank"

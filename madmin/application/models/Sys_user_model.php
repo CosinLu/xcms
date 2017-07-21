@@ -27,6 +27,7 @@ class Sys_user_model extends MY_Model
         if ($key != '') {
             $this->db->like('t.username', $key);
         }
+        $this->db->where('role_type > ', 0);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;
@@ -75,6 +76,7 @@ class Sys_user_model extends MY_Model
     //角色
     public function sys_role()
     {
+        $this->db->where('role_type > ', 0);
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get('sys_role')->result_array();
         return $res;

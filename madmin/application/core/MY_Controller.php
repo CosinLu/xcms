@@ -82,7 +82,7 @@ class MY_Controller extends CI_Controller
                 $n = strpos($val['url'], '?');
                 $conn = ($n) ? '&' : '?';
                 $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
-                $indent = (15 * ($level - 2)) . 'px';
+                $indent = (35 * ($level - 2)) . 'px';
                 if ($level < $parent_level) {
                     $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
                 } elseif ($level > $parent_level) {
@@ -98,8 +98,14 @@ class MY_Controller extends CI_Controller
                 }
                 $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
                 $str .= '<div data-name="mtreeBtn"></div>';
-                $str .= '<div data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></div>';
-                $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
+                if ($val['icon']) {
+                    $str .= '<div data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></div>';
+                }
+                $str .= '<div data-name="mtreeName">' . $val['name'];
+                if ($val['user_type'] == 'dev') {
+                    $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
+                }
+                $str .= '</div>';
                 $str .= '</a>';
                 $parent_level = $level;
             }

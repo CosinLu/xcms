@@ -29,7 +29,7 @@ class Sys_log_model extends MY_Model
             $this->db->where('t.time >', strtotime($start_time));
             $this->db->where('t.time <', strtotime($stop_time));
         }
-        if ($this->session->sys_session['role_type'] == 0) {
+        if ($this->session->sys_session['role_type'] >= 2) {
             $this->db->where('t.user_id', $this->session->sys_session['user_id']);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);

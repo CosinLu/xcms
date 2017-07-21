@@ -31,8 +31,9 @@
                                 <tr>
                                     <th width="5%">NO.</th>
                                     <th>名称</th>
-                                    <th width="20%">权限</th>
+                                    <!--<th width="20%">权限</th>-->
                                     <th width="20%">URL</th>
+                                    <th width="8%">用户类型</th>
                                     <th width="5%">状态</th>
                                     <th width="5%" class="text-right">排序</th>
                                     <th width="18%">操作</th>
@@ -44,8 +45,9 @@
                                     <tr>
                                         <td>{{val.id}}</td>
                                         <td>{{val.prefix}}<i class="{{val.icon}}">&nbsp;</i>{{val.name}}</td>
-                                        <td>{{#val.col_auth}}</td>
+                                        <!--<td>{{#val.col_auth}}</td>-->
                                         <td>{{#val.url}}</td>
+                                        <td style="color:{{val.user_type_color}}">{{val.user_type_name}}</td>
                                         <td style="color:{{val.display_color}}">{{val.display_name}}</td>
                                         <td class="text-right">{{val.sort}}</td>
                                         <td>

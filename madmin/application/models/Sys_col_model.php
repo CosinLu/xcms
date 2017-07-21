@@ -20,10 +20,12 @@ class Sys_col_model extends MY_Model
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('group_concat(concat("<kbd>",t3.name,"</kbd>") order by t3.sort asc,t3.id asc SEPARATOR "&nbsp;") as col_auth');
+        $this->db->select('t4.name as user_type_name,t4.color as user_type_color');
         $this->db->from('sys_col as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('sys_col_auth as t2', 't2.col_id=t.id', 'left');
         $this->db->join('sys_dict as t3', 't3.ident=t2.col_auth', 'left');
+        $this->db->join('sys_dict as t4', 't4.ident=t.user_type', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -55,6 +57,7 @@ class Sys_col_model extends MY_Model
             'icon' => $this->input->post('icon'),
             'url' => $this->input->post('url'),
             'remark' => $this->input->post('remark'),
+            'user_type' => $this->input->post('user_type'),
             'display' => $this->input->post('display'),
             'sort' => $this->input->post('sort'),
         );

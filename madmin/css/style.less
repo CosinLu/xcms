@@ -85,6 +85,11 @@ kbd {
     font-family: @font-family;
 }
 
+/*标签*/
+.label {
+    border-radius: @border-radius/2;
+}
+
 /*缩略图*/
 .thumbnail {
     border-radius: @border-radius;
@@ -262,7 +267,7 @@ label {
             height: 0;
             left: 0;
             right: 0;
-            bottom:-1px;
+            bottom: -1px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.07);
         }
         .panel-title {
@@ -735,13 +740,13 @@ div[data-name="nodata"] {
                     content: '';
                     width: 10px;
                     height: 5px;
-                    border-left: rgba(255,255,255,.8) solid 2px;
-                    border-bottom: rgba(255,255,255,.8) solid 2px;
-                    position:absolute;
+                    border-left: rgba(255, 255, 255, .8) solid 2px;
+                    border-bottom: rgba(255, 255, 255, .8) solid 2px;
+                    position: absolute;
                     display: inline-block;
-                    left:5px;
-                    top:7px;
-                    transform:rotate(-45deg)
+                    left: 5px;
+                    top: 7px;
+                    transform: rotate(-45deg)
                 }
             }
             max-width: 80%;
@@ -785,9 +790,16 @@ div[data-name="nodata"] {
                     background: darken(@color-primary, 4);
                 }
                 i.fa {
-                    width: 18px;
-                    text-align: center;
+                    width: 16px;
                     display: inline-block;
+                    font-size: 16px;
+                    vertical-align: -1px;
+                    padding-right: 5px;
+                }
+                > .label {
+                    height: 16px;
+                    line-height: 16px;
+                    padding: 0 3px;
                 }
             }
             .dropdown {
@@ -867,20 +879,12 @@ div[data-name="nodata"] {
             color: rgba(255, 255, 255, .75);
             padding-top: 5px;
             padding-bottom: 5px;
+            padding-left: 20px;
             position: relative;
             &.current {
                 color: #fff;
                 background: rgba(0, 0, 0, .2);
-                &:before {
-                    content: '';
-                    width: 3px;
-                    height: 100%;
-                    display: inline-block;
-                    position: absolute;
-                    background: @color-primary;
-                    left: 0;
-                    top: 0;
-                }
+                box-shadow: 4px 0 0 @color-primary inset;
             }
             div {
                 &[data-name="mtreeBtn"] {
@@ -888,10 +892,22 @@ div[data-name="nodata"] {
                     right: 10px;
                 }
                 &[data-name="mtreeIcon"] {
-                    width: 30px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    text-align: center;
+                    width: 22px;
+                    display: inline-block;
+                    padding-right: 10px;
+                    font-size: 12px;
+                }
+                &[data-name='mtreeName'] {
+                    position: relative;
+                    .label {
+                        font-size: 12px;
+                        padding: 0 3px;
+                        height: 16px;
+                        line-height: 16px;
+                        position: absolute;
+                        top: 7px;
+                        right: 25px;
+                    }
                 }
             }
             &:hover {

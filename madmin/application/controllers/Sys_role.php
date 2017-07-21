@@ -36,12 +36,12 @@ class Sys_role extends MY_Controller
     {
         $data['list'] = $this->sys_role->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            if ($val['role_type'] == '1') {
+            if ($val['role_type'] == 1) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">设置权限</a>';
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">编辑</a>';
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">删除</a>';
                 $data['list']['list'][$key]['disabled'] = 'disabled';
-            } else {
+            } elseif($val['role_type'] == 2) {
                 $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a href="' . site_url('sys_role_auth?sys_cid=' . $this->sys_cid . '&role_id=' . $val['id']) . '">设置权限</a>', '<a href="javascript:;" class="disabled">设置权限</a>');
                 $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_role/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
                 $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="sys_role" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');

@@ -22,6 +22,7 @@ class Sys_role_model extends MY_Model
         if ($key != '') {
             $this->db->like('name', $key);
         }
+        $this->db->where('role_type > ', 0);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;
         $config['cur_page'] = $page;

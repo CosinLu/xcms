@@ -51,6 +51,7 @@ class Sys_col extends MY_Controller
         $data['sys_col'] = $this->category->ddl('pid', 0, $id);
         $data['auth'] = $this->sys_dict->cbl('sys_col_auth', 'auth');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['user_type'] = $this->sys_dict->rbl('user_type', 'user_type');
         $this->load->view('sys_col/insert.html', $data);
     }
 
@@ -61,6 +62,7 @@ class Sys_col extends MY_Controller
         $data['sys_col'] = $this->category->ddl('pid', $data['item']['id'], $data['item']['pid']);
         $data['auth'] = $this->sys_dict->cbl('sys_col_auth', 'auth', $data['item']['col_auth']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['user_type'] = $this->sys_dict->rbl('user_type', 'user_type', $data['item']['user_type']);
         $this->load->view('sys_col/update.html', $data);
     }
 
