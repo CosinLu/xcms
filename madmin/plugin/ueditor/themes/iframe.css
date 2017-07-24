@@ -2,8 +2,9 @@
 pre {
     border: 1px solid #ccc;
     font-size: 0.8em;
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
 blockquote {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
@@ -16,7 +17,8 @@ blockquote {
     font-size: 100%;
     background-color: #f1f1f1;
 }
-hr{
+
+hr {
     height: 0px;
     border-top: none;
 }

@@ -251,7 +251,7 @@
     background: none;
     height: auto;
     width: auto;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1;
     text-align: center;
     cursor: default;
@@ -263,6 +263,17 @@
 .edui-default .edui-dialog-buttons .edui-button .edui-state-hover .edui-button-body {
     background: #e6e6e6;
     border-color: #adadad;
+}
+
+.edui-default .edui-dialog-buttons .edui-button.edui-okbutton .edui-button-body {
+    background: #337ab7;
+    border-color: #337ab7;
+    color: #fff;
+}
+
+.edui-default .edui-dialog-buttons .edui-button.edui-okbutton .edui-button-body:hover {
+    background: #2d6da3;
+    border-color: #2d6da3;
 }
 
 .edui-default .edui-for-link .edui-dialog-content {

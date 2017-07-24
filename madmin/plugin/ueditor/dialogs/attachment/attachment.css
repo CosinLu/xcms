@@ -18,8 +18,8 @@ input { outline: none; vertical-align: middle; display: inline-block; }
 #upload p { margin: 0; }
 .element-invisible { width: 0 !important; height: 0 !important; border: 0; padding: 0; margin: 0; overflow: hidden; position: absolute !important; clip: rect(1px, 1px, 1px, 1px); }
 #upload .placeholder { margin: 10px; border: 2px dashed #e6e6e6; *border: 0px dashed #e6e6e6; height: 172px; padding-top: 150px; text-align: center; background: url(./images/image.png) center 70px no-repeat; color: #cccccc; font-size: 18px; position: relative; top: 0; *top: 10px; }
-#upload .placeholder .webuploader-pick { font-size: 18px; background: #00b7ee; border-radius: 0px; line-height: 44px; padding: 0 30px; *width: 120px; color: #fff; display: inline-block; margin: 0 auto 20px auto; cursor: pointer; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
-#upload .placeholder .webuploader-pick-hover { background: #00a2d4; }
+#upload .placeholder .webuploader-pick { font-size: 18px; background: #337AB7; border-radius: 0px; line-height: 44px; padding: 0 30px; *width: 120px; color: #fff; display: inline-block; margin: 0 auto 20px auto; cursor: pointer; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+#upload .placeholder .webuploader-pick-hover { background: #2D6DA3; }
 #filePickerContainer { text-align: center; }
 #upload .placeholder .flashTip { color: #666666; font-size: 12px; position: absolute; width: 100%; text-align: center; bottom: 20px; }
 #upload .placeholder .flashTip a { color: #0785d1; text-decoration: none; }
@@ -76,9 +76,9 @@ input { outline: none; vertical-align: middle; display: inline-block; }
 #upload .statusBar .btns .uploadBtn.state-uploading:hover,
 #upload .statusBar .btns .uploadBtn.state-paused:hover { background: #f0f0f0; }
 #upload .statusBar .btns .uploadBtn,
-#upload .statusBar .btns .uploadBtn.state-paused { background: #00b7ee; color: #fff; border-color: transparent; }
+#upload .statusBar .btns .uploadBtn.state-paused { background: #337AB7; color: #fff; border-color: transparent; }
 #upload .statusBar .btns .uploadBtn:hover,
-#upload .statusBar .btns .uploadBtn.state-paused:hover { background: #00a2d4; }
+#upload .statusBar .btns .uploadBtn.state-paused:hover { background: #2D6DA3; }
 #upload .statusBar .btns .uploadBtn.disabled { pointer-events: none; filter: alpha(opacity=60); -moz-opacity: 0.6; -khtml-opacity: 0.6; opacity: 0.6; }
 
 /* 图片管理样式 */
