@@ -22,7 +22,7 @@ class Info extends MY_Controller
 
     public function index()
     {
-        $data = $this->info->info_col();
+        $data = $this->info->cols();
         $children = array();
         foreach ($data as $key => $val) {
             $children[$key] = $this->category->children($data, $val['pid'], TRUE);
@@ -45,7 +45,7 @@ class Info extends MY_Controller
         $this->db->select('t.*');
         $this->db->select('t1.sys_tpl');
         $this->db->from('info_col as t');
-        $this->db->join('info_tpl as t1', 't1.id=t.info_tpl_id', 'left');
+        $this->db->join('sys_tpl as t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
@@ -89,9 +89,9 @@ class Info extends MY_Controller
     }
 
     //获得当前栏目的模板标识
-    public function info_tpl_id()
+    public function tpl_id()
     {
-        $res = $this->info->info_tpl_id();
+        $res = $this->info->tpl_id();
         return $res;
     }
 

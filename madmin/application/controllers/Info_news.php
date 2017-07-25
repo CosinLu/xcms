@@ -50,7 +50,7 @@ class Info_news extends Info
     //新增
     public function insert()
     {
-        $data['info_col'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->info_tpl_id());
+        $data['cols'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $data['create_time'] = date('Y-m-d H:i:s', time());
@@ -61,7 +61,7 @@ class Info_news extends Info
     public function update()
     {
         $data['item'] = $this->info_news->update();
-        $data['info_col'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->info_tpl_id());
+        $data['cols'] = $this->category->ddl('cid', 0, $data['item']['cid'], array(), FALSE, $this->tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);

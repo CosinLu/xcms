@@ -291,10 +291,10 @@ class Category
      * @param int $pid 上级栏目标识
      * @param array $data
      * @param bool $root 是否显示跟目录
-     * @param int $info_tpl_id 模板标识
+     * @param int $tpl_id 模板标识
      * @return string
      */
-    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $info_tpl_id = '')
+    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $tpl_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -327,8 +327,8 @@ class Category
                 $disabled = (in_array($val[$this->id_name], $children_id)) ? 'disabled' : '';
             }
             //禁止选择[用于只允许选择相同模型]
-            if (!empty($info_tpl_id)) {
-                $disabled = ($val['info_tpl_id'] != $info_tpl_id) ? 'disabled' : '';
+            if (!empty($tpl_id)) {
+                $disabled = ($val['tpl_id'] != $tpl_id) ? 'disabled' : '';
             }
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
