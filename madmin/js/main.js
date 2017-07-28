@@ -16,7 +16,9 @@ require.config({
         'layer': 'plugin/layer-3.0.1/layer',
         'mtree': 'plugin/mtree-2.0/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
-        'uploadifive': 'plugin/uploadifive-1.1.2/js/upload',
+        'uploadifive': 'plugin/uploadifive-1.1.2/js/jquery.uploadifive.min',
+        'uploadifive_mcms': 'plugin/uploadifive-1.1.2/js/uploadifive.mcms',
+        'upload': 'plugin/uploadifive-1.1.2/js/upload',
         'holder': 'plugin/holder.min',
         'jqthumb': 'plugin/jqthumb.min',
         'form': 'plugin/jquery.form.min',
@@ -67,9 +69,9 @@ require.config({
                 window.ZeroClipboard = ZeroClipboard;
             }
         },
-        'uploadifive': {
+        'upload': {
             deps: ['jquery'
-                , 'plugin/uploadifive-1.1.2/js/uploadifive.mcms'
+                , 'uploadifive_mcms'
                 , 'jqthumb'
                 , 'holder'
                 , 'dragsort']
@@ -211,8 +213,8 @@ require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
 
     //隐藏侧边栏
     /*$('[data-name="sidebar_hidden"]').on('click', function () {
-        $('[data-name="sidebar"]').toggleClass('sidebar_hidden');
-    });*/
+     $('[data-name="sidebar"]').toggleClass('sidebar_hidden');
+     });*/
 
     //异步提交表单
     if ($('[data-form="ajaxForm"]').length > 0) {
