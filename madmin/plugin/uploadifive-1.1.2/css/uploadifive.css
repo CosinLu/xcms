@@ -4,32 +4,7 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 */
 
 .uploadifive-button {
-	padding: 0;
-	overflow: hidden;
-}
-.uploadifive-queue-item .thumbnail{
-	padding:5px;
-}
-.uploadifive-queue-item .caption{
-	padding:0;
-}
-.uploadifive-queue-item p{
-	margin:0 0 5px 0;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-.uploadifive-queue-item .filename{
-	margin:0;
-}
-.uploadifive-queue-item .progress {
-	margin: 5px 0 0 0;
-	height:8px;
-}
-.uploadifive-queue-item .progress-bar {
-	box-shadow: none;
-}
-	/*background-color: #505050;
+	background-color: #505050;
 	background-image: linear-gradient(bottom, #505050 0%, #707070 100%);
 	background-image: -o-linear-gradient(bottom, #505050 0%, #707070 100%);
 	background-image: -moz-linear-gradient(bottom, #505050 0%, #707070 100%);
@@ -99,4 +74,4 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 	background-color: #0072BC;
 	height: 3px;
 	width: 0;
-}*/
+}
