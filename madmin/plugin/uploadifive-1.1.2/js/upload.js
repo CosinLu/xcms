@@ -1,7 +1,7 @@
 /**
  * Created by MengXianghan on 2016/8/10.
  */
-$(function () {
+require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort'], function ($, jQuery, uploadifive, jqthumb, holder, dragsort) {
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
     var fileName = '';
@@ -93,7 +93,6 @@ $(function () {
             content: 'index.php/uploadifive/online?multi=' + multi + '&name=' + name
         });
     });
-
 });
 
 //拖拽排序
