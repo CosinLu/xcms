@@ -1,7 +1,7 @@
 /**
  * Created by MengXianghan on 2016/8/10.
  */
-require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort','unit'], function ($, jQuery, uploadifive, jqthumb, holder, dragsort,unit) {
+require(['jquery','uploadifive_mcms', 'jqthumb', 'holder', 'dragsort','unit'], function ($, uploadifive, jqthumb, holder, dragsort,unit) {
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
     var fileName = '';

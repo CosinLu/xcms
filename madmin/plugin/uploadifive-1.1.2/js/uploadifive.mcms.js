@@ -97,8 +97,11 @@
                     settings.fileSizeLimit = settings.fileSizeLimit * 1024;
                 }
 
+                //设置允许的文件类型
+                var accept = (settings.fileType) ? settings.fileType.join(',') : '';
+
                 // Create a template for a file input
-                $data.inputTemplate = $('<input type="file">')
+                $data.inputTemplate = $('<input type="file" accept="' + accept + '">')
                     .css({
                         'font-size': settings.height + 'px',
                         'opacity': 0,
@@ -377,8 +380,8 @@
                     var fadeTime = instant ? 0 : 500;
                     if (file.queueItem) {
                         if (file.queueItem) {
-                            if (file.queueItem.find('.fileinfo').html() != 'Completed') {
-                                file.queueItem.find('.fileinfo').html(' - Cancelled');
+                            if (file.queueItem.find('.fileinfo').html() != '上传成功') {
+                                file.queueItem.find('.fileinfo').html(' - 取消');
                             }
                             file.queueItem.find('.progress-bar').width(0);
                             file.queueItem.delay(delay).fadeOut(fadeTime, function () {
@@ -388,8 +391,8 @@
                             $data.queue.count--;
                         }
                     } else {
-                        if (file.closest('.uploadifive-queue-item').find('.fileinfo').html() != 'Completed') {
-                            file.closest('.uploadifive-queue-item').find('.fileinfo').html(' - Cancelled');
+                        if (file.closest('.uploadifive-queue-item').find('.fileinfo').html() != '上传成功') {
+                            file.closest('.uploadifive-queue-item').find('.fileinfo').html(' - 取消');
                         }
                         file.closest('.uploadifive-queue-item').find('.progress-bar').width(0);
                         file.closest('.uploadifive-queue-item').delay(delay).fadeOut(fadeTime, function () {
@@ -647,7 +650,7 @@
                 $data.uploadComplete = function (e, file, uploadAll) {
                     if ($.inArray('onUploadComplete', settings.overrideEvents) < 0) {
                         file.queueItem.find('.progress-bar').css('width', '100%');
-                        file.queueItem.find('.fileinfo').html(' - Completed');
+                        file.queueItem.find('.fileinfo').html(' - 上传成功');
                         file.queueItem.find('.progress').slideUp(250);
                         file.queueItem.addClass('complete');
                     }
@@ -705,13 +708,19 @@
 
                     // Style the button wrapper
                     $data.button.css({
-                        'height': settings.height,
-                        'line-height': settings.height + 'px',
                         'overflow': 'hidden',
-                        'position': 'relative',
-                        'text-align': 'center',
-                        'width': settings.width
+                        'position': 'relative'
                     });
+
+                    //如果单独设置了样式，则取消默认样式
+                    if (!settings.buttonClass) {
+                        $data.button.css({
+                            'height': settings.height,
+                            'line-height': settings.height + 'px',
+                            'width': settings.width,
+                            'text-align': 'center'
+                        });
+                    }
 
                     // Insert the button above the file input
                     $this.before($data.button)
