@@ -11,6 +11,7 @@ class Sys_auth
     protected $CI;
     protected $user_info;
     protected $tb_sys_col;
+    protected $tb_sys_col_auth;
     protected $tb_sys_role_auth;
     protected $tb_sys_user_auth;
     protected $tb_sys_dict;
@@ -19,6 +20,7 @@ class Sys_auth
     {
         $this->CI =& get_instance();
         $this->tb_sys_col = $this->CI->db->dbprefix . 'sys_col';
+        $this->tb_sys_col_auth = $this->CI->db->dbprefix . 'sys_col_auth';
         $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
         $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
         $this->tb_sys_dict = $this->CI->db->dbprefix . 'sys_dict';
@@ -27,76 +29,238 @@ class Sys_auth
     }
 
     //根据权限获得系统栏目
-    public function sys_col()
+    public function sys_col($type = '', $id = '')
     {
         $role_type = $this->user_info['role_type'];
-        $role_id = $this->user_info['role_id'];
-        $user_id = $this->user_info['user_id'];
         if ($role_type == 0) {//开发者
-            $this->CI->db->select('t.*');
-            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $sql = "SELECT
+                `t`.*,
+                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
+                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+            if ($id) {
+                $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
+            }
+            $sql .= " FROM
+                `{$this->tb_sys_col}` AS `t`
+            LEFT JOIN 
+                `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
+            LEFT JOIN 
+                `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+            if ($id) {
+                if ($type == 'role') {
+                    $sql .= " LEFT JOIN (
+                        SELECT
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            `col_id`
+                        FROM
+                            `{$this->tb_sys_role_auth}`
+                        WHERE 
+                            `role_id`='{$id}'
+                        GROUP BY
+                            `col_id`
+                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                } elseif ($type == 'user') {
+                    $sql .= " LEFT JOIN (
+                        SELECT
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            `col_id`
+                        FROM
+                            `{$this->tb_sys_user_auth}`
+                        WHERE 
+                            `user_id`='{$id}'
+                        GROUP BY
+                            `col_id`
+                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                }
+            }
+            $sql .= " WHERE 
+                `t`.`display`='show'
+            GROUP BY 
+                `t`.`id`
+            ORDER BY 
+                `t`.`sort` ASC,`t`.`id` ASC";
+
+            /*$this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth order by t1.col_auth asc) as col_auth');
+            $this->CI->db->select('group_concat(t2.name order by t2.ident asc) as col_auth_name');
             $this->CI->db->from('sys_col as t');
             $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
+            $this->CI->db->join('sys_dict as t2', 't2.ident=t1.col_auth', 'left');
             $this->CI->db->where(array(
                 't.display' => 'show'
             ));
             $this->CI->db->group_by('t.id');
             $this->CI->db->order_by('t.sort asc,t.id asc');
-            $res = $this->CI->db->get()->result_array();
+            $res = $this->CI->db->get()->result_array();*/
         } elseif ($role_type == 1) {//系统默认，超级管理员
-            $this->CI->db->select('t.*');
-            $this->CI->db->select('group_concat(t1.col_auth) as col_auth');
+            $sql = "SELECT
+                `t`.*,
+                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
+                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+            if ($id) {
+                $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
+            }
+            $sql .= " FROM
+                `{$this->tb_sys_col}` AS `t`
+            LEFT JOIN 
+                `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
+            LEFT JOIN 
+                `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth` ";
+            if ($id) {
+                if ($type == 'role') {
+                    $sql .= " LEFT JOIN (
+                        SELECT
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            `col_id`
+                        FROM
+                            `{$this->tb_sys_role_auth}`
+                        WHERE 
+                            `role_id`='{$id}'
+                        GROUP BY
+                            `col_id`
+                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                } elseif ($type == 'user') {
+                    $sql .= " LEFT JOIN (
+                        SELECT
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            `col_id`
+                        FROM
+                            `{$this->tb_sys_user_auth}`
+                        WHERE 
+                            `user_id`='{$id}'
+                        GROUP BY
+                            `col_id`
+                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                }
+            }
+            $sql .= " WHERE 
+                `t`.`display`='show'
+            AND
+                `t`.`user_type`='pro'
+            GROUP BY 
+                `t`.`id`
+            ORDER BY 
+                `t`.`sort` ASC,`t`.`id` ASC";
+
+            /*$this->CI->db->select('t.*');
+            $this->CI->db->select('group_concat(t1.col_auth order by t1.col_auth asc) as col_auth');
+            $this->CI->db->select('group_concat(t2.name order by t2.ident asc) as col_auth_name');
             $this->CI->db->from('sys_col as t');
             $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
+            $this->CI->db->join('sys_dict as t2', 't2.ident=t1.col_auth', 'left');
             $this->CI->db->where(array(
                 't.display' => 'show',
                 't.user_type' => 'pro'
             ));
             $this->CI->db->group_by('t.id');
             $this->CI->db->order_by('t.sort asc,t.id asc');
-            $res = $this->CI->db->get()->result_array();
+            $res = $this->CI->db->get()->result_array();*/
         } elseif ($role_type == 2) {//普通管理员
-            $sql = "SELECT
-	*, group_concat(col_auth) AS col_auth
-FROM
-	(
-		SELECT
-			`t`.*, group_concat(
-				`t1`.`col_auth`
-				ORDER BY
-					`t1`.`col_auth` ASC
-			) AS `col_auth`
-		FROM
-			`{$this->tb_sys_col}` AS `t`
-		LEFT JOIN `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
-		WHERE
-			`t`.`display` = 'show'
-		AND `t1`.`role_id` = '" . $role_id . "'
-		GROUP BY
-			`t`.`id`
-		UNION ALL
-			SELECT
-				`t`.*, group_concat(
-					`t1`.`col_auth`
-					ORDER BY
-						`t1`.`col_auth` ASC
-				) AS `col_auth`
-			FROM
-				`{$this->tb_sys_col}` AS `t`
-			LEFT JOIN `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
-			WHERE
-				`t`.`display` = 'show'
-			AND `t1`.`user_id` = '" . $user_id . "'
-			GROUP BY
-				`t`.`id`
-	) t
-GROUP BY
-	id
-ORDER BY
-	`sort` ASC,
-	`id` ASC";
-            $res = $this->CI->db->query($sql)->result_array();
+            $sql = "SELECT 
+              *, GROUP_CONCAT(`col_auth`) AS `col_auth`
+            FROM
+                (
+                    SELECT
+                        `t`.*,
+                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
+                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                    if ($id) {
+                        $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
+                    }
+                    $sql .= " FROM
+                        `{$this->tb_sys_col}` AS `t`
+                    LEFT JOIN 
+                        `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
+                    LEFT JOIN 
+                        `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                    if ($id) {
+                        if ($type == 'role') {
+                            $sql .= " LEFT JOIN (
+                                SELECT
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    `col_id`
+                                FROM
+                                    `{$this->tb_sys_role_auth}`
+                                WHERE 
+                                    `role_id`='{$id}'
+                                GROUP BY
+                                    `col_id`
+                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                        } elseif ($type == 'user') {
+                            $sql .= " LEFT JOIN (
+                                SELECT
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    `col_id`
+                                FROM
+                                    `{$this->tb_sys_user_auth}`
+                                WHERE 
+                                    `user_id`='{$id}'
+                                GROUP BY
+                                    `col_id`
+                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                        }
+                    }
+                    $sql .= " WHERE
+                        `t`.`display` = 'show'
+                    AND 
+                        `t1`.`role_id` = '{$this->user_info['role_id']}'
+                    GROUP BY
+                        `t`.`id`
+                    UNION ALL
+                    SELECT
+                        `t`.*,
+                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
+                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                    if ($id) {
+                        $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
+                    }
+                    $sql .= " FROM
+                        `{$this->tb_sys_col}` AS `t`
+                    LEFT JOIN 
+                        `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
+                    LEFT JOIN 
+                        `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                    if ($id) {
+                        if ($type == 'role') {
+                            $sql .= " LEFT JOIN (
+                                SELECT
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    `col_id`
+                                FROM
+                                    `{$this->tb_sys_role_auth}`
+                                WHERE 
+                                    `role_id`='{$id}'
+                                GROUP BY
+                                    `col_id`
+                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                        } elseif ($type == 'user') {
+                            $sql .= " LEFT JOIN (
+                                SELECT
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    `col_id`
+                                FROM
+                                    `{$this->tb_sys_user_auth}`
+                                WHERE 
+                                    `user_id`='{$id}'
+                                GROUP BY
+                                    `col_id`
+                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                        }
+                    }
+                    $sql .= " WHERE
+                        `t`.`display` = 'show'
+                    AND 
+                        `t1`.`user_id` = '{$this->user_info['user_id']}'
+                    GROUP BY
+                        `t`.`id`
+                ) t
+            GROUP BY
+                `id`
+            ORDER BY
+                `sort` ASC,
+                `id` ASC";
         }
+        $res = $this->CI->db->query($sql)->result_array();
         $res_sort = $this->CI->sys_auth_category->children($res);
         return $res_sort;
     }

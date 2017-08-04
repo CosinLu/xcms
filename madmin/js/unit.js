@@ -3,6 +3,16 @@
  */
 define(['jquery'], function ($) {
     return {
+        //拖拽排序
+        dragsort: function (id) {
+            require(['dragsort'], function (dragsort) {
+                $(id).dragsort({
+                    dragSelector: "div.uploadifive-queue-item .thumb",
+                    dragSelectorExclude: "button",
+                    placeHolderTemplate: "<div class='uploadifive-queue-item col-xs-3'><div class='thumbnail placeholder'></div></div>"
+                });
+            })
+        },
 
         //通用日期插件
         date: function () {

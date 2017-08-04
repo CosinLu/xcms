@@ -67,7 +67,7 @@
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template', 'dragsort', 'jqthumb', 'holder', 'dropload'], function (template, dragsort, jqthumb, Holder) {
+    require(['template', 'unit', 'jqthumb', 'holder', 'dropload'], function (template, unit, jqthumb, Holder) {
         var index = parent.layer.getFrameIndex(window.name);
         var multi = '<?=$multi?>';
         var queueName = '#uploadifive-<?=$name?>-queue';
@@ -190,7 +190,7 @@
                 }
             }
             //拖拽
-            window.parent.dragsort(queueName);
+            unit.dragsort(queueName);
             //关闭窗口
             parent.layer.close(index);
         })

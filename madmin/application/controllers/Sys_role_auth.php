@@ -34,9 +34,9 @@ class Sys_role_auth extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $list = $this->sys_role_auth->get_list();
+        $list = $this->sys_auth->sys_col('role',$this->input->get('role_id'));
         foreach ($list as $key => $val) {
-            $list[$key]['auth'] = $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id']);
+            $list[$key]['auth'] = $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id']);
             $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         $str = '';
@@ -57,7 +57,7 @@ class Sys_role_auth extends MY_Controller
             $str .= '<li>';
             $str .= '<div data-name="li">';
             $str .= '<div class="auth_control checkbox"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
-            $str .= '<div class="auth_type checkbox">' . $this->split_auth($val['auth_ident_str'], $val['auth_name_str'], $val['id'], $val['col_auth_str']) . '</div>';
+            $str .= '<div class="auth_type checkbox">' . $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id'], $val['col_auth_str']) . '</div>';
             $str .= '<div class="auth_name">' . $val['prefix'] . $val['name'] . '</div>';
             $str .= '</div>';
             $parent_level = $level;

@@ -1,7 +1,7 @@
 /**
  * Created by MengXianghan on 2016/8/10.
  */
-require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort'], function ($, jQuery, uploadifive, jqthumb, holder, dragsort) {
+require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort','unit'], function ($, jQuery, uploadifive, jqthumb, holder, dragsort,unit) {
     var uploadifive = '[data-name="uploadifive"]';
     var $_uploadifive = $(uploadifive);
     var fileName = '';
@@ -25,7 +25,7 @@ require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort'
         var id = '#uploadifive-' + $(this).attr('name') + '-queue';
         var multi = $(this).data('multi');
         if (multi) {
-            dragsort(id);
+            unit.dragsort(id);
         }
     });
 
@@ -76,7 +76,7 @@ require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort'
             fileName = json.file_obj_name;
         },
         'onQueueComplete': function (uploads) {
-            dragsort("#uploadifive-" + fileName + "-queue");
+            unit.dragsort("#uploadifive-" + fileName + "-queue");
         }
     });
 
@@ -94,12 +94,3 @@ require(['jquery', 'jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort'
         });
     });
 });
-
-//拖拽排序
-function dragsort(id) {
-    $(id).dragsort({
-        dragSelector: "div.uploadifive-queue-item .thumb",
-        dragSelectorExclude: "button",
-        placeHolderTemplate: "<div class='uploadifive-queue-item col-xs-3'><div class='thumbnail placeholder'></div></div>"
-    });
-}

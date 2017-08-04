@@ -308,6 +308,10 @@ label {
     }
     .panel-body {
         padding: @spacing;
+        .panel-body-title {
+            font-size: 14px;
+            color: @color-muted;
+        }
     }
 }
 
@@ -1043,6 +1047,12 @@ div[data-name="nodata"] {
 /*权限分配结束*/
 
 /*文件上传开始*/
+input[type=file] {
+    &[data-name="uploadifive"] {
+        display: none;
+    }
+}
+
 .uploadifive-button {
     padding: 0;
     overflow: hidden;

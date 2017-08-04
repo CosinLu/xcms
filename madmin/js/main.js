@@ -16,7 +16,7 @@ require.config({
         'layer': 'plugin/layer-3.0.1/layer',
         'mtree': 'plugin/mtree-2.0/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
-        'uploadifive': 'plugin/uploadifive-1.1.2/js/jquery.uploadifive.min',
+        'uploadifive': 'plugin/uploadifive-1.1.2/js/uploadifive.mcms',
         'uploadifive_mcms': 'plugin/uploadifive-1.1.2/js/uploadifive.mcms',
         'upload': 'plugin/uploadifive-1.1.2/js/upload',
         'holder': 'plugin/holder.min',
@@ -68,6 +68,10 @@ require.config({
                 //导出到全局变量，供ueditor使用
                 window.ZeroClipboard = ZeroClipboard;
             }
+        },
+        'uploadifive': {
+            deos: ['jquery'
+                , 'css!plugin/uploadifive-1.1.2/css/uploadifive.css']
         },
         'upload': {
             deps: ['jquery'
