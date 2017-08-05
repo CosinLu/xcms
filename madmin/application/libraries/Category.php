@@ -20,6 +20,7 @@ class Category
     private $slevel;
     private $depth;
     private $self;
+    private $default;
 
     /**
      * 构造函数
@@ -40,6 +41,7 @@ class Category
         $this->slevel = (isset($arr['slevel'])) ? $arr['slevel'] : 0;
         $this->depth = (isset($arr['depth'])) ? $arr['depth'] : 0;
         $this->self = (isset($arr['self'])) ? $arr['self'] : 0;
+        $this->default = (isset($arr['default'])) ? $arr['default'] : '根目录';
     }
 
     /**
@@ -268,7 +270,7 @@ class Category
         $root_arr = array(
             array(
                 $this->id_name => 0,
-                $this->category_name => '根目录',
+                $this->category_name => $this->default,
                 $this->level_name => 0,
             )
         );
@@ -302,7 +304,7 @@ class Category
         $root_arr = array(
             array(
                 $this->id_name => 0,
-                $this->category_name => '根目录',
+                $this->category_name => $this->default,
                 $this->pid_name => -1,
                 $this->level_name => 0,
             )
