@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-05 18:37:42
+Date: 2017-08-06 20:28:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -486,7 +486,7 @@ CREATE TABLE `sys_log` (
   `time` int(10) DEFAULT NULL COMMENT '时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -547,6 +547,10 @@ INSERT INTO `sys_log` VALUES ('53', '4', 'madmin', '导航管理', 'insert', 'su
 INSERT INTO `sys_log` VALUES ('54', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1501928224', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('55', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1501928397', 'zh-cn');
 INSERT INTO `sys_log` VALUES ('56', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1501928407', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('57', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502013437', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('58', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502013445', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('59', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502013459', 'zh-cn');
+INSERT INTO `sys_log` VALUES ('60', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502022371', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -559,7 +563,7 @@ CREATE TABLE `sys_login_log` (
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -606,6 +610,8 @@ INSERT INTO `sys_login_log` VALUES ('39', '4', '127.0.0.1', '1501892679', 'zh-cn
 INSERT INTO `sys_login_log` VALUES ('40', '6', '127.0.0.1', '1501892726', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('41', '4', '127.0.0.1', '1501892782', 'zh-cn');
 INSERT INTO `sys_login_log` VALUES ('42', '4', '127.0.0.1', '1501926749', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('43', '4', '127.0.0.1', '1502013208', 'zh-cn');
+INSERT INTO `sys_login_log` VALUES ('44', '4', '127.0.0.1', '1502022364', 'zh-cn');
 
 -- ----------------------------
 -- Table structure for sys_role
