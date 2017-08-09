@@ -70,17 +70,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+require_once BASEPATH . '../config.php';
+
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => $config['db']['hostname'],
+	'username' => $config['db']['username'],
+	'password' => $config['db']['password'],
+	'database' => $config['db']['database'],
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => $config['db']['dbprefix'],
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
