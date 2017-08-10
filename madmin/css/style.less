@@ -221,6 +221,14 @@ kbd {
     background: #fff;
 }
 
+.input-group {
+    .form-control {
+        & + .input-group-addon {
+            border-radius: 0 @border-radius @border-radius 0;
+        }
+    }
+}
+
 .form-horizontal {
     .form-group {
         margin-left: -@spacing;
