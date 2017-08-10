@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-09 16:28:44
+Date: 2017-08-10 08:56:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -287,36 +287,35 @@ CREATE TABLE `sys_col` (
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  `lang` varchar(10) DEFAULT 'zh-cn' COMMENT '语言：zh-cn=中文，en=英文',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
-INSERT INTO `sys_col` VALUES ('1', '首页', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '1', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '2', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-desktop', '1', '2', '', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('8', '数据字典', '', '28', '3', 'sys_dict', '', 'dev', 'show', '300', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('9', '配置组', '', '28', '3', 'config_group', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('10', '配置项', '', '28', '3', 'config_item', '', 'dev', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-columns', '3', '2', 'info_col', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-list', '3', '2', 'info', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('14', '模板管理', 'fa fa-codepen', '2', '2', 'sys_tpl', '', 'pro', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'dev', 'show', '200', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2', '', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-th-list', '1', '2', 'sys_log', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'show', '100', null, null, null, null, 'zh-cn');
-INSERT INTO `sys_col` VALUES ('41', '导航管理', 'fa fa-bars', '2', '2', 'navigation', '', 'pro', 'show', '300', null, null, null, null, 'zh-cn');
+INSERT INTO `sys_col` VALUES ('1', '首页', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '1', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '2', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-desktop', '1', '2', '', '', 'dev', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('8', '数据字典', '', '28', '3', 'sys_dict', '', 'dev', 'show', '300', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', '', '28', '3', 'config_group', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', '', '28', '3', 'config_item', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-columns', '3', '2', 'info_col', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-list', '3', '2', 'info', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('14', '模板管理', 'fa fa-codepen', '2', '2', 'sys_tpl', '', 'pro', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'dev', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-th-list', '1', '2', 'sys_log', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('41', '导航管理', 'fa fa-bars', '2', '2', 'navigation', '', 'pro', 'show', '300', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
