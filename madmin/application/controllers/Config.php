@@ -22,7 +22,7 @@ class Config extends MY_Controller
     public function set_url()
     {
         $url['save_url'] = site_url('config/save?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id);
-        $url['save_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<button type="submit" class="btn btn-primary">保存</button>');
+        $url['save_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<button type="submit" class="btn btn-primary btn-sm">保存</button>');
         $this->load->vars($url);
     }
 
@@ -34,7 +34,7 @@ class Config extends MY_Controller
             $data['config_item'][$key]['param_arr'] = $this->transform_param($val['param']);
             $data['config_item'][$key]['val'] = ($val['type'] == 'checkbox') ? explode(',', $val['value']) : $val['value'];
         }
-        $this->load->view('config/update.html', $data);
+        $this->load->view('config/index.html', $data);
     }
 
     /**

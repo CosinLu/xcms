@@ -20,7 +20,7 @@ class Sys_dict extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_dict/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary" href="' . site_url('sys_dict/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_dict/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('sys_dict/save?sys_cid=' . $this->sys_cid);
         $url['del_url'] = site_url('sys_dict/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);

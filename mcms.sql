@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : mcms-branch
+Source Database       : mcms
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-10 08:56:37
+Date: 2017-08-11 10:48:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -293,7 +293,7 @@ CREATE TABLE `sys_col` (
 -- ----------------------------
 -- Records of sys_col
 -- ----------------------------
-INSERT INTO `sys_col` VALUES ('1', '首页', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '1', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('1', '起始页', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '1', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -474,7 +474,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -539,6 +539,10 @@ INSERT INTO `sys_log` VALUES ('57', '4', 'madmin', '导航管理', 'update', 'su
 INSERT INTO `sys_log` VALUES ('58', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502013445');
 INSERT INTO `sys_log` VALUES ('59', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502013459');
 INSERT INTO `sys_log` VALUES ('60', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '59.0.3071.115', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502022371');
+INSERT INTO `sys_log` VALUES ('61', '4', 'madmin', '用户管理', 'update', 'success', 'Chrome', '60.0.3112.78', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502341523');
+INSERT INTO `sys_log` VALUES ('62', '4', 'madmin', '用户管理', 'update', 'success', 'Chrome', '60.0.3112.78', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502341531');
+INSERT INTO `sys_log` VALUES ('63', '4', 'madmin', '用户管理', 'update', 'success', 'Chrome', '60.0.3112.78', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502341539');
+INSERT INTO `sys_log` VALUES ('64', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502419666');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -550,7 +554,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -603,6 +607,11 @@ INSERT INTO `sys_login_log` VALUES ('45', '4', '127.0.0.1', '1502175424');
 INSERT INTO `sys_login_log` VALUES ('46', '4', '127.0.0.1', '1502178647');
 INSERT INTO `sys_login_log` VALUES ('47', '4', '127.0.0.1', '1502180322');
 INSERT INTO `sys_login_log` VALUES ('48', '4', '127.0.0.1', '1502260069');
+INSERT INTO `sys_login_log` VALUES ('49', '4', '127.0.0.1', '1502327238');
+INSERT INTO `sys_login_log` VALUES ('50', '4', '127.0.0.1', '1502341385');
+INSERT INTO `sys_login_log` VALUES ('51', '4', '127.0.0.1', '1502349008');
+INSERT INTO `sys_login_log` VALUES ('52', '4', '127.0.0.1', '1502356659');
+INSERT INTO `sys_login_log` VALUES ('53', '4', '127.0.0.1', '1502413779');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -733,7 +742,7 @@ INSERT INTO `sys_user` VALUES ('2', '1', 'admin', 'e10adc3949ba59abbe56e057f20f8
 INSERT INTO `sys_user` VALUES ('3', '3', 'demo', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal', '2', null, null, null, null);
 INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', 'e10adc3949ba59abbe56e057f20f883e', '开发者', '开发者', null, 'normal', '0', null, null, null, null);
 INSERT INTO `sys_user` VALUES ('5', '1', 'test', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '2', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('6', '3', 'test1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '2', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('6', '3', 'demo1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '2', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_user_auth
