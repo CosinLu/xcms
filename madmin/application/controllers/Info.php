@@ -22,7 +22,8 @@ class Info extends MY_Controller
 
     public function index()
     {
-        $data = $this->info->cols();
+        $this->load->view('info/index.html');
+        /*$data = $this->info->cols();
         $children = array();
         foreach ($data as $key => $val) {
             $children[$key] = $this->category->children($data, $val['pid'], TRUE);
@@ -36,7 +37,7 @@ class Info extends MY_Controller
             }
         }
         $url = array_slice($url, 0, 1);
-        redirect(site_url($url));
+        redirect(site_url($url));*/
     }
 
     //获得信息栏目
@@ -52,34 +53,39 @@ class Info extends MY_Controller
         $str = '<div class="mtree" data-name="mtreeMainSidebar">';
         $start_level = -1;
         $parent_level = 0;
-        foreach ($info_col_sort as $val) {
-            $level = $val['level'];
-            $current = ($val['id'] == $this->cid) ? 'current' : '';
-            $indent = (15 * ($level - 1)) . 'px';
-            if ($start_level < 0) {
-                $start_level = $level;
+        $data['main_section_name'] = '';
+        if(count($info_col_sort)) {
+            foreach ($info_col_sort as $val) {
+                $level = $val['level'];
+                $current = ($val['id'] == $this->cid) ? 'current' : '';
+                $indent = (15 * ($level - 1)) . 'px';
+                if ($start_level < 0) {
+                    $start_level = $level;
+                }
+                if ($level < $parent_level) {
+                    $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+                } elseif ($level > $parent_level) {
+                    $str .= '<ul data-level="' . ($level) . '">';
+                } else {
+                    $str .= '</li>';
+                }
+                $str .= '<li>';
+                if ($val['sys_tpl'] == '') {
+                    $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtreeLink">';
+                } else {
+                    $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
+                }
+                $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
+                $str .= '<div data-name="mtreeBtn"></div>';
+                $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
+                $str .= '</a>';
+                $parent_level = $level;
+                if ($val['id'] == $this->cid) {
+                    $data['main_section_name'] = $val['name'];
+                }
             }
-            if ($level < $parent_level) {
-                $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
-            } elseif ($level > $parent_level) {
-                $str .= '<ul data-level="' . ($level) . '">';
-            } else {
-                $str .= '</li>';
-            }
-            $str .= '<li>';
-            if ($val['sys_tpl'] == '') {
-                $str .= '<a class="' . $current . '" href="javascript:;" data-name="mtreeLink">';
-            } else {
-                $str .= '<a class="' . $current . '" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '" data-name="mtreeLink">';
-            }
-            $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
-            $str .= '<div data-name="mtreeBtn"></div>';
-            $str .= '<div data-name="mtreeName">' . $val['name'] . '</div>';
-            $str .= '</a>';
-            $parent_level = $level;
-            if ($val['id'] == $this->cid) {
-                $data['main_section_name'] = $val['name'];
-            }
+        }else{
+            $str='<a href="'.site_url('info_col/insert?sys_cid=12').'" class="btn btn-primary btn-block">新增栏目</a>';
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
         $str .= '</div>';
