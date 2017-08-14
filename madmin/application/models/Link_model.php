@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Slide_model extends MY_Model
+class Link_model extends MY_Model
 {
     public function __construct()
     {
@@ -21,7 +21,7 @@ class Slide_model extends MY_Model
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.full_path');
-        $this->db->from('slide as t');
+        $this->db->from('link as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('uploads as t2', 't2.id=t.image', 'left');
         if ($key != '') {
@@ -44,7 +44,7 @@ class Slide_model extends MY_Model
     {
         $id = $this->input->get('id');
         $this->db->where('id', $id);
-        $res = $this->db->get('slide')->row_array();
+        $res = $this->db->get('link')->row_array();
         return $res;
     }
 
@@ -63,9 +63,9 @@ class Slide_model extends MY_Model
             'sort' => $this->input->post('sort')
         );
         if ($id) {
-            $bool = $this->db->where('id', $id)->update('slide', $vals);
+            $bool = $this->db->where('id', $id)->update('link', $vals);
         } else {
-            $bool = $this->db->insert('slide', $vals);
+            $bool = $this->db->insert('link', $vals);
         }
         return $bool;
     }
