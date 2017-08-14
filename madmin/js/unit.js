@@ -3,6 +3,16 @@
  */
 define(['jquery'], function ($) {
     return {
+        //滚动条美化
+        nanoscroller: function (options) {
+            require(['nanoscroller'], function (nanoScroller) {
+                var defaults = {
+                    dom: '[data-name="nano"]'
+                };
+                var ops = $.extend({}, defaults, options);
+                $(ops.dom).nanoScroller();
+            })
+        },
         //拖拽排序
         dragsort: function (id) {
             require(['dragsort'], function (dragsort) {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-14 16:33:40
+Date: 2017-08-14 23:16:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,6 +124,37 @@ CREATE TABLE `info_col` (
 INSERT INTO `info_col` VALUES ('1', '新闻', '0', '1', '1', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('2', '产品', '0', '1', '2', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 INSERT INTO `info_col` VALUES ('3', '公司简介', '0', '1', '3', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+
+-- ----------------------------
+-- Table structure for info_col--
+-- ----------------------------
+DROP TABLE IF EXISTS `info_col--`;
+CREATE TABLE `info_col--` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
+  `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
+  `tpl_id` int(11) DEFAULT NULL COMMENT '模板标识',
+  `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
+  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `add_next_auth` tinyint(1) DEFAULT '1' COMMENT '新增下级权限：0=禁止，1=允许',
+  `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
+  `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+
+-- ----------------------------
+-- Records of info_col--
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -320,17 +351,16 @@ INSERT INTO `sys_col` VALUES ('1', '起始页', 'fa fa-home', '0', '1', '', '', 
 INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '2', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('28', '后台管理', 'fa fa-desktop', '1', '2', '', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('8', '数据字典', '', '28', '3', 'sys_dict', '', 'dev', 'show', '300', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('9', '配置组', '', '28', '3', 'config_group', '', 'dev', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('10', '配置项', '', '28', '3', 'config_item', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('8', '数据字典', 'fa fa-book', '1', '2', 'sys_dict', '', 'dev', 'show', '300', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('9', '配置组', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('10', '配置项', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('12', '栏目管理', 'fa fa-columns', '3', '2', 'info_col', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('13', '信息管理', 'fa fa-list', '3', '2', 'info', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('14', '模板管理', 'fa fa-codepen', '2', '2', 'sys_tpl', '', 'pro', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('16', '菜单管理', '', '28', '3', 'sys_col', '', 'dev', 'show', '200', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('16', '菜单管理', 'fa fa-bars', '1', '2', 'sys_col', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2', '', '', 'pro', 'show', '100', null, null, null, null);
@@ -502,7 +532,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -575,6 +605,15 @@ INSERT INTO `sys_log` VALUES ('65', '4', 'madmin', '菜单管理', 'update', 'su
 INSERT INTO `sys_log` VALUES ('66', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502673405');
 INSERT INTO `sys_log` VALUES ('67', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502674333');
 INSERT INTO `sys_log` VALUES ('68', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502674378');
+INSERT INTO `sys_log` VALUES ('69', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716819');
+INSERT INTO `sys_log` VALUES ('70', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716826');
+INSERT INTO `sys_log` VALUES ('71', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716833');
+INSERT INTO `sys_log` VALUES ('72', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716840');
+INSERT INTO `sys_log` VALUES ('73', '4', 'madmin', '菜单管理', 'del', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716848');
+INSERT INTO `sys_log` VALUES ('74', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716896');
+INSERT INTO `sys_log` VALUES ('75', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716912');
+INSERT INTO `sys_log` VALUES ('76', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716928');
+INSERT INTO `sys_log` VALUES ('77', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502716957');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -586,7 +625,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -648,6 +687,7 @@ INSERT INTO `sys_login_log` VALUES ('54', '4', '127.0.0.1', '1502426468');
 INSERT INTO `sys_login_log` VALUES ('55', '4', '127.0.0.1', '1502440490');
 INSERT INTO `sys_login_log` VALUES ('56', '4', '127.0.0.1', '1502445332');
 INSERT INTO `sys_login_log` VALUES ('57', '4', '127.0.0.1', '1502673068');
+INSERT INTO `sys_login_log` VALUES ('58', '4', '127.0.0.1', '1502716610');
 
 -- ----------------------------
 -- Table structure for sys_role

@@ -23,7 +23,8 @@ require.config({
         'jqthumb': 'plugin/jqthumb.min',
         'form': 'plugin/jquery.form.min',
         'sortable': 'plugin/jquery.sortable',
-        'template': 'plugin/template'
+        'template': 'plugin/template',
+        'nanoscroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min'
     },
     shim: {
         'bootstrap': {
@@ -86,12 +87,19 @@ require.config({
         },
         'template': {
             deps: ['jquery']
+        },
+        'nanoscroller': {
+            deps: ['jquery'
+                , 'css!plugin/nanoscroller/css/nanoscroller.css']
         }
     }
 
 });
 
-require(['jquery', 'bootstrap', 'mtree', 'layer', 'form'], function ($) {
+require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, unit) {
+
+    //滚动条美化
+    unit.nanoscroller();
 
     //sidebar
     $('[data-name="mtreeSidebar"]').mtree({
