@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-15 18:54:04
+Date: 2017-08-15 22:47:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -311,7 +311,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -335,10 +335,12 @@ INSERT INTO `sys_col` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys
 INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-th-list', '1', '2', 'sys_log', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-list', '1', '2', 'sys_log', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text-o', '2', '2', 'uploads', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('41', '导航管理', 'fa fa-bars', '2', '2', 'navigation', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('42', '友情链接', 'fa fa-link', '4', '2', 'link', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('43', '商品管理', 'fa fa-shopping-bag', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('44', '商品栏目', 'fa fa-columns', '43', '2', 'goods_col', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -425,6 +427,10 @@ INSERT INTO `sys_col_auth` VALUES ('42', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('42', 'update');
 INSERT INTO `sys_col_auth` VALUES ('42', 'del');
 INSERT INTO `sys_col_auth` VALUES ('42', 'look');
+INSERT INTO `sys_col_auth` VALUES ('44', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('44', 'update');
+INSERT INTO `sys_col_auth` VALUES ('44', 'del');
+INSERT INTO `sys_col_auth` VALUES ('44', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -501,11 +507,19 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES ('1', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807222');
+INSERT INTO `sys_log` VALUES ('2', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807229');
+INSERT INTO `sys_log` VALUES ('3', '4', 'madmin', '用户管理', 'del', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807338');
+INSERT INTO `sys_log` VALUES ('4', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807555');
+INSERT INTO `sys_log` VALUES ('5', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807619');
+INSERT INTO `sys_log` VALUES ('6', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807653');
+INSERT INTO `sys_log` VALUES ('7', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807713');
+INSERT INTO `sys_log` VALUES ('8', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1502807723');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -517,12 +531,13 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
 INSERT INTO `sys_login_log` VALUES ('1', '4', '127.0.0.1', '1502786515');
+INSERT INTO `sys_login_log` VALUES ('2', '4', '127.0.0.1', '1502806890');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -652,8 +667,6 @@ CREATE TABLE `sys_user` (
 INSERT INTO `sys_user` VALUES ('2', '1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '1', null, null, null, null);
 INSERT INTO `sys_user` VALUES ('3', '3', 'demo', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal', '2', null, null, null, null);
 INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', 'e10adc3949ba59abbe56e057f20f883e', '开发者', '开发者', null, 'normal', '0', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('5', '1', 'test', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '2', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('6', '3', 'demo1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', '2', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_user_auth
