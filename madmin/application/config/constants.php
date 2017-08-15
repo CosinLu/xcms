@@ -95,3 +95,4 @@ defined('MYINSERT') OR define('MYINSERT', 'insert');
 defined('MYDEL') OR define('MYDEL', 'del');
 defined('MYLOOK') OR define('MYLOOK', 'look');
 defined('MYUPDATE') OR define('MYUPDATE', 'update');
+defined('MYBACK') OR define('MYBACK','<button type="button" data-name="back" class="btn btn-default btn-xs"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</button>');

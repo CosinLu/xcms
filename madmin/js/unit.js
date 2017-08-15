@@ -3,6 +3,12 @@
  */
 define(['jquery'], function ($) {
     return {
+        //返回上一级
+        back: function () {
+            $('[data-name="back"]').on('click', function () {
+                history.back();
+            })
+        },
         //滚动条美化
         nanoscroller: function (options) {
             require(['nanoscroller'], function (nanoScroller) {

@@ -54,9 +54,9 @@ class Info extends MY_Controller
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
-        $str = '<div class="opera_btn"><button type="button" class="btn btn-primary btn-block">新增栏目</button></div>';
-        $str .= '<div class="nano" data-name="nano">';
-        $str .= '<div class="nano-content">';
+        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="'.site_url('info_col/insert?sys_cid=12').'" class="btn btn-primary btn-block">新增栏目</a></div>';
+        $str .= '<div class="nano iframe_main_sidebar_nano" data-name="nano">';
+        $str .= '<div class="ph mt nano-content">';
         $str .= '<div class="mtree" data-name="mtreeMainSidebar">';
         $start_level = -1;
         $parent_level = 0;

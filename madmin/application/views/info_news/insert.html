@@ -17,16 +17,14 @@
     <div class="iframe-main">
         <div class="iframe-main-sidebar">
             <div class="panel">
-                <div class="panel-body">
-                    <?=$main_sidebar?>
-                </div>
+                <?=$main_sidebar?>
             </div>
         </div>
         <div class="iframe-main-section">
             <div class="section_container">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div class="panel-title"><?=$main_section_name?></div>
+                        <div class="panel-title"><?=$main_section_name.MYBACK?></div>
                     </div>
                     <form class="form-horizontal" data-form="ajaxForm" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
@@ -75,7 +73,8 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">发布时间</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="create_time" data-name="datetimepicker" value="<?=$create_time?>"
+                                    <input type="text" name="create_time" data-name="datetimepicker"
+                                           value="<?=$create_time?>"
                                            class="form-control">
                                 </div>
                             </div>

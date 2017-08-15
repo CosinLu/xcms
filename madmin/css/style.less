@@ -284,12 +284,25 @@ label {
         .panel-title {
             line-height: 42px;
             padding: 0 @spacing;
+            .btn{
+                margin-left:15px;
+                i.fa{
+                    margin-right:3px;
+                }
+            }
         }
         .panel-control {
             height: 100%;
             float: right;
             padding: 0 @spacing;
+            &:before {
+                content: '';
+                height: 100%;
+                display: inline-block;
+                vertical-align: middle;
+            }
             .nav {
+                display: inline-block;
                 > li {
                     > a {
                         padding-left: @spacing;
@@ -629,7 +642,7 @@ div[data-name="nodata"] {
         right: 0;
         bottom: 0;
         left: 0;
-        overflow: auto;
+        overflow: hidden;
         width: @iframe-sidebar-width;
         background: #263238;
     }
@@ -659,7 +672,7 @@ div[data-name="nodata"] {
             right: 0;
             bottom: 0;
             left: 0;
-            overflow: auto;
+            overflow: hidden;
             width: @iframe-mian-sidebar-width;
             & + .iframe-main-section {
                 left: @iframe-mian-sidebar-width;
@@ -876,9 +889,6 @@ div[data-name="nodata"] {
 
 /*左侧树开始*/
 .iframe-sidebar {
-    .nano{
-        .iframe-sidebar{}
-    }
     .mtree {
         ul {
             margin: 0;
@@ -939,6 +949,19 @@ div[data-name="nodata"] {
 
 /*内容树开始*/
 .iframe-main-sidebar {
+    .iframe_main_sidebar_nano {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+    }
+    .iframe_main_sidebar_btn_group {
+        & + .iframe_main_sidebar_nano {
+            top: 44px;
+        }
+    }
     .mtree {
         a {
             padding-top: 3px;
@@ -1261,15 +1284,3 @@ div[data-name="nodata"] {
 }
 
 /*首页结束*/
-
-/*信息开始*/
-.no_cols{
-    text-align: center;
-    color: @color-muted;
-    i.fa{
-        font-size:50px;
-        color: @color-warning;
-        margin-bottom:10px;
-    }
-}
-/*信息结束*/

@@ -98,6 +98,9 @@ require.config({
 
 require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, unit) {
 
+    //返回上一级
+    unit.back();
+
     //滚动条美化
     unit.nanoscroller();
 
