@@ -71,7 +71,8 @@ class Sys_col extends MY_Controller
     public function save()
     {
         $bool = $this->sys_col->save();
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_col?sys_cid=' . $this->sys_cid);
         if ($bool) {

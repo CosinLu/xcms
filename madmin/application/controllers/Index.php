@@ -82,11 +82,11 @@ class Index extends CI_Controller
             $session['sys_session']['last_login_ip'] = $user_info['last_login_ip'];
             $session['sys_session']['lang_name'] = '中文简体';
             $session['sys_session']['lang_val'] = 'zh-cn';
-            //添加登录日志
+            //写入登录日志
             $this->index->insert_login_log($user_info['user_id']);
             $this->session->set_userdata($session);
+            //登录成功后跳转至backurl否则跳转至默认url
             if ($this->pre_url == '') {
-                //定义登录成功后跳转url
                 $this->load->library('sys_auth', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth->sys_col();
                 $url = $this->category->children_url($sys_col);

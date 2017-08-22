@@ -88,7 +88,8 @@ class Sys_role_auth extends MY_Controller
         $rows = $this->sys_role_auth->del();
         //添加
         $bool = $this->sys_role_auth->insert();
-        $this->sys_log->insert('角色权限', '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert('角色权限', '2', $bool);
         $config['icon'] = 1;
         if ($bool OR $rows) {
             echo json_encode($config);

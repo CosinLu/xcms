@@ -36,7 +36,8 @@ class Info_single extends Info
     public function save()
     {
         $bool = $this->info_single->save();
-        $this->sys_log->insert($this->main_section_name, '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->main_section_name, '2', $bool);
         $config['icon'] = 1;
         if ($bool) {
             echo json_encode($config);

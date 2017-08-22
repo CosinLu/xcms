@@ -69,7 +69,8 @@ class Config_item extends MY_Controller
     public function save()
     {
         $bool = $this->config_item->save();
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('config_item?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
         if ($bool) {

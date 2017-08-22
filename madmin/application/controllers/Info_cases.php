@@ -75,7 +75,8 @@ class Info_cases extends Info
     public function save()
     {
         $bool = $this->info_cases->save();
-        $this->sys_log->insert($this->main_section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->main_section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_cases?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         if ($bool) {

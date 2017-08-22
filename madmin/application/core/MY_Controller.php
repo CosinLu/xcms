@@ -9,11 +9,15 @@
 class MY_Controller extends CI_Controller
 {
     protected $sys_session;
-    protected $sys_cid;//系统栏目标识
-    protected $prferer;//上一个页面url
-    protected $is_save;//保存：1=保存，2=保存并继续新增
+    //系统栏目标识
+    protected $sys_cid;
+    //上一个页面url
+    protected $prferer;
+    //保存：1=保存，2=保存并继续新增
+    protected $is_save;
     protected $col_auth;
-    protected $section_name;//栏目名称
+    //栏目名称
+    protected $section_name;
 
     public function __construct()
     {
@@ -45,12 +49,23 @@ class MY_Controller extends CI_Controller
     //主菜单
     public function menu()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $data['menu'] = array();
         $data['section_name'] = '';
-        $sys_col = $this->sys_auth->sys_col();//系统栏目
-        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得栏目所有上级id
+        //从缓存中获取
+        $sys_col = $this->cache->get('sys_col');
+        //如果缓存不存在
+        if (!$sys_col) {
+            //系统栏目
+            $sys_col = $this->sys_auth->sys_col();
+            //写入缓存
+            $this->cache->save('sys_col', $sys_col);
+        }
+        //获得栏目所有上级id
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
-            $sys_col_url = $this->my_category->children_url($sys_col);//主菜单有效url
+            //主菜单有效url
+            $sys_col_url = $this->my_category->children_url($sys_col);
             foreach ($sys_col as $key => $val) {
                 if ($val['pid'] == 0) {
                     $data['menu'][$key] = $val;
@@ -71,12 +86,23 @@ class MY_Controller extends CI_Controller
     //侧边栏
     public function sidebar()
     {
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $str = '';
         $parent_level = 0;
-        $sys_col = $this->sys_auth->sys_col();//系统栏目
-        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);//获得当前栏目所有上级id
+        //从缓存中获取
+        $sys_col = $this->cache->get('sys_col');
+        //如果缓存不存在
+        if (!$sys_col) {
+            //系统栏目
+            $sys_col = $this->sys_auth->sys_col();
+            //写入缓存
+            $this->cache->save('sys_col', $sys_col);
+        }
+        //获得当前栏目所有上级id
+        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
-            $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);//获得当前栏目一级栏目的所有下级栏目
+            //获得当前栏目一级栏目的所有下级栏目
+            $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);
             foreach ($sys_col_chidren as $val) {
                 $level = $val['level'];
                 $n = strpos($val['url'], '?');

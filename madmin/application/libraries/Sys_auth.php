@@ -79,19 +79,6 @@ class Sys_auth
                 `t`.`id`
             ORDER BY 
                 `t`.`sort` ASC,`t`.`id` ASC";
-
-            /*$this->CI->db->select('t.*');
-            $this->CI->db->select('group_concat(t1.col_auth order by t1.col_auth asc) as col_auth');
-            $this->CI->db->select('group_concat(t2.name order by t2.ident asc) as col_auth_name');
-            $this->CI->db->from('sys_col as t');
-            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
-            $this->CI->db->join('sys_dict as t2', 't2.ident=t1.col_auth', 'left');
-            $this->CI->db->where(array(
-                't.display' => 'show'
-            ));
-            $this->CI->db->group_by('t.id');
-            $this->CI->db->order_by('t.sort asc,t.id asc');
-            $res = $this->CI->db->get()->result_array();*/
         } elseif ($role_type == 1) {//系统默认，超级管理员
             $sql = "SELECT
                 `t`.*,
@@ -141,20 +128,6 @@ class Sys_auth
                 `t`.`id`
             ORDER BY 
                 `t`.`sort` ASC,`t`.`id` ASC";
-
-            /*$this->CI->db->select('t.*');
-            $this->CI->db->select('group_concat(t1.col_auth order by t1.col_auth asc) as col_auth');
-            $this->CI->db->select('group_concat(t2.name order by t2.ident asc) as col_auth_name');
-            $this->CI->db->from('sys_col as t');
-            $this->CI->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
-            $this->CI->db->join('sys_dict as t2', 't2.ident=t1.col_auth', 'left');
-            $this->CI->db->where(array(
-                't.display' => 'show',
-                't.user_type' => 'pro'
-            ));
-            $this->CI->db->group_by('t.id');
-            $this->CI->db->order_by('t.sort asc,t.id asc');
-            $res = $this->CI->db->get()->result_array();*/
         } elseif ($role_type == 2) {//普通管理员
             $sql = "SELECT 
               *, GROUP_CONCAT(`col_auth`) AS `col_auth`

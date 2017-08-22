@@ -71,7 +71,8 @@ class Sys_dict extends MY_Controller
     public function save()
     {
         $bool = $this->sys_dict->save();
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_dict?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -95,7 +96,8 @@ class Sys_dict extends MY_Controller
     {
         $id = $this->input->post('id');
         $rows = $this->category->del($id);
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

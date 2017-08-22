@@ -86,7 +86,8 @@ class Navigation extends MY_Controller
     public function save()
     {
         $bool = $this->navigation->save();
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('navigation?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -109,8 +110,10 @@ class Navigation extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category->del($id);//删除栏目
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        //删除栏目
+        $rows = $this->category->del($id);
+        //写入日志
+        $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

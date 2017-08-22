@@ -22,7 +22,8 @@ class Ajax extends MY_Controller
     public function del()
     {
         $rows = $this->ajax->del();
-        $this->sys_log->insert($this->col_name, '3', $rows);//日志
+        //写入日志
+        $this->sys_log->insert($this->col_name, '3', $rows);
         echo $rows;
     }
 
@@ -30,7 +31,8 @@ class Ajax extends MY_Controller
     public function batch_del()
     {
         $rows = $this->ajax->batch_del();
-        $this->sys_log->insert($this->col_name, '3', $rows);//日志
+        //写入日志
+        $this->sys_log->insert($this->col_name, '3', $rows);
         echo $rows;
     }
 }

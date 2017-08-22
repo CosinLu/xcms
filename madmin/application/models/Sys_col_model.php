@@ -66,7 +66,8 @@ class Sys_col_model extends MY_Model
         } else {
             $bool = $col_id = $this->category->insert($pid, $vals);
         }
-        $this->set_col_auth($col_id, $this->input->post('auth'));//设置系统栏目权限
+        //设置系统栏目权限
+        $this->set_col_auth($col_id, $this->input->post('auth'));
         return $bool;
     }
 
@@ -77,7 +78,8 @@ class Sys_col_model extends MY_Model
      */
     public function set_col_auth($col_id, $col_auth)
     {
-        $this->del_col_auth($col_id);//删除栏目权限
+        //删除栏目权限
+        $this->del_col_auth($col_id);
         if (empty($col_auth)) {
             return;
         }

@@ -420,8 +420,10 @@ class Category
         if (empty($pid)) {
             $level = 1;
         } else {
-            $res = $this->one(array(), $pid);//获得父级分类信息
-            $level = $res[$this->level_name] + 1;//待写入数据的分类等级
+            //获得父级分类信息
+            $res = $this->one(array(), $pid);
+            //待写入数据的分类等级
+            $level = $res[$this->level_name] + 1;
         }
         //写入数据
         $vals[$this->level_name] = $level;
@@ -443,18 +445,25 @@ class Category
         if (empty($id)) {
             return FALSE;
         }
-        $res = $this->one(array(), $id);//当前分类信息
-        $parent_res = $this->one(array(), $pid);//上级分类信息
-        $parent_level = (empty($parent_res)) ? 0 : $parent_res[$this->level_name];//上级分类等级
-        $new_level = $parent_level + 1;//当前分类新等级
-        $level = $res[$this->level_name];//当前分类未修改前的等级
-        $differ_level = $new_level - $level;//新旧等级差
+        //当前分类信息
+        $res = $this->one(array(), $id);
+        //上级分类信息
+        $parent_res = $this->one(array(), $pid);
+        //上级分类等级
+        $parent_level = (empty($parent_res)) ? 0 : $parent_res[$this->level_name];
+        //当前分类新等级
+        $new_level = $parent_level + 1;
+        //当前分类未修改前的等级
+        $level = $res[$this->level_name];
+        //新旧等级差
+        $differ_level = $new_level - $level;
         //更新当前分类所有下级等级
-        //  1.获得当前分类所有下级
+        //1.获得当前分类所有下级
         $children = $this->children(array(), $id);
-        //  2.遍历修改
+        //2.遍历修改
         foreach ($children as $val) {
-            $next_new_level = $val[$this->level_name] + $differ_level;//下级的新等级
+            //下级的新等级
+            $next_new_level = $val[$this->level_name] + $differ_level;
             //执行更新
             $this->CI->db->set($this->level_name, $next_new_level);
             $this->CI->db->where($this->id_name, $val[$this->id_name]);
@@ -478,7 +487,8 @@ class Category
         if (empty($id)) {
             return FALSE;
         }
-        $children_id = $this->children_id(array(), $id, TRUE);//获得当前所有下级分类id【包括当前分类id】
+        //获得当前所有下级分类id【包括当前分类id】
+        $children_id = $this->children_id(array(), $id, TRUE);
         if (empty($children_id)) {
             return FALSE;
         }

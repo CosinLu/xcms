@@ -73,7 +73,8 @@ class Sys_user extends MY_Controller
     public function save()
     {
         $bool = $this->sys_user->save();
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_user?sys_cid=' . $this->sys_cid);
         if ($bool) {

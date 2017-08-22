@@ -46,7 +46,8 @@ class Uploads extends MY_Controller
     public function del()
     {
         $rows = $this->uploads->del();
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 
@@ -54,7 +55,8 @@ class Uploads extends MY_Controller
     public function batch_del()
     {
         $rows = $this->uploads->batch_del();
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

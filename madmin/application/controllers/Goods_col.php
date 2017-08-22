@@ -105,8 +105,10 @@ class Goods_col extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category->del($id);//删除栏目
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        //删除栏目
+        $rows = $this->category->del($id);
+        //写入日志
+        $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

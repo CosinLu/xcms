@@ -82,7 +82,8 @@ class Config extends MY_Controller
     public function save()
     {
         $rows = $this->config_model->save();
-        $this->sys_log->insert($this->section_name, '2', 1);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, '2', 1);
         $config['icon'] = 1;
         if ($rows) {
             echo json_encode($config);

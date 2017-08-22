@@ -54,7 +54,8 @@ class Info_col_onepic extends MY_Controller
     public function save()
     {
         $bool = $this->info_col_onepic->save();
-        $this->sys_log->insert($this->section_name, '2', $bool);//日志
+        //写入日志
+        $this->sys_log->insert($this->section_name, '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_onepic?sys_cid=' . $this->sys_cid);
         if ($bool) {
