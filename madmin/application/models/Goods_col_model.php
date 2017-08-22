@@ -42,7 +42,7 @@ class Goods_col_model extends MY_Model
     //保存
     public function save()
     {
-        $id = $cid = $this->input->post('id');
+        $id = $this->input->post('id');
         $pid = $this->input->post('pid');
         $vals = array(
             'name' => $this->input->post('name'),
@@ -54,7 +54,7 @@ class Goods_col_model extends MY_Model
         if ($id) {
             $bool = $this->category->update($id, $pid, $vals);
         } else {
-            $bool = $cid = $this->category->insert($pid, $vals);
+            $bool = $this->category->insert($pid, $vals);
         }
         return $bool;
     }
