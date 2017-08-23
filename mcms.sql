@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-18 18:52:24
+Date: 2017-08-23 10:56:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -87,7 +87,7 @@ CREATE TABLE `goods_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='商品分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='商品分类表';
 
 -- ----------------------------
 -- Records of goods_col
@@ -322,7 +322,7 @@ CREATE TABLE `slide` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
@@ -558,7 +558,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -589,6 +589,24 @@ INSERT INTO `sys_log` VALUES ('23', '4', 'madmin', '商品分类', 'insert', 'su
 INSERT INTO `sys_log` VALUES ('24', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502853827');
 INSERT INTO `sys_log` VALUES ('25', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502853913');
 INSERT INTO `sys_log` VALUES ('26', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.90', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1502853920');
+INSERT INTO `sys_log` VALUES ('27', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503374736');
+INSERT INTO `sys_log` VALUES ('28', '4', 'madmin', '幻灯片', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503374740');
+INSERT INTO `sys_log` VALUES ('29', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503374748');
+INSERT INTO `sys_log` VALUES ('30', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503374752');
+INSERT INTO `sys_log` VALUES ('31', '4', 'madmin', '幻灯片', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503374760');
+INSERT INTO `sys_log` VALUES ('32', '4', 'madmin', '配置组', 'update', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503375051');
+INSERT INTO `sys_log` VALUES ('33', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376489');
+INSERT INTO `sys_log` VALUES ('34', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376496');
+INSERT INTO `sys_log` VALUES ('35', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376539');
+INSERT INTO `sys_log` VALUES ('36', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376542');
+INSERT INTO `sys_log` VALUES ('37', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376548');
+INSERT INTO `sys_log` VALUES ('38', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376552');
+INSERT INTO `sys_log` VALUES ('39', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376558');
+INSERT INTO `sys_log` VALUES ('40', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376564');
+INSERT INTO `sys_log` VALUES ('41', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376567');
+INSERT INTO `sys_log` VALUES ('42', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376570');
+INSERT INTO `sys_log` VALUES ('43', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376574');
+INSERT INTO `sys_log` VALUES ('44', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376579');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -600,7 +618,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -609,6 +627,9 @@ INSERT INTO `sys_login_log` VALUES ('1', '4', '127.0.0.1', '1502786515');
 INSERT INTO `sys_login_log` VALUES ('2', '4', '127.0.0.1', '1502806890');
 INSERT INTO `sys_login_log` VALUES ('3', '4', '127.0.0.1', '1502866672');
 INSERT INTO `sys_login_log` VALUES ('4', '4', '127.0.0.1', '1502961494');
+INSERT INTO `sys_login_log` VALUES ('5', '4', '127.0.0.1', '1503374721');
+INSERT INTO `sys_login_log` VALUES ('6', '4', '127.0.0.1', '1503396031');
+INSERT INTO `sys_login_log` VALUES ('7', '4', '127.0.0.1', '1503450746');
 
 -- ----------------------------
 -- Table structure for sys_role

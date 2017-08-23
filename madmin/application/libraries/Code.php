@@ -7,27 +7,27 @@
  */
 class Code
 {
-    private $CI;
-    //资源
-    private $img;
-    //画布宽度
     public $width = 150;
-    //画布高度
+    //资源
     public $height = 45;
-    //背景颜色
+    //画布宽度
     public $bg_color = "#ffffff";
-    //验证码
+    //画布高度
     public $code;
-    //验证码的随机种子
+    //背景颜色
     public $code_str = "3456789abcdefghjkmnpqrstuvwsy";
-    //验证码长度
+    //验证码
     public $code_len = 4;
-    //验证码字体
-    public $font = "";//具体环境具体需要更改路径
-    //验证码字体大小
+    //验证码的随机种子
+public $font = "";
+    //验证码长度
     public $font_size = 22;
+    //验证码字体
+        public $font_color = "";//具体环境具体需要更改路径
+    //验证码字体大小
+    private $CI;
     //验证码字体颜色
-    public $font_color = "";
+    private $img;
 
     /**
      * 构造函数
@@ -61,31 +61,6 @@ class Code
     }
 
     /**
-     * 生成验证码
-     */
-    private function createCode()
-    {
-        $code = '';
-        for ($i = 0; $i < $this->code_len; $i++) {
-            $code .= $this->code_str [mt_rand(0, strlen($this->code_str) - 1)];
-        }
-        $sys_session['sys_code'] = $this->code = strtoupper($code);
-        /*if (!isset($_SESSION)) {
-            session_start();
-        }*/
-        $this->CI->session->set_userdata($sys_session);
-    }
-
-    /**
-     * 返回验证码
-     * @return mixed
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
      * 建画布
      * @return bool
      */
@@ -104,6 +79,15 @@ class Code
         $this->createFont();
         $this->createPix();
         $this->createRec();
+    }
+
+    /**
+     * 验证GD库是不否打开imagepng函数是否可用
+     * @return bool
+     */
+    private function checkGD()
+    {
+        return extension_loaded('gd') && function_exists("imagepng");
     }
 
     /**
@@ -128,14 +112,6 @@ class Code
     }
 
     /**
-     * 画矩形边框
-     */
-    private function createRec()
-    {
-        imagerectangle($this->img, 0, 0, $this->width - 1, $this->height - 1, $this->font_color);
-    }
-
-    /**
      * 写入验证码文字
      */
     private function createFont()
@@ -153,6 +129,22 @@ class Code
             imagettftext($this->img, $this->font_size, mt_rand(-30, 30), $x * $i + mt_rand(6, 10), mt_rand($this->height / 1.3, $this->height - 5), $font_color, $this->font, $this->code [$i]);
         }
         $this->font_color = $font_color;
+    }
+
+    /**
+     * 生成验证码
+     */
+    private function createCode()
+    {
+        $code = '';
+        for ($i = 0; $i < $this->code_len; $i++) {
+            $code .= $this->code_str [mt_rand(0, strlen($this->code_str) - 1)];
+        }
+        $sys_session['sys_code'] = $this->code = strtoupper($code);
+        /*if (!isset($_SESSION)) {
+            session_start();
+        }*/
+        $this->CI->session->set_userdata($sys_session);
     }
 
     /**
@@ -178,6 +170,23 @@ class Code
     }
 
     /**
+     * 画矩形边框
+     */
+    private function createRec()
+    {
+        imagerectangle($this->img, 0, 0, $this->width - 1, $this->height - 1, $this->font_color);
+    }
+
+    /**
+     * 返回验证码
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
      * 显示验证码
      */
     public function show()
@@ -186,15 +195,6 @@ class Code
         imagepng($this->img);
         imagedestroy($this->img);
         exit;
-    }
-
-    /**
-     * 验证GD库是不否打开imagepng函数是否可用
-     * @return bool
-     */
-    private function checkGD()
-    {
-        return extension_loaded('gd') && function_exists("imagepng");
     }
 
 }

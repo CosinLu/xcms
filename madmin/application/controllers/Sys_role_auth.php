@@ -34,7 +34,7 @@ class Sys_role_auth extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $list = $this->sys_auth->sys_col('role',$this->input->get('role_id'));
+        $list = $this->sys_auth->sys_col('role', $this->input->get('role_id'));
         foreach ($list as $key => $val) {
             $list[$key]['auth'] = $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id']);
             $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');

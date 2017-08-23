@@ -33,21 +33,6 @@ class Prompt
     }
 
     /**
-     * 失败
-     * @param string $message 提示信息
-     * @param string $jump_url 跳转url
-     * @param string $detail 详细说明
-     * @param int $wait_second 停留时间【默认2s】
-     */
-    public function error($message = '', $jump_url = '', $detail = '', $wait_second = 2)
-    {
-        if ($jump_url == '') {
-            $jump_url = 'javascript:history.back(-1);';
-        }
-        $this->_dispatch_jump($message, 0, $jump_url, $detail, $wait_second);
-    }
-
-    /**
      * 默认跳转操作 支持错误导向和正确跳转
      * @param string $message 提示信息
      * @param string $status 状态：0=失败，1=成功
@@ -66,6 +51,21 @@ class Prompt
         );
         echo $this->CI->load->view('errors/dispatch_jump.html', $data, TRUE);
         exit();
+    }
+
+    /**
+     * 失败
+     * @param string $message 提示信息
+     * @param string $jump_url 跳转url
+     * @param string $detail 详细说明
+     * @param int $wait_second 停留时间【默认2s】
+     */
+    public function error($message = '', $jump_url = '', $detail = '', $wait_second = 2)
+    {
+        if ($jump_url == '') {
+            $jump_url = 'javascript:history.back(-1);';
+        }
+        $this->_dispatch_jump($message, 0, $jump_url, $detail, $wait_second);
     }
 
 

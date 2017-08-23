@@ -45,6 +45,54 @@ class Category
     }
 
     /**
+     * 获得上级分类标识
+     * @param array $data
+     * @param int $id 当前分类的标识
+     * @param bool $self
+     * @return array
+     */
+    public function parent_id($data = array(), $id = 0, $self = FALSE)
+    {
+        $parent_arr = $this->parent($data, $id, $self);
+        $parent_id_arr = array();
+        foreach ($parent_arr as $val) {
+            $parent_id_arr[] = $val[$this->id_name];
+        }
+        return $parent_id_arr;
+    }
+
+    /**
+     * 获得上级分类
+     * @param array $data
+     * @param int $id 当前分类的标识
+     * @param bool $self
+     * @return array
+     */
+    public function parent($data = array(), $id = 0, $self = FALSE)
+    {
+        if (empty($id)) {
+            return array();
+        }
+        if (empty($data)) {
+            $data = $this->all();
+        }
+        $pid = 0;
+        $self_arr = array();
+        foreach ($data as $val) {
+            if ($val[$this->id_name] == $id) {
+                $pid = $val[$this->pid_name];
+                $self_arr[] = $val;
+                break;
+            }
+        }
+        $parent_arr = $this->_parent($data, $pid);
+        if ($self) {
+            $parent_arr = array_merge($self_arr, $parent_arr);
+        }
+        return array_reverse($parent_arr);
+    }
+
+    /**
      * 获得所有数据
      * @return mixed
      */
@@ -55,29 +103,82 @@ class Category
     }
 
     /**
-     * 获取指定的某条数据
+     * 递归获得上级分类
      * @param array $data
-     * @param string $id
-     * @return array|mixed
+     * @param int $id 当前分类的pid即为上级分类的标识
+     * @return array
      */
-    public function one($data = array(), $id = '')
+    public function _parent($data = array(), $id = 0)
     {
-        $res = array();
-        if ($id == '') {
-            return $res;
+        if (empty($id)) {
+            return array();
         }
-        if (!empty($data)) {
-            foreach ($data as $val) {
-                if ($val[$this->id_name] == $id) {
-                    $res = $val;
-                    break;
-                }
+        if (empty($data)) {
+            $data = $this->all();
+        }
+        $parent_arr = array();
+        $res_arr = array();
+
+        //当前分类的上级分类
+        foreach ($data as $val) {
+            if ($val[$this->id_name] == $id) {
+                $parent_arr[] = $val;
+                break;
             }
-        } else {
-            $this->CI->db->where($this->id_name, $id);
-            $res = $this->CI->db->get($this->tb_name)->row_array();
         }
-        return $res;
+        //如果上级分类不存在则结束
+        if (empty($parent_arr)) {
+            return array();
+        }
+        foreach ($parent_arr as $val) {
+            $res_arr[] = $val;
+            $temp = $this->_parent($data, $val[$this->pid_name]);
+            if (!empty($temp)) {
+                $res_arr = array_merge($res_arr, $temp);
+            }
+        }
+        //return array_reverse($res_arr);
+        return $res_arr;
+    }
+
+    public function compare_sort($a, $b)
+    {
+        $a_sort = $a[$this->sort_name];
+        $b_sort = $b[$this->sort_name];
+        if ($a_sort == $b_sort) {
+            return ($a[$this->id_name] > $b[$this->id_name]) ? 1 : -1;
+        }
+        return ($a_sort > $b_sort) ? 1 : -1;
+    }
+
+    /**
+     * 下拉菜单项
+     * @param array $data
+     * @param bool $root
+     * @return string
+     */
+    public function option($data = array(), $root = TRUE)
+    {
+        $str = '';
+        $start_level = 1;
+        $root_arr = array(
+            array(
+                $this->id_name => 0,
+                $this->category_name => $this->default,
+                $this->level_name => 0,
+            )
+        );
+        $data = $this->children($data, 0, TRUE);
+        if ($root) {
+            $data = array_merge($root_arr, $data);
+            $start_level = 0;
+        }
+        foreach ($data as $val) {
+            $prefix = ($val[$this->level_name] > $start_level) ? '└─&nbsp;' : '';
+            $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
+            $str .= '<option value="' . $val[$this->id_name] . '">' . $space . $prefix . $val[$this->category_name] . '</option>';
+        }
+        return $str;
     }
 
     /**
@@ -141,151 +242,8 @@ class Category
         return $res_arr;
     }
 
-    /**
-     * 获得下级分类标识
-     * @param array $data
-     * @param int $pid 当前分类的id即为下级分类的pid
-     * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
-     * @return array
-     */
-    public function children_id($data = array(), $pid = 0, $self = FALSE)
-    {
-        $children_arr = $this->children($data, $pid, $self);
-        $children_id_arr = array();
-        foreach ($children_arr as $val) {
-            $children_id_arr[] = $val[$this->id_name];
-        }
-        return $children_id_arr;
-    }
-
-    /**
-     * 获得上级分类
-     * @param array $data
-     * @param int $id 当前分类的标识
-     * @param bool $self
-     * @return array
-     */
-    public function parent($data = array(), $id = 0, $self = FALSE)
-    {
-        if (empty($id)) {
-            return array();
-        }
-        if (empty($data)) {
-            $data = $this->all();
-        }
-        $pid = 0;
-        $self_arr = array();
-        foreach ($data as $val) {
-            if ($val[$this->id_name] == $id) {
-                $pid = $val[$this->pid_name];
-                $self_arr[] = $val;
-                break;
-            }
-        }
-        $parent_arr = $this->_parent($data, $pid);
-        if ($self) {
-            $parent_arr = array_merge($self_arr, $parent_arr);
-        }
-        return array_reverse($parent_arr);
-    }
-
-    /**
-     * 递归获得上级分类
-     * @param array $data
-     * @param int $id 当前分类的pid即为上级分类的标识
-     * @return array
-     */
-    public function _parent($data = array(), $id = 0)
-    {
-        if (empty($id)) {
-            return array();
-        }
-        if (empty($data)) {
-            $data = $this->all();
-        }
-        $parent_arr = array();
-        $res_arr = array();
-
-        //当前分类的上级分类
-        foreach ($data as $val) {
-            if ($val[$this->id_name] == $id) {
-                $parent_arr[] = $val;
-                break;
-            }
-        }
-        //如果上级分类不存在则结束
-        if (empty($parent_arr)) {
-            return array();
-        }
-        foreach ($parent_arr as $val) {
-            $res_arr[] = $val;
-            $temp = $this->_parent($data, $val[$this->pid_name]);
-            if (!empty($temp)) {
-                $res_arr = array_merge($res_arr, $temp);
-            }
-        }
-        //return array_reverse($res_arr);
-        return $res_arr;
-    }
-
-    /**
-     * 获得上级分类标识
-     * @param array $data
-     * @param int $id 当前分类的标识
-     * @param bool $self
-     * @return array
-     */
-    public function parent_id($data = array(), $id = 0, $self = FALSE)
-    {
-        $parent_arr = $this->parent($data, $id, $self);
-        $parent_id_arr = array();
-        foreach ($parent_arr as $val) {
-            $parent_id_arr[] = $val[$this->id_name];
-        }
-        return $parent_id_arr;
-    }
-
 
     //数组排序
-    public function compare_sort($a, $b)
-    {
-        $a_sort = $a[$this->sort_name];
-        $b_sort = $b[$this->sort_name];
-        if ($a_sort == $b_sort) {
-            return ($a[$this->id_name] > $b[$this->id_name]) ? 1 : -1;
-        }
-        return ($a_sort > $b_sort) ? 1 : -1;
-    }
-
-    /**
-     * 下拉菜单项
-     * @param array $data
-     * @param bool $root
-     * @return string
-     */
-    public function option($data = array(), $root = TRUE)
-    {
-        $str = '';
-        $start_level = 1;
-        $root_arr = array(
-            array(
-                $this->id_name => 0,
-                $this->category_name => $this->default,
-                $this->level_name => 0,
-            )
-        );
-        $data = $this->children($data, 0, TRUE);
-        if ($root) {
-            $data = array_merge($root_arr, $data);
-            $start_level = 0;
-        }
-        foreach ($data as $val) {
-            $prefix = ($val[$this->level_name] > $start_level) ? '└─&nbsp;' : '';
-            $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
-            $str .= '<option value="' . $val[$this->id_name] . '">' . $space . $prefix . $val[$this->category_name] . '</option>';
-        }
-        return $str;
-    }
 
     /**
      * 修改是所用下拉列表
@@ -336,6 +294,23 @@ class Category
         }
         $str .= '</select>';
         return $str;
+    }
+
+    /**
+     * 获得下级分类标识
+     * @param array $data
+     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
+     * @return array
+     */
+    public function children_id($data = array(), $pid = 0, $self = FALSE)
+    {
+        $children_arr = $this->children($data, $pid, $self);
+        $children_id_arr = array();
+        foreach ($children_arr as $val) {
+            $children_id_arr[] = $val[$this->id_name];
+        }
+        return $children_id_arr;
     }
 
     /**
@@ -431,6 +406,32 @@ class Category
         $this->CI->db->insert($this->tb_name, $vals);
         $insert_id = $this->CI->db->insert_id();
         return $insert_id;
+    }
+
+    /**
+     * 获取指定的某条数据
+     * @param array $data
+     * @param string $id
+     * @return array|mixed
+     */
+    public function one($data = array(), $id = '')
+    {
+        $res = array();
+        if ($id == '') {
+            return $res;
+        }
+        if (!empty($data)) {
+            foreach ($data as $val) {
+                if ($val[$this->id_name] == $id) {
+                    $res = $val;
+                    break;
+                }
+            }
+        } else {
+            $this->CI->db->where($this->id_name, $id);
+            $res = $this->CI->db->get($this->tb_name)->row_array();
+        }
+        return $res;
     }
 
     /**

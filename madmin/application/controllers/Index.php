@@ -6,7 +6,6 @@
  * Date: 2016/8/26
  * Time: 19:43
  */
-
 class Index extends CI_Controller
 {
     protected $sys_session;
@@ -62,10 +61,11 @@ class Index extends CI_Controller
         $this->form_validation->set_rules('code', '验证码', 'required|callback_check_code');
         //执行表单验证
         $bool = $this->form_validation->run();
+        //登录失败
         if (!$bool) {
             $this->load->view('index/index.html');
-        } else {
-            //登录成功
+        } //登录成功
+        else {
             $this->config_upload_path();
             $user_info = $this->index->user_info();
             $session['sys_session']['user_id'] = $user_info['id'];
@@ -84,8 +84,9 @@ class Index extends CI_Controller
             $session['sys_session']['lang_val'] = 'zh-cn';
             //写入登录日志
             $this->index->insert_login_log($user_info['user_id']);
+            //写入session
             $this->session->set_userdata($session);
-            //登录成功后跳转至backurl否则跳转至默认url
+            //跳转至backurl
             if ($this->pre_url == '') {
                 $this->load->library('sys_auth', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth->sys_col();
@@ -93,7 +94,8 @@ class Index extends CI_Controller
                 $session['sys_session']['home_url'] = $url[0];
                 $this->session->set_userdata($session);
                 redirect($url[0]);
-            } else {
+            } //跳转到默认url
+            else {
                 $session['sys_session']['home_url'] = $this->pre_url;
                 $this->session->set_userdata($session);
                 redirect($this->pre_url);
@@ -102,6 +104,18 @@ class Index extends CI_Controller
     }
 
     //验证验证码
+    public function config_upload_path()
+    {
+        $path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config.json'));
+        if (!is_file($path)) {
+            $config_json = '{
+            "upload": "' . trim($this->config->item('upload')) . '"
+        }';
+            file_put_contents($path, $config_json);
+        }
+    }
+
+    //验证用户名
     public function check_code()
     {
         $code = strtoupper($this->input->post('code'));
@@ -113,7 +127,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证用户名
+    //验证密码
     public function check_username()
     {
         if ($this->username != '') {
@@ -134,7 +148,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证密码
+    //验证系统栏目权限
     public function check_password()
     {
         $userinfo = $this->index->user_info();
@@ -146,7 +160,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证系统栏目权限
+    //登出
     public function check_col_auth()
     {
         $user_info = $this->index->user_info();
@@ -171,23 +185,11 @@ class Index extends CI_Controller
         }
     }
 
-    //登出
+    //配置上传路径
     public function logout()
     {
         //销毁session
         $this->session->unset_userdata('sys_session');
         redirect(site_url());
-    }
-
-    //配置上传路径
-    public function config_upload_path()
-    {
-        $path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config.json'));
-        if (!is_file($path)) {
-            $config_json = '{
-            "upload": "' . trim($this->config->item('upload')) . '"
-        }';
-            file_put_contents($path, $config_json);
-        }
     }
 }

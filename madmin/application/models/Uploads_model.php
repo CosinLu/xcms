@@ -49,20 +49,7 @@ class Uploads_model extends MY_Model
     }
 
     //批量删除
-    public function batch_del()
-    {
-        $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
-        $id_arr = explode(',', $id);
-        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
-        $this->del_file($id);
-        $this->db->where_in($primary, $id_arr);
-        $this->db->delete($tbname);
-        $rows = $this->db->affected_rows();
-        return $rows;
-    }
 
-    //删除文件
     public function del_file($id = '')
     {
         $id_arr = explode(',', $id);
@@ -76,6 +63,21 @@ class Uploads_model extends MY_Model
                 }
             }
         }
+    }
+
+    //删除文件
+
+    public function batch_del()
+    {
+        $tbname = $this->input->post('tbname');
+        $id = $this->input->post('id');
+        $id_arr = explode(',', $id);
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
+        $this->del_file($id);
+        $this->db->where_in($primary, $id_arr);
+        $this->db->delete($tbname);
+        $rows = $this->db->affected_rows();
+        return $rows;
     }
 
 }

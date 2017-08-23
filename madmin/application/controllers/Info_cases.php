@@ -54,7 +54,7 @@ class Info_cases extends Info
         $data['cols'] = $this->category->ddl('cid', 0, $this->cid, array(), FALSE, $this->tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
-        $data['create_time'] = date('Y-m-d H:i:s',time());
+        $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_cases/insert.html', $data);
     }
 
@@ -67,7 +67,7 @@ class Info_cases extends Info
         $data['images'] = $this->uploadifive->get_list($data['item']['images'], 'images');
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
-        $data['create_time'] = date('Y-m-d H:i:s',$data['item']['create_time']);
+        $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
         $this->load->view('info_cases/update.html', $data);
     }
 

@@ -15,18 +15,6 @@ class Sys_dict
         $this->CI =& get_instance();
     }
 
-    public function all($ident = '')
-    {
-        $this->CI->db->select('t1.*');
-        $this->CI->db->from('sys_dict as t');
-        $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
-        $this->CI->db->where('t.ident', $ident);
-        $this->CI->db->group_by('t1.id');
-        $this->CI->db->order_by('t1.sort asc,t1.id asc');
-        $res = $this->CI->db->get('sys_dict')->result_array();
-        return $res;
-    }
-
     /**
      * 单选按钮列表
      * @param int $ident 属性上级标识
@@ -48,6 +36,18 @@ class Sys_dict
             $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
         return $str;
+    }
+
+    public function all($ident = '')
+    {
+        $this->CI->db->select('t1.*');
+        $this->CI->db->from('sys_dict as t');
+        $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
+        $this->CI->db->where('t.ident', $ident);
+        $this->CI->db->group_by('t1.id');
+        $this->CI->db->order_by('t1.sort asc,t1.id asc');
+        $res = $this->CI->db->get('sys_dict')->result_array();
+        return $res;
     }
 
     /**

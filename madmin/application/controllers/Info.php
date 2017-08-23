@@ -20,31 +20,6 @@ class Info extends MY_Controller
         $this->main_sidebar();
     }
 
-    public function index()
-    {
-        $data = $this->info->cols();
-        $children = array();
-        $url = array();
-        foreach ($data as $key => $val) {
-            $children[$key] = $this->category->children($data, $val['pid'], TRUE);
-            foreach ($children[$key] as $val) {
-                if ($val['sys_tpl']) {
-                    $url[$key] = $val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
-                    break;
-                } else {
-                    $url[$key] = '';
-                }
-            }
-        }
-        if (count($url)) {
-            $url = array_slice($url, 0, 1);
-            redirect(site_url($url));
-        } else {
-            $this->load->view('info/index.html');
-        }
-    }
-
-    //获得信息栏目
     public function main_sidebar()
     {
         $this->db->select('t.*');
@@ -54,7 +29,7 @@ class Info extends MY_Controller
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
-        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="'.site_url('info_col/insert?sys_cid=12').'" class="btn btn-primary btn-block">新增栏目</a></div>';
+        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('info_col/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
         $str .= '<div class="nano iframe_main_sidebar_nano" data-name="nano">';
         $str .= '<div class="ph mt nano-content">';
         $str .= '<div class="mtree" data-name="mtreeMainSidebar">';
@@ -99,7 +74,34 @@ class Info extends MY_Controller
         $this->load->vars($data);
     }
 
+    //获得信息栏目
+
+    public function index()
+    {
+        $data = $this->info->cols();
+        $children = array();
+        $url = array();
+        foreach ($data as $key => $val) {
+            $children[$key] = $this->category->children($data, $val['pid'], TRUE);
+            foreach ($children[$key] as $val) {
+                if ($val['sys_tpl']) {
+                    $url[$key] = $val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
+                    break;
+                } else {
+                    $url[$key] = '';
+                }
+            }
+        }
+        if (count($url)) {
+            $url = array_slice($url, 0, 1);
+            redirect(site_url($url));
+        } else {
+            $this->load->view('info/index.html');
+        }
+    }
+
     //获得当前栏目的模板标识
+
     public function tpl_id()
     {
         $res = $this->info->tpl_id();

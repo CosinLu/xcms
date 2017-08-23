@@ -18,6 +18,19 @@ class Uploadifive
     }
 
     /**
+     * 获得文件列表
+     * @param string $uploads_id 文件标识
+     * @param string $name input名
+     * @return string
+     */
+    public function get_list($uploads_id = '', $name = '')
+    {
+        $data = $this->get_data($uploads_id);
+        $str = $this->list_str($data, $name);
+        return $str;
+    }
+
+    /**
      * 获得数据
      * @param string $uploads_id 文件标识
      * @return mixed
@@ -29,19 +42,6 @@ class Uploadifive
         $this->CI->db->order_by("instr('" . $uploads_id . "',id)");
         $res = $this->CI->db->get($this->tb_name)->result_array();
         return $res;
-    }
-
-    /**
-     * 获得文件列表
-     * @param string $uploads_id 文件标识
-     * @param string $name input名
-     * @return string
-     */
-    public function get_list($uploads_id = '', $name = '')
-    {
-        $data = $this->get_data($uploads_id);
-        $str = $this->list_str($data, $name);
-        return $str;
     }
 
     /**

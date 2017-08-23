@@ -37,6 +37,25 @@ class Config extends MY_Controller
         $this->load->view('config/index.html', $data);
     }
 
+    //配置组按钮
+    public function config_group_btn()
+    {
+        $res = $this->config_model->config_group();
+        $str = '';
+        //多余一个按钮时显示按钮组
+        if (count($res) > 1) {
+            foreach ($res as $key => $val) {
+                if ($this->config_group_id == '') {
+                    $active = ($key == 0) ? 'active' : '';
+                } else {
+                    $active = ($val['id'] == $this->config_group_id) ? 'active' : '';
+                }
+                $str .= '<li class="' . $active . '"><a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $val['id']) . '">' . $val['name'] . '</a></li>';
+            }
+        }
+        return $str;
+    }
+
     /**
      * 转换参数
      * 转换后用于配置信息中的radio，checkbox,select
@@ -57,25 +76,6 @@ class Config extends MY_Controller
             }
         }
         return $res;
-    }
-
-    //配置组按钮组
-    public function config_group_btn()
-    {
-        $res = $this->config_model->config_group();
-        $str = '';
-        //多余一个按钮时显示按钮组
-        if (count($res) > 1) {
-            foreach ($res as $key => $val) {
-                if ($this->config_group_id == '') {
-                    $active = ($key == 0) ? 'active' : '';
-                } else {
-                    $active = ($val['id'] == $this->config_group_id) ? 'active' : '';
-                }
-                $str .= '<li class="' . $active . '"><a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $val['id']) . '">' . $val['name'] . '</a></li>';
-            }
-        }
-        return $str;
     }
 
     //保存
