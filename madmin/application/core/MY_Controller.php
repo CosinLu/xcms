@@ -52,15 +52,8 @@ class MY_Controller extends CI_Controller
         $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $data['menu'] = array();
         $data['section_name'] = '';
-        //从缓存中获取
-        $sys_col = $this->cache->get('sys_col');
-        //如果缓存不存在
-        if (!$sys_col) {
-            //系统栏目
-            $sys_col = $this->sys_auth->sys_col();
-            //写入缓存
-            $this->cache->save('sys_col', $sys_col);
-        }
+        //系统栏目
+        $sys_col = $this->sys_auth->sys_col();
         //获得栏目所有上级id
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
@@ -89,15 +82,8 @@ class MY_Controller extends CI_Controller
         $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $str = '';
         $parent_level = 0;
-        //从缓存中获取
-        $sys_col = $this->cache->get('sys_col');
-        //如果缓存不存在
-        if (!$sys_col) {
-            //系统栏目
-            $sys_col = $this->sys_auth->sys_col();
-            //写入缓存
-            $this->cache->save('sys_col', $sys_col);
-        }
+        //系统栏目
+        $sys_col = $this->sys_auth->sys_col();
         //获得当前栏目所有上级id
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
