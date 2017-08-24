@@ -51,7 +51,7 @@ class Category
      * @param bool $self
      * @return array
      */
-    public function parent_id($data = array(), $id = 0, $self = FALSE)
+    public function parent_id($data = array(), $id = '', $self = FALSE)
     {
         $parent_arr = $this->parent($data, $id, $self);
         $parent_id_arr = array();
@@ -68,7 +68,7 @@ class Category
      * @param bool $self
      * @return array
      */
-    public function parent($data = array(), $id = 0, $self = FALSE)
+    public function parent($data = array(), $id = '', $self = FALSE)
     {
         if (empty($id)) {
             return array();
@@ -108,7 +108,7 @@ class Category
      * @param int $id 当前分类的pid即为上级分类的标识
      * @return array
      */
-    public function _parent($data = array(), $id = 0)
+    public function _parent($data = array(), $id = '')
     {
         if (empty($id)) {
             return array();
@@ -254,7 +254,7 @@ class Category
      * @param int $tpl_id 模板标识
      * @return string
      */
-    public function ddl($data = array(), $name = '', $id = 0, $pid = 0, $root = TRUE, $tpl_id = '')
+    public function ddl($data = array(), $name = '', $id = '', $pid = 0, $root = TRUE, $tpl_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -441,7 +441,7 @@ class Category
      * @param array $array 更新的数据
      * @return bool
      */
-    public function update($id = 0, $pid = 0, $vals = array())
+    public function update($id = '', $pid = 0, $vals = array())
     {
         if (empty($id)) {
             return FALSE;
@@ -483,7 +483,7 @@ class Category
      * @param int $id
      * @return bool
      */
-    public function del($id = 0)
+    public function del($id = '')
     {
         if (empty($id)) {
             return FALSE;
