@@ -74,7 +74,7 @@ class Category
             return array();
         }
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $pid = 0;
         $self_arr = array();
@@ -96,7 +96,7 @@ class Category
      * 获得所有数据
      * @return mixed
      */
-    public function all()
+    public function data()
     {
         $query = $this->CI->db->get($this->tb_name);
         return $query->result_array();
@@ -114,7 +114,7 @@ class Category
             return array();
         }
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $parent_arr = array();
         $res_arr = array();
@@ -191,7 +191,7 @@ class Category
     public function children($data = array(), $pid = 0, $self = FALSE)
     {
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $self_arr = array();
         $children_arr = $this->_children($data, $pid);
@@ -214,7 +214,7 @@ class Category
     public function _children($data = array(), $pid = 0)
     {
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $children_arr = array();
         $res_arr = array();
@@ -254,7 +254,7 @@ class Category
      * @param int $tpl_id 模板标识
      * @return string
      */
-    public function ddl($name = '', $id = 0, $pid = 0, $data = array(), $root = TRUE, $tpl_id = '')
+    public function ddl($data = array(), $name = '', $id = 0, $pid = 0, $root = TRUE, $tpl_id = '')
     {
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
@@ -325,7 +325,7 @@ class Category
     public function valid_str($data = array(), $pid = 0, $field = array('url'), $num = 1, $self = TRUE)
     {
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $children_all = $this->children($data, $pid, $self);
         $children = array();
@@ -362,7 +362,7 @@ class Category
     public function children_url($data = array())
     {
         if (empty($data)) {
-            $data = $this->all();
+            $data = $this->data();
         }
         $children_all = $this->children($data, 0);
         $children = array();

@@ -65,7 +65,7 @@ class Navigation extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl('pid', 0, $id);
+        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
         $data['position'] = $this->sys_dict->rbl('position', 'position');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('navigation/insert.html', $data);
@@ -75,7 +75,7 @@ class Navigation extends MY_Controller
     public function update()
     {
         $data['item'] = $this->navigation->update();
-        $data['cols'] = $this->category->ddl('pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['position'] = $this->sys_dict->rbl('position', 'position', $data['item']['position']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('navigation/update.html', $data);

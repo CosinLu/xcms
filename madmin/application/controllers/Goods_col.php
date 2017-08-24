@@ -63,7 +63,7 @@ class Goods_col extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl('pid', 0, $id);
+        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
         $data['display'] = $this->sys_dict->rbl('display', 'display');
         $this->load->view('goods_col/insert.html', $data);
     }
@@ -72,7 +72,7 @@ class Goods_col extends MY_Controller
     public function update()
     {
         $data['item'] = $this->goods_col->update();
-        $data['cols'] = $this->category->ddl('pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('goods_col/update.html', $data);
     }

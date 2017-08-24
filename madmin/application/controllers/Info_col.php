@@ -63,7 +63,7 @@ class Info_col extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl('pid', 0, $id);
+        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id');
         $data['pic'] = $this->sys_dict->rbl('image', 'pic');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
@@ -75,7 +75,7 @@ class Info_col extends MY_Controller
     {
         $data['item'] = $this->info_col->update();
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', $data['item']['tpl_id']);
-        $data['cols'] = $this->category->ddl('pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['pic'] = $this->sys_dict->rbl('image', 'pic', $data['item']['pic']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('info_col/update.html', $data);

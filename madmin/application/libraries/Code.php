@@ -19,11 +19,11 @@ class Code
     //验证码
     public $code_len = 4;
     //验证码的随机种子
-public $font = "";
+    public $font = "";
     //验证码长度
     public $font_size = 22;
     //验证码字体
-        public $font_color = "";//具体环境具体需要更改路径
+    public $font_color = "";//具体环境具体需要更改路径
     //验证码字体大小
     private $CI;
     //验证码字体颜色
