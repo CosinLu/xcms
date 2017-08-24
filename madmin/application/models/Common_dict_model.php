@@ -15,7 +15,7 @@ class Common_dict_model extends MY_Model
     }
 
     //获得列表
-    public function get_list($pid = '', $key = '', $page = '')
+    public function get_list($pid = '', $key = '', $page = '', $type = '')
     {
         $this->db->from('common_dict');
         $this->db->where(array(
@@ -23,6 +23,12 @@ class Common_dict_model extends MY_Model
         ));
         if ($key != '') {
             $this->db->like('t.name', $key);
+        }
+        //非开发者禁止获取重要字典
+        if ($type > 0) {
+            $this->db->where(array(
+                'type > ' => 0
+            ));
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = MYPERPAGE;

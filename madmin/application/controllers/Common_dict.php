@@ -8,9 +8,12 @@
  */
 class Common_dict extends MY_Controller
 {
+    protected $pid;
+
     public function __construct()
     {
         parent::__construct();
+        $this->pid = $this->input->get('pid');
         $this->load->model('common_dict_model', 'common_dict');
         $this->load->library('category', array('tb_name' => 'common_dict'), 'category');
         $this->set_url();
@@ -39,15 +42,14 @@ class Common_dict extends MY_Controller
         $pid = $this->input->get('pid') ?: 0;
         $key = $this->input->post('key');
         $page = $this->input->post('page') ?: 1;
-        $data['list'] = $this->common_dict->get_list($pid, $key, $page);
+        $type = $this->session->sys_session['role_type'];
+        $data['list'] = $this->common_dict->get_list($pid, $key, $page, $type);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['name'] = '<span style="color:' . $val['color'] . '">' . $val['name'] . '</span>';
-//            if ($val['level'] == 1) {
-//                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增属性</a>', '<a href="javascript:;" class="disabled">新增属性</a>');
-//            }
+            $data['list']['list'][$key]['tag'] = ($val['type'] == 0) ? '&nbsp;<span class="label label-danger label-sm">dev</span>' : '';
+            $data['list']['list'][$key]['opera_btn'][] = '<a href="">编辑属性</a>';
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-col-mhook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
-//            $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         echo json_encode($data);
     }
