@@ -1,17 +1,17 @@
 body .layer-ext-bootcss.layui-layer {
-    box-shadow: none;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 0;
+    box-shadow: none;
 }
 
 body .layer-ext-bootcss .layui-layer-title {
+    overflow: hidden;
     padding: 0 15px;
     border-bottom: 1px solid #e5e5e5;
-    color: #333;
-    overflow: hidden;
-    background-color: #fff;
     border-radius: 0;
+    background-color: #fff;
+    color: #333;
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content {
@@ -30,24 +30,24 @@ body .layer-ext-bootcss .layui-layer-btn {
 }
 
 body .layer-ext-bootcss .layui-layer-btn a {
-    height: auto;
-    line-height: normal;
     margin: 0 0 0 12px;
     padding: 6px 12px;
+    height: auto;
     border: 1px solid #ccc;
+    border-radius: 0;
     background-color: #fff;
     color: #333;
-    border-radius: 0;
-    cursor: pointer;
     text-decoration: none;
+    line-height: normal;
+    cursor: pointer;
 }
 
 body .layer-ext-bootcss .layui-layer-btn a:hover,
 body .layer-ext-bootcss .layui-layer-btn a:active {
-    opacity: 1;
-    color: #333;
-    background-color: #e6e6e6;
     border-color: #adadad;
+    background-color: #e6e6e6;
+    color: #333;
+    opacity: 1;
 }
 
 body .layer-ext-bootcss .layui-layer-btn a:active {
@@ -55,14 +55,14 @@ body .layer-ext-bootcss .layui-layer-btn a:active {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
-body .layer-ext-bootcss .layui-layer-ico{
+body .layer-ext-bootcss .layui-layer-ico {
     background: url("icon.png") no-repeat;
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico {
     top: 14px;
     width: 36px;
-    height:36px;
+    height: 36px;
 }
 
 body .layer-ext-bootcss.layui-layer-dialog .layui-layer-content .layui-layer-ico,
@@ -104,13 +104,13 @@ body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close1 {
     background-position: -2px -80px;
 }
 
-body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close2{
-    right: -51px;
+body .layer-ext-bootcss .layui-layer-setwin .layui-layer-close2 {
     top: -13px;
+    right: -51px;
     width: 36px;
     height: 36px;
     background-position: -41px -42px;
-    opacity:1;
+    opacity: 1;
 }
 
 body .layer-ext-bootcss .layui-layer-setwin .layui-layer-max {
@@ -134,8 +134,8 @@ body .layer-ext-bootcss.layui-layer-msg {
 }
 
 body .layer-ext-bootcss .layui-layer-load {
-    background-image: url(loading-black.svg);
     background-color: #fff;
+    background-image: url(loading-black.svg);
     background-size: 50px;
 }
 

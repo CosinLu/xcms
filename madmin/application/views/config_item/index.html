@@ -32,7 +32,7 @@
                             <?=$back_btn?>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover table_list" data-name="list">
+                            <table class="table table-bordered table-hover table_list list-mhook">
                                 <thead>
                                 <tr>
                                     <th width="5%">
@@ -101,10 +101,10 @@
             click: function (e) {
                 get_list($(this).data('page'));
             }
-        }, '[data-name="pagination"] li[class!="active"] a');
+        }, '.pagination-mhook li[class!="active"] a');
 
         //搜索
-        $('[data-name="searchbtn"]').click(function () {
+        $('.search-btn-mhook').click(function () {
             get_list();
         });
 
@@ -121,17 +121,17 @@
                 dataType: 'json',
                 data: data,
                 beforeSend: function () {
-                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('.nodata-mhook,.loading-mhook').remove();
                     $('#list,#pagination').html('');
-                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                    $('.list-mhook').after('<?=MYLOADING?>');
                 },
                 success: function (data) {
-                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    $('.nodata-mhook,.loading-mhook').remove();
                     if (data.list.list.length) {
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                        $('.list-mhook').after('<?=MYNODATA?>');
                     }
                 }
             })

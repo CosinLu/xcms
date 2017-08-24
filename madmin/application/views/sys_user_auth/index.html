@@ -21,7 +21,7 @@
                     <div class="panel-heading">
                         <div class="panel-title"><?=$section_name.MYBACK?></div>
                     </div>
-                    <form action="<?=$save_url?>" data-form="ajaxForm" method="post">
+                    <form action="<?=$save_url?>" class="ajax-form-mhook" method="post">
                         <div class="panel-body">
                             <div class="role_auth_list" id="list"></div>
                             <script type="text/html" id="list_tpl">
@@ -52,16 +52,16 @@
                 dataType: 'json',
                 data: data,
                 beforeSend: function () {
-                    $('[data-name="nodata"],[data-name="loading"]').remove();
+                    $('.nodata-mhook,.loading-mhook').remove();
                     $('#list,#pagination').html('');
-                    $('[data-name="list"]').after('<?=MYLOADING?>');
+                    $('.list-mhook').after('<?=MYLOADING?>');
                 },
                 success: function (data) {
-                    $('[data-name="loading"],[data-name="nodata"]').remove();
+                    $('.nodata-mhook,.loading-mhook').remove();
                     if (data.list.length) {
                         $('#list').html(template('list_tpl', data));
                     } else {
-                        $('[data-name="list"]').after('<?=MYNODATA?>');
+                        $('.list-mhook').after('<?=MYNODATA?>');
                     }
                 }
             })

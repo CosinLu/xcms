@@ -12,8 +12,8 @@
     <div class="row" id="list"></div>
     <script id="list_tpl" type="text/html">
         {{each list.list as val}}
-        <div class="col-xs-3" data-name="item">
-            <div class="thumbnail" data-name="file" data-val="{{val.id}}" data-size="{{val.size}}"
+        <div class="col-xs-3 item-mhook">
+            <div class="thumbnail file-mhook" data-val="{{val.id}}" data-size="{{val.size}}"
                  data-full-path="{{val.full_path}}"
                  data-client-name="{{val.client_name}}"
                  data-ext="{{val.ext}}"
@@ -59,9 +59,9 @@
     </script>
 </div>
 <div class="online_btn_group">
-    <span data-name="checkedNums"></span>
-    <button class="btn btn-primary" data-name="confirm">确定</button>
-    <button class="btn btn-default" data-name="cancel">取消</button>
+    <span class="checked-nums-mhook"></span>
+    <button class="btn btn-primary confirm-mhook">确定</button>
+    <button class="btn btn-default cancel-mhook">取消</button>
 </div>
 
 <script type="text/javascript" src="js/require.js"></script>
@@ -76,7 +76,7 @@
         arrChecked['list'] = [];
 
         //关闭窗口
-        $('button[data-name=cancel]').on('click', function () {
+        $('button.cancel-mhook').on('click', function () {
             parent.layer.close(index);
         });
 
@@ -136,15 +136,15 @@
         });
 
         //选择文件
-        $(document).on('click', 'div[data-name="file"]', function () {
+        $(document).on('click', 'div.file-mhook', function () {
             if (multi == 'false') {//单选
                 $(this).toggleClass('checked');
-                $(this).closest('div[data-name="item"]').siblings('div[data-name="item"]').children('div[data-name="file"]').removeClass('checked');
+                $(this).closest('div.item-mhook').siblings('div.item-mhook').children('div.file-mhook').removeClass('checked');
             } else {//多选
                 $(this).toggleClass('checked');
             }
             //选中文件数量
-            $('span[data-name="checkedNums"]').html('已选中&nbsp;' + $('.checked').length + '&nbsp;个文件');
+            $('span.checked-nums-hool').html('已选中&nbsp;' + $('.checked').length + '&nbsp;个文件');
         });
 
         //获取父框架中上传文件列表值
@@ -153,7 +153,7 @@
         });
 
         //确定
-        $('button[data-name="confirm"]').on('click', function () {
+        $('button.confirm-mhook').on('click', function () {
             $('.checked').each(function () {
                 var arrCurrent = [];
                 arrCurrent['fileId'] = $(this).data('val');

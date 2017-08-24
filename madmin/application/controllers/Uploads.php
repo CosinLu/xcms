@@ -21,8 +21,8 @@ class Uploads extends MY_Controller
     {
         $url['get_list_url'] = site_url('uploads/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('uploads/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-danger btn-sm" href="javascript:;" data-name="batchDel" data-tb="uploads" data-checkname="id" data-url = "' . site_url('uploads/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" data-name="searchbtn" class="btn btn-info btn-sm">搜索</button>');
+        $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del" href="javascript:;" data-tb="uploads" data-checkname="id" data-url = "' . site_url('uploads/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['search_btn'] = $this->sys_auth->set_auth(MYLOOK, $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-mhook">搜索</button>');
         $url['save_url'] = site_url('uploads/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -37,7 +37,7 @@ class Uploads extends MY_Controller
     {
         $data['list'] = $this->uploads->get_list();
         foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" data-name="del" data-tb="uploads" data-id="' . $val['id'] . '" data-url="' . site_url('uploads/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="uploads" data-id="' . $val['id'] . '" data-url="' . site_url('uploads/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }

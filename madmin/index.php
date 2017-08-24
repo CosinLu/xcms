@@ -54,7 +54,7 @@ date_default_timezone_set('PRC');
  * NOTE: If you change these, also change the error_reporting() code below
  */
 //define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-define('ENVIRONMENT', ($_SERVER['REMOTE_ADDR']=='::1' OR $_SERVER['REMOTE_ADDR']=='127.0.0.1' OR $_SERVER['REMOTE_ADDR']=='localhost') ? 'development' : 'production');
+define('ENVIRONMENT', ($_SERVER['REMOTE_ADDR'] == '::1' OR $_SERVER['REMOTE_ADDR'] == '127.0.0.1' OR $_SERVER['REMOTE_ADDR'] == 'localhost') ? 'development' : 'production');
 
 /*
  *---------------------------------------------------------------

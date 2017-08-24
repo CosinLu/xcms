@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('Error');
  */
 class MY_Pagination extends CI_Pagination
 {
-    protected $full_tag_open = '<ul class="pagination" data-name="pagination">';
+    protected $full_tag_open = '<ul class="pagination pagination-mhook">';
     protected $full_tag_close = '</ul>';
     protected $first_tag_open = '<li>';
     protected $first_tag_close = '</li>';

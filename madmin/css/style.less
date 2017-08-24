@@ -69,10 +69,10 @@ a {
                 &.active:hover,
                 &.active.disabled,
                 &.active.disabled:hover {
+                    border-radius: @border-radius;
                     background: @color-primary !important;
                     background-image: none !important;
                     text-shadow: none !important;
-                    border-radius: @border-radius;
                 }
             }
         }
@@ -92,15 +92,15 @@ kbd {
 
 /*缩略图*/
 .thumbnail {
-    border-radius: @border-radius;
     margin-bottom: @spacing;
+    border-radius: @border-radius;
 }
 
 /*容器*/
 .container-fluid,
 .container {
-    padding-left: @spacing;
     padding-right: @spacing;
+    padding-left: @spacing;
 }
 
 /*选项卡*/
@@ -114,8 +114,8 @@ kbd {
 
 /*分页*/
 .pagination_box {
-    text-align: right;
     padding: @spacing 0;
+    text-align: right;
     .pagination_info {
         display: inline-block;
         vertical-align: middle;
@@ -155,19 +155,19 @@ kbd {
 
 /*列表组*/
 .list-group-item {
-    padding-left: @spacing;
     padding-right: @spacing;
+    padding-left: @spacing;
 }
 
 /*栅格*/
 .row {
-    margin-left: -@spacing;
     margin-right: -@spacing;
+    margin-left: -@spacing;
 }
 
 [class^="col-"] {
-    padding-left: @spacing;
     padding-right: @spacing;
+    padding-left: @spacing;
 }
 
 /*表格*/
@@ -182,12 +182,12 @@ kbd {
 
 /*按钮*/
 .btn {
-    border-radius: @border-radius;
+    outline: none !important;
     border-color: transparent !important;
+    border-radius: @border-radius;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
-    outline: none !important;
     &.btn-default {
         background-color: @color-default;
         &:hover {
@@ -198,8 +198,8 @@ kbd {
 
 /*表单*/
 .form-control {
-    border-radius: @border-radius;
     outline: none !important;
+    border-radius: @border-radius;
     box-shadow: none !important;
     resize: none;
     &:focus {
@@ -262,10 +262,10 @@ label {
 
 /*面板*/
 .panel {
-    box-shadow: none;
-    border-radius: @border-radius;
     margin-bottom: @spacing;
     border: 0;
+    border-radius: @border-radius;
+    box-shadow: none;
     .panel-heading {
         border-radius: @border-radius @border-radius 0 0;
         padding: 0;
@@ -284,10 +284,10 @@ label {
         .panel-title {
             line-height: 42px;
             padding: 0 @spacing;
-            .btn{
-                margin-left:15px;
-                i.fa{
-                    width:15px;
+            .btn {
+                margin-left: 15px;
+                i.fa {
+                    width: 15px;
                     display: inline-block;
                 }
             }
@@ -358,10 +358,10 @@ label {
 }
 
 /*加载，暂无数据*/
-div[data-name="loading"],
-div[data-name="nodata"] {
-    text-align: center;
+div.loading-mhook,
+div.nodata-mhook {
     padding: @spacing*4 0;
+    text-align: center;
 }
 
 /* 单选框，复选框 */
@@ -623,9 +623,9 @@ div[data-name="nodata"] {
 /*框架开始*/
 .iframe-header {
     position: fixed;
-    left: 0;
-    right: 0;
     top: 0;
+    right: 0;
+    left: 0;
     z-index: 9999;
     height: @iframe-header-height;
 }
@@ -916,17 +916,17 @@ div[data-name="nodata"] {
                 box-shadow: 4px 0 0 @color-primary inset;
             }
             div {
-                &[data-name="mtreeBtn"] {
+                &.mtree_btn {
                     position: absolute;
                     right: 10px;
                 }
-                &[data-name="mtreeIcon"] {
+                &.mtree_icon {
                     width: 22px;
                     display: inline-block;
                     padding-right: 10px;
                     font-size: 12px;
                 }
-                &[data-name='mtreeName'] {
+                &.mtree_name {
                     position: relative;
                     .label {
                         font-size: 12px;
@@ -973,7 +973,7 @@ div[data-name="nodata"] {
                 color: @color-primary;
             }
             div {
-                &[data-name="mtreeBtn"] {
+                &.mtree_btn {
                     margin-right: 5px;
                 }
             }
@@ -1013,9 +1013,9 @@ div[data-name="nodata"] {
         display: inline-block;
         margin-left: 5px;
         &:before {
-            content: '|';
             margin-right: 8px;
             color: @border-color;
+            content: '|';
         }
     }
 }
@@ -1040,9 +1040,9 @@ div[data-name="nodata"] {
             }
         }
         &:after {
-            content: '';
             display: table;
             clear: both;
+            content: '';
         }
     }
     > ul {
@@ -1083,14 +1083,14 @@ div[data-name="nodata"] {
 
 /*文件上传开始*/
 .uploadifive-button {
-    overflow: hidden;
     display: inline-block;
+    overflow: hidden;
 }
 
 .uploadifive-queue-item {
-    width: 150px;
     margin: 0 10px;
     padding: 0;
+    width: 150px;
     .thumbnail {
         width: 150px;
         height: 167px;
@@ -1109,9 +1109,9 @@ div[data-name="nodata"] {
         padding: 0;
     }
     p {
+        overflow: hidden;
         margin: 0 0 5px 0;
         text-overflow: ellipsis;
-        overflow: hidden;
         white-space: nowrap;
     }
     .filename {
@@ -1130,14 +1130,14 @@ div[data-name="nodata"] {
 
 /*在线管理开始*/
 .online_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 55px;
+    left: 0;
     overflow: hidden;
     overflow-y: auto;
     padding-top: @spacing;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 55px;
     .col-xs-3 {
         position: relative;
         cursor: default;
@@ -1174,9 +1174,9 @@ div[data-name="nodata"] {
         height: 80px;
     }
     p {
+        overflow: hidden;
         margin: 0 0 5px 0;
         text-overflow: ellipsis;
-        overflow: hidden;
         white-space: nowrap;
     }
     .filename {
@@ -1185,17 +1185,17 @@ div[data-name="nodata"] {
 }
 
 .online_btn_group {
-    padding: 10px;
-    text-align: right;
-    border-top: 1px solid @border-color;
-    pointer-events: auto;
-    text-align: right;
     position: fixed;
-    left: 0;
     right: 0;
     bottom: 0;
-    background: #fff;
+    left: 0;
     z-index: 9999;
+    padding: 10px;
+    border-top: 1px solid @border-color;
+    background: #fff;
+    text-align: right;
+    text-align: right;
+    pointer-events: auto;
     button {
         margin: 0 5px;
     }
@@ -1222,8 +1222,8 @@ div[data-name="nodata"] {
 .layui-layer-btn {
     border-radius: 0 0 @border-radius @border-radius !important;
     a {
-        border-radius: @border-radius !important;
         border: none !important;
+        border-radius: @border-radius !important;
         background-color: @color-default !important;
         box-shadow: none !important;
         &:hover {

@@ -55,7 +55,7 @@ class Sys_user_auth extends MY_Controller
                 $str .= '</li>';
             }
             $str .= '<li>';
-            $str .= '<div data-name="li">';
+            $str .= '<div class="li-mhook">';
             $str .= '<div class="auth_control checkbox"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
             $str .= '<div class="auth_type checkbox">' . $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id'], $val['col_auth_str']) . '</div>';
             $str .= '<div class="auth_name">' . $val['prefix'] . $val['name'] . '</div>';

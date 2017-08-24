@@ -15,7 +15,7 @@ class Ajax_model extends CI_Model
     }
 
     //删除
-    public function del($tbname='',$id='',$primary='')
+    public function del($tbname = '', $id = '', $primary = '')
     {
         $this->db->where($primary, $id);
         $this->db->delete($tbname);
@@ -24,7 +24,7 @@ class Ajax_model extends CI_Model
     }
 
     //批量删除
-    public function batch_del($tbname = '', $id = array(),$primary='')
+    public function batch_del($tbname = '', $id = array(), $primary = '')
     {
         $this->db->where_in($primary, $id);
         $this->db->delete($tbname);

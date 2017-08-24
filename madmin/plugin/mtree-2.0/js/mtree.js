@@ -63,32 +63,32 @@
         initIdent: function () {
             var _this = this;
             if (_this.ops.indent) {
-                $('[data-name="mtreeLink"]', this._$ele).each(function (e) {
+                $('.mtree-link-mhook', this._$ele).each(function (e) {
                     var closestUl = $(this).closest('ul');
                     var level = closestUl.data('level');
                     var indent = (level - 1) * _this.ops.indent;
-                    $('[data-name="mtreeIndent"]', $(this)).css({
+                    $('.mtree-indent-mhook', $(this)).css({
                         width: indent
                     });
                 })
             }
         },
         clearRedundancy: function () {
-            $('[data-name="mtreeLink"]', this._$ele).each(function () {
+            $('.mtree-link-mhook', this._$ele).each(function () {
                 if ($(this).next('ul').length == 0) {
-                    $('[data-name="mtreeBtn"]', $(this)).removeClass();
+                    $('.mtree-btn-mhook', $(this)).removeClass();
                 }
             })
         },
         initBtnStatus: function () {
             var _this = this;
-            $('[data-name="mtreeLink"]', this._$ele).each(function () {
+            $('.mtree-link-mhook', this._$ele).each(function () {
                 if ($(this).next('ul').is(':hidden')) {
-                    $(this).find('>[data-name="mtreeBtn"]')
+                    $(this).find('>.mtree-btn-mhook')
                         .removeClass(_this.ops.closeIcon)
                         .addClass(_this.ops.openIcon);
                 } else {
-                    $(this).find('>[data-name="mtreeBtn"]')
+                    $(this).find('>.mtree-btn-mhook')
                         .removeClass(_this.ops.openIcon)
                         .addClass(_this.ops.closeIcon);
                 }
@@ -96,14 +96,14 @@
         },
         initCurrent: function () {
             if (this.ops.currentId) {
-                this._$ele.find('[data-name="mtreeLink"][data-id="' + this.ops.currentId + '"]')
+                this._$ele.find('.mtree-link-mhook[data-id="' + this.ops.currentId + '"]')
                     .addClass(this.ops.currentClass)
                     .parents('li')
                     .addClass(this.ops.currentClass)
                     .parents('ul')
                     .show();
             } else {
-                this._$ele.find('.' + this.ops.currentClass + '[data-name="mtreeLink"]')
+                this._$ele.find('.' + this.ops.currentClass + '.mtree-link-mhook')
                     .parents('li')
                     .addClass(this.ops.currentClass)
                     .parents('ul')
@@ -126,9 +126,9 @@
             var _this = this;
             var openIcon = this.ops.openIcon;
             var closeIcon = this.ops.closeIcon;
-            this._$ele.on('click', '[data-name="mtreeLink"]', function (e) {
+            this._$ele.on('click', '.mtree-link-mhook', function (e) {
                 var $child = $(this).next('ul');
-                var $btn = $(this).find(' > [data-name="mtreeBtn"]');
+                var $btn = $(this).find(' > .mtree-btn-mhook');
                 var url = $(this).data('url');
                 if (_this.ops.url) {
                     if ((typeof(url) == 'undefined' ? '' : url).replace(/javascript:;|(#)*!/, "")) {
@@ -156,7 +156,7 @@
                     _this.ops.onClick.call(_this, $(this), $(this).data('url'));
                 }
                 if (url) {
-                    _this.find('[data-name="mtreeLink"]')
+                    _this.find('.mtree-link-mhook')
                         .removeClass(_this.ops.currentClass)
                         .parents('li')
                         .removeClass(_this.ops.currentClass);
@@ -165,7 +165,7 @@
                         .parents('li')
                         .addClass(_this.ops.currentClass);
                 } else {
-                    _this.find('[data-name="mtreeLink"]')
+                    _this.find('.mtree-link-mhook')
                         .parents('li')
                         .removeClass(_this.ops.currentClass);
                     $(this)
@@ -180,8 +180,8 @@
             var _this = this;
             var openIcon = this.ops.openIcon;
             var closeIcon = this.ops.closeIcon;
-            this._$ele.on('click', '[data-name="mtreeBtn"]', function (e) {
-                var $child = $(this).closest('[data-name="mtreeLink"]').next('ul');
+            this._$ele.on('click', '.mtree-btn-mhook', function (e) {
+                var $child = $(this).closest('.mtree-link-mhook').next('ul');
                 if ($child.size()) {
                     if ($child.is(':hidden')) {
                         //显示子集
@@ -206,11 +206,11 @@
         template: {
             ul: '<ul></ul>',
             li: '<li></li>',
-            a: '<a href="javascript:;" data-name="mtreeLink" [expand]></a>',
-            indent: '<div data-name="mtreeIndent"></div>',
-            btn: '<div data-name="mtreeBtn"></div>',
-            icon: '<div data-name="mtreeIcon"></div>',
-            name: '<div data-name="mtreeName"></div>'
+            a: '<a href="javascript:;" class="mtree_link mtree-link-mhook" [expand]></a>',
+            indent: '<div class="mtree_indent mtree-indent-mhook"></div>',
+            btn: '<div class="mtree_btn mtree-btn-mhook"></div>',
+            icon: '<div class="mtree_icon mtree-icon-mhook"></div>',
+            name: '<div class="mtree_name mtree-name-mhook"></div>'
         }
     }
     $.fn.mtree = function (ops) {

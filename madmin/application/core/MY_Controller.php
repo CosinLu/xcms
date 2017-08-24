@@ -104,16 +104,16 @@ class MY_Controller extends CI_Controller
                 }
                 $str .= '<li>';
                 if (empty($val['url'])) {
-                    $str .= '<a href="javascript:;" class="' . $current . '" data-name="mtreeLink">';
+                    $str .= '<a href="javascript:;" class="' . $current . ' mtree_link mtree-link-mhook">';
                 } else {
-                    $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . '" data-name="mtreeLink">';
+                    $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . ' mtree_link mtree-link-mhook">';
                 }
-                $str .= '<div data-name="mtreeIndent" style="width:' . $indent . '"></div>';
-                $str .= '<div data-name="mtreeBtn"></div>';
+                $str .= '<div class="mtree_indent mtree-indent-mhook" style="width:' . $indent . '"></div>';
+                $str .= '<div class="mtree_btn mtree-btn-mhook"></div>';
                 if ($val['icon']) {
-                    $str .= '<div data-name="mtreeIcon"><i class="' . $val['icon'] . '"></i></div>';
+                    $str .= '<div class="mtree_icon mtree-icon-mhook"><i class="' . $val['icon'] . '"></i></div>';
                 }
-                $str .= '<div data-name="mtreeName">' . $val['name'];
+                $str .= '<div class="mtree_name mtree-name-mhook">' . $val['name'];
                 if ($val['user_type'] == 'dev') {
                     $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
                 }

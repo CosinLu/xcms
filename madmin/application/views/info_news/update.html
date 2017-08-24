@@ -26,7 +26,7 @@
                     <div class="panel-heading">
                         <div class="panel-title"><?=$main_section_name.MYBACK?></div>
                     </div>
-                    <form class="form-horizontal" data-form="ajaxForm" action="<?=$save_url?>" method="post">
+                    <form class="form-horizontal ajax-form-mhook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
                             <input type="hidden" name="id" value="<?=$item['id']?>">
                             <div class="form-group">
@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">内容</div>
                                 <div class="col-xs-8">
-                                    <script id="content" data-name="editor" name="content"
+                                    <script id="content" class="editor-mhook" name="content"
                                             type="text/plain"><?=$item['content']?></script>
                                 </div>
                             </div>
@@ -76,9 +76,9 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">发布时间</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="create_time" data-name="datetimepicker"
+                                    <input type="text" name="create_time"
                                            value="<?=$create_time?>"
-                                           class="form-control">
+                                           class="form-control datetimepicker-mhook">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -105,7 +105,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
     unit.nanoscroller();
 
     //sidebar
-    $('[data-name="mtreeSidebar"]').mtree({
+    $('.mtree-sidebar-mhook').mtree({
         html: true,
         display: 2,
         indent: 0,
@@ -113,7 +113,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
             window.location.href = url;
         }
     });
-    $('[data-name="mtreeMainSidebar"]').mtree({
+    $('.mtree-main-sidebar-mhook').mtree({
         html: true,
         display: 2,
         indent: 0,
@@ -157,12 +157,12 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
     //回车搜索
     $(document).keydown(function (e) {
         if (e.which == 13) {
-            $('[data-name="searchbtn"]').click();
+            $('.search-btn-mhook').click();
         }
     });
 
     //删除
-    $(document).on('click', '[data-name="del"]', function () {
+    $(document).on('click', '.del-mhook', function () {
         var tbname = $(this).data('tb');
         var id = $(this).data('id');
         var url = $(this).data('url');
@@ -179,7 +179,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
                 success: function (data) {
                     if (parseInt(data) > 0) {
                         layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                            $('[data-name="searchbtn"]').click();
+                            $('.search-btn-mhook').click();
                         });
                     } else {
                         layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
@@ -190,7 +190,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
     });
 
     //批量删除
-    $(document).on('click', '[data-name="batchDel"]', function () {
+    $(document).on('click', '.batch-del-mhook', function () {
         var tbname = $(this).data('tb');
         var url = $(this).data('url');
         var primary = $(this).data('primary');
@@ -215,7 +215,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
                 success: function (data) {
                     if (parseInt(data) > 0) {
                         layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                            $('[data-name="searchbtn"]').click();
+                            $('.search-btn-mhook').click();
                             $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
                         });
                     } else {
@@ -226,14 +226,9 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
         });
     });
 
-    //隐藏侧边栏
-    /*$('[data-name="sidebar_hidden"]').on('click', function () {
-     $('[data-name="sidebar"]').toggleClass('sidebar_hidden');
-     });*/
-
     //异步提交表单
-    if ($('[data-form="ajaxForm"]').length > 0) {
-        $('[data-form="ajaxForm"]').ajaxForm({
+    if ($('.ajax-form-mhook').length > 0) {
+        $('.ajax-form-mhook').ajaxForm({
             type: 'post',
             dataType: 'json',
             success: function (responseData, $form) {

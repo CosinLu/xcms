@@ -8,7 +8,7 @@ header("Content-Type: text/html; charset=utf-8");
 $config_json = file_get_contents("config.json");
 $my_config_json = json_decode(file_get_contents('my.config.json'));
 $new_config = str_replace('//', '/', str_replace('{upload}', $my_config_json->upload, $config_json));
-$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", $new_config), true);
+$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", $new_config), TRUE);
 ////$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("config.json")), true);
 $action = $_GET['action'];
 

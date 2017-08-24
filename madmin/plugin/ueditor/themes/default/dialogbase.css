@@ -40,8 +40,8 @@ del {
 }
 
 table {
-    border-collapse: collapse;
     border-spacing: 0;
+    border-collapse: collapse;
 }
 
 input {
@@ -53,8 +53,8 @@ input {
 */
 body {
     background-color: #fff;
-    font: 12px/1.5 sans-serif, "宋体", "Arial Narrow", HELVETICA;
     color: #646464;
+    font: 12px/1.5 sans-serif, "宋体", "Arial Narrow", HELVETICA;
 }
 
 /*tab*/
@@ -65,13 +65,13 @@ body {
 
 .tabhead span {
     display: inline-block;
+    *margin-right: 5px;
     padding: 0 8px;
     height: 30px;
     border: 1px solid #ccc;
     text-align: center;
     line-height: 30px;
     cursor: pointer;
-    *margin-right: 5px;
 }
 
 .tabhead span.focus {
@@ -90,18 +90,18 @@ body {
 /*button*/
 a.button {
     display: block;
-    text-align: center;
-    line-height: 30px;
-    text-decoration: none;
-    height: 30px;
     width: 90px;
+    height: 30px;
     border: #ccc solid 1px;
+    text-align: center;
+    text-decoration: none;
     font-size: 14px;
+    line-height: 30px;
 }
 
 a.button:hover {
-    background-color: #e6e6e6;
     border-color: #adadad;
+    background-color: #e6e6e6;
 }
 
 /*图片搜索*/
@@ -110,9 +110,9 @@ a.button:hover {
 }
 
 #search .searchBar {
-    width: auto !important;
-    margin-left: 10px !important;
     margin-right: 10px !important;
+    margin-left: 10px !important;
+    width: auto !important;
 }
 
 #search #searchBtn {
@@ -133,29 +133,29 @@ a.button:hover {
 }
 
 #search .searchList li {
-    background: #fff !important;
     margin: 5px 10px 5px 10px !important;
     padding: 4px 4px 0 4px !important;
     border: 1px solid #eee !important;
+    background: #fff !important;
     box-shadow: none !important;
 }
 
 #search .searchList li.selected {
     position: relative;
     border: #1094fa solid 1px !important;
+    opacity: 1 !important;
     filter: alpha(Opacity=100) !important;
     -moz-opacity: 1 !important;
-    opacity: 1 !important;
 }
 
 #search .searchList li.selected:before {
-    content: '';
     position: absolute;
-    border: 2px solid #1094fa;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+    border: 2px solid #1094fa;
+    content: '';
 }
 
 #search .searchList li p {
@@ -163,8 +163,8 @@ a.button:hover {
 }
 
 #search .searchList li a {
-    border-top: none !important;
     padding: 0 !important;
+    border-top: none !important;
 }
 
 #online li .icon:hover {
