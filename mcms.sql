@@ -10,10 +10,67 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-23 10:56:16
+Date: 2017-08-24 18:22:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for common_dict
+-- ----------------------------
+DROP TABLE IF EXISTS `common_dict`;
+CREATE TABLE `common_dict` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
+  `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
+  `ident` varchar(20) DEFAULT NULL COMMENT '唯一标识',
+  `color` char(7) DEFAULT NULL COMMENT '颜色',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
+
+-- ----------------------------
+-- Records of common_dict
+-- ----------------------------
+INSERT INTO `common_dict` VALUES ('1', '操作', '0', '1', 'sys_col_auth', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('3', '修改', '1', '2', 'update', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('18', '用户状态', '0', '1', 'user_status', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('21', '图片', '0', '1', 'image', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('22', '无图', '21', '2', 'nopic', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('23', '单图', '21', '2', 'onepic', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', '#5cb85c', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('34', '失败', '32', '2', 'fail', '#d9534f', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('35', '用户类型', '0', '1', 'user_type', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('36', '生产者', '35', '2', 'pro', '#333333', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f', '', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for config
@@ -348,7 +405,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -381,6 +438,7 @@ INSERT INTO `sys_col` VALUES ('44', '商品分类', 'fa fa-th-large', '43', '2',
 INSERT INTO `sys_col` VALUES ('45', '商品品牌', 'fa fa-diamond', '43', '2', 'goods_brand', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('46', '商品类型', 'fa fa-th', '43', '2', 'goods_type', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('47', '用户评论', 'fa fa-comments', '43', '2', 'user_comment', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('48', '通用字典', 'fa fa-book', '2', '2', 'common_dict', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -482,6 +540,10 @@ INSERT INTO `sys_col_auth` VALUES ('46', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('47', 'look');
 INSERT INTO `sys_col_auth` VALUES ('47', 'del');
 INSERT INTO `sys_col_auth` VALUES ('47', 'update');
+INSERT INTO `sys_col_auth` VALUES ('48', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('48', 'update');
+INSERT INTO `sys_col_auth` VALUES ('48', 'del');
+INSERT INTO `sys_col_auth` VALUES ('48', 'look');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -558,7 +620,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -607,6 +669,9 @@ INSERT INTO `sys_log` VALUES ('41', '4', 'madmin', '商品分类', 'del', 'succe
 INSERT INTO `sys_log` VALUES ('42', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376570');
 INSERT INTO `sys_log` VALUES ('43', '4', 'madmin', '商品分类', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376574');
 INSERT INTO `sys_log` VALUES ('44', '4', 'madmin', '商品分类', 'del', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503376579');
+INSERT INTO `sys_log` VALUES ('45', '4', 'madmin', '网站配置', 'update', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503543863');
+INSERT INTO `sys_log` VALUES ('46', null, null, '角色权限', 'update', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503558919');
+INSERT INTO `sys_log` VALUES ('47', null, null, '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503563464');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -618,7 +683,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -630,6 +695,14 @@ INSERT INTO `sys_login_log` VALUES ('4', '4', '127.0.0.1', '1502961494');
 INSERT INTO `sys_login_log` VALUES ('5', '4', '127.0.0.1', '1503374721');
 INSERT INTO `sys_login_log` VALUES ('6', '4', '127.0.0.1', '1503396031');
 INSERT INTO `sys_login_log` VALUES ('7', '4', '127.0.0.1', '1503450746');
+INSERT INTO `sys_login_log` VALUES ('8', '4', '127.0.0.1', '1503536529');
+INSERT INTO `sys_login_log` VALUES ('9', '4', '127.0.0.1', '1503543850');
+INSERT INTO `sys_login_log` VALUES ('10', null, '127.0.0.1', '1503558838');
+INSERT INTO `sys_login_log` VALUES ('11', null, '127.0.0.1', '1503558852');
+INSERT INTO `sys_login_log` VALUES ('12', null, '127.0.0.1', '1503558863');
+INSERT INTO `sys_login_log` VALUES ('13', null, '127.0.0.1', '1503558870');
+INSERT INTO `sys_login_log` VALUES ('14', null, '127.0.0.1', '1503558886');
+INSERT INTO `sys_login_log` VALUES ('15', null, '127.0.0.1', '1503558893');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -678,9 +751,9 @@ INSERT INTO `sys_role_auth` VALUES ('2', '20', '');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert');
+INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
 INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del');
 INSERT INTO `sys_role_auth` VALUES ('3', '2', '');
-INSERT INTO `sys_role_auth` VALUES ('3', '11', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look');
@@ -695,15 +768,15 @@ INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '2', '');
 INSERT INTO `sys_role_auth` VALUES ('3', '11', 'look');
-INSERT INTO `sys_role_auth` VALUES ('3', '17', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '17', 'update');
+INSERT INTO `sys_role_auth` VALUES ('3', '11', 'update');
 INSERT INTO `sys_role_auth` VALUES ('3', '17', 'del');
+INSERT INTO `sys_role_auth` VALUES ('3', '17', 'insert');
 INSERT INTO `sys_role_auth` VALUES ('3', '17', 'look');
-INSERT INTO `sys_role_auth` VALUES ('3', '18', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '18', 'update');
+INSERT INTO `sys_role_auth` VALUES ('3', '17', 'update');
 INSERT INTO `sys_role_auth` VALUES ('3', '18', 'del');
+INSERT INTO `sys_role_auth` VALUES ('3', '18', 'insert');
 INSERT INTO `sys_role_auth` VALUES ('3', '18', 'look');
-INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
+INSERT INTO `sys_role_auth` VALUES ('3', '18', 'update');
 
 -- ----------------------------
 -- Table structure for sys_tpl

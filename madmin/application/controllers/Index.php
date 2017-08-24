@@ -156,7 +156,7 @@ class Index extends CI_Controller
     //验证系统栏目权限
     public function check_password()
     {
-        $userinfo = $this->index->user_info();
+        $userinfo = $this->index->user_info($this->username, $this->password);
         if (empty($userinfo) && $this->password != '') {
             $this->form_validation->set_message('check_password', '{field} 输入错误。');
             return FALSE;
@@ -168,7 +168,7 @@ class Index extends CI_Controller
     //登出
     public function check_col_auth()
     {
-        $user_info = $this->index->user_info();
+        $user_info = $this->index->user_info($this->username, $this->password);
         if (!empty($user_info)) {
             $this->load->library('sys_auth', array('user_info' => $user_info));
             $sys_col = $this->sys_auth->sys_col();

@@ -24,12 +24,21 @@
                     <div class="panel-body">
                         <div class="form-inline pb">
                             <?=$insert_btn?>
+                            <?=$del_btn?>
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control input-sm">
+                            </div>
+                            <?=$search_btn?>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table_list list-mhook">
                                 <thead>
                                 <tr>
-                                    <th width="5%">NO.</th>
+                                    <th width="5%">
+                                        <label><input type="checkbox" name="checkAll" data-checkname="id">
+                                            <ins></ins>
+                                        </label>
+                                    </th>
                                     <th>名称</th>
                                     <th width="15%">标识</th>
                                     <th width="10%" class="text-right">排序</th>
@@ -40,8 +49,12 @@
                                 <script id="list_tpl" type="text/html">
                                     {{each list.list as val}}
                                     <tr>
-                                        <td>{{val.id}}</td>
-                                        <td>{{#val.prefix + val.name}}</td>
+                                        <td>
+                                            <label><input type="checkbox" name="id[]" value="{{val.id}}">
+                                                <ins></ins>
+                                            </label>
+                                        </td>
+                                        <td>{{#val.name}}</td>
                                         <td>{{val.ident}}</td>
                                         <td class="text-right">{{val.sort}}</td>
                                         <td>
@@ -56,7 +69,7 @@
                         </div>
                         <div class="pagination_box" id="pagination"></div>
                         <script id="pagination_tpl" type="text/html">
-                            <div class="pagination_info">共有{{list.total}}条</div>
+                            {{#list.pagination}}
                         </script>
                     </div>
                 </div>
@@ -70,10 +83,25 @@
 <script type="text/javascript">
     require(['template'], function (template) {
         get_list();
+
+        //搜索
+        $('.search-btn-mhook').click(function () {
+            get_list();
+        });
+
+        //分页
+        $(document).on({
+            click: function (e) {
+                get_list($(this).data('page'));
+            }
+        }, '.pagination-mhook li[class!="active"] a');
+
         //获得列表
-        function get_list() {
+        function get_list(pageIndex) {
             var data = {
-                x: Math.random()
+                x: Math.random(),
+                page: pageIndex,
+                key: $('input[name="key"]').val()
             };
             $.ajax({
                 url: '<?=$get_list_url?>',
