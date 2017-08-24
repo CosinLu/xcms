@@ -14,10 +14,8 @@ class Uploads_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->from('uploads');
         if ($key != '') {
             $this->db->like('client_name', $key);
@@ -36,11 +34,8 @@ class Uploads_model extends MY_Model
     }
 
     //删除
-    public function del()
+    public function del($tbname = '', $id = '', $primary = '')
     {
-        $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
-        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
         $this->del_file($id);
         $this->db->where($primary, $id);
         $this->db->delete($tbname);
@@ -67,12 +62,9 @@ class Uploads_model extends MY_Model
 
     //删除文件
 
-    public function batch_del()
+    public function batch_del($tbname = '', $id = '', $primary = '')
     {
-        $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
         $id_arr = explode(',', $id);
-        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
         $this->del_file($id);
         $this->db->where_in($primary, $id_arr);
         $this->db->delete($tbname);

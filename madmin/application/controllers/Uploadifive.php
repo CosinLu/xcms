@@ -55,7 +55,8 @@ class Uploadifive extends CI_Controller
     //上传文件列表
     public function get_list()
     {
-        $data['list'] = $this->uploadifive->get_list();
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->uploadifive->get_list($page);
         foreach ($data['list']['list'] as $key => $val) {
             /*//文件存在
             if (is_file($val['full_abs_path'])) {

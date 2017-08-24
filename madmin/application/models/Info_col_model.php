@@ -32,9 +32,8 @@ class Info_col_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->from('info_col');
         $this->db->where('info_col.id', $id);
         $res = $this->db->get()->row_array();
@@ -42,23 +41,12 @@ class Info_col_model extends MY_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $pid = $this->input->post('pid');
-        $vals = array(
-            'tpl_id' => $this->input->post('tpl_id'),
-            'name' => $this->input->post('name'),
-            'url' => $this->input->post('url'),
-            'pic' => $this->input->post('pic'),
-            'remark' => $this->input->post('remark'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort'),
-        );
-        if ($id) {
-            $bool = $this->category->update($id, $pid, $vals);
+        if ($data['id']) {
+            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $this->category->insert($pid, $vals);
+            $bool = $this->category->insert($data['pid'], $data['vals']);
         }
         return $bool;
     }

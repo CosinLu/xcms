@@ -14,11 +14,8 @@ class Sys_log_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($page = '', $start_time = '', $stop_time = '')
     {
-        $start_time = $this->input->post('start_time');
-        $stop_time = $this->input->post('stop_time');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as status_name,t1.color as status_color');
         $this->db->select('t2.name as opera_name');

@@ -14,10 +14,8 @@ class Info_col_muitipic_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.name as info_col_name');
@@ -42,33 +40,20 @@ class Info_col_muitipic_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('info_col_muitipic')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $image = $this->input->post('image');
-        $url = $this->input->post('url');
-        $vals = array(
-            'cid' => $this->input->post('cid'),
-            'name' => $this->input->post('name'),
-            'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => ($url) ? $url : prep_url($url),
-            'display' => $this->input->post('display'),
-            'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('info_col_muitipic', $vals);
+        if ($data['id']) {
+            $bool = $this->db->where('id', $data['id'])->update('info_col_muitipic', $data['vals']);
         } else {
-            $bool = $this->db->insert('info_col_muitipic', $vals);
+            $bool = $this->db->insert('info_col_muitipic', $data['vals']);
         }
         return $bool;
     }

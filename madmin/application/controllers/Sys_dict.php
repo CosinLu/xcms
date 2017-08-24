@@ -60,7 +60,7 @@ class Sys_dict extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->sys_dict->update();
+        $data['item'] = $this->sys_dict->update($id);
         $data['sys_dict_type'] = $this->sys_dict->sys_dict_type();
         $data['cols'] = $this->category->ddl($data['sys_dict_type'], 'pid', $id, $data['item']['pid']);
         $this->load->view('sys_dict/update.html', $data);
@@ -70,9 +70,20 @@ class Sys_dict extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->sys_dict->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'pid' => $this->input->post('pid'),
+            'vals' => array(
+                'name' => $this->input->post('name'),
+                'ident' => $this->input->post('ident'),
+                'color' => $this->input->post('color'),
+                'remark' => $this->input->post('remark'),
+                'sort' => $this->input->post('sort')
+            )
+        );
+        $bool = $this->sys_dict->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_dict?sys_cid=' . $this->sys_cid);
         if ($bool) {

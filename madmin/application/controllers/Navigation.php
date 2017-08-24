@@ -74,7 +74,8 @@ class Navigation extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->navigation->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->navigation->update($id);
         $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['position'] = $this->sys_dict->rbl('position', 'position', $data['item']['position']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
@@ -85,9 +86,20 @@ class Navigation extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->navigation->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'pid' => $this->input->post('pid'),
+            'vals' => array(
+                'name' => $this->input->post('name'),
+                'url' => $this->input->post('url'),
+                'position' => $this->input->post('position'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort'),
+            )
+        );
+        $bool = $this->navigation->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('navigation?sys_cid=' . $this->sys_cid);
         if ($bool) {

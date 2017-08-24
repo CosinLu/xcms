@@ -58,7 +58,8 @@ class Sys_col extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->sys_col->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->sys_col->update($id);
         $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['auth'] = $this->sys_dict->cbl('sys_col_auth', 'auth', $data['item']['col_auth']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
@@ -70,9 +71,23 @@ class Sys_col extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->sys_col->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'pid' => $this->input->post('pid'),
+            'auth' => $this->input->post('auth'),
+            'vals' => array(
+                'name' => $this->input->post('name'),
+                'icon' => $this->input->post('icon'),
+                'url' => $this->input->post('url'),
+                'remark' => $this->input->post('remark'),
+                'user_type' => $this->input->post('user_type'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort'),
+            )
+        );
+        $bool = $this->sys_col->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_col?sys_cid=' . $this->sys_cid);
         if ($bool) {

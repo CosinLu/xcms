@@ -35,9 +35,8 @@ class Sys_col_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->select('t.*');
         $this->db->select('group_concat(t1.col_auth) as col_auth');
         $this->db->from('sys_col as t');
@@ -48,26 +47,16 @@ class Sys_col_model extends MY_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $col_id = $this->input->post('id');
-        $pid = $this->input->post('pid');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'icon' => $this->input->post('icon'),
-            'url' => $this->input->post('url'),
-            'remark' => $this->input->post('remark'),
-            'user_type' => $this->input->post('user_type'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort'),
-        );
-        if ($id) {
-            $bool = $this->category->update($id, $pid, $vals);
+        $col_id = $data['id'];
+        if ($data['id']) {
+            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $col_id = $this->category->insert($pid, $vals);
+            $bool = $col_id = $this->category->insert($data['pid'], $data['vals']);
         }
         //设置系统栏目权限
-        $this->set_col_auth($col_id, $this->input->post('auth'));
+        $this->set_col_auth($col_id, $data['auth']);
         return $bool;
     }
 

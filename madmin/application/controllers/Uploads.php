@@ -35,7 +35,9 @@ class Uploads extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->uploads->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->uploads->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="uploads" data-id="' . $val['id'] . '" data-url="' . site_url('uploads/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
@@ -45,7 +47,10 @@ class Uploads extends MY_Controller
     //删除
     public function del()
     {
-        $rows = $this->uploads->del();
+        $tbname = $this->input->post('tbname');
+        $id = $this->input->post('id');
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
+        $rows = $this->uploads->del($tbname, $id, $primary);
         //写入日志
         $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
@@ -54,7 +59,10 @@ class Uploads extends MY_Controller
     //批量删除
     public function batch_del()
     {
-        $rows = $this->uploads->batch_del();
+        $tbname = $this->input->post('tbname');
+        $id = $this->input->post('id');
+        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
+        $rows = $this->uploads->batch_del($tbname, $id, $primary);
         //写入日志
         $this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;

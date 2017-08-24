@@ -38,7 +38,10 @@ class Config_item extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->config_item->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $group_id = $this->input->get('group_id');
+        $data['list'] = $this->config_item->get_list($key, $page, $group_id);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_item/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&group_id=' . $this->group_id) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="config" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
@@ -58,7 +61,8 @@ class Config_item extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->config_item->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->config_item->update($id);
         $data['config_group'] = ddl($this->config_item->config_group(), 'config_group_id', $data['item']['config_group_id']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $data['type'] = $this->sys_dict->rbl('config_type', 'type', $data['item']['type']);
@@ -68,9 +72,22 @@ class Config_item extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->config_item->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'title' => $this->input->post('title'),
+                'name' => $this->input->post('name'),
+                'config_group_id' => $this->input->post('config_group_id'),
+                'type' => $this->input->post('type'),
+                'param' => $this->input->post('param'),
+                'remark' => $this->input->post('remark'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort')
+            )
+        );
+        $bool = $this->config_item->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('config_item?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
         if ($bool) {

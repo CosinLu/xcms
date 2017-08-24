@@ -14,10 +14,8 @@ class Link_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.full_path');
@@ -40,32 +38,20 @@ class Link_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('link')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $image = $this->input->post('image');
-        $url = $this->input->post('url');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => ($url) ? $url : prep_url($url),
-            'target' => $this->input->post('target'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('link', $vals);
+        if ($data['id']) {
+            $bool = $this->db->where('id', $data['id'])->update('link', $data['vals']);
         } else {
-            $bool = $this->db->insert('link', $vals);
+            $bool = $this->db->insert('link', $data['vals']);
         }
         return $bool;
     }

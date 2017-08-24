@@ -28,14 +28,21 @@ class Info_single extends Info
 
     public function index()
     {
-        $data['item'] = $this->info_single->index();
+        $data['item'] = $this->info_single->index($this->cid);
         $this->load->view('info_single/update.html', $data);
     }
 
     //保存
     public function save()
     {
-        $bool = $this->info_single->save();
+        $data = array(
+            'vals' => array(
+                'cid' => $this->input->post('cid'),
+                'summary' => $this->input->post('summary'),
+                'content' => $this->input->post('content')
+            )
+        );
+        $bool = $this->info_single->save($data);
         //写入日志
         $this->sys_log->insert($this->main_section_name, '2', $bool);
         $config['icon'] = 1;

@@ -83,7 +83,12 @@ class Index extends CI_Controller
             $session['sys_session']['lang_name'] = '中文简体';
             $session['sys_session']['lang_val'] = 'zh-cn';
             //写入登录日志
-            $this->index->insert_login_log($user_info['user_id']);
+            $data['vals'] = array(
+                'user_id' => $user_info['user_id'],
+                'login_ip' => $this->input->ip_address(),
+                'login_time' => time()
+            );
+            $this->index->insert_login_log($data);
             //写入session
             $this->session->set_userdata($session);
             //跳转至backurl
@@ -131,12 +136,12 @@ class Index extends CI_Controller
     public function check_username()
     {
         if ($this->username != '') {
-            $rows = $this->index->check_username();
+            $rows = $this->index->check_username($this->username);
             if ($rows == 0) {
                 $this->form_validation->set_message('check_username', '{field} 不存在。');
                 return FALSE;
             } else {
-                $userinfo = $this->index->user_info();
+                $userinfo = $this->index->user_info($this->username, $this->password);
                 if ($userinfo['status'] == 'forzen') {
                     $this->form_validation->set_message('check_username', '{field} 被冻结。');
                     return FALSE;

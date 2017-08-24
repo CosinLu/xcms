@@ -14,11 +14,8 @@ class Config_item_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '', $group_id = '')
     {
-        $key = $this->input->post('key');
-        $group_id = $this->input->get('group_id');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.name as config_group_name');
@@ -44,32 +41,20 @@ class Config_item_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('config')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $vals = array(
-            'title' => $this->input->post('title'),
-            'name' => $this->input->post('name'),
-            'config_group_id' => $this->input->post('config_group_id'),
-            'type' => $this->input->post('type'),
-            'param' => $this->input->post('param'),
-            'remark' => $this->input->post('remark'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('config', $vals);
+        if ($data['id']) {
+            $bool = $this->db->where('id', $data['id'])->update('config', $data['vals']);
         } else {
-            $bool = $this->db->insert('config', $vals);
+            $bool = $this->db->insert('config', $data['vals']);
         }
         return $bool;
     }

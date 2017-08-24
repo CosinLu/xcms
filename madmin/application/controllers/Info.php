@@ -75,7 +75,6 @@ class Info extends MY_Controller
     }
 
     //获得信息栏目
-
     public function index()
     {
         $data = $this->info->cols();
@@ -101,10 +100,9 @@ class Info extends MY_Controller
     }
 
     //获得当前栏目的模板标识
-
     public function tpl_id()
     {
-        $res = $this->info->tpl_id();
+        $res = $this->info->tpl_id($this->cid);
         return $res;
     }
 

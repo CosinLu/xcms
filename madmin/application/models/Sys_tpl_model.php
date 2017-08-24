@@ -14,10 +14,8 @@ class Sys_tpl_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->from('sys_tpl as t');
@@ -38,31 +36,20 @@ class Sys_tpl_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('sys_tpl')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'list_tpl' => $this->input->post('list_tpl'),
-            'show_tpl' => $this->input->post('show_tpl'),
-            'sys_tpl' => $this->input->post('sys_tpl'),
-            'remark' => $this->input->post('remark'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('sys_tpl', $vals);
+        if ($data['id']) {
+            $bool = $this->db->where('id', $data['id'])->update('sys_tpl', $data['vals']);
         } else {
-            $bool = $this->db->insert('sys_tpl', $vals);
+            $bool = $this->db->insert('sys_tpl', $data['vals']);
         }
         return $bool;
     }

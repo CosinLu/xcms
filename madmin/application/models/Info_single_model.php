@@ -8,15 +8,12 @@
  */
 class Info_single_model extends MY_Model
 {
-    protected $cid;
-
     public function __construct()
     {
         parent::__construct();
-        $this->cid = $this->input->get('cid');
     }
 
-    public function index()
+    public function index($cid = '')
     {
         $this->db->select('t.name,t.id');
         $this->db->select('t1.summary,t1.content');
@@ -28,14 +25,9 @@ class Info_single_model extends MY_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $vals = array(
-            'cid' => $this->input->post('cid'),
-            'summary' => $this->input->post('summary'),
-            'content' => $this->input->post('content')
-        );
-        $bool = $this->db->replace('info_single', $vals);
+        $bool = $this->db->replace('info_single', $data['vals']);
         return $bool;
     }
 

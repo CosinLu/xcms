@@ -31,7 +31,10 @@ class Sys_log extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->sys_log->get_list();
+        $page = ($this->input->post('page')) ?: 1;
+        $start_time = $this->input->post('start_time');
+        $stop_time = $this->input->post('stop_time');
+        $data['list'] = $this->sys_log->get_list($page, $start_time, $stop_time);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['time'] = date('Y-m-d H:i:s', $val['time']);
             $data['list']['list'][$key]['content'] = '用户&nbsp;<b>' . (($val['username']) ?: '-') . '</b>&nbsp;在&nbsp;<span class="text-danger">' . (($val['col_name']) ?: '-') . '</span>&nbsp;中进行了&nbsp;<span class="text-primary">' . (($val['opera_name']) ?: '-') . '</span>&nbsp;操作';

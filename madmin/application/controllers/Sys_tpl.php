@@ -34,7 +34,9 @@ class Sys_tpl extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->sys_tpl->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->sys_tpl->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('sys_tpl/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="sys_tpl" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
@@ -52,7 +54,8 @@ class Sys_tpl extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->sys_tpl->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->sys_tpl->update($id);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('sys_tpl/update.html', $data);
     }
@@ -60,9 +63,21 @@ class Sys_tpl extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->sys_tpl->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'name' => $this->input->post('name'),
+                'list_tpl' => $this->input->post('list_tpl'),
+                'show_tpl' => $this->input->post('show_tpl'),
+                'sys_tpl' => $this->input->post('sys_tpl'),
+                'remark' => $this->input->post('remark'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort')
+            )
+        );
+        $bool = $this->sys_tpl->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_tpl?sys_cid=' . $this->sys_cid);
         if ($bool) {

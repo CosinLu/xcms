@@ -22,9 +22,8 @@ class Uploadifive_model extends CI_Model
     }
 
     //获取上传文件列表
-    public function get_list()
+    public function get_list($page = '')
     {
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('*');
         $this->db->from('uploads');
         $config['total_rows'] = $this->db->count_all_results('', FALSE);

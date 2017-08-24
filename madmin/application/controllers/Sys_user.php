@@ -34,7 +34,9 @@ class Sys_user extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->sys_user->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->sys_user->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             if ($val['user_type'] == 1) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">设置权限</a>';
@@ -62,7 +64,8 @@ class Sys_user extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->sys_user->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->sys_user->update($id);
         $data['disabled'] = ($data['item']['user_type'] == 1) ? 'disabled' : '';
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
         $data['status'] = $this->sys_dict->rbl('user_status', 'status', $data['item']['status'], $data['disabled']);
@@ -72,9 +75,24 @@ class Sys_user extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->sys_user->save();
+        $password = $this->input->post('password');
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array_filter(
+                array(
+                    'role_id' => $this->input->post('role_id'),
+                    'username' => $this->input->post('username'),
+                    'password' => $password ? md5($password) : '',
+                    'nickname' => $this->input->post('nickname'),
+                    'realname' => $this->input->post('realname'),
+                    'status' => $this->input->post('status'),
+                    'remark' => $this->input->post('remark')
+                )
+            )
+        );
+        $bool = $this->sys_user->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_user?sys_cid=' . $this->sys_cid);
         if ($bool) {

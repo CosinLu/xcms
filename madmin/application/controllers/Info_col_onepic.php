@@ -35,7 +35,9 @@ class Info_col_onepic extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->info_col_onepic->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->info_col_onepic->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_col_onepic/update?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
         }
@@ -45,7 +47,8 @@ class Info_col_onepic extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->info_col_onepic->update();
+        $cid = $this->input->get('cid');
+        $data['item'] = $this->info_col_onepic->update($cid);
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $this->load->view('info_col_onepic/update.html', $data);
     }
@@ -53,7 +56,17 @@ class Info_col_onepic extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->info_col_onepic->save();
+        $image = $this->input->post('image');
+        $url = $this->input->post('url');
+        $data = array(
+            'vals' => array(
+                'cid' => $this->input->post('cid'),
+                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'url' => ($url) ? $url : prep_url($url),
+                'remark' => $this->input->post('remark')
+            )
+        );
+        $bool = $this->info_col_onepic->save($data);
         //写入日志
         $this->sys_log->insert($this->section_name, '2', $bool);
         $config['icon'] = 1;

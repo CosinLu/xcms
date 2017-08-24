@@ -37,7 +37,9 @@ class Info_news extends Info
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->info_news->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->info_news->get_list($this->cid, $key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['title'] = $val['title'];
             $data['list']['list'][$key]['time'] = date('m/d H:i', $val['create_time']);
@@ -60,7 +62,8 @@ class Info_news extends Info
     //更新
     public function update()
     {
-        $data['item'] = $this->info_news->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->info_news->update($id);
         $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
@@ -71,9 +74,22 @@ class Info_news extends Info
     //保存
     public function save()
     {
-        $bool = $this->info_news->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'cid' => $this->input->post('cid'),
+                'title' => $this->input->post('title'),
+                'summary' => $this->input->post('summary'),
+                'target' => $this->input->post('target'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort'),
+                'content' => $this->input->post('content'),
+                'create_time' => strtotime($this->input->post('create_time'))
+            )
+        );
+        $bool = $this->info_news->save($data);
         //写入日志
-        $this->sys_log->insert($this->main_section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->main_section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_news?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         if ($bool) {

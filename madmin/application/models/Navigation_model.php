@@ -32,9 +32,8 @@ class Navigation_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->from('navigation');
         $this->db->where('navigation.id', $id);
         $res = $this->db->get()->row_array();
@@ -42,21 +41,12 @@ class Navigation_model extends MY_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $cid = $this->input->post('id');
-        $pid = $this->input->post('pid');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'url' => $this->input->post('url'),
-            'position' => $this->input->post('position'),
-            'display' => $this->input->post('display'),
-            'sort' => $this->input->post('sort'),
-        );
-        if ($id) {
-            $bool = $this->category->update($id, $pid, $vals);
+        if ($data['id']) {
+            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $cid = $this->category->insert($pid, $vals);
+            $bool = $this->category->insert($data['pid'], $data['vals']);
         }
         return $bool;
     }

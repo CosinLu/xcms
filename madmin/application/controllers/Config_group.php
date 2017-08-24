@@ -34,7 +34,9 @@ class Config_group extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->config_group->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->config_group->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_item?sys_cid=10&group_id=' . $val['id']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_group/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
@@ -53,7 +55,8 @@ class Config_group extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->config_group->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->config_group->update($id);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $this->load->view('config_group/update.html', $data);
     }
@@ -61,9 +64,18 @@ class Config_group extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->config_group->save();
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'name' => $this->input->post('name'),
+                'display' => $this->input->post('display'),
+                'remark' => $this->input->post('remark'),
+                'sort' => $this->input->post('sort')
+            )
+        );
+        $bool = $this->config_group->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('config_group?sys_cid=' . $this->sys_cid);
         if ($bool) {

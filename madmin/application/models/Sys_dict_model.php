@@ -26,30 +26,20 @@ class Sys_dict_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('sys_dict')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $pid = $this->input->post('pid');
-        $vals = array(
-            'name' => $this->input->post('name'),
-            'ident' => $this->input->post('ident'),
-            'color' => $this->input->post('color'),
-            'remark' => $this->input->post('remark'),
-            'sort' => $this->input->post('sort')
-        );
-        if ($id) {
-            $bool = $this->category->update($id, $pid, $vals);
+        if ($data['id']) {
+            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $this->category->insert($pid, $vals);
+            $bool = $this->category->insert($data['pid'], $data['vals']);
         }
         return $bool;
     }

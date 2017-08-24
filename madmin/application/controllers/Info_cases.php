@@ -38,7 +38,9 @@ class Info_cases extends Info
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->info_cases->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->info_cases->get_list($this->cid, $key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['title'] = $val['title'];
             $data['list']['list'][$key]['time'] = date('Y-m-d H:i', $val['create_time']);
@@ -61,7 +63,8 @@ class Info_cases extends Info
     //更新
     public function update()
     {
-        $data['item'] = $this->info_cases->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->info_cases->update($id);
         $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['images'] = $this->uploadifive->get_list($data['item']['images'], 'images');
@@ -74,9 +77,26 @@ class Info_cases extends Info
     //保存
     public function save()
     {
-        $bool = $this->info_cases->save();
+        $image = $this->input->post('image');
+        $images = $this->input->post('images');
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'cid' => $this->input->post('cid'),
+                'title' => $this->input->post('title'),
+                'case_url' => $this->input->post('case_url'),
+                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'images' => (!empty($images)) ? implode(',', $images) : '',
+                'target' => $this->input->post('target'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort'),
+                'content' => $this->input->post('content'),
+                'create_time' => strtotime($this->input->post('create_time'))
+            )
+        );
+        $bool = $this->info_cases->save($data);
         //写入日志
-        $this->sys_log->insert($this->main_section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->main_section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_cases?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         if ($bool) {

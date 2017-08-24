@@ -35,7 +35,9 @@ class Info_col_muitipic extends MY_Controller
     //获得列表
     public function get_list()
     {
-        $data['list'] = $this->info_col_muitipic->get_list();
+        $key = $this->input->post('key');
+        $page = ($this->input->post('page')) ?: 1;
+        $data['list'] = $this->info_col_muitipic->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('info_col_muitipic/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="info_col_muitipic" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
@@ -54,7 +56,8 @@ class Info_col_muitipic extends MY_Controller
     //更新
     public function update()
     {
-        $data['item'] = $this->info_col_muitipic->update();
+        $id = $this->input->get('id');
+        $data['item'] = $this->info_col_muitipic->update($id);
         $data['info_col'] = ddl($this->info_col_muitipic->info_col(), 'cid', $data['item']['cid']);
         $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
@@ -64,9 +67,23 @@ class Info_col_muitipic extends MY_Controller
     //保存
     public function save()
     {
-        $bool = $this->info_col_muitipic->save();
+        $image = $this->input->post('image');
+        $url = $this->input->post('url');
+        $data = array(
+            'id' => $this->input->post('id'),
+            'vals' => array(
+                'cid' => $this->input->post('cid'),
+                'name' => $this->input->post('name'),
+                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'url' => ($url) ? $url : prep_url($url),
+                'display' => $this->input->post('display'),
+                'remark' => $this->input->post('remark'),
+                'sort' => $this->input->post('sort')
+            )
+        );
+        $bool = $this->info_col_muitipic->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$this->input->post('id')) ? '1' : '2', $bool);
+        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_muitipic?sys_cid=' . $this->sys_cid);
         if ($bool) {

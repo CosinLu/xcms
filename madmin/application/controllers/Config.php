@@ -29,7 +29,7 @@ class Config extends MY_Controller
     public function index()
     {
         $data['config_group_btn'] = $this->config_group_btn();
-        $data['config_item'] = $this->config_model->config_item();
+        $data['config_item'] = $this->config_model->config_item($this->config_group_id);
         foreach ($data['config_item'] as $key => $val) {
             $data['config_item'][$key]['param_arr'] = $this->transform_param($val['param']);
             $data['config_item'][$key]['val'] = ($val['type'] == 'checkbox') ? explode(',', $val['value']) : $val['value'];
@@ -81,7 +81,10 @@ class Config extends MY_Controller
     //保存
     public function save()
     {
-        $rows = $this->config_model->save();
+        $data = array(
+            'vals' => $this->input->post()
+        );
+        $rows = $this->config_model->save($data);
         //写入日志
         $this->sys_log->insert($this->section_name, '2', 1);
         $config['icon'] = 1;

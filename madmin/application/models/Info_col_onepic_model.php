@@ -14,10 +14,8 @@ class Info_col_onepic_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.id,t.name');
         $this->db->select('t1.url,t1.remark');
         $this->db->select('t2.full_path');
@@ -41,9 +39,8 @@ class Info_col_onepic_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($cid = '')
     {
-        $cid = $this->input->get('cid');
         $this->db->select('t.id,t.name');
         $this->db->select('t1.*');
         $this->db->from('info_col as t');
@@ -56,15 +53,7 @@ class Info_col_onepic_model extends MY_Model
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
-        $url = $this->input->post('url');
-        $vals = array(
-            'cid' => $this->input->post('cid'),
-            'image' => (!empty($image)) ? implode(',', $image) : '',
-            'url' => ($url) ? $url : prep_url($url),
-            'remark' => $this->input->post('remark')
-        );
-        $bool = $this->db->replace('info_col_onepic', $vals);
+        $bool = $this->db->replace('info_col_onepic', $data['vals']);
         return $bool;
     }
 

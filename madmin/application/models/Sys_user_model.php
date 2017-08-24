@@ -14,10 +14,8 @@ class Sys_user_model extends MY_Model
     }
 
     //获得列表
-    public function get_list()
+    public function get_list($key = '', $page = '')
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
         $this->db->select('t.*');
         $this->db->select('t1.name as sys_role_name');
         $this->db->select('t2.name as status_name,t2.color as status_color');
@@ -41,34 +39,20 @@ class Sys_user_model extends MY_Model
     }
 
     //更新
-    public function update()
+    public function update($id = '')
     {
-        $id = $this->input->get('id');
         $this->db->where('id', $id);
         $res = $this->db->get('sys_user')->row_array();
         return $res;
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
-        $id = $this->input->post('id');
-        $password = ($this->input->post('password')) ? md5($this->input->post('password')) : '';
-        $vals = array_filter(
-            array(
-                'role_id' => $this->input->post('role_id'),
-                'username' => $this->input->post('username'),
-                'password' => $password,
-                'nickname' => $this->input->post('nickname'),
-                'realname' => $this->input->post('realname'),
-                'status' => $this->input->post('status'),
-                'remark' => $this->input->post('remark')
-            )
-        );
-        if ($id) {
-            $bool = $this->db->where('id', $id)->update('sys_user', $vals);
+        if ($data['id']) {
+            $bool = $this->db->where('id', $data['id'])->update('sys_user', $data['vals']);
         } else {
-            $bool = $this->db->insert('sys_user', $vals);
+            $bool = $this->db->insert('sys_user', $data['vals']);
         }
         return $bool;
     }

@@ -8,13 +8,10 @@
  */
 class Info_model extends MY_Model
 {
-    protected $cid;
-
     public function __construct()
     {
         parent::__construct();
         $this->load->library('category', array('tb_name' => 'info_col'), 'category');
-        $this->cid = $this->input->get('cid');
     }
 
     //获得信息栏目
@@ -32,10 +29,10 @@ class Info_model extends MY_Model
     }
 
     //获得当前栏目的模板标识
-    public function tpl_id()
+    public function tpl_id($cid = '')
     {
         $this->db->select('tpl_id');
-        $this->db->where(array('id' => $this->cid));
+        $this->db->where(array('id' => $cid));
         $res = $this->db->get('info_col')->row_array();
         return $res['tpl_id'];
     }

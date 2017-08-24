@@ -8,27 +8,25 @@
  */
 class Config_model extends MY_Model
 {
-    protected $config_group_id;
 
     public function __construct()
     {
         parent::__construct();
-        $this->config_group_id = $this->input->get('config_group_id');
     }
 
     //配置项
-    public function config_item()
+    public function config_item($config_group_id = '')
     {
         //默认第一个显示第一个配置组
-        if ($this->config_group_id == '') {
+        if ($config_group_id == '') {
             foreach ($this->config_group() as $val) {
-                $this->config_group_id = $val['id'];
+                $config_group_id = $val['id'];
                 break;
             }
         }
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
-            'config_group_id' => $this->config_group_id,
+            'config_group_id' => $config_group_id,
             'display' => 'show'
         ));
         $result = $this->db->get('config')->result_array();
@@ -45,13 +43,12 @@ class Config_model extends MY_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
         $rows = 1;
-        $vals = $this->input->post();
         $value = array();
-        if (!empty($vals)) {
-            foreach ($vals as $key => $val) {
+        if (!empty($data['vals'])) {
+            foreach ($data['vals'] as $key => $val) {
                 $value[] = array(
                     'name' => $key,
                     'value' => (is_array($val)) ? implode(',', $val) : $val

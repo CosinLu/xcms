@@ -84,10 +84,12 @@ class Sys_user_auth extends MY_Controller
     //保存
     public function save()
     {
+        $id_arr = $this->input->post('id');
+        $auth_arr = $this->input->post('auth');
         //删除
-        $rows = $this->sys_user_auth->del();
+        $rows = $this->sys_user_auth->del($this->user_id);
         //添加
-        $bool = $this->sys_user_auth->insert();
+        $bool = $this->sys_user_auth->insert($this->user_id, $id_arr, $auth_arr);
         //写入日志
         $this->sys_log->insert('角色权限', '2', $bool);
         $config['icon'] = 1;

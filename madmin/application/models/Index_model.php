@@ -8,27 +8,22 @@
  */
 class Index_model extends CI_Model
 {
-    protected $username;
-    protected $password;
-
     public function __construct()
     {
         parent::__construct();
-        $this->username = $this->input->post('username');
-        $this->password = $this->input->post('password');
         $this->load->library('category');
     }
 
     //验证用户名
-    public function check_username()
+    public function check_username($username = '')
     {
-        $this->db->where('username', $this->username);
+        $this->db->where('username', $username);
         $rows = $this->db->get('sys_user')->num_rows();
         return $rows;
     }
 
     //获的用户信息
-    public function user_info()
+    public function user_info($username = '', $password = '')
     {
         $this->db->select('t.*,t.id as user_id');
         $this->db->select('(ifnull(t.realname,t.username)) as valid_username');
@@ -38,8 +33,8 @@ class Index_model extends CI_Model
         $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
         $this->db->join('sys_login_log as t2', 't2.user_id=t.id', 'left');
         $this->db->where(array(
-            't.username' => $this->username,
-            't.password' => md5($this->password)
+            't.username' => $username,
+            't.password' => md5($password)
         ));
         $this->db->order_by('t2.id desc');
         $result = $this->db->get()->row_array();
@@ -57,15 +52,10 @@ class Index_model extends CI_Model
     }
 
     //添加登录日志
-    public function insert_login_log($user_id = '')
+    public function insert_login_log($data = array())
     {
-        if (!empty($user_id)) {
-            $vals = array(
-                'user_id' => $user_id,
-                'login_ip' => $this->input->ip_address(),
-                'login_time' => time()
-            );
-            $this->db->insert('sys_login_log', $vals);
+        if (!empty($data)) {
+            $this->db->insert('sys_login_log', $data['vals']);
         }
     }
 
