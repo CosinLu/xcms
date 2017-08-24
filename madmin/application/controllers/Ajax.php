@@ -30,7 +30,9 @@ class Ajax extends MY_Controller
     //批量删除
     public function batch_del()
     {
-        $rows = $this->ajax->batch_del();
+        $tbname = $this->input->post('tbname');
+        $id = explode(',', $this->input->post('id'));
+        $rows = $this->ajax->batch_del($tbname, $id);
         //写入日志
         $this->sys_log->insert($this->col_name, '3', $rows);
         echo $rows;

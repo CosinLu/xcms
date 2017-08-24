@@ -27,13 +27,10 @@ class Ajax_model extends CI_Model
     }
 
     //批量删除
-    public function batch_del()
+    public function batch_del($tbname = '', $id = array())
     {
-        $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
-        $id_arr = explode(',', $id);
         $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
-        $this->db->where_in($primary, $id_arr);
+        $this->db->where_in($primary, $id);
         $this->db->delete($tbname);
         $rows = $this->db->affected_rows();
         return $rows;
