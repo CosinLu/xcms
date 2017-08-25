@@ -25,7 +25,6 @@ class Common_dict extends M_Controller
         $url['index_back_btn'] = ($this->pid) ? back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $url['insert_btn'] = $this->sys_auth->set_auth(M_INSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth(M_DEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-mhook" href="javascript:;" data-tb="common_dict" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">删除</a>');
         $url['search_btn'] = $this->sys_auth->set_auth(M_LOOK, $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-mhook">搜索</button>');
         $url['save_url'] = site_url('common_dict/save?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $url['del_url'] = site_url('common_dict/del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);

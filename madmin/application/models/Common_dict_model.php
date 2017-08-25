@@ -22,7 +22,7 @@ class Common_dict_model extends M_Model
             'pid' => $pid
         ));
         if ($key != '') {
-            $this->db->like('t.name', $key);
+            $this->db->like('name', $key);
         }
         //非开发者禁止获取重要字典
         if ($type > 0) {

@@ -24,7 +24,6 @@
                     <div class="panel-body">
                         <div class="form-inline pb">
                             <?=$insert_btn?>
-                            <?=$del_btn?>
                             <div class="form-group">
                                 <input type="text" name="key" class="form-control input-sm">
                             </div>
@@ -34,11 +33,7 @@
                             <table class="table table-bordered table-hover table_list list-mhook">
                                 <thead>
                                 <tr>
-                                    <th width="5%">
-                                        <label><input type="checkbox" name="checkAll" data-checkname="id">
-                                            <ins></ins>
-                                        </label>
-                                    </th>
+                                    <th width="5%">NO.</th>
                                     <th>名称</th>
                                     <th width="15%">标识</th>
                                     <th width="10%" class="text-right">排序</th>
@@ -49,11 +44,7 @@
                                 <script id="list_tpl" type="text/html">
                                     {{each list.list as val}}
                                     <tr>
-                                        <td>
-                                            <label><input type="checkbox" name="id[]" value="{{val.id}}">
-                                                <ins></ins>
-                                            </label>
-                                        </td>
+                                        <td>{{val.id}}</td>
                                         <td>{{#val.name}}</td>
                                         <td>{{val.ident}}</td>
                                         <td class="text-right">{{val.sort}}</td>
