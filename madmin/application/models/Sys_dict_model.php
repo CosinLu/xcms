@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Sys_dict_model extends MY_Model
+class Sys_dict_model extends M_Model
 {
     public function __construct()
     {

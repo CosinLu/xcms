@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 16:53
  */
-class Info extends MY_Controller
+class Info extends M_Controller
 {
     protected $cid;
     protected $main_section_name;

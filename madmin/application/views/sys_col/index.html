@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=MYTITLE?></title>
+    <title><?=M_TITLE?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap-3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -89,7 +89,7 @@
                 beforeSend: function () {
                     $('.nodata-mhook,.loading-mhook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-mhook').after('<?=MYLOADING?>');
+                    $('.list-mhook').after('<?=M_LOADING?>');
                 },
                 success: function (data) {
                     $('.nodata-mhook,.loading-mhook').remove();
@@ -97,7 +97,7 @@
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-mhook').after('<?=MYNODATA?>');
+                        $('.list-mhook').after('<?=M_NODATA?>');
                     }
                 }
             })

@@ -86,13 +86,14 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 
 
 /*自定义*/
-defined('MYTITLE') OR define('MYTITLE', 'MCMS');
-defined('MYLOADING') OR define('MYLOADING', '<div class="panel-body loading-mhook">数据加载中...</div>');
-defined('MYNODATA') OR define('MYNODATA', '<div class="panel-body nodata-mhook">暂无数据</div>');
-defined('MYERROR') OR define('MYERROR', '<div class="panel-body error-mhook">数据加载失败</div>');
-defined('MYPERPAGE') OR define('MYPERPAGE', 15);
-defined('MYINSERT') OR define('MYINSERT', 'insert');
-defined('MYDEL') OR define('MYDEL', 'del');
-defined('MYLOOK') OR define('MYLOOK', 'look');
-defined('MYUPDATE') OR define('MYUPDATE', 'update');
-//defined('MYBACK') OR define('MYBACK', '<button type="button" class="btn btn-default btn-xs back-mhook"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</button>');
+defined('M_TITLE') OR define('M_TITLE', 'MCMS');
+defined('M_LOADING') OR define('M_LOADING', '<div class="panel-body loading-mhook">数据加载中...</div>');
+defined('M_NODATA') OR define('M_NODATA', '<div class="panel-body nodata-mhook">暂无数据</div>');
+defined('M_ERR') OR define('M_ERR', '<div class="panel-body error-mhook">数据加载失败</div>');
+defined('M_PERPAGE') OR define('M_PERPAGE', 15);
+defined('M_INSERT') OR define('M_INSERT', 'insert');
+defined('M_DEL') OR define('M_DEL', 'del');
+defined('M_LOOK') OR define('M_LOOK', 'look');
+defined('M_UPDATE') OR define('M_UPDATE', 'update');
+defined('M_DEV') OR define('M_DEV', 'dev');//开发者
+defined('M_PRO') OR define('M_PRO', 'pro');//生产者

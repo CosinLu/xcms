@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_news_model extends MY_Model
+class Info_news_model extends M_Model
 {
     public function __construct()
     {
@@ -27,7 +27,7 @@ class Info_news_model extends MY_Model
         }
         $this->db->where_in('t.cid', $children_id_arr);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = MYPERPAGE;
+        $config['per_page'] = M_PERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.sort desc,t.create_time desc,t.id desc');

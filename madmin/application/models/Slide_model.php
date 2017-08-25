@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Slide_model extends MY_Model
+class Slide_model extends M_Model
 {
     public function __construct()
     {
@@ -26,7 +26,7 @@ class Slide_model extends MY_Model
             $this->db->like('t.name', $key);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = MYPERPAGE;
+        $config['per_page'] = M_PERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.sort asc,t.id asc');

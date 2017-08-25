@@ -6,7 +6,7 @@
  * Date: 2016/8/30
  * Time: 12:45
  */
-class Sys_role_auth extends MY_Controller
+class Sys_role_auth extends M_Controller
 {
     protected $role_id;
 

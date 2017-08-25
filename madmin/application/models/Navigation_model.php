@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Navigation_model extends MY_Model
+class Navigation_model extends M_Model
 {
     public function __construct()
     {

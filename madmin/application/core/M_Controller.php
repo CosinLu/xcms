@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:05
  */
-class MY_Controller extends CI_Controller
+class M_Controller extends CI_Controller
 {
     protected $sys_session;
     //系统栏目标识
@@ -22,7 +22,6 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('language');
         $this->sys_cid = $this->input->get('sys_cid');
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
@@ -34,7 +33,6 @@ class MY_Controller extends CI_Controller
         ));
         $this->menu();
         $this->sidebar();
-        $this->lang();
     }
 
     //登录验证
@@ -49,7 +47,6 @@ class MY_Controller extends CI_Controller
     //主菜单
     public function menu()
     {
-        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $data['menu'] = array();
         $data['section_name'] = '';
         //系统栏目
@@ -114,7 +111,7 @@ class MY_Controller extends CI_Controller
                     $str .= '<div class="mtree_icon mtree-icon-mhook"><i class="' . $val['icon'] . '"></i></div>';
                 }
                 $str .= '<div class="mtree_name mtree-name-mhook">' . $val['name'];
-                if ($val['user_type'] == 'dev') {
+                if ($val['user_type'] == M_DEV) {
                     $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
                 }
                 $str .= '</div>';
@@ -124,14 +121,6 @@ class MY_Controller extends CI_Controller
             $str .= str_repeat('</li></ul>', $parent_level + 1);
         }
         $data['sidebar'] = $str;
-        $this->load->vars($data);
-    }
-
-    //语言
-    public function lang()
-    {
-        $data['lang']['name'] = $this->session->sys_session['lang_name'];
-        $data['lang']['val'] = $this->session->sys_session['lang_val'];
         $this->load->vars($data);
     }
 

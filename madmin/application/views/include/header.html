@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="javascript:;" class="navbar-brand"><?=MYTITLE?></a>
+            <a href="javascript:;" class="navbar-brand"><?=M_TITLE?></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
@@ -20,7 +20,7 @@
                         <i class="<?=$val['icon']?>"></i>
                         <?php endif;?>
                         <?=$val['name']?>
-                        <?php if($val['user_type']=='dev'):?>
+                        <?php if($val['user_type']==M_DEV):?>
                         <span class="label label-danger"><?=$val['user_type']?></span>
                         <?php endif;?>
                     </a>

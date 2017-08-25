@@ -67,7 +67,7 @@ class Index extends CI_Controller
         } //登录成功
         else {
             $this->config_upload_path();
-            $user_info = $this->index->user_info();
+            $user_info = $this->index->user_info($this->username, $this->password);
             $session['sys_session']['user_id'] = $user_info['id'];
             $session['sys_session']['role_id'] = $user_info['role_id'];
             $session['sys_session']['username'] = $user_info['username'];
@@ -76,7 +76,7 @@ class Index extends CI_Controller
             $session['sys_session']['nickname'] = $user_info['nickname'];
             $session['sys_session']['user_type'] = $user_info['user_type'];
             $session['sys_session']['valid_username'] = $user_info['valid_username'];
-//            $session['sys_session']['role_type'] = $user_info['role_type'];
+            $session['sys_session']['role_type'] = $user_info['role_type'];
             $session['sys_session']['role_name'] = $user_info['role_name'];
             $session['sys_session']['last_login_time'] = $user_info['last_login_time'];
             $session['sys_session']['last_login_ip'] = $user_info['last_login_ip'];

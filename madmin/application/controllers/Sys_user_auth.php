@@ -6,7 +6,7 @@
  * Date: 2016/8/30
  * Time: 12:45
  */
-class Sys_user_auth extends MY_Controller
+class Sys_user_auth extends M_Controller
 {
     protected $user_id;
 

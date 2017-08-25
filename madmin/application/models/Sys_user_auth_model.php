@@ -6,7 +6,7 @@
  * Date: 2016/8/30
  * Time: 12:51
  */
-class Sys_user_auth_model extends MY_Model
+class Sys_user_auth_model extends M_Model
 {
     protected $tb_sys_col;
     protected $tb_sys_col_auth;

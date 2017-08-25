@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 16:31
  * Email: 1056811341@qq.com
  */
-class Ajax extends MY_Controller
+class Ajax extends M_Controller
 {
     protected $col_name;
 

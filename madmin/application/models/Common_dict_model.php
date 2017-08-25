@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Common_dict_model extends MY_Model
+class Common_dict_model extends M_Model
 {
     public function __construct()
     {
@@ -27,11 +27,11 @@ class Common_dict_model extends MY_Model
         //非开发者禁止获取重要字典
         if ($type > 0) {
             $this->db->where(array(
-                'type > ' => 0
+                'user_type > ' => 0
             ));
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = MYPERPAGE;
+        $config['per_page'] = M_PERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('sort asc,id asc');

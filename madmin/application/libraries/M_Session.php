@@ -6,7 +6,7 @@
  * Date: 2016/9/9
  * Time: 18:32
  */
-class MY_Session
+class M_Session
 {
     public function __construct()
     {

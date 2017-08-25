@@ -6,7 +6,7 @@
  * Date: 2016/8/25
  * Time: 16:12
  */
-class Config extends MY_Controller
+class Config extends M_Controller
 {
     protected $config_group_id;
 
@@ -22,7 +22,7 @@ class Config extends MY_Controller
     public function set_url()
     {
         $url['save_url'] = site_url('config/save?sys_cid=' . $this->sys_cid . '&config_group_id=' . $this->config_group_id);
-        $url['save_btn'] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<button type="submit" class="btn btn-primary">保存</button>');
+        $url['save_btn'] = $this->sys_auth->set_auth(M_UPDATE, $this->col_auth, '<button type="submit" class="btn btn-primary">保存</button>');
         $this->load->vars($url);
     }
 

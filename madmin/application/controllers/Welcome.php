@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:32
  */
-class Welcome extends MY_Controller
+class Welcome extends M_Controller
 {
     public function __construct()
     {

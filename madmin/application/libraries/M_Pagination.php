@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 20:31
  * Email: 1056811341@qq.com
  */
-class MY_Pagination extends CI_Pagination
+class M_Pagination extends CI_Pagination
 {
     protected $full_tag_open = '<ul class="pagination pagination-mhook">';
     protected $full_tag_close = '</ul>';

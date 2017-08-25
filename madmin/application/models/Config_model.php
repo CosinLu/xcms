@@ -6,7 +6,7 @@
  * Date: 2016/8/25
  * Time: 16:16
  */
-class Config_model extends MY_Model
+class Config_model extends M_Model
 {
 
     public function __construct()

@@ -31,9 +31,9 @@ class Sys_auth
     //根据权限获得系统栏目
     public function sys_col($type = '', $id = '')
     {
-        $role_type = $this->user_info['role_type'];
+        $user_type = $this->user_info['user_type'];
         //开发者
-        if ($role_type == 0) {
+        if ($user_type == 0) {
             $sql = "SELECT
                 `t`.*,
                 GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
@@ -81,7 +81,7 @@ class Sys_auth
             ORDER BY 
                 `t`.`sort` ASC,`t`.`id` ASC";
         } //系统默认，超级管理员
-        elseif ($role_type == 1) {
+        elseif ($user_type == 1) {
             $sql = "SELECT
                 `t`.*,
                 GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
@@ -125,13 +125,13 @@ class Sys_auth
             $sql .= " WHERE 
                 `t`.`display`='show'
             AND
-                `t`.`user_type`='pro'
+                `t`.`user_type`='".M_PRO."'
             GROUP BY 
                 `t`.`id`
             ORDER BY 
                 `t`.`sort` ASC,`t`.`id` ASC";
         } //普通管理员
-        elseif ($role_type == 2) {
+        elseif ($user_type > 1) {
             $sql = "SELECT 
               *, GROUP_CONCAT(`col_auth`) AS `col_auth`
             FROM

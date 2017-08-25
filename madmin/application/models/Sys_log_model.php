@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Sys_log_model extends MY_Model
+class Sys_log_model extends M_Model
 {
     public function __construct()
     {
@@ -26,11 +26,11 @@ class Sys_log_model extends MY_Model
             $this->db->where('t.time >', strtotime($start_time));
             $this->db->where('t.time <', strtotime($stop_time));
         }
-        if ($this->session->sys_session['role_type'] >= 2) {
+        if ($this->session->sys_session['user_type'] > 1) {
             $this->db->where('t.user_id', $this->session->sys_session['user_id']);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = MYPERPAGE;
+        $config['per_page'] = M_PERPAGE;
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.time desc');
