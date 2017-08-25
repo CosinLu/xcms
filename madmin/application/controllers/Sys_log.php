@@ -36,6 +36,7 @@ class Sys_log extends MY_Controller
         $stop_time = $this->input->post('stop_time');
         $data['list'] = $this->sys_log->get_list($page, $start_time, $stop_time);
         foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['status_name'] = '<span style="color:' . $val['status_color'] . ';">' . $val['status_name'] . '</span>';
             $data['list']['list'][$key]['time'] = date('Y-m-d H:i:s', $val['time']);
             $data['list']['list'][$key]['content'] = '用户&nbsp;<b>' . (($val['username']) ?: '-') . '</b>&nbsp;在&nbsp;<span class="text-danger">' . (($val['col_name']) ?: '-') . '</span>&nbsp;中进行了&nbsp;<span class="text-primary">' . (($val['opera_name']) ?: '-') . '</span>&nbsp;操作';
             $data['list']['list'][$key]['browser'] = $val['browser'] . '(' . $val['version'] . ')';

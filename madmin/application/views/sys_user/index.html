@@ -59,7 +59,7 @@
                                         <td>{{val.username}}</td>
                                         <td>{{val.sys_role_name}}</td>
                                         <td>{{val.remark}}</td>
-                                        <td style="color:{{val.status_color}}">{{val.status_name}}</td>
+                                        <td>{{#val.status_name}}</td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}

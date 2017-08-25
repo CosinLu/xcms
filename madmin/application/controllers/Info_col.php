@@ -36,6 +36,8 @@ class Info_col extends MY_Controller
     {
         $data['list'] = $this->info_col->get_list();
         foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
+            $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
             $disabled_insert_next_btn = '<a href="javascript:;" class="disabled">新增下级</a>';
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
@@ -54,7 +56,6 @@ class Info_col extends MY_Controller
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
-            $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         echo json_encode($data);
     }

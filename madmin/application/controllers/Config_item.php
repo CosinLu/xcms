@@ -43,6 +43,7 @@ class Config_item extends MY_Controller
         $group_id = $this->input->get('group_id');
         $data['list'] = $this->config_item->get_list($key, $page, $group_id);
         foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('config_item/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&group_id=' . $this->group_id) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-mhook" data-tb="config" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
