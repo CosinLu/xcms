@@ -146,3 +146,16 @@ function url_to_arr($url = '', $arr = array())
     return array_unique(array_merge($arr_url, $new_arr));
 
 }
+
+/**
+ * 返回上一级
+ * @param string $url
+ * @return string
+ */
+function back($url = '')
+{
+    $url = $url ?: 'javascript:;';
+    $mhook = $url ? '' : 'back-mhook';
+    $str = '<a href="' . $url . '" class="btn btn-default btn-xs ' . $mhook . '"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</a>';
+    return $str;
+}

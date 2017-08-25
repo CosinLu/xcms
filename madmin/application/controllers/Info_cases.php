@@ -22,6 +22,7 @@ class Info_cases extends Info
     //设置url
     public function set_url()
     {
+        $url['back_btn'] = back();
         $url['get_list_url'] = site_url('info_cases/get_list?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_cases/insert?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-mhook" href="javascript:;" data-tb="info_cases" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">删除</a>');

@@ -19,7 +19,7 @@
             <div class="section_container">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div class="panel-title"><?=$section_name?></div>
+                        <div class="panel-title"><?=$section_name.$back_btn?></div>
                     </div>
                     <div class="panel-body">
                         <div class="form-inline pb">
@@ -54,7 +54,7 @@
                                                 <ins></ins>
                                             </label>
                                         </td>
-                                        <td>{{#val.name + val.tag}}</td>
+                                        <td>{{#val.name}}</td>
                                         <td>{{val.ident}}</td>
                                         <td class="text-right">{{val.sort}}</td>
                                         <td>

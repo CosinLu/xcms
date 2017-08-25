@@ -19,6 +19,7 @@ class Link extends MY_Controller
     //设置url
     public function set_url()
     {
+        $url['back_btn'] = back();
         $url['get_list_url'] = site_url('link/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('link/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-mhook" href="javascript:;" data-tb="link" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');

@@ -21,6 +21,7 @@ class Sys_role_auth extends MY_Controller
     //设置url
     public function set_url()
     {
+        $url['back_btn'] = back();
         $url['save_url'] = site_url('sys_role_auth/save?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
         $url['get_list_url'] = site_url('sys_role_auth/get_list?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
         $this->load->vars($url);
