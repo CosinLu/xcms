@@ -19,7 +19,6 @@ class Info_col extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['back_btn'] = back();
         $url['get_list_url'] = site_url('info_col/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('info_col/save?sys_cid=' . $this->sys_cid);

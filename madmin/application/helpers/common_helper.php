@@ -154,8 +154,8 @@ function url_to_arr($url = '', $arr = array())
  */
 function back($url = '')
 {
-    $url = $url ?: 'javascript:;';
     $mhook = $url ? '' : 'back-mhook';
+    $url = $url ?: 'javascript:;';
     $str = '<a href="' . $url . '" class="btn btn-default btn-xs ' . $mhook . '"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</a>';
     return $str;
 }

@@ -21,7 +21,6 @@ class Sys_user_auth extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['back_btn'] = back();
         $url['save_url'] = site_url('sys_user_auth/save?sys_cid=' . $this->sys_cid . '&user_id=' . $this->user_id);
         $url['get_list_url'] = site_url('sys_user_auth/get_list?sys_cid=' . $this->sys_cid . '&user_id=' . $this->user_id);
         $this->load->vars($url);

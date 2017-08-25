@@ -22,7 +22,7 @@ class Common_dict extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['back_btn'] = ($this->pid) ? back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
+        $url['index_back_btn'] = ($this->pid) ? back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $url['insert_btn'] = $this->sys_auth->set_auth(MYINSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-mhook" href="javascript:;" data-tb="common_dict" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">删除</a>');
@@ -50,7 +50,7 @@ class Common_dict extends MY_Controller
             if (!$this->pid) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="' . site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $val['id']) . '">编辑属性</a>';
             }
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $this->pid) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYUPDATE, $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth(MYDEL, $this->col_auth, '<a href="javascript:;" class="del-col-mhook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
