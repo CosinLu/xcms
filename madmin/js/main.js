@@ -7,18 +7,18 @@ require.config({
         'css': 'plugin/css.min',
         'jquery': 'js/jquery.min-1.11.1',
         'unit': 'js/unit',
-        'bootstrap': 'plugin/bootstrap-3.3.5/js/bootstrap.min',
-        'colorpicker': 'plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min',
+        'bootstrap': 'plugin/bootstrap/js/bootstrap.min',
+        'colorpicker': 'plugin/colorpicker/js/bootstrap-colorpicker.min',
         'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
-        'dragsort': 'plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min',
-        'dropload': 'plugin/dropload-0.9.0/dropload.min',
-        'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker.min',
-        'layer': 'plugin/layer-3.0.1/layer',
-        'mtree': 'plugin/mtree-2.0/js/mtree',
+        'dragsort': 'plugin/dragsort/jquery.dragsort.min',
+        'dropload': 'plugin/dropload/dropload.min',
+        'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker',
+        'layer': 'plugin/layer/layer',
+        'mtree': 'plugin/mtree/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
-        'uploadifive': 'plugin/uploadifive-1.1.2/js/uploadifive.mcms',
-        'uploadifive_mcms': 'plugin/uploadifive-1.1.2/js/uploadifive.mcms',
-        'upload': 'plugin/uploadifive-1.1.2/js/upload',
+        'uploadifive': 'plugin/uploadifive/js/uploadifive.mcms',
+        'uploadifive_mcms': 'plugin/uploadifive/js/uploadifive.mcms',
+        'upload': 'plugin/uploadifive/js/upload',
         'holder': 'plugin/holder.min',
         'jqthumb': 'plugin/jqthumb.min',
         'form': 'plugin/jquery.form.min',
@@ -29,12 +29,12 @@ require.config({
     shim: {
         'bootstrap': {
             deps: ['jquery'
-                , 'css!plugin/font-awesome-4.7.0/css/font-awesome.min.css']
+                , 'css!plugin/font-awesome/css/font-awesome.min.css']
         },
         'colorpicker': {
             deps: ['jquery'
                 , 'bootstrap'
-                , 'css!plugin/colorpicker-2.3.3/css/bootstrap-colorpicker.min.css']
+                , 'css!plugin/colorpicker/css/bootstrap-colorpicker.min.css']
         },
         'datetimepicker': {
             deps: ['jquery'
@@ -47,7 +47,7 @@ require.config({
         },
         'dropload': {
             deps: ['jquery'
-                , 'css!plugin/dropload-0.9.0/dropload.css']
+                , 'css!plugin/dropload/dropload.css']
         },
         'iconpicker': {
             deps: ['jquery'
@@ -59,7 +59,7 @@ require.config({
         },
         'mtree': {
             deps: ['jquery'
-                , 'css!plugin/mtree-2.0/css/mtree.css']
+                , 'css!plugin/mtree/css/mtree.css']
         },
         'ueditor': {
             deps: ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js'
@@ -72,7 +72,7 @@ require.config({
         },
         'uploadifive': {
             deos: ['jquery'
-                , 'css!plugin/uploadifive-1.1.2/css/uploadifive.css']
+                , 'css!plugin/uploadifive/css/uploadifive.css']
         },
         'upload': {
             deps: ['jquery'
@@ -124,7 +124,7 @@ require(['jquery', 'unit', 'bootstrap', 'mtree', 'layer', 'form'], function ($, 
 
     //配置layer
     layer.config({
-        path: 'plugin/layer-3.0.1/',
+        path: 'plugin/layer/',
         extend: 'bootcss/style.min.css',
         skin: 'layer-ext-bootcss',
         shade: 0.75,
