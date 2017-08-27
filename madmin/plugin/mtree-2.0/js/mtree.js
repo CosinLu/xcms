@@ -74,9 +74,11 @@
             }
         },
         clearRedundancy: function () {
-            $('.mtree-link-mhook', this._$ele).each(function () {
+            var _this = this;
+            $('.mtree-link-mhook', _this._$ele).each(function () {
+                //如果下级没有数据
                 if ($(this).next('ul').length == 0) {
-                    $('.mtree-btn-mhook', $(this)).removeClass();
+                    $('.mtree-btn-mhook', $(this)).removeClass().addClass('mtree_btn mtree-btn-mhook');
                 }
             })
         },
