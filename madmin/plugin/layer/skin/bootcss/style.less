@@ -1,0 +1,156 @@
+@import "../../../../css/variable.less";
+@import "../../../../css/bootcss.less";
+
+body {
+    .layer-ext-bootcss {
+        &.layui-layer {
+            border: 1px solid @border-color;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: @border-radius;
+            box-shadow: none;
+        }
+        .layui-layer-title {
+            overflow: hidden;
+            padding: 0 @spacing;
+            border-bottom: 1px solid @border-color;
+            border-radius: @border-radius @border-radius 0 0;
+            background-color: #fff;
+            color: #333;
+        }
+        &.layui-layer-dialog {
+            .layui-layer-content {
+                position: relative;
+                padding: 20px 15px;
+                line-height: 24px;
+                .layui-layer-ico {
+                    top: 14px;
+                    width: 36px;
+                    height: 36px;
+                    background-position: -1px 0;
+                    &.layui-layer-ico1 {
+                        background-position: -1px 0;
+                    }
+                    &.layui-layer-ico2 {
+                        background-position: -41px 0;
+                    }
+                    &.layui-layer-ico3 {
+                        background-position: -82px 0;
+                    }
+                    &.layui-layer-ico4 {
+                        background-position: -123px 0;
+                    }
+                    &.layui-layer-ico16 {
+                        background: url(loading-black.svg) no-repeat center;
+                        background-size: cover;
+                    }
+                }
+            }
+            .layui-layer-padding {
+                padding-left: 60px;
+            }
+        }
+        .layui-layer-btn {
+            padding: 10px;
+            border-top: 1px solid @border-color;
+            border-radius: 0 0 @border-radius @border-radius;
+            a {
+                margin: 0 5px;
+                padding: 6px 12px;
+                height: auto;
+                border: 1px solid @border-color;
+                border-radius: @border-radius;
+                background-color: #fff;
+                color: #333;
+                text-decoration: none;
+                line-height: normal;
+                cursor: pointer;
+                &:hover,
+                &:active {
+                    background: @color-default-hover;
+                    border-color: @color-default-hover;
+                    color: #333;
+                    opacity: 1;
+                }
+                &.layui-layer-btn0 {
+                    background: @color-primary;
+                    border-color: @color-primary;
+                    color: #fff;
+                    &:hover,
+                    &active {
+                        background: @color-primary-hover;
+                        border-color: @color-primary-hover;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .layui-layer-ico {
+            background: url("icon.png") no-repeat;
+        }
+        .layui-layer-setwin {
+            top: 13px;
+            .layui-layer-close1,
+            a {
+                opacity: .5;
+                &:hover {
+                    opacity: .8;
+                }
+            }
+            .layui-layer-close1 {
+                background-position: -2px -80px;
+            }
+            .layui-layer-close2 {
+                top: -13px;
+                right: -51px;
+                width: 36px;
+                height: 36px;
+                background-position: -41px -42px;
+                opacity: 1;
+            }
+            .layui-layer-max {
+                background-position: -77px -80px;
+            }
+            .layui-layer-min {
+                background: url("icon.png") no-repeat -26px -80px;
+                cite {
+                    display: none;
+                }
+            }
+            .layui-layer-maxmin {
+                background-position: -52px -79px;
+            }
+        }
+        &.layui-layer-msg {
+            min-width: 180px;
+        }
+        .layui-layer-load {
+            background-color: #fff;
+            background-image: url(loading-black.svg);
+            background-size: 50px;
+        }
+        &.layui-layer-loading {
+            border: none;
+            border-radius: @border-radius;
+            background: rgba(0, 0, 0, .5);
+            .layui-layer-content {
+                width: 80px;
+                height: 80px;
+                background: url(loading-white.svg) no-repeat center;
+                background-size: 55px;
+            }
+        }
+        &.layui-layer-tab {
+            .layui-layer-title {
+                padding: 0;
+                span {
+                    border-right: transparent solid 1px;
+                    border-left: transparent solid 1px;
+                    &.layui-layer-tabnow {
+                        border-right-color: @border-color;
+                        border-left-color: @border-color;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+@import "variable.less";
+
+.iframe-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    height: @iframe-header-height;
+}
+
+.iframe-container {
+    position: absolute;
+    top: @iframe-header-height;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    .iframe-sidebar {
+        position: fixed;
+        top: @iframe-header-height;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        width: @iframe-sidebar-width;
+        background: #263238;
+    }
+    .iframe-sidebar-hidden {
+        left: -@iframe-sidebar-width;
+        & + .iframe-main {
+            left: 0;
+        }
+    }
+    .iframe-main {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: @iframe-sidebar-width;
+        overflow: auto;
+        background: #f1f4f5;
+        iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+        }
+        .iframe-main-sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            width: @iframe-mian-sidebar-width;
+            & + .iframe-main-section {
+                left: @iframe-mian-sidebar-width;
+            }
+        }
+        .iframe-main-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: auto;
+        }
+    }
+}

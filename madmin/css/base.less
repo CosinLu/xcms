@@ -1,0 +1,144 @@
+@import "variable.less";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: @font-family;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+i, em {
+    font-style: normal;
+}
+
+a {
+    text-decoration: none !important;
+    &.disabled {
+        color: lighten(@color, 50);
+        cursor: not-allowed;
+    }
+}
+
+/*内边距开始*/
+.pa {
+    padding: @spacing;
+}
+
+.pn {
+    padding: 0;
+}
+
+.pl {
+    padding-left: @spacing;
+}
+
+.pr {
+    padding-right: @spacing;
+}
+
+.pt {
+    padding-top: @spacing;
+}
+
+.pb {
+    padding-bottom: @spacing;
+}
+
+.ph {
+    padding-right: @spacing;
+    padding-left: @spacing;
+}
+
+.pv {
+    padding-top: @spacing;
+    padding-bottom: @spacing;
+}
+
+/*内边距结束*/
+
+/*外边距开始*/
+.ma {
+    margin: @spacing;
+}
+
+.mn {
+    margin: 0;
+}
+
+.ml {
+    margin-left: @spacing;
+}
+
+.mr {
+    margin-right: @spacing;
+}
+
+.mt {
+    margin-top: @spacing;
+}
+
+.mb {
+    margin-bottom: @spacing;
+}
+
+.mh {
+    margin-right: @spacing;
+    margin-left: @spacing;
+}
+
+.mv {
+    margin-top: @spacing;
+    margin-bottom: @spacing;
+}
+
+.mvn {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*外边距结束*/
+
+/*边框开始*/
+.ba {
+    border: #ddd solid 1px;
+}
+
+.bn {
+    border: 0;
+}
+
+.bl {
+    border-left: @border-color solid 1px;
+}
+
+.br {
+    border-right: @border-color solid 1px;
+}
+
+.bt {
+    border-top: @border-color solid 1px;
+}
+
+.bb {
+    border-bottom: @border-color solid 1px;
+}
+
+.bh {
+    border-right: @border-color solid 1px;
+    border-left: @border-color solid 1px;
+}
+
+.bv {
+    border-top: @border-color solid 1px;
+    border-bottom: @border-color solid 1px;
+}
+
+/*边框结束*/
