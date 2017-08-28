@@ -761,24 +761,32 @@ div.nodata-hook {
                                 }
                                 .control {
                                     position: absolute;
-                                    left: 29px;
-                                    top: 50px;
+                                    width: 70px;
+                                    height: 30px;
+                                    left: 0;
+                                    right: 0;
+                                    top: 0;
+                                    bottom: 0;
+                                    margin:auto;
                                     opacity: 0;
                                     transition: @transition;
                                     a {
                                         width: 30px;
                                         height: 30px;
-                                        display: inline-block;
+                                        display: block;
                                         background: rgba(255, 255, 255, .8);
                                         border-radius: 100%;
                                         line-height: 30px;
                                         text-align: center;
                                         color: #333;
-                                        margin: 0 3px;
+                                        float: left;
                                         transition: @transition;
                                         &:hover {
                                             background: rgba(255, 255, 255, 1);
                                             transition: @transition;
+                                        }
+                                        &+a{
+                                            margin-left:10px;
                                         }
                                     }
                                 }
