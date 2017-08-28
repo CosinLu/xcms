@@ -11,7 +11,7 @@
 <body>
 
 <div class="panel select_lib_panel">
-    <div class="panel-body select_lib_body">
+    <div class="panel-body select_lib_panel_body">
         <div class="folder_tree">
 
         </div>
@@ -21,7 +21,7 @@
                     <a href="<?=site_url('/upload/upload_image')?>" class="btn btn-primary btn-sm"><i
                             class="fa fa-upload"></i>&nbsp;点击上传</a>
                 </div>
-                <div class="select_info select-info-mhook"></div>
+                <div class="select_info select-info-hook"></div>
                 <div class="search">
                     <div class="input-group">
                         <input type="text" class="form-control input-sm" placeholder="按文件名称搜索">
@@ -31,9 +31,9 @@
                     </div>
                 </div>
             </div>
-            <div class="select_lib_list nano nano-mhook">
+            <div class="select_lib_list nano nano-hook">
                 <div class="nano-content">
-                    <div class="row list-mhook">
+                    <div class="row list-hook">
                         <div class="col-xs-3">
                             <div class="item">
                                 <label>
@@ -41,6 +41,10 @@
                                     <ins></ins>
                                 </label>
                                 <div class="thumb">
+                                    <div class="control">
+                                        <a href="javascript:;"><i class="fa fa-eye"></i></a>
+                                        <a href="javascript:;"><i class="fa fa-trash"></i></a>
+                                    </div>
                                     <img src="https://img20.360buyimg.com/da/jfs/t8236/100/3821266/143643/30075419/599e9788Naaf1a6d9.jpg"
                                          alt="">
                                 </div>
@@ -54,6 +58,10 @@
                                     <ins></ins>
                                 </label>
                                 <div class="thumb">
+                                    <div class="control">
+                                        <a href="javascript:;"><i class="fa fa-eye"></i></a>
+                                        <a href="javascript:;"><i class="fa fa-trash"></i></a>
+                                    </div>
                                     <img src="https://img20.360buyimg.com/da/jfs/t8236/100/3821266/143643/30075419/599e9788Naaf1a6d9.jpg"
                                          alt="">
                                 </div>
@@ -65,9 +73,9 @@
             </div>
         </div>
     </div>
-    <div class="panel-footer select_lib_footer">
+    <div class="panel-footer select_lib_panel_footer">
         <button type="button" class="btn btn-primary">保存</button>
-        <button type="button" class="btn btn-default">取消</button>
+        <button type="button" class="btn btn-default cancel-hook">取消</button>
     </div>
 </div>
 
@@ -75,12 +83,18 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['layer'], function () {
-        //重置弹窗标题
+        //获取窗口索引
+        var index = parent.layer.getFrameIndex(window.name);
+        //关闭窗口
+        $('.cancel-hook').on('click', function () {
+            parent.layer.close(index);
+        });
+        //设置弹窗标题
         parent.layer.title('选择图片');
         //更新选中信息
-        $('.list-mhook').on('click', 'input:checkbox', function () {
-            var checkedNum = $('.list-mhook').find('input:checkbox:checked').length;
-            $('.select-info-mhook').html('已选中了' + checkedNum + '张图片');
+        $('.list-hook').on('click', 'input:checkbox', function () {
+            var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
+            $('.select-info-hook').html('已选中了' + checkedNum + '张图片');
         });
     });
 </script>

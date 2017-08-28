@@ -2,7 +2,7 @@
  * Created by MengXianghan on 2016/8/10.
  */
 require(['jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort', 'unit'], function ($, uploadifive, jqthumb, holder, dragsort, unit) {
-    var uploadifive = '.uploadifive-mhook';
+    var uploadifive = '.uploadifive-hook';
     var $_uploadifive = $(uploadifive);
     var fileName = '';
 
@@ -81,7 +81,7 @@ require(['jquery', 'uploadifive_mcms', 'jqthumb', 'holder', 'dragsort', 'unit'],
     });
 
     //在线浏览
-    var uploadonline = '.upload-online-mhook';
+    var uploadonline = '.upload-online-hook';
     var $_uploadonline = $(uploadonline);
     $_uploadonline.on('click', function () {
         var multi = $(this).data('multi');

@@ -87,9 +87,9 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 
 /*自定义*/
 defined('M_TITLE') OR define('M_TITLE', 'MCMS');
-defined('M_LOADING') OR define('M_LOADING', '<div class="panel-body loading-mhook">数据加载中...</div>');
-defined('M_NODATA') OR define('M_NODATA', '<div class="panel-body nodata-mhook">暂无数据</div>');
-defined('M_ERR') OR define('M_ERR', '<div class="panel-body error-mhook">数据加载失败</div>');
+defined('M_LOADING') OR define('M_LOADING', '<div class="panel-body loading-hook">数据加载中...</div>');
+defined('M_NODATA') OR define('M_NODATA', '<div class="panel-body nodata-hook">暂无数据</div>');
+defined('M_ERR') OR define('M_ERR', '<div class="panel-body error-hook">数据加载失败</div>');
 defined('M_PERPAGE') OR define('M_PERPAGE', 15);
 defined('M_INSERT') OR define('M_INSERT', 'insert');
 defined('M_DEL') OR define('M_DEL', 'del');

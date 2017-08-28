@@ -26,7 +26,7 @@
                             <?=$insert_btn?>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover table_list list-mhook">
+                            <table class="table table-hover table_list list-hook">
                                 <thead>
                                 <tr>
                                     <th width="5%">NO.</th>
@@ -87,24 +87,24 @@
                 dataType: 'json',
                 data: data,
                 beforeSend: function () {
-                    $('.nodata-mhook,.loading-mhook').remove();
+                    $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-mhook').after('<?=M_LOADING?>');
+                    $('.list-hook').after('<?=M_LOADING?>');
                 },
                 success: function (data) {
-                    $('.nodata-mhook,.loading-mhook').remove();
+                    $('.nodata-hook,.loading-hook').remove();
                     if (data.list.list.length) {
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-mhook').after('<?=M_NODATA?>');
+                        $('.list-hook').after('<?=M_NODATA?>');
                     }
                 }
             })
         }
 
         //删除
-        $(document).on('click', '.del-col-mhook', function () {
+        $(document).on('click', '.del-col-hook', function () {
             var id = $(this).data('id');
             layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
                 $.post('<?=$del_url?>', {id: id}, function (data) {

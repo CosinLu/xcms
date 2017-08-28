@@ -18,8 +18,8 @@ define(['jquery'], function ($) {
         //异步提交表单
         ajaxForm: function () {
             require(['form'], function () {
-                if ($('.ajax-form-mhook').length > 0) {
-                    $('.ajax-form-mhook').ajaxForm({
+                if ($('.ajax-form-hook').length > 0) {
+                    $('.ajax-form-hook').ajaxForm({
                         type: 'post',
                         dataType: 'json',
                         success: function (responseData, $form) {
@@ -62,7 +62,7 @@ define(['jquery'], function ($) {
 
         //批量删除
         batchDel: function () {
-            $(document).on('click', '.batch-del-mhook', function () {
+            $(document).on('click', '.batch-del-hook', function () {
                 var tbname = $(this).data('tb');
                 var url = $(this).data('url');
                 var primary = $(this).data('primary');
@@ -87,7 +87,7 @@ define(['jquery'], function ($) {
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                                    $('.search-btn-mhook').click();
+                                    $('.search-btn-hook').click();
                                     $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
                                 });
                             } else {
@@ -101,7 +101,7 @@ define(['jquery'], function ($) {
 
         //删除
         del: function () {
-            $(document).on('click', '.del-mhook', function () {
+            $(document).on('click', '.del-hook', function () {
                 var tbname = $(this).data('tb');
                 var id = $(this).data('id');
                 var url = $(this).data('url');
@@ -118,7 +118,7 @@ define(['jquery'], function ($) {
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                                    $('.search-btn-mhook').click();
+                                    $('.search-btn-hook').click();
                                 });
                             } else {
                                 layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
@@ -133,7 +133,7 @@ define(['jquery'], function ($) {
         enterSearch: function () {
             $(document).keydown(function (e) {
                 if (e.which == 13) {
-                    $('.search-btn-mhook').click();
+                    $('.search-btn-hook').click();
                 }
             });
         },
@@ -169,7 +169,7 @@ define(['jquery'], function ($) {
         //侧边栏
         sidebarTree: function () {
             require(['mtree'], function () {
-                $('.mtree-sidebar-mhook').mtree({
+                $('.mtree-sidebar-hook').mtree({
                     html: true,
                     display: 2,
                     indent: 0,
@@ -183,7 +183,7 @@ define(['jquery'], function ($) {
         //内容侧边栏
         mainSidebarTree: function () {
             require(['mtree'], function () {
-                $('.mtree-main-sidebar-mhook').mtree({
+                $('.mtree-main-sidebar-hook').mtree({
                     html: true,
                     display: 2,
                     indent: 0,
@@ -196,7 +196,7 @@ define(['jquery'], function ($) {
 
         //返回上一级
         back: function () {
-            $('.back-mhook').on('click', function () {
+            $('.back-hook').on('click', function () {
                 history.back();
             })
         },
@@ -205,7 +205,7 @@ define(['jquery'], function ($) {
         scroller: function (options) {
             require(['scroller'], function (nanoScroller) {
                 var defaults = {
-                    dom: '.nano-mhook'
+                    dom: '.nano-hook'
                 };
                 var ops = $.extend({}, defaults, options);
                 $(ops.dom).nanoScroller();
@@ -226,7 +226,7 @@ define(['jquery'], function ($) {
         //通用日期插件
         date: function () {
             require(['datetimepicker'], function () {
-                $('input.datetimepicker-mhook').datetimepicker({
+                $('input.datetimepicker-hook').datetimepicker({
                     language: 'zh-CN',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     pickerPosition: 'top-right',
@@ -241,7 +241,7 @@ define(['jquery'], function ($) {
             var _this = this;
             require(['ueditor'], function (UE) {
                 //实例化编辑器
-                $('.editor-mhook').each(function () {
+                $('.editor-hook').each(function () {
                     var id = $(this).attr('id');
                     var ue = UE.getEditor(id);
                     //编辑器准备就绪后会触发该事件
@@ -283,12 +283,12 @@ define(['jquery'], function ($) {
             //全选当前分类下的所有复选框
             $(document).on('click', 'input[name="checkAll"]', function () {
                 var status = $(this).is(':checked');
-                var checkbox = $(this).closest('.li-mhook').next('#list').find('input:checkbox');//全部复选框
+                var checkbox = $(this).closest('.li-hook').next('#list').find('input:checkbox');//全部复选框
                 checkbox.prop('checked', status);
             });
 
             $(document).on("click change", 'input[name^="id"]', function () {
-                var prevAuthCheckedLen = $(this).closest('ul').prev('.li-mhook').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
+                var prevAuthCheckedLen = $(this).closest('ul').prev('.li-hook').find('input[name^="auth"]:checked').length;//上级全选复选框选中数
                 //关联上级
                 if (prevAuthCheckedLen == 0) {
                     _this._checkedPrev($(this));
@@ -304,8 +304,8 @@ define(['jquery'], function ($) {
                 var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
                 var status = $(this).is(':checked');//状态：true=选中，false=未选中
                 var prevCheckbox = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
-                var prevAuthCheckedLen = $(this).closest('ul').prev('.li-mhook').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
-                var nextAuthCheckedLen = $(this).closest('.li-mhook').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
+                var prevAuthCheckedLen = $(this).closest('ul').prev('.li-hook').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
+                var nextAuthCheckedLen = $(this).closest('.li-hook').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
                 if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
                     prevCheckbox.prop('checked', status);
                 } else {
@@ -325,12 +325,12 @@ define(['jquery'], function ($) {
         //关联下级
         _checkedNext: function (obj) {
             var status = obj.is(':checked');
-            obj.closest('.li-mhook').next('ul').find('input[type="checkbox"]').prop('checked', status);
+            obj.closest('.li-hook').next('ul').find('input[type="checkbox"]').prop('checked', status);
         },
         //关联上级
         _checkedPrev: function (obj) {
             var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('.li-mhook').find('input[type="checkbox"][name^="id"]');
+            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {
@@ -344,7 +344,7 @@ define(['jquery'], function ($) {
         //权限关联上级
         _authCheckedPrev: function (obj) {
             var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('.li-mhook').find('input[type="checkbox"][name^="id"]');
+            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {

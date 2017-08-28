@@ -21,7 +21,7 @@
                     <div class="panel-heading">
                         <div class="panel-title"><?=$section_name.back()?></div>
                     </div>
-                    <form class="form-horizontal ajax-form-mhook" action="<?=$save_url?>" method="post">
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
                             <input type="hidden" name="cid" value="<?=$item['id']?>">
                             <div class="form-group">
@@ -37,9 +37,9 @@
                                     <button type="button"
                                             data-multi="false"
                                             name="image"
-                                            class="btn btn-info upload-online-mhook">在线浏览
+                                            class="btn btn-info upload-online-hook">在线浏览
                                     </button>
-                                    <input class="hide uploadifive-mhook" data-multi="false" name="image"
+                                    <input class="hide uploadifive-hook" data-multi="false" name="image"
                                            type="file">
                                     <div id="uploadifive-image-queue" class="row uploadifive-queue">
                                         <?=$image?>

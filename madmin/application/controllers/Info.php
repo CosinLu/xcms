@@ -30,9 +30,9 @@ class Info extends M_Controller
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category->children($info_col_res, 0, TRUE);
         $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('info_col/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
-        $str .= '<div class="nano iframe_main_sidebar_nano nano-mhook">';
+        $str .= '<div class="nano iframe_main_sidebar_nano nano-hook">';
         $str .= '<div class="ph mt nano-content">';
-        $str .= '<div class="mtree mtree-main-sidebar-mhook">';
+        $str .= '<div class="mtree mtree-main-sidebar-hook">';
         $start_level = -1;
         $parent_level = 0;
         $data['main_section_name'] = '';
@@ -52,13 +52,13 @@ class Info extends M_Controller
             }
             $str .= '<li>';
             if ($val['sys_tpl'] == '') {
-                $str .= '<a class="' . $current . ' mtree_link mtree-link-mhook" href="javascript:;">';
+                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;">';
             } else {
-                $str .= '<a class="' . $current . ' mtree_link mtree-link-mhook" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">';
+                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">';
             }
-            $str .= '<div class="mtree_indent mtree-indent-mhook" style="width:' . $indent . '"></div>';
-            $str .= '<div class="mtree_btn mtree-btn-mhook"></div>';
-            $str .= '<div class="mtree_name mtree-name-mhook">' . $val['name'] . '</div>';
+            $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
+            $str .= '<div class="mtree_btn mtree-btn-hook"></div>';
+            $str .= '<div class="mtree_name mtree-name-hook">' . $val['name'] . '</div>';
             $str .= '</a>';
             $parent_level = $level;
             if ($val['id'] == $this->cid) {

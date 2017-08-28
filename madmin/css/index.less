@@ -2,8 +2,8 @@
 @import "../plugin/mtree/css/mtree.less";
 
 /*加载，暂无数据*/
-div.loading-mhook,
-div.nodata-mhook {
+div.loading-hook,
+div.nodata-hook {
     padding: 20px 0 30px !important;
     text-align: center;
     border-bottom: @table-border-color solid 1px;
@@ -639,7 +639,7 @@ div.nodata-mhook {
     flex-direction: column;
     overflow: hidden;
     margin-bottom: 0 !important;
-    .select_lib_body {
+    .select_lib_panel_body {
         width: 100%;
         flex: 1;
         display: flex;
@@ -713,10 +713,12 @@ div.nodata-mhook {
                                 position: absolute;
                                 top: -1px;
                                 right: -1px;
+                                z-index: 100;
                                 ins {
                                     width: 18px;
                                     height: 18px;
-                                    display: none;
+                                    opacity: 0;
+                                    transition: @transition;
                                     &:before {
                                         width: 18px;
                                         height: 18px;
@@ -731,7 +733,7 @@ div.nodata-mhook {
                                 input[type="checkbox"] {
                                     &:checked {
                                         + ins {
-                                            display: inline-block;
+                                            opacity: 1;
                                         }
                                     }
                                 }
@@ -739,15 +741,46 @@ div.nodata-mhook {
                             &:hover {
                                 label {
                                     ins {
-                                        display: inline-block;
+                                        opacity: 1;
+                                        transition: @transition;
+                                    }
+                                }
+                                .thumb {
+                                    .control {
+                                        opacity: 1;
+                                        transition: @transition;
                                     }
                                 }
                             }
                             .thumb {
                                 width: 100%;
                                 height: 130px;
+                                position: relative;
                                 img {
                                     max-width: 100%;
+                                }
+                                .control {
+                                    position: absolute;
+                                    left: 29px;
+                                    top: 50px;
+                                    opacity: 0;
+                                    transition: @transition;
+                                    a {
+                                        width: 30px;
+                                        height: 30px;
+                                        display: inline-block;
+                                        background: rgba(255, 255, 255, .8);
+                                        border-radius: 100%;
+                                        line-height: 30px;
+                                        text-align: center;
+                                        color: #333;
+                                        margin: 0 3px;
+                                        transition: @transition;
+                                        &:hover {
+                                            background: rgba(255, 255, 255, 1);
+                                            transition: @transition;
+                                        }
+                                    }
                                 }
                             }
                             .name {
@@ -765,7 +798,7 @@ div.nodata-mhook {
             }
         }
     }
-    .select_lib_footer {
+    .select_lib_panel_footer {
         width: 100%;
         text-align: right;
         background: #fff;
@@ -786,7 +819,7 @@ div.nodata-mhook {
     bottom: 0;
     overflow: hidden;
     margin-bottom: 0 !important;
-    .upload_body {
+    .upload_panel_body {
         width: 100%;
         position: absolute;
         top: 0;
@@ -818,14 +851,39 @@ div.nodata-mhook {
                 float: left;
                 margin-right: 10px;
                 margin-bottom: 10px;
+                position: relative;
                 img {
                     width: 100%;
                     height: 100%;
                 }
+                &:hover {
+                    .control {
+                        opacity: 1;
+                        transition: @transition;
+                    }
+                }
+                .control {
+                    position: absolute;
+                    left: 2px;
+                    right: 2px;
+                    top: 2px;
+                    bottom: 2px;
+                    background: rgba(0, 0, 0, .5);
+                    text-align: center;
+                    padding-top: 24px;
+                    opacity: 0;
+                    transition: @transition;
+                    a {
+                        width: 20px;
+                        height: 20px;
+                        display: inline-block;
+                        color: #e7e5e6;
+                    }
+                }
             }
         }
     }
-    .upload_footer {
+    .upload_panel_footer {
         width: 100%;
         text-align: right;
         background: #fff;

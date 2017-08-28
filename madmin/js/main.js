@@ -40,7 +40,8 @@ require.config({
             deps: ['jquery'
                 , 'bootstrap'
                 , 'plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min'
-                , 'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css']
+                , 'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
+                , 'css!plugin/../css/datetimepicker.css']
         },
         'dragsort': {
             deps: ['jquery']
@@ -52,7 +53,8 @@ require.config({
         'iconpicker': {
             deps: ['jquery'
                 , 'bootstrap'
-                , 'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css']
+                , 'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css'
+                , 'css!plugin/../css/iconpicker.css']
         },
         'layer': {
             deps: ['jquery']

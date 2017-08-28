@@ -31,7 +31,7 @@
                             <?=$search_btn?>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover table_list list-mhook">
+                            <table class="table table-hover table_list list-hook">
                                 <thead>
                                 <tr>
                                     <th width="5%">
@@ -95,10 +95,10 @@
             click: function (e) {
                 get_list($(this).data('page'));
             }
-        }, '.pagination-mhook li[class!="active"] a');
+        }, '.pagination-hook li[class!="active"] a');
 
         //搜索
-        $('.search-btn-mhook').click(function () {
+        $('.search-btn-hook').click(function () {
             get_list();
         });
 
@@ -115,17 +115,17 @@
                 dataType: 'json',
                 data: data,
                 beforeSend: function () {
-                    $('.nodata-mhook,.loading-mhook').remove();
+                    $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-mhook').after('<?=M_LOADING?>');
+                    $('.list-hook').after('<?=M_LOADING?>');
                 },
                 success: function (data) {
-                    $('.nodata-mhook,.loading-mhook').remove();
+                    $('.nodata-hook,.loading-hook').remove();
                     if (data.list.list.length) {
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-mhook').after('<?=M_NODATA?>');
+                        $('.list-hook').after('<?=M_NODATA?>');
                     }
                 }
             })

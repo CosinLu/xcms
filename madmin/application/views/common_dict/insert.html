@@ -21,14 +21,14 @@
                     <div class="panel-heading">
                         <div class="panel-title"><?=$section_name.back()?></div>
                     </div>
-                    <form class="form-horizontal ajax-form-mhook" action="<?=$save_url?>" method="post">
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
                             <input type="hidden" name="pid" value="<?=$pid?>">
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <div class="input-group colorpicker-mhook">
-                                        <input type="text" name="name" class="form-control name-mhook">
+                                    <div class="input-group colorpicker-hook">
+                                        <input type="text" name="name" class="form-control name-hook">
                                         <div class="input-group-addon"><i title="颜色选择器"></i></div>
                                         <input type="hidden" name="color">
                                     </div>
@@ -73,7 +73,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['colorpicker'], function () {
-        $('.colorpicker-mhook').colorpicker({
+        $('.colorpicker-hook').colorpicker({
             input: 'input[name="color"]',
             color: "#333",
             colorSelectors: {
