@@ -4,8 +4,9 @@
 /*加载，暂无数据*/
 div.loading-mhook,
 div.nodata-mhook {
-    padding: @spacing*4 0;
+    padding: 20px 0 30px !important;
     text-align: center;
+    border-bottom: @table-border-color solid 1px;
 }
 
 /*滚动条*/
@@ -18,6 +19,54 @@ div.nodata-mhook {
     position: relative;
     min-height: 20px;
     background: rgba(0, 0, 0, .3);
+}
+
+/*div模拟table*/
+.div_table {
+    > .div_thead {
+        > .div_tr {
+            display: flex;
+            .div_th {
+                padding: 16px 8px;
+                background: @thead-background-color;
+                font-weight: 700;
+                &.flex {
+                    flex: 1;
+                }
+                label {
+                    margin-bottom: 0;
+                }
+                &.checkbox {
+                    margin: 0;
+                    padding-top: 19px;
+                    padding-bottom: 13px;
+                }
+            }
+        }
+    }
+    > .div_tbody {
+        .div_tr {
+            display: flex;
+            &:hover {
+                background: @background-color;
+            }
+            .div_td {
+                padding: 10px 8px;
+                border-bottom: @table-border-color solid 1px;
+                &.flex {
+                    flex: 1;
+                }
+                label {
+                    margin-bottom: 0;
+                }
+                &.checkbox {
+                    margin: 0;
+                    padding-top: 13px;
+                    padding-bottom: 7px;
+                }
+            }
+        }
+    }
 }
 
 /*登录开始*/
@@ -335,6 +384,32 @@ div.nodata-mhook {
 }
 
 .table_list {
+    > thead {
+        background: @thead-background-color;
+        > tr {
+            > th {
+                border-bottom-width: 0;
+                padding-top: 16px;
+                padding-bottom: 16px;
+                > label {
+                    margin-bottom: 2px !important;
+                }
+            }
+        }
+    }
+    > tbody {
+        > tr {
+            > td {
+                border-top: 0;
+                border-bottom: @table-border-color solid 1px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                > label {
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
     a + a {
         display: inline-block;
         margin-left: 5px;
@@ -349,59 +424,14 @@ div.nodata-mhook {
 /*内容区结束*/
 
 /*权限分配开始*/
-.role_auth_list {
-    border: @border-color solid 1px;
-    ul {
-        margin-bottom: 0;
-    }
-    li {
-        > div {
-            height: 40px;
-            border-top: 1px solid @border-color;
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.075);
-            }
-            > div {
-                padding: 10px 8px;
-            }
+.div_table {
+    &.auth_list {
+        .control {
+            width: 5%;
         }
-        &:after {
-            display: table;
-            clear: both;
-            content: '';
+        .opera {
+            width: 25%;
         }
-    }
-    > ul {
-        > li {
-            &:first-child {
-                > div {
-                    border-top: none;
-                }
-            }
-        }
-    }
-    .checkbox {
-        margin: 0;
-    }
-    .auth_control {
-        width: 40px;
-        height: 100%;
-        float: left;
-        border-right: @border-color solid 1px;
-        label {
-            margin-bottom: 0;
-            display: flex;
-        }
-    }
-    .auth_type {
-        width: 300px;
-        height: 100%;
-        float: right;
-        border-left: @border-color solid 1px;
-    }
-    .auth_name {
-        display: block;
-        margin-left: 48px;
     }
 }
 
@@ -582,7 +612,7 @@ div.nodata-mhook {
 /*首页结束*/
 
 /*上传*/
-.upload_btn {
+.upload_image {
     width: 75px;
     height: 75px;
     border: @border-color dashed 1px;
@@ -592,8 +622,221 @@ div.nodata-mhook {
     text-align: center;
     line-height: 68px;
     color: @color-muted;
+    border-radius: @border-radius;
     &:hover {
         color: @color-primary;
         border-color: @color-primary;
     }
 }
+
+/*选择库*/
+.select_lib_panel {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 0 !important;
+    .select_lib_body {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        .folder_tree {
+            width: 160px;
+            height: 100%;
+            background: @background-color;
+            border-radius: @border-radius;
+        }
+        .select_lib_container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            height: 100%;
+            .select_lib_toolbar {
+                height: 30px;
+                box-sizing: content-box;
+                padding: 10px 0 15px 0;
+                .upload {
+                    width: 100px;
+                    float: left;
+                }
+                .select_info {
+                    float: left;
+                    line-height: 30px;
+                }
+                .search {
+                    width: 200px;
+                    float: right;
+                    .form-control {
+                        border-radius: @border-radius 0 0 @border-radius;
+                        transition: none;
+                        border-right: 0;
+                        &:focus {
+                            + .input-group-btn {
+                                .btn {
+                                    border-color: @color-primary;
+                                }
+                            }
+                        }
+                    }
+                    .input-group-btn {
+                        .btn {
+                            border-radius: 0 @border-radius @border-radius 0 !important;
+                            border-color: @border-color;
+                            border-left: 0;
+                            background: #fff;
+                            color: @color-muted;
+                            &:hover {
+                                color: @color-primary;
+                            }
+                        }
+                    }
+                }
+            }
+            .select_lib_list {
+                flex: 1;
+                width: 100%;
+                .row {
+                    margin: 0 -7.5px;
+                    .col-xs-3 {
+                        padding: 0 7.5px 15px;
+                        .item {
+                            width: 100%;
+                            float: left;
+                            border: @border-color solid 1px;
+                            border-radius: @border-radius;
+                            position: relative;
+                            label {
+                                position: absolute;
+                                top: -1px;
+                                right: -1px;
+                                ins {
+                                    width: 18px;
+                                    height: 18px;
+                                    display: none;
+                                    &:before {
+                                        width: 18px;
+                                        height: 18px;
+                                        border: @color-primary solid 1px;
+                                        border-radius: 0;
+                                    }
+                                    &:after {
+                                        top: 5px;
+                                        left: 4px;
+                                    }
+                                }
+                                input[type="checkbox"] {
+                                    &:checked {
+                                        + ins {
+                                            display: inline-block;
+                                        }
+                                    }
+                                }
+                            }
+                            &:hover {
+                                label {
+                                    ins {
+                                        display: inline-block;
+                                    }
+                                }
+                            }
+                            .thumb {
+                                width: 100%;
+                                height: 130px;
+                                img {
+                                    max-width: 100%;
+                                }
+                            }
+                            .name {
+                                height: 35px;
+                                padding: 0 6px;
+                                line-height: 35px;
+                                font-size: 12px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .select_lib_footer {
+        width: 100%;
+        text-align: right;
+        background: #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 0;
+        .btn {
+            margin: 0 5px;
+        }
+    }
+}
+
+/*上传*/
+.upload_panel {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    margin-bottom: 0 !important;
+    .upload_body {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 55px;
+        overflow-y: auto;
+        .col-xs-3 {
+            text-align: right;
+            padding-top: 6px;
+        }
+        .network_image {
+            padding-top: 20px;
+            .extract {
+                margin-bottom: 10px;
+                .form-control {
+                    width: 350px;
+                }
+            }
+            .image_list {
+                padding-top: 20px;
+            }
+        }
+        .image_list {
+            .item {
+                width: 75px;
+                height: 75px;
+                border: @border-color solid 1px;
+                border-radius: @border-radius;
+                padding: 2px;
+                float: left;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .upload_footer {
+        width: 100%;
+        text-align: right;
+        background: #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 0;
+        position: fixed;
+        bottom: 0;
+        .btn {
+            margin: 0 5px;
+        }
+    }
+}
+

@@ -3,15 +3,207 @@
  */
 define(['jquery'], function ($) {
     return {
+        //layer配置
+        layerConfig: function () {
+            require(['layer'], function () {
+                layer.config({
+                    path: 'plugin/layer/',
+                    extend: 'bootcss/style.css',
+                    skin: 'layer-ext-bootcss',
+                    shade: 0.75,
+                    shadeClose: true
+                });
+            })
+        },
+        //异步提交表单
+        ajaxForm: function () {
+            require(['form'], function () {
+                if ($('.ajax-form-mhook').length > 0) {
+                    $('.ajax-form-mhook').ajaxForm({
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (responseData, $form) {
+                            //提示
+                            var msg;
+                            if (responseData.msg) {
+                                msg = responseData.msg;
+                            } else {
+                                switch (responseData.icon) {
+                                    case 1:
+                                        msg = '操作成功！';
+                                        break;
+                                    case 2:
+                                        msg = '操作失败！';
+                                        break;
+                                    default:
+                                        msg = '提示！！！';
+                                        break;
+                                }
+                            }
+
+                            //icon
+                            var icon = -1;
+                            if (responseData.icon) {
+                                icon = responseData.icon;
+                            }
+
+                            //停留时间
+                            var time = (responseData.time) ? responseData.time : 1000;
+                            layer.msg(msg, {icon: icon, time: time, shade: 0.75, shadeClose: true}, function () {
+                                if (responseData.url) {
+                                    location.href = responseData.url;
+                                }
+                            });
+                        }
+                    });
+                }
+            })
+        },
+
+        //批量删除
+        batchDel: function () {
+            $(document).on('click', '.batch-del-mhook', function () {
+                var tbname = $(this).data('tb');
+                var url = $(this).data('url');
+                var primary = $(this).data('primary');
+                var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
+                var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
+                var id = '';
+                //遍历已选中checkbox并获得val
+                checkbox.each(function () {
+                    id += $(this).val() + ',';
+                });
+                id = id.substring(0, id.length - 1);
+                //没有选中项
+                if (id.length == 0) {
+                    layer.msg('没有数据！', {icon: 4, shade: 0.75, shadeClose: true});
+                    return;
+                }
+                layer.confirm('删除数据？', {icon: 3, title: '批量删除'}, function () {
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: {tbname: tbname, id: id, primary: primary},
+                        success: function (data) {
+                            if (parseInt(data) > 0) {
+                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
+                                    $('.search-btn-mhook').click();
+                                    $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
+                                });
+                            } else {
+                                layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                            }
+                        }
+                    });
+                });
+            });
+        },
+
+        //删除
+        del: function () {
+            $(document).on('click', '.del-mhook', function () {
+                var tbname = $(this).data('tb');
+                var id = $(this).data('id');
+                var url = $(this).data('url');
+                var primary = $(this).data('primary');
+                if (tbname == '' || id == '' || url == '') {
+                    layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                    return;
+                }
+                layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: {tbname: tbname, id: id, primary: primary},
+                        success: function (data) {
+                            if (parseInt(data) > 0) {
+                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
+                                    $('.search-btn-mhook').click();
+                                });
+                            } else {
+                                layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                            }
+                        }
+                    });
+                });
+            });
+        },
+
+        //回车搜索
+        enterSearch: function () {
+            $(document).keydown(function (e) {
+                if (e.which == 13) {
+                    $('.search-btn-mhook').click();
+                }
+            });
+        },
+
+        //全选
+        checkAll: function () {
+            //全选
+            $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
+                var name = $(this).data('checkname');
+                var is_checked = $(this).is(':checked');
+                $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', is_checked);
+            });
+
+            //关联全选
+            $(document).on('click', 'input[type="checkbox"]', function () {
+                if ($(this).attr('name')) {
+                    var name = $(this).attr('name').replace(/\[.*\]/, '');
+                    var checkbox = $('input[type="checkbox"][data-checkname="' + name + '"]:enabled');
+                    if (checkbox.length == 0) {
+                        return;
+                    }
+                    var checkedLen = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
+                    var checkboxLen = $('input[type="checkbox"][name^="' + name + '"]:enabled').length;
+                    if (checkedLen < checkboxLen) {
+                        checkbox.prop('checked', false);
+                    } else {
+                        checkbox.prop('checked', true);
+                    }
+                }
+            });
+        },
+
+        //侧边栏
+        sidebarTree: function () {
+            require(['mtree'], function () {
+                $('.mtree-sidebar-mhook').mtree({
+                    html: true,
+                    display: 2,
+                    indent: 0,
+                    onClick: function (obj, url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        },
+
+        //内容侧边栏
+        mainSidebarTree: function () {
+            require(['mtree'], function () {
+                $('.mtree-main-sidebar-mhook').mtree({
+                    html: true,
+                    display: 2,
+                    indent: 0,
+                    onClick: function (obj, url) {
+                        window.location.href = url;
+                    }
+                });
+            })
+        },
+
         //返回上一级
         back: function () {
             $('.back-mhook').on('click', function () {
                 history.back();
             })
         },
+
         //滚动条美化
-        nanoscroller: function (options) {
-            require(['nanoscroller'], function (nanoScroller) {
+        scroller: function (options) {
+            require(['scroller'], function (nanoScroller) {
                 var defaults = {
                     dom: '.nano-mhook'
                 };
@@ -19,6 +211,7 @@ define(['jquery'], function ($) {
                 $(ops.dom).nanoScroller();
             })
         },
+
         //拖拽排序
         dragsort: function (id) {
             require(['dragsort'], function (dragsort) {
@@ -80,9 +273,17 @@ define(['jquery'], function ($) {
         //权限选择器
         authCheck: function () {
             var _this = this;
+
+            //全选
+            $(document).on('click', 'input[name="authCheckAll"]', function () {
+                var status = $(this).is(':checked');
+                $(this).closest('.div-thead-hook').next('.div-tbody-hook').find('input:checkbox').prop('checked', status);
+            });
+
+            //全选当前分类下的所有复选框
             $(document).on('click', 'input[name="checkAll"]', function () {
                 var status = $(this).is(':checked');
-                var checkbox = $(this).closest('.li-mhook').next('#list').find('input[type="checkbox"]');//全部复选框
+                var checkbox = $(this).closest('.li-mhook').next('#list').find('input:checkbox');//全部复选框
                 checkbox.prop('checked', status);
             });
 

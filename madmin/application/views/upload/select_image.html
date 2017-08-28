@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=M_TITLE?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="panel select_lib_panel">
+    <div class="panel-body select_lib_body">
+        <div class="folder_tree">
+
+        </div>
+        <div class="select_lib_container">
+            <div class="select_lib_toolbar">
+                <div class="upload">
+                    <a href="<?=site_url('/upload/upload_image')?>" class="btn btn-primary btn-sm"><i
+                            class="fa fa-upload"></i>&nbsp;点击上传</a>
+                </div>
+                <div class="select_info select-info-mhook"></div>
+                <div class="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" placeholder="按文件名称搜索">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="select_lib_list nano nano-mhook">
+                <div class="nano-content">
+                    <div class="row list-mhook">
+                        <div class="col-xs-3">
+                            <div class="item">
+                                <label>
+                                    <input type="checkbox">
+                                    <ins></ins>
+                                </label>
+                                <div class="thumb">
+                                    <img src="https://img20.360buyimg.com/da/jfs/t8236/100/3821266/143643/30075419/599e9788Naaf1a6d9.jpg"
+                                         alt="">
+                                </div>
+                                <div class="name">这里是图片的名称，长了也没事</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="item">
+                                <label>
+                                    <input type="checkbox">
+                                    <ins></ins>
+                                </label>
+                                <div class="thumb">
+                                    <img src="https://img20.360buyimg.com/da/jfs/t8236/100/3821266/143643/30075419/599e9788Naaf1a6d9.jpg"
+                                         alt="">
+                                </div>
+                                <div class="name">这里是图片的名称，长了也没事</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer select_lib_footer">
+        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default">取消</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['layer'], function () {
+        //重置弹窗标题
+        parent.layer.title('选择图片');
+        //更新选中信息
+        $('.list-mhook').on('click', 'input:checkbox', function () {
+            var checkedNum = $('.list-mhook').find('input:checkbox:checked').length;
+            $('.select-info-mhook').html('已选中了' + checkedNum + '张图片');
+        });
+    });
+</script>
+</body>
+</html>

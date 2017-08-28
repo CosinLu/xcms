@@ -118,20 +118,6 @@ kbd {
 }
 
 /*按钮*/
-/*.btn {
-    outline: none !important;
-    border-color: transparent !important;
-    border-radius: @border-radius;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-    &.btn-default {
-        background-color: @color-default;
-        &:hover {
-            background: darken(@color-default, 10%);
-        }
-    }
-}*/
 .btn {
     border-radius: @border-radius !important;
     outline: none !important;
@@ -312,6 +298,7 @@ fieldset[disabled] .btn-primary:hover {
     border-radius: @border-radius;
     box-shadow: none !important;
     resize: none;
+    border-color: @border-color;
     &:focus {
         border-color: @color-primary;
     }
@@ -417,7 +404,7 @@ label {
                 > li {
                     > a {
                         padding-left: @spacing;
-                        padding-left: @spacing;
+                        padding-right: @spacing;
                         margin-left: @spacing;
                         border: none;
                         background: transparent;

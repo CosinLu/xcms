@@ -23,7 +23,20 @@
                     </div>
                     <form action="<?=$save_url?>" class="ajax-form-mhook" method="post">
                         <div class="panel-body">
-                            <div class="role_auth_list" id="list"></div>
+                            <div class="div_table auth_list">
+                                <div class="div_thead div-thead-hook">
+                                    <div class="div_tr">
+                                        <div class="div_th control checkbox">
+                                            <label><input type="checkbox" name="authCheckAll">
+                                                <ins></ins>
+                                            </label>
+                                        </div>
+                                        <div class="div_th flex name">名称</div>
+                                        <div class="div_th opera">操作</div>
+                                    </div>
+                                </div>
+                                <div class="div_tbody div-tbody-hook" id="list"></div>
+                            </div>
                             <script type="text/html" id="list_tpl">
                                 {{#list}}
                             </script>
