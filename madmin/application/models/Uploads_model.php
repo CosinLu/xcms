@@ -43,8 +43,7 @@ class Uploads_model extends M_Model
         return $rows;
     }
 
-    //批量删除
-
+    //删除文件
     public function del_file($id = '')
     {
         $id_arr = explode(',', $id);
@@ -60,8 +59,7 @@ class Uploads_model extends M_Model
         }
     }
 
-    //删除文件
-
+    //批量删除
     public function batch_del($tbname = '', $id = '', $primary = '')
     {
         $id_arr = explode(',', $id);

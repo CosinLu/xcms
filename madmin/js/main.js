@@ -24,7 +24,8 @@ require.config({
         'form': 'plugin/jquery.form.min',
         'sortable': 'plugin/jquery.sortable',
         'template': 'plugin/template',
-        'scroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min'
+        'scroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min',
+        'upload1': 'plugin/upload/js/jquery.uploadifive'
     },
     shim: {
         'bootstrap': {
@@ -93,13 +94,17 @@ require.config({
         'scroller': {
             deps: ['jquery'
                 , 'css!plugin/nanoscroller/css/nanoscroller.css']
-        }
+        },
+        'upload1': ['jquery'
+            , 'jqthumb']
     }
 
 });
 
 require(['jquery', 'unit', 'bootstrap', 'layer'], function ($, unit) {
 
+    //配置layer
+    unit.layerConfig();
     //返回上一级
     unit.back();
 
@@ -109,9 +114,6 @@ require(['jquery', 'unit', 'bootstrap', 'layer'], function ($, unit) {
     //sidebar
     unit.sidebarTree();
     unit.mainSidebarTree();
-
-    //配置layer
-    unit.layerConfig();
 
     //全选
     unit.checkAll();

@@ -33,17 +33,17 @@
             </div>
             <div class="select_lib_list nano nano-hook">
                 <div class="nano-content">
-                    <div class="row list-hook">
+                    <div class="row image-list-hook">
                         <div class="col-xs-3">
-                            <div class="item">
+                            <div class="item item-hook">
                                 <label>
                                     <input type="checkbox">
                                     <ins></ins>
                                 </label>
                                 <div class="thumb">
                                     <div class="control">
-                                        <a href="javascript:;"><i class="fa fa-eye"></i></a>
-                                        <a href="javascript:;"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:;" class="preview-hook"><i class="fa fa-eye"></i></a>
+                                        <a href="javascript:;" class="destory-hook"><i class="fa fa-trash"></i></a>
                                     </div>
                                     <img src="https://img20.360buyimg.com/da/jfs/t8236/100/3821266/143643/30075419/599e9788Naaf1a6d9.jpg"
                                          alt="">
@@ -75,20 +75,19 @@
     </div>
     <div class="panel-footer select_lib_panel_footer">
         <button type="button" class="btn btn-primary">保存</button>
-        <button type="button" class="btn btn-default cancel-hook">取消</button>
+        <button type="button" class="btn btn-default close-hook">取消</button>
     </div>
 </div>
 
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['layer'], function () {
+    require(['unit', 'layer'], function (unit) {
         //获取窗口索引
         var index = parent.layer.getFrameIndex(window.name);
         //关闭窗口
-        $('.cancel-hook').on('click', function () {
-            parent.layer.close(index);
-        });
+        unit.layerClose(index);
+
         //设置弹窗标题
         parent.layer.title('选择图片');
         //更新选中信息

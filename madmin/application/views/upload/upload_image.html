@@ -20,10 +20,10 @@
                         <input type="text" class="form-control" placeholder="请输入图片链接地址">
                         <button type="button" class="btn btn-default">提取</button>
                     </div>
-                    <div class="image_list">
+                    <div class="image_list image-list-hook">
                         <div class="item">
                             <div class="control">
-                                <a href="javascript:;"><i class="fa fa-eye"></i></a>
+                                <a href="javascript:;" class="preview-hook"><i class="fa fa-eye"></i></a>
                                 <a href="javascript:;"><i class="fa fa-trash"></i></a>
                             </div>
                             <img src="https://img10.360buyimg.com/da/jfs/t7579/170/1715809874/321210/26ceefd1/599fca8cN6bb74820.jpg"
@@ -38,16 +38,9 @@
             <div class="row">
                 <div class="col-xs-3">本地图片</div>
                 <div class="col-xs-7">
-                    <div class="image_list">
-                        <div class="item">
-                            <div class="control">
-                                <a href="javascript:;"><i class="fa fa-eye"></i></a>
-                                <a href="javascript:;"><i class="fa fa-trash"></i></a>
-                            </div>
-                            <img src="https://img10.360buyimg.com/da/jfs/t7579/170/1715809874/321210/26ceefd1/599fca8cN6bb74820.jpg"
-                                 alt="">
-                        </div>
-                        <a href="##" class="upload_image">+</a>
+                    <div class="image_list image-list-hook">
+                        <div id="queue"></div>
+                        <input name="image_upload" class="image-upload-hook hidden" type="file" multiple="true">
                     </div>
                 </div>
             </div>
@@ -55,21 +48,78 @@
     </div>
     <div class="panel-footer upload_panel_footer">
         <a href="<?=site_url('upload/select_image')?>" class="btn btn-primary">确定</a>
-        <a href="javascript:;" class="btn btn-default cancel-hook">取消</a>
+        <a href="javascript:;" class="btn btn-default close-hook">取消</a>
     </div>
 </div>
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['layer'], function () {
+    require(['unit', 'upload1', 'jqthumb', 'layer'], function (unit, uploadifive, jqthumb) {
+
         //获取窗口索引
         var index = parent.layer.getFrameIndex(window.name);
-        //关闭窗口
-        $('.cancel-hook').on('click', function () {
-            parent.layer.close(index);
-        });
+
         //设置弹窗标题
         parent.layer.title('上传图片');
+
+        //关闭窗口
+        unit.layerClose(index);
+
+        //预览
+        unit.imagePreview();
+
+        //删除上传文件
+        unit.delUploadFile({
+            success: function (data) {
+                if (parseInt(data) > 0) {
+                    this.closest('.item-hook').remove();
+                } else {
+                    layer.msg('删除失败！', {icon: 2, shadeClose: true});
+                }
+            }
+        });
+
+        //实例化uploadifive
+        $('.image-upload-hook').uploadifive({
+            'buttonClass': 'upload_image',
+            'buttonText': '+',
+            'width': 75,
+            'height': 75,
+            'formData': {
+                'timestamp': new Date().getTime(),
+                'token': Math.random(),
+            },
+            'queueID': 'queue',
+            'uploadScript': '',
+            'itemTemplate': '<div class="uploadifive-queue-item item item-hook">\
+                                 <div class="progress">\
+                                    <div class="progress-bar progress-bar-success"></div>\
+                                 </div>\
+                                 <div class="control">\
+                                     <a href="javascript:;" class="preview-hook"><i class="fa fa-eye"></i></a>\
+                                     <a href="javascript:;" class="destory-hook"><i class="fa fa-trash"></i></a>\
+                                 </div>\
+                                 <img class="thumb-hook" src="" alt="">\
+                             </div>',
+            'fileSizeLimit': '2MB',
+            'fileType': ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'],
+            'uploadScript': '<?=site_url("upload/do_upload")?>',
+            'onUploadComplete': function (file, data) {
+                var _json = $.parseJSON(data);
+                var _item = file.queueItem;
+                //缩略图属性
+                _item.find('.thumb-hook').attr('src', _json.full_path)
+                        .attr('alt', _json.client_name)
+                        .jqthumb({width: '69', height: '69'});
+                //预览图片属性
+                _item.find('.preview-hook').attr('data-src', _json.full_path);
+                //删除上传图片属性
+                _item.find('.destory-hook').attr('data-id', _json.id);
+            },
+            'onQueueComplete': function (uploads) {
+            }
+        });
+
     });
 </script>
 </body>

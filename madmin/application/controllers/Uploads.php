@@ -21,7 +21,7 @@ class Uploads extends M_Controller
     {
         $url['get_list_url'] = site_url('uploads/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth->set_auth(M_INSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('uploads/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth(M_DEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del" href="javascript:;" data-tb="uploads" data-checkname="id" data-url = "' . site_url('uploads/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['del_btn'] = $this->sys_auth->set_auth(M_DEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="uploads" data-checkname="id" data-url = "' . site_url('uploads/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
         $url['search_btn'] = $this->sys_auth->set_auth(M_LOOK, $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('uploads/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);

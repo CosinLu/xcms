@@ -3,6 +3,48 @@
  */
 define(['jquery'], function ($) {
     return {
+        //删除上传文件
+        delUploadFile: function (options) {
+            var defaults = {
+                success: function () {
+                }
+            };
+            var ops = $.extend({}, defaults, options);
+            $(document).on('click', '.destory-hook', function () {
+                var _this = $(this);
+                var id = _this.data('id');
+                $.ajax({
+                    url: 'index.php/upload/del',
+                    type: 'post',
+                    data: {id: id},
+                    success: ops.success
+                });
+            });
+        },
+
+        //上传图片预览
+        imagePreview: function () {
+            require(['layer'], function () {
+                $(document).on('click', '.preview-hook', function () {
+                    var _src = $(this).data('src');
+                    parent.layer.open({
+                        title: false,
+                        area: '500px',
+                        btn: false,
+                        offset: '100px',
+                        content: '<img src="' + _src + '" style="max-width:100%">'
+                    });
+                });
+            });
+        },
+
+        //关闭弹窗
+        layerClose: function (index) {
+            $('.close-hook').on('click', function () {
+                parent.layer.close(index);
+            });
+        },
+
         //layer配置
         layerConfig: function () {
             require(['layer'], function () {
@@ -10,11 +52,12 @@ define(['jquery'], function ($) {
                     path: 'plugin/layer/',
                     extend: 'bootcss/style.css',
                     skin: 'layer-ext-bootcss',
-                    shade: 0.75,
+                    shade: [0.6, '#373737'],
                     shadeClose: true
                 });
             })
         },
+
         //异步提交表单
         ajaxForm: function () {
             require(['form'], function () {
@@ -49,7 +92,7 @@ define(['jquery'], function ($) {
 
                             //停留时间
                             var time = (responseData.time) ? responseData.time : 1000;
-                            layer.msg(msg, {icon: icon, time: time, shade: 0.75, shadeClose: true}, function () {
+                            layer.msg(msg, {icon: icon, time: time, shade: 0.6, shadeClose: true}, function () {
                                 if (responseData.url) {
                                     location.href = responseData.url;
                                 }
@@ -76,7 +119,7 @@ define(['jquery'], function ($) {
                 id = id.substring(0, id.length - 1);
                 //没有选中项
                 if (id.length == 0) {
-                    layer.msg('没有数据！', {icon: 4, shade: 0.75, shadeClose: true});
+                    layer.msg('没有数据！', {icon: 4, shade: 0.6, shadeClose: true});
                     return;
                 }
                 layer.confirm('删除数据？', {icon: 3, title: '批量删除'}, function () {
@@ -86,12 +129,12 @@ define(['jquery'], function ($) {
                         data: {tbname: tbname, id: id, primary: primary},
                         success: function (data) {
                             if (parseInt(data) > 0) {
-                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
+                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
                                     $('.search-btn-hook').click();
                                     $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
                                 });
                             } else {
-                                layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                                layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
                             }
                         }
                     });
@@ -107,7 +150,7 @@ define(['jquery'], function ($) {
                 var url = $(this).data('url');
                 var primary = $(this).data('primary');
                 if (tbname == '' || id == '' || url == '') {
-                    layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                    layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
                     return;
                 }
                 layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
@@ -117,11 +160,11 @@ define(['jquery'], function ($) {
                         data: {tbname: tbname, id: id, primary: primary},
                         success: function (data) {
                             if (parseInt(data) > 0) {
-                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
+                                layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
                                     $('.search-btn-hook').click();
                                 });
                             } else {
-                                layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
+                                layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
                             }
                         }
                     });
