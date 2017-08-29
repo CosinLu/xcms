@@ -1,39 +1,34 @@
 /**
  * Created by Admin on 2017/5/25.
  */
-define(['jquery'], function ($) {
+define(['jquery', 'layer'], function ($) {
     return {
         //删除上传文件
         delUploadFile: function (options) {
-            var defaults = {
+            var _defaults = {
+                id: '',
                 success: function () {
                 }
             };
-            var ops = $.extend({}, defaults, options);
-            $(document).on('click', '.destory-hook', function () {
-                var _this = $(this);
-                var id = _this.data('id');
-                $.ajax({
-                    url: 'index.php/upload/del',
-                    type: 'post',
-                    data: {id: id},
-                    success: ops.success
-                });
+            var _ops = $.extend({}, _defaults, options);
+            $.ajax({
+                url: 'index.php/upload/del',
+                type: 'post',
+                data: {id: _ops.id},
+                success: _ops.success
             });
         },
 
         //上传图片预览
         imagePreview: function () {
-            require(['layer'], function () {
-                $(document).on('click', '.preview-hook', function () {
-                    var _src = $(this).data('src');
-                    parent.layer.open({
-                        title: false,
-                        area: '500px',
-                        btn: false,
-                        offset: '100px',
-                        content: '<img src="' + _src + '" style="max-width:100%">'
-                    });
+            $(document).on('click', '.preview-hook', function () {
+                var _src = $(this).data('src');
+                parent.layer.open({
+                    title: false,
+                    area: '500px',
+                    btn: false,
+                    offset: '100px',
+                    content: '<img src="' + _src + '" style="max-width:100%">'
                 });
             });
         },
@@ -47,15 +42,13 @@ define(['jquery'], function ($) {
 
         //layer配置
         layerConfig: function () {
-            require(['layer'], function () {
-                layer.config({
-                    path: 'plugin/layer/',
-                    extend: 'bootcss/style.css',
-                    skin: 'layer-ext-bootcss',
-                    shade: [0.6, '#373737'],
-                    shadeClose: true
-                });
-            })
+            layer.config({
+                path: 'plugin/layer/',
+                extend: 'bootcss/style.css',
+                skin: 'layer-ext-bootcss',
+                shade: [0.6, '#373737'],
+                shadeClose: true
+            });
         },
 
         //异步提交表单
@@ -247,11 +240,11 @@ define(['jquery'], function ($) {
         //滚动条美化
         scroller: function (options) {
             require(['scroller'], function (nanoScroller) {
-                var defaults = {
+                var _defaults = {
                     dom: '.nano-hook'
                 };
-                var ops = $.extend({}, defaults, options);
-                $(ops.dom).nanoScroller();
+                var _ops = $.extend({}, _defaults, options);
+                $(_ops.dom).nanoScroller();
             })
         },
 
@@ -267,7 +260,7 @@ define(['jquery'], function ($) {
         },
 
         //通用日期插件
-        date: function () {
+        datetime: function () {
             require(['datetimepicker'], function () {
                 $('input.datetimepicker-hook').datetimepicker({
                     language: 'zh-CN',

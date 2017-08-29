@@ -23,7 +23,7 @@
                     <div class="image_list image-list-hook">
                         <div class="item">
                             <div class="control">
-                                <a href="javascript:;" class="preview-hook"><i class="fa fa-eye"></i></a>
+                                <a href="javascript:;" class="preview-hook" data-src="https://img10.360buyimg.com/da/jfs/t7579/170/1715809874/321210/26ceefd1/599fca8cN6bb74820.jpg"><i class="fa fa-eye"></i></a>
                                 <a href="javascript:;"><i class="fa fa-trash"></i></a>
                             </div>
                             <img src="https://img10.360buyimg.com/da/jfs/t7579/170/1715809874/321210/26ceefd1/599fca8cN6bb74820.jpg"
@@ -69,14 +69,19 @@
         unit.imagePreview();
 
         //删除上传文件
-        unit.delUploadFile({
-            success: function (data) {
-                if (parseInt(data) > 0) {
-                    this.closest('.item-hook').remove();
-                } else {
-                    layer.msg('删除失败！', {icon: 2, shadeClose: true});
+        $(document).on('click', '.destory-hook', function () {
+            var _this = $(this);
+            var _id = _this.data('id');
+            unit.delUploadFile({
+                id: _id,
+                success: function (data) {
+                    if (parseInt(data) > 0) {
+                        _this.closest('.item-hook').remove();
+                    } else {
+                        layer.msg('删除失败！', {icon: 2, shadeClose: true});
+                    }
                 }
-            }
+            });
         });
 
         //实例化uploadifive

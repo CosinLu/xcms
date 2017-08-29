@@ -90,9 +90,10 @@
 
         //设置弹窗标题
         parent.layer.title('选择图片');
+
         //更新选中信息
-        $('.list-hook').on('click', 'input:checkbox', function () {
-            var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
+        $('.image-list-hook').on('click', 'input:checkbox', function () {
+            var checkedNum = $('.image-list-hook').find('input:checkbox:checked').length;
             $('.select-info-hook').html('已选中了' + checkedNum + '张图片');
         });
     });
