@@ -17,7 +17,7 @@ require.config({
         'mtree': 'plugin/mtree/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
         'uploadifive': 'plugin/uploadifive/js/uploadifive.mcms',
-        'uploadifive_mcms': 'plugin/uploadifive/js/uploadifive.mcms',
+        'uploadifiveMcms': 'plugin/uploadifive/js/uploadifive.mcms',
         'upload': 'plugin/uploadifive/js/upload',
         'holder': 'plugin/holder.min',
         'jqthumb': 'plugin/jqthumb.min',
@@ -79,7 +79,7 @@ require.config({
         },
         'upload': {
             deps: ['jquery'
-                , 'uploadifive_mcms'
+                , 'uploadifiveMcms'
                 , 'jqthumb'
                 , 'holder'
                 , 'dragsort']
