@@ -96,91 +96,88 @@
                     settings.fileSizeLimit = settings.fileSizeLimit * 1024;
                 }
 
-                var mimeObj = {
+                var mime = {
                     //文档文件类型的
-                    "ai": "application/pdf,application/postscript",
-                    "eps": "application/postscript",
-                    "exe": "application/octet-stream,application/x-msdownload",
-                    "doc": "application/msword,application/vnd.ms-office",
-                    "xls": "application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office",
-                    "ppt": "application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword",
-                    "pps": "application/vnd.ms-powerpoint",
-                    "pdf": "application/pdf,application/force-download,application/x-download,binary/octet-stream",
-                    "xml": "application/xml,text/xml,text/plain",
-                    "odt": "application/vnd.oasis.opendocument.text",
-                    "swf": "application/x-shockwave-flash",
+                    'ai': 'application/pdf,application/postscript',
+                    'eps': 'application/postscript',
+                    'exe': 'application/octet-stream,application/x-msdownload',
+                    'doc': 'application/msword,application/vnd.ms-office',
+                    'xls': 'application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office',
+                    'ppt': 'application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword',
+                    'pps': 'application/vnd.ms-powerpoint',
+                    'pdf': 'application/pdf,application/force-download,application/x-download,binary/octet-stream',
+                    'xml': 'application/xml,text/xml,text/plain',
+                    'odt': 'application/vnd.oasis.opendocument.text',
+                    'swf': 'application/x-shockwave-flash',
 
                     //压缩文件类型的
-                    "gz": "application/x-gzip",
-                    "tgz": "application/x-gzip",
-                    "bz": "application/x-bzip2",
-                    "bz2": "application/x-bzip2",
-                    "tbz": "application/x-bzip2",
-                    "zip": "application/zip",
-                    "rar": "application/x-rar",
-                    "tar": "application/x-tar",
-                    "7z": "application/x-7z-compressed",
+                    'gz': 'application/x-gzip',
+                    'tgz': 'application/x-gzip',
+                    'bz': 'application/x-bzip2',
+                    'bz2': 'application/x-bzip2',
+                    'tbz': 'application/x-bzip2',
+                    'zip': 'application/zip',
+                    'rar': 'application/x-rar',
+                    'tar': 'application/x-tar',
+                    '7z': 'application/x-7z-compressed',
 
                     //文字类型
-                    "txt": "text/plain",
-                    "php": "application/x-httpd-php,application/php,application/x-php,text/php,text/x-php,application/x-httpd-php-source",
-                    "html": "text/html",
-                    "htm": "text/html",
-                    "js": "application/x-javascript,text/javascript",
-                    "css": "text/css",
-                    "rtf": "text/rtf",
-                    "rtfd": "text/rtfd",
-                    "py": "text/x-python",
-                    "java": "text/x-java-source",
-                    "rb": "text/x-ruby",
-                    "sh": "text/x-shellscript",
-                    "pl": "text/x-perl",
-                    "sql": "text/x-sql",
+                    'txt': 'text/plain',
+                    'php': 'application/x-httpd-php,application/php,application/x-php,text/php,text/x-php,application/x-httpd-php-source',
+                    'html': 'text/html',
+                    'htm': 'text/html',
+                    'js': 'application/x-javascript,text/javascript',
+                    'css': 'text/css',
+                    'rtf': 'text/rtf',
+                    'rtfd': 'text/rtfd',
+                    'py': 'text/x-python',
+                    'java': 'text/x-java-source',
+                    'rb': 'text/x-ruby',
+                    'sh': 'text/x-shellscript',
+                    'pl': 'text/x-perl',
+                    'sql': 'text/x-sql',
 
                     //图片类型的
-                    "bmp": "image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap",
-                    "jpg": "image/jpeg,image/pjpeg",
-                    "jpeg": "image/jpeg,image/pjpeg",
-                    "gif": "image/gif",
-                    "png": "image/png,image/x-png",
-                    "tif": "image/tiff",
-                    "tiff": "image/tiff",
-                    "tga": "image/x-targa",
-                    "psd": "application/x-photoshop,image/vnd.adobe.photoshop",
+                    'bmp': 'image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap',
+                    'jpg': 'image/jpeg,image/pjpeg',
+                    'jpeg': 'image/jpeg,image/pjpeg',
+                    'gif': 'image/gif',
+                    'png': 'image/png,image/x-png',
+                    'tif': 'image/tiff',
+                    'tiff': 'image/tiff',
+                    'tga': 'image/x-targa',
+                    'psd': 'application/x-photoshop,image/vnd.adobe.photoshop',
 
                     //音频文件类型的
-                    "mp3": "audio/mpeg",
-                    "mid": "audio/midi",
-                    "ogg": "audio/ogg",
-                    "mp4a": "audio/mp4",
-                    "wav": "audio/wav",
-                    "wma": "audio/x-ms-wma",
+                    'mp3': 'audio/mpeg',
+                    'mid': 'audio/midi',
+                    'ogg': 'audio/ogg',
+                    'mp4a': 'audio/mp4',
+                    'wav': 'audio/wav',
+                    'wma': 'audio/x-ms-wma',
 
                     //视频文件类型的
-                    "avi": "video/x-msvideo",
-                    "dv": "video/x-dv",
-                    "mp4": "video/mp4",
-                    "mpeg": "video/mpeg",
-                    "mpg": "video/mpeg",
-                    "mov": "video/quicktime",
-                    "wm": "video/x-ms-wmv",
-                    "flv": "video/x-flv",
-                    "mkv": "video/x-matroska"
+                    'avi': 'video/x-msvideo',
+                    'dv': 'video/x-dv',
+                    'mp4': 'video/mp4',
+                    'mpeg': 'video/mpeg',
+                    'mpg': 'video/mpeg',
+                    'mov': 'video/quicktime',
+                    'wm': 'video/x-ms-wmv',
+                    'flv': 'video/x-flv',
+                    'mkv': 'video/x-matroska'
                 };
 
-                var allowMimeObj = [];
+                var allowMime = [];
 
                 if (settings.fileType) {
-                    //console.log(settings.fileType.split(','));
                     $.each(settings.fileType.split(','), function (i, e) {
-                        //console.log(e);
-                        allowMimeObj.push(mimeObj[e.replace('\.', '')])
+                        allowMime.push(mime[e.replace('\.', '')])
                     })
                 }
-                //console.log(allowMimeObj.join(','));
 
                 //设置允许的文件类型
-                var accept = (allowMimeObj) ? allowMimeObj.join(',') : '';
+                var accept = (allowMime) ? allowMime.join(',') : '';
 
                 // Create a template for a file input
                 $data.inputTemplate = $('<input type="file" accept="' + accept + '">')
