@@ -8,6 +8,7 @@
  */
 class Upload_model extends CI_Model
 {
+
     //写入
     public function save($vals = array())
     {

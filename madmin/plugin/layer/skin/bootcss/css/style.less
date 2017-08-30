@@ -1,5 +1,5 @@
-@import "../../../../css/variable.less";
-@import "../../../../css/bootcss.less";
+@import "../../../../../css/variable.less";
+@import "../../../../../css/bootcss.less";
 
 body {
     .layer-ext-bootcss {
@@ -41,7 +41,7 @@ body {
                         background-position: -123px 0;
                     }
                     &.layui-layer-ico16 {
-                        background: url(loading-black.svg) no-repeat center;
+                        background: url("../images/loading-black.svg") no-repeat center;
                         background-size: cover;
                     }
                 }
@@ -86,10 +86,10 @@ body {
             }
         }
         .layui-layer-ico {
-            background: url("icon.png") no-repeat;
+            background: url("../images/icon.png") no-repeat;
         }
         .layui-layer-setwin {
-            top: 19px;
+            top: 17px;
             .layui-layer-close1,
             a {
                 opacity: .5;
@@ -107,7 +107,7 @@ body {
                 opacity: 1;
                 background: rgba(0, 0, 0, .5);
                 border-radius: 0 @border-radius 0 100%;
-                top: -19px;
+                top: -17px;
                 right: -15px;
                 position: relative;
                 &:before {
@@ -123,7 +123,7 @@ body {
                 background-position: -77px -80px;
             }
             .layui-layer-min {
-                background: url("icon.png") no-repeat -26px -80px;
+                background: url("../images/icon.png") no-repeat -26px -80px;
                 cite {
                     display: none;
                 }
@@ -137,7 +137,7 @@ body {
         }
         .layui-layer-load {
             background-color: #fff;
-            background-image: url(loading-black.svg);
+            background-image: url("../images/loading-black.svg");
             background-size: 50px;
         }
         &.layui-layer-loading {
@@ -147,7 +147,7 @@ body {
             .layui-layer-content {
                 width: 80px;
                 height: 80px;
-                background: url(loading-white.svg) no-repeat center;
+                background: url("../images/loading-white.svg") no-repeat center;
                 background-size: 55px;
             }
         }

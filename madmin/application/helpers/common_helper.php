@@ -152,7 +152,7 @@ function url_to_arr($url = '', $arr = array())
  * @param string $url
  * @return string
  */
-function back($url = '')
+function go_back($url = '')
 {
     $mhook = $url ? '' : 'back-hook';
     $url = $url ?: 'javascript:;';

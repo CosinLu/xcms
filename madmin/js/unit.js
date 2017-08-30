@@ -19,7 +19,7 @@ define(['jquery', 'layer'], function ($) {
             });
         },
 
-        //上传图片预览
+        //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
                 var _src = $(this).data('src');
@@ -44,7 +44,7 @@ define(['jquery', 'layer'], function ($) {
         layerConfig: function () {
             layer.config({
                 path: 'plugin/layer/',
-                extend: 'bootcss/style.css',
+                extend: 'bootcss/css/style.css',
                 skin: 'layer-ext-bootcss',
                 shade: [0.6, '#373737'],
                 shadeClose: true
@@ -231,7 +231,7 @@ define(['jquery', 'layer'], function ($) {
         },
 
         //返回上一级
-        back: function () {
+        goBack: function () {
             $('.back-hook').on('click', function () {
                 history.back();
             })

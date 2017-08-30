@@ -16,16 +16,15 @@ require.config({
         'layer': 'plugin/layer/layer',
         'mtree': 'plugin/mtree/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all.min',
-        'uploadifive': 'plugin/uploadifive/js/uploadifive.mcms',
-        'uploadifiveMcms': 'plugin/uploadifive/js/uploadifive.mcms',
-        'upload': 'plugin/uploadifive/js/upload',
         'holder': 'plugin/holder.min',
         'jqthumb': 'plugin/jqthumb.min',
         'form': 'plugin/jquery.form.min',
         'sortable': 'plugin/jquery.sortable',
         'template': 'plugin/template',
         'scroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min',
-        'upload1': 'plugin/upload/js/jquery.uploadifive'
+        'uploadifive': 'plugin/upload/js/jquery.uploadifive',
+        'upload': 'plugin/upload/js/upload',
+        //'upload2': 'plugin/upload/2/js/upload'
     },
     shim: {
         'bootstrap': {
@@ -73,17 +72,6 @@ require.config({
                 window.ZeroClipboard = ZeroClipboard;
             }
         },
-        'uploadifive': {
-            deos: ['jquery'
-                , 'css!plugin/uploadifive/css/uploadifive.css']
-        },
-        'upload': {
-            deps: ['jquery'
-                , 'uploadifiveMcms'
-                , 'jqthumb'
-                , 'holder'
-                , 'dragsort']
-        },
         'holder': {
             deps: ['jquery'
                 , 'jqthumb']
@@ -95,8 +83,14 @@ require.config({
             deps: ['jquery'
                 , 'css!plugin/nanoscroller/css/nanoscroller.css']
         },
-        'upload1': ['jquery'
-            , 'jqthumb']
+        'upload': {
+            deps: ['jquery'
+                , 'uploadifive']
+        },
+        /*'upload2': {
+         deps: ['jquery'
+         , 'uploadifive']
+         }*/
     }
 
 });
@@ -105,8 +99,9 @@ require(['jquery', 'unit', 'bootstrap', 'layer'], function ($, unit) {
 
     //配置layer
     unit.layerConfig();
+
     //返回上一级
-    unit.back();
+    unit.goBack();
 
     //滚动条美化
     unit.scroller();
