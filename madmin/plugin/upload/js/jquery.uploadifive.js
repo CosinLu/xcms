@@ -82,6 +82,8 @@
                      */
                 }, options);
 
+                console.log(settings);
+
                 // Calculate the file size limit
                 if (isNaN(settings.fileSizeLimit)) {
                     var fileSizeLimitBytes = parseInt(settings.fileSizeLimit) * 1.024
@@ -178,6 +180,9 @@
 
                 //设置允许的文件类型
                 var accept = (allowMime) ? allowMime.join(',') : '';
+
+                //将允许上传文件类型格式化并重新赋值
+                settings.fileType = accept ? accept.split(',') : '';
 
                 // Create a template for a file input
                 $data.inputTemplate = $('<input type="file" accept="' + accept + '">')
