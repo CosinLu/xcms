@@ -410,13 +410,25 @@ div.nodata-hook {
             }
         }
     }
-    a + a {
-        display: inline-block;
-        margin-left: 5px;
-        &:before {
-            margin-right: 8px;
-            color: @border-color;
-            content: '|';
+    a {
+        & + a {
+            display: inline-block;
+            /*&:before {
+                margin-right: 8px;
+                color: @border-color;
+                content: '|';
+            }*/
+            &:before {
+                content: '';
+                width: 3px;
+                height: 3px;
+                border-radius: 100%;
+                display: inline-block;
+                background: @border-color;
+                position: relative;
+                top: -3px;
+                margin:0 8px 0 3px;
+            }
         }
     }
 }
