@@ -60,9 +60,9 @@ class Info_col_onepic extends M_Controller
         $url = $this->input->post('url');
         $data = array(
             'vals' => array(
-                'cid' => $this->input->post('cid'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
-                'url' => ($url) ? $url : prep_url($url),
+                'cid'    => $this->input->post('cid'),
+                'image'  => (!empty($image)) ? implode(',', $image) : '',
+                'url'    => ($url) ? $url : prep_url($url),
                 'remark' => $this->input->post('remark')
             )
         );

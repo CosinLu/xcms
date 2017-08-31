@@ -81,17 +81,17 @@ class Info_cases extends Info
         $image = $this->input->post('image');
         $images = $this->input->post('images');
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'cid' => $this->input->post('cid'),
-                'title' => $this->input->post('title'),
-                'case_url' => $this->input->post('case_url'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
-                'images' => (!empty($images)) ? implode(',', $images) : '',
-                'target' => $this->input->post('target'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort'),
-                'content' => $this->input->post('content'),
+                'cid'         => $this->input->post('cid'),
+                'title'       => $this->input->post('title'),
+                'case_url'    => $this->input->post('case_url'),
+                'image'       => (!empty($image)) ? implode(',', $image) : '',
+                'images'      => (!empty($images)) ? implode(',', $images) : '',
+                'target'      => $this->input->post('target'),
+                'display'     => $this->input->post('display'),
+                'sort'        => $this->input->post('sort'),
+                'content'     => $this->input->post('content'),
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );

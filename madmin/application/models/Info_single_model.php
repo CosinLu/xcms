@@ -21,6 +21,7 @@ class Info_single_model extends M_Model
         $this->db->where('t.id', $cid);
         $this->db->join('info_single as t1', 't1.cid=t.id', 'left');
         $res = $this->db->get()->row_array();
+
         return $res;
     }
 
@@ -28,6 +29,7 @@ class Info_single_model extends M_Model
     public function save($data = array())
     {
         $bool = $this->db->replace('info_single', $data['vals']);
+
         return $bool;
     }
 

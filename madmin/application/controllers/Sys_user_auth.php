@@ -78,6 +78,7 @@ class Sys_user_auth extends M_Controller
                 $auth .= '<label><input type="checkbox" name="auth[' . $col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins>' . $name_arr[$key] . '</ins></label>';
             }
         }
+
         return $auth;
     }
 

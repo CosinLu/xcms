@@ -88,14 +88,14 @@ class Navigation extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
+            'id'   => $this->input->post('id'),
+            'pid'  => $this->input->post('pid'),
             'vals' => array(
-                'name' => $this->input->post('name'),
-                'url' => $this->input->post('url'),
+                'name'     => $this->input->post('name'),
+                'url'      => $this->input->post('url'),
                 'position' => $this->input->post('position'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort'),
+                'display'  => $this->input->post('display'),
+                'sort'     => $this->input->post('sort'),
             )
         );
         $bool = $this->navigation->save($data);

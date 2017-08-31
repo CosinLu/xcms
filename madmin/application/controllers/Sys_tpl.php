@@ -65,15 +65,15 @@ class Sys_tpl extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'name' => $this->input->post('name'),
+                'name'     => $this->input->post('name'),
                 'list_tpl' => $this->input->post('list_tpl'),
                 'show_tpl' => $this->input->post('show_tpl'),
-                'sys_tpl' => $this->input->post('sys_tpl'),
-                'remark' => $this->input->post('remark'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort')
+                'sys_tpl'  => $this->input->post('sys_tpl'),
+                'remark'   => $this->input->post('remark'),
+                'display'  => $this->input->post('display'),
+                'sort'     => $this->input->post('sort')
             )
         );
         $bool = $this->sys_tpl->save($data);

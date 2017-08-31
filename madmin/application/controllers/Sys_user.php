@@ -78,16 +78,16 @@ class Sys_user extends M_Controller
     {
         $password = $this->input->post('password');
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array_filter(
                 array(
-                    'role_id' => $this->input->post('role_id'),
+                    'role_id'  => $this->input->post('role_id'),
                     'username' => $this->input->post('username'),
                     'password' => $password ? md5($password) : '',
                     'nickname' => $this->input->post('nickname'),
                     'realname' => $this->input->post('realname'),
-                    'status' => $this->input->post('status'),
-                    'remark' => $this->input->post('remark')
+                    'status'   => $this->input->post('status'),
+                    'remark'   => $this->input->post('remark')
                 )
             )
         );

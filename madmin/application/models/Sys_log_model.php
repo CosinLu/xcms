@@ -38,6 +38,7 @@ class Sys_log_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 

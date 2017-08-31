@@ -42,10 +42,10 @@ class Index extends CI_Controller
     public function code()
     {
         $config = array(
-            'width' => 80,
-            'height' => 32,
+            'width'     => 80,
+            'height'    => 32,
             'font_size' => 16,
-            'code_len' => 4
+            'code_len'  => 4
         );
         $this->load->library('code', $config);
         $this->code->show();
@@ -84,8 +84,8 @@ class Index extends CI_Controller
             $session['sys_session']['lang_val'] = 'zh-cn';
             //写入登录日志
             $data['vals'] = array(
-                'user_id' => $user_info['user_id'],
-                'login_ip' => $this->input->ip_address(),
+                'user_id'    => $user_info['user_id'],
+                'login_ip'   => $this->input->ip_address(),
                 'login_time' => time()
             );
             $this->index->insert_login_log($data);
@@ -126,6 +126,7 @@ class Index extends CI_Controller
         $code = strtoupper($this->input->post('code'));
         if ($code != $this->session->sys_code && $code != '') {
             $this->form_validation->set_message('check_code', '{field} 输入错误。');
+
             return FALSE;
         } else {
             return TRUE;
@@ -139,15 +140,18 @@ class Index extends CI_Controller
             $rows = $this->index->check_username($this->username);
             if ($rows == 0) {
                 $this->form_validation->set_message('check_username', '{field} 不存在。');
+
                 return FALSE;
             } else {
                 $userinfo = $this->index->user_info($this->username, $this->password);
                 if ($userinfo['status'] == 'forzen') {
                     $this->form_validation->set_message('check_username', '{field} 被冻结。');
+
                     return FALSE;
                 } else {
                     return TRUE;
                 }
+
                 return TRUE;
             }
         }
@@ -159,6 +163,7 @@ class Index extends CI_Controller
         $userinfo = $this->index->user_info($this->username, $this->password);
         if (empty($userinfo) && $this->password != '') {
             $this->form_validation->set_message('check_password', '{field} 输入错误。');
+
             return FALSE;
         } else {
             return TRUE;
@@ -180,12 +185,14 @@ class Index extends CI_Controller
             }
             if (empty($frist_sys_col)) {
                 $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
+
                 return FALSE;
             } else {
                 return TRUE;
             }
         } else {
             $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
+
             return FALSE;
         }
     }

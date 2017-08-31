@@ -35,6 +35,7 @@ class Info_col_onepic_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -47,6 +48,7 @@ class Info_col_onepic_model extends M_Model
         $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
         $this->db->where('t.id', $cid);
         $res = $this->db->get()->row_array();
+
         return $res;
     }
 
@@ -54,6 +56,7 @@ class Info_col_onepic_model extends M_Model
     public function save()
     {
         $bool = $this->db->replace('info_col_onepic', $data['vals']);
+
         return $bool;
     }
 

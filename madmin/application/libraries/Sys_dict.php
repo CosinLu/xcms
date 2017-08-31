@@ -17,10 +17,12 @@ class Sys_dict
 
     /**
      * 单选按钮列表
-     * @param int $ident 属性上级标识
-     * @param string $name 元素名称
+     *
+     * @param int $ident        属性上级标识
+     * @param string $name      元素名称
      * @param string $check_val 选中值
-     * @param string $disabled 禁用
+     * @param string $disabled  禁用
+     *
      * @return string
      */
     public function rbl($ident = '', $name = '', $check_val = '', $disabled = '')
@@ -35,6 +37,7 @@ class Sys_dict
             }
             $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
+
         return $str;
     }
 
@@ -47,15 +50,18 @@ class Sys_dict
         $this->CI->db->group_by('t1.id');
         $this->CI->db->order_by('t1.sort asc,t1.id asc');
         $res = $this->CI->db->get('sys_dict')->result_array();
+
         return $res;
     }
 
     /**
      * 复选框列表
-     * @param int $ident 属性上级标识
-     * @param string $name 元素名称
+     *
+     * @param int $ident        属性上级标识
+     * @param string $name      元素名称
      * @param string $check_val 选中值
-     * @param string $disabled 禁用
+     * @param string $disabled  禁用
+     *
      * @return string
      */
     public function cbl($ident = '', $name = '', $check_val = '', $disabled = '')
@@ -71,15 +77,18 @@ class Sys_dict
             }
             $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
+
         return $str;
     }
 
     /**
      * 下拉列表
-     * @param int $ident 属性上级标识
-     * @param string $name 元素名称
+     *
+     * @param int $ident         属性上级标识
+     * @param string $name       元素名称
      * @param string $select_val 选中值
-     * @param string $disabled 禁用
+     * @param string $disabled   禁用
+     *
      * @return string
      */
     public function ddl($ident = '', $name = '', $select_val = '', $disabled = '')
@@ -93,6 +102,7 @@ class Sys_dict
             $str .= '<option value="' . $val['ident'] . '" ' . $selected . '>' . $val['name'] . '</option>';
         }
         $str .= '</select>';
+
         return $str;
 
     }

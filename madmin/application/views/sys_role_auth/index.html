@@ -60,16 +60,16 @@
                 x: Math.random()
             };
             $.ajax({
-                url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
+                url       : '<?=$get_list_url?>',
+                type      : 'post',
+                dataType  : 'json',
+                data      : data,
                 beforeSend: function () {
                     $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
                     $('.list-hook').after('<?=M_LOADING?>');
                 },
-                success: function (data) {
+                success   : function (data) {
                     $('.nodata-hook,.loading-hook').remove();
                     if (data.list.length) {
                         $('#list').html(template('list_tpl', data));

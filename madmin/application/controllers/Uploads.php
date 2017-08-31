@@ -2,69 +2,55 @@
 
 /**
  * Created by PhpStorm.
- * User: MengXianghan
- * Date: 2016/8/23
- * Time: 21:11
+ * User: Admin
+ * Date: 2017/8/28
+ * Time: 13:51
  */
-class Uploads extends M_Controller
+class Uploads extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('uploads_model', 'uploads');
-        $this->load->library('uploadifive');
-        $this->set_url();
     }
 
-    //设置url
-    public function set_url()
+    //选择图片
+    public function select_image()
     {
-        $url['get_list_url'] = site_url('uploads/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth(M_INSERT, $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('uploads/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth(M_DEL, $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="uploads" data-checkname="id" data-url = "' . site_url('uploads/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth(M_LOOK, $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
-        $url['save_url'] = site_url('uploads/save?sys_cid=' . $this->sys_cid);
-        $this->load->vars($url);
+        $this->load->view('uploads/select_image.html');
     }
 
-    public function index()
+    //上传图片
+    public function uploads_image()
     {
-        $this->load->view('uploads/index.html');
+        $this->load->view('uploads/uploads_image.html');
     }
 
-    //获得列表
-    public function get_list()
+    //执行上传并写入数据库
+    public function do_upload()
     {
-        $key = $this->input->post('key');
-        $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->uploads->get_list($key, $page);
-        foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['del_btn'] = $this->sys_auth->set_auth(M_DEL, $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="uploads" data-id="' . $val['id'] . '" data-url="' . site_url('uploads/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
-        }
+        $filename = $this->input->post('filename');
+        $config = array(
+            'upload_path'   => $this->config->item('upload') . date('Ymd', time()) . '/',//上传路径
+            'allowed_types' => '*',//允许上传文件类型：*=所有类型
+            'file_name'     => md5(uniqid(microtime(TRUE), TRUE))//新文件名
+        );
+        $this->load->library('upload', $config);
+        $this->upload->do_upload($filename);
+        $data = $this->upload->data();
+        $data['errors'] = $this->upload->display_errors();
+        $data['id'] = $this->uploads->save($data);
+        $data['filename'] = $filename;
         echo json_encode($data);
     }
 
     //删除
     public function del()
     {
-        $tbname = $this->input->post('tbname');
         $id = $this->input->post('id');
-        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
-        $rows = $this->uploads->del($tbname, $id, $primary);
+        $rows = $this->uploads->del($id);
         //写入日志
-        $this->sys_log->insert($this->section_name, '3', $rows);
-        echo $rows;
-    }
-
-    //批量删除
-    public function batch_del()
-    {
-        $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
-        $primary = ($this->input->post('primary')) ? $this->input->post('primary') : 'id';
-        $rows = $this->uploads->batch_del($tbname, $id, $primary);
-        //写入日志
-        $this->sys_log->insert($this->section_name, '3', $rows);
+        //$this->sys_log->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

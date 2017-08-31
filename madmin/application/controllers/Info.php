@@ -103,6 +103,7 @@ class Info extends M_Controller
     public function tpl_id()
     {
         $res = $this->info->tpl_id($this->cid);
+
         return $res;
     }
 

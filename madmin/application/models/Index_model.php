@@ -19,6 +19,7 @@ class Index_model extends CI_Model
     {
         $this->db->where('username', $username);
         $rows = $this->db->get('sys_user')->num_rows();
+
         return $rows;
     }
 
@@ -38,6 +39,7 @@ class Index_model extends CI_Model
         ));
         $this->db->order_by('t2.id desc');
         $result = $this->db->get()->row_array();
+
         return $result;
     }
 
@@ -48,6 +50,7 @@ class Index_model extends CI_Model
         $this->db->where('display', 'show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get()->result_array();
+
         return $res;
     }
 

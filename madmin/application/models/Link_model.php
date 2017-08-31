@@ -34,6 +34,7 @@ class Link_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -42,6 +43,7 @@ class Link_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('link')->row_array();
+
         return $res;
     }
 
@@ -53,6 +55,7 @@ class Link_model extends M_Model
         } else {
             $bool = $this->db->insert('link', $data['vals']);
         }
+
         return $bool;
     }
 

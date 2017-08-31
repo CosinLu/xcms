@@ -71,15 +71,15 @@ class Info_col_muitipic extends M_Controller
         $image = $this->input->post('image');
         $url = $this->input->post('url');
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'cid' => $this->input->post('cid'),
-                'name' => $this->input->post('name'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
-                'url' => ($url) ? $url : prep_url($url),
+                'cid'     => $this->input->post('cid'),
+                'name'    => $this->input->post('name'),
+                'image'   => (!empty($image)) ? implode(',', $image) : '',
+                'url'     => ($url) ? $url : prep_url($url),
                 'display' => $this->input->post('display'),
-                'remark' => $this->input->post('remark'),
-                'sort' => $this->input->post('sort')
+                'remark'  => $this->input->post('remark'),
+                'sort'    => $this->input->post('sort')
             )
         );
         $bool = $this->info_col_muitipic->save($data);

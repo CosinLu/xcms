@@ -2,6 +2,7 @@
 
 /**
  * 验证码类
+ *
  * @package
  * @author      后盾马震宇 <houdunwangmzy@gmail.com>
  */
@@ -32,6 +33,7 @@ class Code
     /**
      * 构造函数
      * Code constructor.
+     *
      * @param array $arr
      */
     public function __construct($arr = array())
@@ -62,6 +64,7 @@ class Code
 
     /**
      * 建画布
+     *
      * @return bool
      */
     public function create()
@@ -83,6 +86,7 @@ class Code
 
     /**
      * 验证GD库是不否打开imagepng函数是否可用
+     *
      * @return bool
      */
     private function checkGD()
@@ -179,6 +183,7 @@ class Code
 
     /**
      * 返回验证码
+     *
      * @return mixed
      */
     public function getCode()

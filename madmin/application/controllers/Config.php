@@ -53,13 +53,16 @@ class Config extends M_Controller
                 $str .= '<li class="' . $active . '"><a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&config_group_id=' . $val['id']) . '">' . $val['name'] . '</a></li>';
             }
         }
+
         return $str;
     }
 
     /**
      * 转换参数
      * 转换后用于配置信息中的radio，checkbox,select
+     *
      * @param string $str 待转换字符串【格式：1|开启,0|关闭】
+     *
      * @return array
      */
     public function transform_param($str = '')
@@ -71,10 +74,11 @@ class Config extends M_Controller
                 $res[$key] = explode('|', $val);
                 $res[$key] = array(
                     'value' => $res[$key][0],
-                    'name' => $res[$key][1]
+                    'name'  => $res[$key][1]
                 );
             }
         }
+
         return $res;
     }
 

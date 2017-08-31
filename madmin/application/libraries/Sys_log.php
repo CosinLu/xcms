@@ -29,9 +29,10 @@ class Sys_log
 
     /**
      * 插入操作日志
-     * @param string $col_name 栏目名
+     *
+     * @param string $col_name   栏目名
      * @param string $opera_code 操作：1=新增，2=修改，3=删除
-     * @param int $status 状态：error=失败，success=成功
+     * @param int $status        状态：error=失败，success=成功
      */
     public function insert($col_name = '', $opera_code = '', $status = '')
     {
@@ -47,17 +48,17 @@ class Sys_log
                 break;
         }
         $vals = array(
-            'user_id' => $this->user_id,
+            'user_id'  => $this->user_id,
             'username' => $this->username,
             'col_name' => $col_name,
-            'opera' => $opera,
-            'status' => ($status) ? 'success' : 'fail',
-            'browser' => $this->browser,
-            'version' => $this->version,
+            'opera'    => $opera,
+            'status'   => ($status) ? 'success' : 'fail',
+            'browser'  => $this->browser,
+            'version'  => $this->version,
             'platform' => $this->platform,
             'hostname' => gethostbyaddr($_SERVER['REMOTE_ADDR']),
-            'ip' => $this->ip,
-            'time' => time()
+            'ip'       => $this->ip,
+            'time'     => time()
         );
         $this->CI->db->insert('sys_log', $vals);
     }

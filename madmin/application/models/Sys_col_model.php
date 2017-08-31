@@ -31,6 +31,7 @@ class Sys_col_model extends M_Model
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
         $data['total'] = count($res);
+
         return $data;
     }
 
@@ -43,6 +44,7 @@ class Sys_col_model extends M_Model
         $this->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
         $this->db->where('t.id', $id);
         $res = $this->db->get()->row_array();
+
         return $res;
     }
 
@@ -57,11 +59,13 @@ class Sys_col_model extends M_Model
         }
         //设置系统栏目权限
         $this->set_col_auth($col_id, $data['auth']);
+
         return $bool;
     }
 
     /**
      * 设置系统栏目权限
+     *
      * @param $col_id   系统栏目id
      * @param $col_auth 系统栏目权限
      */
@@ -75,7 +79,7 @@ class Sys_col_model extends M_Model
         //设置写入数据
         foreach ($col_auth as $val) {
             $vals[] = array(
-                'col_id' => $col_id,
+                'col_id'   => $col_id,
                 'col_auth' => $val
             );
         }
@@ -84,7 +88,9 @@ class Sys_col_model extends M_Model
 
     /**
      * 删除系统栏目权限
+     *
      * @param $col_id   系统栏目id
+     *
      * @return mixed
      */
     public function del_col_auth($col_id)
@@ -92,6 +98,7 @@ class Sys_col_model extends M_Model
         $this->db->where('col_id', $col_id);
         $this->db->delete('sys_col_auth');
         $rows = $this->db->affected_rows();
+
         return $rows;
     }
 }

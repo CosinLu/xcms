@@ -88,16 +88,16 @@ class Info_col extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
+            'id'   => $this->input->post('id'),
+            'pid'  => $this->input->post('pid'),
             'vals' => array(
-                'tpl_id' => $this->input->post('tpl_id'),
-                'name' => $this->input->post('name'),
-                'url' => $this->input->post('url'),
-                'pic' => $this->input->post('pic'),
-                'remark' => $this->input->post('remark'),
+                'tpl_id'  => $this->input->post('tpl_id'),
+                'name'    => $this->input->post('name'),
+                'url'     => $this->input->post('url'),
+                'pic'     => $this->input->post('pic'),
+                'remark'  => $this->input->post('remark'),
                 'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort'),
+                'sort'    => $this->input->post('sort'),
             )
         );
         $bool = $this->info_col->save($data);

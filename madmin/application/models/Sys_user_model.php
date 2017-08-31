@@ -35,6 +35,7 @@ class Sys_user_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -43,6 +44,7 @@ class Sys_user_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('sys_user')->row_array();
+
         return $res;
     }
 
@@ -54,6 +56,7 @@ class Sys_user_model extends M_Model
         } else {
             $bool = $this->db->insert('sys_user', $data['vals']);
         }
+
         return $bool;
     }
 
@@ -63,6 +66,7 @@ class Sys_user_model extends M_Model
         $this->db->where('role_type > ', 0);
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get('sys_role')->result_array();
+
         return $res;
     }
 

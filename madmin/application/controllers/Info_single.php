@@ -37,7 +37,7 @@ class Info_single extends Info
     {
         $data = array(
             'vals' => array(
-                'cid' => $this->input->post('cid'),
+                'cid'     => $this->input->post('cid'),
                 'summary' => $this->input->post('summary'),
                 'content' => $this->input->post('content')
             )

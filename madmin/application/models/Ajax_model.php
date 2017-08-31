@@ -20,6 +20,7 @@ class Ajax_model extends CI_Model
         $this->db->where($primary, $id);
         $this->db->delete($tbname);
         $rows = $this->db->affected_rows();
+
         return $rows;
     }
 
@@ -29,6 +30,7 @@ class Ajax_model extends CI_Model
         $this->db->where_in($primary, $id);
         $this->db->delete($tbname);
         $rows = $this->db->affected_rows();
+
         return $rows;
     }
 }

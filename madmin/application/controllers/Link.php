@@ -71,14 +71,14 @@ class Link extends M_Controller
         $image = $this->input->post('image');
         $url = $this->input->post('url');
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'name' => $this->input->post('name'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
-                'url' => ($url) ? $url : prep_url($url),
-                'target' => $this->input->post('target'),
+                'name'    => $this->input->post('name'),
+                'image'   => (!empty($image)) ? implode(',', $image) : '',
+                'url'     => ($url) ? $url : prep_url($url),
+                'target'  => $this->input->post('target'),
                 'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort')
+                'sort'    => $this->input->post('sort')
             )
         );
         $bool = $this->link->save();

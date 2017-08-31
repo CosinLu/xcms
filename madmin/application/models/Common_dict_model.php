@@ -39,6 +39,7 @@ class Common_dict_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -47,6 +48,7 @@ class Common_dict_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('common_dict')->row_array();
+
         return $res;
     }
 
@@ -58,6 +60,7 @@ class Common_dict_model extends M_Model
         } else {
             $bool = $this->category->insert($data['pid'], $data['vals']);
         }
+
         return $bool;
     }
 
@@ -66,6 +69,7 @@ class Common_dict_model extends M_Model
     {
         $this->db->where('pid', 0);
         $res = $this->db->get('common_dict')->result_array();
+
         return $res;
     }
 

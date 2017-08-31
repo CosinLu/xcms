@@ -18,6 +18,7 @@ class Uploadifive_model extends CI_Model
     {
         $this->db->insert('uploads', $vals);
         $insert_id = $this->db->insert_id();
+
         return $insert_id;
     }
 
@@ -33,6 +34,7 @@ class Uploadifive_model extends CI_Model
         $this->db->order_by('id desc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
+
         //$data['pagination'] = $this->pagination->create_ajax_links();
         return $data;
     }

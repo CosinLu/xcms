@@ -74,17 +74,17 @@ class Sys_col extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
+            'id'   => $this->input->post('id'),
+            'pid'  => $this->input->post('pid'),
             'auth' => $this->input->post('auth'),
             'vals' => array(
-                'name' => $this->input->post('name'),
-                'icon' => $this->input->post('icon'),
-                'url' => $this->input->post('url'),
-                'remark' => $this->input->post('remark'),
+                'name'      => $this->input->post('name'),
+                'icon'      => $this->input->post('icon'),
+                'url'       => $this->input->post('url'),
+                'remark'    => $this->input->post('remark'),
                 'user_type' => $this->input->post('user_type'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort'),
+                'display'   => $this->input->post('display'),
+                'sort'      => $this->input->post('sort'),
             )
         );
         $bool = $this->sys_col->save($data);

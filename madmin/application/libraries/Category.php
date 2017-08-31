@@ -25,6 +25,7 @@ class Category
     /**
      * 构造函数
      * Category constructor.
+     *
      * @param array $arr 参数名，如果没定义，则采用默认值
      */
     public function __construct($arr = array())
@@ -46,9 +47,11 @@ class Category
 
     /**
      * 获得上级分类标识
+     *
      * @param array $data
      * @param int $id 当前分类的标识
      * @param bool $self
+     *
      * @return array
      */
     public function parent_id($data = array(), $id = '', $self = FALSE)
@@ -58,14 +61,17 @@ class Category
         foreach ($parent_arr as $val) {
             $parent_id_arr[] = $val[$this->id_name];
         }
+
         return $parent_id_arr;
     }
 
     /**
      * 获得上级分类
+     *
      * @param array $data
      * @param int $id 当前分类的标识
      * @param bool $self
+     *
      * @return array
      */
     public function parent($data = array(), $id = '', $self = FALSE)
@@ -89,23 +95,28 @@ class Category
         if ($self) {
             $parent_arr = array_merge($self_arr, $parent_arr);
         }
+
         return array_reverse($parent_arr);
     }
 
     /**
      * 获得所有数据
+     *
      * @return mixed
      */
     public function data()
     {
         $query = $this->CI->db->get($this->tb_name);
+
         return $query->result_array();
     }
 
     /**
      * 递归获得上级分类
+     *
      * @param array $data
      * @param int $id 当前分类的pid即为上级分类的标识
+     *
      * @return array
      */
     public function _parent($data = array(), $id = '')
@@ -137,6 +148,7 @@ class Category
                 $res_arr = array_merge($res_arr, $temp);
             }
         }
+
         //return array_reverse($res_arr);
         return $res_arr;
     }
@@ -148,13 +160,16 @@ class Category
         if ($a_sort == $b_sort) {
             return ($a[$this->id_name] > $b[$this->id_name]) ? 1 : -1;
         }
+
         return ($a_sort > $b_sort) ? 1 : -1;
     }
 
     /**
      * 下拉菜单项
+     *
      * @param array $data
      * @param bool $root
+     *
      * @return string
      */
     public function option($data = array(), $root = TRUE)
@@ -163,9 +178,9 @@ class Category
         $start_level = 1;
         $root_arr = array(
             array(
-                $this->id_name => 0,
+                $this->id_name       => 0,
                 $this->category_name => $this->default,
-                $this->level_name => 0,
+                $this->level_name    => 0,
             )
         );
         $data = $this->children($data, 0, TRUE);
@@ -178,14 +193,17 @@ class Category
             $space = str_repeat('&nbsp;&nbsp;', ($val[$this->level_name] - $start_level) * 2);
             $str .= '<option value="' . $val[$this->id_name] . '">' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
+
         return $str;
     }
 
     /**
      * 获得下级分类
+     *
      * @param array $data
-     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param int $pid   当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
+     *
      * @return array
      */
     public function children($data = array(), $pid = 0, $self = FALSE)
@@ -202,13 +220,16 @@ class Category
                 }
             }
         }
+
         return array_merge($self_arr, $children_arr);
     }
 
     /**
      * 递归获得下级分类
+     *
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
+     *
      * @return array
      */
     public function _children($data = array(), $pid = 0)
@@ -239,6 +260,7 @@ class Category
                 $res_arr = array_merge($res_arr, $temp);
             }
         }
+
         return $res_arr;
     }
 
@@ -247,11 +269,13 @@ class Category
 
     /**
      * 修改是所用下拉列表
-     * @param int $id 信息标识
-     * @param int $pid 上级栏目标识
+     *
+     * @param int $id     信息标识
+     * @param int $pid    上级栏目标识
      * @param array $data
-     * @param bool $root 是否显示跟目录
+     * @param bool $root  是否显示跟目录
      * @param int $tpl_id 模板标识
+     *
      * @return string
      */
     public function ddl($data = array(), $name = '', $id = '', $pid = 0, $root = TRUE, $tpl_id = '')
@@ -261,10 +285,10 @@ class Category
         $start_level = 1;
         $root_arr = array(
             array(
-                $this->id_name => 0,
+                $this->id_name       => 0,
                 $this->category_name => $this->default,
-                $this->pid_name => -1,
-                $this->level_name => 0,
+                $this->pid_name      => -1,
+                $this->level_name    => 0,
             )
         );
         $data = $this->children($data, 0, TRUE);
@@ -293,14 +317,17 @@ class Category
             $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
         $str .= '</select>';
+
         return $str;
     }
 
     /**
      * 获得下级分类标识
+     *
      * @param array $data
-     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param int $pid   当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
+     *
      * @return array
      */
     public function children_id($data = array(), $pid = 0, $self = FALSE)
@@ -310,16 +337,19 @@ class Category
         foreach ($children_arr as $val) {
             $children_id_arr[] = $val[$this->id_name];
         }
+
         return $children_id_arr;
     }
 
     /**
      * 获取分类中符合条件的有效字符串
+     *
      * @param array $data
-     * @param int $pid 当前分类的id即为下级分类的pid
+     * @param int $pid    当前分类的id即为下级分类的pid
      * @param bool $field 要获取的参数
-     * @param int $num url个数
-     * @param bool $self 是否包含自身
+     * @param int $num    url个数
+     * @param bool $self  是否包含自身
+     *
      * @return array
      */
     public function valid_str($data = array(), $pid = 0, $field = array('url'), $num = 1, $self = TRUE)
@@ -351,12 +381,15 @@ class Category
                 $str = $str[0];
             }
         }
+
         return $str;
     }
 
     /**
      * 获取下级url
+     *
      * @param array $data 初始数据
+     *
      * @return mixed
      */
     public function children_url($data = array())
@@ -381,13 +414,16 @@ class Category
                 }
             }
         }
+
         return $url;
     }
 
     /**
      * 新增分类
-     * @param int $pid 上级分类标识
+     *
+     * @param int $pid    上级分类标识
      * @param array $vals 插入的数据
+     *
      * @return mixed
      */
     public function insert($pid = 0, $vals = array())
@@ -405,13 +441,16 @@ class Category
         $vals[$this->pid_name] = $pid;
         $this->CI->db->insert($this->tb_name, $vals);
         $insert_id = $this->CI->db->insert_id();
+
         return $insert_id;
     }
 
     /**
      * 获取指定的某条数据
+     *
      * @param array $data
      * @param string $id
+     *
      * @return array|mixed
      */
     public function one($data = array(), $id = '')
@@ -431,14 +470,17 @@ class Category
             $this->CI->db->where($this->id_name, $id);
             $res = $this->CI->db->get($this->tb_name)->row_array();
         }
+
         return $res;
     }
 
     /**
      * 更新数据
-     * @param string $id 标识
+     *
+     * @param string $id      标识
      * @param string $pid_val 上级标识
-     * @param array $array 更新的数据
+     * @param array $array    更新的数据
+     *
      * @return bool
      */
     public function update($id = '', $pid = 0, $vals = array())
@@ -475,12 +517,15 @@ class Category
         $vals[$this->pid_name] = $pid;
         $this->CI->db->where($this->id_name, $id);
         $bool = $this->CI->db->update($this->tb_name, $vals);
+
         return $bool;
     }
 
     /**
      * 删除当前分类以及所有下级分类
+     *
      * @param int $id
+     *
      * @return bool
      */
     public function del($id = '')
@@ -496,6 +541,7 @@ class Category
         $this->CI->db->where_in($this->id_name, $children_id);
         $this->CI->db->delete($this->tb_name);
         $rows = $this->CI->db->affected_rows();
+
         return $rows;
     }
 

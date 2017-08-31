@@ -28,6 +28,7 @@ class Info_col_model extends M_Model
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
         $data['total'] = count($res);
+
         return $data;
     }
 
@@ -37,6 +38,7 @@ class Info_col_model extends M_Model
         $this->db->from('info_col');
         $this->db->where('info_col.id', $id);
         $res = $this->db->get()->row_array();
+
         return $res;
     }
 
@@ -48,6 +50,7 @@ class Info_col_model extends M_Model
         } else {
             $bool = $this->category->insert($data['pid'], $data['vals']);
         }
+
         return $bool;
     }
 
@@ -56,6 +59,7 @@ class Info_col_model extends M_Model
     {
         $this->db->where('display', 'show');
         $res = $this->db->get('sys_tpl')->result_array();
+
         return $res;
     }
 

@@ -73,16 +73,16 @@ class Config_item extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'title' => $this->input->post('title'),
-                'name' => $this->input->post('name'),
+                'title'           => $this->input->post('title'),
+                'name'            => $this->input->post('name'),
                 'config_group_id' => $this->input->post('config_group_id'),
-                'type' => $this->input->post('type'),
-                'param' => $this->input->post('param'),
-                'remark' => $this->input->post('remark'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort')
+                'type'            => $this->input->post('type'),
+                'param'           => $this->input->post('param'),
+                'remark'          => $this->input->post('remark'),
+                'display'         => $this->input->post('display'),
+                'sort'            => $this->input->post('sort')
             )
         );
         $bool = $this->config_item->save($data);

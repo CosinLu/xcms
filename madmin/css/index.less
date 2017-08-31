@@ -628,6 +628,67 @@ div.nodata-hook {
     }
 }
 
+/*上传图片列表*/
+.uploads_image_list {
+    .item {
+        width: 69px;
+        height: 69px;
+        border: @border-color solid 1px;
+        border-radius: @border-radius;
+        padding: 2px;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background: #fff;
+        box-sizing: content-box;
+        position: relative;
+        &.dragsort {
+            border-style: dashed;
+        }
+        img {
+            width: 69px;
+            height: 69px;
+        }
+        .control {
+            width: 49px;
+            height: 22px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+            z-index: 10;
+            a {
+                width: 22px;
+                height: 22px;
+                border-radius: 100%;
+                line-height: 22px;
+                display: inline-block;
+                color: rgba(255, 255, 255, .8);
+                background: rgba(0, 0, 0, .5);
+                float: left;
+                cursor: pointer;
+                & + a {
+                    margin-left: 5px;
+                }
+            }
+        }
+        .progress {
+            width: 90%;
+            height: 5px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 20;
+        }
+    }
+}
+
 /*选择文件*/
 .select_lib_panel {
     width: 100%;
@@ -819,14 +880,14 @@ div.nodata-hook {
 }
 
 /*上传文件*/
-.upload_panel {
+.uploads_panel {
     width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
     overflow: hidden;
     margin-bottom: 0 !important;
-    .upload_panel_body {
+    .uploads_panel_body {
         width: 100%;
         position: absolute;
         top: 0;
@@ -849,61 +910,8 @@ div.nodata-hook {
             }
 
         }
-        .image_list {
-            .item {
-                width: 75px;
-                height: 75px;
-                border: @border-color solid 1px;
-                border-radius: @border-radius;
-                padding: 2px;
-                float: left;
-                margin-right: 10px;
-                margin-bottom: 10px;
-                position: relative;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
-                &:hover {
-                    .control {
-                        opacity: 1;
-                        transition: @transition;
-                    }
-                }
-                .control {
-                    position: absolute;
-                    left: 2px;
-                    right: 2px;
-                    top: 2px;
-                    bottom: 2px;
-                    background: rgba(0, 0, 0, .5);
-                    text-align: center;
-                    padding-top: 24px;
-                    opacity: 0;
-                    z-index: 10;
-                    transition: @transition;
-                    a {
-                        width: 20px;
-                        height: 20px;
-                        display: inline-block;
-                        color: #e7e5e6;
-                    }
-                }
-                .progress {
-                    width: 90%;
-                    height: 5px;
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    margin: auto;
-                    z-index: 20;
-                }
-            }
-        }
     }
-    .upload_panel_footer {
+    .uploads_panel_footer {
         width: 100%;
         text-align: right;
         background: #fff;

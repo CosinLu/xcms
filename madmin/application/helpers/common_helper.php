@@ -8,10 +8,12 @@
 
 /**
  * 下拉列表
- * @param array $data 原始数据
- * @param string $name 元素名称
+ *
+ * @param array $data     原始数据
+ * @param string $name    元素名称
  * @param int $select_val 选中值
- * @param int $disabled 禁用
+ * @param int $disabled   禁用
+ *
  * @return string
  */
 function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
@@ -26,25 +28,31 @@ function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
         }
     }
     $str .= '</select>';
+
     return $str;
 }
 
 /**
  * 选中下拉选项
+ *
  * @param string $initial_val
  * @param string $current_val
+ *
  * @return string
  */
 function selected($initial_val = '', $current_val = '')
 {
     $selected = ($initial_val == $current_val) ? 'selected' : '';
+
     return $selected;
 }
 
 /**
  * 选中radio/checkbox
+ *
  * @param string $initial_val
  * @param string $current_val
+ *
  * @return string
  */
 function checked($initial_val = '', $current_val = '')
@@ -55,13 +63,16 @@ function checked($initial_val = '', $current_val = '')
     } else {
         $checked = ($initial_val == $current_val) ? 'checked' : '';
     }
+
     return $checked;
 }
 
 /**
  * 多维数组转一维数组
+ *
  * @param array $multi_arr 原始数据
- * @param array $num 判断是否为第一次执行此函数，防止多次转换时存在冗余
+ * @param array $num       判断是否为第一次执行此函数，防止多次转换时存在冗余
+ *
  * @return array
  */
 function multi_turn_one($multi_arr = array(), $num = 1)
@@ -78,26 +89,32 @@ function multi_turn_one($multi_arr = array(), $num = 1)
             $result[] = $val;
         }
     }
+
     return $result;
 }
 
 
 /**
  * 格式化文件大小d单位
+ *
  * @param int $size
  * @param int $num
+ *
  * @return string
  */
 function format_bytes($size = 0, $num = 1)
 {
     $units = array(' B', ' KB', ' MB', ' GB', ' TB');
     for ($i = 0; $size >= 1024 && $i < 4; $i++) $size /= 1024;
+
     return round($size, $num) . $units[$i];
 }
 
 /**
  * 通过上传文件类型，获得文件icon
+ *
  * @param string $arr 文件类型:array('文件类型'=>'值')
+ *
  * @return string
  */
 function upload_icon($arr = array())
@@ -123,11 +140,13 @@ function upload_icon($arr = array())
             }
         }
     }
+
     return $str;
 }
 
 /**
  * url转数组
+ *
  * @param string $url
  * @param array $arr
  */
@@ -143,13 +162,16 @@ function url_to_arr($url = '', $arr = array())
     foreach ($arr as $k => $v) {
         array_push($new_arr, $k . '=' . $v);
     }
+
     return array_unique(array_merge($arr_url, $new_arr));
 
 }
 
 /**
  * 返回上一级
+ *
  * @param string $url
+ *
  * @return string
  */
 function go_back($url = '')
@@ -157,5 +179,6 @@ function go_back($url = '')
     $mhook = $url ? '' : 'back-hook';
     $url = $url ?: 'javascript:;';
     $str = '<a href="' . $url . '" class="btn btn-default btn-xs ' . $mhook . '"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</a>';
+
     return $str;
 }

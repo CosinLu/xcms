@@ -71,11 +71,11 @@ class Sys_role extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'name' => $this->input->post('name'),
+                'name'   => $this->input->post('name'),
                 'remark' => $this->input->post('remark'),
-                'sort' => $this->input->post('sort')
+                'sort'   => $this->input->post('sort')
             )
         );
         $bool = $this->sys_role->save($data);

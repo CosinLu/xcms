@@ -29,6 +29,7 @@ class Sys_user_auth_model extends M_Model
         $this->db->where('user_id', $user_id);
         $this->db->delete('sys_user_auth');
         $rows = $this->db->affected_rows();
+
         return $rows;
     }
 
@@ -40,21 +41,22 @@ class Sys_user_auth_model extends M_Model
             foreach ($id_arr as $val) {
                 if (empty($auth_arr[$val])) {
                     $vals[] = array(
-                        'user_id' => $user_id,
-                        'col_id' => $val,
+                        'user_id'  => $user_id,
+                        'col_id'   => $val,
                         'col_auth' => ''
                     );
                 } else {
                     foreach ($auth_arr[$val] as $item) {
                         $vals[] = array(
-                            'user_id' => $user_id,
-                            'col_id' => $val,
+                            'user_id'  => $user_id,
+                            'col_id'   => $val,
                             'col_auth' => $item
                         );
                     }
                 }
             }
             $bool = $this->db->insert_batch('sys_user_auth', array_reverse($vals));
+
             return $bool;
         }
     }

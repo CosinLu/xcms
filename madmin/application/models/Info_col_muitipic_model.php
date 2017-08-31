@@ -36,6 +36,7 @@ class Info_col_muitipic_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -44,6 +45,7 @@ class Info_col_muitipic_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('info_col_muitipic')->row_array();
+
         return $res;
     }
 
@@ -55,6 +57,7 @@ class Info_col_muitipic_model extends M_Model
         } else {
             $bool = $this->db->insert('info_col_muitipic', $data['vals']);
         }
+
         return $bool;
     }
 
@@ -63,10 +66,11 @@ class Info_col_muitipic_model extends M_Model
     {
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
-            'pic' => 'muitipic',
+            'pic'     => 'muitipic',
             'display' => 'show'
         ));
         $res = $this->db->get('info_col')->result_array();
+
         return $res;
     }
 

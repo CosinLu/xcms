@@ -22,6 +22,7 @@ class Sys_dict_model extends M_Model
         $res = $this->db->get()->result_array();
         $data['list'] = $this->category->children($res);
         $data['total'] = count($res);
+
         return $data;
     }
 
@@ -30,6 +31,7 @@ class Sys_dict_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('sys_dict')->row_array();
+
         return $res;
     }
 
@@ -41,6 +43,7 @@ class Sys_dict_model extends M_Model
         } else {
             $bool = $this->category->insert($data['pid'], $data['vals']);
         }
+
         return $bool;
     }
 
@@ -49,6 +52,7 @@ class Sys_dict_model extends M_Model
     {
         $this->db->where('pid', 0);
         $res = $this->db->get('sys_dict')->result_array();
+
         return $res;
     }
 

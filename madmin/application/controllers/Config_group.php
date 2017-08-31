@@ -66,12 +66,12 @@ class Config_group extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'name' => $this->input->post('name'),
+                'name'    => $this->input->post('name'),
                 'display' => $this->input->post('display'),
-                'remark' => $this->input->post('remark'),
-                'sort' => $this->input->post('sort')
+                'remark'  => $this->input->post('remark'),
+                'sort'    => $this->input->post('sort')
             )
         );
         $bool = $this->config_group->save($data);

@@ -4,23 +4,23 @@
  */
 +(function ($) {
     var defaults = {
-        openIcon: 'fa fa-caret-right',
-        closeIcon: 'fa fa-caret-down',
-        data: [],//数据
-        html: false,//是否直接解析html，data不需传参
-        indent: 15,//缩进
-        display: 1,//默认显示几级：true=全部显示，1=显示1级，2/3/4/5依次类推
-        currentId: '',//选中菜单id
+        openIcon    : 'fa fa-caret-right',
+        closeIcon   : 'fa fa-caret-down',
+        data        : [],//数据
+        html        : false,//是否直接解析html，data不需传参
+        indent      : 15,//缩进
+        display     : 1,//默认显示几级：true=全部显示，1=显示1级，2/3/4/5依次类推
+        currentId   : '',//选中菜单id
         currentClass: 'current',//选中菜单样式
-        speed: 100,//动画速度
-        url: true,//启用url：true=启用，false=禁用
-        onLoad: function (obj) {
+        speed       : 100,//动画速度
+        url         : true,//启用url：true=启用，false=禁用
+        onLoad      : function (obj) {
         },//加载完成执行
-        onClick: function (obj, url) {
+        onClick     : function (obj, url) {
         }
     };
     var mtree = {
-        init: function () {
+        init             : function () {
             this._$ele = $(this);
             mtree.unsubscribeEvents.call(this);
             mtree.initData.call(this);
@@ -28,7 +28,7 @@
         unsubscribeEvents: function () {
             this._$ele.off('click');
         },
-        initData: function () {
+        initData         : function () {
             if (!this.ops.html) {
                 this._$ele.html('');
             }
@@ -39,7 +39,7 @@
             mtree.initBtnStatus.call(this);
             mtree.clearRedundancy(this);
         },
-        genData: function ($parent, pid, level) {
+        genData          : function ($parent, pid, level) {
             var _this = this;
             var data = _this.ops.data;
             var $ul = $(mtree.template.ul).data('level', level++);
@@ -60,7 +60,7 @@
                 $parent.append($ul);
             }
         },
-        initIdent: function () {
+        initIdent        : function () {
             var _this = this;
             if (_this.ops.indent) {
                 $('.mtree-link-hook', this._$ele).each(function (e) {
@@ -73,7 +73,7 @@
                 })
             }
         },
-        clearRedundancy: function () {
+        clearRedundancy  : function () {
             var _this = this;
             $('.mtree-link-hook', _this._$ele).each(function () {
                 //如果下级没有数据
@@ -82,7 +82,7 @@
                 }
             })
         },
-        initBtnStatus: function () {
+        initBtnStatus    : function () {
             var _this = this;
             $('.mtree-link-hook', this._$ele).each(function () {
                 if ($(this).next('ul').is(':hidden')) {
@@ -96,7 +96,7 @@
                 }
             })
         },
-        initCurrent: function () {
+        initCurrent      : function () {
             if (this.ops.currentId) {
                 this._$ele.find('.mtree-link-hook[data-id="' + this.ops.currentId + '"]')
                     .addClass(this.ops.currentClass)
@@ -112,7 +112,7 @@
                     .show();
             }
         },
-        inintShow: function () {
+        inintShow        : function () {
             var _this = this;
             $('ul', _this._$ele).each(function () {
                 var level = $(this).data('level');
@@ -124,7 +124,7 @@
 
             });
         },
-        linkClick: function () {
+        linkClick        : function () {
             var _this = this;
             var openIcon = this.ops.openIcon;
             var closeIcon = this.ops.closeIcon;
@@ -178,7 +178,7 @@
                 e.stopPropagation();
             })
         },
-        btnClick: function () {
+        btnClick         : function () {
             var _this = this;
             var openIcon = this.ops.openIcon;
             var closeIcon = this.ops.closeIcon;
@@ -205,14 +205,14 @@
                 e.stopPropagation();
             })
         },
-        template: {
-            ul: '<ul></ul>',
-            li: '<li></li>',
-            a: '<a href="javascript:;" class="mtree_link mtree-link-hook" [expand]></a>',
+        template         : {
+            ul    : '<ul></ul>',
+            li    : '<li></li>',
+            a     : '<a href="javascript:;" class="mtree_link mtree-link-hook" [expand]></a>',
             indent: '<div class="mtree_indent mtree-indent-hook"></div>',
-            btn: '<div class="mtree_btn mtree-btn-hook"></div>',
-            icon: '<div class="mtree_icon mtree-icon-hook"></div>',
-            name: '<div class="mtree_name mtree-name-hook"></div>'
+            btn   : '<div class="mtree_btn mtree-btn-hook"></div>',
+            icon  : '<div class="mtree_icon mtree-icon-hook"></div>',
+            name  : '<div class="mtree_name mtree-name-hook"></div>'
         }
     }
     $.fn.mtree = function (ops) {

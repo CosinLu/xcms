@@ -87,22 +87,22 @@
         //获得列表
         function get_list(pageIndex) {
             var data = {
-                x: Math.random(),
-                page: pageIndex,
+                x         : Math.random(),
+                page      : pageIndex,
                 start_time: $('input[name="start_time"]').val(),
-                stop_time: $('input[name="stop_time"]').val()
+                stop_time : $('input[name="stop_time"]').val()
             };
             $.ajax({
-                url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
+                url       : '<?=$get_list_url?>',
+                type      : 'post',
+                dataType  : 'json',
+                data      : data,
                 beforeSend: function () {
                     $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
                     $('.list-hook').after('<?=M_LOADING?>');
                 },
-                success: function (data) {
+                success   : function (data) {
                     $('.nodata-hook,.loading-hook').remove();
                     if (data.list.list.length) {
                         $('#list').html(template('list_tpl', data));
@@ -116,20 +116,20 @@
 
         //日期时间
         $('input[name="start_time"]').datetimepicker({
-            format: "yyyy-mm-dd",
+            format   : "yyyy-mm-dd",
             autoclose: true,
-            minView: "month",
-            todayBtn: true,
-            language: 'zh-CN'
+            minView  : "month",
+            todayBtn : true,
+            language : 'zh-CN'
         }).on("click", function (ev) {
             $('input[name="start_time"]').datetimepicker("setEndDate", $('input[name="stop_time"]').val());
         });
         $('input[name="stop_time"]').datetimepicker({
-            format: "yyyy-mm-dd",
+            format   : "yyyy-mm-dd",
             autoclose: true,
-            minView: "month",
-            todayBtn: true,
-            language: 'zh-CN'
+            minView  : "month",
+            todayBtn : true,
+            language : 'zh-CN'
         }).on("click", function (ev) {
             $('input[name="stop_time"]').datetimepicker("setStartDate", $('input[name="start_time"]').val());
         });

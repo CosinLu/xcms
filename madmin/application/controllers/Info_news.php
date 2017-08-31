@@ -76,15 +76,15 @@ class Info_news extends Info
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
+            'id'   => $this->input->post('id'),
             'vals' => array(
-                'cid' => $this->input->post('cid'),
-                'title' => $this->input->post('title'),
-                'summary' => $this->input->post('summary'),
-                'target' => $this->input->post('target'),
-                'display' => $this->input->post('display'),
-                'sort' => $this->input->post('sort'),
-                'content' => $this->input->post('content'),
+                'cid'         => $this->input->post('cid'),
+                'title'       => $this->input->post('title'),
+                'summary'     => $this->input->post('summary'),
+                'target'      => $this->input->post('target'),
+                'display'     => $this->input->post('display'),
+                'sort'        => $this->input->post('sort'),
+                'content'     => $this->input->post('content'),
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );

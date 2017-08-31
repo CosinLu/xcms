@@ -27,9 +27,10 @@ class Config_model extends M_Model
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
             'config_group_id' => $config_group_id,
-            'display' => 'show'
+            'display'         => 'show'
         ));
         $result = $this->db->get('config')->result_array();
+
         return $result;
     }
 
@@ -39,6 +40,7 @@ class Config_model extends M_Model
         $this->db->where('display', 'show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get('config_group')->result_array();
+
         return $res;
     }
 
@@ -50,13 +52,14 @@ class Config_model extends M_Model
         if (!empty($data['vals'])) {
             foreach ($data['vals'] as $key => $val) {
                 $value[] = array(
-                    'name' => $key,
+                    'name'  => $key,
                     'value' => (is_array($val)) ? implode(',', $val) : $val
                 );
             }
             $this->db->update_batch('config', $value, 'name');
             $rows += $this->db->affected_rows();
         }
+
         return $rows;
     }
 

@@ -78,14 +78,14 @@ class Common_dict extends M_Controller
     public function save()
     {
         $data = array(
-            'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
+            'id'   => $this->input->post('id'),
+            'pid'  => $this->input->post('pid'),
             'vals' => array(
-                'name' => $this->input->post('name'),
-                'ident' => $this->input->post('ident'),
-                'color' => $this->input->post('color'),
+                'name'   => $this->input->post('name'),
+                'ident'  => $this->input->post('ident'),
+                'color'  => $this->input->post('color'),
                 'remark' => $this->input->post('remark'),
-                'sort' => $this->input->post('sort')
+                'sort'   => $this->input->post('sort')
             )
         );
         $bool = $this->common_dict->save($data);

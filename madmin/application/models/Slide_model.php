@@ -34,6 +34,7 @@ class Slide_model extends M_Model
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
         $data['total'] = $config['total_rows'];
+
         return $data;
     }
 
@@ -42,6 +43,7 @@ class Slide_model extends M_Model
     {
         $this->db->where('id', $id);
         $res = $this->db->get('slide')->row_array();
+
         return $res;
     }
 
@@ -53,6 +55,7 @@ class Slide_model extends M_Model
         } else {
             $bool = $this->db->insert('slide', $data['vals']);
         }
+
         return $bool;
     }
 

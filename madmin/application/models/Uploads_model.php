@@ -2,44 +2,32 @@
 
 /**
  * Created by PhpStorm.
- * User: MengXianghan
- * Date: 2016/8/23
- * Time: 21:12
+ * User: Admin
+ * Date: 2017/8/29
+ * Time: 10:55
  */
-class Uploads_model extends M_Model
+class Uploads_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
-    //获得列表
-    public function get_list($key = '', $page = '')
+    //写入
+    public function save($vals = array())
     {
-        $this->db->from('uploads');
-        if ($key != '') {
-            $this->db->like('client_name', $key);
-            $this->db->or_like('full_path', $key);
-        }
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = M_PERPAGE;
-        $config['cur_page'] = $page;
-        $this->pagination->initialize($config);
-        $this->db->order_by('id desc');
-        $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
-        $data['list'] = $this->db->get()->result_array();
-        $data['pagination'] = $this->pagination->create_ajax_links();
-        $data['total'] = $config['total_rows'];
-        return $data;
+        $this->db->insert('uploads', $vals);
+        $insert_id = $this->db->insert_id();
+
+        return $insert_id;
     }
 
     //删除
-    public function del($tbname = '', $id = '', $primary = '')
+    public function del($id = '')
     {
+        //删除文件
         $this->del_file($id);
-        $this->db->where($primary, $id);
-        $this->db->delete($tbname);
+        //删除数据库数据
+        $this->db->where('id', $id);
+        $this->db->delete('uploads');
         $rows = $this->db->affected_rows();
+
         return $rows;
     }
 
@@ -57,17 +45,6 @@ class Uploads_model extends M_Model
                 }
             }
         }
-    }
-
-    //批量删除
-    public function batch_del($tbname = '', $id = '', $primary = '')
-    {
-        $id_arr = explode(',', $id);
-        $this->del_file($id);
-        $this->db->where_in($primary, $id_arr);
-        $this->db->delete($tbname);
-        $rows = $this->db->affected_rows();
-        return $rows;
     }
 
 }

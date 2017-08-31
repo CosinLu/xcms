@@ -25,6 +25,7 @@ class Info_model extends M_Model
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
         $res = $this->category->children($res);
+
         return $res;
     }
 
@@ -34,6 +35,7 @@ class Info_model extends M_Model
         $this->db->select('tpl_id');
         $this->db->where(array('id' => $cid));
         $res = $this->db->get('info_col')->row_array();
+
         return $res['tpl_id'];
     }
 
