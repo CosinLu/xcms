@@ -16,7 +16,6 @@ require.config({
         'layer'         : 'plugin/layer/layer',
         'mtree'         : 'plugin/mtree/js/mtree',
         'ueditor'       : 'plugin/ueditor/ueditor.all.min',
-        'holder'        : 'plugin/holder.min',
         'jqthumb'       : 'plugin/jqthumb.min',
         'form'          : 'plugin/jquery.form.min',
         'sortable'      : 'plugin/jquery.sortable',
@@ -31,13 +30,11 @@ require.config({
                 , 'css!plugin/font-awesome/css/font-awesome.min.css']
         },
         'colorpicker'   : {
-            deps: ['jquery'
-                , 'bootstrap'
+            deps: ['bootstrap'
                 , 'css!plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css']
         },
         'datetimepicker': {
-            deps: ['jquery'
-                , 'bootstrap'
+            deps: ['bootstrap'
                 , 'plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min'
                 , 'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
                 , 'css!plugin/../css/datetimepicker.css']
@@ -52,9 +49,6 @@ require.config({
                 , 'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css'
                 , 'css!plugin/../css/iconpicker.css']
         },
-        'layer'         : {
-            deps: ['jquery']
-        },
         'mtree'         : {
             deps: ['jquery'
                 , 'css!plugin/mtree/css/mtree.css']
@@ -68,9 +62,6 @@ require.config({
                 window.ZeroClipboard = ZeroClipboard;
             }
         },
-        'holder'        : {
-            deps: ['jqthumb']
-        },
         'template'      : {
             deps: ['jquery']
         },
@@ -79,8 +70,7 @@ require.config({
                 , 'css!plugin/nanoscroller/css/nanoscroller.css']
         },
         'uploads'       : {
-            deps: ['jquery'
-                , 'uploadifive']
+            deps: ['uploadifive']
         }
     }
 
