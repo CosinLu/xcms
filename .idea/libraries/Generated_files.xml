@@ -1,0 +1,35 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/madmin/js/main.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/bootstrap-3.3.5/js/bootstrap.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/dropload-0.9.0/dropload.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/iconpicker/js/iconpicker.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/iconpicker/js/fontawesome-iconpicker.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/plugin/mtree-2.0/js/mtree.min.js" />
+        <item url="file://$PROJECT_DIR$/madmin/js/unit.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dragsort/jquery.dragsort-0.5.2.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dragsort/jquery.dragsort.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dragsort/jquery.dragsort-0.5.2.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dragsort/jquery.dragsort.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/js/main.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/js/unit.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/js/main.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/colorpicker-2.3.3/js/bootstrap-colorpicker.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/bootstrap-3.3.5/js/bootstrap.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dropload-0.9.0/dropload.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/iconpicker/js/iconpicker.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/iconpicker/js/fontawesome-iconpicker.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/dragsort-0.5.2/jquery.dragsort-0.5.2.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/plugin/mtree-2.0/js/mtree.min.js" />
+      <root url="file://$PROJECT_DIR$/madmin/js/unit.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
