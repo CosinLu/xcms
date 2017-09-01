@@ -12,7 +12,7 @@ class Uploads extends M_Controller
     {
         parent::__construct();
         $this->load->model('uploads_model', 'uploads');
-        $this->load->library('uploadifive');
+        $this->load->library('uploads');
         $this->set_url();
     }
 

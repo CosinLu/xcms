@@ -3,8 +3,8 @@
 /**
  * Created by PhpStorm.
  * User: Admin
- * Date: 2017/8/31
- * Time: 17:48
+ * Date: 2017/9/1
+ * Time: 17:37
  */
 class Uploads
 {
@@ -17,6 +17,7 @@ class Uploads
         $this->tb_name = (isset($arr['tb_name'])) ? $arr['tb_name'] : 'uploads';
     }
 
+
     /**
      * 获得数据
      *
@@ -27,11 +28,11 @@ class Uploads
     public function data($uploads_id = '')
     {
         $uploads_id_arr = explode(',', $uploads_id);
+        $this->CI->db->select('id as upl_id,full_path as upl_path,is_image as upl_image,ext as upl_ext,client_name as upl_name');
         $this->CI->db->where_in('id', $uploads_id_arr);
         $this->CI->db->order_by("instr('" . $uploads_id . "',id)");
-        $res = $this->CI->db->get($this->tb_name)->result_array();
+        $res = $this->CI->db->get('uploads')->result_array();
 
         return $res;
     }
-
 }

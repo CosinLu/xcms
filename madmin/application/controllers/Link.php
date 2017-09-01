@@ -12,7 +12,7 @@ class Link extends M_Controller
     {
         parent::__construct();
         $this->load->model('link_model', 'link');
-        $this->load->library('uploadifive');
+        $this->load->library('uploads');
         $this->set_url();
     }
 
@@ -61,7 +61,7 @@ class Link extends M_Controller
         $data['item'] = $this->link->update($id);
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
-        $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
+        $data['image'] = $this->uploads->data($data['item']['image'], 'image');
         $this->load->view('link/update.html', $data);
     }
 

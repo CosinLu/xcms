@@ -194,7 +194,8 @@
                 //设置允许的文件类型
                 var accept = (newAllowMime) ? newAllowMime.join(',') : '';
                 //将允许上传文件类型格式化并重新赋值
-                settings.fileType = newAllowMime || '';
+                settings.fileType = newAllowMime.length ? newAllowMime : false;
+                //console.log(settings.fileType);
 
                 // Calculate the file size limit
                 if (isNaN(settings.fileSizeLimit)) {
@@ -376,7 +377,6 @@
 
                 // Add an item to the queue
                 $data.addQueueItem = function (file) {
-                    console.log(file);
                     if ($.inArray('onAddQueueItem', settings.overrideEvents) < 0) {
                         // Check if the filename already exists in the queue
                         $data.removeExistingFile(file);

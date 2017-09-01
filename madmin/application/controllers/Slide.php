@@ -51,7 +51,6 @@ class Slide extends M_Controller
     {
         $data['target'] = $this->sys_dict->rbl('target', 'target');
         $data['display'] = $this->sys_dict->rbl('display', 'display');
-        $data['images'] = json_encode($this->uploads->data('244,245,246'));
         $this->load->view('slide/insert.html', $data);
     }
 
@@ -62,7 +61,6 @@ class Slide extends M_Controller
         $data['item'] = $this->slide->update($id);
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
-        $data['image'] = json_encode($this->upload->data('244,245,246'));
         $this->load->view('slide/update.html', $data);
     }
 

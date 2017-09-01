@@ -14,7 +14,7 @@ class Info_cases extends Info
     {
         parent::__construct();
         $this->load->model('info_cases_model', 'info_cases');
-        $this->load->library('uploadifive');
+        $this->load->library('uploads');
         $this->load->library('category', array('tb_name' => 'info_col'), 'category');
         $this->set_url();
     }
@@ -67,8 +67,8 @@ class Info_cases extends Info
         $id = $this->input->get('id');
         $data['item'] = $this->info_cases->update($id);
         $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
-        $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
-        $data['images'] = $this->uploadifive->get_list($data['item']['images'], 'images');
+        $data['image'] = $this->uploads->data($data['item']['image'], 'image');
+        $data['images'] = $this->uploads->data($data['item']['images'], 'images');
         $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
         $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
         $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);

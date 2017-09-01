@@ -37,10 +37,16 @@ class Uploads extends CI_Controller
         );
         $this->load->library('upload', $config);
         $this->upload->do_upload($filename);
-        $data = $this->upload->data();
-        $data['errors'] = $this->upload->display_errors();
-        $data['id'] = $this->uploads->save($data);
-        $data['filename'] = $filename;
+        $res = $this->upload->data();
+        $data = array(
+            'upl_image'  => $res['is_image'],
+            'upl_path'   => $res['full_path'],
+            'upl_ext'    => $res['ext'],
+            'upl_name'   => $res['client_name'],
+            'upl_id'     => $this->uploads->save($res),
+            'upl_input'  => $filename,
+            'upl_errors' => $this->upload->display_errors()
+        );
         echo json_encode($data);
     }
 

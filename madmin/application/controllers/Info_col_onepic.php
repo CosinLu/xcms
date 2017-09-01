@@ -12,7 +12,7 @@ class Info_col_onepic extends M_Controller
     {
         parent::__construct();
         $this->load->model('info_col_onepic_model', 'info_col_onepic');
-        $this->load->library('uploadifive');
+        $this->load->library('uploads');
         $this->set_url();
     }
 
@@ -49,7 +49,7 @@ class Info_col_onepic extends M_Controller
     {
         $cid = $this->input->get('cid');
         $data['item'] = $this->info_col_onepic->update($cid);
-        $data['image'] = $this->uploadifive->get_list($data['item']['image'], 'image');
+        $data['image'] = $this->uploads->data($data['item']['image'], 'image');
         $this->load->view('info_col_onepic/update.html', $data);
     }
 

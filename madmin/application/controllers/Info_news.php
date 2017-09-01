@@ -14,7 +14,7 @@ class Info_news extends Info
     {
         parent::__construct();
         $this->load->model('info_news_model', 'info_news');
-        $this->load->library('uploadifive');
+        $this->load->library('uploads');
         $this->set_url();
     }
 

@@ -3,32 +3,18 @@
  */
 define(['jquery', 'layer'], function ($) {
     return {
-        //删除上传文件
-        // delUploadFile: function (options) {
-        //     var _defaults = {
-        //         id     : '',
-        //         success: function () {
-        //         }
-        //     };
-        //     var _ops = $.extend({}, _defaults, options);
-        //     $.ajax({
-        //         url    : 'index.php/upload/del',
-        //         type   : 'post',
-        //         data   : {id: _ops.id},
-        //         success: _ops.success
-        //     });
-        // },
 
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
-                var _src = $(this).data('src');
+                var src = $(this).data('src');
+                var name = $(this).data('name');
                 parent.layer.open({
                     title  : false,
                     area   : '500px',
                     btn    : false,
                     offset : '100px',
-                    content: '<img src="' + _src + '" style="max-width:100%;">'
+                    content: '<img src="' + src + '" style="max-width:100%;"><p>' + name + '</p>'
                 });
             });
         },
@@ -179,8 +165,8 @@ define(['jquery', 'layer'], function ($) {
             //全选
             $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
                 var name = $(this).data('checkname');
-                var is_checked = $(this).is(':checked');
-                $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', is_checked);
+                var isChecked = $(this).is(':checked');
+                $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', isChecked);
             });
 
             //关联全选
@@ -240,11 +226,11 @@ define(['jquery', 'layer'], function ($) {
         //滚动条美化
         scroller: function (options) {
             require(['scroller'], function (nanoScroller) {
-                var _defaults = {
+                var defaults = {
                     dom: '.nano-hook'
                 };
-                var _ops = $.extend({}, _defaults, options);
-                $(_ops.dom).nanoScroller();
+                var ops = $.extend({}, defaults, options);
+                $(ops.dom).nanoScroller();
             })
         },
 
@@ -252,16 +238,16 @@ define(['jquery', 'layer'], function ($) {
         dragsort: function (obj) {
             require(['dragsort'], function (dragsort) {
                 $('.' + obj).each(function () {
-                    var _id = $(this).attr('id');
-                    var _class = $(this).children('div').attr('class');
-                    var _newClass = '';
-                    if (_class) {
-                        _newClass = _class.split(' ').join('.')
+                    var id = $(this).attr('id');
+                    var className = $(this).children('div').attr('class');
+                    var newClass = '';
+                    if (className) {
+                        newClass = className.split(' ').join('.')
                     }
-                    $('#' + _id).dragsort({
-                        dragSelector       : '.' + _newClass,
+                    $('#' + id).dragsort({
+                        dragSelector       : '.' + newClass,
                         dragSelectorExclude: 'a,i,.control',
-                        placeHolderTemplate: '<div class="' + _class + ' dragsort"></div>'
+                        placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
                     });
                 });
             })

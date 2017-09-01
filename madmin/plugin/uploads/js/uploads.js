@@ -2,78 +2,185 @@
  * Created by Admin on 2017/8/30.
  */
 require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, uploadifive, jqthumb, dragsort) {
-    var _queue = 'uploads-queue-hook';
-    var _queueItem = 'uploads-queue-item-hook';
-    var _thumb = 'thumb-hook';
-    var _preview = 'preview-hook';
-    var _destory = 'destory-hook';
-    var _input = 'input-hook';
+    var queue = 'uploads-queue-hook';
+    var queueItem = 'uploads-queue-item-hook';
+    var thumb = 'uploads-thumb-hook';
+    var preview = 'uploads-preview-hook';
+    var destory = 'uploads-destory-hook';
+    var input = 'uploads-input-hook';
+    var progress = 'uploads-progress-hook';
+    var itemTemplate = '<div class="uploads-queue-item ' + queueItem + '">\
+                                <div class="' + progress + ' uploads-progress progress">\
+                                    <div class="progress-bar progress-bar-success"></div>\
+                                </div>\
+                                <div class="uploads-control uploads-control-hook">\
+                                    <a href="javascript:;" class="' + preview + '"><i class="fa fa-search-plus"></i></a>\
+                                    <a href="javascript:;" class="' + destory + '"><i class="fa fa-trash"></i></a>\
+                                </div>\
+                                <img class="uploads-thumb ' + thumb + '" src="" alt="">\
+                                <input type="hidden" name="" value="" class="' + input + '">\
+                            </div>';
 
-    //获取窗口索引
-    var index = parent.layer.getFrameIndex(window.name);
+    //缩略图
+    var thumbnail = function (ext) {
+        if (!ext.length) return '';
+        var src;
+        var thumbnail = {
+            'zip'    : 'plugin/uploads/images/zip.png',
+            'ai'     : 'plugin/uploads/images/ai.png',
+            'apk'    : 'plugin/uploads/images/apk.png',
+            'excel'  : 'plugin/uploads/images/excel.png',
+            'flash'  : 'plugin/uploads/images/flash.png',
+            'image'  : 'plugin/uploads/images/image.png',
+            'music'  : 'plugin/uploads/images/music.png',
+            'pdf'    : 'plugin/uploads/images/pdf.png',
+            'ppt'    : 'plugin/uploads/images/ppt.png',
+            'psd'    : 'plugin/uploads/images/psd.png',
+            'video'  : 'plugin/uploads/images/video.png',
+            'word'   : 'plugin/uploads/images/word.png',
+            'unknown': 'plugin/uploads/images/unknown.png'
+        };
+        ext = ext.replace('\.', '').toLowerCase();
+        if ($.inArray(ext, ['7z', 'rar', 'zip']) > -1) {
+            src = thumbnail.zip;
+        } else if ($.inArray(ext, ['ai']) > -1) {
+            src = thumbnail.ai;
+        } else if ($.inArray(ext, ['apk']) > -1) {
+            src = thumbnail.apk;
+        } else if ($.inArray(ext, ['xls', 'xlsx']) > -1) {
+            src = thumbnail.excel;
+        } else if ($.inArray(ext, ['flv', 'flash']) > -1) {
+            src = thumbnail.flash;
+        } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'bmp']) > -1) {
+            src = thumbnail.image;
+        } else if ($.inArray(ext, ['mp3', 'ogg', 'wav']) > -1) {
+            src = thumbnail.music;
+        } else if ($.inArray(ext, ['pdf']) > -1) {
+            src = thumbnail.pdf;
+        } else if ($.inArray(ext, ['ppt', 'pptx']) > -1) {
+            src = thumbnail.ppt;
+        } else if ($.inArray(ext, ['psd']) > -1) {
+            src = thumbnail.psd;
+        } else if ($.inArray(ext, ['mp4', 'rm', '3gp', 'avi', 'wma', 'rmvb']) > -1) {
+            src = thumbnail.video;
+        } else if ($.inArray(ext, ['doc', 'docx']) > -1) {
+            src = thumbnail.word;
+        } else {
+            src = thumbnail.unknown;
+        }
+        return src;
+    };
 
     //设置弹窗标题
     parent.layer.title('上传图片');
 
-    //拖拽排序
-    unit.dragsort(_queue);
+    //初始化数据
+    var initData = function () {
+        $('.' + queue).each(function () {
+            var _this = $(this);
+            var list = $(this).data('list');
+            if (list != undefined) {
+                $.each(list, function (i, e) {
+                    var $item = $(itemTemplate).clone();
+                    var src = (parseInt(e.upl_image)) ? e.upl_path : thumbnail(e.upl_ext);
+                    $item.addClass('complete');
+                    $item.find('.' + preview)
+                        .attr('data-src', src)
+                        .attr('data-name', e.upl_name);
+                    $item.find('.' + input)
+                        .attr('name', _this.attr('id') + '[]');
+                    $item.find('.' + input).val(e.upl_id);
+                    $item.find('.' + progress).remove();
+                    $item.find('.' + thumb).attr('src', src)
+                        .attr('alt', e.upl_name)
+                        .jqthumb({width: '69', height: '69'});
+                    _this.append($item);
+                })
+            }
+        })
+    };
+    initData();
 
-    //关闭窗口
-    unit.layerClose(index);
+    //拖拽排序
+    var Dragsort = function () {
+        $('.' + queue).each(function () {
+            var id = $(this).attr('id');
+            var className = $(this).children('div').attr('class');
+            var newClass = '';
+            if (className) {
+                newClass = className.split(' ').join('.')
+            }
+            $('#' + id).dragsort({
+                dragSelector       : '.' + newClass,
+                dragSelectorExclude: '.uploads-control-hook',
+                placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
+            });
+        });
+    };
+    Dragsort();
 
     //预览
-    unit.imagePreview();
+    $(document).on('click', '.' + preview, function () {
+        var src = $(this).data('src');
+        var name = $(this).data('name');
+        var nameContent = (name) ? '<div class="uploads-preview-name">' + name + '</div>' : '';
+        parent.layer.open({
+            title  : false,
+            area   : '500px',
+            btn    : false,
+            offset : '100px',
+            content: '<div class="uploads-preview"><img src="' + src + '">' + nameContent + '</div>'
+        });
+    });
+
+    //
 
     //删除上传文件
-    $(document).on('click', '.' + _destory, function () {
-        $(this).closest('.' + _queueItem).remove();
+    $(document).on('click', '.' + destory, function () {
+        $(this).closest('.' + queueItem).remove();
     });
 
     //实例化uploadifive
-    $('.uploads-hook').uploadifive({
+    $('.uploads-btn-hook').uploadifive({
         'auto'            : true,
-        'buttonClass'     : 'upload_btn',
+        'buttonClass'     : 'uploads-btn',
         'buttonText'      : '+',
         'formData'        : {
             'timestamp': new Date().getTime(),
-            'token'    : Math.random(),
-            'filename' : 'image_upload'
+            'token'    : Math.random()
         },
-        //'queueID'         : _queue,
-        'queueItem'       : _queueItem,
-        'itemTemplate'    : '<div class="' + _queueItem + ' item">\
-                                <div class="progress">\
-                                    <div class="progress-bar progress-bar-success"></div>\
-                                </div>\
-                                <div class="control">\
-                                    <a href="javascript:;" class="priview ' + _preview + '"><i class="fa fa-search-plus"></i></a>\
-                                    <a href="javascript:;" class="destory ' + _destory + '"><i class="fa fa-trash"></i></a>\
-                                </div>\
-                                <img class="' + _thumb + '" src="" alt="">\
-                                <input type="hidden" name="" value="" class="' + _input + '">\
-                            </div>',
-        'fileSizeLimit'   : '2MB',
+        'queueItem'       : queueItem,
+        'itemTemplate'    : itemTemplate,
+        'fileSizeLimit'   : '100MB',
         'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
         'uploadScript'    : 'index.php/uploads/do_upload',
         'onUploadComplete': function (file, data) {
-            var _json = $.parseJSON(data);
-            var _item = file.queueItem;
-            //console.log(_json);
-            //缩略图属性
-            _item.find('.' + _thumb).attr('src', _json.full_path)
-                .attr('alt', _json.client_name)
+            var data = $.parseJSON(data);
+            var item = file.queueItem;
+            var full_path = '';
+            //缩略图
+            if (data.upl_image) {
+                full_path = data.upl_path;
+            } else {
+                full_path = thumbnail(data.upl_ext);
+            }
+            item.find('.' + thumb).attr('src', full_path)
+                .attr('alt', data.upl_name)
                 .jqthumb({width: '69', height: '69'});
+
             //预览图片属性
-            _item.find('.' + _preview).attr('data-src', _json.full_path);
+            item.find('.' + preview).attr('data-src', full_path).attr('data-name', data.upl_name);
             //删除上传图片属性
-            _item.find('.' + _destory).attr('data-id', _json.id);
+            //item.find('.' + destory).attr('data-id', data.id);
             //input赋值
-            _item.find('.' + _input).attr('name', _json.filename + '[]');
-            _item.find('.' + _input).val(_json.id);
+            item.find('.' + input).attr('name', data.upl_input + '[]');
+            item.find('.' + input).val(data.upl_id);
         },
         'onQueueComplete' : function (uploads) {
-            //console.log(uploads);
-            unit.dragsort(_queue);
+            Dragsort();
+        },
+        'onError'         : function (errorType) {
+            // console.log('The error was: ' + errorType);
         }
     });
 });
