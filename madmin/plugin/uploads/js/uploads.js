@@ -108,16 +108,6 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
     var Dragsort = function () {
         $('.' + queue).each(function () {
             var id = $(this).attr('id');
-            var className = $(this).children('div').attr('class');
-            var newClass = '';
-            /*if (className) {
-             newClass = className.split(' ').join('.')
-             }
-             $('#' + id).dragsort({
-             dragSelector: '.' + newClass,
-             dragSelectorExclude: '.uploads-control-hook',
-             placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
-             });*/
             var el = document.getElementById(id);
             var sortable = new Sortable(el, {
                 group: id,
