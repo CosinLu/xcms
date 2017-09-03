@@ -14,8 +14,24 @@
             background: #fff;
             box-sizing: content-box;
             position: relative;
-            &.dragsort {
+            &.uploads-ghost {
                 border-style: dashed;
+                * {
+                    opacity: 0;
+                }
+            }
+            &.uploads-chosen {
+                opacity: .5;
+            }
+            .uploads-move {
+                width: 20px;
+                height: 20px;
+                display: block;
+                cursor: move;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 100;
             }
             .uploads-drag {
                 position: absolute;

@@ -72,7 +72,6 @@ class Slide extends M_Controller
     //保存
     public function save()
     {
-        var_dump($this->input->post());die;
         $image = $this->input->post('image');
         $url = $this->input->post('url');
         $data = array(

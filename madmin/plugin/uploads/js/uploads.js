@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 2017/8/30.
  */
-require(['jquery', 'unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function ($, unit, uploadifive, jqthumb, dragsort) {
+require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function ($, unit, uploadifive, jqthumb, Sortable) {
     var queue = 'uploads-queue-hook';
     var queueItem = 'uploads-queue-item-hook';
     var thumb = 'uploads-thumb-hook';
@@ -9,11 +9,14 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function 
     var destory = 'uploads-destory-hook';
     var input = 'uploads-input-hook';
     var progress = 'uploads-progress-hook';
+    var control = 'uploads-control-hook';
+    var move = 'uploads-move-hook';
     var itemTemplate = '<div class="uploads-queue-item ' + queueItem + '">\
+                            <span class="uploads-move ' + move + '"></span>\
                             <div class="' + progress + ' uploads-progress progress">\
                                 <div class="progress-bar progress-bar-success"></div>\
                             </div>\
-                            <div class="uploads-control uploads-control-hook">\
+                            <div class="uploads-control ' + control + '">\
                                 <a href="javascript:;" class="uploads-preview ' + preview + '"><i class="fa fa-search-plus"></i></a>\
                                 <a href="javascript:;" class="uploads-destory ' + destory + '"><i class="fa fa-trash"></i></a>\
                             </div>\
@@ -107,13 +110,21 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function 
             var id = $(this).attr('id');
             var className = $(this).children('div').attr('class');
             var newClass = '';
-            if (className) {
-                newClass = className.split(' ').join('.')
-            }
-            $('#' + id).dragsort({
-                dragSelector: '.' + newClass,
-                dragSelectorExclude: '.uploads-control-hook',
-                placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
+            /*if (className) {
+             newClass = className.split(' ').join('.')
+             }
+             $('#' + id).dragsort({
+             dragSelector: '.' + newClass,
+             dragSelectorExclude: '.uploads-control-hook',
+             placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
+             });*/
+            var el = document.getElementById(id);
+            var sortable = new Sortable(el, {
+                group: id,
+                handle: '.' + move,
+                ghostClass: 'uploads-ghost',
+                chosenClass: "uploads-chosen",
+                draggable: "." + queueItem,
             });
         });
     };
@@ -176,7 +187,7 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function 
             item.find('.' + input).attr('name', data.upl_input + '[]').val(data.upl_id);
         },
         'onQueueComplete': function (uploads) {
-            Dragsort();
+            //Dragsort();
         },
         'onError': function (errorType) {
             // console.log('The error was: ' + errorType);

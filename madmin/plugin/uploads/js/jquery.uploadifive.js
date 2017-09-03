@@ -88,7 +88,7 @@
                 settings.buttonText = $this.data('button-text') || settings.buttonText;
                 settings.checkScript = $this.data('check-script') || settings.checkScript;
                 settings.dropTarget = $this.data('drop-target') || settings.dropTarget;
-                settings.fileObjName = $this.attr('name') || settings.fileObjName;
+                settings.fileObjName = $this.data('name') || settings.fileObjName;
                 settings.fileSizeLimit = $this.data('file-size-limit') || settings.fileSizeLimit;
                 settings.fileType = $this.data('file-type') || settings.fileType;
                 settings.fileTypeSuffix = $this.data('file-type-suffix') || settings.fileTypeSuffix;

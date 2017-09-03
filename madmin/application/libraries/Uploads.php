@@ -34,6 +34,6 @@ class Uploads
         $this->CI->db->order_by("instr('" . $uploads_id . "',id)");
         $res = $this->CI->db->get('uploads')->result_array();
 
-        return $res;
+        return json_encode($res);
     }
 }

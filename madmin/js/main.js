@@ -18,7 +18,7 @@ require.config({
         'ueditor'       : 'plugin/ueditor/ueditor.all.min',
         'jqthumb'       : 'plugin/jqthumb.min',
         'form'          : 'plugin/jquery.form.min',
-        'sortable'      : 'plugin/jquery.sortable',
+        'sortable'      : 'plugin/sortable/Sortable.min',
         'template'      : 'plugin/template',
         'scroller'      : 'plugin/nanoscroller/js/jquery.nanoscroller.min',
         'uploadifive'   : 'plugin/uploads/js/jquery.uploadifive',
