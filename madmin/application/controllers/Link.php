@@ -49,8 +49,10 @@ class Link extends M_Controller
     //新增
     public function insert()
     {
-        $data['target'] = $this->sys_dict->rbl('target', 'target');
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'target', 'target'),
+            array('rbl', 'display', 'display')
+        ));
         $this->load->view('link/insert.html', $data);
     }
 
@@ -59,8 +61,10 @@ class Link extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->link->update($id);
-        $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'target', 'target', $data['item']['target']),
+            array('rbl', 'display', 'display', $data['item']['display'])
+        ));
         $data['image'] = $this->uploads->data($data['item']['image'], 'image');
         $this->load->view('link/update.html', $data);
     }

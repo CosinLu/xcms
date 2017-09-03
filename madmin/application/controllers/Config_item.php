@@ -53,8 +53,10 @@ class Config_item extends M_Controller
     public function insert()
     {
         $data['config_group'] = ddl($this->config_item->config_group(), 'config_group_id', $this->group_id);
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
-        $data['type'] = $this->sys_dict->rbl('config_type', 'type');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'display', 'display'),
+            array('rbl', 'config_type', 'type')
+        ));
         $this->load->view('config_item/insert.html', $data);
     }
 
@@ -64,8 +66,10 @@ class Config_item extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->config_item->update($id);
         $data['config_group'] = ddl($this->config_item->config_group(), 'config_group_id', $data['item']['config_group_id']);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
-        $data['type'] = $this->sys_dict->rbl('config_type', 'type', $data['item']['type']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'display', 'display', $data['item']['display']),
+            array('rbl', 'config_type', 'type', $data['item']['type'])
+        ));
         $this->load->view('config_item/update.html', $data);
     }
 
@@ -73,16 +77,16 @@ class Config_item extends M_Controller
     public function save()
     {
         $data = array(
-            'id'   => $this->input->post('id'),
+            'id' => $this->input->post('id'),
             'vals' => array(
-                'title'           => $this->input->post('title'),
-                'name'            => $this->input->post('name'),
+                'title' => $this->input->post('title'),
+                'name' => $this->input->post('name'),
                 'config_group_id' => $this->input->post('config_group_id'),
-                'type'            => $this->input->post('type'),
-                'param'           => $this->input->post('param'),
-                'remark'          => $this->input->post('remark'),
-                'display'         => $this->input->post('display'),
-                'sort'            => $this->input->post('sort')
+                'type' => $this->input->post('type'),
+                'param' => $this->input->post('param'),
+                'remark' => $this->input->post('remark'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort')
             )
         );
         $bool = $this->config_item->save($data);

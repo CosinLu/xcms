@@ -48,7 +48,9 @@ class Sys_tpl extends M_Controller
     //新增
     public function insert()
     {
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'display', 'display')
+        ));
         $this->load->view('sys_tpl/insert.html', $data);
     }
 
@@ -57,7 +59,9 @@ class Sys_tpl extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->sys_tpl->update($id);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'display', 'display', $data['item']['display'])
+        ));
         $this->load->view('sys_tpl/update.html', $data);
     }
 

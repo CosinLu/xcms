@@ -30,22 +30,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-xs-2 control-label">图片1</div>
+                                <div class="col-xs-2 control-label">图片</div>
                                 <div class="col-xs-8">
                                     <div class="uploads">
-                                        <div id="images" class="uploads-queue uploads-queue-hook"></div>
-                                        <input name="images" class="uploads-btn-hook hidden" type="file"
+                                        <div id="image" class="uploads-queue uploads-queue-hook"></div>
+                                        <input name="image" class="uploads-btn-hook hidden" type="file"
                                                data-multi="true">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">图片2</div>
-                                <div class="col-xs-8">
-                                    <div class="uploads">
-                                        <div id="file_id" class="uploads-queue uploads-queue-hook"></div>
-                                        <input name="file" class="uploads-btn-hook hidden" type="file"
-                                               data-queue-id="file_id">
                                     </div>
                                 </div>
                             </div>
@@ -58,13 +48,13 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">目标窗口</div>
                                 <div class="col-xs-8 radio">
-                                    <?=$target?>
+                                    <?=$dict['target']?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">状态</div>
                                 <div class="col-xs-8 radio">
-                                    <?=$display?>
+                                    <?=$dict['display']?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,8 +74,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="row form_container">
                 </div>
             </div>
         </div>

@@ -49,8 +49,10 @@ class Slide extends M_Controller
     //新增
     public function insert()
     {
-        $data['target'] = $this->sys_dict->rbl('target', 'target');
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'target', 'target'),
+            array('rbl', 'display', 'display')
+        ));
         $this->load->view('slide/insert.html', $data);
     }
 
@@ -59,25 +61,29 @@ class Slide extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->slide->update($id);
-        $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['image'] = $this->uploads->data($data['item']['image']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'target', 'target', $data['item']['target']),
+            array('rbl', 'display', 'display', $data['item']['display'])
+        ));
         $this->load->view('slide/update.html', $data);
     }
 
     //保存
     public function save()
     {
+        var_dump($this->input->post());die;
         $image = $this->input->post('image');
         $url = $this->input->post('url');
         $data = array(
-            'id'   => $this->input->post('id'),
+            'id' => $this->input->post('id'),
             'vals' => array(
-                'name'    => $this->input->post('name'),
-                'image'   => (!empty($image)) ? implode(',', $image) : '',
-                'url'     => ($url) ? $url : prep_url($url),
-                'target'  => $this->input->post('target'),
+                'name' => $this->input->post('name'),
+                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'url' => ($url) ? $url : prep_url($url),
+                'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
-                'sort'    => $this->input->post('sort')
+                'sort' => $this->input->post('sort')
             )
         );
         $bool = $this->slide->save($data);

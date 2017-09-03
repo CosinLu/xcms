@@ -58,7 +58,9 @@ class Sys_user extends M_Controller
     public function insert()
     {
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id');
-        $data['status'] = $this->sys_dict->rbl('user_status', 'status');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'user_status', 'status')
+        ));
         $this->load->view('sys_user/insert.html', $data);
     }
 
@@ -69,7 +71,9 @@ class Sys_user extends M_Controller
         $data['item'] = $this->sys_user->update($id);
         $data['disabled'] = ($data['item']['user_type'] == 1) ? 'disabled' : '';
         $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $data['disabled']);
-        $data['status'] = $this->sys_dict->rbl('user_status', 'status', $data['item']['status'], $data['disabled']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'user_status', 'status', $data['item']['status'], $data['disabled'])
+        ));
         $this->load->view('sys_user/update.html', $data);
     }
 
@@ -78,16 +82,16 @@ class Sys_user extends M_Controller
     {
         $password = $this->input->post('password');
         $data = array(
-            'id'   => $this->input->post('id'),
+            'id' => $this->input->post('id'),
             'vals' => array_filter(
                 array(
-                    'role_id'  => $this->input->post('role_id'),
+                    'role_id' => $this->input->post('role_id'),
                     'username' => $this->input->post('username'),
                     'password' => $password ? md5($password) : '',
                     'nickname' => $this->input->post('nickname'),
                     'realname' => $this->input->post('realname'),
-                    'status'   => $this->input->post('status'),
-                    'remark'   => $this->input->post('remark')
+                    'status' => $this->input->post('status'),
+                    'remark' => $this->input->post('remark')
                 )
             )
         );

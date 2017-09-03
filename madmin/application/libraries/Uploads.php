@@ -27,6 +27,7 @@ class Uploads
      */
     public function data($uploads_id = '')
     {
+        if ($uploads_id == '') return '';
         $uploads_id_arr = explode(',', $uploads_id);
         $this->CI->db->select('id as upl_id,full_path as upl_path,is_image as upl_image,ext as upl_ext,client_name as upl_name');
         $this->CI->db->where_in('id', $uploads_id_arr);

@@ -50,7 +50,9 @@ class Info_col_muitipic extends M_Controller
     public function insert()
     {
         $data['info_col'] = ddl($this->info_col_muitipic->info_col(), 'cid');
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl','display','display')
+        ));
         $this->load->view('info_col_muitipic/insert.html', $data);
     }
 
@@ -61,7 +63,9 @@ class Info_col_muitipic extends M_Controller
         $data['item'] = $this->info_col_muitipic->update($id);
         $data['info_col'] = ddl($this->info_col_muitipic->info_col(), 'cid', $data['item']['cid']);
         $data['image'] = $this->uploads->data($data['item']['image'], 'image');
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl','display','display',$data['item']['display'])
+        ));
         $this->load->view('info_col_muitipic/update.html', $data);
     }
 

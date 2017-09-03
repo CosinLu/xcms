@@ -53,9 +53,18 @@
                     text-align: center;
                 }
             }
-            &.complete {
+            &.complete,
+            &.error {
                 .uploads-control {
                     display: block;
+                }
+            }
+            &.error {
+                border-color: @color-danger;
+                .uploads-control {
+                    .uploads-preview {
+                        display: none;
+                    }
                 }
             }
             .uploads-progress {

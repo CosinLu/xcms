@@ -55,8 +55,10 @@ class Info_cases extends Info
     public function insert()
     {
         $data['cols'] = $this->category->ddl(array(), 'cid', 0, $this->cid, FALSE, $this->tpl_id());
-        $data['target'] = $this->sys_dict->rbl('target', 'target');
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'target', 'target'),
+            array('rbl', 'display', 'display')
+        ));
         $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_cases/insert.html', $data);
     }
@@ -69,8 +71,10 @@ class Info_cases extends Info
         $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
         $data['image'] = $this->uploads->data($data['item']['image'], 'image');
         $data['images'] = $this->uploads->data($data['item']['images'], 'images');
-        $data['target'] = $this->sys_dict->rbl('target', 'target', $data['item']['target']);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl','target','target', $data['item']['target']),
+            array('rbl','display','display', $data['item']['display'])
+        ));
         $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
         $this->load->view('info_cases/update.html', $data);
     }
@@ -81,17 +85,17 @@ class Info_cases extends Info
         $image = $this->input->post('image');
         $images = $this->input->post('images');
         $data = array(
-            'id'   => $this->input->post('id'),
+            'id' => $this->input->post('id'),
             'vals' => array(
-                'cid'         => $this->input->post('cid'),
-                'title'       => $this->input->post('title'),
-                'case_url'    => $this->input->post('case_url'),
-                'image'       => (!empty($image)) ? implode(',', $image) : '',
-                'images'      => (!empty($images)) ? implode(',', $images) : '',
-                'target'      => $this->input->post('target'),
-                'display'     => $this->input->post('display'),
-                'sort'        => $this->input->post('sort'),
-                'content'     => $this->input->post('content'),
+                'cid' => $this->input->post('cid'),
+                'title' => $this->input->post('title'),
+                'case_url' => $this->input->post('case_url'),
+                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'images' => (!empty($images)) ? implode(',', $images) : '',
+                'target' => $this->input->post('target'),
+                'display' => $this->input->post('display'),
+                'sort' => $this->input->post('sort'),
+                'content' => $this->input->post('content'),
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );

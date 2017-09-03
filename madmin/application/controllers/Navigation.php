@@ -67,8 +67,10 @@ class Navigation extends M_Controller
     {
         $id = $this->input->get('id');
         $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
-        $data['position'] = $this->sys_dict->rbl('position', 'position');
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'position', 'position'),
+            array('rbl', 'display', 'display')
+        ));
         $this->load->view('navigation/insert.html', $data);
     }
 
@@ -78,8 +80,10 @@ class Navigation extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->navigation->update($id);
         $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
-        $data['position'] = $this->sys_dict->rbl('position', 'position', $data['item']['position']);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl', 'position', 'position', $data['item']['position']),
+            array('rbl', 'display', 'display', $data['item']['display'])
+        ));
         $this->load->view('navigation/update.html', $data);
     }
 

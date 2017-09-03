@@ -16,65 +16,113 @@ class Sys_dict
     }
 
     /**
-     * 单选按钮列表
+     * 获得所有数据
+     * @param string $ident 字典标识
+     * @return mixed
+     */
+    public function data($ident = '')
+    {
+        if ($ident != '') {
+            $this->CI->db->select('t1.*');
+            $this->CI->db->from('sys_dict as t');
+            $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
+            $this->CI->db->where('t.ident', $ident);
+            $this->CI->db->group_by('t1.id');
+            $this->CI->db->order_by('t1.sort asc,t1.id asc');
+        }
+        $res = $this->CI->db->get('sys_dict')->result_array();
+        return $res;
+    }
+
+    /**
+     * @param array $arr array(['控件类型','字典标识','控件名称','选中项','禁选项','默认值（下拉列表第一条数据）array('title','value') OR false'])
+     * @return string
+     */
+    public function dict($arr = array())
+    {
+        //var_dump($arr);
+        if (empty($arr)) return '';
+        //数据源
+        $data = $this->data();
+        //传参标准
+        //$standard = array('type' => '', 'ident' => '', 'name' => '', 'selected' => '', 'forbidden' => '', 'default' => '');
+        //模拟数据
+        /*$arr = array(
+            array('type'=>'rbl'','ident' => 'sys_col_auth', 'name' => 'sys_col_auth', 'selected' => 'update', 'forbidden' => ''),
+            array('type'=>'cbl','ident' => 'display', 'name' => 'display', 'selected' => '', 'forbidden' => ''),
+            array('type'=>'ddl','ident' => 'config_type', 'name' => 'config_type', 'selected' => 'checkbox', 'forbidden' => ['text', 'radio']),
+        );*/
+        $res = array();
+        foreach ($arr as $key => $val) {
+            //格式化参数
+            //$val = array_merge($standard, $val);
+            $val = array_pad($val, 6, '');
+            list($type, $ident, $name, $selected, $forbidden, $default) = $val;
+            //控件名称
+            $name = $name ?: $ident;
+            $res[$name] = $this->$type($data, $ident, $name, $selected, $forbidden);
+        }
+        //返回数据
+        return $res;
+    }
+
+    /**
+     * 单选
      *
-     * @param int $ident        属性上级标识
-     * @param string $name      元素名称
-     * @param string $check_val 选中值
-     * @param string $disabled  禁用
+     * @param array $data 数据源
+     * @param string $ident 字典标识
+     * @param string $name 控件名称
+     * @param string $selected_val 选中项
+     * @param string|array $forbidden_val 禁用项
      *
      * @return string
      */
-    public function rbl($ident = '', $name = '', $check_val = '', $disabled = '')
+    public function rbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
     {
+        //数据源
+        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
         $str = '';
-        $res = $this->all($ident);
-        foreach ($res as $key => $val) {
-            if ($check_val == '') {
-                $checked = ($key == 0) ? 'checked' : '';
+        $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
+        foreach ($data as $key => $val) {
+            //设置选中项
+            if ($selected_val == '' && $key == 0) {
+                $checked = 'checked="checked"';
+            } else if ($selected_val != '' && $val['ident'] == $selected_val) {
+                $checked = 'checked="checked"';
             } else {
-                $checked = ($val['ident'] == $check_val) ? 'checked' : '';
+                $checked = '';
             }
+            //设置禁选项
+            $disabled = !empty($forbidden_val_arr) && in_array($val['ident'], $forbidden_val_arr) ? 'disabled="disabled"' : '';
             $str .= '<label><input type="radio" name="' . $name . '" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
 
         return $str;
     }
 
-    public function all($ident = '')
-    {
-        $this->CI->db->select('t1.*');
-        $this->CI->db->from('sys_dict as t');
-        $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
-        $this->CI->db->where('t.ident', $ident);
-        $this->CI->db->group_by('t1.id');
-        $this->CI->db->order_by('t1.sort asc,t1.id asc');
-        $res = $this->CI->db->get('sys_dict')->result_array();
-
-        return $res;
-    }
-
     /**
-     * 复选框列表
+     * 复选
      *
-     * @param int $ident        属性上级标识
-     * @param string $name      元素名称
-     * @param string $check_val 选中值
-     * @param string $disabled  禁用
+     * @param array $data 数据源
+     * @param string $ident 字典标识
+     * @param string $name 控件名称
+     * @param string|array $selected_val 选中项
+     * @param string|array $forbidden_val 禁用项
      *
      * @return string
      */
-    public function cbl($ident = '', $name = '', $check_val = '', $disabled = '')
+    public function cbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
     {
+        //数据源
+        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
         $str = '';
-        $check_val_arr = explode(',', $check_val);
-        $res = $this->all($ident);
-        foreach ($res as $val) {
-            if (is_array($check_val_arr)) {
-                $checked = (in_array($val['ident'], $check_val_arr)) ? 'checked' : '';
-            } else {
-                $checked = ($val['ident'] == $check_val) ? 'checked' : '';
-            }
+        $check_val_arr = is_array($selected_val) ? $selected_val : explode(',', $selected_val);
+        $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
+        foreach ($data as $val) {
+            //设置选中项
+            $checked = !empty($check_val_arr) && in_array($val['ident'], $check_val_arr) ? 'checked="checked"' : '';
+            //设置禁用项
+            $disabled = !empty($forbidden_val_arr) && in_array($val['ident'], $forbidden_val_arr) ? 'disabled="disabled"' : '';
             $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
 
@@ -84,26 +132,63 @@ class Sys_dict
     /**
      * 下拉列表
      *
-     * @param int $ident         属性上级标识
-     * @param string $name       元素名称
-     * @param string $select_val 选中值
-     * @param string $disabled   禁用
+     * @param array $data 数据源
+     * @param string $ident 字典标识
+     * @param string $name 控件名称
+     * @param string $selected_val 选中项
+     * @param string|array $forbidden_val 禁用项
+     * @param array|bool $default 第一条默认值：array('title','value') OR false
      *
      * @return string
      */
-    public function ddl($ident = '', $name = '', $select_val = '', $disabled = '')
+    public function ddl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '', $default = array('-请选择-', '0'))
     {
+        //默认值
+        $default = is_array($default) ? array_merge(array('-请选择-', '0'), $default) : $default;
+        //数据源
+        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
         $str = '';
-        $res = $this->all($ident);
-        $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
-        $str .= '<option value="0">-请选择-</option>';
-        foreach ($res as $val) {
-            $selected = ($val['ident'] == $select_val) ? 'selected' : '';
-            $str .= '<option value="' . $val['ident'] . '" ' . $selected . '>' . $val['name'] . '</option>';
+        $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
+        $str .= '<select name="' . $name . '" class="form-control">';
+        $str .= $default ? '<option value="' . $default[1] . '">' . $default[0] . '</option>' : '';
+        foreach ($data as $val) {
+            $selected = ($val['ident'] == $selected_val) ? 'selected="selected"' : '';
+            $disabled = !empty($forbidden_val_arr) && in_array($val['ident'], $forbidden_val_arr) ? 'disabled="disabled"' : '';
+            $str .= '<option value="' . $val['ident'] . '" ' . $selected . ' ' . $disabled . '>' . $val['name'] . '</option>';
         }
         $str .= '</select>';
 
         return $str;
 
+    }
+
+    /**
+     * 数据过滤
+     * @param array $data
+     * @param string $ident
+     * @return array|mixed|string
+     */
+    public function filter_data($data = array(), $ident = '')
+    {
+        //数据源
+        if (empty($data)) $data = $this->data($ident);
+        if (empty($data)) return '';
+        //当前标识的id
+        $pid = '';
+        foreach ($data as $val) {
+            if ($val['pid'] == 0 && $val['ident'] == $ident) {
+                $pid = $val['id'];
+                break;
+            }
+        }
+        if ($pid == '') return '';
+        //当前标识字典项
+        $res = array();
+        foreach ($data as $val) {
+            if ($val['pid'] == $pid) {
+                array_push($res, $val);
+            }
+        }
+        return $res;
     }
 }

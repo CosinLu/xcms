@@ -49,7 +49,9 @@ class Config_group extends M_Controller
     //新增
     public function insert()
     {
-        $data['display'] = $this->sys_dict->rbl('display', 'display');
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl','display','display')
+        ));
         $this->load->view('config_group/insert.html', $data);
     }
 
@@ -58,7 +60,9 @@ class Config_group extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->config_group->update($id);
-        $data['display'] = $this->sys_dict->rbl('display', 'display', $data['item']['display']);
+        $data['dict'] = $this->sys_dict->dict(array(
+            array('rbl','display','display',$data['item']['display'])
+        ));
         $this->load->view('config_group/update.html', $data);
     }
 

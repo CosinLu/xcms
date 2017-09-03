@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 2017/8/30.
  */
-require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, uploadifive, jqthumb, dragsort) {
+require(['jquery', 'unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function ($, unit, uploadifive, jqthumb, dragsort) {
     var queue = 'uploads-queue-hook';
     var queueItem = 'uploads-queue-item-hook';
     var thumb = 'uploads-thumb-hook';
@@ -10,34 +10,34 @@ require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, upl
     var input = 'uploads-input-hook';
     var progress = 'uploads-progress-hook';
     var itemTemplate = '<div class="uploads-queue-item ' + queueItem + '">\
-                                <div class="' + progress + ' uploads-progress progress">\
-                                    <div class="progress-bar progress-bar-success"></div>\
-                                </div>\
-                                <div class="uploads-control uploads-control-hook">\
-                                    <a href="javascript:;" class="' + preview + '"><i class="fa fa-search-plus"></i></a>\
-                                    <a href="javascript:;" class="' + destory + '"><i class="fa fa-trash"></i></a>\
-                                </div>\
-                                <img class="uploads-thumb ' + thumb + '" src="" alt="">\
-                                <input type="hidden" name="" value="" class="' + input + '">\
-                            </div>';
+                            <div class="' + progress + ' uploads-progress progress">\
+                                <div class="progress-bar progress-bar-success"></div>\
+                            </div>\
+                            <div class="uploads-control uploads-control-hook">\
+                                <a href="javascript:;" class="uploads-preview ' + preview + '"><i class="fa fa-search-plus"></i></a>\
+                                <a href="javascript:;" class="uploads-destory ' + destory + '"><i class="fa fa-trash"></i></a>\
+                            </div>\
+                            <img class="uploads-thumb ' + thumb + '" src="" alt="">\
+                            <input type="hidden" class="' + input + '">\
+                        </div>';
 
     //缩略图
     var thumbnail = function (ext) {
         if (!ext.length) return '';
         var src;
         var thumbnail = {
-            'zip'    : 'plugin/uploads/images/zip.png',
-            'ai'     : 'plugin/uploads/images/ai.png',
-            'apk'    : 'plugin/uploads/images/apk.png',
-            'excel'  : 'plugin/uploads/images/excel.png',
-            'flash'  : 'plugin/uploads/images/flash.png',
-            'image'  : 'plugin/uploads/images/image.png',
-            'music'  : 'plugin/uploads/images/music.png',
-            'pdf'    : 'plugin/uploads/images/pdf.png',
-            'ppt'    : 'plugin/uploads/images/ppt.png',
-            'psd'    : 'plugin/uploads/images/psd.png',
-            'video'  : 'plugin/uploads/images/video.png',
-            'word'   : 'plugin/uploads/images/word.png',
+            'zip': 'plugin/uploads/images/zip.png',
+            'ai': 'plugin/uploads/images/ai.png',
+            'apk': 'plugin/uploads/images/apk.png',
+            'excel': 'plugin/uploads/images/excel.png',
+            'flash': 'plugin/uploads/images/flash.png',
+            'image': 'plugin/uploads/images/image.png',
+            'music': 'plugin/uploads/images/music.png',
+            'pdf': 'plugin/uploads/images/pdf.png',
+            'ppt': 'plugin/uploads/images/ppt.png',
+            'psd': 'plugin/uploads/images/psd.png',
+            'video': 'plugin/uploads/images/video.png',
+            'word': 'plugin/uploads/images/word.png',
             'unknown': 'plugin/uploads/images/unknown.png'
         };
         ext = ext.replace('\.', '').toLowerCase();
@@ -111,7 +111,7 @@ require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, upl
                 newClass = className.split(' ').join('.')
             }
             $('#' + id).dragsort({
-                dragSelector       : '.' + newClass,
+                dragSelector: '.' + newClass,
                 dragSelectorExclude: '.uploads-control-hook',
                 placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
             });
@@ -125,10 +125,10 @@ require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, upl
         var name = $(this).data('name');
         var nameContent = (name) ? '<div class="uploads-preview-name">' + name + '</div>' : '';
         parent.layer.open({
-            title  : false,
-            area   : '500px',
-            btn    : false,
-            offset : '100px',
+            title: false,
+            area: '500px',
+            btn: false,
+            offset: '100px',
             content: '<div class="uploads-preview"><img src="' + src + '">' + nameContent + '</div>'
         });
     });
@@ -142,18 +142,18 @@ require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, upl
 
     //实例化uploadifive
     $('.uploads-btn-hook').uploadifive({
-        'auto'            : true,
-        'buttonClass'     : 'uploads-btn',
-        'buttonText'      : '+',
-        'formData'        : {
+        'auto': true,
+        'buttonClass': 'uploads-btn',
+        'buttonText': '+',
+        'formData': {
             'timestamp': new Date().getTime(),
-            'token'    : Math.random()
+            'token': Math.random()
         },
-        'queueItem'       : queueItem,
-        'itemTemplate'    : itemTemplate,
-        'fileSizeLimit'   : '100MB',
-        'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
-        'uploadScript'    : 'index.php/uploads/do_upload',
+        'queueItem': queueItem,
+        'itemTemplate': itemTemplate,
+        'fileSizeLimit': '100MB',
+        'fileTypeSuffix': 'jpg,png,gif,zip,rar,doc,docx,xls',
+        'uploadScript': 'index.php/uploads/do_upload',
         'onUploadComplete': function (file, data) {
             var data = $.parseJSON(data);
             var item = file.queueItem;
@@ -173,13 +173,12 @@ require(['unit', 'uploads', 'jqthumb', 'dragsort', 'layer'], function (unit, upl
             //删除上传图片属性
             //item.find('.' + destory).attr('data-id', data.id);
             //input赋值
-            item.find('.' + input).attr('name', data.upl_input + '[]');
-            item.find('.' + input).val(data.upl_id);
+            item.find('.' + input).attr('name', data.upl_input + '[]').val(data.upl_id);
         },
-        'onQueueComplete' : function (uploads) {
+        'onQueueComplete': function (uploads) {
             Dragsort();
         },
-        'onError'         : function (errorType) {
+        'onError': function (errorType) {
             // console.log('The error was: ' + errorType);
         }
     });
