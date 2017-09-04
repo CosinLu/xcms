@@ -2,15 +2,15 @@
  * Created by Admin on 2017/8/30.
  */
 require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function ($, unit, uploadifive, jqthumb, Sortable) {
-    var queue = 'uploads-queue-hook';
-    var queueItem = 'uploads-queue-item-hook';
-    var thumb = 'uploads-thumb-hook';
-    var preview = 'uploads-preview-hook';
-    var destory = 'uploads-destory-hook';
-    var input = 'uploads-input-hook';
-    var progress = 'uploads-progress-hook';
-    var control = 'uploads-control-hook';
-    var move = 'uploads-move-hook';
+    var queue        = 'uploads-queue-hook';
+    var queueItem    = 'uploads-queue-item-hook';
+    var thumb        = 'uploads-thumb-hook';
+    var preview      = 'uploads-preview-hook';
+    var destory      = 'uploads-destory-hook';
+    var input        = 'uploads-input-hook';
+    var progress     = 'uploads-progress-hook';
+    var control      = 'uploads-control-hook';
+    var move         = 'uploads-move-hook';
     var itemTemplate = '<div class="uploads-queue-item ' + queueItem + '">\
                             <span class="uploads-move ' + move + '"></span>\
                             <div class="' + progress + ' uploads-progress progress">\
@@ -43,7 +43,7 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
             'word'   : 'plugin/uploads/images/word.png',
             'unknown': 'plugin/uploads/images/unknown.png'
         };
-        ext = ext.replace('\.', '').toLowerCase();
+        ext           = ext.replace('\.', '').toLowerCase();
         if ($.inArray(ext, ['7z', 'rar', 'zip']) > -1) {
             src = thumbnail.zip;
         } else if ($.inArray(ext, ['ai']) > -1) {
@@ -81,15 +81,15 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
     var initData = function () {
         $('.' + queue).each(function () {
             var _this = $(this);
-            var list = $(this).data('list');
+            var list  = $(this).data('list');
             if (list != undefined) {
                 $.each(list, function (i, e) {
                     var $item = $(itemTemplate).clone();
-                    var src = (parseInt(e.upl_image)) ? e.upl_path : thumbnail(e.upl_ext);
+                    var src   = (parseInt(e.upl_image)) ? e.upl_path : thumbnail(e.upl_ext);
                     $item.addClass('complete');
                     $item.find('.' + preview)
                         .attr('data-src', src)
-                        .attr('data-name', e.upl_name);
+                        .attr('data-title', e.upl_name);
                     $item.find('.' + input)
                         .attr('name', _this.attr('id') + '[]');
                     $item.find('.' + input).val(e.upl_id);
@@ -108,8 +108,8 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
     //拖拽排序
     var Dragsort = function () {
         $('.' + queue).each(function () {
-            var id = $(this).attr('id');
-            var el = document.getElementById(id);
+            var id       = $(this).attr('id');
+            var el       = document.getElementById(id);
             var sortable = new Sortable(el, {
                 group      : id,
                 handle     : '.' + move,
@@ -123,15 +123,15 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
 
     //预览
     $(document).on('click', '.' + preview, function () {
-        var src = $(this).data('src');
-        var name = $(this).data('name');
-        var nameContent = (name) ? '<div class="uploads-preview-name">' + name + '</div>' : '';
+        var src          = $(this).data('src');
+        var title        = $(this).data('title');
+        var titleContent = (title) ? '<div class="uploads-preview-title">' + title + '</div>' : '';
         parent.layer.open({
             title  : false,
             area   : '500px',
             btn    : false,
             offset : '100px',
-            content: '<div class="uploads-preview"><img src="' + src + '">' + nameContent + '</div>'
+            content: '<div class="uploads-preview"><img src="' + src + '">' + titleContent + '</div>'
         });
     });
 
@@ -151,12 +151,12 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         },
         'queueItem'       : queueItem,
         'itemTemplate'    : itemTemplate,
-        'fileSizeLimit'   : '100MB',
+        'fileSizeLimit'   : '20MB',
         'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
         'uploadScript'    : 'index.php/uploads/do_upload',
         'onUploadComplete': function (file, data) {
-            var data = $.parseJSON(data);
-            var item = file.queueItem;
+            var data      = $.parseJSON(data);
+            var item      = file.queueItem;
             var full_path = '';
             //缩略图
             if (data.upl_image) {
@@ -181,13 +181,25 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
             //Dragsort();
         },
         'onError'         : function (errorType) {
-            // console.log('The error was: ' + errorType);
+            //console.log('The error was: ' + errorType);
         }
     });
 
     //文件库
-    $('uploads-lib-hook').on('click', function () {
-
+    $('.uploads-online-hook').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        //容器
+        var queueID = $(this).data('id');
+        //是否多文件上传
+        var multi   = $(this).data('multi');
+        var url     = $(this).data('url');
+        layer.open({
+            type   : 2,
+            title  : '从云端选择',
+            area   : ['800px', '560px'],
+            content: url
+        })
     });
 
 });

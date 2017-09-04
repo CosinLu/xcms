@@ -14,54 +14,56 @@
                 // Create a reference to the jQuery DOM object
                 var $this = $(this);
                 $this.data('uploadifive', {
-                    inputs: {}, // The object that contains all the file inputs
+                    inputs    : {}, // The object that contains all the file inputs
                     inputCount: 0,  // The total number of file inputs created
-                    fileID: 0,
-                    queue: {
-                        count: 0, // Total number of files in the queue
-                        selected: 0, // Number of files selected in the last select operation
-                        replaced: 0, // Number of files replaced in the last select operation
-                        errors: 0, // Number of files that returned an error in the last select operation
-                        queued: 0, // Number of files added to the queue in the last select operation
+                    fileID    : 0,
+                    queue     : {
+                        count    : 0, // Total number of files in the queue
+                        selected : 0, // Number of files selected in the last select operation
+                        replaced : 0, // Number of files replaced in the last select operation
+                        errors   : 0, // Number of files that returned an error in the last select operation
+                        queued   : 0, // Number of files added to the queue in the last select operation
                         cancelled: 0  // Total number of files that have been cancelled or removed from the queue
                     },
-                    uploads: {
-                        current: 0, // Number of files currently being uploaded
-                        attempts: 0, // Number of file uploads attempted in the last upload operation
+                    uploads   : {
+                        current   : 0, // Number of files currently being uploaded
+                        attempts  : 0, // Number of file uploads attempted in the last upload operation
                         successful: 0, // Number of files successfully uploaded in the last upload operation
-                        errors: 0, // Number of files returning errors in the last upload operation
-                        count: 0  // Total number of files uploaded successfully
+                        errors    : 0, // Number of files returning errors in the last upload operation
+                        count     : 0  // Total number of files uploaded successfully
                     }
                 });
                 var $data = $this.data('uploadifive');
 
                 // Set the default options
                 var settings = $data.settings = $.extend({
-                    'auto': true,               // Automatically upload a file when it's added to the queue
-                    'buttonClass': false,              // A class to add to the UploadiFive button
-                    'buttonText': 'Select Files',     // The text that appears on the UploadiFive button
-                    'checkScript': false,              // Path to the script that checks for existing file names
-                    'dnd': true,               // Allow drag and drop into the queue
-                    'dropTarget': false,              // Selector for the drop target
-                    'fileObjName': 'Filedata',         // The name of the file object to use in your server-side script
-                    'fileSizeLimit': 0,                  // Maximum allowed size of files to upload
-                    'fileType': false,              // Type of files allowed (image, etc)
-                    'fileTypeSuffix': false,              //允许上传的文件后缀
-                    'formData': {},                 // Additional data to send to the upload script
-                    'height': 30,                 // The height of the button
-                    'itemTemplate': false,              // The HTML markup for the item in the queue
-                    'method': 'post',             // The method to use when submitting the upload
-                    'multi': true,               // Set to true to allow multiple file selections
-                    'overrideEvents': [],                 // An array of events to override
-                    'queueID': false,              // The ID of the file queue
-                    'queueItem': 'uploadifive-queue-item',
-                    'queueSizeLimit': 0,                  // The maximum number of files that can be in the queue
+                    'auto'           : true,               // Automatically upload a file when it's added to the queue
+                    'buttonClass'    : false,              // A class to add to the UploadiFive button
+                    'buttonText'     : 'Select Files',     // The text that appears on the UploadiFive button
+                    'checkScript'    : false,              // Path to the script that checks for existing file names
+                    'dnd'            : true,               // Allow drag and drop into the queue
+                    'dropTarget'     : false,              // Selector for the drop target
+                    'fileObjName'    : 'Filedata',         // The name of the file object to use in your server-side script
+                    'fileSizeLimit'  : 0,                  // Maximum allowed size of files to upload
+                    'fileType'       : false,              // Type of files allowed (image, etc)
+                    'fileTypeSuffix' : false,              //允许上传的文件后缀
+                    'formData'       : {},                 // Additional data to send to the upload script
+                    'height'         : 30,                 // The height of the button
+                    'itemTemplate'   : false,              // The HTML markup for the item in the queue
+                    'method'         : 'post',             // The method to use when submitting the upload
+                    'multi'          : true,               // Set to true to allow multiple file selections
+                    'overrideEvents' : [],                 // An array of events to override
+                    'queueID'        : false,              // The ID of the file queue
+                    'queueItem'      : 'uploadifive-queue-item',
+                    'queueSizeLimit' : 0,                  // The maximum number of files that can be in the queue
                     'removeCompleted': false,              // Set to true to remove files that have completed uploading
-                    'simUploadLimit': 0,                  // The maximum number of files to upload at once
-                    'truncateLength': 0,                  // The length to truncate the file names to
-                    'uploadLimit': 0,                  // The maximum number of files you can upload
-                    'uploadScript': 'uploadifive.php',  // The path to the upload script
-                    'width': 100                // The width of the button
+                    'simUploadLimit' : 0,                  // The maximum number of files to upload at once
+                    'truncateLength' : 0,                  // The length to truncate the file names to
+                    'uploadLimit'    : 0,                  // The maximum number of files you can upload
+                    'uploadScript'   : 'uploadifive.php',  // The path to the upload script
+                    'width'          : 100,                // The width of the button
+                    'cloud'          : false,
+                    'cloudUrl'       : 'index.php/uploads/cloud'
 
                     /*
                      // Events
@@ -83,19 +85,19 @@
                      */
                 }, options);
 
-                settings.auto = !$this.data('auto') || settings.auto;
-                settings.buttonClass = $this.data('button-class') || settings.buttonClass;
-                settings.buttonText = $this.data('button-text') || settings.buttonText;
-                settings.checkScript = $this.data('check-script') || settings.checkScript;
-                settings.dropTarget = $this.data('drop-target') || settings.dropTarget;
-                settings.fileObjName = $this.data('name') || settings.fileObjName;
-                settings.fileSizeLimit = $this.data('file-size-limit') || settings.fileSizeLimit;
-                settings.fileType = $this.data('file-type') || settings.fileType;
+                settings.auto           = !$this.data('auto') || settings.auto;
+                settings.buttonClass    = $this.data('button-class') || settings.buttonClass;
+                settings.buttonText     = $this.data('button-text') || settings.buttonText;
+                settings.checkScript    = $this.data('check-script') || settings.checkScript;
+                settings.dropTarget     = $this.data('drop-target') || settings.dropTarget;
+                settings.fileObjName    = $this.data('name') || settings.fileObjName;
+                settings.fileSizeLimit  = $this.data('file-size-limit') || settings.fileSizeLimit;
+                settings.fileType       = $this.data('file-type') || settings.fileType;
                 settings.fileTypeSuffix = $this.data('file-type-suffix') || settings.fileTypeSuffix;
-                settings.height = $this.data('height') || settings.height;
-                settings.method = $this.data('method') || settings.method;
-                settings.multi = $this.data('multi') && settings.multi;
-                settings.mime = {
+                settings.height         = $this.data('height') || settings.height;
+                settings.method         = $this.data('method') || settings.method;
+                settings.multi          = $this.data('multi') && settings.multi;
+                settings.mime           = {
                     // 'hqx': ['application/mac-binhex40', 'application/mac-binhex', 'application/x-binhex40', 'application/x-mac-binhex40'],
                     // 'cpt': 'application/mac-compactpro',
                     // 'csv': ['text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain'],
@@ -251,69 +253,69 @@
                     // 'vtt': ['text/vtt', 'text/plain'],
                     // 'ico': ['image/x-icon', 'image/x-ico', 'image/vnd.microsoft.icon']
                     //文档文件类型的
-                    'ai': ['application/pdf,application/postscript'],
-                    'eps': 'application/postscript',
-                    'exe': ['application/octet-stream,application/x-msdownload'],
-                    'doc': ['application/msword,application/vnd.ms-office'],
-                    'xls': ['application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office'],
-                    'ppt': ['application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword'],
-                    'pps': 'application/vnd.ms-powerpoint',
-                    'pdf': ['application/pdf,application/force-download,application/x-download,binary/octet-stream'],
-                    'xml': ['application/xml,text/xml,text/plain'],
-                    'odt': 'application/vnd.oasis.opendocument.text',
-                    'swf': 'application/x-shockwave-flash',
+                    'ai'  : ['application/pdf,application/postscript'],
+                    'eps' : 'application/postscript',
+                    'exe' : ['application/octet-stream,application/x-msdownload'],
+                    'doc' : ['application/msword,application/vnd.ms-office'],
+                    'xls' : ['application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office'],
+                    'ppt' : ['application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword'],
+                    'pps' : 'application/vnd.ms-powerpoint',
+                    'pdf' : ['application/pdf,application/force-download,application/x-download,binary/octet-stream'],
+                    'xml' : ['application/xml,text/xml,text/plain'],
+                    'odt' : 'application/vnd.oasis.opendocument.text',
+                    'swf' : 'application/x-shockwave-flash',
                     //压缩文件类型的
-                    'gz': 'application/x-gzip',
-                    'tgz': 'application/x-gzip',
-                    'bz': 'application/x-bzip2',
-                    'bz2': 'application/x-bzip2',
-                    'tbz': 'application/x-bzip2',
-                    'zip': ['application/x-zip,application/zip,application/x-zip-compressed,application/s-compressed,multipart/x-zip'],
-                    'rar': ['application/x-rar,application/rar,application/x-rar-compressed'],
-                    'tar': 'application/x-tar',
-                    '7z': 'application/x-7z-compressed',
+                    'gz'  : 'application/x-gzip',
+                    'tgz' : 'application/x-gzip',
+                    'bz'  : 'application/x-bzip2',
+                    'bz2' : 'application/x-bzip2',
+                    'tbz' : 'application/x-bzip2',
+                    'zip' : ['application/x-zip,application/zip,application/x-zip-compressed,application/s-compressed,multipart/x-zip'],
+                    'rar' : ['application/x-rar,application/rar,application/x-rar-compressed'],
+                    'tar' : 'application/x-tar',
+                    '7z'  : 'application/x-7z-compressed',
                     //文字类型
-                    'txt': 'text/plain',
-                    'php': ['application/x-httpd-php,application/php,application/x-php,text/php,text/x-php,application/x-httpd-php-source'],
+                    'txt' : 'text/plain',
+                    'php' : ['application/x-httpd-php,application/php,application/x-php,text/php,text/x-php,application/x-httpd-php-source'],
                     'html': 'text/html',
-                    'htm': 'text/html',
-                    'js': ['application/x-javascript,text/javascript'],
-                    'css': 'text/css',
-                    'rtf': 'text/rtf',
+                    'htm' : 'text/html',
+                    'js'  : ['application/x-javascript,text/javascript'],
+                    'css' : 'text/css',
+                    'rtf' : 'text/rtf',
                     'rtfd': 'text/rtfd',
-                    'py': 'text/x-python',
+                    'py'  : 'text/x-python',
                     'java': 'text/x-java-source',
-                    'rb': 'text/x-ruby',
-                    'sh': 'text/x-shellscript',
-                    'pl': 'text/x-perl',
-                    'sql': 'text/x-sql',
+                    'rb'  : 'text/x-ruby',
+                    'sh'  : 'text/x-shellscript',
+                    'pl'  : 'text/x-perl',
+                    'sql' : 'text/x-sql',
                     //图片类型的
-                    'bmp': ['image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'],
-                    'jpg': ['image/jpeg,image/pjpeg'],
+                    'bmp' : ['image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'],
+                    'jpg' : ['image/jpeg,image/pjpeg'],
                     'jpeg': ['image/jpeg,image/pjpeg'],
-                    'gif': 'image/gif',
-                    'png': ['image/png,image/x-png'],
-                    'tif': 'image/tiff',
+                    'gif' : 'image/gif',
+                    'png' : ['image/png,image/x-png'],
+                    'tif' : 'image/tiff',
                     'tiff': 'image/tiff',
-                    'tga': 'image/x-targa',
-                    'psd': ['application/x-photoshop,image/vnd.adobe.photoshop'],
+                    'tga' : 'image/x-targa',
+                    'psd' : ['application/x-photoshop,image/vnd.adobe.photoshop'],
                     //音频文件类型的
-                    'mp3': 'audio/mpeg',
-                    'mid': 'audio/midi',
-                    'ogg': 'audio/ogg',
+                    'mp3' : 'audio/mpeg',
+                    'mid' : 'audio/midi',
+                    'ogg' : 'audio/ogg',
                     'mp4a': 'audio/mp4',
-                    'wav': 'audio/wav',
-                    'wma': 'audio/x-ms-wma',
+                    'wav' : 'audio/wav',
+                    'wma' : 'audio/x-ms-wma',
                     //视频文件类型的
-                    'avi': 'video/x-msvideo',
-                    'dv': 'video/x-dv',
-                    'mp4': 'video/mp4',
+                    'avi' : 'video/x-msvideo',
+                    'dv'  : 'video/x-dv',
+                    'mp4' : 'video/mp4',
                     'mpeg': 'video/mpeg',
-                    'mpg': 'video/mpeg',
-                    'mov': 'video/quicktime',
-                    'wm': 'video/x-ms-wmv',
-                    'flv': 'video/x-flv',
-                    'mkv': 'video/x-matroska'
+                    'mpg' : 'video/mpeg',
+                    'mov' : 'video/quicktime',
+                    'wm'  : 'video/x-ms-wmv',
+                    'flv' : 'video/x-flv',
+                    'mkv' : 'video/x-matroska'
                 }
                 if ($this.data('queue-id')) {
                     settings.queueID = $this.data('queue-id');
@@ -322,25 +324,27 @@
                 } else {
                     settings.queueID = settings.fileObjName;
                 }
-                settings.queueSizeLimit = $this.data('queue-size-limit') || settings.queueSizeLimit;
+                settings.queueSizeLimit  = $this.data('queue-size-limit') || settings.queueSizeLimit;
                 settings.removeCompleted = $this.data('remove-completed') || settings.removeCompleted;
-                settings.simUploadLimit = $this.data('sim-upload-limit') || settings.simUploadLimit;
-                settings.truncateLength = $this.data('truncate-length') || settings.truncateLength;
-                settings.uploadLimit = $this.data('upload-limit') || settings.uploadLimit;
-                settings.uploadScript = $this.data('upload-script') || settings.uploadScript;
-                settings.width = $this.data('width') || settings.width;
-                settings.list = $('#' + settings.queueID).data('list');
+                settings.simUploadLimit  = $this.data('sim-upload-limit') || settings.simUploadLimit;
+                settings.truncateLength  = $this.data('truncate-length') || settings.truncateLength;
+                settings.uploadLimit     = $this.data('upload-limit') || settings.uploadLimit;
+                settings.uploadScript    = $this.data('upload-script') || settings.uploadScript;
+                settings.width           = $this.data('width') || settings.width;
+                settings.list            = $('#' + settings.queueID).data('list');
+                settings.cloud           = $this.data('cloud') || settings.cloud;
+                settings.cloudUrl        = $this.data('cloud-url') || settings.cloudUrl;
 
                 //根据suffix查找mime
                 var allowMime = [];
                 if (settings.fileTypeSuffix) {
                     $.each(settings.fileTypeSuffix.split(','), function (i, e) {
                         var mime = settings.mime[e.replace('\.', '')];
-                        mime = $.isArray(mime) ? mime.join(',') : mime;
+                        mime     = $.isArray(mime) ? mime.join(',') : mime;
                         allowMime.push(mime)
                     })
                 }
-                allowMime = allowMime.join(',').split(',');
+                allowMime        = allowMime.join(',').split(',');
                 //去重，去空格
                 var newAllowMime = [];
                 $.each(allowMime, function (i, e) {
@@ -348,7 +352,7 @@
                 });
 
                 //设置允许的文件类型
-                var accept = (newAllowMime) ? newAllowMime.join(',') : '';
+                var accept        = (newAllowMime) ? newAllowMime.join(',') : '';
                 //将允许上传文件类型格式化并重新赋值
                 settings.fileType = newAllowMime.length ? newAllowMime : false;
                 // console.log(allowMime);
@@ -371,19 +375,19 @@
                 // Create a template for a file input
                 $data.inputTemplate = $('<input type="file" accept="' + accept + '">')
                     .css({
-                        'width': '100%',
-                        'height': '100%',
-                        'opacity': 0,
+                        'width'   : '100%',
+                        'height'  : '100%',
+                        'opacity' : 0,
                         'position': 'absolute',
-                        'left': 0,
-                        'top': 0,
-                        'z-index': 999
+                        'left'    : 0,
+                        'top'     : 0,
+                        'z-index' : 999
                     });
                 // Create a new input
-                $data.createInput = function () {
+                $data.createInput   = function () {
 
                     // Create a clone of the file input
-                    var input = $data.inputTemplate.clone();
+                    var input     = $data.inputTemplate.clone();
                     // Create a unique name for the input item
                     var inputName = input.name = 'input' + $data.inputCount++;
                     // Set the multiple attribute
@@ -395,10 +399,10 @@
                     input.bind('change', function () {
                         $data.queue.selected = 0;
                         $data.queue.replaced = 0;
-                        $data.queue.errors = 0;
-                        $data.queue.queued = 0;
+                        $data.queue.errors   = 0;
+                        $data.queue.queued   = 0;
                         // Add a queue item to the queue for each file
-                        var limit = this.files.length;
+                        var limit            = this.files.length;
                         $data.queue.selected = limit;
                         if (($data.queue.count + limit) > settings.queueSizeLimit && settings.queueSizeLimit !== 0) {
                             if ($.inArray('onError', settings.overrideEvents) < 0) {
@@ -444,14 +448,14 @@
                 $data.drop = function (e) {
                     $data.queue.selected = 0;
                     $data.queue.replaced = 0;
-                    $data.queue.errors = 0;
-                    $data.queue.queued = 0;
+                    $data.queue.errors   = 0;
+                    $data.queue.queued   = 0;
 
                     var fileData = e.dataTransfer;
 
                     var inputName = fileData.name = 'input' + $data.inputCount++;
                     // Add a queue item to the queue for each file
-                    var limit = fileData.files.length;
+                    var limit            = fileData.files.length;
                     $data.queue.selected = limit;
                     if (($data.queue.count + limit) > settings.queueSizeLimit && settings.queueSizeLimit !== 0) {
                         // Check if the queueSizeLimit was reached
@@ -719,14 +723,14 @@
                         } else {
 
                             // Send as binary
-                            var reader = new FileReader();
+                            var reader    = new FileReader();
                             reader.onload = function (e) {
 
                                 // Set some file builder variables
                                 var boundary = '-------------------------' + (new Date).getTime(),
-                                    dashes = '--',
-                                    eol = '\r\n',
-                                    binFile = '';
+                                    dashes   = '--',
+                                    eol      = '\r\n',
+                                    binFile  = '';
 
                                 // Build an RFC2388 String
                                 binFile += dashes + boundary + eol;
@@ -755,7 +759,7 @@
                                 // On complete function
                                 xhr.addEventListener('load', function (e) {
                                     file.uploading = false;
-                                    var status = this.status;
+                                    var status     = this.status;
                                     if (status == 404) {
                                         $data.error('404_FILE_NOT_FOUND', file, uploadAll);
                                     } else {
@@ -891,10 +895,14 @@
                 // Check if HTML5 is available
                 if (window.File && window.FileList && window.Blob && (window.FileReader || window.FormData)) {
                     // Assign an ID to the object
-                    settings.id = 'uploadifive-' + $this.attr('id');
+                    settings.id = 'uploadifive-' + settings.queueID;
+
+                    //云端
+                    var cloudBtn = '<a href="javascript:;" class="uploads-online uploads-online-hook" title="云上传" data-id="' + settings.queueID + '" data-multi="' + settings.multi + '" data-url="' + settings.cloudUrl + '"><i class="fa fa-cloud-upload"></i></a>';
+                    cloudBtn     = settings.cloud ? cloudBtn : '';
 
                     // Wrap the file input in a div with overflow set to hidden
-                    $data.button = $('<div id="' + settings.id + '" class="uploadifive-button">' + settings.buttonText + '</div>');
+                    $data.button = $('<div id="' + settings.id + '" class="uploadifive-button">' + cloudBtn + settings.buttonText + '</div>');
                     if (settings.buttonClass) $data.button.addClass(settings.buttonClass);
 
                     // Style the button wrapper
@@ -909,10 +917,10 @@
 
                     if (!settings.buttonClass) {
                         $data.button.css({
-                            'height': settings.height,
+                            'height'     : settings.height,
                             'line-height': settings.height + 'px',
-                            'text-align': 'center',
-                            'width': settings.width
+                            'text-align' : 'center',
+                            'width'      : settings.width
                         });
                     }
 
@@ -929,7 +937,7 @@
                     // Create the queue container
                     if (!settings.queueID) {
                         settings.queueID = settings.id + '-queue';
-                        $data.queueEl = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
+                        $data.queueEl    = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
                         $data.button.after($data.queueEl);
                     } else {
                         $data.queueEl = $('#' + settings.queueID);
@@ -1005,8 +1013,8 @@
 
             this.each(function () {
 
-                var $this = $(this),
-                    $data = $this.data('uploadifive'),
+                var $this    = $(this),
+                    $data    = $this.data('uploadifive'),
                     settings = $data.settings;
 
                 for (var key in $data.inputs) {
@@ -1031,8 +1039,8 @@
 
             this.each(function () {
 
-                var $this = $(this),
-                    $data = $this.data('uploadifive'),
+                var $this    = $(this),
+                    $data    = $this.data('uploadifive'),
                     settings = $data.settings;
 
                 // If user passed a queue item ID instead of file...
@@ -1070,8 +1078,8 @@
 
             this.each(function () {
 
-                var $this = $(this),
-                    $data = $this.data('uploadifive'),
+                var $this    = $(this),
+                    $data    = $this.data('uploadifive'),
                     settings = $data.settings;
 
                 if (file) {
@@ -1083,10 +1091,10 @@
                     // Check if the upload limit was reached
                     if (($data.uploads.count + $data.uploads.current) < settings.uploadLimit || settings.uploadLimit == 0) {
                         if (!keepVars) {
-                            $data.uploads.attempted = 0;
+                            $data.uploads.attempted   = 0;
                             $data.uploads.successsful = 0;
-                            $data.uploads.errors = 0;
-                            var filesToUpload = $data.filesToUpload();
+                            $data.uploads.errors      = 0;
+                            var filesToUpload         = $data.filesToUpload();
                             // Trigger the onUpload event
                             if (typeof settings.onUpload === 'function') {
                                 settings.onUpload.call($this, filesToUpload);
@@ -1103,7 +1111,7 @@
                             if (settings.checkScript) {
                                 // Let the loop know that we're already processing this file
                                 _file.checking = true;
-                                skipFile = $data.checkExists(_file);
+                                skipFile       = $data.checkExists(_file);
                                 _file.checking = false;
                                 if (!skipFile) {
                                     $data.uploadFile(_file, true);
@@ -1140,8 +1148,8 @@
 
             this.each(function () {
 
-                var $this = $(this),
-                    $data = $this.data('uploadifive'),
+                var $this    = $(this),
+                    $data    = $this.data('uploadifive'),
                     settings = $data.settings;
 
                 // Clear the queue

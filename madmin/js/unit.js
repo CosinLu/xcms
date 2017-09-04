@@ -7,17 +7,17 @@ define(['jquery', 'layer'], function ($) {
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
-                var src = $(this).data('src');
-                if ($(this).hasClass('jqthumb')) {
-                    src = $(this).children('div').css('background-image').split("\"")[1];
-                }
+                var src          = $(this).data('src');
+                var title        = $(this).data('title');
+                var titleContent = (title) ? '<div style="padding: 15px 0 0;">' + title + '</div>' : '';
                 parent.layer.open({
                     title  : false,
                     area   : '500px',
                     btn    : false,
                     offset : '100px',
-                    content: '<img src="' + src + '" style="max-width:100%;">'
+                    content: '<div style="text-align: center;"><img src="' + src + '" style="max-width: 100%;max-height: 500px;">' + titleContent + '</div>'
                 });
+
             });
         },
 
@@ -87,12 +87,12 @@ define(['jquery', 'layer'], function ($) {
         //批量删除
         batchDel: function () {
             $(document).on('click', '.batch-del-hook', function () {
-                var tbname = $(this).data('tb');
-                var url = $(this).data('url');
-                var primary = $(this).data('primary');
+                var tbname    = $(this).data('tb');
+                var url       = $(this).data('url');
+                var primary   = $(this).data('primary');
                 var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
-                var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
-                var id = '';
+                var checkbox  = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
+                var id        = '';
                 //遍历已选中checkbox并获得val
                 checkbox.each(function () {
                     id += $(this).val() + ',';
@@ -126,9 +126,9 @@ define(['jquery', 'layer'], function ($) {
         //删除
         del: function () {
             $(document).on('click', '.del-hook', function () {
-                var tbname = $(this).data('tb');
-                var id = $(this).data('id');
-                var url = $(this).data('url');
+                var tbname  = $(this).data('tb');
+                var id      = $(this).data('id');
+                var url     = $(this).data('url');
                 var primary = $(this).data('primary');
                 if (tbname == '' || id == '' || url == '') {
                     layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
@@ -166,7 +166,7 @@ define(['jquery', 'layer'], function ($) {
         checkAll: function () {
             //全选
             $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
-                var name = $(this).data('checkname');
+                var name      = $(this).data('checkname');
                 var isChecked = $(this).is(':checked');
                 $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', isChecked);
             });
@@ -174,12 +174,12 @@ define(['jquery', 'layer'], function ($) {
             //关联全选
             $(document).on('click', 'input[type="checkbox"]', function () {
                 if ($(this).attr('name')) {
-                    var name = $(this).attr('name').replace(/\[.*\]/, '');
+                    var name     = $(this).attr('name').replace(/\[.*\]/, '');
                     var checkbox = $('input[type="checkbox"][data-checkname="' + name + '"]:enabled');
                     if (checkbox.length == 0) {
                         return;
                     }
-                    var checkedLen = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
+                    var checkedLen  = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
                     var checkboxLen = $('input[type="checkbox"][name^="' + name + '"]:enabled').length;
                     if (checkedLen < checkboxLen) {
                         checkbox.prop('checked', false);
@@ -231,7 +231,7 @@ define(['jquery', 'layer'], function ($) {
                 var defaults = {
                     dom: '.nano-hook'
                 };
-                var ops = $.extend({}, defaults, options);
+                var ops      = $.extend({}, defaults, options);
                 $(ops.dom).nanoScroller();
             })
         },
@@ -240,9 +240,9 @@ define(['jquery', 'layer'], function ($) {
         dragsort: function (obj) {
             require(['dragsort'], function (dragsort) {
                 $('.' + obj).each(function () {
-                    var id = $(this).attr('id');
+                    var id        = $(this).attr('id');
                     var className = $(this).children('div').attr('class');
-                    var newClass = '';
+                    var newClass  = '';
                     if (className) {
                         newClass = className.split(' ').join('.')
                     }
@@ -292,8 +292,8 @@ define(['jquery', 'layer'], function ($) {
         //同步编辑器内容到textarea
         //解决ajaxForm提交表单无法获取编辑器内容
         _syncEditorToTxtarea: function (ue, id) {
-            var txt = $('textarea[name="' + id + '"]');
-            var txtLen = txt.length;
+            var txt           = $('textarea[name="' + id + '"]');
+            var txtLen        = txt.length;
             var editorContent = ue.getContent();
             if (txtLen > 0) {
                 txt.val(editorContent);
@@ -314,7 +314,7 @@ define(['jquery', 'layer'], function ($) {
 
             //全选当前分类下的所有复选框
             $(document).on('click', 'input[name="checkAll"]', function () {
-                var status = $(this).is(':checked');
+                var status   = $(this).is(':checked');
                 var checkbox = $(this).closest('.li-hook').next('#list').find('input:checkbox');//全部复选框
                 checkbox.prop('checked', status);
             });
@@ -334,8 +334,8 @@ define(['jquery', 'layer'], function ($) {
             //关联行首
             $(document).on('click', 'input[name^="auth"]', function () {
                 var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
-                var status = $(this).is(':checked');//状态：true=选中，false=未选中
-                var prevCheckbox = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
+                var status             = $(this).is(':checked');//状态：true=选中，false=未选中
+                var prevCheckbox       = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
                 var prevAuthCheckedLen = $(this).closest('ul').prev('.li-hook').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
                 var nextAuthCheckedLen = $(this).closest('.li-hook').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
                 if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
@@ -361,8 +361,8 @@ define(['jquery', 'layer'], function ($) {
         },
         //关联上级
         _checkedPrev    : function (obj) {
-            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
+            var checkedLen  = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox    = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {
@@ -375,8 +375,8 @@ define(['jquery', 'layer'], function ($) {
         },
         //权限关联上级
         _authCheckedPrev: function (obj) {
-            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
+            var checkedLen  = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox    = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {

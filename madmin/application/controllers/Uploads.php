@@ -11,13 +11,28 @@ class Uploads extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->set_url();
         $this->load->model('uploads_model', 'uploads');
     }
 
-    //选择图片
-    public function select_image()
+    //设置url
+    public function set_url()
     {
-        $this->load->view('uploads/select_image.html');
+        $url['get_list_url'] = site_url('uploads/get_list');
+        $this->load->vars($url);
+    }
+
+    //上传文件列表
+    public function get_list()
+    {
+        $data['list'] = $this->uploads->get_list();
+        echo json_encode($data);
+    }
+
+    //选择图片
+    public function cloud()
+    {
+        $this->load->view('uploads/cloud.html');
     }
 
     //上传图片

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=M_TITLE?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="panel cloud_panel">
+    <div class="panel-body cloud_panel_body">
+        <!--<div class="folder_tree">
+
+        </div>-->
+        <div class="cloud_container">
+            <div class="cloud_toolbar">
+                <div class="upload">
+                    <a href="<?=site_url('/uploads/uploads_image')?>" class="btn btn-default btn-sm"><i
+                            class="fa fa-upload"></i>&nbsp;点击上传</a>
+                </div>
+                <div class="select_info select-info-hook"></div>
+                <div class="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" placeholder="按文件名称搜索">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cloud_list nano nano-hook cloud-list-hook">
+                <div class="nano-content list-content-hook">
+                    <div class="row list-hook" id="list"></div>
+
+                    <script type="text/html" id="list_tpl">
+                        {{each list.list as val}}
+                        <div class="col-xs-2-5 col_item">
+                            <div class="item">
+                                <label>
+                                    <input type="checkbox">
+                                    <ins></ins>
+                                </label>
+                                <div class="thumb">
+                                    <img src="{{val.upl_path}}"
+                                         alt="暂无图片" class="thumb-hook">
+                                </div>
+                                <div class="name">{{val.upl_name}}</div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer cloud_panel_footer">
+        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default close-hook">取消</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['unit', 'jqthumb', 'template'], function (unit, jqthumb, template) {
+        //获取窗口索引
+        var index = parent.layer.getFrameIndex(window.name);
+        //关闭窗口
+        unit.layerClose(index);
+
+        //设置弹窗标题
+        parent.layer.title('从云端选择');
+
+        //更新选中信息
+        $('.list-hook').on('click', 'input:checkbox', function () {
+            var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
+            $('.select-info-hook').html('已选中了' + checkedNum + '张图片');
+        });
+
+        //加载数据
+        get_list();
+        var pageIndex = 0;
+        $(".nano-hook").bind("scrollend", function (e) {
+            pageIndex++;
+            get_list(pageIndex);
+        });
+
+        function get_list(pageIndex) {
+            var data = {
+                x   : Math.random(),
+                page: pageIndex
+            };
+            $.ajax({
+                url     : '<?=$get_list_url?>',
+                type    : 'post',
+                dataType: 'json',
+                data    : data,
+                success : function (data) {
+                    if (data.list.list.length) {
+                        $('#list').append(template('list_tpl', data));
+                        $('#list').find('.thumb-hook').jqthumb({width: '100%', height: 130});
+                        $(".nano-hook").nanoScroller();
+                    }
+                }
+            })
+        }
+
+        /*$('.list-content-hook').dropload({
+         domDown   : {
+         domRefresh: '',
+         domNoData : '<div class="dropload-noData">没有了...</div>'
+         },
+         loadDownFn: function (me) {
+         pageIndex++;
+         var data = {
+         x   : Math.random(),
+         page: pageIndex
+         };
+         $.ajax({
+         url     : '<?=$get_list_url?>',
+         type    : 'post',
+         dataType: 'json',
+         data    : data,
+         success : function (data) {
+         if (data.list.list.length) {
+         $('#list').append(template('list_tpl', data));
+         $('#list').find('img').each(function () {
+         if ($(this).is(':visible')) {
+         $(this).not('[data-src]').jqthumb({
+         width : '100%',
+         height: 80
+         });
+         }
+         });
+         $(".nano-hook").nanoScroller();
+         } else {
+         //锁定
+         me.lock();
+         //解锁
+         me.noData();
+         }
+         //重置
+         me.resetload();
+         }
+         })
+         }
+         });*/
+
+    });
+</script>
+</body>
+</html>
