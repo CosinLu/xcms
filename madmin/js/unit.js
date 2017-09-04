@@ -8,13 +8,15 @@ define(['jquery', 'layer'], function ($) {
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
                 var src = $(this).data('src');
-                var name = $(this).data('name');
+                if ($(this).hasClass('jqthumb')) {
+                    src = $(this).children('div').css('background-image').split("\"")[1];
+                }
                 parent.layer.open({
                     title  : false,
                     area   : '500px',
                     btn    : false,
                     offset : '100px',
-                    content: '<img src="' + src + '" style="max-width:100%;"><p>' + name + '</p>'
+                    content: '<img src="' + src + '" style="max-width:100%;">'
                 });
             });
         },

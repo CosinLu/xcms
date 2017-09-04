@@ -16,7 +16,7 @@ require.config({
         'layer'         : 'plugin/layer/layer',
         'mtree'         : 'plugin/mtree/js/mtree',
         'ueditor'       : 'plugin/ueditor/ueditor.all.min',
-        'jqthumb'       : 'plugin/jqthumb.min',
+        'jqthumb'       : 'plugin/jqthumb/jqthumb.min',
         'form'          : 'plugin/jquery.form.min',
         'sortable'      : 'plugin/sortable/Sortable.min',
         'template'      : 'plugin/template',
@@ -105,4 +105,7 @@ require(['jquery', 'unit', 'bootstrap', 'layer'], function ($, unit) {
 
     //异步提交表单
     unit.ajaxForm();
+
+    //缩略图预览
+    unit.imagePreview();
 });

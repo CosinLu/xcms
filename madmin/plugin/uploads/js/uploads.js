@@ -29,18 +29,18 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         if (!ext.length) return '';
         var src;
         var thumbnail = {
-            'zip': 'plugin/uploads/images/zip.png',
-            'ai': 'plugin/uploads/images/ai.png',
-            'apk': 'plugin/uploads/images/apk.png',
-            'excel': 'plugin/uploads/images/excel.png',
-            'flash': 'plugin/uploads/images/flash.png',
-            'image': 'plugin/uploads/images/image.png',
-            'music': 'plugin/uploads/images/music.png',
-            'pdf': 'plugin/uploads/images/pdf.png',
-            'ppt': 'plugin/uploads/images/ppt.png',
-            'psd': 'plugin/uploads/images/psd.png',
-            'video': 'plugin/uploads/images/video.png',
-            'word': 'plugin/uploads/images/word.png',
+            'zip'    : 'plugin/uploads/images/zip.png',
+            'ai'     : 'plugin/uploads/images/ai.png',
+            'apk'    : 'plugin/uploads/images/apk.png',
+            'excel'  : 'plugin/uploads/images/excel.png',
+            'flash'  : 'plugin/uploads/images/flash.png',
+            'image'  : 'plugin/uploads/images/image.png',
+            'music'  : 'plugin/uploads/images/music.png',
+            'pdf'    : 'plugin/uploads/images/pdf.png',
+            'ppt'    : 'plugin/uploads/images/ppt.png',
+            'psd'    : 'plugin/uploads/images/psd.png',
+            'video'  : 'plugin/uploads/images/video.png',
+            'word'   : 'plugin/uploads/images/word.png',
             'unknown': 'plugin/uploads/images/unknown.png'
         };
         ext = ext.replace('\.', '').toLowerCase();
@@ -97,6 +97,7 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
                     $item.find('.' + thumb).attr('src', src)
                         .attr('alt', e.upl_name)
                         .jqthumb({width: '69', height: '69'});
+                    $item.attr('title', e.upl_name);
                     _this.append($item);
                 })
             }
@@ -110,11 +111,11 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
             var id = $(this).attr('id');
             var el = document.getElementById(id);
             var sortable = new Sortable(el, {
-                group: id,
-                handle: '.' + move,
-                ghostClass: 'uploads-ghost',
+                group      : id,
+                handle     : '.' + move,
+                ghostClass : 'uploads-ghost',
                 chosenClass: "uploads-chosen",
-                draggable: "." + queueItem,
+                draggable  : "." + queueItem,
             });
         });
     };
@@ -126,15 +127,13 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         var name = $(this).data('name');
         var nameContent = (name) ? '<div class="uploads-preview-name">' + name + '</div>' : '';
         parent.layer.open({
-            title: false,
-            area: '500px',
-            btn: false,
-            offset: '100px',
+            title  : false,
+            area   : '500px',
+            btn    : false,
+            offset : '100px',
             content: '<div class="uploads-preview"><img src="' + src + '">' + nameContent + '</div>'
         });
     });
-
-    //
 
     //删除上传文件
     $(document).on('click', '.' + destory, function () {
@@ -143,18 +142,18 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
 
     //实例化uploadifive
     $('.uploads-btn-hook').uploadifive({
-        'auto': true,
-        'buttonClass': 'uploads-btn',
-        'buttonText': '+',
-        'formData': {
+        'auto'            : true,
+        'buttonClass'     : 'uploads-btn',
+        'buttonText'      : '+',
+        'formData'        : {
             'timestamp': new Date().getTime(),
-            'token': Math.random()
+            'token'    : Math.random()
         },
-        'queueItem': queueItem,
-        'itemTemplate': itemTemplate,
-        'fileSizeLimit': '100MB',
-        'fileTypeSuffix': 'jpg,png,gif,zip,rar,doc,docx,xls',
-        'uploadScript': 'index.php/uploads/do_upload',
+        'queueItem'       : queueItem,
+        'itemTemplate'    : itemTemplate,
+        'fileSizeLimit'   : '100MB',
+        'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
+        'uploadScript'    : 'index.php/uploads/do_upload',
         'onUploadComplete': function (file, data) {
             var data = $.parseJSON(data);
             var item = file.queueItem;
@@ -175,12 +174,20 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
             //item.find('.' + destory).attr('data-id', data.id);
             //input赋值
             item.find('.' + input).attr('name', data.upl_input + '[]').val(data.upl_id);
+            //title
+            item.attr('title', data.upl_name)
         },
-        'onQueueComplete': function (uploads) {
+        'onQueueComplete' : function (uploads) {
             //Dragsort();
         },
-        'onError': function (errorType) {
+        'onError'         : function (errorType) {
             // console.log('The error was: ' + errorType);
         }
     });
+
+    //文件库
+    $('uploads-lib-hook').on('click', function () {
+
+    });
+
 });
