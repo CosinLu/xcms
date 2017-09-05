@@ -25,14 +25,18 @@ class Uploads extends CI_Controller
     //上传文件列表
     public function get_list()
     {
-        $data['list'] = $this->uploads->get_list();
+        $page = $this->input->post('page');
+        $key = $this->input->post('key');
+        $data['list'] = $this->uploads->get_list($page, $key);
         echo json_encode($data);
     }
 
     //选择图片
     public function cloud()
     {
-        $this->load->view('uploads/cloud.html');
+        $data['queueid'] = $this->input->get('queueid', TRUE);
+        $data['multi'] = $this->input->get('multi', TRUE);
+        $this->load->view('uploads/cloud.html', $data);
     }
 
     //上传图片
@@ -60,6 +64,9 @@ class Uploads extends CI_Controller
             'upl_name'   => $res['client_name'],
             'upl_id'     => $this->uploads->save($res),
             'upl_input'  => $filename,
+            'upl_width'  => $res['image_width'],
+            'upl_height' => $res['image_height'],
+            'upl_size'   => $res['size'],
             'upl_errors' => $this->upload->display_errors()
         );
         echo json_encode($data);

@@ -63,11 +63,20 @@ kbd {
         vertical-align: middle;
         margin: 0;
         > li {
-            &:first-child,
+            > a {
+                min-width: 34px;
+                text-align: center;
+            }
+            &:first-child {
+                & > a,
+                & > span {
+                    border-radius: @border-radius 0 0 @border-radius;
+                }
+            }
             &:last-child {
                 & > a,
                 & > span {
-                    border-radius: @border-radius;
+                    border-radius: 0 @border-radius @border-radius 0;
                 }
             }
         }
@@ -109,8 +118,8 @@ kbd {
 
 .col-xs-2-5 {
     width: 20%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
     float: left;
     position: relative;
     min-height: 1px;

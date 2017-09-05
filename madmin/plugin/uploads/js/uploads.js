@@ -74,31 +74,66 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         return src;
     };
 
-    //设置弹窗标题
-    parent.layer.title('上传图片');
+    //填充数据
+    var assignData = function (obj, list, template, parent) {
+        $.each(list, function (i, data) {
+            if (!list.length) return false;
+            var item = $(template).clone();
+            var src  = parseInt(data.upl_image) ? data.upl_path : thumbnail(data.upl_ext);
+            //状态
+            item.addClass('complete');
+            //预览图片信息
+            item.find('.' + preview)
+                .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+            //input
+            item.find('.' + input)
+                .attr('name', obj + '[]').val(data.upl_id);
+            //移除进度条
+            item.find('.' + progress).remove();
+            //缩略图
+            item.find('.' + thumb).attr('src', src)
+                .attr('alt', data.upl_name)
+                .jqthumb({width: '69', height: '69'});
+            //图片标题
+            item.attr('title', data.upl_name);
+            //添加到容器
+            if (!parent) {
+                $('#' + obj).append(item);
+            } else {
+                $(window.parent.document).find('#' + obj).append(item);
+            }
+        })
+    };
 
     //初始化数据
     var initData = function () {
         $('.' + queue).each(function () {
-            var _this = $(this);
-            var list  = $(this).data('list');
+            var _this     = $(this);
+            var list      = _this.data('list');
+            var inputName = _this.attr('id');
             if (list != undefined) {
-                $.each(list, function (i, e) {
-                    var $item = $(itemTemplate).clone();
-                    var src   = (parseInt(e.upl_image)) ? e.upl_path : thumbnail(e.upl_ext);
-                    $item.addClass('complete');
-                    $item.find('.' + preview)
-                        .attr('data-src', src)
-                        .attr('data-title', e.upl_name);
-                    $item.find('.' + input)
-                        .attr('name', _this.attr('id') + '[]');
-                    $item.find('.' + input).val(e.upl_id);
-                    $item.find('.' + progress).remove();
-                    $item.find('.' + thumb).attr('src', src)
-                        .attr('alt', e.upl_name)
+                // assignTemplate(inputName, list, itemTemplate);
+                $.each(list, function (i, data) {
+                    var item = $(itemTemplate).clone();
+                    var src  = parseInt(data.upl_image) ? data.upl_path : thumbnail(data.upl_ext);
+                    //状态
+                    item.addClass('complete');
+                    //预览图片信息
+                    item.find('.' + preview)
+                        .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+                    //input
+                    item.find('.' + input)
+                        .attr('name', inputName + '[]').val(data.upl_id);
+                    //移除进度条
+                    item.find('.' + progress).remove();
+                    //缩略图
+                    item.find('.' + thumb).attr('src', src)
+                        .attr('alt', data.upl_name)
                         .jqthumb({width: '69', height: '69'});
-                    $item.attr('title', e.upl_name);
-                    _this.append($item);
+                    //图片标题
+                    item.attr('title', data.upl_name);
+                    //添加到容器
+                    _this.append(item);
                 })
             }
         })
@@ -106,7 +141,7 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
     initData();
 
     //拖拽排序
-    var Dragsort = function () {
+    var dragSort = function () {
         $('.' + queue).each(function () {
             var id       = $(this).attr('id');
             var el       = document.getElementById(id);
@@ -119,19 +154,30 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
             });
         });
     };
-    Dragsort();
+    dragSort();
 
     //预览
     $(document).on('click', '.' + preview, function () {
-        var src          = $(this).data('src');
-        var title        = $(this).data('title');
-        var titleContent = (title) ? '<div class="uploads-preview-title">' + title + '</div>' : '';
+        var content = $(this).data('content');
+        var str     = '';
+        str += '<div class="uploads-preview">';
+        str += '<div class="uploads-preview-img">';
+        str += '<img src="' + content.src + '">';
+        str += '</div>';
+        str += '<div class="uploads-preview-content">';
+        str += '<div>名称：' + content.name + '</div>';
+        if (parseInt(content.image)) {
+            str += '<div>尺寸：' + content.width + ' * ' + content.height + '</div>';
+        }
+        str += '<div>大小：' + content.size + ' KB</div>';
+        str += '</div>';
+        str += '</div>';
         parent.layer.open({
             title  : false,
             area   : '500px',
             btn    : false,
             offset : '100px',
-            content: '<div class="uploads-preview"><img src="' + src + '">' + titleContent + '</div>'
+            content: str
         });
     });
 
@@ -157,28 +203,26 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         'onUploadComplete': function (file, data) {
             var data      = $.parseJSON(data);
             var item      = file.queueItem;
-            var full_path = '';
+            var src       = data.upl_image ? data.upl_path : thumbnail(data.upl_ext);
+            var inputName = data.upl_input;
+
+            //预览图片信息
+            item.find('.' + preview)
+                .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+            //input
+            item.find('.' + input)
+                .attr('name', inputName + '[]').val(data.upl_id);
+            //移除进度条
+            item.find('.' + progress).remove();
             //缩略图
-            if (data.upl_image) {
-                full_path = data.upl_path;
-            } else {
-                full_path = thumbnail(data.upl_ext);
-            }
-            item.find('.' + thumb).attr('src', full_path)
+            item.find('.' + thumb).attr('src', src)
                 .attr('alt', data.upl_name)
                 .jqthumb({width: '69', height: '69'});
-
-            //预览图片属性
-            item.find('.' + preview).attr('data-src', full_path).attr('data-name', data.upl_name);
-            //删除上传图片属性
-            //item.find('.' + destory).attr('data-id', data.id);
-            //input赋值
-            item.find('.' + input).attr('name', data.upl_input + '[]').val(data.upl_id);
-            //title
-            item.attr('title', data.upl_name)
+            //图片标题
+            item.attr('title', data.upl_name);
         },
         'onQueueComplete' : function (uploads) {
-            //Dragsort();
+            //dragSort();
         },
         'onError'         : function (errorType) {
             //console.log('The error was: ' + errorType);
@@ -193,7 +237,7 @@ require(['jquery', 'unit', 'uploads', 'jqthumb', 'sortable', 'layer'], function 
         var queueID = $(this).data('id');
         //是否多文件上传
         var multi   = $(this).data('multi');
-        var url     = $(this).data('url');
+        var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
         layer.open({
             type   : 2,
             title  : '从云端选择',

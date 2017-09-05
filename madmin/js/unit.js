@@ -7,15 +7,14 @@ define(['jquery', 'layer'], function ($) {
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
-                var src          = $(this).data('src');
-                var title        = $(this).data('title');
-                var titleContent = (title) ? '<div style="padding: 15px 0 0;">' + title + '</div>' : '';
+                var content      = $(this).data('content');
+                var titleContent = (content.name) ? '<div style="padding-top:15px;">' + content.name + '</div>' : '';
                 parent.layer.open({
                     title  : false,
                     area   : '500px',
                     btn    : false,
                     offset : '100px',
-                    content: '<div style="text-align: center;"><img src="' + src + '" style="max-width: 100%;max-height: 500px;">' + titleContent + '</div>'
+                    content: '<div style="text-align: center;"><img src="' + content.src + '" style="max-width: 100%;max-height: 500px;">' + titleContent + '</div>'
                 });
 
             });

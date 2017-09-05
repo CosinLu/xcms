@@ -10,18 +10,23 @@ class Uploads_model extends CI_Model
 {
 
     //获取上传文件列表
-    public function get_list()
+    public function get_list($page = '', $key = '')
     {
-        $page = ($this->input->post('page')) ?: 1;
-        $this->db->select('id as upl_id,full_path as upl_path,is_image as upl_image,ext as upl_ext,client_name as upl_name');
+        $page = ($page) ?: 1;
+        $this->db->select('id as upl_id,full_path as upl_path,is_image as upl_image,ext as upl_ext,client_name as upl_name,size as upl_size,image_width as upl_width,image_height as upl_height');
         $this->db->from('uploads');
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        if ($key) {
+            $this->db->like('client_name', $key);
+        }
+        //$config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = 15;
         $config['cur_page'] = $page;
-        $this->pagination->initialize($config);
+        //$this->pagination->initialize($config);
         $this->db->order_by('id desc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
+        //$data['pagination'] = $this->pagination->create_ajax_links();
+        //$data['total'] = $config['total_rows'];
 
         return $data;
     }

@@ -51,7 +51,7 @@
                     'height'         : 30,                 // The height of the button
                     'itemTemplate'   : false,              // The HTML markup for the item in the queue
                     'method'         : 'post',             // The method to use when submitting the upload
-                    'multi'          : true,               // Set to true to allow multiple file selections
+                    'multi'          : false,               // Set to true to allow multiple file selections
                     'overrideEvents' : [],                 // An array of events to override
                     'queueID'        : false,              // The ID of the file queue
                     'queueItem'      : 'uploadifive-queue-item',
@@ -85,18 +85,18 @@
                      */
                 }, options);
 
-                settings.auto           = !$this.data('auto') || settings.auto;
-                settings.buttonClass    = $this.data('button-class') || settings.buttonClass;
-                settings.buttonText     = $this.data('button-text') || settings.buttonText;
-                settings.checkScript    = $this.data('check-script') || settings.checkScript;
-                settings.dropTarget     = $this.data('drop-target') || settings.dropTarget;
-                settings.fileObjName    = $this.data('name') || settings.fileObjName;
-                settings.fileSizeLimit  = $this.data('file-size-limit') || settings.fileSizeLimit;
-                settings.fileType       = $this.data('file-type') || settings.fileType;
-                settings.fileTypeSuffix = $this.data('file-type-suffix') || settings.fileTypeSuffix;
-                settings.height         = $this.data('height') || settings.height;
-                settings.method         = $this.data('method') || settings.method;
-                settings.multi          = $this.data('multi') && settings.multi;
+                settings.auto           = $this.data('auto') == undefined ? settings.auto : $this.data('auto');
+                settings.buttonClass    = $this.data('button-class') == undefined ? settings.buttonClass : $this.data('button-class');
+                settings.buttonText     = $this.data('button-text') == undefined ? settings.buttonText : $this.data('button-text');
+                settings.checkScript    = $this.data('check-script') == undefined ? settings.checkScript : $this.data('check-script');
+                settings.dropTarget     = $this.data('drop-target') == undefined ? settings.dropTarget : $this.data('drop-target');
+                settings.fileObjName    = $this.data('name') == undefined ? settings.fileObjName : $this.data('name');
+                settings.fileSizeLimit  = $this.data('file-size-limit') == undefined ? settings.fileSizeLimit : $this.data('file-size-limit');
+                settings.fileType       = $this.data('file-type') == undefined ? settings.fileType : $this.data('file-type');
+                settings.fileTypeSuffix = $this.data('file-type-suffix') == undefined ? settings.fileTypeSuffix : $this.data('file-type-suffix');
+                settings.height         = $this.data('height') == undefined ? settings.height : $this.data('height');
+                settings.method         = $this.data('method') == undefined ? settings.method : $this.data('method');
+                settings.multi          = $this.data('multi') == undefined ? settings.multi : $this.data('multi');
                 settings.mime           = {
                     // 'hqx': ['application/mac-binhex40', 'application/mac-binhex', 'application/x-binhex40', 'application/x-mac-binhex40'],
                     // 'cpt': 'application/mac-compactpro',
@@ -324,16 +324,16 @@
                 } else {
                     settings.queueID = settings.fileObjName;
                 }
-                settings.queueSizeLimit  = $this.data('queue-size-limit') || settings.queueSizeLimit;
-                settings.removeCompleted = $this.data('remove-completed') || settings.removeCompleted;
-                settings.simUploadLimit  = $this.data('sim-upload-limit') || settings.simUploadLimit;
-                settings.truncateLength  = $this.data('truncate-length') || settings.truncateLength;
-                settings.uploadLimit     = $this.data('upload-limit') || settings.uploadLimit;
-                settings.uploadScript    = $this.data('upload-script') || settings.uploadScript;
-                settings.width           = $this.data('width') || settings.width;
+                settings.queueSizeLimit  = $this.data('queue-size-limit') == undefined ? settings.queueSizeLimit : $this.data('queue-size-limit');
+                settings.removeCompleted = $this.data('remove-completed') == undefined ? settings.removeCompleted : $this.data('remove-completed');
+                settings.simUploadLimit  = $this.data('sim-upload-limit') == undefined ? settings.simUploadLimit : $this.data('sim-upload-limit');
+                settings.truncateLength  = $this.data('truncate-length') == undefined ? settings.truncateLength : $this.data('truncate-length');
+                settings.uploadLimit     = $this.data('upload-limit') == undefined ? settings.uploadLimit : $this.data('upload-limit');
+                settings.uploadScript    = $this.data('upload-script') == undefined ? settings.uploadScript : $this.data('upload-script');
+                settings.width           = $this.data('width') == undefined ? settings.width : $this.data('width');
                 settings.list            = $('#' + settings.queueID).data('list');
-                settings.cloud           = $this.data('cloud') || settings.cloud;
-                settings.cloudUrl        = $this.data('cloud-url') || settings.cloudUrl;
+                settings.cloud           = $this.data('cloud') == undefined ? settings.cloud : $this.data('cloud');
+                settings.cloudUrl        = $this.data('cloud-url') == undefined ? settings.cloudUrl : $this.data('cloud-url');
 
                 //根据suffix查找mime
                 var allowMime = [];
@@ -897,8 +897,8 @@
                     // Assign an ID to the object
                     settings.id = 'uploadifive-' + settings.queueID;
 
-                    //云端
-                    var cloudBtn = '<a href="javascript:;" class="uploads-online uploads-online-hook" title="云上传" data-id="' + settings.queueID + '" data-multi="' + settings.multi + '" data-url="' + settings.cloudUrl + '"><i class="fa fa-cloud-upload"></i></a>';
+                    //云端上传
+                    var cloudBtn = '<a href="javascript:;" class="uploads-online uploads-online-hook" title="云端上传" data-id="' + settings.queueID + '" data-multi="' + settings.multi + '" data-url="' + settings.cloudUrl + '"><i class="fa fa-cloud-upload"></i></a>';
                     cloudBtn     = settings.cloud ? cloudBtn : '';
 
                     // Wrap the file input in a div with overflow set to hidden

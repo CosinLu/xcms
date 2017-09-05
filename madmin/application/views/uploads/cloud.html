@@ -24,25 +24,22 @@
                 <div class="select_info select-info-hook"></div>
                 <div class="search">
                     <div class="input-group">
-                        <input type="text" class="form-control input-sm" placeholder="按文件名称搜索">
+                        <input type="text" name="key" class="form-control input-sm" placeholder="按文件名称搜索">
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn btn-default btn-sm search-btn-hook"><i
+                                    class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="cloud_list nano nano-hook cloud-list-hook">
-                <div class="nano-content list-content-hook">
+            <div class="cloud_list cloud-list-hook">
+                <div class="list-content-hook">
                     <div class="row list-hook" id="list"></div>
-
                     <script type="text/html" id="list_tpl">
                         {{each list.list as val}}
-                        <div class="col-xs-2-5 col_item">
-                            <div class="item">
-                                <label>
-                                    <input type="checkbox">
-                                    <ins></ins>
-                                </label>
+                        <div class="col-xs-2-5 col_item col-item-hook">
+                            <div class="item item-hook">
+                                <input type="checkbox" class="checkbox checkbox-hook">
                                 <div class="thumb">
                                     <img src="{{val.upl_path}}"
                                          alt="暂无图片" class="thumb-hook">
@@ -57,7 +54,7 @@
         </div>
     </div>
     <div class="panel-footer cloud_panel_footer">
-        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-primary save-hook">保存</button>
         <button type="button" class="btn btn-default close-hook">取消</button>
     </div>
 </div>
@@ -65,89 +62,90 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit', 'jqthumb', 'template'], function (unit, jqthumb, template) {
+    require(['unit', 'jqthumb', 'template', 'dropload'], function (unit, jqthumb, template) {
+        var queueid   = '<?=$queueid?>';
+        var multi     = '<?=$multi?>';
+        var pageIndex = 0;
         //获取窗口索引
-        var index = parent.layer.getFrameIndex(window.name);
+        var index     = parent.layer.getFrameIndex(window.name);
         //关闭窗口
         unit.layerClose(index);
 
         //设置弹窗标题
         parent.layer.title('从云端选择');
 
-        //更新选中信息
-        $('.list-hook').on('click', 'input:checkbox', function () {
+        $('.search-btn-hook').on('click', function () {
+            $('#list').html('');
+            pageIndex = 0;
+            dropload.unlock();
+            dropload.noData(false);
+            dropload.resetload();
+        });
+
+        //加载数据
+        var dropload = $('.cloud-list-hook').dropload({
+            domDown   : {
+                domRefresh: '',
+                domNoData : '<div class="dropload-noData dropload-nodata-hook">暂无更多</div>'
+            },
+            loadDownFn: function (me) {
+                pageIndex++;
+                var data = {
+                    x   : Math.random(),
+                    page: pageIndex,
+                    key : $('input[name="key"]').val()
+                };
+                $.ajax({
+                    url     : '<?=$get_list_url?>',
+                    type    : 'post',
+                    dataType: 'json',
+                    data    : data,
+                    success : function (data) {
+                        if (data.list.list.length) {
+                            $('#list').append(template('list_tpl', data));
+                            $('#list').find('.thumb-hook').jqthumb({width: '100%', height: 130});
+                        } else {
+                            me.lock();
+                            me.noData();
+                        }
+                        me.resetload();
+
+                        if (!data.list.list.length && pageIndex == 1) {
+                            $('.dropload-nodata-hook').html('暂无数据');
+                        }
+                    }
+                })
+            }
+        });
+
+        //选择文件
+        $('.list-hook').on('click', '.item-hook', function () {
+            var $_closestEle = $(this).closest('.col-item-hook');
+            var $_siblings   = $_closestEle.siblings();
+            var $_checkbox   = $(this).find('.checkbox-hook');
+            var status       = $_checkbox.is(':checked');
+            $_checkbox.prop('checked', !status);
+            if (!status) {
+                $(this).addClass('checked');
+            } else {
+                $(this).removeClass('checked')
+            }
+            //单选
+            if (multi == 'false') {
+                $_siblings.find('.item-hook')
+                        .removeClass('checked')
+                        .find('.checkbox-hook')
+                        .prop('checked', false);
+            }
             var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
             $('.select-info-hook').html('已选中了' + checkedNum + '张图片');
         });
 
-        //加载数据
-        get_list();
-        var pageIndex = 0;
-        $(".nano-hook").bind("scrollend", function (e) {
-            pageIndex++;
-            get_list(pageIndex);
+        //保存
+        $('.save-hook').on('click', function () {
+
         });
 
-        function get_list(pageIndex) {
-            var data = {
-                x   : Math.random(),
-                page: pageIndex
-            };
-            $.ajax({
-                url     : '<?=$get_list_url?>',
-                type    : 'post',
-                dataType: 'json',
-                data    : data,
-                success : function (data) {
-                    if (data.list.list.length) {
-                        $('#list').append(template('list_tpl', data));
-                        $('#list').find('.thumb-hook').jqthumb({width: '100%', height: 130});
-                        $(".nano-hook").nanoScroller();
-                    }
-                }
-            })
-        }
-
-        /*$('.list-content-hook').dropload({
-         domDown   : {
-         domRefresh: '',
-         domNoData : '<div class="dropload-noData">没有了...</div>'
-         },
-         loadDownFn: function (me) {
-         pageIndex++;
-         var data = {
-         x   : Math.random(),
-         page: pageIndex
-         };
-         $.ajax({
-         url     : '<?=$get_list_url?>',
-         type    : 'post',
-         dataType: 'json',
-         data    : data,
-         success : function (data) {
-         if (data.list.list.length) {
-         $('#list').append(template('list_tpl', data));
-         $('#list').find('img').each(function () {
-         if ($(this).is(':visible')) {
-         $(this).not('[data-src]').jqthumb({
-         width : '100%',
-         height: 80
-         });
-         }
-         });
-         $(".nano-hook").nanoScroller();
-         } else {
-         //锁定
-         me.lock();
-         //解锁
-         me.noData();
-         }
-         //重置
-         me.resetload();
-         }
-         })
-         }
-         });*/
 
     });
 </script>

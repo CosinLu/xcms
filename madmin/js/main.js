@@ -16,7 +16,7 @@ require.config({
         'layer'         : 'plugin/layer/layer',
         'mtree'         : 'plugin/mtree/js/mtree',
         'ueditor'       : 'plugin/ueditor/ueditor.all.min',
-        'jqthumb'       : 'plugin/jqthumb/jqthumb',
+        'jqthumb'       : 'plugin/jqthumb/jqthumb.min',
         'form'          : 'plugin/jquery.form.min',
         'sortable'      : 'plugin/sortable/Sortable.min',
         'template'      : 'plugin/template',

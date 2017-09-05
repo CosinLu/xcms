@@ -693,53 +693,50 @@ div.nodata-hook {
             .cloud_list {
                 flex: 1;
                 width: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
                 .row {
                     margin: 0 -7.5px;
                     .col_item {
-                        padding: 0 7.5px 15px;
+                        margin-bottom: 15px;
                         .item {
                             width: 100%;
                             float: left;
                             border: @border-color solid 1px;
                             border-radius: @border-radius;
                             position: relative;
-                            label {
-                                position: absolute;
-                                top: -1px;
-                                right: -1px;
-                                z-index: 100;
-                                ins {
-                                    width: 18px;
-                                    height: 18px;
-                                    display: none;
-                                    &:before {
-                                        width: 18px;
-                                        height: 18px;
-                                    }
-                                    &:after {
-                                        top: 5px;
-                                        left: 4px;
-                                    }
+                            cursor: pointer;
+                            &.checked {
+                                border-color: @color-primary;
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-color: @color-primary @color-primary transparent transparent;
+                                    border-width: 12px;
+                                    border-style: solid;
+                                    display: block;
+                                    right: 0;
+                                    top: 0;
+                                    z-index: 1;
                                 }
-                                input[type="checkbox"] {
-                                    &:checked {
-                                        + ins {
-                                            display: block;
-                                        }
-                                    }
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 10px;
+                                    height: 6px;
+                                    border-bottom: #fff solid 2px;
+                                    border-left: #fff solid 2px;
+                                    right: 2px;
+                                    top: 2px;
+                                    z-index: 2;
+                                    display: block;
+                                    transform: rotate(-45deg);
                                 }
                             }
-                            &:hover {
-                                label {
-                                    ins {
-                                        display: block;
-                                    }
-                                }
-                                .thumb {
-                                    .control {
-                                        display: block;
-                                    }
-                                }
+                            .checkbox {
+                                display: none;
                             }
                             .thumb {
                                 width: 100%;
