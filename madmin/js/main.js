@@ -22,6 +22,7 @@ require.config({
         'template'      : 'plugin/template',
         'scroller'      : 'plugin/nanoscroller/js/jquery.nanoscroller.min',
         'uploadifive'   : 'plugin/uploads/js/jquery.uploadifive',
+        'uploadsUnit'  : 'plugin/uploads/js/uploads.unit',
         'uploads'       : 'plugin/uploads/js/uploads',
     },
     shim : {
@@ -68,9 +69,6 @@ require.config({
         'scroller'      : {
             deps: ['jquery'
                 , 'css!plugin/nanoscroller/css/nanoscroller.css']
-        },
-        'uploads'       : {
-            deps: ['uploadifive']
         }
     }
 

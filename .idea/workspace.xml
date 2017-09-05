@@ -2,26 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af7caf3d-8e4f-4b66-84d1-f4cc9e300107" name="默认" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" afterPath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/bootcss.css" afterPath="$PROJECT_DIR$/madmin/css/bootcss.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/bootcss.less" afterPath="$PROJECT_DIR$/madmin/css/bootcss.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.css" afterPath="$PROJECT_DIR$/madmin/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.less" afterPath="$PROJECT_DIR$/madmin/css/index.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/style.css" afterPath="$PROJECT_DIR$/madmin/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/js/main.js" afterPath="$PROJECT_DIR$/madmin/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/js/unit.js" afterPath="$PROJECT_DIR$/madmin/js/unit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/jqthumb/jqthumb.js" afterPath="$PROJECT_DIR$/madmin/plugin/jqthumb/jqthumb.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.css" afterPath="$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.less" afterPath="$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.css" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
     </list>
     <ignored path="mcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,127 +27,7 @@
     <favorites_list name="mcms" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Uploads.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Uploads.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cloud.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uploads.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="68" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
-              <folding>
-                <element signature="e#1635#2387#0" expanded="false" />
-                <element signature="e#2588#2631#0" expanded="false" />
-                <element signature="e#2671#2715#0" expanded="false" />
-                <marker date="1504606199099" expanded="true" signature="657:1506" ph="..." />
-                <marker date="1504606199099" expanded="true" signature="820:943" ph="..." />
-                <marker date="1504606199099" expanded="true" signature="1018:1316" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uploads.unit.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="221" column="10" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#40#0" expanded="false" />
-                <element signature="e#1570#2378#0" expanded="false" />
-                <element signature="e#2595#2646#0" expanded="false" />
-                <element signature="e#2686#2738#0" expanded="false" />
-                <marker date="1504606765329" expanded="true" signature="565:1414" ph="..." />
-                <marker date="1504606765329" expanded="true" signature="728:851" ph="..." />
-                <marker date="1504606765329" expanded="true" signature="926:1224" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/js/unit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="32" />
-              <folding>
-                <marker date="1504585073061" expanded="true" signature="342:359" ph="..." />
-                <marker date="1504585073061" expanded="true" signature="621:640" ph="..." />
-                <marker date="1504585073061" expanded="true" signature="680:714" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="696" column="35" selection-start-line="696" selection-start-column="35" selection-end-line="696" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Uploads.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/libraries/Uploads.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootcss.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/css/bootcss.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="66" column="52" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Uploads_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/models/Uploads_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -218,7 +83,6 @@
         <option value="$PROJECT_DIR$/madmin/plugin/jqthumb/jqthumb.js" />
         <option value="$PROJECT_DIR$/madmin/js/unit.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" />
-        <option value="$PROJECT_DIR$/madmin/js/main.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
         <option value="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
         <option value="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
@@ -229,6 +93,7 @@
         <option value="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
         <option value="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" />
         <option value="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
+        <option value="$PROJECT_DIR$/madmin/js/main.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
       </list>
@@ -729,7 +594,7 @@
       <workItem from="1504428608828" duration="28000" />
       <workItem from="1504433410621" duration="960000" />
       <workItem from="1504487867270" duration="22796000" />
-      <workItem from="1504581276117" duration="22254000" />
+      <workItem from="1504581276117" duration="24024000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知信息">
       <created>1503536711920</created>
@@ -812,11 +677,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="434209000" />
+    <option name="totallyTimeSpent" value="435979000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23907454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -865,13 +730,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/navigation/insert.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/application/views/navigation/update.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1070,14 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1583">
@@ -1202,14 +1052,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/js/unit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1222,14 +1064,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="68" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
+        <state relative-caret-position="526">
+          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="143" column="16" selection-start-line="143" selection-start-column="8" selection-end-line="143" selection-end-column="16" />
           <folding>
             <element signature="e#1635#2387#0" expanded="false" />
             <element signature="e#2588#2631#0" expanded="false" />
             <element signature="e#2671#2715#0" expanded="false" />
+            <element signature="e#3739#4934#0" expanded="false" />
             <marker date="1504606199099" expanded="true" signature="657:1506" ph="..." />
             <marker date="1504606199099" expanded="true" signature="820:943" ph="..." />
             <marker date="1504606199099" expanded="true" signature="1018:1316" ph="..." />
@@ -1237,18 +1096,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="221" column="10" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="10" />
+        <state relative-caret-position="170">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
           <folding>
             <element signature="e#0#40#0" expanded="false" />
-            <element signature="e#1570#2378#0" expanded="false" />
-            <element signature="e#2595#2646#0" expanded="false" />
-            <element signature="e#2686#2738#0" expanded="false" />
-            <marker date="1504606765329" expanded="true" signature="565:1414" ph="..." />
-            <marker date="1504606765329" expanded="true" signature="728:851" ph="..." />
-            <marker date="1504606765329" expanded="true" signature="926:1224" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+            <marker date="1504608531010" expanded="true" signature="566:1415" ph="..." />
+            <marker date="1504608531010" expanded="true" signature="729:852" ph="..." />
+            <marker date="1504608531010" expanded="true" signature="927:1225" ph="..." />
           </folding>
         </state>
       </provider>

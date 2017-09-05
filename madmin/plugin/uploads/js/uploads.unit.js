@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 2017/9/5.
  */
-define(['jquer'], function ($) {
+define(['jquery'], function ($) {
     var queue        = 'uploads-queue-hook';
     var queueItem    = 'uploads-queue-item-hook';
     var thumb        = 'uploads-thumb-hook';
@@ -76,17 +76,114 @@ define(['jquer'], function ($) {
 
         //初始化数据
         initData: function () {
-            $('.' + queue).each(function () {
-                var _this     = $(this);
-                var list      = _this.data('list');
-                var inputName = _this.attr('id');
-                if (list != undefined) {
-                    // assignTemplate(inputName, list, itemTemplate);
-                    $.each(list, function (i, data) {
-                        var item = $(itemTemplate).clone();
-                        var src  = parseInt(data.upl_image) ? data.upl_path : thumbnail(data.upl_ext);
-                        //状态
-                        item.addClass('complete');
+            require(['jqthumb'], function (jqthumb) {
+                $('.' + queue).each(function () {
+                    var _this     = $(this);
+                    var list      = _this.data('list');
+                    var inputName = _this.attr('id');
+                    if (list != undefined) {
+                        $.each(list, function (i, data) {
+                            var item = $(itemTemplate).clone();
+                            var src  = parseInt(data.upl_image) ? data.upl_path : this.thumbnail(data.upl_ext);
+                            //状态
+                            item.addClass('complete');
+                            //预览图片信息
+                            item.find('.' + preview)
+                                .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+                            //input
+                            item.find('.' + input)
+                                .attr('name', inputName + '[]').val(data.upl_id);
+                            //移除进度条
+                            item.find('.' + progress).remove();
+                            //缩略图
+                            item.find('.' + thumb).attr('src', src)
+                                .attr('alt', data.upl_name)
+                                .jqthumb({width: '69', height: '69'});
+                            //图片标题
+                            item.attr('title', data.upl_name);
+                            //添加到容器
+                            _this.append(item);
+                        })
+                    }
+                })
+            })
+        },
+
+        //拖拽
+        dragSort: function () {
+            require(['sortable'], function (Sortable) {
+                $('.' + queue).each(function () {
+                    var id       = $(this).attr('id');
+                    var el       = document.getElementById(id);
+                    var sortable = new Sortable(el, {
+                        group      : id,
+                        handle     : '.' + move,
+                        ghostClass : 'uploads-ghost',
+                        chosenClass: "uploads-chosen",
+                        draggable  : "." + queueItem,
+                    });
+                });
+            })
+        },
+
+        //上传预览
+        uploadsPreview: function () {
+            require(['layer'], function () {
+                $(document).on('click', '.' + preview, function () {
+                    var content = $(this).data('content');
+                    var str     = '';
+                    str += '<div class="uploads-preview">';
+                    str += '<div class="uploads-preview-img">';
+                    str += '<img src="' + content.src + '">';
+                    str += '</div>';
+                    str += '<div class="uploads-preview-content">';
+                    str += '<div>名称：' + content.name + '</div>';
+                    if (parseInt(content.image)) {
+                        str += '<div>尺寸：' + content.width + ' * ' + content.height + '</div>';
+                    }
+                    str += '<div>大小：' + content.size + ' KB</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    parent.layer.open({
+                        title  : false,
+                        area   : '500px',
+                        btn    : false,
+                        offset : '100px',
+                        content: str
+                    });
+                });
+            })
+        },
+
+        //删除上传
+        uploadsDel: function () {
+            $(document).on('click', '.' + destory, function () {
+                $(this).closest('.' + queueItem).remove();
+            });
+        },
+
+        //实例化上传组件
+        initUploads: function () {
+            require(['uploadifive'], function (uploadifive) {
+                $('.uploads-btn-hook').uploadifive({
+                    'auto'            : true,
+                    'buttonClass'     : 'uploads-btn',
+                    'buttonText'      : '+',
+                    'formData'        : {
+                        'timestamp': new Date().getTime(),
+                        'token'    : Math.random()
+                    },
+                    'queueItem'       : queueItem,
+                    'itemTemplate'    : itemTemplate,
+                    'fileSizeLimit'   : '20MB',
+                    'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
+                    'uploadScript'    : 'index.php/uploads/do_upload',
+                    'onUploadComplete': function (file, data) {
+                        var data      = $.parseJSON(data);
+                        var item      = file.queueItem;
+                        var src       = data.upl_image ? data.upl_path : this.thumbnail(data.upl_ext);
+                        var inputName = data.upl_input;
+
                         //预览图片信息
                         item.find('.' + preview)
                             .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
@@ -101,124 +198,35 @@ define(['jquer'], function ($) {
                             .jqthumb({width: '69', height: '69'});
                         //图片标题
                         item.attr('title', data.upl_name);
-                        //添加到容器
-                        _this.append(item);
-                    })
-                }
+                    },
+                    'onQueueComplete' : function (uploads) {
+                        //this.dragSort();
+                    },
+                    'onError'         : function (errorType) {
+                    }
+                });
             })
-        },
-
-        //拖拽
-        dragSort: function () {
-            $('.' + queue).each(function () {
-                var id       = $(this).attr('id');
-                var el       = document.getElementById(id);
-                var sortable = new Sortable(el, {
-                    group      : id,
-                    handle     : '.' + move,
-                    ghostClass : 'uploads-ghost',
-                    chosenClass: "uploads-chosen",
-                    draggable  : "." + queueItem,
-                });
-            });
-        },
-
-        //上传预览
-        uploadsPreview: function () {
-            $(document).on('click', '.' + preview, function () {
-                var content = $(this).data('content');
-                var str     = '';
-                str += '<div class="uploads-preview">';
-                str += '<div class="uploads-preview-img">';
-                str += '<img src="' + content.src + '">';
-                str += '</div>';
-                str += '<div class="uploads-preview-content">';
-                str += '<div>名称：' + content.name + '</div>';
-                if (parseInt(content.image)) {
-                    str += '<div>尺寸：' + content.width + ' * ' + content.height + '</div>';
-                }
-                str += '<div>大小：' + content.size + ' KB</div>';
-                str += '</div>';
-                str += '</div>';
-                parent.layer.open({
-                    title  : false,
-                    area   : '500px',
-                    btn    : false,
-                    offset : '100px',
-                    content: str
-                });
-            });
-        },
-
-        //删除上传
-        uploadsDel: function () {
-            $(document).on('click', '.' + destory, function () {
-                $(this).closest('.' + queueItem).remove();
-            });
-        },
-
-        //实例化上传组件
-        initUploads: function () {
-            $('.uploads-btn-hook').uploadifive({
-                'auto'            : true,
-                'buttonClass'     : 'uploads-btn',
-                'buttonText'      : '+',
-                'formData'        : {
-                    'timestamp': new Date().getTime(),
-                    'token'    : Math.random()
-                },
-                'queueItem'       : queueItem,
-                'itemTemplate'    : itemTemplate,
-                'fileSizeLimit'   : '20MB',
-                'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
-                'uploadScript'    : 'index.php/uploads/do_upload',
-                'onUploadComplete': function (file, data) {
-                    var data      = $.parseJSON(data);
-                    var item      = file.queueItem;
-                    var src       = data.upl_image ? data.upl_path : thumbnail(data.upl_ext);
-                    var inputName = data.upl_input;
-
-                    //预览图片信息
-                    item.find('.' + preview)
-                        .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
-                    //input
-                    item.find('.' + input)
-                        .attr('name', inputName + '[]').val(data.upl_id);
-                    //移除进度条
-                    item.find('.' + progress).remove();
-                    //缩略图
-                    item.find('.' + thumb).attr('src', src)
-                        .attr('alt', data.upl_name)
-                        .jqthumb({width: '69', height: '69'});
-                    //图片标题
-                    item.attr('title', data.upl_name);
-                },
-                'onQueueComplete' : function (uploads) {
-                    //dragSort();
-                },
-                'onError'         : function (errorType) {
-                    //console.log('The error was: ' + errorType);
-                }
-            });
         },
 
         //云端
         initCloudUplods: function () {
-            $('.uploads-online-hook').on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                //容器
-                var queueID = $(this).data('id');
-                //是否多文件上传
-                var multi   = $(this).data('multi');
-                var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
-                layer.open({
-                    type   : 2,
-                    title  : '从云端选择',
-                    area   : ['800px', '560px'],
-                    content: url
-                })
-            });
+            require(['layer'], function (layer) {
+                $('.uploads-online-hook').on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    //容器
+                    var queueID = $(this).data('id');
+                    //是否多文件上传
+                    var multi   = $(this).data('multi');
+                    var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
+                    layer.open({
+                        type   : 2,
+                        title  : '从云端选择',
+                        area   : ['800px', '560px'],
+                        content: url
+                    })
+                });
+            })
         },
     }
 });
