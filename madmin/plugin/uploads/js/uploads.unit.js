@@ -2,26 +2,17 @@
  * Created by Admin on 2017/9/5.
  */
 define(['jquery'], function ($) {
-    var queue        = 'uploads-queue-hook';
-    var queueItem    = 'uploads-queue-item-hook';
-    var thumb        = 'uploads-thumb-hook';
-    var preview      = 'uploads-preview-hook';
-    var destory      = 'uploads-destory-hook';
-    var input        = 'uploads-input-hook';
-    var progress     = 'uploads-progress-hook';
-    var control      = 'uploads-control-hook';
-    var move         = 'uploads-move-hook';
-    var itemTemplate = '<div class="uploads-queue-item ' + queueItem + '">\
-                            <span class="uploads-move ' + move + '"></span>\
-                            <div class="' + progress + ' uploads-progress progress">\
+    var itemTemplate = '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
+                            <span class="uploads-move uploads-move-hook"></span>\
+                            <div class="uploads-progress progress">\
                                 <div class="progress-bar progress-bar-success"></div>\
                             </div>\
-                            <div class="uploads-control ' + control + '">\
-                                <a href="javascript:;" class="uploads-preview ' + preview + '"><i class="fa fa-search-plus"></i></a>\
-                                <a href="javascript:;" class="uploads-destory ' + destory + '"><i class="fa fa-trash"></i></a>\
+                            <div class="uploads-control ploads-control-hook">\
+                                <a href="javascript:;" class="uploads-preview uploads-preview-hook"><i class="fa fa-search-plus"></i></a>\
+                                <a href="javascript:;" class="uploads-destory uploads-destory-hook"><i class="fa fa-trash"></i></a>\
                             </div>\
-                            <img class="uploads-thumb ' + thumb + '" src="" alt="">\
-                            <input type="hidden" class="' + input + '">\
+                            <img class="uploads-thumb uploads-thumb-hook" src="" alt="">\
+                            <input type="hidden" class="uploads-input-hook">\
                         </div>';
     return {
         //缩略图
@@ -29,18 +20,18 @@ define(['jquery'], function ($) {
             if (!ext.length) return '';
             var src;
             var thumbnail = {
-                'zip'    : 'plugin/uploads/images/zip.png',
-                'ai'     : 'plugin/uploads/images/ai.png',
-                'apk'    : 'plugin/uploads/images/apk.png',
-                'excel'  : 'plugin/uploads/images/excel.png',
-                'flash'  : 'plugin/uploads/images/flash.png',
-                'image'  : 'plugin/uploads/images/image.png',
-                'music'  : 'plugin/uploads/images/music.png',
-                'pdf'    : 'plugin/uploads/images/pdf.png',
-                'ppt'    : 'plugin/uploads/images/ppt.png',
-                'psd'    : 'plugin/uploads/images/psd.png',
-                'video'  : 'plugin/uploads/images/video.png',
-                'word'   : 'plugin/uploads/images/word.png',
+                'zip': 'plugin/uploads/images/zip.png',
+                'ai': 'plugin/uploads/images/ai.png',
+                'apk': 'plugin/uploads/images/apk.png',
+                'excel': 'plugin/uploads/images/excel.png',
+                'flash': 'plugin/uploads/images/flash.png',
+                'image': 'plugin/uploads/images/image.png',
+                'music': 'plugin/uploads/images/music.png',
+                'pdf': 'plugin/uploads/images/pdf.png',
+                'ppt': 'plugin/uploads/images/ppt.png',
+                'psd': 'plugin/uploads/images/psd.png',
+                'video': 'plugin/uploads/images/video.png',
+                'word': 'plugin/uploads/images/word.png',
                 'unknown': 'plugin/uploads/images/unknown.png'
             };
             ext           = ext.replace('\.', '').toLowerCase();
@@ -77,7 +68,7 @@ define(['jquery'], function ($) {
         //初始化数据
         initData: function () {
             require(['jqthumb'], function (jqthumb) {
-                $('.' + queue).each(function () {
+                $('.uploads-queue-hook').each(function () {
                     var _this     = $(this);
                     var list      = _this.data('list');
                     var inputName = _this.attr('id');
@@ -88,15 +79,13 @@ define(['jquery'], function ($) {
                             //状态
                             item.addClass('complete');
                             //预览图片信息
-                            item.find('.' + preview)
+                            item.find('.uploads-preview-hook')
                                 .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
                             //input
-                            item.find('.' + input)
+                            item.find('.uploads-input-hook')
                                 .attr('name', inputName + '[]').val(data.upl_id);
-                            //移除进度条
-                            item.find('.' + progress).remove();
                             //缩略图
-                            item.find('.' + thumb).attr('src', src)
+                            item.find('.uploads-thumb-hook').attr('src', src)
                                 .attr('alt', data.upl_name)
                                 .jqthumb({width: '69', height: '69'});
                             //图片标题
@@ -112,15 +101,15 @@ define(['jquery'], function ($) {
         //拖拽
         dragSort: function () {
             require(['sortable'], function (Sortable) {
-                $('.' + queue).each(function () {
+                $('.uploads-queue-hook').each(function () {
                     var id       = $(this).attr('id');
                     var el       = document.getElementById(id);
                     var sortable = new Sortable(el, {
-                        group      : id,
-                        handle     : '.' + move,
-                        ghostClass : 'uploads-ghost',
+                        group: id,
+                        handle: '.uploads-move-hook',
+                        ghostClass: 'uploads-ghost',
                         chosenClass: "uploads-chosen",
-                        draggable  : "." + queueItem,
+                        draggable: '.uploads-queue-item-hook',
                     });
                 });
             })
@@ -129,7 +118,7 @@ define(['jquery'], function ($) {
         //上传预览
         uploadsPreview: function () {
             require(['layer'], function () {
-                $(document).on('click', '.' + preview, function () {
+                $(document).on('click', '.uploads-preview-hook', function () {
                     var content = $(this).data('content');
                     var str     = '';
                     str += '<div class="uploads-preview">';
@@ -138,17 +127,17 @@ define(['jquery'], function ($) {
                     str += '</div>';
                     str += '<div class="uploads-preview-content">';
                     str += '<div>名称：' + content.name + '</div>';
-                    if (parseInt(content.image)) {
+                    if (content.image) {
                         str += '<div>尺寸：' + content.width + ' * ' + content.height + '</div>';
                     }
                     str += '<div>大小：' + content.size + ' KB</div>';
                     str += '</div>';
                     str += '</div>';
                     parent.layer.open({
-                        title  : false,
-                        area   : '500px',
-                        btn    : false,
-                        offset : '100px',
+                        title: false,
+                        area: '500px',
+                        btn: false,
+                        offset: '100px',
                         content: str
                     });
                 });
@@ -157,8 +146,8 @@ define(['jquery'], function ($) {
 
         //删除上传
         uploadsDel: function () {
-            $(document).on('click', '.' + destory, function () {
-                $(this).closest('.' + queueItem).remove();
+            $(document).on('click', '.uploads-destory-hook', function () {
+                $(this).closest('.uploads-queue-item-hook').remove();
             });
         },
 
@@ -166,18 +155,17 @@ define(['jquery'], function ($) {
         initUploads: function () {
             require(['uploadifive'], function (uploadifive) {
                 $('.uploads-btn-hook').uploadifive({
-                    'auto'            : true,
-                    'buttonClass'     : 'uploads-btn',
-                    'buttonText'      : '+',
-                    'formData'        : {
+                    'auto': true,
+                    'buttonClass': 'uploads-btn',
+                    'buttonText': '+',
+                    'formData': {
                         'timestamp': new Date().getTime(),
-                        'token'    : Math.random()
+                        'token': Math.random()
                     },
-                    'queueItem'       : queueItem,
-                    'itemTemplate'    : itemTemplate,
-                    'fileSizeLimit'   : '20MB',
-                    'fileTypeSuffix'  : 'jpg,png,gif,zip,rar,doc,docx,xls',
-                    'uploadScript'    : 'index.php/uploads/do_upload',
+                    'itemTemplate': itemTemplate,
+                    'fileSizeLimit': '20MB',
+                    'fileTypeSuffix': 'jpg,png,gif',
+                    'uploadScript': 'index.php/uploads/do_upload',
                     'onUploadComplete': function (file, data) {
                         var data      = $.parseJSON(data);
                         var item      = file.queueItem;
@@ -185,24 +173,22 @@ define(['jquery'], function ($) {
                         var inputName = data.upl_input;
 
                         //预览图片信息
-                        item.find('.' + preview)
+                        item.find('.uploads-preview-hook')
                             .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
                         //input
-                        item.find('.' + input)
+                        item.find('.uploads-input-hook')
                             .attr('name', inputName + '[]').val(data.upl_id);
-                        //移除进度条
-                        item.find('.' + progress).remove();
                         //缩略图
-                        item.find('.' + thumb).attr('src', src)
+                        item.find('.uploads-thumb-hook').attr('src', src)
                             .attr('alt', data.upl_name)
                             .jqthumb({width: '69', height: '69'});
                         //图片标题
                         item.attr('title', data.upl_name);
                     },
-                    'onQueueComplete' : function (uploads) {
+                    'onQueueComplete': function (uploads) {
                         //this.dragSort();
                     },
-                    'onError'         : function (errorType) {
+                    'onError': function (errorType) {
                     }
                 });
             })
@@ -220,9 +206,9 @@ define(['jquery'], function ($) {
                     var multi   = $(this).data('multi');
                     var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
                     layer.open({
-                        type   : 2,
-                        title  : '从云端选择',
-                        area   : ['800px', '560px'],
+                        type: 2,
+                        title: '从云端选择',
+                        area: ['800px', '560px'],
                         content: url
                     })
                 });

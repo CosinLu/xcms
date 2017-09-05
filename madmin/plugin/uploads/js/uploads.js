@@ -8,8 +8,4 @@ require(['jquery', 'uploadsUnit'], function ($, uploadsUnit) {
     uploadsUnit.uploadsDel();
     uploadsUnit.initUploads();
     uploadsUnit.initCloudUplods();
-
-    console.log(0);
-    console.log(uploadsUnit.ops);
-    console.log(1);
 });
