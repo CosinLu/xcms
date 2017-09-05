@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af7caf3d-8e4f-4b66-84d1-f4cc9e300107" name="默认" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/style.css" afterPath="$PROJECT_DIR$/madmin/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.css" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
-    </list>
+    <list default="true" id="af7caf3d-8e4f-4b66-84d1-f4cc9e300107" name="默认" comment="" />
     <ignored path="mcms.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -679,7 +671,7 @@
       <workItem from="1504433410621" duration="960000" />
       <workItem from="1504487867270" duration="22796000" />
       <workItem from="1504581276117" duration="24024000" />
-      <workItem from="1504614106138" duration="4759000" />
+      <workItem from="1504614106138" duration="4827000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知信息">
       <created>1503536711920</created>
@@ -762,11 +754,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440738000" />
+    <option name="totallyTimeSpent" value="440806000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24281392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
