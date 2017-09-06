@@ -13,7 +13,7 @@ class Uploads_model extends CI_Model
     public function get_list($page = '', $key = '')
     {
         $page = ($page) ?: 1;
-        $this->db->select('id as upl_id,full_path as upl_path,is_image as upl_image,ext as upl_ext,client_name as upl_name,size as upl_size,image_width as upl_width,image_height as upl_height');
+        $this->db->select('id,full_path,is_image,ext,client_name,size,image_width,image_height');
         $this->db->from('uploads');
         if ($key) {
             $this->db->like('client_name', $key);
@@ -27,7 +27,6 @@ class Uploads_model extends CI_Model
         $data['list'] = $this->db->get()->result_array();
         //$data['pagination'] = $this->pagination->create_ajax_links();
         //$data['total'] = $config['total_rows'];
-
         return $data;
     }
 

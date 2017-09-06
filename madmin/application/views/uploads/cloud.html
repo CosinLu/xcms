@@ -21,7 +21,7 @@
                     <a href="<?=site_url('/uploads/uploads_image')?>" class="btn btn-default btn-sm"><i
                             class="fa fa-upload"></i>&nbsp;点击上传</a>
                 </div>
-                <div class="select_info select-info-hook"></div>
+                <div class="select_info select-info-hook">请选择文件</div>
                 <div class="search">
                     <div class="input-group">
                         <input type="text" name="key" class="form-control input-sm" placeholder="按文件名称搜索">
@@ -37,14 +37,16 @@
                     <div class="row list-hook" id="list"></div>
                     <script type="text/html" id="list_tpl">
                         {{each list.list as val}}
-                        <div class="col-xs-2-5 col_item col-item-hook">
+                        <div class="col-xs-2-5 col_item col-item-hook" title="{{val.client_name}}">
                             <div class="item item-hook">
-                                <input type="checkbox" class="checkbox checkbox-hook">
+                                <input type="checkbox" class="checkbox checkbox-hook"
+                                       data-content='{"id":"{{val.id}}","full_path":"{{val.full_path}}","is_image":"{{val.is_image}}","ext":"{{val.ext}}","client_name":"{{val.client_name}}","size":"{{val.size}}","image_width":"{{val.image_width}}","image_height":"{{val.image_height}}"}'>
                                 <div class="thumb">
-                                    <img src="{{val.upl_path}}"
-                                         alt="暂无图片" class="thumb-hook">
+                                    <img src="" data-src="{{val.full_path}}"
+                                         class="thumb-hook"
+                                         data-is-image="{{val.is_image}}">
                                 </div>
-                                <div class="name">{{val.upl_name}}</div>
+                                <div class="name">{{val.client_name}}</div>
                             </div>
                         </div>
                         {{/each}}
@@ -62,18 +64,19 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit', 'jqthumb', 'template', 'dropload'], function (unit, jqthumb, template) {
+    require(['uploadsUnit', 'unit', 'jqthumb', 'template', 'dropload'], function (uploadsUnit, unit, jqthumb, template) {
+        //容器id
         var queueid   = '<?=$queueid?>';
+        //是否批量上传
         var multi     = '<?=$multi?>';
+        //初始化页码
         var pageIndex = 0;
         //获取窗口索引
         var index     = parent.layer.getFrameIndex(window.name);
-        //关闭窗口
-        unit.layerClose(index);
-
         //设置弹窗标题
-        parent.layer.title('从云端选择');
+        parent.layer.title('云上传');
 
+        //搜索
         $('.search-btn-hook').on('click', function () {
             $('#list').html('');
             pageIndex = 0;
@@ -103,7 +106,11 @@
                     success : function (data) {
                         if (data.list.list.length) {
                             $('#list').append(template('list_tpl', data));
-                            $('#list').find('.thumb-hook').jqthumb({width: '100%', height: 130});
+                            $('#list').find('.thumb-hook[data-is-image="1"]').jqthumb({
+                                width: '100%', height: 130, source: 'data-src'
+                            });
+
+
                         } else {
                             me.lock();
                             me.noData();
@@ -131,20 +138,55 @@
                 $(this).removeClass('checked')
             }
             //单选
-            if (multi == 'false') {
+            if (!eval(multi)) {
                 $_siblings.find('.item-hook')
                         .removeClass('checked')
                         .find('.checkbox-hook')
                         .prop('checked', false);
             }
             var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
-            $('.select-info-hook').html('已选中了' + checkedNum + '张图片');
+            var desc       = checkedNum ? '已选中' + checkedNum + '个文件' : '请选择文件';
+            $('.select-info-hook').html(desc);
         });
 
         //保存
         $('.save-hook').on('click', function () {
+            var list      = [];
+            var inputName = queueid;
+            $('.checkbox-hook:input:checked').each(function () {
+                var data = $(this).data('content');
+                var item = $(uploadsUnit.config.itemTemplate).clone();
+                var src  = parseInt(data.is_image) ? data.full_path : uploadsUnit.thumbnail(data.ext);
+                //状态
+                item.addClass('complete');
+                //预览图片信息
+                item.find('.uploads-preview-hook')
+                        .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
+                //input
+                item.find('.uploads-input-hook')
+                        .attr('name', inputName + '[]').val(data.id);
+                //缩略图
+                item.find('.uploads-thumb-hook').attr('src', src)
+                        .attr('alt', data.client_name)
+                        .jqthumb({width: '69', height: '69'});
+                //图片标题
+                item.attr('title', data.client_name);
+                //添加到容器
+                if (eval(multi)) {
+                    $(window.parent.document).find('#' + queueid).append(item);
+                } else {
+                    $(window.parent.document).find('#' + queueid).html(item);
+                }
+                //关闭弹窗
+                parent.layer.close(index);
 
+            });
         });
+
+        //关闭弹窗
+        $('.close-hook').on('click', function () {
+            parent.layer.close(index);
+        })
 
 
     });

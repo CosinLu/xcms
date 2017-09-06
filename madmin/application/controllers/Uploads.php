@@ -22,7 +22,7 @@ class Uploads extends CI_Controller
         $this->load->vars($url);
     }
 
-    //上传文件列表
+    //文件列表
     public function get_list()
     {
         $page = $this->input->post('page');
@@ -56,19 +56,9 @@ class Uploads extends CI_Controller
         );
         $this->load->library('upload', $config);
         $this->upload->do_upload($filename);
-        $res = $this->upload->data();
-        $data = array(
-            'upl_image'  => $res['is_image'],
-            'upl_path'   => $res['full_path'],
-            'upl_ext'    => $res['ext'],
-            'upl_name'   => $res['client_name'],
-            'upl_id'     => $this->uploads->save($res),
-            'upl_input'  => $filename,
-            'upl_width'  => $res['image_width'],
-            'upl_height' => $res['image_height'],
-            'upl_size'   => $res['size'],
-            'upl_errors' => $this->upload->display_errors()
-        );
+        $data = $res = $this->upload->data();
+        $data['id'] = $this->uploads->save($res);
+        $data['input_name'] = $filename;
         echo json_encode($data);
     }
 

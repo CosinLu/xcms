@@ -14,55 +14,55 @@
                 // Create a reference to the jQuery DOM object
                 var $this = $(this);
                 $this.data('uploadifive', {
-                    inputs: {}, // The object that contains all the file inputs
+                    inputs    : {}, // The object that contains all the file inputs
                     inputCount: 0,  // The total number of file inputs created
-                    fileID: 0,
-                    queue: {
-                        count: 0, // Total number of files in the queue
-                        selected: 0, // Number of files selected in the last select operation
-                        replaced: 0, // Number of files replaced in the last select operation
-                        errors: 0, // Number of files that returned an error in the last select operation
-                        queued: 0, // Number of files added to the queue in the last select operation
+                    fileID    : 0,
+                    queue     : {
+                        count    : 0, // Total number of files in the queue
+                        selected : 0, // Number of files selected in the last select operation
+                        replaced : 0, // Number of files replaced in the last select operation
+                        errors   : 0, // Number of files that returned an error in the last select operation
+                        queued   : 0, // Number of files added to the queue in the last select operation
                         cancelled: 0  // Total number of files that have been cancelled or removed from the queue
                     },
-                    uploads: {
-                        current: 0, // Number of files currently being uploaded
-                        attempts: 0, // Number of file uploads attempted in the last upload operation
+                    uploads   : {
+                        current   : 0, // Number of files currently being uploaded
+                        attempts  : 0, // Number of file uploads attempted in the last upload operation
                         successful: 0, // Number of files successfully uploaded in the last upload operation
-                        errors: 0, // Number of files returning errors in the last upload operation
-                        count: 0  // Total number of files uploaded successfully
+                        errors    : 0, // Number of files returning errors in the last upload operation
+                        count     : 0  // Total number of files uploaded successfully
                     }
                 });
                 var $data = $this.data('uploadifive');
 
                 // Set the default options
                 var settings = $data.settings = $.extend({
-                    'auto': true,               // Automatically upload a file when it's added to the queue
-                    'buttonClass': false,              // A class to add to the UploadiFive button
-                    'buttonText': 'Select Files',     // The text that appears on the UploadiFive button
-                    'checkScript': false,              // Path to the script that checks for existing file names
-                    'dnd': true,               // Allow drag and drop into the queue
-                    'dropTarget': false,              // Selector for the drop target
-                    'fileObjName': 'Filedata',         // The name of the file object to use in your server-side script
-                    'fileSizeLimit': 0,                  // Maximum allowed size of files to upload
-                    'fileType': false,              // Type of files allowed (image, etc)
-                    'fileTypeSuffix': false,              //允许上传的文件后缀
-                    'formData': {},                 // Additional data to send to the upload script
-                    'height': 30,                 // The height of the button
-                    'itemTemplate': false,              // The HTML markup for the item in the queue
-                    'method': 'post',             // The method to use when submitting the upload
-                    'multi': false,               // Set to true to allow multiple file selections
-                    'overrideEvents': [],                 // An array of events to override
-                    'queueID': false,              // The ID of the file queue
-                    'queueSizeLimit': 0,                  // The maximum number of files that can be in the queue
+                    'auto'           : true,               // Automatically upload a file when it's added to the queue
+                    'buttonClass'    : false,              // A class to add to the UploadiFive button
+                    'buttonText'     : 'Select Files',     // The text that appears on the UploadiFive button
+                    'checkScript'    : false,              // Path to the script that checks for existing file names
+                    'dnd'            : true,               // Allow drag and drop into the queue
+                    'dropTarget'     : false,              // Selector for the drop target
+                    'fileObjName'    : 'Filedata',         // The name of the file object to use in your server-side script
+                    'fileSizeLimit'  : 0,                  // Maximum allowed size of files to upload
+                    'fileType'       : false,              // Type of files allowed (image, etc)
+                    'fileTypeSuffix' : false,              //允许上传的文件后缀
+                    'formData'       : {},                 // Additional data to send to the upload script
+                    'height'         : 30,                 // The height of the button
+                    'itemTemplate'   : false,              // The HTML markup for the item in the queue
+                    'method'         : 'post',             // The method to use when submitting the upload
+                    'multi'          : false,               // Set to true to allow multiple file selections
+                    'overrideEvents' : [],                 // An array of events to override
+                    'queueID'        : false,              // The ID of the file queue
+                    'queueSizeLimit' : 0,                  // The maximum number of files that can be in the queue
                     'removeCompleted': false,              // Set to true to remove files that have completed uploading
-                    'simUploadLimit': 0,                  // The maximum number of files to upload at once
-                    'truncateLength': 0,                  // The length to truncate the file names to
-                    'uploadLimit': 0,                  // The maximum number of files you can upload
-                    'uploadScript': 'uploadifive.php',  // The path to the upload script
-                    'width': 100,                // The width of the button
-                    'cloud': false,
-                    'cloudUrl': 'index.php/uploads/cloud'
+                    'simUploadLimit' : 0,                  // The maximum number of files to upload at once
+                    'truncateLength' : 0,                  // The length to truncate the file names to
+                    'uploadLimit'    : 0,                  // The maximum number of files you can upload
+                    'uploadScript'   : 'uploadifive.php',  // The path to the upload script
+                    'width'          : 100,                // The width of the button
+                    'cloud'          : false,
+                    'cloudUrl'       : 'index.php/uploads/cloud'
 
                     /*
                      // Events
@@ -97,224 +97,39 @@
                 settings.method         = $this.data('method') == undefined ? settings.method : $this.data('method');
                 settings.multi          = $this.data('multi') == undefined ? settings.multi : $this.data('multi');
                 settings.mime           = {
-                    // 'hqx': ['application/mac-binhex40', 'application/mac-binhex', 'application/x-binhex40', 'application/x-mac-binhex40'],
-                    // 'cpt': 'application/mac-compactpro',
-                    // 'csv': ['text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain'],
-                    // 'bin': ['application/macbinary', 'application/mac-binary', 'application/octet-stream', 'application/x-binary', 'application/x-macbinary'],
-                    // 'dms': 'application/octet-stream',
-                    // 'lha': 'application/octet-stream',
-                    // 'lzh': 'application/octet-stream',
-                    // 'exe': ['application/octet-stream', 'application/x-msdownload'],
-                    // 'class': 'application/octet-stream',
-                    // 'psd': ['application/x-photoshop', 'image/vnd.adobe.photoshop'],
-                    // 'so': 'application/octet-stream',
-                    // 'sea': 'application/octet-stream',
-                    // 'dll': 'application/octet-stream',
-                    // 'oda': 'application/oda',
-                    // 'pdf': ['application/pdf', 'application/force-download', 'application/x-download', 'binary/octet-stream'],
-                    // 'ai': ['application/pdf', 'application/postscript'],
-                    // 'eps': 'application/postscript',
-                    // 'ps': 'application/postscript',
-                    // 'smi': 'application/smil',
-                    // 'smil': 'application/smil',
-                    // 'mif': 'application/vnd.mif',
-                    // 'xls': ['application/vnd.ms-excel', 'application/msexcel', 'application/x-msexcel', 'application/x-ms-excel', 'application/x-excel', 'application/x-dos_ms_excel', 'application/xls', 'application/x-xls', 'application/excel', 'application/download', 'application/vnd.ms-office', 'application/msword'],
-                    // 'ppt': ['application/powerpoint', 'application/vnd.ms-powerpoint', 'application/vnd.ms-office', 'application/msword'],
-                    // 'pptx': ['application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/x-zip', 'application/zip'],
-                    // 'wbxml': 'application/wbxml',
-                    // 'wmlc': 'application/wmlc',
-                    // 'dcr': 'application/x-director',
-                    // 'dir': 'application/x-director',
-                    // 'dxr': 'application/x-director',
-                    // 'dvi': 'application/x-dvi',
-                    // 'gtar': 'application/x-gtar',
-                    // 'gz': 'application/x-gzip',
-                    // 'gzip': 'application/x-gzip',
-                    // 'php': ['application/x-httpd-php', 'application/php', 'application/x-php', 'text/php', 'text/x-php', 'application/x-httpd-php-source'],
-                    // 'php4': 'application/x-httpd-php',
-                    // 'php3': 'application/x-httpd-php',
-                    // 'phtml': 'application/x-httpd-php',
-                    // 'phps': 'application/x-httpd-php-source',
-                    // 'js': ['application/x-javascript', 'text/plain'],
-                    // 'swf': 'application/x-shockwave-flash',
-                    // 'sit': 'application/x-stuffit',
-                    // 'tar': 'application/x-tar',
-                    // 'tgz': ['application/x-tar', 'application/x-gzip-compressed'],
-                    // 'z': 'application/x-compress',
-                    // 'xhtml': 'application/xhtml+xml',
-                    // 'xht': 'application/xhtml+xml',
-                    // 'zip': ['application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/s-compressed', 'multipart/x-zip'],
-                    // 'rar': ['application/x-rar', 'application/rar', 'application/x-rar-compressed'],
-                    // 'mid': 'audio/midi',
-                    // 'midi': 'audio/midi',
-                    // 'mpga': 'audio/mpeg',
-                    // 'mp2': 'audio/mpeg',
-                    // 'mp3': ['audio/mpeg', 'audio/mpg', 'audio/mpeg3', 'audio/mp3'],
-                    // 'aif': ['audio/x-aiff', 'audio/aiff'],
-                    // 'aiff': ['audio/x-aiff', 'audio/aiff'],
-                    // 'aifc': 'audio/x-aiff',
-                    // 'ram': 'audio/x-pn-realaudio',
-                    // 'rm': 'audio/x-pn-realaudio',
-                    // 'rpm': 'audio/x-pn-realaudio-plugin',
-                    // 'ra': 'audio/x-realaudio',
-                    // 'rv': 'video/vnd.rn-realvideo',
-                    // 'wav': ['audio/x-wav', 'audio/wave', 'audio/wav'],
-                    // 'bmp': ['image/bmp', 'image/x-bmp', 'image/x-bitmap', 'image/x-xbitmap', 'image/x-win-bitmap', 'image/x-windows-bmp', 'image/ms-bmp', 'image/x-ms-bmp', 'application/bmp', 'application/x-bmp', 'application/x-win-bitmap'],
-                    // 'gif': 'image/gif',
-                    // 'jpeg': ['image/jpeg', 'image/pjpeg'],
-                    // 'jpg': ['image/jpeg', 'image/pjpeg'],
-                    // 'jpe': ['image/jpeg', 'image/pjpeg'],
-                    // 'jp2': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'j2k': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'jpf': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'jpg2': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'jpx': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'jpm': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'mj2': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'mjp2': ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-                    // 'png': ['image/png', 'image/x-png'],
-                    // 'tiff': 'image/tiff',
-                    // 'tif': 'image/tiff',
-                    // 'css': ['text/css', 'text/plain'],
-                    // 'html': ['text/html', 'text/plain'],
-                    // 'htm': ['text/html', 'text/plain'],
-                    // 'shtml': ['text/html', 'text/plain'],
-                    // 'txt': 'text/plain',
-                    // 'text': 'text/plain',
-                    // 'log': ['text/plain', 'text/x-log'],
-                    // 'rtx': 'text/richtext',
-                    // 'rtf': 'text/rtf',
-                    // 'xml': ['application/xml', 'text/xml', 'text/plain'],
-                    // 'xsl': ['application/xml', 'text/xsl', 'text/xml'],
-                    // 'mpeg': 'video/mpeg',
-                    // 'mpg': 'video/mpeg',
-                    // 'mpe': 'video/mpeg',
-                    // 'qt': 'video/quicktime',
-                    // 'mov': 'video/quicktime',
-                    // 'avi': ['video/x-msvideo', 'video/msvideo', 'video/avi', 'application/x-troff-msvideo'],
-                    // 'movie': 'video/x-sgi-movie',
-                    // 'doc': ['application/msword', 'application/vnd.ms-office'],
-                    // 'docx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/zip', 'application/msword', 'application/x-zip'],
-                    // 'dot': ['application/msword', 'application/vnd.ms-office'],
-                    // 'dotx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/zip', 'application/msword'],
-                    // 'xlsx': ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip', 'application/vnd.ms-excel', 'application/msword', 'application/x-zip'],
-                    // 'word': ['application/msword', 'application/octet-stream'],
-                    // 'xl': 'application/excel',
-                    // 'eml': 'message/rfc822',
-                    // 'json': ['application/json', 'text/json'],
-                    // 'pem': ['application/x-x509-user-cert', 'application/x-pem-file', 'application/octet-stream'],
-                    // 'p10': ['application/x-pkcs10', 'application/pkcs10'],
-                    // 'p12': 'application/x-pkcs12',
-                    // 'p7a': 'application/x-pkcs7-signature',
-                    // 'p7c': ['application/pkcs7-mime', 'application/x-pkcs7-mime'],
-                    // 'p7m': ['application/pkcs7-mime', 'application/x-pkcs7-mime'],
-                    // 'p7r': 'application/x-pkcs7-certreqresp',
-                    // 'p7s': 'application/pkcs7-signature',
-                    // 'crt': ['application/x-x509-ca-cert', 'application/x-x509-user-cert', 'application/pkix-cert'],
-                    // 'crl': ['application/pkix-crl', 'application/pkcs-crl'],
-                    // 'der': 'application/x-x509-ca-cert',
-                    // 'kdb': 'application/octet-stream',
-                    // 'pgp': 'application/pgp',
-                    // 'gpg': 'application/gpg-keys',
-                    // 'sst': 'application/octet-stream',
-                    // 'csr': 'application/octet-stream',
-                    // 'rsa': 'application/x-pkcs7',
-                    // 'cer': ['application/pkix-cert', 'application/x-x509-ca-cert'],
-                    // '3g2': 'video/3gpp2',
-                    // '3gp': ['video/3gp', 'video/3gpp'],
-                    // 'mp4': 'video/mp4',
-                    // 'm4a': 'audio/x-m4a',
-                    // 'f4v': ['video/mp4', 'video/x-f4v'],
-                    // 'flv': 'video/x-flv',
-                    // 'webm': 'video/webm',
-                    // 'aac': 'audio/x-acc',
-                    // 'm4u': 'application/vnd.mpegurl',
-                    // 'm3u': 'text/plain',
-                    // 'xspf': 'application/xspf+xml',
-                    // 'vlc': 'application/videolan',
-                    // 'wmv': ['video/x-ms-wmv', 'video/x-ms-asf'],
-                    // 'au': 'audio/x-au',
-                    // 'ac3': 'audio/ac3',
-                    // 'flac': 'audio/x-flac',
-                    // 'ogg': ['audio/ogg', 'video/ogg', 'application/ogg'],
-                    // 'kmz': ['application/vnd.google-earth.kmz', 'application/zip', 'application/x-zip'],
-                    // 'kml': ['application/vnd.google-earth.kml+xml', 'application/xml', 'text/xml'],
-                    // 'ics': 'text/calendar',
-                    // 'ical': 'text/calendar',
-                    // 'zsh': 'text/x-scriptzsh',
-                    // '7zip': ['application/x-compressed', 'application/x-zip-compressed', 'application/zip', 'multipart/x-zip'],
-                    // 'cdr': ['application/cdr', 'application/coreldraw', 'application/x-cdr', 'application/x-coreldraw', 'image/cdr', 'image/x-cdr', 'zz-application/zz-winassoc-cdr'],
-                    // 'wma': ['audio/x-ms-wma', 'video/x-ms-asf'],
-                    // 'jar': ['application/java-archive', 'application/x-java-application', 'application/x-jar', 'application/x-compressed'],
-                    // 'svg': ['image/svg+xml', 'application/xml', 'text/xml'],
-                    // 'vcf': 'text/x-vcard',
-                    // 'srt': ['text/srt', 'text/plain'],
-                    // 'vtt': ['text/vtt', 'text/plain'],
-                    // 'ico': ['image/x-icon', 'image/x-ico', 'image/vnd.microsoft.icon']
                     //文档文件类型的
-                    'ai': ['application/pdf,application/postscript'],
-                    'eps': 'application/postscript',
-                    'exe': ['application/octet-stream,application/x-msdownload'],
-                    'doc': ['application/msword,application/vnd.ms-office'],
-                    'xls': ['application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office'],
-                    'ppt': ['application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword'],
-                    'pps': 'application/vnd.ms-powerpoint',
-                    'pdf': ['application/pdf,application/force-download,application/x-download,binary/octet-stream'],
-                    'xml': ['application/xml,text/xml,text/plain'],
-                    'odt': 'application/vnd.oasis.opendocument.text',
-                    'swf': 'application/x-shockwave-flash',
+                    'doc' : ['application/msword,application/vnd.ms-office'],
+                    'xls' : ['application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office'],
+                    'ppt' : ['application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword'],
+                    'pps' : 'application/vnd.ms-powerpoint',
+                    'pdf' : ['application/pdf,application/force-download,application/x-download,binary/octet-stream'],
+                    'swf' : 'application/x-shockwave-flash',
                     //压缩文件类型的
-                    'gz': 'application/x-gzip',
-                    'tgz': 'application/x-gzip',
-                    'bz': 'application/x-bzip2',
-                    'bz2': 'application/x-bzip2',
-                    'tbz': 'application/x-bzip2',
-                    'zip': ['application/x-zip,application/zip,application/x-zip-compressed,application/s-compressed,multipart/x-zip'],
-                    'rar': ['application/x-rar,application/rar,application/x-rar-compressed'],
-                    'tar': 'application/x-tar',
-                    '7z': 'application/x-7z-compressed',
-                    //文字类型
-                    'txt': 'text/plain',
-                    'php': ['application/x-httpd-php,application/php,application/x-php,text/php,text/x-php,application/x-httpd-php-source'],
-                    'html': 'text/html',
-                    'htm': 'text/html',
-                    'js': ['application/x-javascript,text/javascript'],
-                    'css': 'text/css',
-                    'rtf': 'text/rtf',
-                    'rtfd': 'text/rtfd',
-                    'py': 'text/x-python',
-                    'java': 'text/x-java-source',
-                    'rb': 'text/x-ruby',
-                    'sh': 'text/x-shellscript',
-                    'pl': 'text/x-perl',
-                    'sql': 'text/x-sql',
+                    'zip' : ['application/x-zip,application/zip,application/x-zip-compressed,application/s-compressed,multipart/x-zip'],
+                    'rar' : ['application/x-rar,application/rar,application/x-rar-compressed'],
+                    '7z'  : 'application/x-7z-compressed',
                     //图片类型的
-                    'bmp': ['image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'],
-                    'jpg': ['image/jpeg,image/pjpeg'],
+                    'jpg' : ['image/jpeg,image/pjpeg'],
                     'jpeg': ['image/jpeg,image/pjpeg'],
-                    'gif': 'image/gif',
-                    'png': ['image/png,image/x-png'],
-                    'tif': 'image/tiff',
-                    'tiff': 'image/tiff',
-                    'tga': 'image/x-targa',
-                    'psd': ['application/x-photoshop,image/vnd.adobe.photoshop'],
+                    'gif' : 'image/gif',
+                    'png' : ['image/png,image/x-png'],
                     //音频文件类型的
-                    'mp3': 'audio/mpeg',
-                    'mid': 'audio/midi',
-                    'ogg': 'audio/ogg',
+                    'mp3' : 'audio/mpeg',
+                    'mid' : 'audio/midi',
+                    'ogg' : 'audio/ogg',
                     'mp4a': 'audio/mp4',
-                    'wav': 'audio/wav',
-                    'wma': 'audio/x-ms-wma',
+                    'wav' : 'audio/wav',
+                    'wma' : 'audio/x-ms-wma',
                     //视频文件类型的
-                    'avi': 'video/x-msvideo',
-                    'dv': 'video/x-dv',
-                    'mp4': 'video/mp4',
+                    'avi' : 'video/x-msvideo',
+                    'dv'  : 'video/x-dv',
+                    'mp4' : 'video/mp4',
                     'mpeg': 'video/mpeg',
-                    'mpg': 'video/mpeg',
-                    'mov': 'video/quicktime',
-                    'wm': 'video/x-ms-wmv',
-                    'flv': 'video/x-flv',
-                    'mkv': 'video/x-matroska'
+                    'mpg' : 'video/mpeg',
+                    'mov' : 'video/quicktime',
+                    'wm'  : 'video/x-ms-wmv',
+                    'flv' : 'video/x-flv',
+                    'mkv' : 'video/x-matroska'
                 }
                 if ($this.data('queue-id')) {
                     settings.queueID = $this.data('queue-id');
@@ -374,13 +189,13 @@
                 // Create a template for a file input
                 $data.inputTemplate = $('<input type="file" accept="' + accept + '">')
                     .css({
-                        'width': '100%',
-                        'height': '100%',
-                        'opacity': 0,
+                        'width'   : '100%',
+                        'height'  : '100%',
+                        'opacity' : 0,
                         'position': 'absolute',
-                        'left': 0,
-                        'top': 0,
-                        'z-index': 999
+                        'left'    : 0,
+                        'top'     : 0,
+                        'z-index' : 999
                     });
                 // Create a new input
                 $data.createInput   = function () {
@@ -896,8 +711,8 @@
                     // Assign an ID to the object
                     settings.id = 'uploadifive-' + settings.queueID;
 
-                    //云端上传
-                    var cloudBtn = '<a href="javascript:;" class="uploads-online uploads-online-hook" title="云端上传" data-id="' + settings.queueID + '" data-multi="' + settings.multi + '" data-url="' + settings.cloudUrl + '"><i class="fa fa-cloud-upload"></i></a>';
+                    //云上传
+                    var cloudBtn = '<a href="javascript:;" class="uploads-cloud-btn uploads-cloud-btn-hook" title="云上传" data-id="' + settings.queueID + '" data-multi="' + settings.multi + '" data-url="' + settings.cloudUrl + '"><i class="fa fa-cloud-upload"></i></a>';
                     cloudBtn     = settings.cloud ? cloudBtn : '';
 
                     // Wrap the file input in a div with overflow set to hidden
@@ -916,10 +731,10 @@
 
                     if (!settings.buttonClass) {
                         $data.button.css({
-                            'height': settings.height,
+                            'height'     : settings.height,
                             'line-height': settings.height + 'px',
-                            'text-align': 'center',
-                            'width': settings.width
+                            'text-align' : 'center',
+                            'width'      : settings.width
                         });
                     }
 

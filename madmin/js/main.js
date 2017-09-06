@@ -22,53 +22,50 @@ require.config({
         'template'      : 'plugin/template',
         'scroller'      : 'plugin/nanoscroller/js/jquery.nanoscroller.min',
         'uploadifive'   : 'plugin/uploads/js/jquery.uploadifive',
-        'uploadsUnit'  : 'plugin/uploads/js/uploads.unit',
+        'uploadsUnit'   : 'plugin/uploads/js/uploads.unit',
         'uploads'       : 'plugin/uploads/js/uploads',
     },
     shim : {
         'bootstrap'     : {
-            deps: ['jquery'
-                , 'css!plugin/font-awesome/css/font-awesome.min.css']
+            deps: ['jquery',
+                'css!plugin/font-awesome/css/font-awesome.min.css']
         },
         'colorpicker'   : {
-            deps: ['bootstrap'
-                , 'css!plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css']
+            deps: ['bootstrap',
+                'css!plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css']
         },
         'datetimepicker': {
-            deps: ['bootstrap'
-                , 'plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min'
-                , 'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
-                , 'css!plugin/../css/datetimepicker.css']
+            deps: ['bootstrap',
+                'plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min',
+                'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
+                'css!plugin/../css/datetimepicker.css']
         },
         'dropload'      : {
-            deps: ['jquery'
-                , 'css!plugin/dropload/dropload.css']
+            deps: ['jquery',
+                'css!plugin/dropload/dropload.css']
         },
         'iconpicker'    : {
-            deps: ['jquery'
-                , 'bootstrap'
-                , 'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css'
-                , 'css!plugin/../css/iconpicker.css']
+            deps: ['jquery',
+                'bootstrap',
+                'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css',
+                'css!plugin/../css/iconpicker.css']
         },
         'mtree'         : {
-            deps: ['jquery'
-                , 'css!plugin/mtree/css/mtree.css']
+            deps: ['jquery',
+                'css!plugin/mtree/css/mtree.css']
         },
         'ueditor'       : {
-            deps   : ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js'
-                , 'plugin/ueditor/ueditor.config.js'],
+            deps   : ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js',
+                'plugin/ueditor/ueditor.config.js'],
             exports: 'UE',
             init   : function (ZeroClipboard) {
                 //导出到全局变量，供ueditor使用
                 window.ZeroClipboard = ZeroClipboard;
             }
         },
-        'template'      : {
-            deps: ['jquery']
-        },
         'scroller'      : {
-            deps: ['jquery'
-                , 'css!plugin/nanoscroller/css/nanoscroller.css']
+            deps: ['jquery',
+                'css!plugin/nanoscroller/css/nanoscroller.css']
         }
     }
 

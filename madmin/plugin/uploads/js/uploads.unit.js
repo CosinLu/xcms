@@ -2,7 +2,22 @@
  * Created by Admin on 2017/9/5.
  */
 define(['jquery'], function ($) {
-    var itemTemplate = '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
+    /*var itemTemplate = '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
+     <span class="uploads-move uploads-move-hook"></span>\
+     <div class="uploads-progress progress">\
+     <div class="progress-bar progress-bar-success"></div>\
+     </div>\
+     <div class="uploads-control ploads-control-hook">\
+     <a href="javascript:;" class="uploads-preview uploads-preview-hook"><i class="fa fa-search-plus"></i></a>\
+     <a href="javascript:;" class="uploads-destory uploads-destory-hook"><i class="fa fa-trash"></i></a>\
+     </div>\
+     <img class="uploads-thumb uploads-thumb-hook" src="" alt="">\
+     <input type="hidden" class="uploads-input-hook">\
+     </div>';*/
+    return u = {
+        //配置
+        config: {
+            'itemTemplate': '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
                             <span class="uploads-move uploads-move-hook"></span>\
                             <div class="uploads-progress progress">\
                                 <div class="progress-bar progress-bar-success"></div>\
@@ -13,52 +28,42 @@ define(['jquery'], function ($) {
                             </div>\
                             <img class="uploads-thumb uploads-thumb-hook" src="" alt="">\
                             <input type="hidden" class="uploads-input-hook">\
-                        </div>';
-    return {
+                        </div>'
+        },
+
         //缩略图
         thumbnail: function (ext) {
             if (!ext.length) return '';
             var src;
             var thumbnail = {
-                'zip': 'plugin/uploads/images/zip.png',
-                'ai': 'plugin/uploads/images/ai.png',
-                'apk': 'plugin/uploads/images/apk.png',
-                'excel': 'plugin/uploads/images/excel.png',
-                'flash': 'plugin/uploads/images/flash.png',
-                'image': 'plugin/uploads/images/image.png',
-                'music': 'plugin/uploads/images/music.png',
-                'pdf': 'plugin/uploads/images/pdf.png',
-                'ppt': 'plugin/uploads/images/ppt.png',
-                'psd': 'plugin/uploads/images/psd.png',
-                'video': 'plugin/uploads/images/video.png',
-                'word': 'plugin/uploads/images/word.png',
-                'unknown': 'plugin/uploads/images/unknown.png'
+                'docx'   : 'plugin/uploads/images/docx.png',
+                'jpg'    : 'plugin/uploads/images/jpg.png',
+                'mp3'    : 'plugin/uploads/images/mp3.png',
+                'mp4'    : 'plugin/uploads/images/mp4.png',
+                'pdf'    : 'plugin/uploads/images/pdf.png',
+                'pptx'   : 'plugin/uploads/images/pptx.png',
+                'unknown': 'plugin/uploads/images/unknown.png',
+                'xlsx'   : 'plugin/uploads/images/xlsx.png',
+                'zip'    : 'plugin/uploads/images/zip.png'
             };
             ext           = ext.replace('\.', '').toLowerCase();
-            if ($.inArray(ext, ['7z', 'rar', 'zip']) > -1) {
-                src = thumbnail.zip;
-            } else if ($.inArray(ext, ['ai']) > -1) {
-                src = thumbnail.ai;
-            } else if ($.inArray(ext, ['apk']) > -1) {
-                src = thumbnail.apk;
-            } else if ($.inArray(ext, ['xls', 'xlsx']) > -1) {
-                src = thumbnail.excel;
-            } else if ($.inArray(ext, ['flv', 'flash']) > -1) {
-                src = thumbnail.flash;
-            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'bmp']) > -1) {
-                src = thumbnail.image;
-            } else if ($.inArray(ext, ['mp3', 'ogg', 'wav']) > -1) {
-                src = thumbnail.music;
+
+            if ($.inArray(ext, ['doc', 'docx']) > -1) {
+                src = thumbnail.docx;
+            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'jpeg']) > -1) {
+                src = thumbnail.jpg;
+            } else if ($.inArray(ext, ['mp3', 'mid', 'ogg', 'mp4a', 'wav', 'wma']) > -1) {
+                src = thumbnail.mp3;
+            } else if ($.inArray(ext, ['avi', 'dv', 'mp4', 'mpeg', 'mpg', 'mov', 'wm', 'flv', 'mkv', 'swf']) > -1) {
+                src = thumbnail.mp4;
             } else if ($.inArray(ext, ['pdf']) > -1) {
                 src = thumbnail.pdf;
             } else if ($.inArray(ext, ['ppt', 'pptx']) > -1) {
-                src = thumbnail.ppt;
-            } else if ($.inArray(ext, ['psd']) > -1) {
-                src = thumbnail.psd;
-            } else if ($.inArray(ext, ['mp4', 'rm', '3gp', 'avi', 'wma', 'rmvb']) > -1) {
-                src = thumbnail.video;
-            } else if ($.inArray(ext, ['doc', 'docx']) > -1) {
-                src = thumbnail.word;
+                src = thumbnail.pptx;
+            } else if ($.inArray(ext, ['xls', 'xlsx']) > -1) {
+                src = thumbnail.xlsx;
+            } else if ($.inArray(ext, ['7z', 'rar', 'zip']) > -1) {
+                src = thumbnail.zip;
             } else {
                 src = thumbnail.unknown;
             }
@@ -74,22 +79,22 @@ define(['jquery'], function ($) {
                     var inputName = _this.attr('id');
                     if (list != undefined) {
                         $.each(list, function (i, data) {
-                            var item = $(itemTemplate).clone();
-                            var src  = parseInt(data.upl_image) ? data.upl_path : this.thumbnail(data.upl_ext);
+                            var item = $(u.config.itemTemplate).clone();
+                            var src  = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
                             //状态
                             item.addClass('complete');
                             //预览图片信息
                             item.find('.uploads-preview-hook')
-                                .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+                                .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
                             //input
                             item.find('.uploads-input-hook')
-                                .attr('name', inputName + '[]').val(data.upl_id);
+                                .attr('name', inputName + '[]').val(data.id);
                             //缩略图
                             item.find('.uploads-thumb-hook').attr('src', src)
-                                .attr('alt', data.upl_name)
+                                .attr('alt', data.client_name)
                                 .jqthumb({width: '69', height: '69'});
                             //图片标题
-                            item.attr('title', data.upl_name);
+                            item.attr('title', data.client_name);
                             //添加到容器
                             _this.append(item);
                         })
@@ -105,11 +110,11 @@ define(['jquery'], function ($) {
                     var id       = $(this).attr('id');
                     var el       = document.getElementById(id);
                     var sortable = new Sortable(el, {
-                        group: id,
-                        handle: '.uploads-move-hook',
-                        ghostClass: 'uploads-ghost',
+                        group      : id,
+                        handle     : '.uploads-move-hook',
+                        ghostClass : 'uploads-ghost',
                         chosenClass: "uploads-chosen",
-                        draggable: '.uploads-queue-item-hook',
+                        draggable  : '.uploads-queue-item-hook',
                     });
                 });
             })
@@ -117,31 +122,29 @@ define(['jquery'], function ($) {
 
         //上传预览
         uploadsPreview: function () {
-            require(['layer'], function () {
-                $(document).on('click', '.uploads-preview-hook', function () {
-                    var content = $(this).data('content');
-                    var str     = '';
-                    str += '<div class="uploads-preview">';
-                    str += '<div class="uploads-preview-img">';
-                    str += '<img src="' + content.src + '">';
-                    str += '</div>';
-                    str += '<div class="uploads-preview-content">';
-                    str += '<div>名称：' + content.name + '</div>';
-                    if (content.image) {
-                        str += '<div>尺寸：' + content.width + ' * ' + content.height + '</div>';
-                    }
-                    str += '<div>大小：' + content.size + ' KB</div>';
-                    str += '</div>';
-                    str += '</div>';
-                    parent.layer.open({
-                        title: false,
-                        area: '500px',
-                        btn: false,
-                        offset: '100px',
-                        content: str
-                    });
+            $(document).on('click', '.uploads-preview-hook', function () {
+                var data    = $(this).data('content');
+                var content = '';
+                content += '<div class="uploads-preview">';
+                content += '<div class="uploads-preview-img">';
+                content += '<img src="' + data.src + '">';
+                content += '</div>';
+                content += '<div class="uploads-preview-content">';
+                content += '<div>名称：' + data.client_name + '</div>';
+                if (data.is_image) {
+                    content += '<div>尺寸：' + data.image_width + ' * ' + data.image_height + '</div>';
+                }
+                content += '<div>大小：' + data.size + ' KB</div>';
+                content += '</div>';
+                content += '</div>';
+                parent.layer.open({
+                    title  : false,
+                    area   : '500px',
+                    btn    : false,
+                    offset : '100px',
+                    content: content
                 });
-            })
+            });
         },
 
         //删除上传
@@ -155,49 +158,47 @@ define(['jquery'], function ($) {
         initUploads: function () {
             require(['uploadifive'], function (uploadifive) {
                 $('.uploads-btn-hook').uploadifive({
-                    'auto': true,
-                    'buttonClass': 'uploads-btn',
-                    'buttonText': '+',
-                    'formData': {
+                    'auto'            : true,
+                    'buttonClass'     : 'uploads-btn',
+                    'buttonText'      : '+',
+                    'formData'        : {
                         'timestamp': new Date().getTime(),
-                        'token': Math.random()
+                        'token'    : Math.random()
                     },
-                    'itemTemplate': itemTemplate,
-                    'fileSizeLimit': '20MB',
-                    'fileTypeSuffix': 'jpg,png,gif',
-                    'uploadScript': 'index.php/uploads/do_upload',
+                    'itemTemplate'    : u.config.itemTemplate,
+                    'fileSizeLimit'   : '20MB',
+                    'fileTypeSuffix'  : 'jpg,png,gif',
+                    'uploadScript'    : 'index.php/uploads/do_upload',
                     'onUploadComplete': function (file, data) {
-                        var data      = $.parseJSON(data);
-                        var item      = file.queueItem;
-                        var src       = data.upl_image ? data.upl_path : this.thumbnail(data.upl_ext);
-                        var inputName = data.upl_input;
-
+                        var data = $.parseJSON(data);
+                        var item = file.queueItem;
+                        var src  = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
                         //预览图片信息
                         item.find('.uploads-preview-hook')
-                            .attr('data-content', '{"src":"' + src + '","name":"' + data.upl_name + '","size":"' + data.upl_size + '","width":"' + data.upl_width + '","height":"' + data.upl_height + '","image":"' + data.upl_image + '"}');
+                            .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_height + '","is_image":"' + data.is_image + '"}');
                         //input
                         item.find('.uploads-input-hook')
-                            .attr('name', inputName + '[]').val(data.upl_id);
+                            .attr('name', data.input_name + '[]').val(data.id);
                         //缩略图
                         item.find('.uploads-thumb-hook').attr('src', src)
-                            .attr('alt', data.upl_name)
+                            .attr('alt', data.client_name)
                             .jqthumb({width: '69', height: '69'});
                         //图片标题
-                        item.attr('title', data.upl_name);
+                        item.attr('title', data.client_name);
                     },
-                    'onQueueComplete': function (uploads) {
+                    'onQueueComplete' : function (uploads) {
                         //this.dragSort();
                     },
-                    'onError': function (errorType) {
+                    'onError'         : function (errorType) {
                     }
                 });
             })
         },
 
-        //云端
+        //云上传
         initCloudUplods: function () {
-            require(['layer'], function (layer) {
-                $('.uploads-online-hook').on('click', function (e) {
+            require(['layer'], function () {
+                $(document).on('click', '.uploads-cloud-btn-hook', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     //容器
@@ -206,9 +207,9 @@ define(['jquery'], function ($) {
                     var multi   = $(this).data('multi');
                     var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
                     layer.open({
-                        type: 2,
-                        title: '从云端选择',
-                        area: ['800px', '560px'],
+                        type   : 2,
+                        title  : '云上传',
+                        area   : ['800px', '560px'],
                         content: url
                     })
                 });

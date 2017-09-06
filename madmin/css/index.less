@@ -449,128 +449,6 @@ div.nodata-hook {
 
 /*权限分配结束*/
 
-/*文件上传开始*/
-.uploadifive-button {
-    display: inline-block;
-    overflow: hidden;
-}
-
-.uploadifive-queue-item {
-    margin: 0 10px;
-    padding: 0;
-    width: 150px;
-    .thumbnail {
-        width: 150px;
-        height: 167px;
-        padding: 5px;
-        margin-top: 10px;
-        margin-bottom: 0;
-        &.placeholder {
-            border-style: dashed;
-        }
-        img {
-            width: 100%;
-            height: 80px;
-        }
-    }
-    .caption {
-        padding: 0;
-    }
-    p {
-        overflow: hidden;
-        margin: 0 0 5px 0;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .filename {
-        margin: 0;
-    }
-    .progress {
-        margin: 5px 0 0 0;
-        height: 8px;
-    }
-    .progress-bar {
-        box-shadow: none;
-    }
-}
-
-/*文件上传结束*/
-
-/*在线管理开始*/
-.online_container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 55px;
-    left: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    padding-top: @spacing;
-    .col-xs-3 {
-        position: relative;
-        cursor: default;
-    }
-    .thumbnail {
-        &.checked {
-            &:before {
-                content: '';
-                border-style: solid;
-                border-color: @color-success @color-success transparent transparent;
-                border-width: 18px;
-                position: absolute;
-                right: 10px;
-                top: 0;
-                z-index: 999;
-            }
-            &:after {
-                content: "\f00c";
-                font-family: 'FontAwesome';
-                color: #fff;
-                position: absolute;
-                right: 12px;
-                top: 0;
-                z-index: 999;
-                font-size: 14px;
-            }
-        }
-    }
-    .caption {
-        padding: 0;
-    }
-    img {
-        width: 100%;
-        height: 80px;
-    }
-    p {
-        overflow: hidden;
-        margin: 0 0 5px 0;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .filename {
-        margin: 5px 0 0 0;
-    }
-}
-
-.online_btn_group {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    padding: 10px;
-    border-top: 1px solid @border-color;
-    background: #fff;
-    text-align: right;
-    text-align: right;
-    pointer-events: auto;
-    button {
-        margin: 0 5px;
-    }
-}
-
-/*在线管理结束*/
-
 /*颜色选择器开始*/
 .colorpicker-element {
     input.form-control {
@@ -742,8 +620,6 @@ div.nodata-hook {
                                 width: 100%;
                                 height: 130px;
                                 position: relative;
-                                text-align: center;
-                                line-height: 130px;
                                 img {
                                     max-width: 100%;
                                 }

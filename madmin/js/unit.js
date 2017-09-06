@@ -20,12 +20,12 @@ define(['jquery', 'layer'], function ($) {
             });
         },
 
-        //关闭弹窗
-        layerClose: function (index) {
-            $('.close-hook').on('click', function () {
-                parent.layer.close(index);
-            });
-        },
+        // //关闭弹窗
+        // layerClose: function (index) {
+        //     $('.close-hook').on('click', function () {
+        //         parent.layer.close(index);
+        //     });
+        // },
 
         //layer配置
         layerConfig: function () {
