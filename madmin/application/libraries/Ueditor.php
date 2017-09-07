@@ -13,16 +13,15 @@ class Ueditor
     public function __construct()
     {
         $this->CI =& get_instance();
-        $this->edit_upload_path();
-
     }
 
     //修改上传路径
     public function edit_upload_path()
     {
-        $upload = trim($this->CI->config->item('upload'));
-        $config_txt_path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config'));
-        file_put_contents($config_txt_path, $upload);
+        $settings_path = str_replace('\\', '/', FCPATH . 'plugin/ueditor/php/settings.json');
+        $str = file_get_contents($settings_path);
+        $str = preg_replace('/"upload": ".*"/', '"upload": "' . $this->CI->config->item('upload', 'mcms') . '"', $str);
+        file_put_contents($settings_path, $str);
     }
 
 }

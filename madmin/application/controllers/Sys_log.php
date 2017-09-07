@@ -19,7 +19,7 @@ class Sys_log extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_log/get_list?sys_cid=' . $this->sys_cid);
-        $url['search_btn'] = $this->sys_auth->set_auth(M_LOOK, $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
+        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look','mcms'), $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
         $this->load->vars($url);
     }
 

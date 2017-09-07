@@ -111,7 +111,7 @@ class M_Controller extends CI_Controller
                     $str .= '<div class="mtree_icon mtree-icon-hook"><i class="' . $val['icon'] . '"></i></div>';
                 }
                 $str .= '<div class="mtree_name mtree-name-hook">' . $val['name'];
-                if ($val['user_type'] == M_DEV) {
+                if ($val['user_type'] == $this->config->item('dev','mcms')) {
                     $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
                 }
                 $str .= '</div>';

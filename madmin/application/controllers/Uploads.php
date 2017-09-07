@@ -50,7 +50,7 @@ class Uploads extends CI_Controller
     {
         $filename = $this->input->post('filename');
         $config = array(
-            'upload_path'   => $this->config->item('upload') . date('Ymd', time()) . '/',//上传路径
+            'upload_path'   => str_replace('//', '/', $this->config->item('upload', 'mcms') . 'upload/' . date('Ymd', time()) . '/'),//上传路径
             'allowed_types' => '*',//允许上传文件类型：*=所有类型
             'file_name'     => md5(uniqid(microtime(TRUE), TRUE))//新文件名
         );
@@ -59,17 +59,42 @@ class Uploads extends CI_Controller
         $data = $res = $this->upload->data();
         $data['id'] = $this->uploads->save($res);
         $data['input_name'] = $filename;
+        $data['thumb_full_path'] = '';
+        //生成缩略图
+        if ($data['is_image']) {
+            $this->resize($data['full_abs_path'], $this->config->item('thumb_width', 'mcms'), $this->config->item('thumb_height', 'mcms'));
+            //拼接缩略图地址
+            $data['thumb_full_path'] = $data['raw_path'] . $this->config->item('thumb_marker', 'mcms') . $data['ext'];
+        }
+        //返回数据
         echo json_encode($data);
     }
 
     //删除
-    public function del()
+//    public function del()
+//    {
+//        $id = $this->input->post('id');
+//        $rows = $this->uploads->del($id);
+//        //写入日志
+//        //$this->sys_log->insert($this->section_name, '3', $rows);
+//        echo $rows;
+//    }
+
+
+    //生成缩略图
+    public function resize($path = '', $width = 120, $height = 120)
     {
-        $id = $this->input->post('id');
-        $rows = $this->uploads->del($id);
-        //写入日志
-        //$this->sys_log->insert($this->section_name, '3', $rows);
-        echo $rows;
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $path;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width'] = $width;
+        $config['height'] = $height;
+        $config['create_thumb'] = TRUE;
+        $config['thumb_marker'] = '_' . $config['width'] . '_' . $config['height'];
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
     }
+
 
 }

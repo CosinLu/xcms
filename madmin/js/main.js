@@ -5,9 +5,9 @@ window.UEDITOR_HOME_URL = document.getElementsByTagName('base')[0].href + '/plug
 require.config({
     paths: {
         'css'           : 'plugin/css.min',
+        'bootstrap'     : 'plugin/bootstrap/js/bootstrap.min',
         'jquery'        : 'js/jquery.min-1.11.1',
         'unit'          : 'js/unit',
-        'bootstrap'     : 'plugin/bootstrap/js/bootstrap.min',
         'colorpicker'   : 'plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.min',
         'datetimepicker': 'plugin/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
         'dragsort'      : 'plugin/dragsort/jquery.dragsort-0.5.2.min',
@@ -66,6 +66,9 @@ require.config({
         'scroller'      : {
             deps: ['jquery',
                 'css!plugin/nanoscroller/css/nanoscroller.css']
+        },
+        'template'      : {
+            deps: ['jquery']
         }
     }
 

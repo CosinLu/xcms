@@ -11,21 +11,9 @@ class Welcome extends M_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
 
-        $config['image_library'] = 'gd2';
-        $config['source_image'] = '/uploads/20170906/e76150cd62db4300380d316d3a7213b4.jpg';
-        $config['create_thumb'] = TRUE;
-        $config['maintain_ratio'] = TRUE;
-        $config['dynamic_output'] = TRUE;
-        //$config['new_image'] = '/uploads/20170906/e76150cd62db4300380d316d3a7213b4_75_50.jpg';
-        $config['width'] = 75;
-        $config['height'] = 50;
-        $this->load->library('image_lib', $config);
-        if ( ! $this->image_lib->resize())
-        {
-            echo $this->image_lib->display_errors();die;
-        }
+        $this->load->library('ueditor');
+        $this->ueditor->edit_upload_path();
     }
 
     public function index()

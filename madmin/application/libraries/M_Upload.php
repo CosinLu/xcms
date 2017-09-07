@@ -51,6 +51,7 @@ class M_Upload extends CI_Upload
             'path'           => $this->relative_path,
             'full_path'      => $this->relative_path . $this->file_name,
             'raw_name'       => str_replace($this->file_ext, '', $this->file_name),
+            'raw_path'       => $this->relative_path . str_replace($this->file_ext, '', $this->file_name),
             'orig_name'      => $this->orig_name,
             'client_name'    => $this->client_name,
             'ext'            => $this->file_ext,

@@ -29,7 +29,7 @@ class Config_item_model extends M_Model
             $this->db->where('config_group_id', $group_id);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = M_PERPAGE;
+        $config['per_page'] = $this->config->item('per_page','mcms');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.sort asc,t.id asc');

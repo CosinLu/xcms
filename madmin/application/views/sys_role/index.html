@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=M_TITLE?></title>
+    <title><?=$this->config->item('title','mcms')?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -112,7 +112,7 @@
                 beforeSend: function () {
                     $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=M_LOADING?>');
+                    $('.list-hook').after('<?=$this->config->item('loading','mcms')?>');
                 },
                 success   : function (data) {
                     $('.nodata-hook,.loading-hook').remove();
@@ -120,7 +120,7 @@
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-hook').after('<?=M_NODATA?>');
+                        $('.list-hook').after('<?=$this->config->item('nodata','mcms')?>');
                     }
                 }
             })

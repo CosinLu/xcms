@@ -27,7 +27,7 @@ class Info_col_onepic_model extends M_Model
         }
         $this->db->where('t.pic', 'onepic');
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = M_PERPAGE;
+        $config['per_page'] = $this->config->item('per_page','mcms');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.sort asc,t.id asc');

@@ -2,18 +2,6 @@
  * Created by Admin on 2017/9/5.
  */
 define(['jquery'], function ($) {
-    /*var itemTemplate = '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
-     <span class="uploads-move uploads-move-hook"></span>\
-     <div class="uploads-progress progress">\
-     <div class="progress-bar progress-bar-success"></div>\
-     </div>\
-     <div class="uploads-control ploads-control-hook">\
-     <a href="javascript:;" class="uploads-preview uploads-preview-hook"><i class="fa fa-search-plus"></i></a>\
-     <a href="javascript:;" class="uploads-destory uploads-destory-hook"><i class="fa fa-trash"></i></a>\
-     </div>\
-     <img class="uploads-thumb uploads-thumb-hook" src="" alt="">\
-     <input type="hidden" class="uploads-input-hook">\
-     </div>';*/
     return u = {
         //配置
         config: {
@@ -79,8 +67,9 @@ define(['jquery'], function ($) {
                     var inputName = _this.attr('id');
                     if (list != undefined) {
                         $.each(list, function (i, data) {
-                            var item = $(u.config.itemTemplate).clone();
-                            var src  = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                            var item     = $(u.config.itemTemplate).clone();
+                            var src      = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                            var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
                             //状态
                             item.addClass('complete');
                             //预览图片信息
@@ -90,7 +79,7 @@ define(['jquery'], function ($) {
                             item.find('.uploads-input-hook')
                                 .attr('name', inputName + '[]').val(data.id);
                             //缩略图
-                            item.find('.uploads-thumb-hook').attr('src', src)
+                            item.find('.uploads-thumb-hook').attr('src', thumbSrc)
                                 .attr('alt', data.client_name)
                                 .jqthumb({width: '69', height: '69'});
                             //图片标题
@@ -166,13 +155,14 @@ define(['jquery'], function ($) {
                         'token'    : Math.random()
                     },
                     'itemTemplate'    : u.config.itemTemplate,
-                    'fileSizeLimit'   : '20MB',
+                    'fileSizeLimit'   : '2MB',
                     'fileTypeSuffix'  : 'jpg,png,gif',
                     'uploadScript'    : 'index.php/uploads/do_upload',
                     'onUploadComplete': function (file, data) {
-                        var data = $.parseJSON(data);
-                        var item = file.queueItem;
-                        var src  = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                        var data     = $.parseJSON(data);
+                        var item     = file.queueItem;
+                        var src      = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                        var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
                         //预览图片信息
                         item.find('.uploads-preview-hook')
                             .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_height + '","is_image":"' + data.is_image + '"}');
@@ -180,7 +170,7 @@ define(['jquery'], function ($) {
                         item.find('.uploads-input-hook')
                             .attr('name', data.input_name + '[]').val(data.id);
                         //缩略图
-                        item.find('.uploads-thumb-hook').attr('src', src)
+                        item.find('.uploads-thumb-hook').attr('src', thumbSrc)
                             .attr('alt', data.client_name)
                             .jqthumb({width: '69', height: '69'});
                         //图片标题
@@ -209,7 +199,7 @@ define(['jquery'], function ($) {
                     layer.open({
                         type   : 2,
                         title  : '云上传',
-                        area   : ['800px', '560px'],
+                        area   : ['715px', '560px'],
                         content: url
                     })
                 });

@@ -125,7 +125,7 @@ class Sys_auth
             $sql .= " WHERE 
                 `t`.`display`='show'
             AND
-                `t`.`user_type`='" . M_PRO . "'
+                `t`.`user_type`='" . $this->config->item('pro','mcms') . "'
             GROUP BY 
                 `t`.`id`
             ORDER BY 

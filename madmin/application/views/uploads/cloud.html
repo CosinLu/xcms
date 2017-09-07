@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=M_TITLE?></title>
+    <title><?=$this->config->item('title','mcms')?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -34,20 +34,18 @@
             </div>
             <div class="cloud_list cloud-list-hook">
                 <div class="list-content-hook">
-                    <div class="row list-hook" id="list"></div>
+                    <div class="list-hook clearfix" id="list"></div>
                     <script type="text/html" id="list_tpl">
                         {{each list.list as val}}
-                        <div class="col-xs-2-5 col_item col-item-hook" title="{{val.client_name}}">
-                            <div class="item item-hook">
-                                <input type="checkbox" class="checkbox checkbox-hook"
-                                       data-content='{"id":"{{val.id}}","full_path":"{{val.full_path}}","is_image":"{{val.is_image}}","ext":"{{val.ext}}","client_name":"{{val.client_name}}","size":"{{val.size}}","image_width":"{{val.image_width}}","image_height":"{{val.image_height}}"}'>
-                                <div class="thumb">
-                                    <img src="" data-src="{{val.full_path}}"
-                                         class="thumb-hook"
-                                         data-is-image="{{val.is_image}}">
-                                </div>
-                                <div class="name">{{val.client_name}}</div>
+                        <div class="item item-hook" title="{{val.client_name}}">
+                            <input type="checkbox" class="checkbox checkbox-hook"
+                                   data-content='{"id":"{{val.id}}","full_path":"{{val.full_path}}","thumb_full_path":"{{val.thumb_full_path}}","is_image":"{{val.is_image}}","ext":"{{val.ext}}","client_name":"{{val.client_name}}","size":"{{val.size}}","image_width":"{{val.image_width}}","image_height":"{{val.image_height}}"}'>
+                            <div class="thumb">
+                                <img src="{{val.thumb_full_path}}"
+                                     class="thumb-hook"
+                                     data-is-image="{{val.is_image}}">
                             </div>
+                            <div class="name">{{val.client_name}}</div>
                         </div>
                         {{/each}}
                     </script>
@@ -106,9 +104,9 @@
                     success : function (data) {
                         if (data.list.list.length) {
                             $('#list').append(template('list_tpl', data));
-                            $('#list').find('.thumb-hook[data-is-image="1"]').jqthumb({
-                                width: '100%', height: 130, source: 'data-src'
-                            });
+                            /*$('#list').find('.thumb-hook[data-is-image="1"]').jqthumb({
+                             width: '100%', height: 130
+                             });*/
 
 
                         } else {
@@ -127,10 +125,9 @@
 
         //选择文件
         $('.list-hook').on('click', '.item-hook', function () {
-            var $_closestEle = $(this).closest('.col-item-hook');
-            var $_siblings   = $_closestEle.siblings();
-            var $_checkbox   = $(this).find('.checkbox-hook');
-            var status       = $_checkbox.is(':checked');
+            var $_siblings = $(this).siblings();
+            var $_checkbox = $(this).find('.checkbox-hook');
+            var status     = $_checkbox.is(':checked');
             $_checkbox.prop('checked', !status);
             if (!status) {
                 $(this).addClass('checked');
@@ -139,8 +136,7 @@
             }
             //单选
             if (!eval(multi)) {
-                $_siblings.find('.item-hook')
-                        .removeClass('checked')
+                $_siblings.removeClass('checked')
                         .find('.checkbox-hook')
                         .prop('checked', false);
             }
@@ -154,9 +150,10 @@
             var list      = [];
             var inputName = queueid;
             $('.checkbox-hook:input:checked').each(function () {
-                var data = $(this).data('content');
-                var item = $(uploadsUnit.config.itemTemplate).clone();
-                var src  = parseInt(data.is_image) ? data.full_path : uploadsUnit.thumbnail(data.ext);
+                var data     = $(this).data('content');
+                var item     = $(uploadsUnit.config.itemTemplate).clone();
+                var src      = parseInt(data.is_image) ? data.full_path : uploadsUnit.thumbnail(data.ext);
+                var thumbSrc = data.thumb_full_path || uploadsUnit.thumbnail(data.ext);
                 //状态
                 item.addClass('complete');
                 //预览图片信息
@@ -166,7 +163,7 @@
                 item.find('.uploads-input-hook')
                         .attr('name', inputName + '[]').val(data.id);
                 //缩略图
-                item.find('.uploads-thumb-hook').attr('src', src)
+                item.find('.uploads-thumb-hook').attr('src', thumbSrc)
                         .attr('alt', data.client_name)
                         .jqthumb({width: '69', height: '69'});
                 //图片标题
