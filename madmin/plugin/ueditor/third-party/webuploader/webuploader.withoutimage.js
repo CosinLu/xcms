@@ -1746,14 +1746,14 @@
              * {
              *     title: 'Images',
              *     extensions: 'gif,jpg,jpeg,bmp,png',
-             *     mimeTypes: 'image/*'
+             *     mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif'
              * }
              * ```
              */
             accept: null/*{
              title: 'Images',
              extensions: 'gif,jpg,jpeg,bmp,png',
-             mimeTypes: 'image/*'
+             mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif'
              }*/
         });
 

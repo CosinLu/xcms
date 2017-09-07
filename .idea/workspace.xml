@@ -2,88 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af7caf3d-8e4f-4b66-84d1-f4cc9e300107" name="默认" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/madmin/application/config/production/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/config.php" afterPath="$PROJECT_DIR$/madmin/application/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/constants.php" afterPath="$PROJECT_DIR$/madmin/application/config/constants.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/database.php" afterPath="$PROJECT_DIR$/madmin/application/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/doctypes.php" afterPath="$PROJECT_DIR$/madmin/application/config/doctypes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/foreign_chars.php" afterPath="$PROJECT_DIR$/madmin/application/config/foreign_chars.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/memcached.php" afterPath="$PROJECT_DIR$/madmin/application/config/memcached.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/mimes.php" afterPath="$PROJECT_DIR$/madmin/application/config/mimes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/smileys.php" afterPath="$PROJECT_DIR$/madmin/application/config/smileys.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/user_agents.php" afterPath="$PROJECT_DIR$/madmin/application/config/user_agents.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Common_dict.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Common_dict.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config_group.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config_group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config_item.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config_item.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Index.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_cases.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_cases.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_col.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_col.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_col_muitipic.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_col_muitipic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_col_onepic.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_col_onepic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_news.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_news.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_single.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_single.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Link.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Link.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Navigation.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Navigation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Slide.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Slide.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_col.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_col.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_dict.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_dict.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_log.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_log.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_role.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_role.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_tpl.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_user.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/core/M_Controller.php" afterPath="$PROJECT_DIR$/madmin/application/core/M_Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" afterPath="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Category.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Prompt.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Prompt.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Sys_auth.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Sys_auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Sys_log.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Sys_log.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Common_dict_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Common_dict_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_group_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_group_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_item_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_item_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_cases_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_cases_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_col_muitipic_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_col_muitipic_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_col_onepic_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_col_onepic_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_news_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_news_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Link_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Link_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Slide_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Slide_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_col_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_col_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_log_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_log_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_role_auth_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_role_auth_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_tpl_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_tpl_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_user_auth_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_user_auth_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_user_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_user_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/update.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_group/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_group/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_item/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_item/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_cases/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_cases/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_news/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_news/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/link/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/link/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/navigation/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/navigation/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_col/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_col/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/update.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_log/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_log/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" afterPath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.css" afterPath="$PROJECT_DIR$/madmin/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.less" afterPath="$PROJECT_DIR$/madmin/css/index.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/style.css" afterPath="$PROJECT_DIR$/madmin/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/dialogs/image/image.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/dialogs/image/image.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.custom.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.custom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.flashonly.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.flashonly.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.html5only.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.html5only.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.withoutimage.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.withoutimage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.min.js" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/madmin/application/views/info_single/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_single/index.html" />
     </list>
     <ignored path="mcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,11 +54,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" />
-        <option value="$PROJECT_DIR$/madmin/js/unit.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/layer/skin/bootcss/css/style.less" />
-        <option value="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
         <option value="$PROJECT_DIR$/madmin/js/main.js" />
         <option value="$PROJECT_DIR$/madmin/application/config/mcms_settings.php" />
         <option value="$PROJECT_DIR$/madmin/application/config/mconfig.php" />
@@ -140,7 +68,6 @@
         <option value="$PROJECT_DIR$/madmin/application/models/Sys_role_model.php" />
         <option value="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" />
         <option value="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" />
-        <option value="$PROJECT_DIR$/madmin/css/index.less" />
         <option value="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
         <option value="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" />
         <option value="$PROJECT_DIR$/madmin/application/controllers/Welcome.php" />
@@ -151,7 +78,6 @@
         <option value="$PROJECT_DIR$/madmin/application/config/production/config.php" />
         <option value="$PROJECT_DIR$/madmin/application/config/config.php" />
         <option value="$PROJECT_DIR$/madmin/application/config/database.php" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
         <option value="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
         <option value="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" />
@@ -173,6 +99,12 @@
         <option value="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" />
         <option value="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" />
         <option value="$PROJECT_DIR$/madmin/application/controllers/Info_single.php" />
+        <option value="$PROJECT_DIR$/madmin/css/index.less" />
+        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
+        <option value="$PROJECT_DIR$/madmin/css/base.less" />
+        <option value="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
+        <option value="$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.js" />
+        <option value="$PROJECT_DIR$/madmin/plugin/ueditor/dialogs/image/image.js" />
       </list>
     </option>
   </component>
@@ -290,7 +222,73 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1137,7 +1135,7 @@
       <workItem from="1504614106138" duration="4827000" />
       <workItem from="1504659521336" duration="24351000" />
       <workItem from="1504747641202" duration="20493000" />
-      <workItem from="1504788080645" duration="2980000" />
+      <workItem from="1504788080645" duration="3846000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知信息">
       <created>1503536711920</created>
@@ -1220,7 +1218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="488630000" />
+    <option name="totallyTimeSpent" value="489496000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1230,7 +1228,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27094972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27008548" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32122904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1273,43 +1271,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="10" column="77" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/config/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="105" column="28" selection-start-line="105" selection-start-column="28" selection-end-line="105" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/application/libraries/Ueditor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1322,25 +1283,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8415">
-          <caret line="495" column="38" selection-start-line="495" selection-start-column="38" selection-end-line="495" selection-end-column="38" />
-          <folding>
-            <marker date="1504788057953" expanded="true" signature="17556:17578" ph="{...}" />
-            <marker date="1504788057953" expanded="true" signature="17556:17596" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="38" column="64" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1462,19 +1404,6 @@
         <state relative-caret-position="289">
           <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="998">
-          <caret line="181" column="30" selection-start-line="181" selection-start-column="30" selection-end-line="181" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <marker date="1504790555626" expanded="true" signature="230:1091" ph="..." />
-            <marker date="1504790555626" expanded="true" signature="381:504" ph="..." />
-            <marker date="1504790555626" expanded="true" signature="583:891" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1664,14 +1593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Info_single.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1687,6 +1608,119 @@
         <state relative-caret-position="37">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="198" column="32" selection-start-line="198" selection-start-column="32" selection-end-line="198" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+            <marker date="1504791599050" expanded="true" signature="230:1091" ph="..." />
+            <marker date="1504791599050" expanded="true" signature="381:504" ph="..." />
+            <marker date="1504791599050" expanded="true" signature="583:891" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="576" column="33" selection-start-line="576" selection-start-column="33" selection-end-line="576" selection-end-column="33" />
+          <folding>
+            <marker date="1504791371118" expanded="true" signature="17596:17618" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/css/base.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/dialogs/image/image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="367" column="18" selection-start-line="367" selection-start-column="18" selection-end-line="367" selection-end-column="18" />
+          <folding>
+            <marker date="1504791886695" expanded="true" signature="2974:2984" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/third-party/webuploader/webuploader.html5only.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-784">
+          <caret line="1748" column="31" selection-start-line="1748" selection-start-column="31" selection-end-line="1748" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/ueditor.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="24785" column="82" selection-start-line="24785" selection-start-column="82" selection-end-line="24785" selection-end-column="136" />
+          <folding>
+            <marker date="1504791813105" expanded="true" signature="399451:399464" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="404419:404436" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="408856:408887" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="409462:409480" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="410026:410105" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="513193:513219" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="674395:674563" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="674918:674924" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="675390:675396" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="916822:916914" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="917083:917089" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="917346:917352" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="922831:922837" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="923387:923393" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="956974:957050" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="970407:970425" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="970476:970518" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="970608:970635" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="989533:989605" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1000357:1000383" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1000583:1000674" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1000964:1001039" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1001254:1001269" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1001496:1001736" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1014749:1014842" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1085258:1085330" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1106206:1106218" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1108690:1108714" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1141210:1141221" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1145478:1145491" ph="..." />
+            <marker date="1504791813105" expanded="true" signature="1145884:1145920" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

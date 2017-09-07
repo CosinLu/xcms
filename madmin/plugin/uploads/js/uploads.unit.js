@@ -199,7 +199,7 @@ define(['jquery'], function ($) {
                     layer.open({
                         type: 2,
                         title: '云上传',
-                        area: ['715px', '560px'],
+                        area: ['740px', '560px'],
                         content: url
                     })
                 });
