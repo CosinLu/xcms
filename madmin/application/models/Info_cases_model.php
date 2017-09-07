@@ -27,7 +27,7 @@ class Info_cases_model extends M_Model
         }
         $this->db->where_in('t.cid', $children_id_arr);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = $this->config->item('per_page','mcms');
+        $config['per_page'] = $this->config->item('per_page', 'mcms');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.sort desc,t.create_time desc,t.id desc');

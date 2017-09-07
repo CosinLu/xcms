@@ -50,9 +50,9 @@ class Uploads extends CI_Controller
     {
         $filename = $this->input->post('filename');
         $config = array(
-            'upload_path'   => str_replace('//', '/', $this->config->item('upload', 'mcms') . 'upload/' . date('Ymd', time()) . '/'),//上传路径
+            'upload_path' => standard_path($this->config->item('upload', 'mcms') . 'upload/' . date('Ymd', time()) . '/'),//上传路径
             'allowed_types' => '*',//允许上传文件类型：*=所有类型
-            'file_name'     => md5(uniqid(microtime(TRUE), TRUE))//新文件名
+            'file_name' => md5(uniqid(microtime(TRUE), TRUE))//新文件名
         );
         $this->load->library('upload', $config);
         $this->upload->do_upload($filename);

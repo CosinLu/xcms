@@ -24,17 +24,17 @@ define(['jquery'], function ($) {
             if (!ext.length) return '';
             var src;
             var thumbnail = {
-                'docx'   : 'plugin/uploads/images/docx.png',
-                'jpg'    : 'plugin/uploads/images/jpg.png',
-                'mp3'    : 'plugin/uploads/images/mp3.png',
-                'mp4'    : 'plugin/uploads/images/mp4.png',
-                'pdf'    : 'plugin/uploads/images/pdf.png',
-                'pptx'   : 'plugin/uploads/images/pptx.png',
+                'docx': 'plugin/uploads/images/docx.png',
+                'jpg': 'plugin/uploads/images/jpg.png',
+                'mp3': 'plugin/uploads/images/mp3.png',
+                'mp4': 'plugin/uploads/images/mp4.png',
+                'pdf': 'plugin/uploads/images/pdf.png',
+                'pptx': 'plugin/uploads/images/pptx.png',
                 'unknown': 'plugin/uploads/images/unknown.png',
-                'xlsx'   : 'plugin/uploads/images/xlsx.png',
-                'zip'    : 'plugin/uploads/images/zip.png'
+                'xlsx': 'plugin/uploads/images/xlsx.png',
+                'zip': 'plugin/uploads/images/zip.png'
             };
-            ext           = ext.replace('\.', '').toLowerCase();
+            ext = ext.replace('\.', '').toLowerCase();
 
             if ($.inArray(ext, ['doc', 'docx']) > -1) {
                 src = thumbnail.docx;
@@ -62,13 +62,13 @@ define(['jquery'], function ($) {
         initData: function () {
             require(['jqthumb'], function (jqthumb) {
                 $('.uploads-queue-hook').each(function () {
-                    var _this     = $(this);
-                    var list      = _this.data('list');
+                    var _this = $(this);
+                    var list = _this.data('list');
                     var inputName = _this.attr('id');
                     if (list != undefined) {
                         $.each(list, function (i, data) {
-                            var item     = $(u.config.itemTemplate).clone();
-                            var src      = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                            var item = $(u.config.itemTemplate).clone();
+                            var src = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
                             var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
                             //状态
                             item.addClass('complete');
@@ -96,14 +96,14 @@ define(['jquery'], function ($) {
         dragSort: function () {
             require(['sortable'], function (Sortable) {
                 $('.uploads-queue-hook').each(function () {
-                    var id       = $(this).attr('id');
-                    var el       = document.getElementById(id);
+                    var id = $(this).attr('id');
+                    var el = document.getElementById(id);
                     var sortable = new Sortable(el, {
-                        group      : id,
-                        handle     : '.uploads-move-hook',
-                        ghostClass : 'uploads-ghost',
+                        group: id,
+                        handle: '.uploads-move-hook',
+                        ghostClass: 'uploads-ghost',
                         chosenClass: "uploads-chosen",
-                        draggable  : '.uploads-queue-item-hook',
+                        draggable: '.uploads-queue-item-hook',
                     });
                 });
             })
@@ -112,7 +112,7 @@ define(['jquery'], function ($) {
         //上传预览
         uploadsPreview: function () {
             $(document).on('click', '.uploads-preview-hook', function () {
-                var data    = $(this).data('content');
+                var data = $(this).data('content');
                 var content = '';
                 content += '<div class="uploads-preview">';
                 content += '<div class="uploads-preview-img">';
@@ -127,10 +127,10 @@ define(['jquery'], function ($) {
                 content += '</div>';
                 content += '</div>';
                 parent.layer.open({
-                    title  : false,
-                    area   : '500px',
-                    btn    : false,
-                    offset : '100px',
+                    title: false,
+                    area: '500px',
+                    btn: false,
+                    offset: '100px',
                     content: content
                 });
             });
@@ -147,21 +147,21 @@ define(['jquery'], function ($) {
         initUploads: function () {
             require(['uploadifive'], function (uploadifive) {
                 $('.uploads-btn-hook').uploadifive({
-                    'auto'            : true,
-                    'buttonClass'     : 'uploads-btn',
-                    'buttonText'      : '+',
-                    'formData'        : {
+                    'auto': true,
+                    'buttonClass': 'uploads-btn',
+                    'buttonText': '+',
+                    'formData': {
                         'timestamp': new Date().getTime(),
-                        'token'    : Math.random()
+                        'token': Math.random()
                     },
-                    'itemTemplate'    : u.config.itemTemplate,
-                    'fileSizeLimit'   : '2MB',
-                    'fileTypeSuffix'  : 'jpg,png,gif',
-                    'uploadScript'    : 'index.php/uploads/do_upload',
+                    'itemTemplate': u.config.itemTemplate,
+                    'fileSizeLimit': '2MB',
+                    'fileTypeSuffix': 'jpg,png,gif',
+                    'uploadScript': 'index.php/uploads/do_upload',
                     'onUploadComplete': function (file, data) {
-                        var data     = $.parseJSON(data);
-                        var item     = file.queueItem;
-                        var src      = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
+                        var data = $.parseJSON(data);
+                        var item = file.queueItem;
+                        var src = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
                         var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
                         //预览图片信息
                         item.find('.uploads-preview-hook')
@@ -176,10 +176,10 @@ define(['jquery'], function ($) {
                         //图片标题
                         item.attr('title', data.client_name);
                     },
-                    'onQueueComplete' : function (uploads) {
+                    'onQueueComplete': function (uploads) {
                         //this.dragSort();
                     },
-                    'onError'         : function (errorType) {
+                    'onError': function (errorType) {
                     }
                 });
             })
@@ -194,12 +194,12 @@ define(['jquery'], function ($) {
                     //容器
                     var queueID = $(this).data('id');
                     //是否多文件上传
-                    var multi   = $(this).data('multi');
-                    var url     = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
+                    var multi = $(this).data('multi');
+                    var url = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
                     layer.open({
-                        type   : 2,
-                        title  : '云上传',
-                        area   : ['715px', '560px'],
+                        type: 2,
+                        title: '云上传',
+                        area: ['715px', '560px'],
                         content: url
                     })
                 });

@@ -18,15 +18,15 @@ class M_Upload extends CI_Upload
     public function validate_upload_path()
     {
         $this->relative_path = $this->upload_path;
-        str_replace('\\', '/', $this->upload_path);
+        standard_path($this->upload_path);
         if ($this->upload_path === '') {
             $this->set_error('upload_no_filepath', 'error');
 
             return FALSE;
         }
         if (stripos($this->upload_path, ':') != 1) {
-            $DOCUMENT_ROOT = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
-            $this->upload_path = str_replace('//', '/', $DOCUMENT_ROOT . $this->upload_path);
+            $DOCUMENT_ROOT = standard_path($_SERVER['DOCUMENT_ROOT']);
+            $this->upload_path = standard_path($DOCUMENT_ROOT . $this->upload_path);
         }
         if (!is_dir($this->upload_path)) {
             mkdir($this->upload_path, 0777, TRUE);
@@ -44,22 +44,22 @@ class M_Upload extends CI_Upload
     public function data($index = NULL)
     {
         $data = array(
-            'name'           => $this->file_name,
-            'type'           => $this->file_type,
-            'abs_path'       => $this->upload_path,
-            'full_abs_path'  => $this->upload_path . $this->file_name,
-            'path'           => $this->relative_path,
-            'full_path'      => $this->relative_path . $this->file_name,
-            'raw_name'       => str_replace($this->file_ext, '', $this->file_name),
-            'raw_path'       => $this->relative_path . str_replace($this->file_ext, '', $this->file_name),
-            'orig_name'      => $this->orig_name,
-            'client_name'    => $this->client_name,
-            'ext'            => $this->file_ext,
-            'size'           => $this->file_size,
-            'is_image'       => $this->is_image(),
-            'image_width'    => $this->image_width,
-            'image_height'   => $this->image_height,
-            'image_type'     => $this->image_type,
+            'name' => $this->file_name,
+            'type' => $this->file_type,
+            'abs_path' => $this->upload_path,
+            'full_abs_path' => $this->upload_path . $this->file_name,
+            'path' => $this->relative_path,
+            'full_path' => $this->relative_path . $this->file_name,
+            'raw_name' => str_replace($this->file_ext, '', $this->file_name),
+            'raw_path' => $this->relative_path . str_replace($this->file_ext, '', $this->file_name),
+            'orig_name' => $this->orig_name,
+            'client_name' => $this->client_name,
+            'ext' => $this->file_ext,
+            'size' => $this->file_size,
+            'is_image' => $this->is_image(),
+            'image_width' => $this->image_width,
+            'image_height' => $this->image_height,
+            'image_type' => $this->image_type,
             'image_size_str' => $this->image_size_str,
         );
         if (!empty($index)) {

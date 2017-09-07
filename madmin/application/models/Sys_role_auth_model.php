@@ -41,15 +41,15 @@ class Sys_role_auth_model extends M_Model
             foreach ($id_arr as $val) {
                 if (empty($auth_arr[$val])) {
                     $vals[] = array(
-                        'role_id'  => $role_id,
-                        'col_id'   => $val,
+                        'role_id' => $role_id,
+                        'col_id' => $val,
                         'col_auth' => ''
                     );
                 } else {
                     foreach ($auth_arr[$val] as $item) {
                         $vals[] = array(
-                            'role_id'  => $role_id,
-                            'col_id'   => $val,
+                            'role_id' => $role_id,
+                            'col_id' => $val,
                             'col_auth' => $item
                         );
                     }

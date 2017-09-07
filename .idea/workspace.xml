@@ -2,13 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af7caf3d-8e4f-4b66-84d1-f4cc9e300107" name="默认" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/madmin/application/config/production/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/config.php" afterPath="$PROJECT_DIR$/madmin/application/config/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/constants.php" afterPath="$PROJECT_DIR$/madmin/application/config/constants.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/database.php" afterPath="$PROJECT_DIR$/madmin/application/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/doctypes.php" afterPath="$PROJECT_DIR$/madmin/application/config/doctypes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/foreign_chars.php" afterPath="$PROJECT_DIR$/madmin/application/config/foreign_chars.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/memcached.php" afterPath="$PROJECT_DIR$/madmin/application/config/memcached.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/mimes.php" afterPath="$PROJECT_DIR$/madmin/application/config/mimes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/smileys.php" afterPath="$PROJECT_DIR$/madmin/application/config/smileys.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/config/user_agents.php" afterPath="$PROJECT_DIR$/madmin/application/config/user_agents.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Common_dict.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Common_dict.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config_group.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config_group.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Config_item.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Config_item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Index.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_cases.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_cases.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_col.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_col.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Info_col_muitipic.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Info_col_muitipic.php" />
@@ -25,92 +34,56 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_tpl.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_tpl.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Sys_user.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Sys_user.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/controllers/Welcome.php" afterPath="$PROJECT_DIR$/madmin/application/controllers/Welcome.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/core/M_Controller.php" afterPath="$PROJECT_DIR$/madmin/application/core/M_Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" afterPath="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Category.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Category.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Prompt.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Prompt.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Sys_auth.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Sys_auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Ueditor.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Ueditor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/libraries/Sys_log.php" afterPath="$PROJECT_DIR$/madmin/application/libraries/Sys_log.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Common_dict_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Common_dict_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_group_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_group_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_item_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_item_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Config_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Config_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_cases_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_cases_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_col_muitipic_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_col_muitipic_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_col_onepic_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_col_onepic_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Info_news_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Info_news_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Link_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Link_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Slide_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Slide_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_col_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_col_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_log_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_log_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_role_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_role_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_role_auth_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_role_auth_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_tpl_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_tpl_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_user_auth_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_user_auth_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Sys_user_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Sys_user_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" afterPath="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/insert.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/common_dict/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/common_dict/update.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/config/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_group/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_group/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_group/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_group/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_group/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_group/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_item/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_item/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_item/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_item/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/config_item/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/config_item/update.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/include/header.html" afterPath="$PROJECT_DIR$/madmin/application/views/include/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/index/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_cases/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_cases/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_cases/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_cases/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_cases/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_cases/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_col_onepic/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_news/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_news/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_news/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_news/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_news/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_news/update.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/info_single/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_single/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/link/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/link/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/link/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/link/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/link/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/link/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/navigation/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/navigation/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/navigation/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/navigation/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/navigation/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/navigation/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/slide/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/slide/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_col/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_col/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_col/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_col/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_col/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_col/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/insert.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_dict/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_dict/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_log/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_log/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_tpl/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_tpl/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_tpl/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_tpl/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user/insert.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user/update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" afterPath="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/uploads/uploads_image.html" afterPath="$PROJECT_DIR$/madmin/application/views/uploads/uploads_image.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/application/views/welcome/index.html" afterPath="$PROJECT_DIR$/madmin/application/views/welcome/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.css" afterPath="$PROJECT_DIR$/madmin/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/index.less" afterPath="$PROJECT_DIR$/madmin/css/index.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/css/style.css" afterPath="$PROJECT_DIR$/madmin/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/js/main.js" afterPath="$PROJECT_DIR$/madmin/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/php/config.json" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/php/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/php/controller.php" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/php/controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" afterPath="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/madmin/plugin/ueditor/php/my.config.json" afterPath="$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/madmin/application/views/info_single/update.html" afterPath="$PROJECT_DIR$/madmin/application/views/info_single/index.html" />
     </list>
     <ignored path="mcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -131,58 +104,7 @@
     <favorites_list name="mcms" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cloud.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="138" column="49" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-359">
-              <caret line="37" column="64" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="617" column="38" selection-start-line="617" selection-start-column="38" selection-end-line="617" selection-end-column="38" />
-              <folding>
-                <element signature="e#14289#15509#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uploads.unit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="201" column="38" selection-start-line="201" selection-start-column="38" selection-end-line="201" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#40#0" expanded="false" />
-                <element signature="e#4770#5403#0" expanded="false" />
-                <element signature="e#5457#6541#0" expanded="false" />
-                <element signature="e#6591#6763#0" expanded="false" />
-                <marker date="1504780204160" expanded="true" signature="230:1091" ph="..." />
-                <marker date="1504780204160" expanded="true" signature="381:504" ph="..." />
-                <marker date="1504780204160" expanded="true" signature="583:891" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -200,57 +122,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/madmin/application/views/sys_col/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/sys_tpl/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/sys_tpl/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/sys_user/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/sys_user/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/navigation/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/navigation/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/controllers/Common_dict.php" />
-        <option value="$PROJECT_DIR$/madmin/application/views/info_news/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/info_news/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/link/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/application/views/link/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/controllers/Slide.php" />
-        <option value="$PROJECT_DIR$/madmin/application/views/slide/update.html" />
-        <option value="$PROJECT_DIR$/madmin/application/.htaccess" />
-        <option value="$PROJECT_DIR$/madmin/plugin/jqthumb/jqthumb.js" />
-        <option value="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
-        <option value="$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.less" />
-        <option value="$PROJECT_DIR$/madmin/css/bootcss.less" />
-        <option value="$PROJECT_DIR$/madmin/application/models/Config_item_model.php" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-cloud.unit.js" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-cloud.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/uploads/css/style.less" />
         <option value="$PROJECT_DIR$/madmin/js/unit.js" />
         <option value="$PROJECT_DIR$/madmin/plugin/layer/skin/bootcss/css/style.less" />
         <option value="$PROJECT_DIR$/madmin/application/views/slide/insert.html" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
         <option value="$PROJECT_DIR$/madmin/js/main.js" />
         <option value="$PROJECT_DIR$/madmin/application/config/mcms_settings.php" />
         <option value="$PROJECT_DIR$/madmin/application/config/mconfig.php" />
         <option value="$PROJECT_DIR$/madmin/plugin/ueditor/php/config.php" />
         <option value="$PROJECT_DIR$/madmin/application/config/autoload.php" />
-        <option value="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" />
         <option value="$PROJECT_DIR$/madmin/application/config/constants.php" />
         <option value="$PROJECT_DIR$/madmin/plugin/ueditor/php/config.json" />
         <option value="$PROJECT_DIR$/madmin/plugin/ueditor/php/controller.php" />
-        <option value="$PROJECT_DIR$/madmin/application/controllers/Welcome.php" />
         <option value="$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json" />
         <option value="$PROJECT_DIR$/madmin/application/libraries/Ueditor.php" />
         <option value="$PROJECT_DIR$/madmin/application/models/Sys_role_model.php" />
-        <option value="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" />
-        <option value="$PROJECT_DIR$/madmin/application/config/config.php" />
-        <option value="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
         <option value="$PROJECT_DIR$/madmin/application/libraries/Uploads.php" />
         <option value="$PROJECT_DIR$/madmin/application/models/Uploads_model.php" />
         <option value="$PROJECT_DIR$/madmin/css/index.less" />
-        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
         <option value="$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
+        <option value="$PROJECT_DIR$/madmin/application/helpers/common_helper.php" />
+        <option value="$PROJECT_DIR$/madmin/application/controllers/Welcome.php" />
+        <option value="$PROJECT_DIR$/madmin/application/controllers/Index.php" />
+        <option value="$PROJECT_DIR$/madmin/application/controllers/Uploads.php" />
+        <option value="$PROJECT_DIR$/madmin/application/libraries/M_Upload.php" />
+        <option value="$PROJECT_DIR$/madmin/application/libraries/M_Pagination.php" />
+        <option value="$PROJECT_DIR$/madmin/application/config/production/config.php" />
+        <option value="$PROJECT_DIR$/madmin/application/config/config.php" />
+        <option value="$PROJECT_DIR$/madmin/application/config/database.php" />
+        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js" />
+        <option value="$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js" />
+        <option value="$PROJECT_DIR$/madmin/application/views/slide/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/common_dict/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/config_group/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/config_item/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/info_cases/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/info_col/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/info_news/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/link/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/navigation/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_col/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_dict/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_log/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_role/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_user/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html" />
+        <option value="$PROJECT_DIR$/madmin/application/controllers/Info_single.php" />
       </list>
     </option>
   </component>
@@ -269,8 +191,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -285,8 +207,8 @@
     <OptionsSetting value="true" id="更新" />
     <OptionsSetting value="true" id="状态" />
     <OptionsSetting value="true" id="编辑" />
-    <ConfirmationsSetting value="0" id="添加" />
-    <ConfirmationsSetting value="0" id="移除" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -304,7 +226,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -369,199 +290,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uploads" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style.less" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ueditor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ueditor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jqthumb" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,7 +356,241 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="welcome" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_user_auth" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_user" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_tpl" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_role_auth" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_role" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_log" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_dict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sys_col" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -675,7 +638,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navigation" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -697,7 +664,323 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libraries" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="link" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_single" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_news" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_col_onepic" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_col_muitipic" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_col" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info_cases" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="info" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config_item" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config_group" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcms" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="madmin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common_dict" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -723,36 +1006,15 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="madmin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -760,19 +1022,19 @@
     <property name="SearchEverywhereHistoryKey" value="if&#9;FILE&#9;file://D:/wamp/www/mcms/madmin/plugin/uploads/js/jquery.uploadifive.js" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wamp\www\mcms\madmin\plugin\lazyload" />
-      <recent name="D:\wamp\www\mcms\madmin\plugin" />
-      <recent name="D:\wamp\www\mcms\madmin\application\views\uploads" />
-      <recent name="D:\wamp\www\mcms\madmin\plugin\jqthumb" />
-      <recent name="D:\wamp\www\mcms\madmin\plugin\sortable" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\wamp\www\mcms\madmin\plugin\upload\js" />
       <recent name="D:\wamp\www\mcms\madmin\plugin\upload\style1" />
       <recent name="D:\wamp\www\mcms\madmin\plugin\layer\skin\bootcss\css" />
       <recent name="D:\wamp\www\mcms\madmin\plugin\layer\skin\bootcss\images" />
       <recent name="D:\wamp\www\mcms\madmin\plugin\layer\skin\bootcss\image" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wamp\www\mcms\madmin\application\config\production" />
+      <recent name="D:\wamp\www\mcms\madmin\plugin\lazyload" />
+      <recent name="D:\wamp\www\mcms\madmin\plugin" />
+      <recent name="D:\wamp\www\mcms\madmin\application\views\uploads" />
+      <recent name="D:\wamp\www\mcms\madmin\plugin\jqthumb" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Web Application.mcms">
@@ -875,6 +1137,7 @@
       <workItem from="1504614106138" duration="4827000" />
       <workItem from="1504659521336" duration="24351000" />
       <workItem from="1504747641202" duration="20493000" />
+      <workItem from="1504788080645" duration="2980000" />
     </task>
     <task id="LOCAL-00001" summary="修复已知信息">
       <created>1503536711920</created>
@@ -957,20 +1220,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="485650000" />
+    <option name="totallyTimeSpent" value="488630000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24935733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27094972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32122904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -980,6 +1242,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1010,193 +1273,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/madmin/application/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads--/index.html" />
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Uploads--.php" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/css/iframe.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/models/Slide_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/nanoscroller/css/nanoscroller.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/css/bootcss.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html" />
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud-.html" />
-    <entry file="file://$PROJECT_DIR$/madmin/application/models/Config_item_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Config_item.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-cloud.unit.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-cloud.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/css/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="112" column="25" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/js/unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="11" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <marker date="1504665214836" expanded="true" signature="342:359" ph="..." />
-            <marker date="1504665214836" expanded="true" signature="621:640" ph="..." />
-            <marker date="1504665214836" expanded="true" signature="680:714" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/layer/skin/bootcss/css/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="107" column="23" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads-.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/lazyload-/lazyload.min.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/lazyload-/lazyload.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/lazyload/lazyload.js" />
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/jqthumb/jqthumb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="216" column="48" selection-start-line="216" selection-start-column="48" selection-end-line="216" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding>
-            <marker date="1504690694108" expanded="true" signature="21301:21625" ph="..." />
-            <marker date="1504690694108" expanded="true" signature="21503:21597" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/libraries/Image_lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="1430" column="30" selection-start-line="1430" selection-start-column="30" selection-end-line="1430" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="81" column="11" selection-start-line="81" selection-start-column="11" selection-end-line="81" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/models/Info_cases_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="118" column="60" selection-start-line="118" selection-start-column="60" selection-end-line="118" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/config/mconfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="20" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/common_dict/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/config/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="84" column="104" selection-start-line="84" selection-start-column="104" selection-end-line="84" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1204,7 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,27 +1295,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Welcome.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/settings.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,6 +1326,158 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8415">
+          <caret line="495" column="38" selection-start-line="495" selection-start-column="38" selection-end-line="495" selection-end-column="38" />
+          <folding>
+            <marker date="1504788057953" expanded="true" signature="17556:17578" ph="{...}" />
+            <marker date="1504788057953" expanded="true" signature="17556:17596" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="38" column="64" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/config/user_agents.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/ueditor/php/my.config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/models/Index_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-452">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/helpers/common_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/models/Uploads_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-334">
+          <caret line="26" column="48" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/libraries/Uploads.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Uploads.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/libraries/M_Pagination.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="127" column="16" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/libraries/M_Upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="374" column="28" selection-start-line="374" selection-start-column="28" selection-end-line="374" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/config/production/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="522" column="31" selection-start-line="522" selection-start-column="31" selection-end-line="522" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/jquery.uploadifive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="998">
+          <caret line="181" column="30" selection-start-line="181" selection-start-column="30" selection-end-line="181" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+            <marker date="1504790555626" expanded="true" signature="230:1091" ph="..." />
+            <marker date="1504790555626" expanded="true" signature="381:504" ph="..." />
+            <marker date="1504790555626" expanded="true" signature="583:891" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1274,84 +1488,204 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/config/config.php">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/common_dict/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="531" column="40" selection-start-line="531" selection-start-column="40" selection-end-line="531" selection-end-column="40" />
+        <state relative-caret-position="323">
+          <caret line="112" column="77" selection-start-line="112" selection-start-column="77" selection-end-line="112" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/libraries/M_Upload.php">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/config/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+        <state relative-caret-position="-1527">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/libraries/Uploads.php">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/config_group/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="292">
+          <caret line="121" column="77" selection-start-line="121" selection-start-column="77" selection-end-line="121" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/models/Uploads_model.php">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/config_item/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="26" column="48" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="48" />
+        <state relative-caret-position="292">
+          <caret line="132" column="77" selection-start-line="132" selection-start-column="77" selection-end-line="132" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Uploads.php">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1072">
-          <caret line="75" column="14" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+        <state relative-caret-position="-99">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/css/index.less">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_cases/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="617" column="38" selection-start-line="617" selection-start-column="38" selection-end-line="617" selection-end-column="38" />
-          <folding>
-            <element signature="e#14289#15509#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="343">
+          <caret line="128" column="77" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/plugin/uploads/js/uploads.unit.js">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_col/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="201" column="38" selection-start-line="201" selection-start-column="38" selection-end-line="201" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-            <element signature="e#4770#5403#0" expanded="false" />
-            <element signature="e#5457#6541#0" expanded="false" />
-            <element signature="e#6591#6763#0" expanded="false" />
-            <marker date="1504780204160" expanded="true" signature="230:1091" ph="..." />
-            <marker date="1504780204160" expanded="true" signature="381:504" ph="..." />
-            <marker date="1504780204160" expanded="true" signature="583:891" ph="..." />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="97" column="77" selection-start-line="97" selection-start-column="77" selection-end-line="97" selection-end-column="77" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/insert.html">
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_col_muitipic/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-359">
-          <caret line="37" column="64" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="64" />
+        <state relative-caret-position="278">
+          <caret line="127" column="77" selection-start-line="127" selection-start-column="77" selection-end-line="127" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_col_onepic/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="115" column="92" selection-start-line="115" selection-start-column="92" selection-end-line="115" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_news/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="128" column="77" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/navigation/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="89" column="88" selection-start-line="89" selection-start-column="88" selection-end-line="89" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/link/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="125" column="77" selection-start-line="125" selection-start-column="77" selection-end-line="125" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/info_single/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/slide/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="122" column="48" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_col/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_dict/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="93" column="77" selection-start-line="93" selection-start-column="77" selection-end-line="93" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_log/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="110" column="77" selection-start-line="110" selection-start-column="77" selection-end-line="110" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_role/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="122" column="77" selection-start-line="122" selection-start-column="77" selection-end-line="122" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_role_auth/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="76" column="77" selection-start-line="76" selection-start-column="77" selection-end-line="76" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_tpl/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="127" column="77" selection-start-line="127" selection-start-column="77" selection-end-line="127" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_user/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="124" column="77" selection-start-line="124" selection-start-column="77" selection-end-line="124" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/views/sys_user_auth/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="76" column="77" selection-start-line="76" selection-start-column="77" selection-end-line="76" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/madmin/application/views/uploads/cloud.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="138" column="49" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="49" />
+        <state relative-caret-position="-1258">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Info_single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding>
+            <marker date="1504790987301" expanded="true" signature="731:775" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/madmin/application/controllers/Ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding />
         </state>
       </provider>

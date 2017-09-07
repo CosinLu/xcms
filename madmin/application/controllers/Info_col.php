@@ -20,7 +20,7 @@ class Info_col extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('info_col/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert','mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('info_col/save?sys_cid=' . $this->sys_cid);
         $url['del_url'] = site_url('info_col/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
@@ -42,17 +42,17 @@ class Info_col extends M_Controller
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
             if ($val['add_next_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('insert','mcms'), $this->col_auth, '<a href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
             }
             if ($val['edit_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update','mcms'), $this->col_auth, '<a href="' . site_url('info_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_update_btn;
             }
             if ($val['del_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del','mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', $disabled_del_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', $disabled_del_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }

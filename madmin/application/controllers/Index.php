@@ -42,10 +42,10 @@ class Index extends CI_Controller
     public function code()
     {
         $config = array(
-            'width'     => 80,
-            'height'    => 32,
+            'width' => 80,
+            'height' => 32,
             'font_size' => 16,
-            'code_len'  => 4
+            'code_len' => 4
         );
         $this->load->library('code', $config);
         $this->code->show();
@@ -66,7 +66,6 @@ class Index extends CI_Controller
             $this->load->view('index/index.html');
         } //登录成功
         else {
-            $this->config_upload_path();
             $user_info = $this->index->user_info($this->username, $this->password);
             $session['sys_session']['user_id'] = $user_info['id'];
             $session['sys_session']['role_id'] = $user_info['role_id'];
@@ -84,8 +83,8 @@ class Index extends CI_Controller
             $session['sys_session']['lang_val'] = 'zh-cn';
             //写入登录日志
             $data['vals'] = array(
-                'user_id'    => $user_info['user_id'],
-                'login_ip'   => $this->input->ip_address(),
+                'user_id' => $user_info['user_id'],
+                'login_ip' => $this->input->ip_address(),
                 'login_time' => time()
             );
             $this->index->insert_login_log($data);
@@ -108,19 +107,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证验证码
-    public function config_upload_path()
-    {
-        $path = str_replace('//', '/', str_replace('\\', '/', FCPATH . '/plugin/ueditor/php/my.config.json'));
-        if (!is_file($path)) {
-            $config_json = '{
-            "upload": "' . trim($this->config->item('upload')) . '"
-        }';
-            file_put_contents($path, $config_json);
-        }
-    }
 
-    //验证用户名
     public function check_code()
     {
         $code = strtoupper($this->input->post('code'));
@@ -133,7 +120,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证密码
+    //验证用户名
     public function check_username()
     {
         if ($this->username != '') {
@@ -157,7 +144,7 @@ class Index extends CI_Controller
         }
     }
 
-    //验证系统栏目权限
+    //验证密码
     public function check_password()
     {
         $userinfo = $this->index->user_info($this->username, $this->password);
@@ -170,7 +157,7 @@ class Index extends CI_Controller
         }
     }
 
-    //登出
+    //验证系统栏目权限
     public function check_col_auth()
     {
         $user_info = $this->index->user_info($this->username, $this->password);
@@ -197,7 +184,7 @@ class Index extends CI_Controller
         }
     }
 
-    //配置上传路径
+    //登出
     public function logout()
     {
         //销毁session

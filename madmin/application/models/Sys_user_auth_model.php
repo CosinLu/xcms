@@ -41,15 +41,15 @@ class Sys_user_auth_model extends M_Model
             foreach ($id_arr as $val) {
                 if (empty($auth_arr[$val])) {
                     $vals[] = array(
-                        'user_id'  => $user_id,
-                        'col_id'   => $val,
+                        'user_id' => $user_id,
+                        'col_id' => $val,
                         'col_auth' => ''
                     );
                 } else {
                     foreach ($auth_arr[$val] as $item) {
                         $vals[] = array(
-                            'user_id'  => $user_id,
-                            'col_id'   => $val,
+                            'user_id' => $user_id,
+                            'col_id' => $val,
                             'col_auth' => $item
                         );
                     }

@@ -60,21 +60,21 @@
                 x: Math.random()
             };
             $.ajax({
-                url       : '<?=$get_list_url?>',
-                type      : 'post',
-                dataType  : 'json',
-                data      : data,
+                url: '<?=$get_list_url?>',
+                type: 'post',
+                dataType: 'json',
+                data: data,
                 beforeSend: function () {
                     $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=$this->config->item('loading','mcms')?>');
+                    $('.list-hook').after('<?=$this->config->item("loading","mcms")?>');
                 },
-                success   : function (data) {
+                success: function (data) {
                     $('.nodata-hook,.loading-hook').remove();
                     if (data.list.length) {
                         $('#list').html(template('list_tpl', data));
                     } else {
-                        $('.list-hook').after('<?=$this->config->item('nodata','mcms')?>');
+                        $('.list-hook').after('<?=$this->config->item("nodata","mcms")?>');
                     }
                 }
             })

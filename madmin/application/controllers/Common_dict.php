@@ -24,8 +24,8 @@ class Common_dict extends M_Controller
     {
         $url['index_back_btn'] = ($this->pid) ? go_back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert','mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look','mcms'), $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
+        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
+        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('common_dict/save?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $url['del_url'] = site_url('common_dict/del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $this->load->vars($url);
@@ -49,8 +49,8 @@ class Common_dict extends M_Controller
             if (!$this->pid) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="' . site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $val['id']) . '">编辑属性</a>';
             }
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update','mcms'), $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del','mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -78,14 +78,14 @@ class Common_dict extends M_Controller
     public function save()
     {
         $data = array(
-            'id'   => $this->input->post('id'),
-            'pid'  => $this->input->post('pid'),
+            'id' => $this->input->post('id'),
+            'pid' => $this->input->post('pid'),
             'vals' => array(
-                'name'   => $this->input->post('name'),
-                'ident'  => $this->input->post('ident'),
-                'color'  => $this->input->post('color'),
+                'name' => $this->input->post('name'),
+                'ident' => $this->input->post('ident'),
+                'color' => $this->input->post('color'),
                 'remark' => $this->input->post('remark'),
-                'sort'   => $this->input->post('sort')
+                'sort' => $this->input->post('sort')
             )
         );
         $bool = $this->common_dict->save($data);

@@ -178,9 +178,9 @@ class Category
         $start_level = 1;
         $root_arr = array(
             array(
-                $this->id_name       => 0,
+                $this->id_name => 0,
                 $this->category_name => $this->default,
-                $this->level_name    => 0,
+                $this->level_name => 0,
             )
         );
         $data = $this->children($data, 0, TRUE);
@@ -201,7 +201,7 @@ class Category
      * 获得下级分类
      *
      * @param array $data
-     * @param int $pid   当前分类的id即为下级分类的pid
+     * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
      *
      * @return array
@@ -270,10 +270,10 @@ class Category
     /**
      * 修改是所用下拉列表
      *
-     * @param int $id     信息标识
-     * @param int $pid    上级栏目标识
+     * @param int $id 信息标识
+     * @param int $pid 上级栏目标识
      * @param array $data
-     * @param bool $root  是否显示跟目录
+     * @param bool $root 是否显示跟目录
      * @param int $tpl_id 模板标识
      *
      * @return string
@@ -285,10 +285,10 @@ class Category
         $start_level = 1;
         $root_arr = array(
             array(
-                $this->id_name       => 0,
+                $this->id_name => 0,
                 $this->category_name => $this->default,
-                $this->pid_name      => -1,
-                $this->level_name    => 0,
+                $this->pid_name => -1,
+                $this->level_name => 0,
             )
         );
         $data = $this->children($data, 0, TRUE);
@@ -325,7 +325,7 @@ class Category
      * 获得下级分类标识
      *
      * @param array $data
-     * @param int $pid   当前分类的id即为下级分类的pid
+     * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
      *
      * @return array
@@ -345,10 +345,10 @@ class Category
      * 获取分类中符合条件的有效字符串
      *
      * @param array $data
-     * @param int $pid    当前分类的id即为下级分类的pid
+     * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $field 要获取的参数
-     * @param int $num    url个数
-     * @param bool $self  是否包含自身
+     * @param int $num url个数
+     * @param bool $self 是否包含自身
      *
      * @return array
      */
@@ -421,7 +421,7 @@ class Category
     /**
      * 新增分类
      *
-     * @param int $pid    上级分类标识
+     * @param int $pid 上级分类标识
      * @param array $vals 插入的数据
      *
      * @return mixed
@@ -477,9 +477,9 @@ class Category
     /**
      * 更新数据
      *
-     * @param string $id      标识
+     * @param string $id 标识
      * @param string $pid_val 上级标识
-     * @param array $array    更新的数据
+     * @param array $array 更新的数据
      *
      * @return bool
      */

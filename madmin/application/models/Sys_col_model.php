@@ -79,7 +79,7 @@ class Sys_col_model extends M_Model
         //设置写入数据
         foreach ($col_auth as $val) {
             $vals[] = array(
-                'col_id'   => $col_id,
+                'col_id' => $col_id,
                 'col_auth' => $val
             );
         }

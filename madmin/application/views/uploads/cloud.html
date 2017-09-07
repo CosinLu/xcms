@@ -64,13 +64,13 @@
 <script type="text/javascript">
     require(['uploadsUnit', 'unit', 'jqthumb', 'template', 'dropload'], function (uploadsUnit, unit, jqthumb, template) {
         //容器id
-        var queueid   = '<?=$queueid?>';
+        var queueid = '<?=$queueid?>';
         //是否批量上传
-        var multi     = '<?=$multi?>';
+        var multi = '<?=$multi?>';
         //初始化页码
         var pageIndex = 0;
         //获取窗口索引
-        var index     = parent.layer.getFrameIndex(window.name);
+        var index = parent.layer.getFrameIndex(window.name);
         //设置弹窗标题
         parent.layer.title('云上传');
 
@@ -85,30 +85,25 @@
 
         //加载数据
         var dropload = $('.cloud-list-hook').dropload({
-            domDown   : {
+            domDown: {
                 domRefresh: '',
-                domNoData : '<div class="dropload-noData dropload-nodata-hook">暂无更多</div>'
+                domNoData: '<div class="dropload-noData dropload-nodata-hook">暂无更多</div>'
             },
             loadDownFn: function (me) {
                 pageIndex++;
                 var data = {
-                    x   : Math.random(),
+                    x: Math.random(),
                     page: pageIndex,
-                    key : $('input[name="key"]').val()
+                    key: $('input[name="key"]').val()
                 };
                 $.ajax({
-                    url     : '<?=$get_list_url?>',
-                    type    : 'post',
+                    url: '<?=$get_list_url?>',
+                    type: 'post',
                     dataType: 'json',
-                    data    : data,
-                    success : function (data) {
+                    data: data,
+                    success: function (data) {
                         if (data.list.list.length) {
                             $('#list').append(template('list_tpl', data));
-                            /*$('#list').find('.thumb-hook[data-is-image="1"]').jqthumb({
-                             width: '100%', height: 130
-                             });*/
-
-
                         } else {
                             me.lock();
                             me.noData();
@@ -127,7 +122,7 @@
         $('.list-hook').on('click', '.item-hook', function () {
             var $_siblings = $(this).siblings();
             var $_checkbox = $(this).find('.checkbox-hook');
-            var status     = $_checkbox.is(':checked');
+            var status = $_checkbox.is(':checked');
             $_checkbox.prop('checked', !status);
             if (!status) {
                 $(this).addClass('checked');
@@ -141,18 +136,18 @@
                         .prop('checked', false);
             }
             var checkedNum = $('.list-hook').find('input:checkbox:checked').length;
-            var desc       = checkedNum ? '已选中' + checkedNum + '个文件' : '请选择文件';
+            var desc = checkedNum ? '已选中' + checkedNum + '个文件' : '请选择文件';
             $('.select-info-hook').html(desc);
         });
 
         //保存
         $('.save-hook').on('click', function () {
-            var list      = [];
+            var list = [];
             var inputName = queueid;
             $('.checkbox-hook:input:checked').each(function () {
-                var data     = $(this).data('content');
-                var item     = $(uploadsUnit.config.itemTemplate).clone();
-                var src      = parseInt(data.is_image) ? data.full_path : uploadsUnit.thumbnail(data.ext);
+                var data = $(this).data('content');
+                var item = $(uploadsUnit.config.itemTemplate).clone();
+                var src = parseInt(data.is_image) ? data.full_path : uploadsUnit.thumbnail(data.ext);
                 var thumbSrc = data.thumb_full_path || uploadsUnit.thumbnail(data.ext);
                 //状态
                 item.addClass('complete');

@@ -27,7 +27,7 @@ class Sys_user_model extends M_Model
         }
         $this->db->where('user_type > ', 0);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = $this->config->item('per_page','mcms');
+        $config['per_page'] = $this->config->item('per_page', 'mcms');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.id asc');

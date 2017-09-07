@@ -7,12 +7,25 @@
  */
 
 /**
+ * 转换成标准路径【将路径中的"\"、"//"替换成"/"】
+ * @param string $path
+ * @return mixed|string
+ */
+function standard_path($path = '')
+{
+    $path = str_replace("\\", "/", $path);
+    $path = str_replace("///", "/", $path);
+    $path = str_replace("//", "/", $path);
+    return $path;
+}
+
+/**
  * 下拉列表
  *
- * @param array $data     原始数据
- * @param string $name    元素名称
+ * @param array $data 原始数据
+ * @param string $name 元素名称
  * @param int $select_val 选中值
- * @param int $disabled   禁用
+ * @param int $disabled 禁用
  *
  * @return string
  */
@@ -71,7 +84,7 @@ function checked($initial_val = '', $current_val = '')
  * 多维数组转一维数组
  *
  * @param array $multi_arr 原始数据
- * @param array $num       判断是否为第一次执行此函数，防止多次转换时存在冗余
+ * @param array $num 判断是否为第一次执行此函数，防止多次转换时存在冗余
  *
  * @return array
  */

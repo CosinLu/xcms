@@ -125,7 +125,7 @@ class Sys_auth
             $sql .= " WHERE 
                 `t`.`display`='show'
             AND
-                `t`.`user_type`='" . $this->config->item('pro','mcms') . "'
+                `t`.`user_type`='" . $this->config->item('pro', 'mcms') . "'
             GROUP BY 
                 `t`.`id`
             ORDER BY 
@@ -245,10 +245,10 @@ class Sys_auth
     /**
      * 根据权限输出字符串
      *
-     * @param string $initial_auth  所需权限
-     * @param string $current_auth  当前拥有权限
+     * @param string $initial_auth 所需权限
+     * @param string $current_auth 当前拥有权限
      * @param string $have_auth_str 有权限时输出的字符串
-     * @param string $no_auth_str   无权限时输出的字符串
+     * @param string $no_auth_str 无权限时输出的字符串
      *
      * @return string
      */

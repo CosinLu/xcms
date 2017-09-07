@@ -27,7 +27,7 @@ class Config_model extends M_Model
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
             'config_group_id' => $config_group_id,
-            'display'         => 'show'
+            'display' => 'show'
         ));
         $result = $this->db->get('config')->result_array();
 
@@ -52,7 +52,7 @@ class Config_model extends M_Model
         if (!empty($data['vals'])) {
             foreach ($data['vals'] as $key => $val) {
                 $value[] = array(
-                    'name'  => $key,
+                    'name' => $key,
                     'value' => (is_array($val)) ? implode(',', $val) : $val
                 );
             }
