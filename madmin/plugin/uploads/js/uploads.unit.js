@@ -66,16 +66,17 @@ define(['jquery'], function ($) {
                     var _this = $(this);
                     var list = _this.data('list');
                     var inputName = _this.attr('id');
+                    if (!inputName) return false;
                     if (list != undefined) {
                         $.each(list, function (i, data) {
                             var item = $(u.config.itemTemplate).clone();
-                            var src = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
-                            var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
+                            var src = eval(data.is_image) ? data.rel_path : u.thumbnail(data.file_ext);
+                            var thumbSrc = data.thumb_rel_path || u.thumbnail(data.file_ext);
                             //状态
                             item.addClass('complete');
                             //预览图片信息
                             item.find('.uploads-preview-hook')
-                                .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
+                                .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","file_size":"' + data.file_size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
                             //input
                             item.find('.uploads-input-hook')
                                 .attr('name', inputName + '[]').val(data.id);
@@ -98,6 +99,7 @@ define(['jquery'], function ($) {
             require(['sortable'], function (Sortable) {
                 $('.uploads-queue-hook').each(function () {
                     var id = $(this).attr('id');
+                    if (!id) return false;
                     var el = document.getElementById(id);
                     var sortable = new Sortable(el, {
                         group: id,
@@ -124,7 +126,7 @@ define(['jquery'], function ($) {
                 if (data.is_image) {
                     content += '<div>尺寸：' + data.image_width + ' * ' + data.image_height + '</div>';
                 }
-                content += '<div>大小：' + data.size + ' KB</div>';
+                content += '<div>大小：' + data.file_size + ' KB</div>';
                 content += '</div>';
                 content += '</div>';
                 parent.layer.open({
@@ -162,11 +164,11 @@ define(['jquery'], function ($) {
                     'onUploadComplete': function (file, data) {
                         var data = $.parseJSON(data);
                         var item = file.queueItem;
-                        var src = eval(data.is_image) ? data.full_path : u.thumbnail(data.ext);
-                        var thumbSrc = data.thumb_full_path || u.thumbnail(data.ext);
+                        var src = eval(data.is_image) ? data.rel_path : u.thumbnail(data.file_ext);
+                        var thumbSrc = data.thumb_rel_path || u.thumbnail(data.file_ext);
                         //预览图片信息
                         item.find('.uploads-preview-hook')
-                            .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","size":"' + data.size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_height + '","is_image":"' + data.is_image + '"}');
+                            .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","file_size":"' + data.file_size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_height + '","is_image":"' + data.is_image + '"}');
                         //input
                         item.find('.uploads-input-hook')
                             .attr('name', data.input_name + '[]').val(data.id);

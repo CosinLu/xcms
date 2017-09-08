@@ -18,7 +18,7 @@ class Info_col_onepic_model extends M_Model
     {
         $this->db->select('t.id,t.name');
         $this->db->select('t1.url,t1.remark');
-        $this->db->select('t2.full_path');
+        $this->db->select('t2.rel_path');
         $this->db->from('info_col as t');
         $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
         $this->db->join('uploads as t2', 't2.id=t1.image', 'left');

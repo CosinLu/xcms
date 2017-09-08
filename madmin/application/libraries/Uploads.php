@@ -29,12 +29,12 @@ class Uploads
     {
         if ($uploads_id == '') return '';
         $uploads_id_arr = explode(',', $uploads_id);
-        $this->CI->db->select('id,full_path,is_image,ext,client_name,size,image_width,image_height,raw_path');
+        $this->CI->db->select('id,rel_path,is_image,file_ext,client_name,file_size,image_width,image_height,raw_rel_path');
         $this->CI->db->where_in('id', $uploads_id_arr);
         $this->CI->db->order_by("instr('" . $uploads_id . "',id)");
         $res = $this->CI->db->get('uploads')->result_array();
         foreach ($res as $key => $val) {
-            $res[$key]['thumb_full_path'] = $val['is_image'] ? $val['raw_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $val['ext'] : '';
+            $res[$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $val['file_ext'] : '';
         }
 
         return json_encode($res);

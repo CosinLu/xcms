@@ -18,7 +18,7 @@ class Link_model extends M_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.full_path');
+        $this->db->select('t2.rel_path');
         $this->db->from('link as t');
         $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('uploads as t2', 't2.id=t.image', 'left');

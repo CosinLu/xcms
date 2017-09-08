@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-08 09:55:09
+Date: 2017-09-08 18:19:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -306,6 +306,7 @@ CREATE TABLE `info_single` (
 -- ----------------------------
 -- Records of info_single
 -- ----------------------------
+INSERT INTO `info_single` VALUES ('3', '', '<p>公司简介详细</p>', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for link
@@ -623,7 +624,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -710,6 +711,8 @@ INSERT INTO `sys_log` VALUES ('84', '4', 'madmin', '幻灯片', 'update', 'succe
 INSERT INTO `sys_log` VALUES ('85', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504779618');
 INSERT INTO `sys_log` VALUES ('86', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504779629');
 INSERT INTO `sys_log` VALUES ('87', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504832325');
+INSERT INTO `sys_log` VALUES ('88', '4', 'madmin', '公司简介', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504841330');
+INSERT INTO `sys_log` VALUES ('89', '4', 'madmin', '公司简介', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504849249');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -954,18 +957,18 @@ INSERT INTO `sys_user_auth` VALUES ('6', '4', '');
 DROP TABLE IF EXISTS `uploads`;
 CREATE TABLE `uploads` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章ID',
-  `name` varchar(255) DEFAULT NULL COMMENT '上传后的文件名',
-  `type` varchar(50) DEFAULT NULL COMMENT 'MIME类型',
-  `abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径【不含文件名】',
-  `full_abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径【含文件名】',
-  `path` varchar(255) DEFAULT NULL COMMENT '相对路径【不含文件名】',
-  `full_path` varchar(255) DEFAULT NULL COMMENT '相对路径【含文件名】',
-  `raw_path` varchar(255) DEFAULT NULL COMMENT '相对路径【含文件名，不含后缀名】',
+  `file_name` varchar(255) DEFAULT NULL COMMENT '文件名',
+  `file_type` varchar(50) DEFAULT NULL COMMENT '文件类型【MIME】',
+  `abs_path_dir` varchar(255) DEFAULT NULL COMMENT '绝对路径目录',
+  `abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径',
+  `rel_path_dir` varchar(255) DEFAULT NULL COMMENT '相对路径目录',
+  `rel_path` varchar(255) DEFAULT NULL COMMENT '相对路径',
   `raw_name` varchar(255) DEFAULT NULL COMMENT '文件名，不含后缀名',
-  `orig_name` varchar(255) DEFAULT NULL COMMENT '原始的文件名，只有在使用了 encrypt_name 参数时该值才有用',
-  `client_name` varchar(255) DEFAULT NULL COMMENT '用户提交过来的文件名，还没有对该文件名做任何处理',
-  `ext` varchar(10) DEFAULT NULL COMMENT '文件后缀名，包括句点',
-  `size` double(20,2) DEFAULT NULL COMMENT '文件大小（单位 kb）',
+  `raw_rel_path` varchar(255) DEFAULT NULL COMMENT '相对路径，不含后缀名',
+  `orig_name` varchar(255) DEFAULT NULL COMMENT '原始的文件名',
+  `client_name` varchar(255) DEFAULT NULL COMMENT '用户提交过来的文件名',
+  `file_ext` varchar(10) DEFAULT NULL COMMENT '文件后缀名，包括句点',
+  `file_size` double(20,2) DEFAULT NULL COMMENT '文件大小（单位 kb）',
   `is_image` tinyint(1) DEFAULT NULL COMMENT '文件是否为图片（1 = image. 0 = not.）',
   `image_width` tinyint(20) DEFAULT NULL COMMENT '图片宽度',
   `image_height` tinyint(20) DEFAULT NULL COMMENT '图片高度',
@@ -973,13 +976,24 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=568 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=579 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('563', '3ed90863a4453548d6b00927be2afeb2.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2', '3ed90863a4453548d6b00927be2afeb2', '3ed90863a4453548d6b00927be2afeb2.jpg', '59a8fe5fN31ffc167.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('564', '1d865349f69e2d9482936ff30128b1f4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4', '1d865349f69e2d9482936ff30128b1f4', '1d865349f69e2d9482936ff30128b1f4.jpg', '59a79038N19b55fd0.jpg', '.jpg', '249.36', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('565', 'cfb30c89ed98ac09a214dd324e82854d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d', 'cfb30c89ed98ac09a214dd324e82854d', 'cfb30c89ed98ac09a214dd324e82854d.jpg', '59ae1b90Nf4d63425.jpg', '.jpg', '93.42', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('566', '2065a68aa226f22b486ba0abd58b75ff.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff', '2065a68aa226f22b486ba0abd58b75ff', '2065a68aa226f22b486ba0abd58b75ff.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('567', '70430de916f8f5320db656049d5419c9.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9', '70430de916f8f5320db656049d5419c9', '70430de916f8f5320db656049d5419c9.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('563', '3ed90863a4453548d6b00927be2afeb2.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '3ed90863a4453548d6b00927be2afeb2', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2', '3ed90863a4453548d6b00927be2afeb2.jpg', '59a8fe5fN31ffc167.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('564', '1d865349f69e2d9482936ff30128b1f4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '1d865349f69e2d9482936ff30128b1f4', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4', '1d865349f69e2d9482936ff30128b1f4.jpg', '59a79038N19b55fd0.jpg', '.jpg', '249.36', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('565', 'cfb30c89ed98ac09a214dd324e82854d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', 'cfb30c89ed98ac09a214dd324e82854d', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d', 'cfb30c89ed98ac09a214dd324e82854d.jpg', '59ae1b90Nf4d63425.jpg', '.jpg', '93.42', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('566', '2065a68aa226f22b486ba0abd58b75ff.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '2065a68aa226f22b486ba0abd58b75ff', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff', '2065a68aa226f22b486ba0abd58b75ff.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('567', '70430de916f8f5320db656049d5419c9.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '70430de916f8f5320db656049d5419c9', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9', '70430de916f8f5320db656049d5419c9.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('568', '0fb1a6453fa9c1f17b3888ab5d542cf5.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/0fb1a6453fa9c1f17b3888ab5d542cf5.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/0fb1a6453fa9c1f17b3888ab5d542cf5.jpg', '0fb1a6453fa9c1f17b3888ab5d542cf5', '/uploads/upload/20170908/0fb1a6453fa9c1f17b3888ab5d542cf5', '0fb1a6453fa9c1f17b3888ab5d542cf5.jpg', '59af95ecN177a895c.jpg', '.jpg', '129.83', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('569', '01a7be5a0a2d09397fa609dd00cd9d1a.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/01a7be5a0a2d09397fa609dd00cd9d1a.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/01a7be5a0a2d09397fa609dd00cd9d1a.jpg', '01a7be5a0a2d09397fa609dd00cd9d1a', '/uploads/upload/20170908/01a7be5a0a2d09397fa609dd00cd9d1a', '01a7be5a0a2d09397fa609dd00cd9d1a.jpg', '59afba1cN5384b387.jpg', '.jpg', '96.15', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('570', '965335e6f832669638e9b490c5b2a38b.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/965335e6f832669638e9b490c5b2a38b.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/965335e6f832669638e9b490c5b2a38b.jpg', '965335e6f832669638e9b490c5b2a38b', '/uploads/upload/20170908/965335e6f832669638e9b490c5b2a38b', '965335e6f832669638e9b490c5b2a38b.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('571', '63800ed742032da7872efc635fac7b8c.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/63800ed742032da7872efc635fac7b8c.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/63800ed742032da7872efc635fac7b8c.jpg', '63800ed742032da7872efc635fac7b8c', '/uploads/upload/20170908/63800ed742032da7872efc635fac7b8c', '63800ed742032da7872efc635fac7b8c.jpg', '59ae4fe1Na9de03ee.jpg', '.jpg', '95.71', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('572', '7f7e9905afab174c088b355f778d5a9c.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/7f7e9905afab174c088b355f778d5a9c.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/7f7e9905afab174c088b355f778d5a9c.jpg', '7f7e9905afab174c088b355f778d5a9c', '/uploads/upload/20170908/7f7e9905afab174c088b355f778d5a9c', '7f7e9905afab174c088b355f778d5a9c.jpg', '59ae4fe1Na9de03ee.jpg', '.jpg', '95.71', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('573', '49e8607ee1a14c60f0ddf35ac28c3b73.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/49e8607ee1a14c60f0ddf35ac28c3b73.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/49e8607ee1a14c60f0ddf35ac28c3b73.jpg', '49e8607ee1a14c60f0ddf35ac28c3b73', '/uploads/upload/20170908/49e8607ee1a14c60f0ddf35ac28c3b73', '49e8607ee1a14c60f0ddf35ac28c3b73.jpg', '59ae4fe1Na9de03ee.jpg', '.jpg', '95.71', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('574', '5fc573cf47b844b4372ba3c401c64b20.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/5fc573cf47b844b4372ba3c401c64b20.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/5fc573cf47b844b4372ba3c401c64b20.jpg', '5fc573cf47b844b4372ba3c401c64b20', '/uploads/upload/20170908/5fc573cf47b844b4372ba3c401c64b20', 'ee0ab0870d6b9e0f7e05194ab76422cc.jpg', '123.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('575', '53aa6611c941800fb5953a566c03f954.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/53aa6611c941800fb5953a566c03f954.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/53aa6611c941800fb5953a566c03f954.jpg', '53aa6611c941800fb5953a566c03f954', '/uploads/upload/20170908/53aa6611c941800fb5953a566c03f954', '53aa6611c941800fb5953a566c03f954.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('576', '3b5b040d1613061dc0d19e894dfd56ab.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab.jpg', '3b5b040d1613061dc0d19e894dfd56ab', '/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab', '3b5b040d1613061dc0d19e894dfd56ab.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('577', 'a70bff2443b6398b3e9617cce20491e5.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5.jpg', 'a70bff2443b6398b3e9617cce20491e5', '/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5', 'a70bff2443b6398b3e9617cce20491e5.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('578', '6b8aaec826b8ac0f68e48dfb492183a3.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3.jpg', '6b8aaec826b8ac0f68e48dfb492183a3', '/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3', '6b8aaec826b8ac0f68e48dfb492183a3.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);

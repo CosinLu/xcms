@@ -13,7 +13,7 @@ class Uploads_model extends CI_Model
     public function get_list($page = '', $key = '')
     {
         $page = ($page) ?: 1;
-        $this->db->select('id,full_path,is_image,ext,client_name,size,image_width,image_height,raw_path');
+        $this->db->select('id,rel_path,is_image,file_ext,client_name,file_size,image_width,image_height,raw_rel_path');
         $this->db->from('uploads');
         if ($key) {
             $this->db->like('client_name', $key);
@@ -22,10 +22,7 @@ class Uploads_model extends CI_Model
         $config['cur_page'] = $page;
         $this->db->order_by('id desc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
-        $data['list'] = $this->db->get()->result_array();
-        foreach ($data['list'] as $key => $val) {
-            $data['list'][$key]['thumb_full_path'] = $val['is_image'] ? $val['raw_path'] . $this->config->item('thumb_marker', 'mcms') . $val['ext'] : '';
-        }
+        $data = $this->db->get()->result_array();
 
         return $data;
     }

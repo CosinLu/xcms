@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=$this->config->item('title','mcms')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="panel uploads_panel">
+    <div class="panel-body uploads_panel_body">
+        <div class="network_image">
+            <div class="row">
+                <div class="col-xs-3">网络图片</div>
+                <div class="col-xs-7">
+                    <div class="form-group extract">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="请输入图片链接地址">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">提取</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image_list image-list-hook uploads_image_list">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="local_image">
+            <div class="row">
+                <div class="col-xs-3">本地图片</div>
+                <div class="col-xs-7">
+                    <div class="uploads">
+                        <div id="image" class="uploads-queue uploads-queue-hook"></div>
+                        <input type="file" data-name="image" class="uploads-btn-hook hidden">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer uploads_panel_footer">
+        <button type="button" class="btn btn-primary">确定</button>
+        <button type="button" class="btn btn-default close-hook">取消</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['uploads'], function () {
+        //获取窗口索引
+        var index = parent.layer.getFrameIndex(window.name);
+        //设置弹窗标题
+        parent.layer.title('本地上传');
+    });
+</script>
+</body>
+</html>

@@ -757,6 +757,9 @@
                         settings.queueID = settings.id + '-queue';
                         $data.queueEl = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
                         $data.button.after($data.queueEl);
+                    } else if (settings.queueID && $('#' + settings.queueID).length == 0) {
+                        $data.queueEl = $('<div id="' + settings.queueID + '" class="uploadifive-queue" />');
+                        $data.button.after($data.queueEl);
                     } else {
                         $data.queueEl = $('#' + settings.queueID);
                     }
