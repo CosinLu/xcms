@@ -39,7 +39,7 @@ define(['jquery'], function ($) {
 
             if ($.inArray(ext, ['doc', 'docx']) > -1) {
                 src = thumbnail.docx;
-            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'jpeg','bmp']) > -1) {
+            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'jpeg', 'bmp']) > -1) {
                 src = thumbnail.jpg;
             } else if ($.inArray(ext, ['mp3', 'mid', 'ogg', 'mp4a', 'wav', 'wma']) > -1) {
                 src = thumbnail.mp3;
@@ -215,8 +215,9 @@ define(['jquery'], function ($) {
                     //容器
                     var queueID = $(this).data('id');
                     //是否多文件上传
-                    var multi = $(this).data('multi');
-                    var url = $(this).data('url') + '?&queueid=' + queueID + '&multi=' + multi;
+                    var multi = $(this).data('multi') || false;
+                    var url = $(this).data('url') || 'index.php/uploads/cloud';
+                    var url = url + '?&queueid=' + queueID + '&multi=' + multi;
                     layer.open({
                         type: 2,
                         title: '云上传',

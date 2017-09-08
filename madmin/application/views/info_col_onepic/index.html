@@ -113,7 +113,7 @@
                         $('#list').html(template('list_tpl', data)).find('img').jqthumb({width: 120, height: 80});
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-hook').after('<?=$this->config->item("loading","mcms")?>');
+                        $('.list-hook').after('<?=$this->config->item("nodata","mcms")?>');
                     }
                 }
             })

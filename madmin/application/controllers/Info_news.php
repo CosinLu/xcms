@@ -24,7 +24,7 @@ class Info_news extends Info
         $url['get_list_url'] = site_url('info_news/get_list?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_news/insert?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_news" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-info btn-sm search-btn-hook">搜索</button>');
+        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('info_news/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         $this->load->vars($url);
     }

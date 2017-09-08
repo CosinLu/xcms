@@ -7,13 +7,13 @@ define(['jquery', 'layer'], function ($) {
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
-                var content      = $(this).data('content');
+                var content = $(this).data('content');
                 var titleContent = (content.name) ? '<div style="padding-top:15px;">' + content.name + '</div>' : '';
                 parent.layer.open({
-                    title  : false,
-                    area   : '500px',
-                    btn    : false,
-                    offset : '100px',
+                    title: false,
+                    area: '500px',
+                    btn: false,
+                    offset: '100px',
                     content: '<div style="text-align: center;"><img src="' + content.src + '" style="max-width: 100%;max-height: 500px;">' + titleContent + '</div>'
                 });
 
@@ -30,10 +30,10 @@ define(['jquery', 'layer'], function ($) {
         //layer配置
         layerConfig: function () {
             layer.config({
-                path      : 'plugin/layer/',
-                extend    : 'bootcss/css/style.css',
-                skin      : 'layer-ext-bootcss',
-                shade     : [0.6, '#373737'],
+                path: 'plugin/layer/',
+                extend: 'bootcss/css/style.css',
+                skin: 'layer-ext-bootcss',
+                shade: [0.6, '#373737'],
                 shadeClose: true
             });
         },
@@ -43,9 +43,9 @@ define(['jquery', 'layer'], function ($) {
             require(['form'], function () {
                 if ($('.ajax-form-hook').length > 0) {
                     $('.ajax-form-hook').ajaxForm({
-                        type    : 'post',
+                        type: 'post',
                         dataType: 'json',
-                        success : function (responseData, $form) {
+                        success: function (responseData, $form) {
                             //提示
                             var msg;
                             if (responseData.msg) {
@@ -86,12 +86,12 @@ define(['jquery', 'layer'], function ($) {
         //批量删除
         batchDel: function () {
             $(document).on('click', '.batch-del-hook', function () {
-                var tbname    = $(this).data('tb');
-                var url       = $(this).data('url');
-                var primary   = $(this).data('primary');
+                var tbname = $(this).data('tb');
+                var url = $(this).data('url');
+                var primary = $(this).data('primary');
                 var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
-                var checkbox  = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
-                var id        = '';
+                var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
+                var id = '';
                 //遍历已选中checkbox并获得val
                 checkbox.each(function () {
                     id += $(this).val() + ',';
@@ -104,9 +104,9 @@ define(['jquery', 'layer'], function ($) {
                 }
                 layer.confirm('删除数据？', {icon: 3, title: '批量删除'}, function () {
                     $.ajax({
-                        url    : url,
-                        type   : 'post',
-                        data   : {tbname: tbname, id: id, primary: primary},
+                        url: url,
+                        type: 'post',
+                        data: {tbname: tbname, id: id, primary: primary},
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
@@ -125,9 +125,9 @@ define(['jquery', 'layer'], function ($) {
         //删除
         del: function () {
             $(document).on('click', '.del-hook', function () {
-                var tbname  = $(this).data('tb');
-                var id      = $(this).data('id');
-                var url     = $(this).data('url');
+                var tbname = $(this).data('tb');
+                var id = $(this).data('id');
+                var url = $(this).data('url');
                 var primary = $(this).data('primary');
                 if (tbname == '' || id == '' || url == '') {
                     layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
@@ -135,9 +135,9 @@ define(['jquery', 'layer'], function ($) {
                 }
                 layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
                     $.ajax({
-                        url    : url,
-                        type   : 'post',
-                        data   : {tbname: tbname, id: id, primary: primary},
+                        url: url,
+                        type: 'post',
+                        data: {tbname: tbname, id: id, primary: primary},
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
@@ -165,7 +165,7 @@ define(['jquery', 'layer'], function ($) {
         checkAll: function () {
             //全选
             $(document).on('click', 'input[type="checkbox"][data-checkname]', function () {
-                var name      = $(this).data('checkname');
+                var name = $(this).data('checkname');
                 var isChecked = $(this).is(':checked');
                 $('input[type="checkbox"][name^=' + name + ']:enabled').prop('checked', isChecked);
             });
@@ -173,12 +173,12 @@ define(['jquery', 'layer'], function ($) {
             //关联全选
             $(document).on('click', 'input[type="checkbox"]', function () {
                 if ($(this).attr('name')) {
-                    var name     = $(this).attr('name').replace(/\[.*\]/, '');
+                    var name = $(this).attr('name').replace(/\[.*\]/, '');
                     var checkbox = $('input[type="checkbox"][data-checkname="' + name + '"]:enabled');
                     if (checkbox.length == 0) {
                         return;
                     }
-                    var checkedLen  = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
+                    var checkedLen = $('input[type="checkbox"][name^="' + name + '"]:enabled:checked').length;
                     var checkboxLen = $('input[type="checkbox"][name^="' + name + '"]:enabled').length;
                     if (checkedLen < checkboxLen) {
                         checkbox.prop('checked', false);
@@ -193,9 +193,9 @@ define(['jquery', 'layer'], function ($) {
         sidebarTree: function () {
             require(['mtree'], function () {
                 $('.mtree-sidebar-hook').mtree({
-                    html   : true,
+                    html: true,
                     display: 2,
-                    indent : 0,
+                    indent: 0,
                     onClick: function (obj, url) {
                         window.location.href = url;
                     }
@@ -207,9 +207,9 @@ define(['jquery', 'layer'], function ($) {
         mainSidebarTree: function () {
             require(['mtree'], function () {
                 $('.mtree-main-sidebar-hook').mtree({
-                    html   : true,
+                    html: true,
                     display: 2,
-                    indent : 0,
+                    indent: 0,
                     onClick: function (obj, url) {
                         window.location.href = url;
                     }
@@ -230,7 +230,7 @@ define(['jquery', 'layer'], function ($) {
                 var defaults = {
                     dom: '.nano-hook'
                 };
-                var ops      = $.extend({}, defaults, options);
+                var ops = $.extend({}, defaults, options);
                 $(ops.dom).nanoScroller();
             })
         },
@@ -239,14 +239,14 @@ define(['jquery', 'layer'], function ($) {
         dragsort: function (obj) {
             require(['dragsort'], function (dragsort) {
                 $('.' + obj).each(function () {
-                    var id        = $(this).attr('id');
+                    var id = $(this).attr('id');
                     var className = $(this).children('div').attr('class');
-                    var newClass  = '';
+                    var newClass = '';
                     if (className) {
                         newClass = className.split(' ').join('.')
                     }
                     $('#' + id).dragsort({
-                        dragSelector       : '.' + newClass,
+                        dragSelector: '.' + newClass,
                         dragSelectorExclude: 'a,i,.control',
                         placeHolderTemplate: '<div class="' + className + ' dragsort"></div>'
                     });
@@ -258,11 +258,11 @@ define(['jquery', 'layer'], function ($) {
         datetime: function () {
             require(['datetimepicker'], function () {
                 $('input.datetimepicker-hook').datetimepicker({
-                    language      : 'zh-CN',
-                    format        : 'yyyy-mm-dd hh:ii:ss',
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd hh:ii:ss',
                     pickerPosition: 'top-right',
-                    autoclose     : true,
-                    todayBtn      : true
+                    autoclose: true,
+                    todayBtn: true
                 });
             });
         },
@@ -274,7 +274,51 @@ define(['jquery', 'layer'], function ($) {
                 //实例化编辑器
                 $('.editor-hook').each(function () {
                     var id = $(this).attr('id');
-                    var ue = UE.getEditor(id);
+                    var ue = UE.getEditor(id, {
+                        toolbars: [
+                            [
+                                'fullscreen', 'source', 'undo', 'redo',
+                                'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'cleardoc',
+                                'lineheight',
+                                'customstyle', 'paragraph', 'fontfamily', 'fontsize',
+                                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify',
+                                'link', 'unlink', 'anchor',
+                                'insertimage', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak',
+                                'horizontal',
+                                'inserttable',
+                                'print',
+                            ]
+                        ]
+                        , zIndex: 9999
+                        , initialFrameHeight: 350
+                        , autoSyncData: false
+                        , 'fontsize': [12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]
+                        , elementPathEnabled: false
+                        , wordCount: false
+                        , autoHeightEnabled: false
+                        , autoFloatEnabled: false
+                        , topOffset: 50
+                        , autotypeset: {
+                            mergeEmptyline: true,           //合并空行
+                            removeClass: true,              //去掉冗余的class
+                            removeEmptyline: true,         //去掉空行
+                            textAlign: "left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+                            imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+                            pasteFilter: true,             //根据规则过滤没事粘贴进来的内容
+                            clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+                            clearFontFamily: true,         //去掉所有的内嵌字体，使用编辑器默认的字体
+                            removeEmptyNode: true,         // 去掉空节点
+                            //可以去掉的标签
+                            removeTagNames: {标签名字: 1},
+                            indent: false,                  // 行首缩进
+                            indentValue: '2em',            //行首缩进的大小
+                            bdc2sb: false,
+                            tobdc: false
+                        }
+                        , theme: 'fontawesome'
+                        , enableAutoSave: false
+                        , disabledTableInTable: false
+                    });
                     //编辑器准备就绪后会触发该事件
                     ue.ready(function () {
                         _this._syncEditorToTxtarea(ue, id);
@@ -291,8 +335,8 @@ define(['jquery', 'layer'], function ($) {
         //同步编辑器内容到textarea
         //解决ajaxForm提交表单无法获取编辑器内容
         _syncEditorToTxtarea: function (ue, id) {
-            var txt           = $('textarea[name="' + id + '"]');
-            var txtLen        = txt.length;
+            var txt = $('textarea[name="' + id + '"]');
+            var txtLen = txt.length;
             var editorContent = ue.getContent();
             if (txtLen > 0) {
                 txt.val(editorContent);
@@ -302,7 +346,7 @@ define(['jquery', 'layer'], function ($) {
         },
 
         //权限选择器
-        authCheck       : function () {
+        authCheck: function () {
             var _this = this;
 
             //全选
@@ -313,7 +357,7 @@ define(['jquery', 'layer'], function ($) {
 
             //全选当前分类下的所有复选框
             $(document).on('click', 'input[name="checkAll"]', function () {
-                var status   = $(this).is(':checked');
+                var status = $(this).is(':checked');
                 var checkbox = $(this).closest('.li-hook').next('#list').find('input:checkbox');//全部复选框
                 checkbox.prop('checked', status);
             });
@@ -333,8 +377,8 @@ define(['jquery', 'layer'], function ($) {
             //关联行首
             $(document).on('click', 'input[name^="auth"]', function () {
                 var siblingsCheckedLen = $(this).closest('label').siblings().find('input[name^="auth"]:checked').length;//兄弟label选中数
-                var status             = $(this).is(':checked');//状态：true=选中，false=未选中
-                var prevCheckbox       = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
+                var status = $(this).is(':checked');//状态：true=选中，false=未选中
+                var prevCheckbox = $(this).closest('li').find('input[name^="id"]');//上级name为id[]的复选框
                 var prevAuthCheckedLen = $(this).closest('ul').prev('.li-hook').find('input[name^="auth"]:checked').length;//上级权限复选框选中数
                 var nextAuthCheckedLen = $(this).closest('.li-hook').next('ul').find('input[name^="auth"]:checked').length;//下级权限复选框选中数
                 if (siblingsCheckedLen == 0 && nextAuthCheckedLen == 0) {
@@ -349,19 +393,19 @@ define(['jquery', 'layer'], function ($) {
             });
         },
         //关联当前行
-        _checkedInline  : function (obj) {
+        _checkedInline: function (obj) {
             var status = obj.is(':checked');
             obj.closest('div').siblings().find('input[type="checkbox"]').prop('checked', status);
         },
         //关联下级
-        _checkedNext    : function (obj) {
+        _checkedNext: function (obj) {
             var status = obj.is(':checked');
             obj.closest('.li-hook').next('ul').find('input[type="checkbox"]').prop('checked', status);
         },
         //关联上级
-        _checkedPrev    : function (obj) {
-            var checkedLen  = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox    = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
+        _checkedPrev: function (obj) {
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {
@@ -374,8 +418,8 @@ define(['jquery', 'layer'], function ($) {
         },
         //权限关联上级
         _authCheckedPrev: function (obj) {
-            var checkedLen  = obj.closest('ul').find('input[type="checkbox"]:checked').length;
-            var checkbox    = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
+            var checkedLen = obj.closest('ul').find('input[type="checkbox"]:checked').length;
+            var checkbox = obj.closest('ul').prev('.li-hook').find('input[type="checkbox"][name^="id"]');
             var checkboxLen = checkbox.length;
             if (checkboxLen > 0) {
                 if (checkedLen > 0) {

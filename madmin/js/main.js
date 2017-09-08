@@ -8,14 +8,14 @@ require.config({
         'bootstrap': 'plugin/bootstrap/js/bootstrap.min',
         'jquery': 'js/jquery.min-1.11.1',
         'unit': 'js/unit',
-        'colorpicker': 'plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.min',
-        'datetimepicker': 'plugin/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
+        'colorpicker': 'plugin/colorpicker/js/bootstrap-colorpicker.min',
+        'datetimepicker': 'plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
         'dragsort': 'plugin/dragsort/jquery.dragsort-0.5.2.min',
         'dropload': 'plugin/dropload/dropload.min',
-        'iconpicker': 'plugin/fontawesome-iconpicker/js/fontawesome-iconpicker',
+        'iconpicker': 'plugin/iconpicker/js/fontawesome-iconpicker',
         'layer': 'plugin/layer/layer',
         'mtree': 'plugin/mtree/js/mtree',
-        'ueditor': 'plugin/ueditor/ueditor.all.min',
+        'ueditor': 'plugin/ueditor/ueditor.all',
         'jqthumb': 'plugin/jqthumb/jqthumb.min',
         'form': 'plugin/jquery.form.min',
         'sortable': 'plugin/sortable/Sortable.min',
@@ -32,12 +32,12 @@ require.config({
         },
         'colorpicker': {
             deps: ['bootstrap',
-                'css!plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css']
+                'css!plugin/colorpicker/css/bootstrap-colorpicker.min.css']
         },
         'datetimepicker': {
             deps: ['bootstrap',
-                'plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min',
-                'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
+                'plugin/datetimepicker/js/bootstrap-datetimepicker.min',
+                'css!plugin/datetimepicker/css/bootstrap-datetimepicker.min.css',
                 'css!plugin/../css/datetimepicker.css']
         },
         'dropload': {
@@ -47,7 +47,7 @@ require.config({
         'iconpicker': {
             deps: ['jquery',
                 'bootstrap',
-                'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css',
+                'css!plugin/iconpicker/css/fontawesome-iconpicker.min.css',
                 'css!plugin/../css/iconpicker.css']
         },
         'mtree': {

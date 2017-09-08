@@ -38,13 +38,11 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">图片</div>
                                 <div class="col-xs-8">
-                                    <button type="button"
-                                            data-multi="true"
-                                            name="image"
-                                            class="btn btn-info upload-online-hook">在线浏览
-                                    </button>
-                                    <input class="hide uploadifive-hook" data-multi="false" name="image"
-                                           type="file">
+                                    <div class="uploads">
+                                        <div id="image" class="uploads-queue uploads-queue-hook"></div>
+                                        <input data-name="image" class="uploads-btn-hook hidden" type="file"
+                                               data-cloud="true">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
