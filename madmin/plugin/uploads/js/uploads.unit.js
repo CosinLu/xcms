@@ -6,6 +6,7 @@ define(['jquery'], function ($) {
         //配置
         config: {
             'itemTemplate': '<div class="uploadifive-queue-item uploads-queue-item uploads-queue-item-hook">\
+                            <span class="uploads-err uploads-err-hook"></span>\
                             <span class="uploads-move uploads-move-hook"></span>\
                             <div class="uploads-progress progress">\
                                 <div class="progress-bar progress-bar-success"></div>\
@@ -179,7 +180,27 @@ define(['jquery'], function ($) {
                     'onQueueComplete': function (uploads) {
                         //this.dragSort();
                     },
-                    'onError': function (errorType) {
+                    'onError': function (errorType, file, uploadAll) {
+                        var item = file.queueItem;
+                        switch (errorType) {
+                            case '404_FILE_NOT_FOUND':
+                                errorMsg = '404错误';
+                                break;
+                            case '403_FORBIDDEN':
+                                errorMsg = '403禁止';
+                                break;
+                            case 'FORBIDDEN_FILE_TYPE':
+                                errorMsg = '类型错误';
+                                break;
+                            case 'FILE_SIZE_LIMIT_EXCEEDED':
+                                errorMsg = '文件太大';
+                                break;
+                            default:
+                                errorMsg = '未知错误';
+                                break;
+                        }
+                        item.find('.uploads-err-hook').html(errorMsg).show();
+                        item.find('.uploads-thumb-hook').attr('src', 'plugin/uploads/images/damaged.png');
                     }
                 });
             })

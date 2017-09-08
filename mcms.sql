@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-08-27 20:28:53
+Date: 2017-09-08 09:55:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -211,7 +211,7 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
@@ -380,11 +380,13 @@ CREATE TABLE `slide` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
 -- ----------------------------
+INSERT INTO `slide` VALUES ('6', '测试图片上传2', '563', '', '_self', 'show', '100', null, null, null, null);
+INSERT INTO `slide` VALUES ('5', '测试图片上传', '564', '', '_self', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col
@@ -431,7 +433,7 @@ INSERT INTO `sys_col` VALUES ('20', '广告管理', 'fa fa-picture-o', '3', '2',
 INSERT INTO `sys_col` VALUES ('24', '单图管理', null, '20', '3', 'info_col_onepic', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('25', '多图管理', null, '20', '3', 'info_col_muitipic', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('31', '日志', 'fa fa-list', '1', '2', 'sys_log', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('38', '文件管理', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'hide', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('41', '导航管理', 'fa fa-bars', '2', '2', 'navigation', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('42', '友情链接', 'fa fa-link', '4', '2', 'link', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('43', '商品管理', 'fa fa-shopping-bag', '0', '1', '', '', 'pro', 'hide', '100', null, null, null, null);
@@ -621,7 +623,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -677,6 +679,37 @@ INSERT INTO `sys_log` VALUES ('53', '4', 'madmin', '菜单管理', 'update', 'su
 INSERT INTO `sys_log` VALUES ('54', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.101', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1503674501');
 INSERT INTO `sys_log` VALUES ('55', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1503805690');
 INSERT INTO `sys_log` VALUES ('56', '4', 'madmin', '栏目管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-FTTP3GQ', '127.0.0.1', '1503830669');
+INSERT INTO `sys_log` VALUES ('57', '4', 'madmin', '网站配置', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503893077');
+INSERT INTO `sys_log` VALUES ('58', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503986766');
+INSERT INTO `sys_log` VALUES ('59', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503986867');
+INSERT INTO `sys_log` VALUES ('60', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503986873');
+INSERT INTO `sys_log` VALUES ('61', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1503998891');
+INSERT INTO `sys_log` VALUES ('62', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504168368');
+INSERT INTO `sys_log` VALUES ('63', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504168376');
+INSERT INTO `sys_log` VALUES ('64', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504168380');
+INSERT INTO `sys_log` VALUES ('65', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504168383');
+INSERT INTO `sys_log` VALUES ('66', '4', 'madmin', '文件管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504168388');
+INSERT INTO `sys_log` VALUES ('67', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504488318');
+INSERT INTO `sys_log` VALUES ('68', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504490438');
+INSERT INTO `sys_log` VALUES ('69', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504490444');
+INSERT INTO `sys_log` VALUES ('70', '4', 'madmin', '栏目管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504490452');
+INSERT INTO `sys_log` VALUES ('71', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504493889');
+INSERT INTO `sys_log` VALUES ('72', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504604460');
+INSERT INTO `sys_log` VALUES ('73', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504607788');
+INSERT INTO `sys_log` VALUES ('74', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504607807');
+INSERT INTO `sys_log` VALUES ('75', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504672961');
+INSERT INTO `sys_log` VALUES ('76', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504673433');
+INSERT INTO `sys_log` VALUES ('77', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504673452');
+INSERT INTO `sys_log` VALUES ('78', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504686317');
+INSERT INTO `sys_log` VALUES ('79', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504750097');
+INSERT INTO `sys_log` VALUES ('80', '4', 'madmin', '幻灯片', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504750103');
+INSERT INTO `sys_log` VALUES ('81', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504756750');
+INSERT INTO `sys_log` VALUES ('82', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504756765');
+INSERT INTO `sys_log` VALUES ('83', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504778428');
+INSERT INTO `sys_log` VALUES ('84', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504779097');
+INSERT INTO `sys_log` VALUES ('85', '4', 'madmin', '幻灯片', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504779618');
+INSERT INTO `sys_log` VALUES ('86', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504779629');
+INSERT INTO `sys_log` VALUES ('87', '4', 'madmin', '菜单管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1504832325');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -688,7 +721,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -737,6 +770,33 @@ INSERT INTO `sys_login_log` VALUES ('41', '4', '127.0.0.1', '1503797380');
 INSERT INTO `sys_login_log` VALUES ('42', '4', '127.0.0.1', '1503815540');
 INSERT INTO `sys_login_log` VALUES ('43', '4', '127.0.0.1', '1503830627');
 INSERT INTO `sys_login_log` VALUES ('44', '4', '127.0.0.1', '1503836720');
+INSERT INTO `sys_login_log` VALUES ('45', '4', '127.0.0.1', '1503882283');
+INSERT INTO `sys_login_log` VALUES ('46', '4', '127.0.0.1', '1503882523');
+INSERT INTO `sys_login_log` VALUES ('47', '4', '127.0.0.1', '1503893815');
+INSERT INTO `sys_login_log` VALUES ('48', '4', '127.0.0.1', '1503893853');
+INSERT INTO `sys_login_log` VALUES ('49', '4', '127.0.0.1', '1503904155');
+INSERT INTO `sys_login_log` VALUES ('50', '4', '127.0.0.1', '1503907213');
+INSERT INTO `sys_login_log` VALUES ('51', '4', '127.0.0.1', '1503907278');
+INSERT INTO `sys_login_log` VALUES ('52', '4', '127.0.0.1', '1503968124');
+INSERT INTO `sys_login_log` VALUES ('53', '4', '127.0.0.1', '1503986737');
+INSERT INTO `sys_login_log` VALUES ('54', '4', '127.0.0.1', '1504054702');
+INSERT INTO `sys_login_log` VALUES ('55', '4', '127.0.0.1', '1504073541');
+INSERT INTO `sys_login_log` VALUES ('56', '4', '127.0.0.1', '1504088387');
+INSERT INTO `sys_login_log` VALUES ('57', '4', '127.0.0.1', '1504142964');
+INSERT INTO `sys_login_log` VALUES ('58', '4', '127.0.0.1', '1504231715');
+INSERT INTO `sys_login_log` VALUES ('59', '4', '127.0.0.1', '1504487610');
+INSERT INTO `sys_login_log` VALUES ('60', '4', '127.0.0.1', '1504493723');
+INSERT INTO `sys_login_log` VALUES ('61', '4', '127.0.0.1', '1504493747');
+INSERT INTO `sys_login_log` VALUES ('62', '4', '127.0.0.1', '1504572700');
+INSERT INTO `sys_login_log` VALUES ('63', '4', '127.0.0.1', '1504582535');
+INSERT INTO `sys_login_log` VALUES ('64', '4', '127.0.0.1', '1504660334');
+INSERT INTO `sys_login_log` VALUES ('65', '4', '127.0.0.1', '1504663116');
+INSERT INTO `sys_login_log` VALUES ('66', '4', '127.0.0.1', '1504663124');
+INSERT INTO `sys_login_log` VALUES ('67', '4', '127.0.0.1', '1504686297');
+INSERT INTO `sys_login_log` VALUES ('68', '4', '127.0.0.1', '1504746144');
+INSERT INTO `sys_login_log` VALUES ('69', '4', '127.0.0.1', '1504747745');
+INSERT INTO `sys_login_log` VALUES ('70', '4', '127.0.0.1', '1504764103');
+INSERT INTO `sys_login_log` VALUES ('71', '4', '127.0.0.1', '1504832300');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -865,7 +925,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('2', '1', 'admin', '1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', null, null, null, null);
 INSERT INTO `sys_user` VALUES ('3', '3', 'demo', '2', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e057f20f883e', '开发者', '开发者', null, 'normal', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e057f20f883e', 'Meng Xianghan', '开发者', null, 'normal', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_user_auth
@@ -900,6 +960,7 @@ CREATE TABLE `uploads` (
   `full_abs_path` varchar(255) DEFAULT NULL COMMENT '绝对路径【含文件名】',
   `path` varchar(255) DEFAULT NULL COMMENT '相对路径【不含文件名】',
   `full_path` varchar(255) DEFAULT NULL COMMENT '相对路径【含文件名】',
+  `raw_path` varchar(255) DEFAULT NULL COMMENT '相对路径【含文件名，不含后缀名】',
   `raw_name` varchar(255) DEFAULT NULL COMMENT '文件名，不含后缀名',
   `orig_name` varchar(255) DEFAULT NULL COMMENT '原始的文件名，只有在使用了 encrypt_name 参数时该值才有用',
   `client_name` varchar(255) DEFAULT NULL COMMENT '用户提交过来的文件名，还没有对该文件名做任何处理',
@@ -912,8 +973,13 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=568 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
+INSERT INTO `uploads` VALUES ('563', '3ed90863a4453548d6b00927be2afeb2.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2.jpg', '/uploads/upload/20170907/3ed90863a4453548d6b00927be2afeb2', '3ed90863a4453548d6b00927be2afeb2', '3ed90863a4453548d6b00927be2afeb2.jpg', '59a8fe5fN31ffc167.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('564', '1d865349f69e2d9482936ff30128b1f4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170907/', 'D:/wamp/www/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '/uploads/upload/20170907/', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4.jpg', '/uploads/upload/20170907/1d865349f69e2d9482936ff30128b1f4', '1d865349f69e2d9482936ff30128b1f4', '1d865349f69e2d9482936ff30128b1f4.jpg', '59a79038N19b55fd0.jpg', '.jpg', '249.36', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('565', 'cfb30c89ed98ac09a214dd324e82854d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d.jpg', '/uploads/upload/20170908/cfb30c89ed98ac09a214dd324e82854d', 'cfb30c89ed98ac09a214dd324e82854d', 'cfb30c89ed98ac09a214dd324e82854d.jpg', '59ae1b90Nf4d63425.jpg', '.jpg', '93.42', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('566', '2065a68aa226f22b486ba0abd58b75ff.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff.jpg', '/uploads/upload/20170908/2065a68aa226f22b486ba0abd58b75ff', '2065a68aa226f22b486ba0abd58b75ff', '2065a68aa226f22b486ba0abd58b75ff.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('567', '70430de916f8f5320db656049d5419c9.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9.jpg', '/uploads/upload/20170908/70430de916f8f5320db656049d5419c9', '70430de916f8f5320db656049d5419c9', '70430de916f8f5320db656049d5419c9.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
