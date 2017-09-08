@@ -1746,14 +1746,14 @@
              * {
              *     title: 'Images',
              *     extensions: 'gif,jpg,jpeg,bmp,png',
-             *     mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif'
+             *     mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'
              * }
              * ```
              */
             accept: null/*{
              title: 'Images',
              extensions: 'gif,jpg,jpeg,bmp,png',
-             mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif'
+             mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'
              }*/
         });
 

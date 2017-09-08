@@ -4,33 +4,33 @@
 window.UEDITOR_HOME_URL = document.getElementsByTagName('base')[0].href + '/plugin/ueditor/';
 require.config({
     paths: {
-        'css'           : 'plugin/css.min',
-        'bootstrap'     : 'plugin/bootstrap/js/bootstrap.min',
-        'jquery'        : 'js/jquery.min-1.11.1',
-        'unit'          : 'js/unit',
-        'colorpicker'   : 'plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.min',
+        'css': 'plugin/css.min',
+        'bootstrap': 'plugin/bootstrap/js/bootstrap.min',
+        'jquery': 'js/jquery.min-1.11.1',
+        'unit': 'js/unit',
+        'colorpicker': 'plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.min',
         'datetimepicker': 'plugin/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
-        'dragsort'      : 'plugin/dragsort/jquery.dragsort-0.5.2.min',
-        'dropload'      : 'plugin/dropload/dropload.min',
-        'iconpicker'    : 'plugin/fontawesome-iconpicker/js/fontawesome-iconpicker',
-        'layer'         : 'plugin/layer/layer',
-        'mtree'         : 'plugin/mtree/js/mtree',
-        'ueditor'       : 'plugin/ueditor/ueditor.all.min',
-        'jqthumb'       : 'plugin/jqthumb/jqthumb.min',
-        'form'          : 'plugin/jquery.form.min',
-        'sortable'      : 'plugin/sortable/Sortable.min',
-        'template'      : 'plugin/template',
-        'scroller'      : 'plugin/nanoscroller/js/jquery.nanoscroller.min',
-        'uploadifive'   : 'plugin/uploads/js/jquery.uploadifive',
-        'uploadsUnit'   : 'plugin/uploads/js/uploads.unit',
-        'uploads'       : 'plugin/uploads/js/uploads',
+        'dragsort': 'plugin/dragsort/jquery.dragsort-0.5.2.min',
+        'dropload': 'plugin/dropload/dropload.min',
+        'iconpicker': 'plugin/fontawesome-iconpicker/js/fontawesome-iconpicker',
+        'layer': 'plugin/layer/layer',
+        'mtree': 'plugin/mtree/js/mtree',
+        'ueditor': 'plugin/ueditor/ueditor.all.min',
+        'jqthumb': 'plugin/jqthumb/jqthumb.min',
+        'form': 'plugin/jquery.form.min',
+        'sortable': 'plugin/sortable/Sortable.min',
+        'template': 'plugin/template',
+        'scroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min',
+        'uploadifive': 'plugin/uploads/js/jquery.uploadifive',
+        'uploadsUnit': 'plugin/uploads/js/uploads.unit',
+        'uploads': 'plugin/uploads/js/uploads',
     },
-    shim : {
-        'bootstrap'     : {
+    shim: {
+        'bootstrap': {
             deps: ['jquery',
                 'css!plugin/font-awesome/css/font-awesome.min.css']
         },
-        'colorpicker'   : {
+        'colorpicker': {
             deps: ['bootstrap',
                 'css!plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css']
         },
@@ -40,34 +40,34 @@ require.config({
                 'css!plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
                 'css!plugin/../css/datetimepicker.css']
         },
-        'dropload'      : {
+        'dropload': {
             deps: ['jquery',
                 'css!plugin/dropload/dropload.css']
         },
-        'iconpicker'    : {
+        'iconpicker': {
             deps: ['jquery',
                 'bootstrap',
                 'css!plugin/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css',
                 'css!plugin/../css/iconpicker.css']
         },
-        'mtree'         : {
+        'mtree': {
             deps: ['jquery',
                 'css!plugin/mtree/css/mtree.css']
         },
-        'ueditor'       : {
-            deps   : ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js',
+        'ueditor': {
+            deps: ['plugin/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js',
                 'plugin/ueditor/ueditor.config.js'],
             exports: 'UE',
-            init   : function (ZeroClipboard) {
+            init: function (ZeroClipboard) {
                 //导出到全局变量，供ueditor使用
                 window.ZeroClipboard = ZeroClipboard;
             }
         },
-        'scroller'      : {
+        'scroller': {
             deps: ['jquery',
                 'css!plugin/nanoscroller/css/nanoscroller.css']
         },
-        'template'      : {
+        'template': {
             deps: ['jquery']
         }
     }

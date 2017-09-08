@@ -39,7 +39,7 @@ define(['jquery'], function ($) {
 
             if ($.inArray(ext, ['doc', 'docx']) > -1) {
                 src = thumbnail.docx;
-            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'jpeg']) > -1) {
+            } else if ($.inArray(ext, ['jpg', 'png', 'gif', 'jpeg','bmp']) > -1) {
                 src = thumbnail.jpg;
             } else if ($.inArray(ext, ['mp3', 'mid', 'ogg', 'mp4a', 'wav', 'wma']) > -1) {
                 src = thumbnail.mp3;
@@ -157,7 +157,7 @@ define(['jquery'], function ($) {
                     },
                     'itemTemplate': u.config.itemTemplate,
                     'fileSizeLimit': '2MB',
-                    'fileTypeSuffix': 'jpg,png,gif',
+                    'fileTypeSuffix': 'jpg,png,gif,bmp',
                     'uploadScript': 'index.php/uploads/do_upload',
                     'onUploadComplete': function (file, data) {
                         var data = $.parseJSON(data);

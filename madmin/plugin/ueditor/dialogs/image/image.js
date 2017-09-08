@@ -369,7 +369,7 @@
                 accept: {
                     title: 'Images',
                     extensions: acceptExtensions,
-                    mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif'
+                    mimeTypes: 'image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/bmp,image/x-bmp,image/x-bitmap,image/x-xbitmap,image/x-win-bitmap,image/x-windows-bmp,image/ms-bmp,image/x-ms-bmp,application/bmp,application/x-bmp,application/x-win-bitmap'
                 },
                 swf: '../../third-party/webuploader/Uploader.swf',
                 server: actionUrl,

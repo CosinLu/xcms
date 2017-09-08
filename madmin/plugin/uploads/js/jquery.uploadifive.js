@@ -97,39 +97,43 @@
                 settings.method = $this.data('method') == undefined ? settings.method : $this.data('method');
                 settings.multi = $this.data('multi') == undefined ? settings.multi : $this.data('multi');
                 settings.mime = {
-                    //文档文件类型的
-                    'doc': ['application/msword,application/vnd.ms-office'],
-                    'xls': ['application/vnd.ms-excel,application/msexcel,application/x-msexcel,application/x-ms-excel,application/x-excel,application/x-dos_ms_excel,application/xls,application/x-xls,application/excel,application/download,application/vnd.ms-office'],
-                    'ppt': ['application/powerpoint,application/vnd.ms-powerpoint,application/vnd.ms-office,application/msword'],
-                    'pps': 'application/vnd.ms-powerpoint',
-                    'pdf': ['application/pdf,application/force-download,application/x-download,binary/octet-stream'],
-                    'swf': 'application/x-shockwave-flash',
-                    //压缩文件类型的
-                    'zip': ['application/x-zip,application/zip,application/x-zip-compressed,application/s-compressed,multipart/x-zip'],
-                    'rar': ['application/x-rar,application/rar,application/x-rar-compressed'],
-                    '7z': 'application/x-7z-compressed',
-                    //图片类型的
-                    'jpg': ['image/jpeg,image/pjpeg'],
-                    'jpeg': ['image/jpeg,image/pjpeg'],
-                    'gif': 'image/gif',
-                    'png': ['image/png,image/x-png'],
-                    //音频文件类型的
-                    'mp3': 'audio/mpeg',
-                    'mid': 'audio/midi',
-                    'ogg': 'audio/ogg',
-                    'mp4a': 'audio/mp4',
-                    'wav': 'audio/wav',
-                    'wma': 'audio/x-ms-wma',
-                    //视频文件类型的
-                    'avi': 'video/x-msvideo',
-                    'dv': 'video/x-dv',
-                    'mp4': 'video/mp4',
-                    'mpeg': 'video/mpeg',
-                    'mpg': 'video/mpeg',
-                    'mov': 'video/quicktime',
-                    'wm': 'video/x-ms-wmv',
-                    'flv': 'video/x-flv',
-                    'mkv': 'video/x-matroska'
+                    //image
+                    'png': ['image/png', 'image/x-png'],
+                    'jpg': ['image/jpeg', 'image/pjpeg'],
+                    'jpeg': ['image/jpeg', 'image/pjpeg'],
+                    'gif': ['image/gif'],
+                    'bmp': ['image/bmp', 'image/x-bmp', 'image/x-bitmap', 'image/x-xbitmap', 'image/x-win-bitmap', 'image/x-windows-bmp', 'image/ms-bmp', 'image/x-ms-bmp', 'application/bmp', 'application/x-bmp', 'application/x-win-bitmap'],
+                    //video
+                    'flv': ['video/x-flv'],
+                    'swf': ['application/x-shockwave-flash'],
+                    'mkv': ['video/x-matroska'],
+                    'avi': ['video/x-msvideo'],
+                    'rm': ['audio/x-pn-realaudio'],
+                    'mpeg': ['video/mpeg'],
+                    'mpg': ['video/mpeg'],
+                    'ogg': ['audio/ogg'],
+                    'mov': ['video/quicktime'],
+                    'wmv': ['video/x-ms-wmv', 'video/x-ms-asf'],
+                    'mp4': ['video/mp4'],
+                    'webm': ['video/webm'],
+                    'mp3': ['audio/mpeg'],
+                    'wav': ['audio/wav'],
+                    'mid': ['audio/midi'],
+                    //file
+                    'rar': ['application/x-rar', 'application/rar', 'application/x-rar-compressed'],
+                    'zip': ['application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/s-compressed', 'multipart/x-zip'],
+                    'tar': ['application/x-tar'],
+                    'gz': ['application/x-gzip'],
+                    '7z': ['application/x-7z-compressed'],
+                    'doc': ['application/msword', 'application/vnd.ms-office'],
+                    'docx': ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/zip', 'application/msword', 'application/x-zip'],
+                    'xls': ['application/vnd.ms-excel', 'application/msexcel', 'application/x-msexcel', 'application/x-ms-excel', 'application/x-excel', 'application/x-dos_ms_excel', 'application/xls', 'application/x-xls', 'application/excel', 'application/download', 'application/vnd.ms-office'],
+                    'xlsx': ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip', 'application/vnd.ms-excel', 'application/msword', 'application/x-zip'],
+                    'ppt': ['application/powerpoint', 'application/vnd.ms-powerpoint', 'application/vnd.ms-office', 'application/msword'],
+                    'pptx': ['application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/x-zip', 'application/zip'],
+                    'pdf': ['application/pdf', 'application/force-download', 'application/x-download,binary/octet-stream'],
+                    'txt': ['text/plain'],
+                    'xml': ['application/xml', 'text/xml', 'text/plain']
                 }
                 if ($this.data('queue-id')) {
                     settings.queueID = $this.data('queue-id');
