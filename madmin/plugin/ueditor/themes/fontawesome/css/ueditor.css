@@ -114,7 +114,6 @@ div.edui-box {
 .edui-fontawesome span.edui-clickable {
     color: #333;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .edui-fontawesome span.edui-unclickable {
@@ -141,6 +140,7 @@ div.edui-box {
 .edui-fontawesome .edui-toolbar .edui-menubutton,
 .edui-fontawesome .edui-toolbar .edui-combox {
     margin: 1px;
+    border-radius: 2px;
 }
 
 /*UI工具栏、编辑区域、底部*/
@@ -254,12 +254,12 @@ div.edui-box {
 }
 
 .edui-fontawesome .edui-bubble .edui-popup-content {
-    font-family: "宋体";
     padding: 5px;
     border: 1px solid #ccc;
     border-top: 2px solid #666;
     background-color: #fff;
     font-size: 12px;
+    text-decoration: none;
 }
 
 .edui-fontawesome .edui-bubble .edui-shadow {
@@ -452,7 +452,7 @@ div.edui-box {
 
 .edui-fontawesome .edui-toolbar .edui-combox .edui-combox-body {
 
-    border-radius: 0;
+    border-radius: 2px;
     background: #eaedf1;
 }
 

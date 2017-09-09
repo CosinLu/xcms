@@ -127,7 +127,7 @@ input {
 #remote .left {
     display: block;
     float: left;
-    width: 300px;
+    width: 305px;
     height: 10px;
 }
 
@@ -158,11 +158,12 @@ input {
 }
 
 #remote input.text {
-    padding: 4px;
     width: 150px;
-    height: 22px;
-    border: 1px solid #ccc;
-    line-height: 22px;
+    height: 20px;
+    line-height: 20px;
+    padding: 4px;
+    border: #ccc solid 1px;
+    border-radius: 2px;
 }
 
 #remote #url {
@@ -257,7 +258,7 @@ input {
     border: 2px dashed #e6e6e6;
     *border: 0px dashed #e6e6e6;
     background: url(./images/image.png) center 70px no-repeat;
-    color: #cccccc;
+    color: #ccc;
     text-align: center;
     font-size: 18px;
 }
@@ -288,7 +289,7 @@ input {
     position: absolute;
     bottom: 20px;
     width: 100%;
-    color: #666666;
+    color: #666;
     text-align: center;
     font-size: 12px;
 }
@@ -303,7 +304,7 @@ input {
 }
 
 #upload .placeholder.webuploader-dnd-over {
-    border-color: #999999;
+    border-color: #999;
 }
 
 #upload .filelist {
@@ -470,7 +471,7 @@ input {
 #upload .filelist li.filePickerBlock {
     width: 113px;
     height: 113px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #eee;
     border-radius: 0;
     background: url(./images/image.png) no-repeat center 12px;
 }
@@ -581,7 +582,7 @@ input {
 
 #upload .statusBar .info {
     display: inline-block;
-    color: #666666;
+    color: #666;
     font-size: 14px;
 }
 
@@ -607,7 +608,7 @@ input {
     padding: 0 18px;
     border: 1px solid #cfcfcf;
     border-radius: 0px;
-    background: #ffffff;
+    background: #fff;
     color: #565656;
     font-size: 14px;
     cursor: pointer;
@@ -707,19 +708,10 @@ input {
     cursor: pointer;
 }
 
-#online li .icon:hover {
-    width: 107px;
-    height: 107px;
-    border: 3px solid #1094fa;
-}
-
 #online li.selected .icon {
     background-image: url(images/success.png);
     background-image: url(images/success.gif) \9;
     background-position: 75px 75px;
-}
-
-#online li.selected .icon:hover {
     width: 107px;
     height: 107px;
     border: 3px solid #1094fa;
@@ -746,12 +738,14 @@ input {
 #search input.searchTxt {
     float: left;
     margin-left: 5px;
-    padding: 4px;
     width: 300px;
     *width: 260px;
-    height: 22px;
-    line-height: 22px;
     dislay: block;
+    height: 20px;
+    line-height: 20px;
+    padding: 4px;
+    border: #ccc solid 1px;
+    border-radius: 2px;
 }
 
 #search .searchType {
@@ -772,13 +766,15 @@ input {
     margin-right: 5px;
     margin-bottom: 0;
     padding: 0 8px;
-    height: 32px;
+    height: 30px;
+    border-radius: 2px;
     border: 1px solid transparent;
     vertical-align: middle;
     vertical-align: top;
     text-align: center;
     white-space: nowrap;
     cursor: pointer;
+    font-size: 12px;
 }
 
 #search #searchBtn {
@@ -831,14 +827,11 @@ input {
     display: block;
     float: left;
     overflow: hidden;
-    margin: 5px 10px 5px 20px;
-    *margin: 5px 10px 5px 15px;
+    margin: 5px 10px 5px 5px;
+    /**margin: 5px 10px 5px 15px;*/
     padding: 0;
-    width: 115px;
+    width: 132px;
     border: 2px solid #eee;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
     list-style: none;
     vertical-align: top;
     text-align: center;
@@ -850,10 +843,19 @@ input {
 }
 
 #search .searchList li.selected {
-    border: 2px solid #00a0e9;
-    opacity: 0.4;
-    filter: alpha(Opacity=40);
-    -moz-opacity: 0.4;
+    border: 2px solid #1094fa;
+    position: relative;
+}
+
+#search .searchList li.selected:after {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    background: url('images/success.png');
 }
 
 #search .searchList li p {
