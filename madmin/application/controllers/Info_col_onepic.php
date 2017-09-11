@@ -12,7 +12,7 @@ class Info_col_onepic extends M_Controller
     {
         parent::__construct();
         $this->load->model('info_col_onepic_model', 'info_col_onepic');
-        $this->load->library('uploads');
+        $this->load->library('uploads_lib');
         $this->set_url();
     }
 
@@ -20,9 +20,9 @@ class Info_col_onepic extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('info_col_onepic/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_onepic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_onepic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
+        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_onepic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_onepic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('info_col_onepic/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -39,7 +39,7 @@ class Info_col_onepic extends M_Controller
         $page = ($this->input->post('page')) ?: 1;
         $data['list'] = $this->info_col_onepic->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col_onepic/update?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col_onepic/update?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
         }
         echo json_encode($data);
     }
@@ -49,7 +49,7 @@ class Info_col_onepic extends M_Controller
     {
         $cid = $this->input->get('cid');
         $data['item'] = $this->info_col_onepic->update($cid);
-        $data['image'] = $this->uploads->data($data['item']['image'], 'image');
+        $data['image'] = $this->uploads_lib->data($data['item']['image'], 'image');
         $this->load->view('info_col_onepic/update.html', $data);
     }
 
@@ -68,7 +68,7 @@ class Info_col_onepic extends M_Controller
         );
         $bool = $this->info_col_onepic->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_onepic?sys_cid=' . $this->sys_cid);
         if ($bool) {

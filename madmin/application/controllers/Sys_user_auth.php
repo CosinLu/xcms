@@ -34,7 +34,7 @@ class Sys_user_auth extends M_Controller
     //获得列表
     public function get_list()
     {
-        $list = $this->sys_auth->sys_col('user', $this->input->get('user_id'));
+        $list = $this->sys_auth_lib->sys_col('user', $this->input->get('user_id'));
         foreach ($list as $key => $val) {
             $list[$key]['auth'] = $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id']);
             $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
@@ -92,7 +92,7 @@ class Sys_user_auth extends M_Controller
         //添加
         $bool = $this->sys_user_auth->insert($this->user_id, $id_arr, $auth_arr);
         //写入日志
-        $this->sys_log->insert('角色权限', '2', $bool);
+        $this->sys_log_lib->insert('角色权限', '2', $bool);
         $config['icon'] = 1;
         if ($bool OR $rows) {
             echo json_encode($config);

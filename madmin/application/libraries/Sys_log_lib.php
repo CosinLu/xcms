@@ -6,7 +6,7 @@
  * Date: 2016/10/20
  * Time: 9:48
  */
-class Sys_log
+class Sys_log_lib
 {
     protected $CI;
     protected $browser;

@@ -15,7 +15,7 @@ class Common_dict_model extends M_Model
     }
 
     //获得列表
-    public function get_list($pid = '', $key = '', $page = '', $type = '')
+    public function get_list($pid = '', $key = '', $page = '', $user_type = '')
     {
         $this->db->from('common_dict');
         $this->db->where(array(
@@ -24,10 +24,10 @@ class Common_dict_model extends M_Model
         if ($key != '') {
             $this->db->like('name', $key);
         }
-        //非开发者禁止获取重要字典
-        if ($type > 0) {
+        //生产者禁止获取重要字典
+        if ($user_type == 'pro') {
             $this->db->where(array(
-                'user_type > ' => 0
+                'user_type' => 'pro'
             ));
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
@@ -64,7 +64,7 @@ class Common_dict_model extends M_Model
         return $bool;
     }
 
-    //数据字典类型
+    //字典类型
     public function common_dict_type()
     {
         $this->db->where('pid', 0);

@@ -20,7 +20,7 @@ class Slide_model extends M_Model
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.rel_path');
         $this->db->from('slide as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('uploads as t2', 't2.id=t.image', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);

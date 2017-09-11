@@ -49,6 +49,14 @@
                                               rows="3"><?=$item['remark']?></textarea>
                                 </div>
                             </div>
+                            <?php if($user_type=='dev'):?>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">用户类型</div>
+                                <div class="col-xs-2 radio">
+                                    <?=$dict['user_type']?>
+                                </div>
+                            </div>
+                            <?php endif;?>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">排序</div>
                                 <div class="col-xs-2">

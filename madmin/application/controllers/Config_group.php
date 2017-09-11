@@ -19,9 +19,9 @@ class Config_group extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('config_group/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_group/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config_group" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
+        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_group/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config_group" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('config_group/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -39,9 +39,9 @@ class Config_group extends M_Controller
         $data['list'] = $this->config_group->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_item?sys_cid=10&group_id=' . $val['id']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_group/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="config_group" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_item?sys_cid=10&group_id=' . $val['id']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_group/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="config_group" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -49,7 +49,7 @@ class Config_group extends M_Controller
     //新增
     public function insert()
     {
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display')
         ));
         $this->load->view('config_group/insert.html', $data);
@@ -60,7 +60,7 @@ class Config_group extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->config_group->update($id);
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $this->load->view('config_group/update.html', $data);
@@ -80,7 +80,7 @@ class Config_group extends M_Controller
         );
         $bool = $this->config_group->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('config_group?sys_cid=' . $this->sys_cid);
         if ($bool) {

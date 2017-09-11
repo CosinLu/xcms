@@ -20,7 +20,7 @@ class Config_item_model extends M_Model
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.name as config_group_name');
         $this->db->from('config as t');
-        $this->db->join('sys_dict as t1', 't1.ident = t.display', 'left');
+        $this->db->join('common_dict as t1', 't1.ident = t.display', 'left');
         $this->db->join('config_group as t2', 't2.id=t.config_group_id', 'left');
         if ($key != '') {
             $this->db->like('t.title', $key);

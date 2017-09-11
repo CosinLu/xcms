@@ -6,7 +6,7 @@
  * Date: 2017/9/1
  * Time: 17:37
  */
-class Uploads
+class Uploads_lib
 {
     protected $CI;
     protected $tb_name;
@@ -22,7 +22,6 @@ class Uploads
      * 获得数据
      *
      * @param string $uploads_id 文件标识
-     *
      * @return mixed
      */
     public function data($uploads_id = '')

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'user_agent', 'pagination', 'sys_log', 'prompt', 'sys_dict');
+$autoload['libraries'] = array('database', 'session', 'user_agent', 'pagination', 'sys_log_lib', 'prompt_lib', 'common_dict_lib');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'common');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('config_mcms');
 
 /*
 | -------------------------------------------------------------------

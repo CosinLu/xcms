@@ -21,8 +21,8 @@ class Navigation_model extends M_Model
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->select('t2.name as position_name');
         $this->db->from('navigation as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('sys_dict as t2', 't2.ident=t.position', 'left');
+        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('common_dict as t2', 't2.ident=t.position', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();

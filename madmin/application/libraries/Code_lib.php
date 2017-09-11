@@ -6,7 +6,7 @@
  * @package
  * @author      后盾马震宇 <houdunwangmzy@gmail.com>
  */
-class Code
+class Code_lib
 {
     public $width = 150;
     //资源

@@ -6,7 +6,7 @@
  * Date: 2016/9/1
  * Time: 16:26
  */
-class Sys_auth
+class Sys_auth_lib
 {
     protected $CI;
     protected $user_info;
@@ -14,7 +14,7 @@ class Sys_auth
     protected $tb_sys_col_auth;
     protected $tb_sys_role_auth;
     protected $tb_sys_user_auth;
-    protected $tb_sys_dict;
+    protected $tb_common_dict;
 
     public function __construct($arr = array())
     {
@@ -23,7 +23,7 @@ class Sys_auth
         $this->tb_sys_col_auth = $this->CI->db->dbprefix . 'sys_col_auth';
         $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
         $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
-        $this->tb_sys_dict = $this->CI->db->dbprefix . 'sys_dict';
+        $this->tb_common_dict = $this->CI->db->dbprefix . 'common_dict';
         $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
         $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
     }
@@ -46,7 +46,7 @@ class Sys_auth
             LEFT JOIN 
                 `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
             LEFT JOIN 
-                `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
@@ -94,7 +94,7 @@ class Sys_auth
             LEFT JOIN 
                 `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
             LEFT JOIN 
-                `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth` ";
+                `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth` ";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
@@ -125,7 +125,7 @@ class Sys_auth
             $sql .= " WHERE 
                 `t`.`display`='show'
             AND
-                `t`.`user_type`='" . $this->config->item('pro', 'mcms') . "'
+                `t`.`user_type`='pro'
             GROUP BY 
                 `t`.`id`
             ORDER BY 
@@ -148,7 +148,7 @@ class Sys_auth
                     LEFT JOIN 
                         `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
                     LEFT JOIN 
-                        `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                        `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
@@ -195,7 +195,7 @@ class Sys_auth
                     LEFT JOIN 
                         `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
                     LEFT JOIN 
-                        `{$this->tb_sys_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                        `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
@@ -249,7 +249,6 @@ class Sys_auth
      * @param string $current_auth 当前拥有权限
      * @param string $have_auth_str 有权限时输出的字符串
      * @param string $no_auth_str 无权限时输出的字符串
-     *
      * @return string
      */
     public function set_auth($initial_auth = '', $current_auth = '', $have_auth_str = '', $no_auth_str = '')
@@ -262,7 +261,7 @@ class Sys_auth
             }
         } else {
             if (!in_array(strtolower($initial_auth), $current_auth_arr)) {
-                $this->CI->prompt->error('非法操作！', site_url('welcome/logout'));
+                $this->CI->prompt_lib->error('非法操作！', site_url('welcome/logout'));
             }
         }
 

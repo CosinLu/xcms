@@ -6,7 +6,7 @@
  * Date: 2017/3/22
  * Time: 10:32
  */
-class Ueditor
+class Ueditor_lib
 {
     protected $CI;
 

@@ -21,7 +21,7 @@ class Sys_user_model extends M_Model
         $this->db->select('t2.name as status_name,t2.color as status_color');
         $this->db->from('sys_user as t');
         $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
-        $this->db->join('sys_dict as t2', 't2.ident=t.status', 'left');
+        $this->db->join('common_dict as t2', 't2.ident=t.status', 'left');
         if ($key != '') {
             $this->db->like('t.username', $key);
         }

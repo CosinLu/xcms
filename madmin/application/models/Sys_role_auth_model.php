@@ -10,7 +10,7 @@ class Sys_role_auth_model extends M_Model
 {
     protected $tb_sys_col;
     protected $tb_sys_col_auth;
-    protected $tb_sys_dict;
+    protected $tb_common_dict;
     protected $tb_sys_role_auth;
 
     public function __construct()
@@ -18,7 +18,7 @@ class Sys_role_auth_model extends M_Model
         parent::__construct();
         $this->tb_sys_col = $this->db->dbprefix . 'sys_col';
         $this->tb_sys_col_auth = $this->db->dbprefix . 'sys_col_auth';
-        $this->tb_sys_dict = $this->db->dbprefix . 'sys_dict';
+        $this->tb_common_dict = $this->db->dbprefix . 'common_dict';
         $this->tb_sys_role_auth = $this->db->dbprefix . 'sys_role_auth';
         $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
     }

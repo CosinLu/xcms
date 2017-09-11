@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 18:07
  */
-class Sys_dict
+class Common_dict_lib
 {
     protected $CI;
 
@@ -16,7 +16,39 @@ class Sys_dict
     }
 
     /**
+     * 根据类型获得数据
+     *
+     * @param array $arr array(['控件类型','字典标识','控件名称','选中项','禁选项','默认值（下拉列表第一条数据）array('title','value') OR false'])
+     * @return string
+     */
+    public function dict($arr = array())
+    {
+        if (empty($arr)) return '';
+        //数据源
+        $data = $this->data();
+        //传参标准
+        //array('type' => '', 'ident' => '', 'name' => '', 'selected' => '', 'forbidden' => '', 'default' => array('-请选择-', '0'))
+        $res = array();
+        foreach ($arr as $key => $val) {
+            //格式化参数
+            $val = array_pad($val, 6, '');
+            list($type, $ident, $name, $selected, $forbidden, $default) = $val;
+            //控件名称
+            $name = $name ?: $ident;
+            if ($type == 'ddl') {
+                $res[$name] = $this->$type($data, $ident, $name, $selected, $forbidden, $default);
+            } else {
+                $res[$name] = $this->$type($data, $ident, $name, $selected, $forbidden);
+            }
+        }
+
+        //返回数据
+        return $res;
+    }
+
+    /**
      * 获得所有数据
+     *
      * @param string $ident 字典标识
      * @return mixed
      */
@@ -24,45 +56,46 @@ class Sys_dict
     {
         if ($ident != '') {
             $this->CI->db->select('t1.*');
-            $this->CI->db->from('sys_dict as t');
-            $this->CI->db->join('sys_dict as t1', 't1.pid=t.id', 'left');
+            $this->CI->db->from('common_dict as t');
+            $this->CI->db->join('common_dict as t1', 't1.pid=t.id', 'left');
             $this->CI->db->where('t.ident', $ident);
             $this->CI->db->group_by('t1.id');
             $this->CI->db->order_by('t1.sort asc,t1.id asc');
         }
-        $res = $this->CI->db->get('sys_dict')->result_array();
+        $res = $this->CI->db->get('common_dict')->result_array();
+
         return $res;
     }
 
     /**
-     * @param array $arr array(['控件类型','字典标识','控件名称','选中项','禁选项','默认值（下拉列表第一条数据）array('title','value') OR false'])
-     * @return string
+     * 数据过滤
+     *
+     * @param array $data
+     * @param string $ident
+     * @return array|mixed|string
      */
-    public function dict($arr = array())
+    public function filter_data($data = array(), $ident = '')
     {
-        //var_dump($arr);
-        if (empty($arr)) return '';
         //数据源
-        $data = $this->data();
-        //传参标准
-        //$standard = array('type' => '', 'ident' => '', 'name' => '', 'selected' => '', 'forbidden' => '', 'default' => '');
-        //模拟数据
-        /*$arr = array(
-            array('type'=>'rbl'','ident' => 'sys_col_auth', 'name' => 'sys_col_auth', 'selected' => 'update', 'forbidden' => ''),
-            array('type'=>'cbl','ident' => 'display', 'name' => 'display', 'selected' => '', 'forbidden' => ''),
-            array('type'=>'ddl','ident' => 'config_type', 'name' => 'config_type', 'selected' => 'checkbox', 'forbidden' => ['text', 'radio']),
-        );*/
-        $res = array();
-        foreach ($arr as $key => $val) {
-            //格式化参数
-            //$val = array_merge($standard, $val);
-            $val = array_pad($val, 6, '');
-            list($type, $ident, $name, $selected, $forbidden, $default) = $val;
-            //控件名称
-            $name = $name ?: $ident;
-            $res[$name] = $this->$type($data, $ident, $name, $selected, $forbidden);
+        if (empty($data)) $data = $this->data($ident);
+        if (empty($data)) return '';
+        //当前标识的id
+        $pid = '';
+        foreach ($data as $val) {
+            if ($val['pid'] == 0 && $val['ident'] == $ident) {
+                $pid = $val['id'];
+                break;
+            }
         }
-        //返回数据
+        if ($pid == '') return '';
+        //当前标识字典项
+        $res = array();
+        foreach ($data as $val) {
+            if ($val['pid'] == $pid) {
+                array_push($res, $val);
+            }
+        }
+
         return $res;
     }
 
@@ -74,7 +107,6 @@ class Sys_dict
      * @param string $name 控件名称
      * @param string $selected_val 选中项
      * @param string|array $forbidden_val 禁用项
-     *
      * @return string
      */
     public function rbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
@@ -108,7 +140,6 @@ class Sys_dict
      * @param string $name 控件名称
      * @param string|array $selected_val 选中项
      * @param string|array $forbidden_val 禁用项
-     *
      * @return string
      */
     public function cbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
@@ -138,7 +169,6 @@ class Sys_dict
      * @param string $selected_val 选中项
      * @param string|array $forbidden_val 禁用项
      * @param array|bool $default 第一条默认值：array('title','value') OR false
-     *
      * @return string
      */
     public function ddl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '', $default = array('-请选择-', '0'))
@@ -160,35 +190,5 @@ class Sys_dict
 
         return $str;
 
-    }
-
-    /**
-     * 数据过滤
-     * @param array $data
-     * @param string $ident
-     * @return array|mixed|string
-     */
-    public function filter_data($data = array(), $ident = '')
-    {
-        //数据源
-        if (empty($data)) $data = $this->data($ident);
-        if (empty($data)) return '';
-        //当前标识的id
-        $pid = '';
-        foreach ($data as $val) {
-            if ($val['pid'] == 0 && $val['ident'] == $ident) {
-                $pid = $val['id'];
-                break;
-            }
-        }
-        if ($pid == '') return '';
-        //当前标识字典项
-        $res = array();
-        foreach ($data as $val) {
-            if ($val['pid'] == $pid) {
-                array_push($res, $val);
-            }
-        }
-        return $res;
     }
 }

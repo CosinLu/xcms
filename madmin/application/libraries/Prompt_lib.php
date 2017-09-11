@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 18:47
  * Email: 1056811341@qq.com
  */
-class Prompt
+class Prompt_lib
 {
     private $CI;
 

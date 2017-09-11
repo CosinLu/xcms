@@ -20,7 +20,7 @@ class Sys_col extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_col/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('sys_col/save?sys_cid=' . $this->sys_cid);
         $url['del_url'] = site_url('sys_col/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
@@ -39,9 +39,9 @@ class Sys_col extends M_Controller
             $data['list']['list'][$key]['user_type_name'] = '<span style="color:' . $val['user_type_color'] . ';">' . $val['user_type_name'] . '</span>';
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', '<a href="javascript:;" class="disabled">新增下级</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('sys_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('sys_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', '<a href="javascript:;" class="disabled">新增下级</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('sys_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -51,7 +51,7 @@ class Sys_col extends M_Controller
     {
         $id = $this->input->get('id');
         $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth'),
             array('rbl', 'display', 'display'),
             array('rbl', 'user_type', 'user_type')
@@ -65,7 +65,7 @@ class Sys_col extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->sys_col->update($id);
         $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth', $data['item']['col_auth']),
             array('rbl', 'display', 'display', $data['item']['display']),
             array('rbl', 'user_type', 'user_type', $data['item']['user_type'])
@@ -93,7 +93,7 @@ class Sys_col extends M_Controller
         );
         $bool = $this->sys_col->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_col?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -118,7 +118,7 @@ class Sys_col extends M_Controller
         $id = $this->input->post('id');
         $this->sys_col->del_col_auth($id);//删除系统栏目权限
         $rows = $this->category->del($id);//删除系统栏目
-        $this->sys_log->insert($this->section_name, '3', $rows);//日志
+        $this->sys_log_lib->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }
 

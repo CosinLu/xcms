@@ -21,7 +21,7 @@ class Info_news_model extends M_Model
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->from('info_news as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

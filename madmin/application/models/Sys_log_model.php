@@ -20,8 +20,8 @@ class Sys_log_model extends M_Model
         $this->db->select('t1.name as status_name,t1.color as status_color');
         $this->db->select('t2.name as opera_name');
         $this->db->from('sys_log as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.status', 'left');
-        $this->db->join('sys_dict as t2', 't2.ident=t.opera', 'left');
+        $this->db->join('common_dict as t1', 't1.ident=t.status', 'left');
+        $this->db->join('common_dict as t2', 't2.ident=t.opera', 'left');
         if ($start_time && $stop_time) {
             $this->db->where('t.time >', strtotime($start_time));
             $this->db->where('t.time <', strtotime($stop_time));

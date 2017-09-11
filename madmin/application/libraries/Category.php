@@ -51,7 +51,6 @@ class Category
      * @param array $data
      * @param int $id 当前分类的标识
      * @param bool $self
-     *
      * @return array
      */
     public function parent_id($data = array(), $id = '', $self = FALSE)
@@ -71,7 +70,6 @@ class Category
      * @param array $data
      * @param int $id 当前分类的标识
      * @param bool $self
-     *
      * @return array
      */
     public function parent($data = array(), $id = '', $self = FALSE)
@@ -116,7 +114,6 @@ class Category
      *
      * @param array $data
      * @param int $id 当前分类的pid即为上级分类的标识
-     *
      * @return array
      */
     public function _parent($data = array(), $id = '')
@@ -169,7 +166,6 @@ class Category
      *
      * @param array $data
      * @param bool $root
-     *
      * @return string
      */
     public function option($data = array(), $root = TRUE)
@@ -203,7 +199,6 @@ class Category
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
-     *
      * @return array
      */
     public function children($data = array(), $pid = 0, $self = FALSE)
@@ -229,7 +224,6 @@ class Category
      *
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
-     *
      * @return array
      */
     public function _children($data = array(), $pid = 0)
@@ -275,7 +269,6 @@ class Category
      * @param array $data
      * @param bool $root 是否显示跟目录
      * @param int $tpl_id 模板标识
-     *
      * @return string
      */
     public function ddl($data = array(), $name = '', $id = '', $pid = 0, $root = TRUE, $tpl_id = '')
@@ -327,7 +320,6 @@ class Category
      * @param array $data
      * @param int $pid 当前分类的id即为下级分类的pid
      * @param bool $self 包含当前分类【默认FALSE】：FALSE=不包含，TRUE=包含
-     *
      * @return array
      */
     public function children_id($data = array(), $pid = 0, $self = FALSE)
@@ -349,7 +341,6 @@ class Category
      * @param bool $field 要获取的参数
      * @param int $num url个数
      * @param bool $self 是否包含自身
-     *
      * @return array
      */
     public function valid_str($data = array(), $pid = 0, $field = array('url'), $num = 1, $self = TRUE)
@@ -389,7 +380,6 @@ class Category
      * 获取下级url
      *
      * @param array $data 初始数据
-     *
      * @return mixed
      */
     public function children_url($data = array())
@@ -423,7 +413,6 @@ class Category
      *
      * @param int $pid 上级分类标识
      * @param array $vals 插入的数据
-     *
      * @return mixed
      */
     public function insert($pid = 0, $vals = array())
@@ -450,7 +439,6 @@ class Category
      *
      * @param array $data
      * @param string $id
-     *
      * @return array|mixed
      */
     public function one($data = array(), $id = '')
@@ -480,7 +468,6 @@ class Category
      * @param string $id 标识
      * @param string $pid_val 上级标识
      * @param array $array 更新的数据
-     *
      * @return bool
      */
     public function update($id = '', $pid = 0, $vals = array())
@@ -525,7 +512,6 @@ class Category
      * 删除当前分类以及所有下级分类
      *
      * @param int $id
-     *
      * @return bool
      */
     public function del($id = '')

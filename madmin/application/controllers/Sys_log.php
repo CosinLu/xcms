@@ -19,7 +19,7 @@ class Sys_log extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_log/get_list?sys_cid=' . $this->sys_cid);
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
+        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $this->load->vars($url);
     }
 
@@ -34,7 +34,7 @@ class Sys_log extends M_Controller
         $page = ($this->input->post('page')) ?: 1;
         $start_time = $this->input->post('start_time');
         $stop_time = $this->input->post('stop_time');
-        $data['list'] = $this->sys_log->get_list($page, $start_time, $stop_time);
+        $data['list'] = $this->sys_log_lib->get_list($page, $start_time, $stop_time);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['status_name'] = '<span style="color:' . $val['status_color'] . ';">' . $val['status_name'] . '</span>';
             $data['list']['list'][$key]['time'] = date('Y-m-d H:i:s', $val['time']);

@@ -12,7 +12,7 @@ class Info_col_muitipic extends M_Controller
     {
         parent::__construct();
         $this->load->model('info_col_muitipic_model', 'info_col_muitipic');
-        $this->load->library('uploads');
+        $this->load->library('uploads_lib');
         $this->set_url();
     }
 
@@ -20,9 +20,9 @@ class Info_col_muitipic extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('info_col_muitipic/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_muitipic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_muitipic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
+        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_muitipic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_muitipic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('info_col_muitipic/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -40,8 +40,8 @@ class Info_col_muitipic extends M_Controller
         $data['list'] = $this->info_col_muitipic->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col_muitipic/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="info_col_muitipic" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col_muitipic/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="info_col_muitipic" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -50,7 +50,7 @@ class Info_col_muitipic extends M_Controller
     public function insert()
     {
         $data['info_col'] = ddl($this->info_col_muitipic->info_col(), 'cid');
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display')
         ));
         $this->load->view('info_col_muitipic/insert.html', $data);
@@ -62,8 +62,8 @@ class Info_col_muitipic extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->info_col_muitipic->update($id);
         $data['info_col'] = ddl($this->info_col_muitipic->info_col(), 'cid', $data['item']['cid']);
-        $data['image'] = $this->uploads->data($data['item']['image'], 'image');
-        $data['dict'] = $this->sys_dict->dict(array(
+        $data['image'] = $this->uploads_lib->data($data['item']['image'], 'image');
+        $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $this->load->view('info_col_muitipic/update.html', $data);
@@ -88,7 +88,7 @@ class Info_col_muitipic extends M_Controller
         );
         $bool = $this->info_col_muitipic->save($data);
         //写入日志
-        $this->sys_log->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_muitipic?sys_cid=' . $this->sys_cid);
         if ($bool) {

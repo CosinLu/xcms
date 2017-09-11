@@ -47,8 +47,8 @@ class Index extends CI_Controller
             'font_size' => 16,
             'code_len' => 4
         );
-        $this->load->library('code', $config);
-        $this->code->show();
+        $this->load->library('code_lib', $config);
+        $this->code_lib->show();
     }
 
     //登录
@@ -92,8 +92,8 @@ class Index extends CI_Controller
             $this->session->set_userdata($session);
             //跳转至backurl
             if ($this->pre_url == '') {
-                $this->load->library('sys_auth', array('user_info' => $user_info));
-                $sys_col = $this->sys_auth->sys_col();
+                $this->load->library('sys_auth_lib', array('user_info' => $user_info));
+                $sys_col = $this->sys_auth_lib->sys_col();
                 $url = $this->category->children_url($sys_col);
                 $session['sys_session']['home_url'] = $url[0];
                 $this->session->set_userdata($session);
@@ -162,8 +162,8 @@ class Index extends CI_Controller
     {
         $user_info = $this->index->user_info($this->username, $this->password);
         if (!empty($user_info)) {
-            $this->load->library('sys_auth', array('user_info' => $user_info));
-            $sys_col = $this->sys_auth->sys_col();
+            $this->load->library('sys_auth_lib', array('user_info' => $user_info));
+            $sys_col = $this->sys_auth_lib->sys_col();
             $frist_sys_col = array();
             foreach ($sys_col as $val) {
                 if ($val['level'] == 1) {

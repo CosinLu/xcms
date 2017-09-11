@@ -21,7 +21,7 @@ class Info_col_muitipic_model extends M_Model
         $this->db->select('t2.name as info_col_name');
         $this->db->select('t3.rel_path');
         $this->db->from('info_col_muitipic as t');
-        $this->db->join('sys_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
         $this->db->join('info_col as t2', 't2.id=t.cid', 'left');
         $this->db->join('uploads as t3', 't3.id=t.cid', 'left');
         if ($key != '') {

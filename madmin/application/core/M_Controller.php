@@ -28,7 +28,7 @@ class M_Controller extends CI_Controller
         $this->is_save = ($this->input->post('is_save') == '') ? '1' : $this->input->post('is_save');
         $this->col_auth = '';
         $this->load->library('category', array(), 'my_category');
-        $this->load->library('sys_auth', array(
+        $this->load->library('sys_auth_lib', array(
             'user_info' => $this->session->sys_session
         ));
         $this->menu();
@@ -40,7 +40,7 @@ class M_Controller extends CI_Controller
     {
         $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         if (empty($this->session->sys_session)) {
-            $this->prompt->error('登录超时', site_url('index?url=' . $pre_url));
+            $this->prompt_lib->error('登录超时', site_url('index?url=' . $pre_url));
         }
     }
 
@@ -50,7 +50,7 @@ class M_Controller extends CI_Controller
         $data['menu'] = array();
         $data['section_name'] = '';
         //系统栏目
-        $sys_col = $this->sys_auth->sys_col();
+        $sys_col = $this->sys_auth_lib->sys_col();
         //获得栏目所有上级id
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
@@ -80,7 +80,7 @@ class M_Controller extends CI_Controller
         $str = '';
         $parent_level = 0;
         //系统栏目
-        $sys_col = $this->sys_auth->sys_col();
+        $sys_col = $this->sys_auth_lib->sys_col();
         //获得当前栏目所有上级id
         $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
         if (!empty($sys_col_parent_id)) {
@@ -111,7 +111,7 @@ class M_Controller extends CI_Controller
                     $str .= '<div class="mtree_icon mtree-icon-hook"><i class="' . $val['icon'] . '"></i></div>';
                 }
                 $str .= '<div class="mtree_name mtree-name-hook">' . $val['name'];
-                if ($val['user_type'] == $this->config->item('dev', 'mcms')) {
+                if ($val['user_type'] == 'dev') {
                     $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
                 }
                 $str .= '</div>';

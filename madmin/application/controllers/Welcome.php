@@ -12,8 +12,8 @@ class Welcome extends M_Controller
     {
         parent::__construct();
 
-        $this->load->library('ueditor');
-        $this->ueditor->edit_upload_path();
+        $this->load->library('ueditor_lib');
+        $this->ueditor_lib->edit_upload_path();
 
         /*ob_start();//打开输出
         readfile('https://img13.360buyimg.com/da/jfs/t7885/161/2347453549/131863/fda1bafe/59acb035N27eebd4e.jpg');//输出图片文件
