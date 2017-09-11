@@ -27,7 +27,7 @@ class Uploads extends CI_Controller
     {
         $page = $this->input->post('page');
         $key = $this->input->post('key');
-        $data['list'] = $this->uploads_lib->get_list($page, $key);
+        $data['list'] = $this->uploads->get_list($page, $key);
         foreach ($data['list'] as $key => $val) {
             $data['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . $this->config->item('thumb_marker', 'mcms') . $val['file_ext'] : '';
         }
@@ -64,7 +64,7 @@ class Uploads extends CI_Controller
         $this->load->library('upload', $config);
         $this->upload->do_upload($filename);
         $data = $res = $this->upload->data();
-        $data['id'] = $this->uploads_lib->save($res);
+        $data['id'] = $this->uploads->save($res);
         $data['input_name'] = $filename;
         $data['thumb_rel_path'] = '';
         //生成缩略图

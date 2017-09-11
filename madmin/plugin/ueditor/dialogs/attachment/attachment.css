@@ -102,7 +102,7 @@ input {
     border: 2px dashed #e6e6e6;
     *border: 0px dashed #e6e6e6;
     background: url(./images/image.png) center 70px no-repeat;
-    color: #cccccc;
+    color: #ccc;
     text-align: center;
     font-size: 18px;
 }
@@ -133,7 +133,7 @@ input {
     position: absolute;
     bottom: 20px;
     width: 100%;
-    color: #666666;
+    color: #666;
     text-align: center;
     font-size: 12px;
 }
@@ -148,7 +148,7 @@ input {
 }
 
 #upload .placeholder.webuploader-dnd-over {
-    border-color: #999999;
+    border-color: #999;
 }
 
 #upload .filelist {
@@ -286,7 +286,7 @@ input {
     margin-top: 0;
     width: 111px;
     height: 111px;
-    border: 1px #eeeeee solid;
+    border: 1px #eee solid;
 }
 
 #upload .filelist li p.imgWrap.notimage i.file-preview {
@@ -325,7 +325,7 @@ input {
 #upload .filelist li.filePickerBlock {
     width: 113px;
     height: 113px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #eee;
     border-radius: 0;
     background: url(./images/image.png) no-repeat center 12px;
 }
@@ -436,7 +436,7 @@ input {
 
 #upload .statusBar .info {
     display: inline-block;
-    color: #666666;
+    color: #666;
     font-size: 14px;
 }
 
@@ -462,7 +462,7 @@ input {
     padding: 0 18px;
     border: 1px solid #cfcfcf;
     border-radius: 0px;
-    background: #ffffff;
+    background: #fff;
     color: #565656;
     font-size: 14px;
     cursor: pointer;
@@ -567,7 +567,7 @@ input {
     padding: 0 3px;
     width: 107px;
     height: 13px;
-    color: #555555;
+    color: #555;
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -588,22 +588,19 @@ input {
 }
 
 #online li .icon:hover {
-    width: 107px;
-    height: 107px;
-    border: 3px solid #1094fa;
+
 }
 
 #online li.selected .icon {
     background-image: url(images/success.png);
     background-image: url(images/success.gif) \9;
-    background-position: 75px 75px;
-}
-
-#online li.selected .icon:hover {
     width: 107px;
     height: 107px;
     border: 3px solid #1094fa;
     background-position: 72px 72px;
+}
+
+#online li.selected .icon:hover {
 }
 
 /* 在线文件的文件预览图标 */

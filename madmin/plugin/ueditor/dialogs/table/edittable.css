@@ -13,9 +13,10 @@ input {
 
 input[type="text"] {
     padding: 4px;
-    height: 22px;
+    height: 20px;
     border: #ccc solid 1px;
-    line-height: 22px;
+    border-radius: 2px;
+    line-height: 20px;
 }
 
 body {

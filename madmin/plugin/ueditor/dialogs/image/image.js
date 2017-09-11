@@ -1065,13 +1065,13 @@
                 keepOriginName = editor.options.keepOriginName ? "1" : "0",
             //url = "http://image.baidu.com/i?ct=201326592&cl=2&lm=-1&st=-1&tn=baiduimagejson&istype=2&rn=32&fm=index&pv=&word=" + _this.encodeToGb2312(key) + type + "&keeporiginname=" + keepOriginName + "&" + +new Date;
                 url = 'http://image.so.com/j?q=' + _this.encodeToGb2312(key) + '&src=srp&correct=' + _this.encodeToGb2312(key) + '&sn=61&pn=60&sid=80d6b52575dd337745f67549f98afc3a&ran=0&ras=0';
-            $G('searchListUl').innerHTML = lang.searchLoading;
+            $G('searchListUl').innerHTML = '<span style="padding:5px;">' + lang.searchLoading + '</span>';
             ajax.request(url, {
                 'dataType': 'jsonp',
                 'charset': 'UTF8',
                 'onsuccess': function (json) {
-                    console.log(json.list);
-                    debugger;
+                    //console.log(json.list);
+                    //debugger;
                     var list = [];
                     if (json && json.list) {
                         for (var i = 0; i < json.list.length; i++) {
@@ -1087,7 +1087,8 @@
                     _this.setList(list);
                 },
                 'onerror': function () {
-                    $G('searchListUl').innerHTML = lang.searchRetry;
+                    $G('searchListUl').innerHTML = '<span style="padding:5px;">' + lang.searchRetry + '</span>';
+                    ;
                 }
             });
         },
@@ -1105,9 +1106,9 @@
                     link = document.createElement('a');
 
                     img.onload = function () {
-                        _this.scale(this, 113, 113);
+                        _this.scale(this, 132, 132);
                     };
-                    img.width = 113;
+                    img.width = 130;
                     img.setAttribute('src', list[i].src);
 
                     link.href = list[i].url;
