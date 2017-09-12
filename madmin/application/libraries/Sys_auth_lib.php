@@ -25,7 +25,7 @@ class Sys_auth_lib
         $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
         $this->tb_common_dict = $this->CI->db->dbprefix . 'common_dict';
         $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
-        $this->CI->load->library('category', array('tb_name' => 'sys_col'), 'sys_auth_category');
+        $this->CI->load->library('category_lib', array('tb_name' => 'sys_col'), 'sys_auth_category');
     }
 
     //根据权限获得系统栏目

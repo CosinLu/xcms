@@ -12,7 +12,7 @@ class Sys_col extends M_Controller
     {
         parent::__construct();
         $this->load->model('sys_col_model', 'sys_col');
-        $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'sys_col'), 'category_lib');
         $this->set_url();
     }
 
@@ -50,7 +50,7 @@ class Sys_col extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth'),
             array('rbl', 'display', 'display'),
@@ -64,7 +64,7 @@ class Sys_col extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->sys_col->update($id);
-        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth', $data['item']['col_auth']),
             array('rbl', 'display', 'display', $data['item']['display']),
@@ -117,7 +117,7 @@ class Sys_col extends M_Controller
     {
         $id = $this->input->post('id');
         $this->sys_col->del_col_auth($id);//删除系统栏目权限
-        $rows = $this->category->del($id);//删除系统栏目
+        $rows = $this->category_lib->del($id);//删除系统栏目
         $this->sys_log_lib->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }

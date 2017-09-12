@@ -12,7 +12,7 @@ class Info_col extends M_Controller
     {
         parent::__construct();
         $this->load->model('info_col_model', 'info_col');
-        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
         $this->set_url();
     }
 
@@ -64,7 +64,7 @@ class Info_col extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id');
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'image', 'pic'),
@@ -79,7 +79,7 @@ class Info_col extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->info_col->update($id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', $data['item']['tpl_id']);
-        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'image', 'pic', $data['item']['pic']),
             array('rbl', 'display', 'display', $data['item']['display'])
@@ -129,7 +129,7 @@ class Info_col extends M_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category->del($id);//删除栏目
+        $rows = $this->category_lib->del($id);//删除栏目
         $this->sys_log_lib->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }

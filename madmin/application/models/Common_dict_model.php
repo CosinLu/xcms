@@ -11,7 +11,7 @@ class Common_dict_model extends M_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'common_dict'));
+        $this->load->library('category_lib', array('tb_name' => 'common_dict'));
     }
 
     //获得列表
@@ -56,9 +56,9 @@ class Common_dict_model extends M_Model
     public function save($data = array())
     {
         if ($data['id']) {
-            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
+            $bool = $this->category_lib->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $this->category->insert($data['pid'], $data['vals']);
+            $bool = $this->category_lib->insert($data['pid'], $data['vals']);
         }
 
         return $bool;

@@ -11,13 +11,13 @@ class Info_news_model extends M_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
     }
 
     //获得列表
     public function get_list($cid = '', $key = '', $page = '')
     {
-        $children_id_arr = $this->category->children_id(array(), $cid, TRUE);
+        $children_id_arr = $this->category_lib->children_id(array(), $cid, TRUE);
         $this->db->select('t.*');
         $this->db->select('t1.name as display_name,t1.color as display_color');
         $this->db->from('info_news as t');

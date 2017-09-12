@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 23:38
  * Email: 1056811341@qq.com
  */
-class Category
+class Category_lib
 {
     private $CI;
     private $tb_name;
@@ -24,7 +24,7 @@ class Category
 
     /**
      * 构造函数
-     * Category constructor.
+     * Category_lib constructor.
      *
      * @param array $arr 参数名，如果没定义，则采用默认值
      */
@@ -150,6 +150,13 @@ class Category
         return $res_arr;
     }
 
+    /**
+     * 比较排序
+     *
+     * @param $a
+     * @param $b
+     * @return int
+     */
     public function compare_sort($a, $b)
     {
         $a_sort = $a[$this->sort_name];
@@ -246,7 +253,7 @@ class Category
             return array();
         }
         //排序
-        usort($children_arr, array('Category', 'compare_sort'));
+        usort($children_arr, array('Category_lib', 'compare_sort'));
         foreach ($children_arr as $val) {
             $res_arr[] = $val;
             $temp = $this->_children($data, $val[$this->id_name]);

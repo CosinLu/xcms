@@ -11,7 +11,7 @@ class Sys_col_model extends M_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'sys_col'));
+        $this->load->library('category_lib', array('tb_name' => 'sys_col'));
     }
 
     //获得列表
@@ -29,7 +29,7 @@ class Sys_col_model extends M_Model
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
-        $data['list'] = $this->category->children($res);
+        $data['list'] = $this->category_lib->children($res);
         $data['total'] = count($res);
 
         return $data;
@@ -53,9 +53,9 @@ class Sys_col_model extends M_Model
     {
         $col_id = $data['id'];
         if ($data['id']) {
-            $bool = $this->category->update($data['id'], $data['pid'], $data['vals']);
+            $bool = $this->category_lib->update($data['id'], $data['pid'], $data['vals']);
         } else {
-            $bool = $col_id = $this->category->insert($data['pid'], $data['vals']);
+            $bool = $col_id = $this->category_lib->insert($data['pid'], $data['vals']);
         }
         //设置系统栏目权限
         $this->set_col_auth($col_id, $data['auth']);

@@ -4,6 +4,14 @@ html, body {
     font-family: @font-family;
 }
 
+a {
+    color: @color-primary;
+}
+
+a:focus, a:hover {
+    color: @color-primary;
+}
+
 /*辅助类*/
 .text-danger {
     color: @color-danger;
@@ -72,48 +80,36 @@ kbd {
 
 /*分页*/
 .pagination_box {
-    padding: @spacing 0;
     text-align: right;
     .pagination_info {
         display: inline-block;
         vertical-align: middle;
-        padding: 0 15px;
+        padding: 10px 15px;
         color: #888;
     }
     .pagination {
         vertical-align: middle;
-        margin: 0;
-        > li {
-            > a {
-                min-width: 34px;
-                text-align: center;
-                color: @color-primary;
-            }
-            &:first-child {
-                & > a,
-                & > span {
-                    border-radius: @border-radius 0 0 @border-radius;
-                }
-            }
-            &:last-child {
-                & > a,
-                & > span {
-                    border-radius: 0 @border-radius @border-radius 0;
-                }
-            }
-        }
-        > .active {
-            > a,
-            > a:focus,
-            > a:hover,
-            > span,
-            > span:focus,
-            > span:hover {
-                z-index: 4;
-                background: @color-primary;
-                color: #fff;
-            }
-        }
+    }
+    .pagination > li > a, .pagination > li > span {
+        min-width: 34px;
+        text-align: center;
+    }
+    .pagination > li:first-child > a, .pagination > li:first-child > span {
+        border-top-left-radius: @border-radius;
+        border-bottom-left-radius: @border-radius;
+    }
+    .pagination > li:last-child > a, .pagination > li:last-child > span {
+        border-top-right-radius: @border-radius;
+        border-bottom-right-radius: @border-radius;
+    }
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        z-index: 4;
+        color: #fff;
+        background-color: @color-primary;
+        border-color: @color-primary;
+    }
+    .pagination > li > a, .pagination > li > span {
+        color: @color-primary;
     }
 }
 

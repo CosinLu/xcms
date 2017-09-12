@@ -19,7 +19,7 @@ class Common_dict extends M_Controller
         //判断用户类型
         $this->user_type = $this->session->sys_session['user_type'] == 0 ? 'dev' : 'pro';
         $this->load->model('common_dict_model', 'common_dict');
-        $this->load->library('category', array('tb_name' => 'common_dict'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'common_dict'), 'category_lib');
         $this->set_url();
     }
 
@@ -128,7 +128,7 @@ class Common_dict extends M_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category->del($id);
+        $rows = $this->category_lib->del($id);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, '3', $rows);
         echo $rows;

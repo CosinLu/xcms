@@ -53,7 +53,7 @@ class Info_news extends Info
     //新增
     public function insert()
     {
-        $data['cols'] = $this->category->ddl(array(), 'cid', 0, $this->cid, FALSE, $this->tpl_id());
+        $data['cols'] = $this->category_lib->ddl(array(), 'cid', 0, $this->cid, FALSE, $this->tpl_id());
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
@@ -67,7 +67,7 @@ class Info_news extends Info
     {
         $id = $this->input->get('id');
         $data['item'] = $this->info_news->update($id);
-        $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
+        $data['cols'] = $this->category_lib->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])

@@ -21,7 +21,7 @@ class Index extends CI_Controller
         $this->set_url();
         $this->load->model('index_model', 'index');
         $this->load->library('form_validation');
-        $this->load->library('category');
+        $this->load->library('category_lib');
         $this->session->unset_userdata('sys_session');
     }
 
@@ -94,7 +94,7 @@ class Index extends CI_Controller
             if ($this->pre_url == '') {
                 $this->load->library('sys_auth_lib', array('user_info' => $user_info));
                 $sys_col = $this->sys_auth_lib->sys_col();
-                $url = $this->category->children_url($sys_col);
+                $url = $this->category_lib->children_url($sys_col);
                 $session['sys_session']['home_url'] = $url[0];
                 $this->session->set_userdata($session);
                 redirect($url[0]);

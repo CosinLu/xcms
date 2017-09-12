@@ -20,7 +20,7 @@ class Sys_role_auth_model extends M_Model
         $this->tb_sys_col_auth = $this->db->dbprefix . 'sys_col_auth';
         $this->tb_common_dict = $this->db->dbprefix . 'common_dict';
         $this->tb_sys_role_auth = $this->db->dbprefix . 'sys_role_auth';
-        $this->load->library('category', array('tb_name' => 'sys_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'sys_col'), 'category_lib');
     }
 
     //删除

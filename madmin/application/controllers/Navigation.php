@@ -12,7 +12,7 @@ class Navigation extends M_Controller
     {
         parent::__construct();
         $this->load->model('navigation_model', 'navigation');
-        $this->load->library('category', array('tb_name' => 'navigation', 'default' => '主导航'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'navigation', 'default' => '主导航'), 'category_lib');
         $this->set_url();
     }
 
@@ -41,12 +41,10 @@ class Navigation extends M_Controller
             $disabled_insert_next_btn = '<a href="javascript:;" class="disabled">新增下级</a>';
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
-            if ($val['level'] == '1') {
-                if ($val['add_next_auth'] == '1') {
-                    $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
-                } else {
-                    $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
-                }
+            if ($val['add_next_auth'] == '1') {
+                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
+            } else {
+                $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
             }
             if ($val['edit_auth'] == '1') {
                 $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('navigation/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
@@ -66,7 +64,7 @@ class Navigation extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category->ddl(array(), 'pid', 0, $id);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'position', 'position'),
             array('rbl', 'display', 'display')
@@ -79,7 +77,7 @@ class Navigation extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->navigation->update($id);
-        $data['cols'] = $this->category->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'position', 'position', $data['item']['position']),
             array('rbl', 'display', 'display', $data['item']['display'])
@@ -128,7 +126,7 @@ class Navigation extends M_Controller
     {
         $id = $this->input->post('id');
         //删除栏目
-        $rows = $this->category->del($id);
+        $rows = $this->category_lib->del($id);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, '3', $rows);
         echo $rows;

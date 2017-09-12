@@ -21,15 +21,13 @@ i, em {
 
 a {
     text-decoration: none !important;
-    color: @color-primary;
-    &.disabled {
-        color: lighten(@color, 50);
-        cursor: not-allowed;
-    }
-    &:hover,
-    &:focus {
-        color: @color-primary-hover;
-    }
+}
+
+a.disabled,
+a.disabled:hover,
+a.disabled:focus {
+    color: lighten(@color, 50);
+    cursor: not-allowed;
 }
 
 /*内边距开始*/

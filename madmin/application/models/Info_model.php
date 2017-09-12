@@ -11,7 +11,7 @@ class Info_model extends M_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
     }
 
     //获得信息栏目
@@ -24,7 +24,7 @@ class Info_model extends M_Model
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
-        $res = $this->category->children($res);
+        $res = $this->category_lib->children($res);
 
         return $res;
     }

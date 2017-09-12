@@ -15,7 +15,7 @@ class Info_cases extends Info
         parent::__construct();
         $this->load->model('info_cases_model', 'info_cases');
         $this->load->library('uploads_lib');
-        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
+        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
         $this->set_url();
     }
 
@@ -54,7 +54,7 @@ class Info_cases extends Info
     //新增
     public function insert()
     {
-        $data['cols'] = $this->category->ddl(array(), 'cid', 0, $this->cid, FALSE, $this->tpl_id());
+        $data['cols'] = $this->category_lib->ddl(array(), 'cid', 0, $this->cid, FALSE, $this->tpl_id());
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
@@ -68,7 +68,7 @@ class Info_cases extends Info
     {
         $id = $this->input->get('id');
         $data['item'] = $this->info_cases->update($id);
-        $data['cols'] = $this->category->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
+        $data['cols'] = $this->category_lib->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
         $data['image'] = $this->uploads_lib->data($data['item']['image']);
         $data['images'] = $this->uploads_lib->data($data['item']['images']);
         $data['dict'] = $this->common_dict_lib->dict(array(

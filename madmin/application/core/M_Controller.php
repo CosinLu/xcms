@@ -27,7 +27,7 @@ class M_Controller extends CI_Controller
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->is_save = ($this->input->post('is_save') == '') ? '1' : $this->input->post('is_save');
         $this->col_auth = '';
-        $this->load->library('category', array(), 'my_category');
+        $this->load->library('category_lib', array(), 'my_category');
         $this->load->library('sys_auth_lib', array(
             'user_info' => $this->session->sys_session
         ));

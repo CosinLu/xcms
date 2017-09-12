@@ -25,7 +25,7 @@ class Sys_user_model extends M_Model
         if ($key != '') {
             $this->db->like('t.username', $key);
         }
-        $this->db->where('user_type > ', 0);
+        $this->db->where('t.user_type > ', 0);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = $this->config->item('per_page', 'mcms');
         $config['cur_page'] = $page;
