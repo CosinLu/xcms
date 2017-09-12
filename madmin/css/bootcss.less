@@ -29,6 +29,10 @@ a:focus, a:hover {
     color: @color-primary;
 }
 
+.text-info {
+    color: @color-info;
+}
+
 .text-muted {
     color: @color-muted;
 }
@@ -326,8 +330,8 @@ fieldset[disabled] .btn-primary:hover {
 .open > .dropdown-toggle.btn-warning,
 .btn-default.focus,
 .btn-default:focus {
-    background: #eee;
-    border-color: @border-color;
+    background: @color-default-hover;
+    border-color: @color-default-hover;
 }
 
 /*表单*/

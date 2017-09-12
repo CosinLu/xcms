@@ -25,6 +25,7 @@ class Welcome extends M_Controller
         var_dump($size);
         var_dump($bool);
         die;*/
+
     }
 
     public function index()
@@ -35,7 +36,7 @@ class Welcome extends M_Controller
         $data['last_login_ip'] = ($this->session->sys_session['last_login_ip']) ?: '-';
         $data['server_info'] = $_SERVER['SERVER_SOFTWARE'];
         $data['server_name'] = $_SERVER['SERVER_NAME'];
-        $data['upload'] = $this->config->item('upload');
+        $data['upload'] = $this->config->item('upload','mcms');
         $this->load->view('welcome/index.html', $data);
     }
 
