@@ -20,13 +20,14 @@ i, em {
 }
 
 a {
-    color: @color-primary;
     text-decoration: none !important;
+    color: @color-primary;
     &.disabled {
         color: lighten(@color, 50);
         cursor: not-allowed;
     }
-    &:hover {
+    &:hover,
+    &:focus {
         color: @color-primary-hover;
     }
 }
