@@ -36,6 +36,7 @@ class Info_col extends M_Controller
     {
         $data['list'] = $this->info_col->get_list();
         foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['link'] = $val['url'] ?: $val['dir'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
             $disabled_insert_next_btn = '<a href="javascript:;" class="disabled">新增下级</a>';
@@ -67,6 +68,7 @@ class Info_col extends M_Controller
         $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id');
         $data['dict'] = $this->common_dict_lib->dict(array(
+            array('rbl', 'target', 'target'),
             array('rbl', 'image', 'pic'),
             array('rbl', 'display', 'display')
         ));
@@ -81,6 +83,7 @@ class Info_col extends M_Controller
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', $data['item']['tpl_id']);
         $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
         $data['dict'] = $this->common_dict_lib->dict(array(
+            array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'image', 'pic', $data['item']['pic']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
@@ -97,9 +100,10 @@ class Info_col extends M_Controller
             'vals' => array(
                 'tpl_id' => $this->input->post('tpl_id'),
                 'name' => $this->input->post('name'),
+                'dir' => $this->input->post('dir'),
                 'url' => $this->input->post('url'),
+                'target' => $this->input->post('target'),
                 'pic' => $this->input->post('pic'),
-                'remark' => $this->input->post('remark'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
             )

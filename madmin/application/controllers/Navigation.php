@@ -64,8 +64,10 @@ class Navigation extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
+        $data['type'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
+        $data['col'] = $this->category_lib->ddl($this->navigation->cols(), 'col', 0, '', FALSE);
         $data['dict'] = $this->common_dict_lib->dict(array(
+            array('rbl', 'target', 'target'),
             array('rbl', 'position', 'position'),
             array('rbl', 'display', 'display')
         ));
@@ -77,8 +79,10 @@ class Navigation extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->navigation->update($id);
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['type'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['col'] = $this->category_lib->ddl($this->navigation->cols(), 'col', '', $data['item']['col'], FALSE);
         $data['dict'] = $this->common_dict_lib->dict(array(
+            array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'position', 'position', $data['item']['position']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
@@ -94,7 +98,9 @@ class Navigation extends M_Controller
             'pid' => $this->input->post('pid'),
             'vals' => array(
                 'name' => $this->input->post('name'),
+                'col' => $this->input->post('col'),
                 'url' => $this->input->post('url'),
+                'target' => $this->input->post('target'),
                 'position' => $this->input->post('position'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),

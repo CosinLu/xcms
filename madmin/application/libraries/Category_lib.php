@@ -278,8 +278,9 @@ class Category_lib
      * @param int $tpl_id 模板标识
      * @return string
      */
-    public function ddl($data = array(), $name = '', $id = '', $pid = 0, $root = TRUE, $tpl_id = '')
+    public function ddl($data = array(), $name = '', $id = '', $pid = 0, $root = TRUE, $tpl_id = '', $default = '')
     {
+        $this->default = $default ?: $this->default;
         $str = '';
         $str .= '<select name="' . $name . '" class="form-control">';
         $start_level = 1;
@@ -314,7 +315,9 @@ class Category_lib
             if (!empty($tpl_id)) {
                 $disabled = ($val['tpl_id'] != $tpl_id) ? 'disabled' : '';
             }
-            $str .= '<option value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
+            //附加数据
+            $data = isset($val['data']) ? $val['data'] : '';
+            $str .= '<option data-content=\'' . $data . '\' value="' . $val[$this->id_name] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->category_name] . '</option>';
         }
         $str .= '</select>';
 
