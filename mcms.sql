@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-11 18:53:25
+Date: 2017-09-13 18:41:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -196,11 +196,12 @@ CREATE TABLE `info_col` (
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
   `tpl_id` int(11) DEFAULT NULL COMMENT '模板标识',
+  `dir` varchar(30) DEFAULT NULL COMMENT '目录',
   `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
   `pic` varchar(10) DEFAULT NULL COMMENT '图片：nopic=无图，onepic=单图，muitipic=多图',
   `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
@@ -211,14 +212,15 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '新闻', '0', '1', '1', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('2', '产品', '0', '1', '2', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('3', '公司简介', '0', '1', '3', '', 'nopic', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('1', '新闻', '0', '1', '1', 'news', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('2', '产品', '0', '1', '2', 'product', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('3', '公司简介', '0', '1', '3', 'compnay', 'http://www.baidu.com', '_self', 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('9', '热门信息', '1', '2', '1', 'hot', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -340,7 +342,9 @@ CREATE TABLE `navigation` (
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别【从0开始】',
+  `col` tinyint(10) DEFAULT NULL COMMENT '栏目',
   `url` varchar(255) DEFAULT NULL COMMENT '链接【设置后分类将使用此url】',
+  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
   `position` varchar(10) DEFAULT NULL COMMENT '位置：top=顶部，bottom=底部',
   `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
@@ -357,12 +361,12 @@ CREATE TABLE `navigation` (
 -- ----------------------------
 -- Records of navigation
 -- ----------------------------
-INSERT INTO `navigation` VALUES ('1', '关于', '0', '1', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('2', '案例', '0', '1', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('3', '服务', '0', '1', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('4', '联系', '0', '1', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('5', '公司简介', '1', '2', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('6', '公司资质', '1', '2', '', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('1', '关于', '0', '1', '3', 'compnay', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('2', '案例', '0', '1', null, '', null, 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('3', '服务', '0', '1', null, '', null, 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('4', '联系', '0', '1', '-1', 'http://', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('5', '公司简介', '1', '2', '3', 'http://www.baidu.com', '_self', 'top', 'show', '100', null, null, null, null, '0', '1', '1');
+INSERT INTO `navigation` VALUES ('6', '公司资质', '1', '2', null, '', null, 'top', 'show', '100', null, null, null, null, '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for slide
@@ -409,7 +413,7 @@ CREATE TABLE `sys_col` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='系统栏目表';
 
 -- ----------------------------
 -- Records of sys_col
@@ -419,6 +423,7 @@ INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '',
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('49', '标签管理', 'fa fa-tag', '4', '2', 'tags', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('9', '配置组', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('10', '配置项', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null);
@@ -455,6 +460,7 @@ CREATE TABLE `sys_col_auth` (
 -- ----------------------------
 -- Records of sys_col_auth
 -- ----------------------------
+INSERT INTO `sys_col_auth` VALUES ('49', 'look');
 INSERT INTO `sys_col_auth` VALUES ('7', 'look');
 INSERT INTO `sys_col_auth` VALUES ('13', 'look');
 INSERT INTO `sys_col_auth` VALUES ('13', 'del');
@@ -464,6 +470,9 @@ INSERT INTO `sys_col_auth` VALUES ('25', 'look');
 INSERT INTO `sys_col_auth` VALUES ('25', 'del');
 INSERT INTO `sys_col_auth` VALUES ('24', 'look');
 INSERT INTO `sys_col_auth` VALUES ('24', 'update');
+INSERT INTO `sys_col_auth` VALUES ('49', 'del');
+INSERT INTO `sys_col_auth` VALUES ('49', 'update');
+INSERT INTO `sys_col_auth` VALUES ('49', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('9', 'look');
 INSERT INTO `sys_col_auth` VALUES ('9', 'del');
 INSERT INTO `sys_col_auth` VALUES ('9', 'update');
@@ -562,7 +571,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -656,6 +665,20 @@ INSERT INTO `sys_log` VALUES ('91', '4', 'madmin', '菜单管理', 'update', 'su
 INSERT INTO `sys_log` VALUES ('92', '2', 'admin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505119619');
 INSERT INTO `sys_log` VALUES ('93', '4', 'madmin', '通用字典', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505119766');
 INSERT INTO `sys_log` VALUES ('94', '4', 'madmin', '菜单管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505120848');
+INSERT INTO `sys_log` VALUES ('95', '4', 'madmin', '角色管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505185059');
+INSERT INTO `sys_log` VALUES ('96', '4', 'madmin', '角色管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505185067');
+INSERT INTO `sys_log` VALUES ('97', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505283301');
+INSERT INTO `sys_log` VALUES ('98', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505283311');
+INSERT INTO `sys_log` VALUES ('99', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505283321');
+INSERT INTO `sys_log` VALUES ('100', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505284169');
+INSERT INTO `sys_log` VALUES ('101', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505284198');
+INSERT INTO `sys_log` VALUES ('102', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505284221');
+INSERT INTO `sys_log` VALUES ('103', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505284310');
+INSERT INTO `sys_log` VALUES ('104', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505285441');
+INSERT INTO `sys_log` VALUES ('105', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505285487');
+INSERT INTO `sys_log` VALUES ('106', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505286462');
+INSERT INTO `sys_log` VALUES ('107', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505286481');
+INSERT INTO `sys_log` VALUES ('108', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505288137');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -667,7 +690,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -754,6 +777,13 @@ INSERT INTO `sys_login_log` VALUES ('79', '2', '127.0.0.1', '1505120572');
 INSERT INTO `sys_login_log` VALUES ('80', '4', '127.0.0.1', '1505120585');
 INSERT INTO `sys_login_log` VALUES ('81', '4', '127.0.0.1', '1505121377');
 INSERT INTO `sys_login_log` VALUES ('82', '4', '127.0.0.1', '1505126833');
+INSERT INTO `sys_login_log` VALUES ('83', '4', '127.0.0.1', '1505178854');
+INSERT INTO `sys_login_log` VALUES ('84', '2', '127.0.0.1', '1505187863');
+INSERT INTO `sys_login_log` VALUES ('85', '4', '127.0.0.1', '1505187969');
+INSERT INTO `sys_login_log` VALUES ('86', '4', '127.0.0.1', '1505195398');
+INSERT INTO `sys_login_log` VALUES ('87', '4', '127.0.0.1', '1505267341');
+INSERT INTO `sys_login_log` VALUES ('88', '4', '127.0.0.1', '1505268389');
+INSERT INTO `sys_login_log` VALUES ('89', '4', '127.0.0.1', '1505288300');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -770,7 +800,7 @@ CREATE TABLE `sys_role` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
 -- ----------------------------
 -- Records of sys_role
