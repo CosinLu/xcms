@@ -18,14 +18,14 @@ class Sys_col_model extends M_Model
     public function get_list()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('group_concat(concat("<kbd>",t3.name,"</kbd>") order by t3.sort asc,t3.id asc SEPARATOR "&nbsp;") as col_auth');
-        $this->db->select('t4.name as user_type_name,t4.color as user_type_color');
-        $this->db->from('sys_col as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('sys_col_auth as t2', 't2.col_id=t.id', 'left');
-        $this->db->join('common_dict as t3', 't3.ident=t2.col_auth', 'left');
-        $this->db->join('common_dict as t4', 't4.ident=t.user_type', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->select('group_concat(concat("<kbd>",t3.name,"</kbd>") order by t3.sort asc,t3.id asc SEPARATOR "&nbsp;") col_auth');
+        $this->db->select('t4.name user_type_name,t4.color user_type_color');
+        $this->db->from('sys_col t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('sys_col_auth t2', 't2.col_id=t.id', 'left');
+        $this->db->join('common_dict t3', 't3.ident=t2.col_auth', 'left');
+        $this->db->join('common_dict t4', 't4.ident=t.user_type', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -39,9 +39,9 @@ class Sys_col_model extends M_Model
     public function update($id = '')
     {
         $this->db->select('t.*');
-        $this->db->select('group_concat(t1.col_auth) as col_auth');
-        $this->db->from('sys_col as t');
-        $this->db->join('sys_col_auth as t1', 't1.col_id=t.id', 'left');
+        $this->db->select('group_concat(t1.col_auth) col_auth');
+        $this->db->from('sys_col t');
+        $this->db->join('sys_col_auth t1', 't1.col_id=t.id', 'left');
         $this->db->where('t.id', $id);
         $res = $this->db->get()->row_array();
 

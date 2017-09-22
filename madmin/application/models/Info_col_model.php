@@ -18,11 +18,11 @@ class Info_col_model extends M_Model
     public function get_list()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.name as sys_tpl_name');
-        $this->db->from('info_col as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('sys_tpl as t2', 't2.id=t.tpl_id', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->select('t2.name sys_tpl_name');
+        $this->db->from('info_col t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('sys_tpl t2', 't2.id=t.tpl_id', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();

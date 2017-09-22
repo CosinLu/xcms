@@ -49,7 +49,7 @@ class Info_col_onepic extends M_Controller
     {
         $cid = $this->input->get('cid');
         $data['item'] = $this->info_col_onepic->update($cid);
-        $data['image'] = $this->uploads_lib->data($data['item']['image'], 'image');
+        $data['uploads']['image'] = $this->uploads_lib->uploads($data['item']['image']);
         $this->load->view('info_col_onepic/update.html', $data);
     }
 

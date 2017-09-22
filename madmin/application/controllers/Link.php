@@ -65,7 +65,7 @@ class Link extends M_Controller
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
-        $data['image'] = $this->uploads_lib->data($data['item']['image'], 'image');
+        $data['uploads']['image'] = $this->uploads_lib->uploads($data['item']['image']);
         $this->load->view('link/update.html', $data);
     }
 
@@ -85,7 +85,7 @@ class Link extends M_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->link->save();
+        $bool = $this->link->save($data);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

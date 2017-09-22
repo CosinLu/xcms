@@ -19,9 +19,9 @@ class Info_cases_model extends M_Model
     {
         $children_id_arr = $this->category_lib->children_id(array(), $cid, TRUE);
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_cases as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->from('info_cases t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

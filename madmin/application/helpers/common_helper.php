@@ -6,8 +6,20 @@
  * Time: 23:07
  */
 
+
+/**
+ * 判断链接是否有前缀 http:// or https://
+ *
+ * @param string $url
+ */
+function is_http($url = '')
+{
+    return preg_match('/(http:\/\/)|(https:\/\/)/i', $url);
+}
+
 /**
  * 转换成标准路径【将路径中的"\"、"//"替换成"/"】
+ *
  * @param string $path
  * @return mixed|string
  */
@@ -16,6 +28,7 @@ function standard_path($path = '')
     $path = str_replace("\\", "/", $path);
     $path = str_replace("///", "/", $path);
     $path = str_replace("//", "/", $path);
+
     return $path;
 }
 
@@ -26,7 +39,6 @@ function standard_path($path = '')
  * @param string $name 元素名称
  * @param int $select_val 选中值
  * @param int $disabled 禁用
- *
  * @return string
  */
 function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
@@ -50,7 +62,6 @@ function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
  *
  * @param string $initial_val
  * @param string $current_val
- *
  * @return string
  */
 function selected($initial_val = '', $current_val = '')
@@ -65,7 +76,6 @@ function selected($initial_val = '', $current_val = '')
  *
  * @param string $initial_val
  * @param string $current_val
- *
  * @return string
  */
 function checked($initial_val = '', $current_val = '')
@@ -85,7 +95,6 @@ function checked($initial_val = '', $current_val = '')
  *
  * @param array $multi_arr 原始数据
  * @param array $num 判断是否为第一次执行此函数，防止多次转换时存在冗余
- *
  * @return array
  */
 function multi_turn_one($multi_arr = array(), $num = 1)
@@ -112,7 +121,6 @@ function multi_turn_one($multi_arr = array(), $num = 1)
  *
  * @param int $size
  * @param int $num
- *
  * @return string
  */
 function format_bytes($size = 0, $num = 1)
@@ -127,7 +135,6 @@ function format_bytes($size = 0, $num = 1)
  * 通过上传文件类型，获得文件icon
  *
  * @param string $arr 文件类型:array('文件类型'=>'值')
- *
  * @return string
  */
 function upload_icon($arr = array())
@@ -184,7 +191,6 @@ function url_to_arr($url = '', $arr = array())
  * 返回上一级
  *
  * @param string $url
- *
  * @return string
  */
 function go_back($url = '')

@@ -17,13 +17,14 @@ require.config({
         'mtree': 'plugin/mtree/js/mtree',
         'ueditor': 'plugin/ueditor/ueditor.all',
         'jqthumb': 'plugin/jqthumb/jqthumb.min',
-        'form': 'plugin/jquery.form.min',
         'sortable': 'plugin/sortable/Sortable.min',
         'template': 'plugin/template',
         'scroller': 'plugin/nanoscroller/js/jquery.nanoscroller.min',
         'uploadifive': 'plugin/uploads/js/jquery.uploadifive',
         'uploadsUnit': 'plugin/uploads/js/uploads.unit',
         'uploads': 'plugin/uploads/js/uploads',
+        //'form': 'plugin/jquery.form.min',
+        'form': 'plugin/validform/Validform_v5.3.2_min'
     },
     shim: {
         'bootstrap': {
@@ -69,13 +70,16 @@ require.config({
         },
         'template': {
             deps: ['jquery']
+        },
+        'form': {
+            deps: ['jquery',
+                'css!plugin/validform/Validform_v5.3.2.css']
         }
     }
 
 });
 
-require(['jquery', 'unit', 'bootstrap', 'layer'], function ($, unit) {
-
+require(['jquery', 'unit', 'layer', 'bootstrap'], function ($, unit) {
     //配置layer
     unit.layerConfig();
 

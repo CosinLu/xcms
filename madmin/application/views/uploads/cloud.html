@@ -144,35 +144,39 @@
         $('.save-hook').on('click', function () {
             var list = [];
             var inputName = queueid;
-            $('.checkbox-hook:input:checked').each(function () {
-                var data = $(this).data('content');
-                var item = $(uploadsUnit.config.itemTemplate).clone();
-                var src = parseInt(data.is_image) ? data.rel_path : uploadsUnit.thumbnail(data.file_ext);
-                var thumbSrc = data.thumb_rel_path || uploadsUnit.thumbnail(data.file_ext);
-                //状态
-                item.addClass('complete');
-                //预览图片信息
-                item.find('.uploads-preview-hook')
-                        .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","file_size":"' + data.file_size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
-                //input
-                item.find('.uploads-input-hook')
-                        .attr('name', inputName + '[]').val(data.id);
-                //缩略图
-                item.find('.uploads-thumb-hook').attr('src', thumbSrc)
-                        .attr('alt', data.client_name)
-                        .jqthumb({width: '69', height: '69'});
-                //图片标题
-                item.attr('title', data.client_name);
-                //添加到容器
-                if (eval(multi)) {
-                    $(window.parent.document).find('#' + queueid).append(item);
-                } else {
-                    $(window.parent.document).find('#' + queueid).html(item);
-                }
-                //关闭弹窗
-                parent.layer.close(index);
+            var checkboxChecked = $('.checkbox-hook:input:checked');
+            var checkboxCheckedLen = checkboxChecked.length;
+            if (checkboxCheckedLen) {
+                checkboxChecked.each(function () {
+                    var data = $(this).data('content');
+                    var item = $(uploadsUnit.config.itemTemplate).clone();
+                    var src = parseInt(data.is_image) ? data.rel_path : uploadsUnit.thumbnail(data.file_ext);
+                    var thumbSrc = data.thumb_rel_path || uploadsUnit.thumbnail(data.file_ext);
+                    //状态
+                    item.addClass('complete');
+                    //预览图片信息
+                    item.find('.uploads-preview-hook')
+                            .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","file_size":"' + data.file_size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_width + '","is_image":"' + data.is_image + '"}');
+                    //input
+                    item.find('.uploads-input-hook')
+                            .attr('name', inputName + '[]').val(data.id);
+                    //缩略图
+                    item.find('.uploads-thumb-hook').attr('src', thumbSrc)
+                            .attr('alt', data.client_name)
+                            .jqthumb({width: '69', height: '69'});
+                    //图片标题
+                    item.attr('title', data.client_name);
+                    //添加到容器
+                    if (eval(multi)) {
+                        $(window.parent.document).find('#' + queueid).append(item);
+                    } else {
+                        $(window.parent.document).find('#' + queueid).html(item);
+                    }
 
-            });
+                });
+            }
+            //关闭弹窗
+            parent.layer.close(index);
         });
 
         //关闭弹窗
@@ -181,7 +185,8 @@
         })
 
 
-    });
+    })
+    ;
 </script>
 </body>
 </html>

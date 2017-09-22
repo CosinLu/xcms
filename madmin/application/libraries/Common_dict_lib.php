@@ -56,8 +56,8 @@ class Common_dict_lib
     {
         if ($ident != '') {
             $this->CI->db->select('t1.*');
-            $this->CI->db->from('common_dict as t');
-            $this->CI->db->join('common_dict as t1', 't1.pid=t.id', 'left');
+            $this->CI->db->from('common_dict t');
+            $this->CI->db->join('common_dict t1', 't1.pid=t.id', 'left');
             $this->CI->db->where('t.ident', $ident);
             $this->CI->db->group_by('t1.id');
             $this->CI->db->order_by('t1.sort asc,t1.id asc');

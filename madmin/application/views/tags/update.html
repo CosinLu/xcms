@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=$this->config->item('title','mcms')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php require_once(VIEWPATH.'include/header.html');?>
+<!-- 主内容区域 -->
+<div class="container-fluid iframe-container">
+    <?php require_once(VIEWPATH.'include/sidebar.html');?>
+    <!-- 主面板 -->
+    <div class="iframe-main">
+        <div class="iframe-main-section">
+            <div class="section_container">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name.go_back()?></div>
+                    </div>
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
+                        <div class="panel-body">
+                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">名称</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="name" value="<?=$item['name']?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">状态</div>
+                                <div class="col-xs-8 radio">
+                                    <?=$dict['display']?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">排序</div>
+                                <div class="col-xs-2">
+                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-8">
+                                    <button type="submit" name="is_save" value="1" class="btn btn-primary">
+                                        保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row form_container">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['uploads'], function () {
+    });
+</script>
+</body>
+</html>

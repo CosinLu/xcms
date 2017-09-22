@@ -18,11 +18,11 @@ class Navigation_model extends M_Model
     public function get_list()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.name as position_name');
-        $this->db->from('navigation as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('common_dict as t2', 't2.ident=t.position', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->select('t2.name position_name');
+        $this->db->from('navigation t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('common_dict t2', 't2.ident=t.position', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -59,8 +59,8 @@ class Navigation_model extends M_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.sys_tpl');
-        $this->db->from('info_col as t');
-        $this->db->join('sys_tpl as t1', 't1.id=t.tpl_id', 'left');
+        $this->db->from('info_col t');
+        $this->db->join('sys_tpl t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();

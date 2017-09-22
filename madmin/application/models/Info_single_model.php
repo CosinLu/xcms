@@ -17,9 +17,9 @@ class Info_single_model extends M_Model
     {
         $this->db->select('t.name,t.id');
         $this->db->select('t1.summary,t1.content');
-        $this->db->from('info_col as t');
+        $this->db->from('info_col t');
         $this->db->where('t.id', $cid);
-        $this->db->join('info_single as t1', 't1.cid=t.id', 'left');
+        $this->db->join('info_single t1', 't1.cid=t.id', 'left');
         $res = $this->db->get()->row_array();
 
         return $res;

@@ -24,8 +24,8 @@ class Info extends M_Controller
     {
         $this->db->select('t.*');
         $this->db->select('t1.sys_tpl');
-        $this->db->from('info_col as t');
-        $this->db->join('sys_tpl as t1', 't1.id=t.tpl_id', 'left');
+        $this->db->from('info_col t');
+        $this->db->join('sys_tpl t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
         $info_col_sort = $this->category_lib->children($info_col_res, 0, TRUE);

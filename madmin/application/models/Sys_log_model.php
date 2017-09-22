@@ -17,11 +17,11 @@ class Sys_log_model extends M_Model
     public function get_list($page = '', $start_time = '', $stop_time = '')
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as status_name,t1.color as status_color');
-        $this->db->select('t2.name as opera_name');
-        $this->db->from('sys_log as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.status', 'left');
-        $this->db->join('common_dict as t2', 't2.ident=t.opera', 'left');
+        $this->db->select('t1.name status_name,t1.color status_color');
+        $this->db->select('t2.name opera_name');
+        $this->db->from('sys_log t');
+        $this->db->join('common_dict t1', 't1.ident=t.status', 'left');
+        $this->db->join('common_dict t2', 't2.ident=t.opera', 'left');
         if ($start_time && $stop_time) {
             $this->db->where('t.time >', strtotime($start_time));
             $this->db->where('t.time <', strtotime($stop_time));

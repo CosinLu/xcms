@@ -17,9 +17,9 @@ class Config_group_model extends M_Model
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('config_group as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->from('config_group t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

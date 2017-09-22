@@ -61,7 +61,7 @@ class Slide extends M_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->slide->update($id);
-        $data['image'] = $this->uploads_lib->data($data['item']['image']);
+        $data['uploads']['image'] = $this->uploads_lib->uploads($data['item']['image']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])

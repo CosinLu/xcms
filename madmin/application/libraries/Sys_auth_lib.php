@@ -36,22 +36,22 @@ class Sys_auth_lib
         if ($user_type == 0) {
             $sql = "SELECT
                 `t`.*,
-                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
-                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) `col_auth`,
+                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) `col_auth_name`";
             if ($id) {
                 $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
             }
             $sql .= " FROM
-                `{$this->tb_sys_col}` AS `t`
+                `{$this->tb_sys_col}` `t`
             LEFT JOIN 
-                `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
+                `{$this->tb_sys_col_auth}` `t1` ON `t1`.`col_id`=`t`.`id`
             LEFT JOIN 
-                `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                `{$this->tb_common_dict}` `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
                         SELECT
-                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                             `col_id`
                         FROM
                             `{$this->tb_sys_role_auth}`
@@ -59,11 +59,11 @@ class Sys_auth_lib
                             `role_id`='{$id}'
                         GROUP BY
                             `col_id`
-                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                    ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 } elseif ($type == 'user') {
                     $sql .= " LEFT JOIN (
                         SELECT
-                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                             `col_id`
                         FROM
                             `{$this->tb_sys_user_auth}`
@@ -71,7 +71,7 @@ class Sys_auth_lib
                             `user_id`='{$id}'
                         GROUP BY
                             `col_id`
-                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                    ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 }
             }
             $sql .= " WHERE 
@@ -84,22 +84,22 @@ class Sys_auth_lib
         elseif ($user_type == 1) {
             $sql = "SELECT
                 `t`.*,
-                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
-                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) `col_auth`,
+                GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) `col_auth_name`";
             if ($id) {
                 $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
             }
             $sql .= " FROM
-                `{$this->tb_sys_col}` AS `t`
+                `{$this->tb_sys_col}` `t`
             LEFT JOIN 
-                `{$this->tb_sys_col_auth}` AS `t1` ON `t1`.`col_id`=`t`.`id`
+                `{$this->tb_sys_col_auth}` `t1` ON `t1`.`col_id`=`t`.`id`
             LEFT JOIN 
-                `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth` ";
+                `{$this->tb_common_dict}` `t2` ON `t2`.`ident`=`t1`.`col_auth` ";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
                         SELECT
-                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                             `col_id`
                         FROM
                             `{$this->tb_sys_role_auth}`
@@ -107,11 +107,11 @@ class Sys_auth_lib
                             `role_id`='{$id}'
                         GROUP BY
                             `col_id`
-                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                    ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 } elseif ($type == 'user') {
                     $sql .= " LEFT JOIN (
                         SELECT
-                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                            GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                             `col_id`
                         FROM
                             `{$this->tb_sys_user_auth}`
@@ -119,7 +119,7 @@ class Sys_auth_lib
                             `user_id`='{$id}'
                         GROUP BY
                             `col_id`
-                    ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                    ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 }
             }
             $sql .= " WHERE 
@@ -133,27 +133,27 @@ class Sys_auth_lib
         } //普通管理员
         elseif ($user_type > 1) {
             $sql = "SELECT 
-              *, GROUP_CONCAT(`col_auth`) AS `col_auth`
+              *, GROUP_CONCAT(`col_auth`) `col_auth`
             FROM
                 (
                     SELECT
                         `t`.*,
-                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
-                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) `col_auth`,
+                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) `col_auth_name`";
             if ($id) {
                 $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
             }
             $sql .= " FROM
-                        `{$this->tb_sys_col}` AS `t`
+                        `{$this->tb_sys_col}` `t`
                     LEFT JOIN 
-                        `{$this->tb_sys_role_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
+                        `{$this->tb_sys_role_auth}` `t1` ON `t1`.`col_id` = `t`.`id`
                     LEFT JOIN 
-                        `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                        `{$this->tb_common_dict}` `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
                                 SELECT
-                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                                     `col_id`
                                 FROM
                                     `{$this->tb_sys_role_auth}`
@@ -161,11 +161,11 @@ class Sys_auth_lib
                                     `role_id`='{$id}'
                                 GROUP BY
                                     `col_id`
-                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                            ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 } elseif ($type == 'user') {
                     $sql .= " LEFT JOIN (
                                 SELECT
-                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                                     `col_id`
                                 FROM
                                     `{$this->tb_sys_user_auth}`
@@ -173,7 +173,7 @@ class Sys_auth_lib
                                     `user_id`='{$id}'
                                 GROUP BY
                                     `col_id`
-                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                            ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 }
             }
             $sql .= " WHERE
@@ -185,22 +185,22 @@ class Sys_auth_lib
                     UNION ALL
                     SELECT
                         `t`.*,
-                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) AS `col_auth`,
-                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) AS `col_auth_name`";
+                        GROUP_CONCAT(`t1`.`col_auth` ORDER BY `t1`.`col_auth` ASC) `col_auth`,
+                        GROUP_CONCAT(`t2`.`name` ORDER BY `t2`.`ident` ASC) `col_auth_name`";
             if ($id) {
                 $sql .= ",`t3`.`col_auth_str`,`t3`.`col_id`";
             }
             $sql .= " FROM
-                        `{$this->tb_sys_col}` AS `t`
+                        `{$this->tb_sys_col}` `t`
                     LEFT JOIN 
-                        `{$this->tb_sys_user_auth}` AS `t1` ON `t1`.`col_id` = `t`.`id`
+                        `{$this->tb_sys_user_auth}` `t1` ON `t1`.`col_id` = `t`.`id`
                     LEFT JOIN 
-                        `{$this->tb_common_dict}` AS `t2` ON `t2`.`ident`=`t1`.`col_auth`";
+                        `{$this->tb_common_dict}` `t2` ON `t2`.`ident`=`t1`.`col_auth`";
             if ($id) {
                 if ($type == 'role') {
                     $sql .= " LEFT JOIN (
                                 SELECT
-                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                                     `col_id`
                                 FROM
                                     `{$this->tb_sys_role_auth}`
@@ -208,11 +208,11 @@ class Sys_auth_lib
                                     `role_id`='{$id}'
                                 GROUP BY
                                     `col_id`
-                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                            ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 } elseif ($type == 'user') {
                     $sql .= " LEFT JOIN (
                                 SELECT
-                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) AS `col_auth_str`,
+                                    GROUP_CONCAT(`col_auth` ORDER BY `col_auth` ASC) `col_auth_str`,
                                     `col_id`
                                 FROM
                                     `{$this->tb_sys_user_auth}`
@@ -220,7 +220,7 @@ class Sys_auth_lib
                                     `user_id`='{$id}'
                                 GROUP BY
                                     `col_id`
-                            ) AS `t3` ON `t3`.`col_id` = `t`.`id`";
+                            ) `t3` ON `t3`.`col_id` = `t`.`id`";
                 }
             }
             $sql .= " WHERE

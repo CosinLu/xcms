@@ -17,11 +17,11 @@ class Slide_model extends M_Model
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
+        $this->db->select('t1.name display_name,t1.color display_color');
         $this->db->select('t2.rel_path');
-        $this->db->from('slide as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('uploads as t2', 't2.id=t.image', 'left');
+        $this->db->from('slide t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('uploads t2', 't2.id=t.image', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

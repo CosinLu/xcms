@@ -17,13 +17,13 @@ class Info_col_muitipic_model extends M_Model
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->select('t2.name as info_col_name');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->select('t2.name info_col_name');
         $this->db->select('t3.rel_path');
-        $this->db->from('info_col_muitipic as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
-        $this->db->join('info_col as t2', 't2.id=t.cid', 'left');
-        $this->db->join('uploads as t3', 't3.id=t.cid', 'left');
+        $this->db->from('info_col_muitipic t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('info_col t2', 't2.id=t.cid', 'left');
+        $this->db->join('uploads t3', 't3.id=t.cid', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

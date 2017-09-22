@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : mcms
+Source Database       : xuanyu
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-13 18:41:07
+Date: 2017-09-22 13:47:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,51 +27,55 @@ CREATE TABLE `common_dict` (
   `ident` varchar(20) DEFAULT NULL COMMENT '唯一标识',
   `color` char(7) DEFAULT NULL COMMENT '颜色',
   `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型：dev=开发者，pro=生产者',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
   `create_user` int(10) DEFAULT NULL COMMENT '创建者',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
 
 -- ----------------------------
 -- Records of common_dict
 -- ----------------------------
-INSERT INTO `common_dict` VALUES ('1', '操作', '0', '1', 'sys_col_auth', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('3', '修改', '1', '2', 'update', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('18', '用户状态', '0', '1', 'user_status', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('21', '图片', '0', '1', 'image', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('22', '无图', '21', '2', 'nopic', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('23', '单图', '21', '2', 'onepic', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', '#5cb85c', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('34', '失败', '32', '2', 'fail', '#d9534f', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('35', '用户类型', '0', '1', 'user_type', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('36', '生产者', '35', '2', 'pro', '#333333', 'dev', '', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f', 'dev', '', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('1', '操作', '0', '1', 'sys_col_auth', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('3', '修改', '1', '2', 'update', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('18', '用户状态', '0', '1', 'user_status', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('21', '图片', '0', '1', 'image', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('22', '无图', '21', '2', 'nopic', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('23', '单图', '21', '2', 'onepic', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('24', '多图', '21', '2', 'muitipic', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', '#5cb85c', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('34', '失败', '32', '2', 'fail', '#d9534f', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('35', '用户类型', '0', '1', 'user_type', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('36', '生产者', '35', '2', 'pro', '#333333', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('39', '文章分类', '0', '1', 'article_type', '#333333', 'pro', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('40', '前端', '39', '2', 'qd', '#333333', 'pro', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('41', 'Android', '39', '2', 'android', '#333333', 'pro', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('42', '后端', '39', '2', 'hd', '#333333', 'pro', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('43', '人工智能', '39', '2', 'rgzn', '#333333', 'pro', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for config
@@ -94,11 +98,11 @@ CREATE TABLE `config` (
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', '标题', 'title', '', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('1', '标题', 'title', '轩宇网络工作室', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '', '1', 'textarea', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('3', '描述', 'description', '', '1', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('4', '版权', 'copyright', '', '1', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('4', '版权', 'copyright', '@ 轩宇网络', '1', 'text', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', '1', 'text', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('6', '统计/商桥', 'count_code', '', '1', 'textarea', '', '', 'show', '100');
 INSERT INTO `config` VALUES ('7', '状态', 'status', '1', '2', 'radio', '1|正常,0|关闭', '', 'show', '100');
 INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', '2', 'textarea', '', '', 'show', '100');
@@ -160,6 +164,73 @@ INSERT INTO `goods_col` VALUES ('10', '相机', '2', '2', '', null, null, '', 's
 INSERT INTO `goods_col` VALUES ('11', 'MP3', '2', '2', '', null, null, '', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
+-- Table structure for info_article
+-- ----------------------------
+DROP TABLE IF EXISTS `info_article`;
+CREATE TABLE `info_article` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
+  `title` varchar(500) DEFAULT NULL COMMENT '标题',
+  `original_link` varchar(255) DEFAULT NULL COMMENT '原文链接',
+  `auther` varchar(30) DEFAULT NULL COMMENT '作者',
+  `image` varchar(10) DEFAULT NULL COMMENT '图片',
+  `content` text COMMENT '内容',
+  `type` varchar(20) DEFAULT NULL COMMENT '分类',
+  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
+  `display` char(4) DEFAULT NULL COMMENT '状态',
+  `sort` int(10) DEFAULT '100' COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+
+-- ----------------------------
+-- Records of info_article
+-- ----------------------------
+INSERT INTO `info_article` VALUES ('1', '1', '基于Vue全家桶制作的的高仿美团APP', 'https://juejin.im/post/59b8ea926fb9a00a636a2f48', '白小明', '582', '<h2 style=\"color: rgb(51, 51, 51); white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">技术栈</h2><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【前端】</p><ul style=\"padding: 0px 0px 0px 2.7rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important;\" class=\" list-paddingleft-2\"><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Vue</span>：构建用户界面的 MVVM 框架，核心是响应的数据绑定和组系统件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-router</span>：为单页面应用提供的路由系统，项目上线前使用了路由懒加载技术，来异步加载路由优化性能</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vuex</span>：Vue 集中状态管理，在多个组件共享某些状态时非常便捷</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-resource</span>：服务端通讯，项目后期改用&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">axios</code></p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">axios</span>：服务端通讯。基于&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">Promise</code>&nbsp;的网络请求插件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-lazyload</span>：第三方图片懒加载库，优化页面加载速度</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">better-scroll</span>：iscroll 的优化版，使移动端滑动体验更加流畅</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Mint UI</span>：一套基于 Vue 2.0 的移动端组件库，出自饿了么前端</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Sass(Scss)</span>：css 预编译处理器</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">ES6</span>：ECMAScript 新一代语法，模块化、解构赋值、Promise、Class 等方法非常好用</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Moment.js</span>：日期时间格式化插件</p></li></ul><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【后端及数据库】</p>', 'qd,hd', '_blank', 'show', '100', '1505297925', null, null, null);
+INSERT INTO `info_article` VALUES ('3', '1', '安卓工程师到底要不要使用苹果手机', '', '亦枫', '583', '<p>是打发斯蒂芬阿斯蒂芬阿斯蒂</p>', null, '_self', 'show', '100', '1505368278', null, null, null);
+
+-- ----------------------------
+-- Table structure for info_article_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `info_article_comment`;
+CREATE TABLE `info_article_comment` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `article_id` int(10) DEFAULT NULL COMMENT '文章标识',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='信息文章评论表';
+
+-- ----------------------------
+-- Records of info_article_comment
+-- ----------------------------
+INSERT INTO `info_article_comment` VALUES ('11', '1');
+INSERT INTO `info_article_comment` VALUES ('12', '1');
+INSERT INTO `info_article_comment` VALUES ('13', '1');
+
+-- ----------------------------
+-- Table structure for info_article_reading_quantity
+-- ----------------------------
+DROP TABLE IF EXISTS `info_article_reading_quantity`;
+CREATE TABLE `info_article_reading_quantity` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `article_id` int(10) DEFAULT NULL COMMENT '文章标识',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='信息文章阅读量表';
+
+-- ----------------------------
+-- Records of info_article_reading_quantity
+-- ----------------------------
+INSERT INTO `info_article_reading_quantity` VALUES ('11', '1');
+INSERT INTO `info_article_reading_quantity` VALUES ('12', '1');
+INSERT INTO `info_article_reading_quantity` VALUES ('13', '1');
+INSERT INTO `info_article_reading_quantity` VALUES ('14', '1');
+INSERT INTO `info_article_reading_quantity` VALUES ('15', '3');
+INSERT INTO `info_article_reading_quantity` VALUES ('16', '3');
+INSERT INTO `info_article_reading_quantity` VALUES ('17', '3');
+
+-- ----------------------------
 -- Table structure for info_cases
 -- ----------------------------
 DROP TABLE IF EXISTS `info_cases`;
@@ -212,15 +283,14 @@ CREATE TABLE `info_col` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of info_col
 -- ----------------------------
-INSERT INTO `info_col` VALUES ('1', '新闻', '0', '1', '1', 'news', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('2', '产品', '0', '1', '2', 'product', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('3', '公司简介', '0', '1', '3', 'compnay', 'http://www.baidu.com', '_self', 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `info_col` VALUES ('9', '热门信息', '1', '2', '1', 'hot', '', null, 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('1', '文章', '0', '1', '1', 'article', '', '_self', 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('2', '模板', '0', '1', '2', 'template', '', '_self', 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `info_col` VALUES ('3', '产品', '0', '1', '2', 'product', '', '_self', 'nopic', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for info_col_muitipic
@@ -265,30 +335,7 @@ CREATE TABLE `info_col_onepic` (
 -- ----------------------------
 -- Records of info_col_onepic
 -- ----------------------------
-
--- ----------------------------
--- Table structure for info_news
--- ----------------------------
-DROP TABLE IF EXISTS `info_news`;
-CREATE TABLE `info_news` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(500) DEFAULT NULL COMMENT '标题',
-  `summary` varchar(100) DEFAULT NULL COMMENT '摘要',
-  `content` text COMMENT '内容',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
-
--- ----------------------------
--- Records of info_news
--- ----------------------------
+INSERT INTO `info_col_onepic` VALUES ('1', '587', '', '', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for info_single
@@ -356,17 +403,14 @@ CREATE TABLE `navigation` (
   `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
   `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='导航表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='导航表';
 
 -- ----------------------------
 -- Records of navigation
 -- ----------------------------
-INSERT INTO `navigation` VALUES ('1', '关于', '0', '1', '3', 'compnay', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('2', '案例', '0', '1', null, '', null, 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('3', '服务', '0', '1', null, '', null, 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('4', '联系', '0', '1', '-1', 'http://', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('5', '公司简介', '1', '2', '3', 'http://www.baidu.com', '_self', 'top', 'show', '100', null, null, null, null, '0', '1', '1');
-INSERT INTO `navigation` VALUES ('6', '公司资质', '1', '2', null, '', null, 'top', 'show', '100', null, null, null, null, '0', '1', '1');
+INSERT INTO `navigation` VALUES ('1', '文章', '0', '1', '1', 'article', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('2', '产品', '0', '1', '3', 'product', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `navigation` VALUES ('3', '模板', '0', '1', '2', 'template', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for slide
@@ -423,7 +467,6 @@ INSERT INTO `sys_col` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '',
 INSERT INTO `sys_col` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_col` VALUES ('49', '标签管理', 'fa fa-tag', '4', '2', 'tags', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('9', '配置组', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('10', '配置项', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '200', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null);
@@ -447,6 +490,7 @@ INSERT INTO `sys_col` VALUES ('45', '商品品牌', 'fa fa-diamond', '43', '2', 
 INSERT INTO `sys_col` VALUES ('46', '商品类型', 'fa fa-th', '43', '2', 'goods_type', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('47', '用户评论', 'fa fa-comments', '43', '2', 'user_comment', '', 'pro', 'show', '100', null, null, null, null);
 INSERT INTO `sys_col` VALUES ('48', '通用字典', 'fa fa-book', '2', '2', 'common_dict', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_col` VALUES ('49', '标签管理', 'fa fa-tag', '4', '2', 'tags', '', 'pro', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_col_auth
@@ -460,7 +504,6 @@ CREATE TABLE `sys_col_auth` (
 -- ----------------------------
 -- Records of sys_col_auth
 -- ----------------------------
-INSERT INTO `sys_col_auth` VALUES ('49', 'look');
 INSERT INTO `sys_col_auth` VALUES ('7', 'look');
 INSERT INTO `sys_col_auth` VALUES ('13', 'look');
 INSERT INTO `sys_col_auth` VALUES ('13', 'del');
@@ -470,9 +513,6 @@ INSERT INTO `sys_col_auth` VALUES ('25', 'look');
 INSERT INTO `sys_col_auth` VALUES ('25', 'del');
 INSERT INTO `sys_col_auth` VALUES ('24', 'look');
 INSERT INTO `sys_col_auth` VALUES ('24', 'update');
-INSERT INTO `sys_col_auth` VALUES ('49', 'del');
-INSERT INTO `sys_col_auth` VALUES ('49', 'update');
-INSERT INTO `sys_col_auth` VALUES ('49', 'insert');
 INSERT INTO `sys_col_auth` VALUES ('9', 'look');
 INSERT INTO `sys_col_auth` VALUES ('9', 'del');
 INSERT INTO `sys_col_auth` VALUES ('9', 'update');
@@ -552,6 +592,10 @@ INSERT INTO `sys_col_auth` VALUES ('48', 'look');
 INSERT INTO `sys_col_auth` VALUES ('48', 'del');
 INSERT INTO `sys_col_auth` VALUES ('48', 'update');
 INSERT INTO `sys_col_auth` VALUES ('48', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('49', 'insert');
+INSERT INTO `sys_col_auth` VALUES ('49', 'update');
+INSERT INTO `sys_col_auth` VALUES ('49', 'del');
+INSERT INTO `sys_col_auth` VALUES ('49', 'look');
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -571,7 +615,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_log
@@ -678,7 +722,89 @@ INSERT INTO `sys_log` VALUES ('104', '4', 'madmin', '导航管理', 'update', 's
 INSERT INTO `sys_log` VALUES ('105', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505285487');
 INSERT INTO `sys_log` VALUES ('106', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505286462');
 INSERT INTO `sys_log` VALUES ('107', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505286481');
-INSERT INTO `sys_log` VALUES ('108', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505288137');
+INSERT INTO `sys_log` VALUES ('108', '4', 'madmin', '菜单管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505288355');
+INSERT INTO `sys_log` VALUES ('109', '4', 'madmin', '标签管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505289031');
+INSERT INTO `sys_log` VALUES ('110', '4', 'madmin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290192');
+INSERT INTO `sys_log` VALUES ('111', '4', 'madmin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290232');
+INSERT INTO `sys_log` VALUES ('112', '4', 'madmin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290247');
+INSERT INTO `sys_log` VALUES ('113', '4', 'madmin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290264');
+INSERT INTO `sys_log` VALUES ('114', '4', 'madmin', '通用字典', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290349');
+INSERT INTO `sys_log` VALUES ('115', '4', 'madmin', '通用字典', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290360');
+INSERT INTO `sys_log` VALUES ('116', '4', 'madmin', '通用字典', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290372');
+INSERT INTO `sys_log` VALUES ('117', '4', 'madmin', '通用字典', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290390');
+INSERT INTO `sys_log` VALUES ('118', '4', 'madmin', '通用字典', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290408');
+INSERT INTO `sys_log` VALUES ('119', '4', 'madmin', '导航管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290677');
+INSERT INTO `sys_log` VALUES ('120', '4', 'madmin', '导航管理', 'del', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505290681');
+INSERT INTO `sys_log` VALUES ('121', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505291970');
+INSERT INTO `sys_log` VALUES ('122', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505291981');
+INSERT INTO `sys_log` VALUES ('123', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292112');
+INSERT INTO `sys_log` VALUES ('124', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292383');
+INSERT INTO `sys_log` VALUES ('125', '4', 'madmin', '栏目管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292401');
+INSERT INTO `sys_log` VALUES ('126', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292412');
+INSERT INTO `sys_log` VALUES ('127', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292440');
+INSERT INTO `sys_log` VALUES ('128', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292452');
+INSERT INTO `sys_log` VALUES ('129', '4', 'madmin', '导航管理', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505292460');
+INSERT INTO `sys_log` VALUES ('130', '4', 'madmin', '文章', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505297929');
+INSERT INTO `sys_log` VALUES ('131', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505298066');
+INSERT INTO `sys_log` VALUES ('132', '4', 'madmin', '网站配置', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505298112');
+INSERT INTO `sys_log` VALUES ('133', '4', 'madmin', '网站配置', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505355980');
+INSERT INTO `sys_log` VALUES ('134', '4', 'madmin', '网站配置', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505356121');
+INSERT INTO `sys_log` VALUES ('135', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505366344');
+INSERT INTO `sys_log` VALUES ('136', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505366509');
+INSERT INTO `sys_log` VALUES ('137', '4', 'madmin', '文章', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505366876');
+INSERT INTO `sys_log` VALUES ('138', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505367013');
+INSERT INTO `sys_log` VALUES ('139', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505367018');
+INSERT INTO `sys_log` VALUES ('140', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505367025');
+INSERT INTO `sys_log` VALUES ('141', '4', 'madmin', '文章', 'insert', 'success', 'Chrome', '60.0.3112.113', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505368397');
+INSERT INTO `sys_log` VALUES ('142', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505449734');
+INSERT INTO `sys_log` VALUES ('143', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505449741');
+INSERT INTO `sys_log` VALUES ('144', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788094');
+INSERT INTO `sys_log` VALUES ('145', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788101');
+INSERT INTO `sys_log` VALUES ('146', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788294');
+INSERT INTO `sys_log` VALUES ('147', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788304');
+INSERT INTO `sys_log` VALUES ('148', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788312');
+INSERT INTO `sys_log` VALUES ('149', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788339');
+INSERT INTO `sys_log` VALUES ('150', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788346');
+INSERT INTO `sys_log` VALUES ('151', '4', 'madmin', '模板管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505788354');
+INSERT INTO `sys_log` VALUES ('152', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505880697');
+INSERT INTO `sys_log` VALUES ('153', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505882688');
+INSERT INTO `sys_log` VALUES ('154', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505891254');
+INSERT INTO `sys_log` VALUES ('155', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505978237');
+INSERT INTO `sys_log` VALUES ('156', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505978257');
+INSERT INTO `sys_log` VALUES ('157', '4', 'madmin', '导航管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1505978272');
+INSERT INTO `sys_log` VALUES ('158', '4', 'madmin', '友情链接', 'insert', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043050');
+INSERT INTO `sys_log` VALUES ('159', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043134');
+INSERT INTO `sys_log` VALUES ('160', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043177');
+INSERT INTO `sys_log` VALUES ('161', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043685');
+INSERT INTO `sys_log` VALUES ('162', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043732');
+INSERT INTO `sys_log` VALUES ('163', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043906');
+INSERT INTO `sys_log` VALUES ('164', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043962');
+INSERT INTO `sys_log` VALUES ('165', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506043980');
+INSERT INTO `sys_log` VALUES ('166', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044015');
+INSERT INTO `sys_log` VALUES ('167', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044054');
+INSERT INTO `sys_log` VALUES ('168', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044116');
+INSERT INTO `sys_log` VALUES ('169', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044126');
+INSERT INTO `sys_log` VALUES ('170', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044133');
+INSERT INTO `sys_log` VALUES ('171', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044142');
+INSERT INTO `sys_log` VALUES ('172', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044161');
+INSERT INTO `sys_log` VALUES ('173', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044185');
+INSERT INTO `sys_log` VALUES ('174', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506044223');
+INSERT INTO `sys_log` VALUES ('175', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506048052');
+INSERT INTO `sys_log` VALUES ('176', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506048245');
+INSERT INTO `sys_log` VALUES ('177', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506048378');
+INSERT INTO `sys_log` VALUES ('178', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506056903');
+INSERT INTO `sys_log` VALUES ('179', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506056968');
+INSERT INTO `sys_log` VALUES ('180', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057151');
+INSERT INTO `sys_log` VALUES ('181', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057217');
+INSERT INTO `sys_log` VALUES ('182', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057228');
+INSERT INTO `sys_log` VALUES ('183', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057421');
+INSERT INTO `sys_log` VALUES ('184', '4', 'madmin', '友情链接', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057449');
+INSERT INTO `sys_log` VALUES ('185', '4', 'madmin', '幻灯片', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057465');
+INSERT INTO `sys_log` VALUES ('186', '4', 'madmin', '友情链接', 'insert', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057615');
+INSERT INTO `sys_log` VALUES ('187', '4', 'madmin', '友情链接', 'del', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506057621');
+INSERT INTO `sys_log` VALUES ('188', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506058072');
+INSERT INTO `sys_log` VALUES ('189', '4', 'madmin', '单图管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506058083');
+INSERT INTO `sys_log` VALUES ('190', '4', 'madmin', '栏目管理', 'update', 'success', 'Chrome', '61.0.3163.79', 'Windows 10', 'DESKTOP-PRO736K', '127.0.0.1', '1506058495');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -690,7 +816,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -783,7 +909,19 @@ INSERT INTO `sys_login_log` VALUES ('85', '4', '127.0.0.1', '1505187969');
 INSERT INTO `sys_login_log` VALUES ('86', '4', '127.0.0.1', '1505195398');
 INSERT INTO `sys_login_log` VALUES ('87', '4', '127.0.0.1', '1505267341');
 INSERT INTO `sys_login_log` VALUES ('88', '4', '127.0.0.1', '1505268389');
-INSERT INTO `sys_login_log` VALUES ('89', '4', '127.0.0.1', '1505288300');
+INSERT INTO `sys_login_log` VALUES ('89', '4', '127.0.0.1', '1505355953');
+INSERT INTO `sys_login_log` VALUES ('90', '4', '127.0.0.1', '1505379557');
+INSERT INTO `sys_login_log` VALUES ('91', '4', '127.0.0.1', '1505439661');
+INSERT INTO `sys_login_log` VALUES ('92', '4', '127.0.0.1', '1505439677');
+INSERT INTO `sys_login_log` VALUES ('93', '4', '127.0.0.1', '1505449502');
+INSERT INTO `sys_login_log` VALUES ('94', '4', '127.0.0.1', '1505459818');
+INSERT INTO `sys_login_log` VALUES ('95', '4', '127.0.0.1', '1505788076');
+INSERT INTO `sys_login_log` VALUES ('96', '4', '127.0.0.1', '1505874694');
+INSERT INTO `sys_login_log` VALUES ('97', '4', '127.0.0.1', '1505876118');
+INSERT INTO `sys_login_log` VALUES ('98', '4', '127.0.0.1', '1505899452');
+INSERT INTO `sys_login_log` VALUES ('99', '4', '127.0.0.1', '1505978212');
+INSERT INTO `sys_login_log` VALUES ('100', '4', '127.0.0.1', '1506043002');
+INSERT INTO `sys_login_log` VALUES ('101', '4', '127.0.0.1', '1506056874');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -882,8 +1020,8 @@ CREATE TABLE `sys_tpl` (
 -- ----------------------------
 -- Records of sys_tpl
 -- ----------------------------
-INSERT INTO `sys_tpl` VALUES ('1', '新闻模板', 'news', 'news/show', 'info_news', '', 'show', '100', null, null, null, null);
-INSERT INTO `sys_tpl` VALUES ('2', '案例模板', 'cases', 'cases/show', 'info_cases', '', 'show', '100', null, null, null, null);
+INSERT INTO `sys_tpl` VALUES ('1', '文章模板', 'article', 'article/detail', 'info_article', '', 'show', '100', null, null, null, null);
+INSERT INTO `sys_tpl` VALUES ('2', '案例模板', 'cases', 'cases/detail', 'info_cases', '', 'show', '100', null, null, null, null);
 INSERT INTO `sys_tpl` VALUES ('3', '单页模板', 'single', '', 'info_single', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
@@ -936,6 +1074,27 @@ INSERT INTO `sys_user_auth` VALUES ('6', '15', 'del');
 INSERT INTO `sys_user_auth` VALUES ('6', '4', '');
 
 -- ----------------------------
+-- Table structure for tags
+-- ----------------------------
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `display` char(4) DEFAULT NULL COMMENT '显示：hide=隐藏，show=显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='标签表';
+
+-- ----------------------------
+-- Records of tags
+-- ----------------------------
+INSERT INTO `tags` VALUES ('1', '架构', 'show', '100', null, null, null, null);
+
+-- ----------------------------
 -- Table structure for uploads
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -960,7 +1119,7 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=579 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=588 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
@@ -981,3 +1140,31 @@ INSERT INTO `uploads` VALUES ('575', '53aa6611c941800fb5953a566c03f954.jpg', 'im
 INSERT INTO `uploads` VALUES ('576', '3b5b040d1613061dc0d19e894dfd56ab.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab.jpg', '3b5b040d1613061dc0d19e894dfd56ab', '/uploads/upload/20170908/3b5b040d1613061dc0d19e894dfd56ab', '3b5b040d1613061dc0d19e894dfd56ab.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
 INSERT INTO `uploads` VALUES ('577', 'a70bff2443b6398b3e9617cce20491e5.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5.jpg', 'a70bff2443b6398b3e9617cce20491e5', '/uploads/upload/20170908/a70bff2443b6398b3e9617cce20491e5', 'a70bff2443b6398b3e9617cce20491e5.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
 INSERT INTO `uploads` VALUES ('578', '6b8aaec826b8ac0f68e48dfb492183a3.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170908/', 'D:/wamp/www/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3.jpg', '/uploads/upload/20170908/', '/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3.jpg', '6b8aaec826b8ac0f68e48dfb492183a3', '/uploads/upload/20170908/6b8aaec826b8ac0f68e48dfb492183a3', '6b8aaec826b8ac0f68e48dfb492183a3.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('579', '61ec25344f6b1a015ca529157e9c2359.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170914/', 'D:/wamp/www/uploads/upload/20170914/61ec25344f6b1a015ca529157e9c2359.jpg', '/uploads/upload/20170914/', '/uploads/upload/20170914/61ec25344f6b1a015ca529157e9c2359.jpg', '61ec25344f6b1a015ca529157e9c2359', '/uploads/upload/20170914/61ec25344f6b1a015ca529157e9c2359', '61ec25344f6b1a015ca529157e9c2359.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('580', 'b193f701f8b8fdc632a0faa14be93722.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170914/', 'D:/wamp/www/uploads/upload/20170914/b193f701f8b8fdc632a0faa14be93722.jpg', '/uploads/upload/20170914/', '/uploads/upload/20170914/b193f701f8b8fdc632a0faa14be93722.jpg', 'b193f701f8b8fdc632a0faa14be93722', '/uploads/upload/20170914/b193f701f8b8fdc632a0faa14be93722', 'b193f701f8b8fdc632a0faa14be93722.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('581', '1fd243f63d5fc0eb292951626ee0a7b0.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170914/', 'D:/wamp/www/uploads/upload/20170914/1fd243f63d5fc0eb292951626ee0a7b0.jpg', '/uploads/upload/20170914/', '/uploads/upload/20170914/1fd243f63d5fc0eb292951626ee0a7b0.jpg', '1fd243f63d5fc0eb292951626ee0a7b0', '/uploads/upload/20170914/1fd243f63d5fc0eb292951626ee0a7b0', '1fd243f63d5fc0eb292951626ee0a7b0.jpg', 'logo.jpg', '.jpg', '66.00', '1', '127', '127', 'jpeg', 'width=\"640\" height=\"640\"', null);
+INSERT INTO `uploads` VALUES ('582', 'b69388252e0f395d6ed480a294fe0ed4.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170914/', 'D:/wamp/www/uploads/upload/20170914/b69388252e0f395d6ed480a294fe0ed4.jpg', '/uploads/upload/20170914/', '/uploads/upload/20170914/b69388252e0f395d6ed480a294fe0ed4.jpg', 'b69388252e0f395d6ed480a294fe0ed4', '/uploads/upload/20170914/b69388252e0f395d6ed480a294fe0ed4', 'b69388252e0f395d6ed480a294fe0ed4.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('583', '09a43399acfbbb70650eb864add333c1.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170914/', 'D:/wamp/www/uploads/upload/20170914/09a43399acfbbb70650eb864add333c1.jpg', '/uploads/upload/20170914/', '/uploads/upload/20170914/09a43399acfbbb70650eb864add333c1.jpg', '09a43399acfbbb70650eb864add333c1', '/uploads/upload/20170914/09a43399acfbbb70650eb864add333c1', '09a43399acfbbb70650eb864add333c1.jpg', '14fe14754790460b632ddfeb248efd54.jpg', '.jpg', '5.06', '1', '120', '120', 'jpeg', 'width=\"120\" height=\"120\"', null);
+INSERT INTO `uploads` VALUES ('584', '3d0105e83519f4da22bb910a298935cf.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170922/', 'D:/wamp/www/uploads/upload/20170922/3d0105e83519f4da22bb910a298935cf.jpg', '/uploads/upload/20170922/', '/uploads/upload/20170922/3d0105e83519f4da22bb910a298935cf.jpg', '3d0105e83519f4da22bb910a298935cf', '/uploads/upload/20170922/3d0105e83519f4da22bb910a298935cf', '3d0105e83519f4da22bb910a298935cf.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('585', 'a34b76f769d7fb373aeb3dbfc645810b.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170922/', 'D:/wamp/www/uploads/upload/20170922/a34b76f769d7fb373aeb3dbfc645810b.jpg', '/uploads/upload/20170922/', '/uploads/upload/20170922/a34b76f769d7fb373aeb3dbfc645810b.jpg', 'a34b76f769d7fb373aeb3dbfc645810b', '/uploads/upload/20170922/a34b76f769d7fb373aeb3dbfc645810b', 'a34b76f769d7fb373aeb3dbfc645810b.jpg', '59af4fdeN7a69c937.jpg', '.jpg', '98.98', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('586', '0cc26c8b8f17eac8a281e45f71f3d562.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170922/', 'D:/wamp/www/uploads/upload/20170922/0cc26c8b8f17eac8a281e45f71f3d562.jpg', '/uploads/upload/20170922/', '/uploads/upload/20170922/0cc26c8b8f17eac8a281e45f71f3d562.jpg', '0cc26c8b8f17eac8a281e45f71f3d562', '/uploads/upload/20170922/0cc26c8b8f17eac8a281e45f71f3d562', '0cc26c8b8f17eac8a281e45f71f3d562.jpg', '59af95ecN177a895c.jpg', '.jpg', '129.83', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('587', 'a38359e177deafa303dc914872722b32.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170922/', 'D:/wamp/www/uploads/upload/20170922/a38359e177deafa303dc914872722b32.jpg', '/uploads/upload/20170922/', '/uploads/upload/20170922/a38359e177deafa303dc914872722b32.jpg', 'a38359e177deafa303dc914872722b32', '/uploads/upload/20170922/a38359e177deafa303dc914872722b32', 'a38359e177deafa303dc914872722b32.jpg', '59a79038N19b55fd0.jpg', '.jpg', '249.36', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(32) DEFAULT NULL COMMENT '密码',
+  `phone` tinyint(11) DEFAULT NULL COMMENT '手机号',
+  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('29', '', 'd41d8cd98f00b204e9800998ecf8427e', null, null);
+INSERT INTO `user` VALUES ('30', '123', '2b24d495052a8ce66358eb576b8912c8', null, null);

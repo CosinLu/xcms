@@ -98,7 +98,6 @@ class Common_dict extends M_Controller
                 'name' => $this->input->post('name'),
                 'ident' => $this->input->post('ident'),
                 'color' => $this->input->post('color'),
-                'remark' => $this->input->post('remark'),
                 'user_type' => $this->input->post('user_type') ?: 'pro',
                 'sort' => $this->input->post('sort')
             )

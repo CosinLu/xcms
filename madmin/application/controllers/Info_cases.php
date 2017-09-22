@@ -69,8 +69,10 @@ class Info_cases extends Info
         $id = $this->input->get('id');
         $data['item'] = $this->info_cases->update($id);
         $data['cols'] = $this->category_lib->ddl(array(), 'cid', 0, $data['item']['cid'], FALSE, $this->tpl_id());
-        $data['image'] = $this->uploads_lib->data($data['item']['image']);
-        $data['images'] = $this->uploads_lib->data($data['item']['images']);
+        $data['uploads'] = $this->uploads_lib->uploads(array(
+            array('image', $data['item']['image']),
+            array('images', $data['item']['images'])
+        ));
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])

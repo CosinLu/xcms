@@ -3,13 +3,13 @@
  */
 define(['jquery', 'layer'], function ($) {
     return {
-
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
                 var content = $(this).data('content');
                 var titleContent = (content.name) ? '<div style="padding-top:15px;">' + content.name + '</div>' : '';
                 parent.layer.open({
+                    type: 1,
                     title: false,
                     area: '500px',
                     btn: false,
@@ -19,13 +19,6 @@ define(['jquery', 'layer'], function ($) {
 
             });
         },
-
-        // //关闭弹窗
-        // layerClose: function (index) {
-        //     $('.close-hook').on('click', function () {
-        //         parent.layer.close(index);
-        //     });
-        // },
 
         //layer配置
         layerConfig: function () {
@@ -38,20 +31,69 @@ define(['jquery', 'layer'], function ($) {
             });
         },
 
-        //异步提交表单
-        ajaxForm: function () {
-            require(['form'], function () {
+        /*//异步提交表单
+         ajaxForm: function () {
+         require(['form'], function () {
+         if ($('.ajax-form-hook').length > 0) {
+         $('.ajax-form-hook').ajaxForm({
+         type: 'post',
+         dataType: 'json',
+         success: function (responseData, $form) {
+         //提示
+         var msg;
+         if (responseData.msg) {
+         msg = responseData.msg;
+         } else {
+         switch (responseData.icon) {
+         case 1:
+         msg = '操作成功！';
+         break;
+         case 2:
+         msg = '操作失败！';
+         break;
+         default:
+         msg = '提示！！！';
+         break;
+         }
+         }
+
+         //icon
+         var icon = -1;
+         if (responseData.icon) {
+         icon = responseData.icon;
+         }
+
+         //停留时间
+         var time = (responseData.time) ? responseData.time : 1000;
+         layer.msg(msg, {icon: icon, time: time, shade: 0.6, shadeClose: true}, function () {
+         if (responseData.url) {
+         location.href = responseData.url;
+         }
+         });
+         }
+         });
+         }
+         })
+         },*/
+
+        //表单提交&验证
+        ajaxForm: function (options) {
+            require(['form', 'layer'], function () {
                 if ($('.ajax-form-hook').length > 0) {
-                    $('.ajax-form-hook').ajaxForm({
-                        type: 'post',
-                        dataType: 'json',
-                        success: function (responseData, $form) {
+                    var defaults = {
+                        tiptype: function (msg, o, cssctl) {
+                            if (o.type == 1) {
+                                layer.msg(msg, {icon: 16, shade: 0.6});
+                            }
+                        },
+                        ajaxPost: true,
+                        callback: function (data) {
                             //提示
                             var msg;
-                            if (responseData.msg) {
-                                msg = responseData.msg;
+                            if (data.msg) {
+                                msg = data.msg;
                             } else {
-                                switch (responseData.icon) {
+                                switch (data.icon) {
                                     case 1:
                                         msg = '操作成功！';
                                         break;
@@ -63,22 +105,22 @@ define(['jquery', 'layer'], function ($) {
                                         break;
                                 }
                             }
-
                             //icon
                             var icon = -1;
-                            if (responseData.icon) {
-                                icon = responseData.icon;
+                            if (data.icon) {
+                                icon = data.icon;
                             }
-
                             //停留时间
-                            var time = (responseData.time) ? responseData.time : 1000;
+                            var time = (data.time) ? data.time : 1000;
                             layer.msg(msg, {icon: icon, time: time, shade: 0.6, shadeClose: true}, function () {
-                                if (responseData.url) {
-                                    location.href = responseData.url;
+                                if (data.url) {
+                                    location.href = data.url;
                                 }
                             });
                         }
-                    });
+                    };
+                    var ops = $.extend({}, defaults, options);
+                    var validform = $('.ajax-form-hook').Validform(ops);
                 }
             })
         },

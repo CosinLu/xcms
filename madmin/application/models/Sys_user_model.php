@@ -17,11 +17,11 @@ class Sys_user_model extends M_Model
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
-        $this->db->select('t1.name as sys_role_name');
-        $this->db->select('t2.name as status_name,t2.color as status_color');
-        $this->db->from('sys_user as t');
-        $this->db->join('sys_role as t1', 't1.id=t.role_id', 'left');
-        $this->db->join('common_dict as t2', 't2.ident=t.status', 'left');
+        $this->db->select('t1.name sys_role_name');
+        $this->db->select('t2.name status_name,t2.color status_color');
+        $this->db->from('sys_user t');
+        $this->db->join('sys_role t1', 't1.id=t.role_id', 'left');
+        $this->db->join('common_dict t2', 't2.ident=t.status', 'left');
         if ($key != '') {
             $this->db->like('t.username', $key);
         }

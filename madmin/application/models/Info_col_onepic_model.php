@@ -19,9 +19,9 @@ class Info_col_onepic_model extends M_Model
         $this->db->select('t.id,t.name');
         $this->db->select('t1.url,t1.remark');
         $this->db->select('t2.rel_path');
-        $this->db->from('info_col as t');
-        $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
-        $this->db->join('uploads as t2', 't2.id=t1.image', 'left');
+        $this->db->from('info_col t');
+        $this->db->join('info_col_onepic t1', 't1.cid=t.id', 'left');
+        $this->db->join('uploads t2', 't2.id=t1.image', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
@@ -44,8 +44,8 @@ class Info_col_onepic_model extends M_Model
     {
         $this->db->select('t.id,t.name');
         $this->db->select('t1.*');
-        $this->db->from('info_col as t');
-        $this->db->join('info_col_onepic as t1', 't1.cid=t.id', 'left');
+        $this->db->from('info_col t');
+        $this->db->join('info_col_onepic t1', 't1.cid=t.id', 'left');
         $this->db->where('t.id', $cid);
         $res = $this->db->get()->row_array();
 
@@ -53,7 +53,7 @@ class Info_col_onepic_model extends M_Model
     }
 
     //保存
-    public function save()
+    public function save($data = array())
     {
         $bool = $this->db->replace('info_col_onepic', $data['vals']);
 

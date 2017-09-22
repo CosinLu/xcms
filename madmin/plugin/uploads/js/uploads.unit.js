@@ -67,7 +67,7 @@ define(['jquery'], function ($) {
                     var list = _this.data('list');
                     var inputName = _this.attr('id');
                     if (!inputName) return false;
-                    if (list != undefined) {
+                    if (list != undefined || list == '') {
                         $.each(list, function (i, data) {
                             var item = $(u.config.itemTemplate).clone();
                             var src = eval(data.is_image) ? data.rel_path : u.thumbnail(data.file_ext);
@@ -130,6 +130,7 @@ define(['jquery'], function ($) {
                 content += '</div>';
                 content += '</div>';
                 parent.layer.open({
+                    type: 1,
                     title: false,
                     area: '500px',
                     btn: false,
