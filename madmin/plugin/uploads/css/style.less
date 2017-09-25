@@ -15,9 +15,11 @@
             box-sizing: content-box;
             position: relative;
             overflow: hidden;
-            &:hover {
-                .uploads-control {
-                    display: block;
+            &.complete {
+                &:hover {
+                    .uploads-control {
+                        display: block;
+                    }
                 }
             }
             &.uploads-ghost {

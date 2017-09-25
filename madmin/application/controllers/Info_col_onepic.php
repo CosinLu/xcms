@@ -72,7 +72,7 @@ class Info_col_onepic extends M_Controller
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_onepic?sys_cid=' . $this->sys_cid);
         if ($bool) {
-            switch ($this->is_save) {
+            switch ($this->submit_type) {
                 case '1':
                     echo json_encode($config);
                     break;

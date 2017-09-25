@@ -58,6 +58,7 @@ class Info_article extends Info
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
         ));
+        $data['tags'] = $this->info_article->get_tags();
         $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_article/insert.html', $data);
     }
@@ -74,6 +75,7 @@ class Info_article extends Info
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
+        $data['tags'] = $this->info_article->get_tags();
         $this->load->view('info_article/update.html', $data);
     }
 
@@ -88,6 +90,7 @@ class Info_article extends Info
                 'original_link' => $this->input->post('original_link'),
                 'auther' => $this->input->post('auther'),
                 'image' => implode(',', $this->input->post('image')),
+                'tags' => implode(',', $this->input->post('tags')),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
@@ -101,7 +104,7 @@ class Info_article extends Info
         $config['icon'] = 1;
         $config['url'] = site_url('info_article?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
         if ($bool) {
-            switch ($this->is_save) {
+            switch ($this->submit_type) {
                 case '1':
                     echo json_encode($config);
                     break;

@@ -108,7 +108,7 @@ class Common_dict extends M_Controller
         $config['icon'] = 1;
         $config['url'] = site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         if ($bool) {
-            switch ($this->is_save) {
+            switch ($this->submit_type) {
                 case '1':
                     echo json_encode($config);
                     break;

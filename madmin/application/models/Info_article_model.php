@@ -60,4 +60,16 @@ class Info_article_model extends M_Model
         return $bool;
     }
 
+    //标签
+    public function get_tags()
+    {
+        $this->db->where(array(
+            'display' => 'show'
+        ));
+        $this->db->order_by('sort asc,id asc');
+        $res = $this->db->get('tags')->result_array();
+
+        return $res;
+    }
+
 }

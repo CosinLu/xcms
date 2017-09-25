@@ -31,8 +31,8 @@ define(['jquery', 'layer'], function ($) {
             });
         },
 
-        /*//异步提交表单
-         ajaxForm: function () {
+        //异步提交表单
+        /*ajaxForm: function () {
          require(['form'], function () {
          if ($('.ajax-form-hook').length > 0) {
          $('.ajax-form-hook').ajaxForm({
@@ -78,6 +78,7 @@ define(['jquery', 'layer'], function ($) {
 
         //表单提交&验证
         ajaxForm: function (options) {
+            var _this = this;
             require(['form', 'layer'], function () {
                 if ($('.ajax-form-hook').length > 0) {
                     var defaults = {
@@ -121,8 +122,26 @@ define(['jquery', 'layer'], function ($) {
                     };
                     var ops = $.extend({}, defaults, options);
                     var validform = $('.ajax-form-hook').Validform(ops);
+
+                    $('.submit-hook').on('click', function () {
+                        _this._setFormSubmitType($(this));
+                        validform.ajaxPost();
+                        return false;
+                    });
                 }
             })
+        },
+
+        //设置表单提交类型
+        _setFormSubmitType: function (obj) {
+            var name = obj.attr('name');
+            var submitText = $('input[type="hidden"][name="' + name + '"]');
+            var type = obj.val(); //1：保存，2：保存并新增
+            if (submitText.length == 0) {
+                obj.after('<input type="hidden" name="' + name + '" value="' + type + '">');
+            } else {
+                submitText.val(type);
+            }
         },
 
         //批量删除
@@ -149,6 +168,9 @@ define(['jquery', 'layer'], function ($) {
                         url: url,
                         type: 'post',
                         data: {tbname: tbname, id: id, primary: primary},
+                        beforeSend: function () {
+                            layer.msg('正在删除数据...', {icon: 16, shade: 0.6});
+                        },
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
@@ -180,6 +202,9 @@ define(['jquery', 'layer'], function ($) {
                         url: url,
                         type: 'post',
                         data: {tbname: tbname, id: id, primary: primary},
+                        beforeSend: function () {
+                            layer.msg('正在删除数据...', {icon: 16, shade: 0.6});
+                        },
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {

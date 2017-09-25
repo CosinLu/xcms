@@ -44,7 +44,8 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">原文链接</div>
                                 <div class="col-xs-8">
-                                    <input type="text" name="original_link" value="<?=$item['original_link']?>" class="form-control">
+                                    <input type="text" name="original_link" value="<?=$item['original_link']?>"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -70,6 +71,18 @@
                                 <div class="col-xs-8">
                                     <script id="content" class="editor-hook" name="content"
                                             type="text/plain"><?=$item['content']?></script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">标签</div>
+                                <div class="col-xs-5 radio">
+                                    <?php foreach($tags as $val):?>
+                                    <label>
+                                        <input type="checkbox" name="tags[]"
+                                               value="<?=$val['id']?>" <?=checked($val['id'],$item['tags'])?>>
+                                        <ins><?=$val['name']?></ins>
+                                    </label>
+                                    <?php endforeach;?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,7 +113,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-8">
-                                    <button type="submit" name="is_save" value="1" class="btn btn-primary">
+                                    <button type="submit" name="submit_type" value="1"
+                                            class="btn btn-primary submit-hook">
                                         保存
                                     </button>
                                 </div>
