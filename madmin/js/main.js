@@ -23,7 +23,6 @@ require.config({
         'uploadifive': 'plugin/uploads/js/jquery.uploadifive',
         'uploadsUnit': 'plugin/uploads/js/uploads.unit',
         'uploads': 'plugin/uploads/js/uploads',
-//        'form': 'plugin/jquery.form.min',
         'form': 'plugin/validform/Validform_v5.3.2_min'
     },
     shim: {

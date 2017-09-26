@@ -100,22 +100,6 @@
                 }
             })
         }
-
-        //删除
-        $(document).on('click', '.del-col-hook', function () {
-            var id = $(this).data('id');
-            layer.confirm('删除数据？', {icon: 3, title: '删除'}, function () {
-                $.post('<?=$del_url?>', {id: id}, function (data) {
-                    if (data) {
-                        layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.75, shadeClose: true}, function () {
-                            get_list();
-                        });
-                    } else {
-                        layer.msg('删除失败！', {icon: 2, shade: 0.75, shadeClose: true});
-                    }
-                })
-            })
-        });
     });
 </script>
 </body>

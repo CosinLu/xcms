@@ -3,6 +3,17 @@
  */
 define(['jquery', 'layer'], function ($) {
     return {
+
+        //分页
+        pagination: function (fn) {
+            $(document).on('click', '.pagination-hook li[class!="active"] a', fn)
+        },
+
+        //检索
+        search: function (fn) {
+            $('.search-btn-hook').click(fn);
+        },
+
         //图片预览
         imagePreview: function () {
             $(document).on('click', '.preview-hook', function () {
@@ -30,51 +41,6 @@ define(['jquery', 'layer'], function ($) {
                 shadeClose: true
             });
         },
-
-        //异步提交表单
-        /*ajaxForm: function () {
-         require(['form'], function () {
-         if ($('.ajax-form-hook').length > 0) {
-         $('.ajax-form-hook').ajaxForm({
-         type: 'post',
-         dataType: 'json',
-         success: function (responseData, $form) {
-         //提示
-         var msg;
-         if (responseData.msg) {
-         msg = responseData.msg;
-         } else {
-         switch (responseData.icon) {
-         case 1:
-         msg = '操作成功！';
-         break;
-         case 2:
-         msg = '操作失败！';
-         break;
-         default:
-         msg = '提示！！！';
-         break;
-         }
-         }
-
-         //icon
-         var icon = -1;
-         if (responseData.icon) {
-         icon = responseData.icon;
-         }
-
-         //停留时间
-         var time = (responseData.time) ? responseData.time : 1000;
-         layer.msg(msg, {icon: icon, time: time, shade: 0.6, shadeClose: true}, function () {
-         if (responseData.url) {
-         location.href = responseData.url;
-         }
-         });
-         }
-         });
-         }
-         })
-         },*/
 
         //表单提交&验证
         ajaxForm: function (options) {
@@ -147,9 +113,9 @@ define(['jquery', 'layer'], function ($) {
         //批量删除
         batchDel: function () {
             $(document).on('click', '.batch-del-hook', function () {
-                var tbname = $(this).data('tb');
-                var url = $(this).data('url');
-                var primary = $(this).data('primary');
+                var tbname = $(this).data('tb') || '';
+                var url = $(this).data('url') || '';
+                var primary = $(this).data('primary') || '';
                 var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
                 var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
                 var id = '';
@@ -174,8 +140,7 @@ define(['jquery', 'layer'], function ($) {
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
-                                    $('.search-btn-hook').click();
-                                    $('input[type="checkbox"][name="checkAll"][data-checkname="' + checkname + '"]').prop('checked', false);
+                                    window.location.reload();
                                 });
                             } else {
                                 layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
@@ -208,7 +173,7 @@ define(['jquery', 'layer'], function ($) {
                         success: function (data) {
                             if (parseInt(data) > 0) {
                                 layer.msg('删除成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
-                                    $('.search-btn-hook').click();
+                                    window.location.reload();
                                 });
                             } else {
                                 layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});

@@ -50,7 +50,6 @@ class Tags extends M_Controller
     public function insert()
     {
         $data['dict'] = $this->common_dict_lib->dict(array(
-            array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
         ));
         $this->load->view('tags/insert.html', $data);
@@ -62,7 +61,6 @@ class Tags extends M_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->tags->update($id);
         $data['dict'] = $this->common_dict_lib->dict(array(
-            array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $this->load->view('tags/update.html', $data);
@@ -75,6 +73,7 @@ class Tags extends M_Controller
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
+                'dir' => $this->input->post('dir'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort')
             )

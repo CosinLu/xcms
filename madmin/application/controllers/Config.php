@@ -62,7 +62,6 @@ class Config extends M_Controller
      * 转换后用于配置信息中的radio，checkbox,select
      *
      * @param string $str 待转换字符串【格式：1|开启,0|关闭】
-     *
      * @return array
      */
     public function transform_param($str = '')

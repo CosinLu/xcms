@@ -72,20 +72,18 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template'], function (template) {
+    require(['unit','template'], function (unit,template) {
         get_list();
 
-        //搜索
-        $('.search-btn-hook').click(function () {
-            get_list();
+        //分页
+        unit.pagination(function () {
+            get_list($(this).data('page'));
         });
 
-        //分页
-        $(document).on({
-            click: function (e) {
-                get_list($(this).data('page'));
-            }
-        }, '.pagination-hook li[class!="active"] a');
+        //搜索
+        unit.search(function () {
+            get_list();
+        });
 
         //获得列表
         function get_list(pageIndex) {
@@ -115,22 +113,6 @@
                 }
             })
         }
-
-        //删除
-        $(document).on('click', '.del-col-hook', function () {
-            var id = $(this).data('id');
-            layer.confirm('确定删除？此操作不可恢复！<br/>如有下级也将随之删除', {icon: 3, title: '删除'}, function () {
-                $.post('<?=$del_url?>', {id: id}, function (data) {
-                    if (data) {
-                        layer.msg('删除成功', {icon: 1}, function () {
-                            get_list();
-                        });
-                    } else {
-                        layer.msg('删除失败', {icon: 2});
-                    }
-                })
-            })
-        });
     });
 </script>
 </body>

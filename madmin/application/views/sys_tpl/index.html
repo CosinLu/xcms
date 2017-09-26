@@ -87,18 +87,16 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template'], function (template) {
+    require(['unit', 'template'], function (unit, template) {
         get_list();
 
         //分页
-        $(document).on({
-            click: function (e) {
-                get_list($(this).data('page'));
-            }
-        }, '.pagination-hook li[class!="active"] a');
+        unit.pagination(function () {
+            get_list($(this).data('page'));
+        });
 
         //搜索
-        $('.search-btn-hook').click(function () {
+        unit.search(function () {
             get_list();
         });
 

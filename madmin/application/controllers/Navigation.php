@@ -22,7 +22,6 @@ class Navigation extends M_Controller
         $url['get_list_url'] = site_url('navigation/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('navigation/save?sys_cid=' . $this->sys_cid);
-        $url['del_url'] = site_url('navigation/del?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
 
@@ -52,7 +51,7 @@ class Navigation extends M_Controller
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_update_btn;
             }
             if ($val['del_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-col-hook" data-id="' . $val['id'] . '">删除</a>', $disabled_del_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('navigation/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
