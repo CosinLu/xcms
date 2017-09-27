@@ -6,27 +6,27 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Config_item_model extends M_Model
+class Config_item_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
-    public function get_list($key = '', $page = '', $group_id = '')
+    //获取列表
+    public function get_list($key = '', $page = '', $category = '')
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
         $this->db->select('t2.name config_group_name');
         $this->db->from('config t');
         $this->db->join('common_dict t1', 't1.ident = t.display', 'left');
-        $this->db->join('config_group t2', 't2.id=t.config_group_id', 'left');
+        $this->db->join('config_group t2', 't2.category=t.category', 'left');
         if ($key != '') {
             $this->db->like('t.title', $key);
         }
-        if ($group_id != '') {
-            $this->db->where('config_group_id', $group_id);
+        if ($category != '') {
+            $this->db->where('t.category', $category);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = $this->config->item('per_page', 'mcms');
@@ -41,7 +41,7 @@ class Config_item_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->where('id', $id);
@@ -51,12 +51,12 @@ class Config_item_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->db->where('id', $data['id'])->update('config', $data['vals']);
+        if ($post['id']) {
+            $bool = $this->db->where('id', $post['id'])->update('config', $post['vals']);
         } else {
-            $bool = $this->db->insert('config', $data['vals']);
+            $bool = $this->db->insert('config', $post['vals']);
         }
 
         return $bool;
@@ -65,6 +65,7 @@ class Config_item_model extends M_Model
     //配置组
     public function config_group()
     {
+        $this->db->select('name,category');
         $this->db->where('display', 'show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get('config_group')->result_array();

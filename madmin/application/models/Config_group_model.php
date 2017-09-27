@@ -6,14 +6,14 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Config_group_model extends M_Model
+class Config_group_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
+    //获取列表
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
@@ -36,7 +36,7 @@ class Config_group_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->where('id', $id);
@@ -46,12 +46,12 @@ class Config_group_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->db->where('id', $data['id'])->update('config_group', $data['vals']);
+        if ($post['id']) {
+            $bool = $this->db->where('id', $post['id'])->update('config_group', $post['vals']);
         } else {
-            $bool = $this->db->insert('config_group', $data['vals']);
+            $bool = $this->db->insert('config_group', $post['vals']);
         }
 
         return $bool;

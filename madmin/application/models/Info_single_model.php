@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 18:28
  */
-class Info_single_model extends M_Model
+class Info_single_model extends CI_Model
 {
     public function __construct()
     {
@@ -26,9 +26,9 @@ class Info_single_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        $bool = $this->db->replace('info_single', $data['vals']);
+        $bool = $this->db->replace('info_single', $post['vals']);
 
         return $bool;
     }

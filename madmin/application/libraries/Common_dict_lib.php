@@ -16,7 +16,7 @@ class Common_dict_lib
     }
 
     /**
-     * 根据类型获得数据
+     * 根据类型获取数据
      *
      * @param array $arr array(['控件类型','字典标识','控件名称','选中项','禁选项','默认值（下拉列表第一条数据）array('title','value') OR false'])
      * @return string
@@ -47,7 +47,7 @@ class Common_dict_lib
     }
 
     /**
-     * 获得所有数据
+     * 获取所有数据
      *
      * @param string $ident 字典标识
      * @return mixed

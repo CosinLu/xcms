@@ -6,14 +6,14 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_col_onepic_model extends M_Model
+class Info_col_onepic_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
+    //获取列表
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.id,t.name');
@@ -39,7 +39,7 @@ class Info_col_onepic_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($cid = '')
     {
         $this->db->select('t.id,t.name');
@@ -53,9 +53,9 @@ class Info_col_onepic_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        $bool = $this->db->replace('info_col_onepic', $data['vals']);
+        $bool = $this->db->replace('info_col_onepic', $post['vals']);
 
         return $bool;
     }

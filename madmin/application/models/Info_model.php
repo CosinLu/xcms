@@ -6,15 +6,15 @@
  * Date: 2016/9/5
  * Time: 17:34
  */
-class Info_model extends M_Model
+class Info_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
+        $this->load->library('tree');
     }
 
-    //获得信息栏目
+    //获取信息栏目
     public function cols()
     {
         $this->db->select('t.*');
@@ -24,12 +24,12 @@ class Info_model extends M_Model
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
-        $res = $this->category_lib->children($res);
+        $res = $this->tree->serialize($res);
 
         return $res;
     }
 
-    //获得当前栏目的模板标识
+    //获取当前栏目的模板标识
     public function tpl_id($cid = '')
     {
         $this->db->select('tpl_id');
@@ -37,6 +37,15 @@ class Info_model extends M_Model
         $res = $this->db->get('info_col')->row_array();
 
         return $res['tpl_id'];
+    }
+
+    //获取所有数据
+    public function data()
+    {
+        $this->db->where('display', 'show');
+        $res = $this->db->get('info_col')->result_array();
+
+        return $res;
     }
 
 }

@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Info_col_onepic extends M_Controller
+class Info_col_onepic extends MY_Controller
 {
     public function __construct()
     {
@@ -22,7 +22,6 @@ class Info_col_onepic extends M_Controller
         $url['get_list_url'] = site_url('info_col_onepic/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_onepic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_onepic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('info_col_onepic/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -32,7 +31,7 @@ class Info_col_onepic extends M_Controller
         $this->load->view('info_col_onepic/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $key = $this->input->post('key');
@@ -44,7 +43,7 @@ class Info_col_onepic extends M_Controller
         echo json_encode($data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $cid = $this->input->get('cid');
@@ -58,7 +57,7 @@ class Info_col_onepic extends M_Controller
     {
         $image = $this->input->post('image');
         $url = $this->input->post('url');
-        $data = array(
+        $post = array(
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'image' => (!empty($image)) ? implode(',', $image) : '',
@@ -66,7 +65,7 @@ class Info_col_onepic extends M_Controller
                 'remark' => $this->input->post('remark')
             )
         );
-        $bool = $this->info_col_onepic->save($data);
+        $bool = $this->info_col_onepic->save($post);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, '2', $bool);
         $config['icon'] = 1;

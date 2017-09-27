@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:05
  */
-class M_Controller extends CI_Controller
+class MY_Controller extends CI_Controller
 {
     protected $sys_session;
     //系统栏目标识
@@ -27,7 +27,6 @@ class M_Controller extends CI_Controller
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->submit_type = ($this->input->post('submit_type') == '') ? '1' : $this->input->post('submit_type');
         $this->col_auth = '';
-        $this->load->library('category_lib', array(), 'my_category');
         $this->load->library('sys_auth_lib', array(
             'user_info' => $this->session->sys_session
         ));
@@ -51,11 +50,12 @@ class M_Controller extends CI_Controller
         $data['section_name'] = '';
         //系统栏目
         $sys_col = $this->sys_auth_lib->sys_col();
-        //获得栏目所有上级id
-        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
+        //获取栏目所有上级id
+        $sys_col_parent_id = $this->tree->get_parent($sys_col, $this->sys_cid, TRUE, 'id');
         if (!empty($sys_col_parent_id)) {
+            $sys_col_parent_id = array_reverse($sys_col_parent_id);
             //主菜单有效url
-            $sys_col_url = $this->my_category->children_url($sys_col);
+            $sys_col_url = $this->valid_url($sys_col);
             foreach ($sys_col as $key => $val) {
                 if ($val['pid'] == 0) {
                     $data['menu'][$key] = $val;
@@ -76,16 +76,16 @@ class M_Controller extends CI_Controller
     //侧边栏
     public function sidebar()
     {
-        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         $str = '';
         $parent_level = 0;
         //系统栏目
         $sys_col = $this->sys_auth_lib->sys_col();
-        //获得当前栏目所有上级id
-        $sys_col_parent_id = $this->my_category->parent_id($sys_col, $this->sys_cid, TRUE);
+        //获取当前栏目所有上级id
+        $sys_col_parent_id = $this->tree->get_parent($sys_col, $this->sys_cid, TRUE, 'id');
         if (!empty($sys_col_parent_id)) {
-            //获得当前栏目一级栏目的所有下级栏目
-            $sys_col_chidren = $this->my_category->children($sys_col, $sys_col_parent_id[0]);
+            $sys_col_parent_id = array_reverse($sys_col_parent_id);
+            //获取当前栏目一级栏目的所有下级栏目
+            $sys_col_chidren = $this->tree->get_children($sys_col, $sys_col_parent_id[0]);
             foreach ($sys_col_chidren as $val) {
                 $level = $val['level'];
                 $n = strpos($val['url'], '?');
@@ -122,6 +122,30 @@ class M_Controller extends CI_Controller
         }
         $data['sidebar'] = $str;
         $this->load->vars($data);
+    }
+
+    //获取有效url
+    public function valid_url($data = array())
+    {
+        $data_serialize = $this->tree->serialize($data);
+        $children = array();
+        foreach ($data_serialize as $key => $val) {
+            if ($val['pid'] == 0) {
+                $children[$key] = $this->tree->get_children($data, $val['id'], TRUE);
+                foreach ($children[$key] as $val) {
+                    if ($val['url']) {
+                        $n = strpos($val['url'], '?');
+                        $conn = ($n) ? '&' : '?';
+                        $url[$key] = site_url($val['url'] . $conn . 'sys_cid=' . $val['id']);
+                        break;
+                    } else {
+                        $url[$key] = 'javascript:;';
+                    }
+                }
+            }
+        }
+
+        return $url;
     }
 
 

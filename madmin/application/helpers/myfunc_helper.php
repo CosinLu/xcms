@@ -33,23 +33,40 @@ function standard_path($path = '')
 }
 
 /**
- * 下拉列表
+ * 下拉菜单
  *
- * @param array $data 原始数据
- * @param string $name 元素名称
- * @param int $select_val 选中值
- * @param int $disabled 禁用
+ * @param array $data 数据源
+ * @param string $name 菜单名称
+ * @param string $disabled 是否禁用
+ * @param string $option_val 选项值
+ * @param string $option_name 选项名
+ * @param string $selected_val 已选选项值
+ * @param string $disabled_val 禁用选项值
+ * @param bool $default 默认
  * @return string
  */
-function ddl($data = array(), $name = '', $select_val = 0, $disabled = '')
+function ddl($data = array(), $name = '', $disabled = '', $option_val = 'id', $option_name = 'name', $selected_val = '', $disabled_val = '', $default = TRUE)
 {
     $str = '';
     $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
-    $str .= '<option value="0">-请选择-</option>';
+
+    if ($default === TRUE) {
+        $str .= '<option value="-1">-请选择-</option>';
+    } else if (is_array($default)) {
+        $str .= '<option value="' . $default[0] . '">' . $default[1] . '</option>';
+    } else if (is_string($default) && $default != '') {
+        $str .= '<option value="-1">' . $default . '</option>';
+    }
+
     if (!empty($data)) {
         foreach ($data as $val) {
-            $selected = ($val['id'] == $select_val) ? 'selected' : '';
-            $str .= '<option value="' . $val['id'] . '" ' . $selected . '>' . $val['name'] . '</option>';
+            //选中值
+            $option_selected = '';
+            if ($selected_val != '') $option_selected = (in_array($val[$option_val], explode(',', $selected_val))) ? 'selected' : '';
+            //禁用值
+            $option_disabled = '';
+            if ($disabled_val != '') $option_disabled = (in_array($val[$option_val], explode(',', $disabled_val))) ? 'disabled' : '';
+            $str .= '<option value="' . $val[$option_val] . '" ' . $option_selected . ' ' . $option_disabled . '>' . $val[$option_name] . '</option>';
         }
     }
     $str .= '</select>';
@@ -97,7 +114,7 @@ function checked($initial_val = '', $current_val = '')
  * @param array $num 判断是否为第一次执行此函数，防止多次转换时存在冗余
  * @return array
  */
-function multi_turn_one($multi_arr = array(), $num = 1)
+function multi_transform_one($multi_arr = array(), $num = 1)
 {
     static $result = array();
     //第一次执行时清空数组
@@ -106,7 +123,7 @@ function multi_turn_one($multi_arr = array(), $num = 1)
     }
     foreach ($multi_arr as $key => $val) {
         if (is_array($val)) {
-            $this->multi_turn_one($val, $num++);
+            multi_turn_one($val, $num++);
         } else {
             $result[] = $val;
         }
@@ -132,7 +149,7 @@ function format_bytes($size = 0, $num = 1)
 }
 
 /**
- * 通过上传文件类型，获得文件icon
+ * 通过上传文件类型，获取文件icon
  *
  * @param string $arr 文件类型:array('文件类型'=>'值')
  * @return string

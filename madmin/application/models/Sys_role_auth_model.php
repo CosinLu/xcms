@@ -6,7 +6,7 @@
  * Date: 2016/8/30
  * Time: 12:51
  */
-class Sys_role_auth_model extends M_Model
+class Sys_role_auth_model extends CI_Model
 {
     protected $tb_sys_col;
     protected $tb_sys_col_auth;
@@ -20,7 +20,6 @@ class Sys_role_auth_model extends M_Model
         $this->tb_sys_col_auth = $this->db->dbprefix . 'sys_col_auth';
         $this->tb_common_dict = $this->db->dbprefix . 'common_dict';
         $this->tb_sys_role_auth = $this->db->dbprefix . 'sys_role_auth';
-        $this->load->library('category_lib', array('tb_name' => 'sys_col'), 'category_lib');
     }
 
     //删除

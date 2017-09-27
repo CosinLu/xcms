@@ -6,15 +6,15 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Common_dict_model extends M_Model
+class Common_dict_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category_lib', array('tb_name' => 'common_dict'));
+        $this->load->library('tree');
     }
 
-    //获得列表
+    //获取列表
     public function get_list($pid = '', $key = '', $page = '', $user_type = '')
     {
         $this->db->from('common_dict');
@@ -43,7 +43,7 @@ class Common_dict_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->where('id', $id);
@@ -53,12 +53,12 @@ class Common_dict_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->category_lib->update($data['id'], $data['pid'], $data['vals']);
+        if ($post['id']) {
+            $bool = $this->tree->update($this->data(), 'common_dict', $post['id'], $post['vals']);
         } else {
-            $bool = $this->category_lib->insert($data['pid'], $data['vals']);
+            $bool = $this->tree->insert('common_dict', $post['vals']);
         }
 
         return $bool;

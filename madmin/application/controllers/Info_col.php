@@ -6,13 +6,12 @@
  * Date: 2016/8/22
  * Time: 10:04
  */
-class Info_col extends M_Controller
+class Info_col extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('info_col_model', 'info_col');
-        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
         $this->set_url();
     }
 
@@ -30,7 +29,7 @@ class Info_col extends M_Controller
         $this->load->view('info_col/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $data['list'] = $this->info_col->get_list();
@@ -64,7 +63,7 @@ class Info_col extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
+        $data['cols'] = $this->tree->ddl($this->info_col->data(), 'pid', $id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id');
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target'),
@@ -74,13 +73,13 @@ class Info_col extends M_Controller
         $this->load->view('info_col/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
         $data['item'] = $this->info_col->update($id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', $data['item']['tpl_id']);
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->tree->ddl($this->info_col->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'image', 'pic', $data['item']['pic']),
@@ -93,12 +92,12 @@ class Info_col extends M_Controller
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
             'vals' => array(
                 'tpl_id' => $this->input->post('tpl_id'),
                 'name' => $this->input->post('name'),
+                'pid' => $this->input->post('pid'),
                 'dir' => $this->input->post('dir'),
                 'url' => $this->input->post('url'),
                 'target' => $this->input->post('target'),
@@ -107,9 +106,9 @@ class Info_col extends M_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->info_col->save($data);
+        $bool = $this->info_col->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -132,8 +131,9 @@ class Info_col extends M_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category_lib->del($id);//删除栏目
-        $this->sys_log_lib->insert($this->section_name, '3', $rows);//日志
+        $rows = $this->tree->del($this->info_col->data(), 'info_col', $id);
+        //日志
+        $this->sys_log_lib->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

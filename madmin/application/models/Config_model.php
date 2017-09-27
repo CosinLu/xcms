@@ -6,7 +6,7 @@
  * Date: 2016/8/25
  * Time: 16:16
  */
-class Config_model extends M_Model
+class Config_model extends CI_Model
 {
 
     public function __construct()
@@ -15,18 +15,18 @@ class Config_model extends M_Model
     }
 
     //配置项
-    public function config_item($config_group_id = '')
+    public function config_item($category = '')
     {
         //默认第一个显示第一个配置组
-        if ($config_group_id == '') {
+        if ($category == '') {
             foreach ($this->config_group() as $val) {
-                $config_group_id = $val['id'];
+                $category = $val['category'];
                 break;
             }
         }
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
-            'config_group_id' => $config_group_id,
+            'category' => $category,
             'display' => 'show'
         ));
         $result = $this->db->get('config')->result_array();
@@ -45,18 +45,18 @@ class Config_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
         $rows = 1;
         $value = array();
-        if (!empty($data['vals'])) {
-            foreach ($data['vals'] as $key => $val) {
+        if (!empty($post['vals'])) {
+            foreach ($post['vals'] as $key => $val) {
                 $value[] = array(
-                    'name' => $key,
+                    'variable' => $key,
                     'value' => (is_array($val)) ? implode(',', $val) : $val
                 );
             }
-            $this->db->update_batch('config', $value, 'name');
+            $this->db->update_batch('config', $value, 'variable');
             $rows += $this->db->affected_rows();
         }
 

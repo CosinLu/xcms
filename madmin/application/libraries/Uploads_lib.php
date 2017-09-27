@@ -19,7 +19,7 @@ class Uploads_lib
 
 
     /**
-     * 获得相应数据
+     * 获取相应数据
      *
      * @param string $id
      * @return string

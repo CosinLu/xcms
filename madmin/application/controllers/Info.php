@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 16:53
  */
-class Info extends M_Controller
+class Info extends MY_Controller
 {
     protected $cid;
     protected $main_section_name;
@@ -16,7 +16,6 @@ class Info extends M_Controller
         parent::__construct();
         $this->cid = $this->input->get('cid');
         $this->load->model('info_model', 'info');
-        $this->load->library('category_lib', array('tb_name' => 'info_col'), 'category_lib');
         $this->main_sidebar();
     }
 
@@ -28,7 +27,7 @@ class Info extends M_Controller
         $this->db->join('sys_tpl t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $info_col_res = $this->db->get()->result_array();
-        $info_col_sort = $this->category_lib->children($info_col_res, 0, TRUE);
+        $info_col_sort = $this->tree->serialize($info_col_res);
         $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('info_col/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
         $str .= '<div class="nano iframe_main_sidebar_nano nano-hook">';
         $str .= '<div class="ph mt nano-content">';
@@ -74,14 +73,14 @@ class Info extends M_Controller
         $this->load->vars($data);
     }
 
-    //获得信息栏目
+    //获取信息栏目
     public function index()
     {
         $data = $this->info->cols();
         $children = array();
         $url = array();
         foreach ($data as $key => $val) {
-            $children[$key] = $this->category_lib->children($data, $val['pid'], TRUE);
+            $children[$key] = $this->tree->get_children($data, $val['pid'], TRUE);
             foreach ($children[$key] as $val) {
                 if ($val['sys_tpl']) {
                     $url[$key] = $val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
@@ -99,7 +98,7 @@ class Info extends M_Controller
         }
     }
 
-    //获得当前栏目的模板标识
+    //获取当前栏目的模板标识
     public function tpl_id()
     {
         $res = $this->info->tpl_id($this->cid);

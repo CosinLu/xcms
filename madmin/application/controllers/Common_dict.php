@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 10:04
  */
-class Common_dict extends M_Controller
+class Common_dict extends MY_Controller
 {
     protected $pid;
     protected $user_type;
@@ -19,7 +19,6 @@ class Common_dict extends M_Controller
         //判断用户类型
         $this->user_type = $this->session->sys_session['user_type'] == 0 ? 'dev' : 'pro';
         $this->load->model('common_dict_model', 'common_dict');
-        $this->load->library('category_lib', array('tb_name' => 'common_dict'), 'category_lib');
         $this->set_url();
     }
 
@@ -29,7 +28,6 @@ class Common_dict extends M_Controller
         $url['index_back_btn'] = ($this->pid) ? go_back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('common_dict/save?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $this->load->vars($url);
     }
@@ -39,7 +37,7 @@ class Common_dict extends M_Controller
         $this->load->view('common_dict/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $key = $this->input->post('key');
@@ -70,7 +68,7 @@ class Common_dict extends M_Controller
         $this->load->view('common_dict/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
@@ -86,24 +84,23 @@ class Common_dict extends M_Controller
         $this->load->view('common_dict/update.html', $data);
     }
 
-
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
             'vals' => array(
                 'name' => $this->input->post('name'),
+                'pid' => $this->input->post('pid'),
                 'ident' => $this->input->post('ident'),
                 'color' => $this->input->post('color'),
                 'user_type' => $this->input->post('user_type') ?: 'pro',
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->common_dict->save($data);
+        $bool = $this->common_dict->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         if ($bool) {
@@ -126,7 +123,7 @@ class Common_dict extends M_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->category_lib->del($id);
+        $rows = $this->tree->del($this->common_dict->data(), $id);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, '3', $rows);
         echo $rows;

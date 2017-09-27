@@ -6,7 +6,7 @@
  * Date: 2016/8/30
  * Time: 12:45
  */
-class Sys_user_auth extends M_Controller
+class Sys_user_auth extends MY_Controller
 {
     protected $user_id;
 
@@ -31,7 +31,7 @@ class Sys_user_auth extends M_Controller
         $this->load->view('sys_user_auth/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $list = $this->sys_auth_lib->sys_col('user', $this->input->get('user_id'));

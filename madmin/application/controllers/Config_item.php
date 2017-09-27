@@ -6,26 +6,25 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Config_item extends M_Controller
+class Config_item extends MY_Controller
 {
-    protected $group_id;
+    protected $category;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('config_item_model', 'config_item');
-        $this->group_id = $this->input->get('group_id');
+        $this->category = $this->input->get('category');
         $this->set_url();
     }
 
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('config_item/get_list?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
-        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_item/insert?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">新增</a>');
-        $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
-        $url['save_url'] = site_url('config_item/save?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
+        $url['get_list_url'] = site_url('config_item/get_list?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
+        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_item/insert?sys_cid=' . $this->sys_cid . '&category=' . $this->category) . '">新增</a>');
+        $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&category=' . $this->category) . '">删除</a>');
+        $url['save_url'] = site_url('config_item/save?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
         $this->load->vars($url);
     }
 
@@ -34,17 +33,16 @@ class Config_item extends M_Controller
         $this->load->view('config_item/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $group_id = $this->input->get('group_id');
-        $data['list'] = $this->config_item->get_list($key, $page, $group_id);
+        $data['list'] = $this->config_item->get_list($key, $page, $this->category);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_item/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&group_id=' . $this->group_id) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="config" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('config_item/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&category=' . $this->category) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-tb="config" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&category=' . $this->category) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -52,7 +50,7 @@ class Config_item extends M_Controller
     //新增
     public function insert()
     {
-        $data['config_group'] = ddl($this->config_item->config_group(), 'config_group_id', $this->group_id);
+        $data['config_group'] = ddl($this->config_item->config_group(), 'category', '', 'category', 'name', $this->category);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display'),
             array('rbl', 'config_type', 'type')
@@ -60,12 +58,12 @@ class Config_item extends M_Controller
         $this->load->view('config_item/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
         $data['item'] = $this->config_item->update($id);
-        $data['config_group'] = ddl($this->config_item->config_group(), 'config_group_id', $data['item']['config_group_id']);
+        $data['config_group'] = ddl($this->config_item->config_group(), 'category', '', 'category', 'name', $data['item']['category']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'display', 'display', $data['item']['display']),
             array('rbl', 'config_type', 'type', $data['item']['type'])
@@ -76,12 +74,12 @@ class Config_item extends M_Controller
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'title' => $this->input->post('title'),
                 'name' => $this->input->post('name'),
-                'config_group_id' => $this->input->post('config_group_id'),
+                'category' => $this->input->post('category'),
                 'type' => $this->input->post('type'),
                 'param' => $this->input->post('param'),
                 'remark' => $this->input->post('remark'),
@@ -89,11 +87,11 @@ class Config_item extends M_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->config_item->save($data);
+        $bool = $this->config_item->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
-        $config['url'] = site_url('config_item?sys_cid=' . $this->sys_cid . '&group_id=' . $this->group_id);
+        $config['url'] = site_url('config_item?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
         if ($bool) {
             switch ($this->submit_type) {
                 case '1':

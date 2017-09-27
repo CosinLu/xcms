@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <input type="text" name="key" class="form-control input-sm">
                             </div>
-                            <?=$search_btn?>
+                            <button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table_list list-hook">
@@ -72,7 +72,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit','template'], function (unit,template) {
+    require(['unit', 'template'], function (unit, template) {
         get_list();
 
         //分页
@@ -85,7 +85,7 @@
             get_list();
         });
 
-        //获得列表
+        //获取列表
         function get_list(pageIndex) {
             var data = {
                 x: Math.random(),

@@ -6,14 +6,14 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Sys_log_model extends M_Model
+class Sys_log_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
+    //获取列表
     public function get_list($page = '', $start_time = '', $stop_time = '')
     {
         $this->db->select('t.*');

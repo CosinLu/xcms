@@ -6,13 +6,12 @@
  * Date: 2016/8/22
  * Time: 10:04
  */
-class Sys_col extends M_Controller
+class Sys_col extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('sys_col_model', 'sys_col');
-        $this->load->library('category_lib', array('tb_name' => 'sys_col'), 'category_lib');
         $this->set_url();
     }
 
@@ -30,7 +29,7 @@ class Sys_col extends M_Controller
         $this->load->view('sys_col/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $data['list'] = $this->sys_col->get_list();
@@ -49,7 +48,7 @@ class Sys_col extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
+        $data['cols'] = $this->tree->ddl($this->sys_col->data(), 'pid', $id);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth'),
             array('rbl', 'display', 'display'),
@@ -58,12 +57,12 @@ class Sys_col extends M_Controller
         $this->load->view('sys_col/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
         $data['item'] = $this->sys_col->update($id);
-        $data['cols'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
+        $data['cols'] = $this->tree->ddl($this->sys_col->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('cbl', 'sys_col_auth', 'auth', $data['item']['col_auth']),
             array('rbl', 'display', 'display', $data['item']['display']),
@@ -76,12 +75,12 @@ class Sys_col extends M_Controller
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
             'auth' => $this->input->post('auth'),
             'vals' => array(
                 'name' => $this->input->post('name'),
+                'pid' => $this->input->post('pid'),
                 'icon' => $this->input->post('icon'),
                 'url' => $this->input->post('url'),
                 'remark' => $this->input->post('remark'),
@@ -90,9 +89,9 @@ class Sys_col extends M_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->sys_col->save($data);
+        $bool = $this->sys_col->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_col?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -116,7 +115,7 @@ class Sys_col extends M_Controller
     {
         $id = $this->input->post('id');
         $this->sys_col->del_col_auth($id);//删除系统栏目权限
-        $rows = $this->category_lib->del($id);//删除系统栏目
+        $rows = $this->tree->del($this->sys_col->data(), 'sys_col', $id);//删除系统栏目
         $this->sys_log_lib->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }

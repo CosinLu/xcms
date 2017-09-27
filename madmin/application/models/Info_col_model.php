@@ -6,15 +6,15 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Info_col_model extends M_Model
+class Info_col_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category_lib', array('tb_name' => 'info_col'));
+        $this->load->library('tree');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $this->db->select('t.*');
@@ -26,13 +26,13 @@ class Info_col_model extends M_Model
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
-        $data['list'] = $this->category_lib->children($res);
+        $data['list'] = $this->tree->serialize($res);
         $data['total'] = count($res);
 
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->from('info_col');
@@ -43,12 +43,12 @@ class Info_col_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->category_lib->update($data['id'], $data['pid'], $data['vals']);
+        if ($post['id']) {
+            $bool = $this->tree->update($this->data(), 'info_col', $post['id'], $post['vals']);
         } else {
-            $bool = $this->category_lib->insert($data['pid'], $data['vals']);
+            $bool = $this->tree->insert('info_col', $post['vals']);
         }
 
         return $bool;
@@ -59,6 +59,15 @@ class Info_col_model extends M_Model
     {
         $this->db->where('display', 'show');
         $res = $this->db->get('sys_tpl')->result_array();
+
+        return $res;
+    }
+
+    //所有数据
+    public function data()
+    {
+        $this->db->where('display', 'show');
+        $res = $this->db->get('info_col')->result_array();
 
         return $res;
     }

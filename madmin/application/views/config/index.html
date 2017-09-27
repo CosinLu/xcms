@@ -21,10 +21,9 @@
                     <div class="panel-heading">
                         <div class="panel-control pull-left">
                             <ul class="nav nav-tabs">
-                                <?=$config_group_btn?>
+                                <?=$config_group_tabs?>
                             </ul>
                         </div>
-                        <!--<div class="panel-title"><?=$section_name?></div>-->
                     </div>
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
@@ -34,20 +33,20 @@
                             '.$val['remark'].'</span>';
                             ?>
                             <div class="form-group">
-                                <div class="col-xs-2 control-label"><?=$val['title']?></div>
+                                <div class="col-xs-2 control-label"><?=$val['name']?></div>
                                 <?php if($val['type']=='text'):?>
                                 <div class="col-xs-6">
-                                    <input type="text" name="<?=$val['name']?>" value="<?=$val['val']?>"
+                                    <input type="text" name="<?=$val['variable']?>" value="<?=$val['val']?>"
                                            class="form-control">
                                     <?=$help_block?>
                                 </div>
                                 <?php elseif($val['type']=='radio'):?>
                                 <div class="col-xs-6 radio">
                                     <?php
-                                foreach($val['param_arr'] as $item):
-                                $checked = ($val['val'] == $item['value']) ? 'checked' : '';
-                                ?>
-                                    <label><input type="radio" name="<?=$val['name']?>"
+                                    foreach($val['param_arr'] as $item):
+                                    $checked = ($val['val'] == $item['value']) ? 'checked' : '';
+                                    ?>
+                                    <label><input type="radio" name="<?=$val['variable']?>"
                                                   value="<?=$item['value']?>" <?=$checked?>>
                                         <ins><?=$item['name']?></ins>
                                     </label>
@@ -60,7 +59,7 @@
                                 foreach($val['param_arr'] as $item):
                                 $checked = (in_array($item['value'],$val['val'])) ? 'checked' : '';
                                 ?>
-                                    <label><input type="checkbox" name="<?=$val['name']?>[]"
+                                    <label><input type="checkbox" name="<?=$val['variable']?>[]"
                                                   value="<?=$item['value']?>" <?=$checked?>>
                                         <ins><?=$item['name']?></ins>
                                     </label>
@@ -69,7 +68,7 @@
                                 </div>
                                 <?php elseif($val['type']=='select'):?>
                                 <div class="col-xs-3">
-                                    <select name="<?=$val['name']?>" class="form-control">
+                                    <select name="<?=$val['variable']?>" class="form-control">
                                         <option value="0">-请选择-</option>
                                         <?php
                                         foreach($val['param_arr'] as $item):
@@ -83,13 +82,13 @@
                                 </div>
                                 <?php elseif($val['type']=='textarea'):?>
                                 <div class="col-xs-6">
-                                <textarea name="<?=$val['name']?>" class="form-control"
+                                <textarea name="<?=$val['variable']?>" class="form-control"
                                           rows="4"><?=$val['val']?></textarea>
                                     <?=$help_block?>
                                 </div>
                                 <?php endif; ?>
                                 <div class="col-xs-2">
-                                    <div class="form-control-static"><?=$val['name']?></div>
+                                    <div class="form-control-static"><?=$val['variable']?></div>
                                 </div>
                             </div>
                             <?php

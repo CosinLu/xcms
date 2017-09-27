@@ -6,15 +6,15 @@
  * Date: 2016/8/22
  * Time: 12:40
  */
-class Navigation_model extends M_Model
+class Navigation_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category_lib', array('tb_name' => 'navigation'));
+        $this->load->library('tree');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $this->db->select('t.*');
@@ -26,35 +26,35 @@ class Navigation_model extends M_Model
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
-        $data['list'] = $this->category_lib->children($res);
+        $data['list'] = $this->tree->serialize($res);
         $data['total'] = count($res);
 
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->from('navigation');
-        $this->db->where('navigation.id', $id);
+        $this->db->where('id', $id);
         $res = $this->db->get()->row_array();
 
         return $res;
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->category_lib->update($data['id'], $data['pid'], $data['vals']);
+        if ($post['id']) {
+            $bool = $this->tree->update($this->data(), 'navigation', $post['id'], $post['vals']);
         } else {
-            $bool = $this->category_lib->insert($data['pid'], $data['vals']);
+            $bool = $this->tree->insert('navigation', $post['vals']);
         }
 
         return $bool;
     }
 
-    //获得信息栏目
+    //获取信息栏目
     public function cols()
     {
         $this->db->select('t.*');
@@ -64,7 +64,7 @@ class Navigation_model extends M_Model
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
-        $res = $this->category_lib->children($res);
+        $res = $this->tree->serialize($res);
         $new_res = array();
         foreach ($res as $key => $val) {
             $link = $val['url'] ?: $val['dir'];
@@ -81,6 +81,14 @@ class Navigation_model extends M_Model
         ));
 
         return $new_res;
+    }
+
+    //获取所有数据
+    public function data()
+    {
+        $this->db->where('display', 'show');
+        $res = $this->db->get('navigation')->result_array();
+        return $res;
     }
 
 }

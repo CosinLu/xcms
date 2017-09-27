@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Info_col_muitipic extends M_Controller
+class Info_col_muitipic extends MY_Controller
 {
     public function __construct()
     {
@@ -22,7 +22,6 @@ class Info_col_muitipic extends M_Controller
         $url['get_list_url'] = site_url('info_col_muitipic/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_muitipic/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_muitipic" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('info_col_muitipic/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -32,7 +31,7 @@ class Info_col_muitipic extends M_Controller
         $this->load->view('info_col_muitipic/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $key = $this->input->post('key');
@@ -56,7 +55,7 @@ class Info_col_muitipic extends M_Controller
         $this->load->view('info_col_muitipic/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
@@ -74,7 +73,7 @@ class Info_col_muitipic extends M_Controller
     {
         $image = $this->input->post('image');
         $url = $this->input->post('url');
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'cid' => $this->input->post('cid'),
@@ -86,9 +85,9 @@ class Info_col_muitipic extends M_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->info_col_muitipic->save($data);
+        $bool = $this->info_col_muitipic->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col_muitipic?sys_cid=' . $this->sys_cid);
         if ($bool) {

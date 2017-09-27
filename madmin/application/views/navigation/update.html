@@ -97,12 +97,13 @@
         //栏目和url联动
         //载入时重置
         if ($_inputUrl.val() == '') {
-            $_inputUrl.val($_selectCol.find('option:selected').data('content').dir);
+            var dataContent = $_selectCol.find('option:selected').data('content');
+            $_inputUrl.val(dataContent ? dataContent.dir : '');
         }
         //改变时重置
         $_selectCol.on('change', function () {
             var dataContent = $(this).find('option:selected').data('content');
-            $('input[name="url"]').val(dataContent.dir);
+            $('input[name="url"]').val(dataContent ? dataContent.dir : '');
         });
     })
 </script>

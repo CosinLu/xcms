@@ -6,14 +6,14 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Sys_user_model extends M_Model
+class Sys_user_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
+    //获取列表
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
@@ -39,7 +39,7 @@ class Sys_user_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->where('id', $id);
@@ -49,12 +49,12 @@ class Sys_user_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->db->where('id', $data['id'])->update('sys_user', $data['vals']);
+        if ($post['id']) {
+            $bool = $this->db->where('id', $post['id'])->update('sys_user', $post['vals']);
         } else {
-            $bool = $this->db->insert('sys_user', $data['vals']);
+            $bool = $this->db->insert('sys_user', $post['vals']);
         }
 
         return $bool;

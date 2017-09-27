@@ -6,14 +6,14 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_col_muitipic_model extends M_Model
+class Info_col_muitipic_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    //获得列表
+    //获取列表
     public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
@@ -40,7 +40,7 @@ class Info_col_muitipic_model extends M_Model
         return $data;
     }
 
-    //更新
+    //修改
     public function update($id = '')
     {
         $this->db->where('id', $id);
@@ -50,12 +50,12 @@ class Info_col_muitipic_model extends M_Model
     }
 
     //保存
-    public function save($data = array())
+    public function save($post = array())
     {
-        if ($data['id']) {
-            $bool = $this->db->where('id', $data['id'])->update('info_col_muitipic', $data['vals']);
+        if ($post['id']) {
+            $bool = $this->db->where('id', $post['id'])->update('info_col_muitipic', $post['vals']);
         } else {
-            $bool = $this->db->insert('info_col_muitipic', $data['vals']);
+            $bool = $this->db->insert('info_col_muitipic', $post['vals']);
         }
 
         return $bool;

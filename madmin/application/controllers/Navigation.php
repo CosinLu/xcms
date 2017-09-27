@@ -6,13 +6,12 @@
  * Date: 2016/8/22
  * Time: 10:04
  */
-class Navigation extends M_Controller
+class Navigation extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('navigation_model', 'navigation');
-        $this->load->library('category_lib', array('tb_name' => 'navigation', 'default' => '主导航'), 'category_lib');
         $this->set_url();
     }
 
@@ -30,7 +29,7 @@ class Navigation extends M_Controller
         $this->load->view('navigation/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $data['list'] = $this->navigation->get_list();
@@ -63,8 +62,8 @@ class Navigation extends M_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['type'] = $this->category_lib->ddl(array(), 'pid', 0, $id);
-        $data['col'] = $this->category_lib->ddl($this->navigation->cols(), 'col', 0, '', FALSE);
+        $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $id);
+        $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'position', 'position'),
@@ -73,13 +72,13 @@ class Navigation extends M_Controller
         $this->load->view('navigation/insert.html', $data);
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
         $data['item'] = $this->navigation->update($id);
-        $data['type'] = $this->category_lib->ddl(array(), 'pid', $data['item']['id'], $data['item']['pid']);
-        $data['col'] = $this->category_lib->ddl($this->navigation->cols(), 'col', '', $data['item']['col'], FALSE);
+        $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->common_dict_lib->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'position', 'position', $data['item']['position']),
@@ -92,11 +91,11 @@ class Navigation extends M_Controller
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
-            'pid' => $this->input->post('pid'),
             'vals' => array(
                 'name' => $this->input->post('name'),
+                'pid' => $this->input->post('pid'),
                 'col' => $this->input->post('col'),
                 'url' => $this->input->post('url'),
                 'target' => $this->input->post('target'),
@@ -105,9 +104,9 @@ class Navigation extends M_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->navigation->save($data);
+        $bool = $this->navigation->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('navigation?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -131,7 +130,7 @@ class Navigation extends M_Controller
     {
         $id = $this->input->post('id');
         //删除栏目
-        $rows = $this->category_lib->del($id);
+        $rows = $this->tree->del($this->navigation->data(), 'navigation', $id);
         //写入日志
         $this->sys_log_lib->insert($this->section_name, '3', $rows);
         echo $rows;

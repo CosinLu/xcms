@@ -11,7 +11,6 @@ class Index_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category_lib');
     }
 
     //验证用户名

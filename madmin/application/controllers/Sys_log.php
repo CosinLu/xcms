@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Sys_log extends M_Controller
+class Sys_log extends MY_Controller
 {
     public function __construct()
     {
@@ -19,7 +19,6 @@ class Sys_log extends M_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('sys_log/get_list?sys_cid=' . $this->sys_cid);
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $this->load->vars($url);
     }
 
@@ -28,7 +27,7 @@ class Sys_log extends M_Controller
         $this->load->view('sys_log/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $page = ($this->input->post('page')) ?: 1;

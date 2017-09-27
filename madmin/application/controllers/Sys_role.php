@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Sys_role extends M_Controller
+class Sys_role extends MY_Controller
 {
     public function __construct()
     {
@@ -21,7 +21,6 @@ class Sys_role extends M_Controller
         $url['get_list_url'] = site_url('sys_role/get_list?sys_cid=' . $this->sys_cid);
         $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_role/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['del_btn'] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="sys_role" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['search_btn'] = $this->sys_auth_lib->set_auth($this->config->item('look', 'mcms'), $this->col_auth, '<button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>');
         $url['save_url'] = site_url('sys_role/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -31,7 +30,7 @@ class Sys_role extends M_Controller
         $this->load->view('sys_role/index.html');
     }
 
-    //获得列表
+    //获取列表
     public function get_list()
     {
         $key = $this->input->post('key');
@@ -59,7 +58,7 @@ class Sys_role extends M_Controller
         $this->load->view('sys_role/insert.html');
     }
 
-    //更新
+    //修改
     public function update()
     {
         $id = $this->input->get('id');
@@ -70,7 +69,7 @@ class Sys_role extends M_Controller
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
@@ -78,9 +77,9 @@ class Sys_role extends M_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->sys_role->save($data);
+        $bool = $this->sys_role->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$data['id']) ? '1' : '2', $bool);
+        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('sys_role?sys_cid=' . $this->sys_cid);
         if ($bool) {

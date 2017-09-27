@@ -6,7 +6,7 @@
  * Date: 2016/9/6
  * Time: 11:55
  */
-class M_Upload extends CI_Upload
+class MY_Upload extends CI_Upload
 {
     protected $relative_path;
 

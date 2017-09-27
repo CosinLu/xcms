@@ -35,14 +35,14 @@ class Info_single extends Info
     //保存
     public function save()
     {
-        $data = array(
+        $post = array(
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'summary' => $this->input->post('summary'),
                 'content' => $this->input->post('content')
             )
         );
-        $bool = $this->info_single->save($data);
+        $bool = $this->info_single->save($post);
         //写入日志
         $this->sys_log_lib->insert($this->main_section_name, '2', $bool);
         $config['icon'] = 1;
