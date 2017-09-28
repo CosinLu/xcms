@@ -6,7 +6,7 @@
  * Date: 2017/3/22
  * Time: 10:32
  */
-class Ueditor_lib
+class Ueditor
 {
     protected $CI;
 
@@ -15,7 +15,9 @@ class Ueditor_lib
         $this->CI =& get_instance();
     }
 
-    //修改上传路径
+    /**
+     * 修改上传路径
+     */
     public function edit_upload_path()
     {
         $settings_path = str_replace('\\', '/', FCPATH . 'plugin/ueditor/php/settings.json');

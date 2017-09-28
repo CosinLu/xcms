@@ -12,8 +12,8 @@ class Welcome extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->library('ueditor_lib');
-        $this->ueditor_lib->edit_upload_path();
+        $this->load->library('ueditor');
+        $this->ueditor->edit_upload_path();
     }
 
     public function index()

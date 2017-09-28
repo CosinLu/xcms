@@ -20,8 +20,8 @@ class Info_single extends Info
     //设置url
     public function set_url()
     {
-        $url['save_url'] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, site_url('info_single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
-        $url['save_btn'] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<button type="submit" name="is_save" value="1" class="btn btn-primary">保存
+        $url['save_url'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, site_url('info_single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
+        $url['save_btn'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<button type="submit" name="is_save" value="1" class="btn btn-primary">保存
                                 </button>');
         $this->load->vars($url);
     }
@@ -44,7 +44,7 @@ class Info_single extends Info
         );
         $bool = $this->info_single->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->main_section_name, '2', $bool);
+        $this->oplog->insert($this->main_section_name, '2', $bool);
         $config['icon'] = 1;
         if ($bool) {
             echo json_encode($config);

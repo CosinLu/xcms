@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_col_muitipic_model extends CI_Model
+class Info_col_adv_model extends CI_Model
 {
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Info_col_muitipic_model extends CI_Model
         $this->db->select('t1.name display_name,t1.color display_color');
         $this->db->select('t2.name info_col_name');
         $this->db->select('t3.rel_path');
-        $this->db->from('info_col_muitipic t');
+        $this->db->from('info_col_adv t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         $this->db->join('info_col t2', 't2.id=t.cid', 'left');
         $this->db->join('uploads t3', 't3.id=t.cid', 'left');
@@ -44,7 +44,7 @@ class Info_col_muitipic_model extends CI_Model
     public function update($id = '')
     {
         $this->db->where('id', $id);
-        $res = $this->db->get('info_col_muitipic')->row_array();
+        $res = $this->db->get('info_col_adv')->row_array();
 
         return $res;
     }
@@ -53,9 +53,9 @@ class Info_col_muitipic_model extends CI_Model
     public function save($post = array())
     {
         if ($post['id']) {
-            $bool = $this->db->where('id', $post['id'])->update('info_col_muitipic', $post['vals']);
+            $bool = $this->db->where('id', $post['id'])->update('info_col_adv', $post['vals']);
         } else {
-            $bool = $this->db->insert('info_col_muitipic', $post['vals']);
+            $bool = $this->db->insert('info_col_adv', $post['vals']);
         }
 
         return $bool;
@@ -66,7 +66,6 @@ class Info_col_muitipic_model extends CI_Model
     {
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
-            'pic' => 'muitipic',
             'display' => 'show'
         ));
         $res = $this->db->get('info_col')->result_array();

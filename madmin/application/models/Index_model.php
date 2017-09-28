@@ -43,9 +43,9 @@ class Index_model extends CI_Model
     }
 
     //系统栏目
-    public function sys_col()
+    public function sys_menu()
     {
-        $this->db->from('sys_col');
+        $this->db->from('sys_menu');
         $this->db->where('display', 'show');
         $this->db->order_by('sort asc,id asc');
         $res = $this->db->get()->result_array();

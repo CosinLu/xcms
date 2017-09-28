@@ -8,16 +8,16 @@
  */
 class Sys_role_auth_model extends CI_Model
 {
-    protected $tb_sys_col;
-    protected $tb_sys_col_auth;
+    protected $tb_sys_menu;
+    protected $tb_sys_menu_auth;
     protected $tb_common_dict;
     protected $tb_sys_role_auth;
 
     public function __construct()
     {
         parent::__construct();
-        $this->tb_sys_col = $this->db->dbprefix . 'sys_col';
-        $this->tb_sys_col_auth = $this->db->dbprefix . 'sys_col_auth';
+        $this->tb_sys_menu = $this->db->dbprefix . 'sys_menu';
+        $this->tb_sys_menu_auth = $this->db->dbprefix . 'sys_menu_auth';
         $this->tb_common_dict = $this->db->dbprefix . 'common_dict';
         $this->tb_sys_role_auth = $this->db->dbprefix . 'sys_role_auth';
     }
@@ -41,15 +41,15 @@ class Sys_role_auth_model extends CI_Model
                 if (empty($auth_arr[$val])) {
                     $vals[] = array(
                         'role_id' => $role_id,
-                        'col_id' => $val,
-                        'col_auth' => ''
+                        'sys_menu_id' => $val,
+                        'sys_menu_auth' => ''
                     );
                 } else {
                     foreach ($auth_arr[$val] as $item) {
                         $vals[] = array(
                             'role_id' => $role_id,
-                            'col_id' => $val,
-                            'col_auth' => $item
+                            'sys_menu_id' => $val,
+                            'sys_menu_auth' => $item
                         );
                     }
                 }

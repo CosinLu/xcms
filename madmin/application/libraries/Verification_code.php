@@ -6,7 +6,7 @@
  * @package
  * @author      后盾马震宇 <houdunwangmzy@gmail.com>
  */
-class Code_lib
+class Verification_code
 {
     public $width = 150;
     //资源

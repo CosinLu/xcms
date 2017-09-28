@@ -22,7 +22,7 @@ class Config extends MY_Controller
     public function set_url()
     {
         $url['save_url'] = site_url('config/save?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
-        $url['save_btn'] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<button type="submit" class="btn btn-primary">保存</button>');
+        $url['save_btn'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary">保存</button>');
         $this->load->vars($url);
     }
 
@@ -89,7 +89,7 @@ class Config extends MY_Controller
         );
         $rows = $this->config_model->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, '2', 1);
+        $this->oplog->insert($this->section_name, '2', 1);
         $config['icon'] = 1;
         if ($rows) {
             echo json_encode($config);

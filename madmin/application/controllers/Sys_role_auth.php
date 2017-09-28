@@ -34,9 +34,9 @@ class Sys_role_auth extends MY_Controller
     //获取列表
     public function get_list()
     {
-        $list = $this->sys_auth_lib->sys_col('role', $this->input->get('role_id'));
+        $list = $this->auth->get('role', $this->input->get('role_id'));
         foreach ($list as $key => $val) {
-            $list[$key]['auth'] = $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id']);
+            $list[$key]['auth'] = $this->split_auth($val['sys_menu_auth'], $val['sys_menu_auth_name'], $val['id']);
             $list[$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
         }
         $str = '';
@@ -56,9 +56,9 @@ class Sys_role_auth extends MY_Controller
             }
             $str .= '<li>';
             $str .= '<div class="div_tr li-hook">';
-            $str .= '<div class="div_td control checkbox"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['col_id']) . '><ins></ins></label></div>';
+            $str .= '<div class="div_td control checkbox"><label><input type="checkbox" name="id[]" value="' . $val['id'] . '" ' . checked($val['id'], $val['sys_menu_id']) . '><ins></ins></label></div>';
             $str .= '<div class="div_td flex name">' . $val['prefix'] . $val['name'] . '</div>';
-            $str .= '<div class="div_td opera">' . $this->split_auth($val['col_auth'], $val['col_auth_name'], $val['id'], $val['col_auth_str']) . '</div>';
+            $str .= '<div class="div_td opera">' . $this->split_auth($val['sys_menu_auth'], $val['sys_menu_auth_name'], $val['id'], $val['sys_menu_auth_str']) . '</div>';
             $str .= '</div>';
             $parent_level = $level;
         }
@@ -68,14 +68,14 @@ class Sys_role_auth extends MY_Controller
     }
 
     //拼接权限
-    public function split_auth($ident, $name, $col_id, $checked = '')
+    public function split_auth($ident, $name, $sys_menu_id, $checked = '')
     {
         $auth = '';
         if (!empty($ident) && !empty($name)) {
             $ident_arr = explode(',', $ident);
             $name_arr = explode(',', $name);
             foreach ($ident_arr as $key => $val) {
-                $auth .= '<label><input type="checkbox" name="auth[' . $col_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins>' . $name_arr[$key] . '</ins></label>';
+                $auth .= '<label><input type="checkbox" name="auth[' . $sys_menu_id . '][]" value="' . $val . '" ' . checked($val, $checked) . '><ins>' . $name_arr[$key] . '</ins></label>';
             }
         }
 
@@ -92,7 +92,7 @@ class Sys_role_auth extends MY_Controller
         //添加
         $bool = $this->sys_role_auth->insert($this->role_id, $id_arr, $auth_arr);
         //写入日志
-        $this->sys_log_lib->insert('角色权限', '2', $bool);
+        $this->oplog->insert('角色权限', '2', $bool);
         $config['icon'] = 1;
         if ($bool OR $rows) {
             echo json_encode($config);

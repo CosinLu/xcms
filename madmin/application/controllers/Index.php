@@ -46,8 +46,8 @@ class Index extends CI_Controller
             'font_size' => 16,
             'code_len' => 4
         );
-        $this->load->library('code_lib', $config);
-        $this->code_lib->show();
+        $this->load->library('verification_code', $config, 'vfcode');
+        $this->vfcode->show();
     }
 
     //登录
@@ -55,7 +55,7 @@ class Index extends CI_Controller
     {
         $code = strtoupper($this->input->post('code'));
         //设置表单验证规则
-        $this->form_validation->set_rules('username', '用户名', 'required|callback_check_username|callback_check_col_auth');
+        $this->form_validation->set_rules('username', '用户名', 'required|callback_check_username|callback_check_sys_menu_auth');
         $this->form_validation->set_rules('password', '密码', 'required|callback_check_password');
         $this->form_validation->set_rules('code', '验证码', 'required|callback_check_code');
         //执行表单验证
@@ -91,9 +91,9 @@ class Index extends CI_Controller
             $this->session->set_userdata($session);
             //跳转至backurl
             if ($this->pre_url == '') {
-                $this->load->library('sys_auth_lib', array('user_info' => $user_info));
-                $sys_col = $this->sys_auth_lib->sys_col();
-                $url = $this->valid_url($sys_col);
+                $this->load->library('auth', array('user_info' => $user_info));
+                $sys_menu = $this->auth->get();
+                $url = $this->valid_url($sys_menu);
                 $session['sys_session']['home_url'] = $url[0];
                 $this->session->set_userdata($session);
                 redirect($url[0]);
@@ -157,27 +157,27 @@ class Index extends CI_Controller
     }
 
     //验证系统栏目权限
-    public function check_col_auth()
+    public function check_sys_menu_auth()
     {
         $user_info = $this->index->user_info($this->username, $this->password);
         if (!empty($user_info)) {
-            $this->load->library('sys_auth_lib', array('user_info' => $user_info));
-            $sys_col = $this->sys_auth_lib->sys_col();
-            $frist_sys_col = array();
-            foreach ($sys_col as $val) {
+            $this->load->library('auth', array('user_info' => $user_info));
+            $sys_menu = $this->auth->get();
+            $frist_sys_menu = array();
+            foreach ($sys_menu as $val) {
                 if ($val['level'] == 1) {
-                    $frist_sys_col[] = $val;
+                    $frist_sys_menu[] = $val;
                 }
             }
-            if (empty($frist_sys_col)) {
-                $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
+            if (empty($frist_sys_menu)) {
+                $this->form_validation->set_message('check_sys_menu_auth', '{field} 没有任何权限。');
 
                 return FALSE;
             } else {
                 return TRUE;
             }
         } else {
-            $this->form_validation->set_message('check_col_auth', '{field} 没有任何权限。');
+            $this->form_validation->set_message('check_sys_menu_auth', '{field} 没有任何权限。');
 
             return FALSE;
         }

@@ -26,7 +26,7 @@ class Ajax extends MY_Controller
         $primary = $this->input->post('primary') ?: 'id';
         $rows = $this->ajax->del($tbname, $id, $primary);
         //写入日志
-        $this->sys_log_lib->insert($this->col_name, '3', $rows);
+        $this->oplog->insert($this->col_name, '3', $rows);
         echo $rows;
     }
 
@@ -38,7 +38,7 @@ class Ajax extends MY_Controller
         $primary = $this->input->post('primary') ?: 'id';
         $rows = $this->ajax->batch_del($tbname, $id, $primary);
         //写入日志
-        $this->sys_log_lib->insert($this->col_name, '3', $rows);
+        $this->oplog->insert($this->col_name, '3', $rows);
         echo $rows;
     }
 }

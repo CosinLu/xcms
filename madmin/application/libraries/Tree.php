@@ -26,7 +26,12 @@ class Tree
         $this->name = 'name';
     }
 
-    //排序
+    /**
+     * 排序
+     * @param $a
+     * @param $b
+     * @return int
+     */
     public function compare_sort($a, $b)
     {
         $sort = isset($a[$this->sort]) ? $this->sort : $this->id;
@@ -39,7 +44,12 @@ class Tree
         return ($a_sort > $b_sort) ? 1 : -1;
     }
 
-    //序列化
+    /**
+     * 序列化
+     * @param array $data 数据源
+     * @param int $pid 标识，默认从0开始
+     * @return array
+     */
     public function serialize($data = array(), $pid = 0)
     {
         $children = array();
@@ -65,7 +75,12 @@ class Tree
         return $res;
     }
 
-    //反转序列化
+    /**
+     * 反转序列化
+     * @param array $data 数据源
+     * @param string $id 标识，必填
+     * @return array
+     */
     public function reverse_serialize($data = array(), $id = '')
     {
         if ($id == '') return array();
@@ -91,7 +106,14 @@ class Tree
         return $res;
     }
 
-    //获取子级
+    /**
+     * 获取子级
+     * @param array $data 数据源
+     * @param int $pid 标识
+     * @param bool $is_self 是否包含自身
+     * @param string $variable 指定的键值，string或array
+     * @return array
+     */
     public function get_children($data = array(), $pid = 0, $is_self = FALSE, $variable = '')
     {
         $res = $this->serialize($data, $pid);
@@ -110,7 +132,14 @@ class Tree
         return $this->_get_variable($res, $variable);
     }
 
-    //获取父级
+    /**
+     * 获取父级
+     * @param array $data 数据源
+     * @param string $id 标识
+     * @param bool $is_self 是否包含自身
+     * @param string $variable 指定的键值，string或array
+     * @return array
+     */
     public function get_parent($data = array(), $id = '', $is_self = FALSE, $variable = '')
     {
         $res = $this->reverse_serialize($data, $id);
@@ -123,7 +152,12 @@ class Tree
         return $this->_get_variable($res, $variable);
     }
 
-    //返回指定键值数据
+    /**
+     * 返回指定键值数据
+     * @param array $res 数据源
+     * @param string $variable 指定的键值，string或array
+     * @return array
+     */
     public function _get_variable($res = array(), $variable = '')
     {
         if (is_string($variable) && $variable != '') {
@@ -147,7 +181,16 @@ class Tree
         return $res;
     }
 
-    //下拉菜单
+    /**
+     * 下拉菜单
+     * @param array $data 数据源
+     * @param string $name 下拉菜单名称
+     * @param string $selected_val 选中值
+     * @param string $disabled_val 禁用值
+     * @param string $type 类型
+     * @param bool $default 默认显示，默认显示“根目录”，string或array
+     * @return string
+     */
     public function ddl($data = array(), $name = '', $selected_val = '', $disabled_val = '', $type = '', $default = TRUE)
     {
         $data = $this->serialize($data);
@@ -190,7 +233,12 @@ class Tree
         return $str;
     }
 
-    //获取一条数据
+    /**
+     * 获取一条数据
+     * @param string $tbname 表名
+     * @param array $where 查询条件
+     * @return array
+     */
     public function one($tbname = '', $where = array())
     {
         if (empty($where)) return array();
@@ -200,7 +248,12 @@ class Tree
         return $res;
     }
 
-    //新增
+    /**
+     * 新增
+     * @param string $tbname 表名
+     * @param array $post 需要提交的数据
+     * @return mixed
+     */
     public function insert($tbname = '', $post = array())
     {
         if ($post[$this->pid] == 0) {
@@ -217,7 +270,14 @@ class Tree
         return $insert_id;
     }
 
-    //修改
+    /**
+     * 修改
+     * @param array $data 数据源
+     * @param string $tbname 表名
+     * @param string $id 标识
+     * @param array $post 需要提交的数据
+     * @return bool
+     */
     public function update($data = array(), $tbname = '', $id = '', $post = array())
     {
         if (empty($id)) {
@@ -255,7 +315,13 @@ class Tree
         return $bool;
     }
 
-    //删除
+    /**
+     * 删除
+     * @param array $data 数据源
+     * @param string $tbname 表名
+     * @param string $id 标识
+     * @return bool
+     */
     public function del($data = array(), $tbname = '', $id = '')
     {
         if (empty($id)) {

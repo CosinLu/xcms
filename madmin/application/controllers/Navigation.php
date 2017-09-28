@@ -19,7 +19,7 @@ class Navigation extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('navigation/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('navigation/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -40,17 +40,17 @@ class Navigation extends MY_Controller
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
             if ($val['add_next_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('navigation/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
             }
             if ($val['edit_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('navigation/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('navigation/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_update_btn;
             }
             if ($val['del_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('navigation/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('navigation/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
@@ -64,7 +64,7 @@ class Navigation extends MY_Controller
         $id = $this->input->get('id');
         $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $id);
         $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
-        $data['dict'] = $this->common_dict_lib->dict(array(
+        $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'position', 'position'),
             array('rbl', 'display', 'display')
@@ -79,7 +79,7 @@ class Navigation extends MY_Controller
         $data['item'] = $this->navigation->update($id);
         $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
-        $data['dict'] = $this->common_dict_lib->dict(array(
+        $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'position', 'position', $data['item']['position']),
             array('rbl', 'display', 'display', $data['item']['display'])
@@ -106,7 +106,7 @@ class Navigation extends MY_Controller
         );
         $bool = $this->navigation->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
+        $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('navigation?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -132,7 +132,7 @@ class Navigation extends MY_Controller
         //删除栏目
         $rows = $this->tree->del($this->navigation->data(), 'navigation', $id);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, '3', $rows);
+        $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

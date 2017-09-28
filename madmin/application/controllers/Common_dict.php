@@ -27,7 +27,7 @@ class Common_dict extends MY_Controller
     {
         $url['index_back_btn'] = ($this->pid) ? go_back(site_url('common_dict?sys_cid=' . $this->sys_cid)) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
-        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
+        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">新增</a>');
         $url['save_url'] = site_url('common_dict/save?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         $this->load->vars($url);
     }
@@ -48,8 +48,8 @@ class Common_dict extends MY_Controller
             if (!$this->pid) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="' . site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $val['id']) . '">编辑属性</a>';
             }
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('common_dict/del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('common_dict/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('common_dict/del?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -61,7 +61,7 @@ class Common_dict extends MY_Controller
         $data['user_type'] = $this->user_type;
         $data['common_dict_type'] = $this->common_dict->common_dict_type();
         if ($this->user_type == 'dev') {
-            $data['dict'] = $this->common_dict_lib->dict(array(
+            $data['dict'] = $this->dictionary->dict(array(
                 array('rbl', 'user_type', 'user_type')
             ));
         }
@@ -77,7 +77,7 @@ class Common_dict extends MY_Controller
         $data['item'] = $this->common_dict->update($id);
         $data['common_dict_type'] = $this->common_dict->common_dict_type();
         if ($this->user_type == 'dev') {
-            $data['dict'] = $this->common_dict_lib->dict(array(
+            $data['dict'] = $this->dictionary->dict(array(
                 array('rbl', 'user_type', 'user_type', $data['item']['user_type'])
             ));
         }
@@ -100,7 +100,7 @@ class Common_dict extends MY_Controller
         );
         $bool = $this->common_dict->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
+        $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('common_dict?sys_cid=' . $this->sys_cid . '&pid=' . $this->pid);
         if ($bool) {
@@ -123,9 +123,9 @@ class Common_dict extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->tree->del($this->common_dict->data(), $id);
+        $rows = $this->tree->del($this->common_dict->data(),'common_dict', $id);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, '3', $rows);
+        $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

@@ -61,15 +61,15 @@ class Uploads extends CI_Controller
         $config['upload_path'] = standard_path($this->config->item('upload', 'mcms') . 'upload/' . date('Ymd', time()) . '/');
         $config['allowed_types'] = '*';
         $config['file_name'] = md5(uniqid(microtime(TRUE), TRUE));
-        $this->load->library('upload', $config);
-        $this->upload->do_upload($filename);
-        $data = $res = $this->upload->data();
+        $this->load->library('upload', $config, 'my_upload');
+        $this->my_upload->do_upload($filename);
+        $data = $res = $this->my_upload->data();
         $data['id'] = $this->uploads->save($res);
         $data['input_name'] = $filename;
         $data['thumb_rel_path'] = '';
         //生成缩略图
         if ($data['is_image']) {
-            $this->resize($data['abs_path'], $this->config->item('thumb_width', 'mcms'), $this->config->item('thumb_height', 'mcms'));
+            $this->create_thumb($data['abs_path'], $this->config->item('thumb_width', 'mcms'), $this->config->item('thumb_height', 'mcms'));
             //拼接缩略图地址
             $data['thumb_rel_path'] = $data['raw_rel_path'] . $this->config->item('thumb_marker', 'mcms') . $data['file_ext'];
         }
@@ -77,8 +77,8 @@ class Uploads extends CI_Controller
         echo json_encode($data);
     }
 
-    //生成缩略图
-    public function resize($path = '', $width = 120, $height = 120)
+    //创建缩略图
+    public function create_thumb($path = '', $width = 120, $height = 120)
     {
         $config['image_library'] = 'gd2';
         $config['source_image'] = $path;

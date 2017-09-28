@@ -6,7 +6,7 @@
  * Date: 2016/10/20
  * Time: 9:48
  */
-class Sys_log_lib
+class Operation_log
 {
     protected $CI;
     protected $browser;

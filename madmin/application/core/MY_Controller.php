@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller
     protected $prferer;
     //保存：1=保存，2=保存并继续新增
     protected $is_save;
-    protected $col_auth;
+    protected $sys_menu_auth;
     //栏目名称
     protected $section_name;
 
@@ -26,8 +26,8 @@ class MY_Controller extends CI_Controller
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->submit_type = ($this->input->post('submit_type') == '') ? '1' : $this->input->post('submit_type');
-        $this->col_auth = '';
-        $this->load->library('sys_auth_lib', array(
+        $this->sys_menu_auth = '';
+        $this->load->library('auth', array(
             'user_info' => $this->session->sys_session
         ));
         $this->menu();
@@ -39,7 +39,8 @@ class MY_Controller extends CI_Controller
     {
         $pre_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         if (empty($this->session->sys_session)) {
-            $this->prompt_lib->error('登录超时', site_url('index?url=' . $pre_url));
+            $this->load->library('jump');
+            $this->jump->error('登录超时', site_url('index?url=' . $pre_url));
         }
     }
 
@@ -49,22 +50,22 @@ class MY_Controller extends CI_Controller
         $data['menu'] = array();
         $data['section_name'] = '';
         //系统栏目
-        $sys_col = $this->sys_auth_lib->sys_col();
+        $sys_menu = $this->auth->get();
         //获取栏目所有上级id
-        $sys_col_parent_id = $this->tree->get_parent($sys_col, $this->sys_cid, TRUE, 'id');
-        if (!empty($sys_col_parent_id)) {
-            $sys_col_parent_id = array_reverse($sys_col_parent_id);
+        $sys_menu_parent_id = $this->tree->get_parent($sys_menu, $this->sys_cid, TRUE, 'id');
+        if (!empty($sys_menu_parent_id)) {
+            $sys_menu_parent_id = array_reverse($sys_menu_parent_id);
             //主菜单有效url
-            $sys_col_url = $this->valid_url($sys_col);
-            foreach ($sys_col as $key => $val) {
+            $sys_menu_url = $this->valid_url($sys_menu);
+            foreach ($sys_menu as $key => $val) {
                 if ($val['pid'] == 0) {
                     $data['menu'][$key] = $val;
-                    $data['menu'][$key]['url'] = $sys_col_url[$key];
-                    $data['menu'][$key]['active'] = ($val['id'] == $sys_col_parent_id[0]) ? 'active' : '';
+                    $data['menu'][$key]['url'] = $sys_menu_url[$key];
+                    $data['menu'][$key]['active'] = ($val['id'] == $sys_menu_parent_id[0]) ? 'active' : '';
                 }
                 if ($val['id'] == $this->sys_cid) {
                     $data['section_name'] = $val['name'];
-                    $this->col_auth = $val['col_auth'];
+                    $this->sys_menu_auth = $val['sys_menu_auth'];
                 }
             }
         }
@@ -79,14 +80,14 @@ class MY_Controller extends CI_Controller
         $str = '';
         $parent_level = 0;
         //系统栏目
-        $sys_col = $this->sys_auth_lib->sys_col();
+        $sys_menu = $this->auth->get();
         //获取当前栏目所有上级id
-        $sys_col_parent_id = $this->tree->get_parent($sys_col, $this->sys_cid, TRUE, 'id');
-        if (!empty($sys_col_parent_id)) {
-            $sys_col_parent_id = array_reverse($sys_col_parent_id);
+        $sys_menu_parent_id = $this->tree->get_parent($sys_menu, $this->sys_cid, TRUE, 'id');
+        if (!empty($sys_menu_parent_id)) {
+            $sys_menu_parent_id = array_reverse($sys_menu_parent_id);
             //获取当前栏目一级栏目的所有下级栏目
-            $sys_col_chidren = $this->tree->get_children($sys_col, $sys_col_parent_id[0]);
-            foreach ($sys_col_chidren as $val) {
+            $sys_menu_chidren = $this->tree->get_children($sys_menu, $sys_menu_parent_id[0]);
+            foreach ($sys_menu_chidren as $val) {
                 $level = $val['level'];
                 $n = strpos($val['url'], '?');
                 $conn = ($n) ? '&' : '?';

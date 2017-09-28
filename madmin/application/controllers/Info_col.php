@@ -19,7 +19,7 @@ class Info_col extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('info_col/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('info_col/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -41,17 +41,17 @@ class Info_col extends MY_Controller
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
             if ($val['add_next_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('insert', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('info_col/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
             }
             if ($val['edit_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('update', 'mcms'), $this->col_auth, '<a href="' . site_url('info_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('info_col/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_update_btn;
             }
             if ($val['del_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->sys_auth_lib->set_auth($this->config->item('del', 'mcms'), $this->col_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('info_col/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('info_col/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
@@ -65,9 +65,8 @@ class Info_col extends MY_Controller
         $id = $this->input->get('id');
         $data['cols'] = $this->tree->ddl($this->info_col->data(), 'pid', $id);
         $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id');
-        $data['dict'] = $this->common_dict_lib->dict(array(
+        $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
-            array('rbl', 'image', 'pic'),
             array('rbl', 'display', 'display')
         ));
         $this->load->view('info_col/insert.html', $data);
@@ -78,11 +77,10 @@ class Info_col extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->info_col->update($id);
-        $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', $data['item']['tpl_id']);
+        $data['sys_tpl'] = ddl($this->info_col->sys_tpl(), 'tpl_id', '', $data['item']['tpl_id']);
         $data['cols'] = $this->tree->ddl($this->info_col->data(), 'pid', $data['item']['pid'], $data['item']['id']);
-        $data['dict'] = $this->common_dict_lib->dict(array(
+        $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
-            array('rbl', 'image', 'pic', $data['item']['pic']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $this->load->view('info_col/update.html', $data);
@@ -101,14 +99,13 @@ class Info_col extends MY_Controller
                 'dir' => $this->input->post('dir'),
                 'url' => $this->input->post('url'),
                 'target' => $this->input->post('target'),
-                'pic' => $this->input->post('pic'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
             )
         );
         $bool = $this->info_col->save($post);
         //写入日志
-        $this->sys_log_lib->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
+        $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
         $config['url'] = site_url('info_col?sys_cid=' . $this->sys_cid);
         if ($bool) {
@@ -133,7 +130,7 @@ class Info_col extends MY_Controller
         $id = $this->input->post('id');
         $rows = $this->tree->del($this->info_col->data(), 'info_col', $id);
         //日志
-        $this->sys_log_lib->insert($this->section_name, '3', $rows);
+        $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;
     }
 

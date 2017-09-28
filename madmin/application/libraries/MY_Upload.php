@@ -8,13 +8,19 @@
  */
 class MY_Upload extends CI_Upload
 {
+    protected $CI;
     protected $relative_path;
 
-    public function __construct(array $config)
+    public function __construct($config = array())
     {
         parent::__construct($config);
+        $this->CI =& get_instance();
     }
 
+    /**
+     * 验证上传路径
+     * @return bool
+     */
     public function validate_upload_path()
     {
         $this->relative_path = $this->upload_path;
@@ -68,4 +74,60 @@ class MY_Upload extends CI_Upload
 
         return $data;
     }
+
+    /**
+     * 处理返回数据
+     * 1.p1是数组则循环处理 array(name,id)
+     * 2.p1是字符串
+     *
+     * @param string $p1
+     * @param string $p2
+     * @return string
+     */
+    public function result($arr = array())
+    {
+        $res = array();
+        if (is_array($arr)) {
+            foreach ($arr as $val) {
+                $val = array_pad($val, 2, '');
+                $name = $val[0];
+                $id = $val[1];
+                $res[$name] = $this->get_data($id);
+                if (!empty($res[$name])) {
+                    foreach ($res[$name] as $key => $sub_val) {
+                        $res[$name][$key]['thumb_rel_path'] = $sub_val['is_image'] ? $sub_val['raw_rel_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $sub_val['file_ext'] : '';
+                    }
+                }
+            }
+        } else {
+            $res = $this->get_data($arr);
+            if (!empty($res)) {
+                foreach ($res as $key => $val) {
+                    $res[$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $val['file_ext'] : '';
+                }
+            }
+        }
+
+        return json_encode($res);
+    }
+
+    /**
+     * 获取相应数据
+     *
+     * @param string $id
+     * @return string
+     */
+    public function get_data($id = '')
+    {
+        if ($id == '') return array();
+        $id_arr = explode(',', $id);
+        $this->CI->db->select('id,rel_path,is_image,file_ext,client_name,file_size,image_width,image_height,raw_rel_path');
+        $this->CI->db->where_in('id', $id_arr);
+        $this->CI->db->order_by("instr('" . $id . "',id)");
+        $res = $this->CI->db->get('uploads')->result_array();
+
+        return $res;
+    }
+
+
 }

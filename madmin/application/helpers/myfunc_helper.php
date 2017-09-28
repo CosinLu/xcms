@@ -45,7 +45,7 @@ function standard_path($path = '')
  * @param bool $default 默认
  * @return string
  */
-function ddl($data = array(), $name = '', $disabled = '', $option_val = 'id', $option_name = 'name', $selected_val = '', $disabled_val = '', $default = TRUE)
+function ddl($data = array(), $name = '', $disabled = '', $selected_val = '', $disabled_val = '', $default = TRUE, $option_val = 'id', $option_name = 'name')
 {
     $str = '';
     $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';

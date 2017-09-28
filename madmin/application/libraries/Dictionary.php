@@ -6,7 +6,7 @@
  * Date: 2016/8/22
  * Time: 18:07
  */
-class Common_dict_lib
+class Dictionary
 {
     protected $CI;
 
@@ -74,7 +74,7 @@ class Common_dict_lib
      * @param string $ident
      * @return array|mixed|string
      */
-    public function filter_data($data = array(), $ident = '')
+    public function filter($data = array(), $ident = '')
     {
         //数据源
         if (empty($data)) $data = $this->data($ident);
@@ -112,7 +112,7 @@ class Common_dict_lib
     public function rbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
     {
         //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
+        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
         $str = '';
         $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
         foreach ($data as $key => $val) {
@@ -145,7 +145,7 @@ class Common_dict_lib
     public function cbl($data = array(), $ident = '', $name = '', $selected_val = '', $forbidden_val = '')
     {
         //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
+        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
         $str = '';
         $check_val_arr = is_array($selected_val) ? $selected_val : explode(',', $selected_val);
         $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
@@ -176,7 +176,7 @@ class Common_dict_lib
         //默认值
         $default = is_array($default) ? array_merge(array('-请选择-', '0'), $default) : $default;
         //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter_data($data, $ident);
+        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
         $str = '';
         $forbidden_val_arr = is_array($forbidden_val) ? $forbidden_val : explode(',', $forbidden_val);
         $str .= '<select name="' . $name . '" class="form-control">';

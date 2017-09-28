@@ -73,4 +73,11 @@ class Common_dict_model extends CI_Model
         return $res;
     }
 
+    //获取所有数据
+    public function data()
+    {
+        $res = $this->db->get('common_dict')->result_array();
+        return $res;
+    }
+
 }
