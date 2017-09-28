@@ -6,28 +6,28 @@
  * Date: 2016/8/23
  * Time: 21:11
  */
-class Info_col_adv extends MY_Controller
+class Category_adv extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('info_col_adv_model', 'info_col_adv');
+        $this->load->model('category_adv_model', 'category_adv');
         $this->set_url();
     }
 
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('info_col_adv/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_col_adv/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_col_adv" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
-        $url['save_url'] = site_url('info_col_adv/save?sys_cid=' . $this->sys_cid);
+        $url['get_list_url'] = site_url('category_adv/get_list?sys_cid=' . $this->sys_cid);
+        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('category_adv/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['del_btn'] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="category_adv" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid) . '">删除</a>');
+        $url['save_url'] = site_url('category_adv/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
 
     public function index()
     {
-        $this->load->view('info_col_adv/index.html');
+        $this->load->view('category_adv/index.html');
     }
 
     //获取列表
@@ -35,11 +35,11 @@ class Info_col_adv extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->info_col_adv->get_list($key, $page);
+        $data['list'] = $this->category_adv->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('info_col_adv/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_col_adv" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('category_adv/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="category_adv" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -47,24 +47,24 @@ class Info_col_adv extends MY_Controller
     //新增
     public function insert()
     {
-        $data['cols'] = ddl($this->info_col_adv->info_col(), 'cid');
+        $data['cols'] = ddl($this->category_adv->category(), 'cid');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display')
         ));
-        $this->load->view('info_col_adv/insert.html', $data);
+        $this->load->view('category_adv/insert.html', $data);
     }
 
     //修改
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->info_col_adv->update($id);
-        $data['cols'] = ddl($this->info_col_adv->info_col(), 'cid','', $data['item']['cid']);
-        $data['uploads']['image'] = $this->upload->execute($data['item']['image']);
+        $data['item'] = $this->category_adv->update($id);
+        $data['cols'] = ddl($this->category_adv->category(), 'cid','', $data['item']['cid']);
+        $data['uploads']['image'] = $this->upload->result($data['item']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
-        $this->load->view('info_col_adv/update.html', $data);
+        $this->load->view('category_adv/update.html', $data);
     }
 
     //保存
@@ -84,11 +84,11 @@ class Info_col_adv extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->info_col_adv->save($post);
+        $bool = $this->category_adv->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
-        $config['url'] = site_url('info_col_adv?sys_cid=' . $this->sys_cid);
+        $config['url'] = site_url('category_adv?sys_cid=' . $this->sys_cid);
         if ($bool) {
             switch ($this->submit_type) {
                 case '1':

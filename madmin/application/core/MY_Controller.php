@@ -30,8 +30,8 @@ class MY_Controller extends CI_Controller
         $this->load->library('auth', array(
             'user_info' => $this->session->sys_session
         ));
-        $this->menu();
-        $this->sidebar();
+        $this->top_menu();
+        $this->left_menu();
     }
 
     //登录验证
@@ -44,10 +44,10 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    //主菜单
-    public function menu()
+    //顶部菜单
+    public function top_menu()
     {
-        $data['menu'] = array();
+        $data['top_menu'] = array();
         $data['section_name'] = '';
         //系统栏目
         $sys_menu = $this->auth->get();
@@ -59,9 +59,9 @@ class MY_Controller extends CI_Controller
             $sys_menu_url = $this->valid_url($sys_menu);
             foreach ($sys_menu as $key => $val) {
                 if ($val['pid'] == 0) {
-                    $data['menu'][$key] = $val;
-                    $data['menu'][$key]['url'] = $sys_menu_url[$key];
-                    $data['menu'][$key]['active'] = ($val['id'] == $sys_menu_parent_id[0]) ? 'active' : '';
+                    $data['top_menu'][$key] = $val;
+                    $data['top_menu'][$key]['url'] = $sys_menu_url[$key];
+                    $data['top_menu'][$key]['active'] = ($val['id'] == $sys_menu_parent_id[0]) ? 'active' : '';
                 }
                 if ($val['id'] == $this->sys_cid) {
                     $data['section_name'] = $val['name'];
@@ -74,8 +74,8 @@ class MY_Controller extends CI_Controller
         $this->load->vars($data);
     }
 
-    //侧边栏
-    public function sidebar()
+    //左侧菜单
+    public function left_menu()
     {
         $str = '';
         $parent_level = 0;
@@ -121,7 +121,7 @@ class MY_Controller extends CI_Controller
             }
             $str .= str_repeat('</li></ul>', $parent_level + 1);
         }
-        $data['sidebar'] = $str;
+        $data['left_menu'] = $str;
         $this->load->vars($data);
     }
 

@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Sys_log_model extends CI_Model
+class Sys_oplog_model extends CI_Model
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class Sys_log_model extends CI_Model
         $this->db->select('t.*');
         $this->db->select('t1.name status_name,t1.color status_color');
         $this->db->select('t2.name opera_name');
-        $this->db->from('sys_log t');
+        $this->db->from('sys_oplog t');
         $this->db->join('common_dict t1', 't1.ident=t.status', 'left');
         $this->db->join('common_dict t2', 't2.ident=t.opera', 'left');
         if ($start_time && $stop_time) {

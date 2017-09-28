@@ -63,7 +63,7 @@ class Link extends MY_Controller
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
-        $data['uploads']['image'] = $this->upload->execute($data['item']['image']);
+        $data['uploads']['image'] = $this->upload->result($data['item']['image']);
         $this->load->view('link/update.html', $data);
     }
 

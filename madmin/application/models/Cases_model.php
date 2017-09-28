@@ -6,26 +6,24 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_news_model extends CI_Model
+class Cases_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('category', array('tb_name' => 'info_col'), 'category');
     }
 
     //获取列表
-    public function get_list($cid = '', $key = '', $page = '')
+    public function get_list($cid = '',$children_id=array(), $key = '', $page = '')
     {
-        $children_id_arr = $this->category->children_id(array(), $cid, TRUE);
         $this->db->select('t.*');
-        $this->db->select('t1.name as display_name,t1.color as display_color');
-        $this->db->from('info_news as t');
-        $this->db->join('common_dict as t1', 't1.ident=t.display', 'left');
+        $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->from('cases t');
+        $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
-        $this->db->where_in('t.cid', $children_id_arr);
+        $this->db->where_in('t.cid', $children_id);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = $this->config->item('per_page', 'mcms');
         $config['cur_page'] = $page;
@@ -43,7 +41,7 @@ class Info_news_model extends CI_Model
     public function update($id = '')
     {
         $this->db->where('id', $id);
-        $res = $this->db->get('info_news')->row_array();
+        $res = $this->db->get('cases')->row_array();
 
         return $res;
     }
@@ -52,9 +50,9 @@ class Info_news_model extends CI_Model
     public function save($post = array())
     {
         if ($post['id']) {
-            $bool = $this->db->where('id', $post['id'])->update('info_news', $post['vals']);
+            $bool = $this->db->where('id', $post['id'])->update('cases', $post['vals']);
         } else {
-            $bool = $this->db->insert('info_news', $post['vals']);
+            $bool = $this->db->insert('cases', $post['vals']);
         }
 
         return $bool;

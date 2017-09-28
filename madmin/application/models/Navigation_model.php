@@ -58,9 +58,9 @@ class Navigation_model extends CI_Model
     public function cols()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.sys_tpl');
-        $this->db->from('info_col t');
-        $this->db->join('sys_tpl t1', 't1.id=t.tpl_id', 'left');
+        $this->db->select('t1.template');
+        $this->db->from('category t');
+        $this->db->join('template t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();
@@ -86,7 +86,6 @@ class Navigation_model extends CI_Model
     //获取所有数据
     public function data()
     {
-        $this->db->where('display', 'show');
         $res = $this->db->get('navigation')->result_array();
         return $res;
     }

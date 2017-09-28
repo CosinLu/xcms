@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Info_article_model extends CI_Model
+class Category_adv_model extends CI_Model
 {
     public function __construct()
     {
@@ -14,21 +14,24 @@ class Info_article_model extends CI_Model
     }
 
     //获取列表
-    public function get_list($cid = '', $children_id = array(), $key = '', $page = '')
+    public function get_list($key = '', $page = '')
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
-        $this->db->from('info_article t');
+        $this->db->select('t2.name category_name');
+        $this->db->select('t3.rel_path');
+        $this->db->from('category_adv t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('category t2', 't2.id=t.cid', 'left');
+        $this->db->join('uploads t3', 't3.id=t.cid', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
-        $this->db->where_in('t.cid', $children_id);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = $this->config->item('per_page', 'mcms');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('t.sort desc,t.create_time desc,t.id desc');
+        $this->db->order_by('t.cid asc,t.sort asc,t.id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
@@ -41,7 +44,7 @@ class Info_article_model extends CI_Model
     public function update($id = '')
     {
         $this->db->where('id', $id);
-        $res = $this->db->get('info_article')->row_array();
+        $res = $this->db->get('category_adv')->row_array();
 
         return $res;
     }
@@ -50,22 +53,22 @@ class Info_article_model extends CI_Model
     public function save($post = array())
     {
         if ($post['id']) {
-            $bool = $this->db->where('id', $post['id'])->update('info_article', $post['vals']);
+            $bool = $this->db->where('id', $post['id'])->update('category_adv', $post['vals']);
         } else {
-            $bool = $this->db->insert('info_article', $post['vals']);
+            $bool = $this->db->insert('category_adv', $post['vals']);
         }
 
         return $bool;
     }
 
-    //标签
-    public function get_tags()
+    //信息栏目
+    public function category()
     {
+        $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
             'display' => 'show'
         ));
-        $this->db->order_by('sort asc,id asc');
-        $res = $this->db->get('tags')->result_array();
+        $res = $this->db->get('category')->result_array();
 
         return $res;
     }

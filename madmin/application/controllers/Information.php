@@ -6,7 +6,7 @@
  * Date: 2016/9/5
  * Time: 16:53
  */
-class Info extends MY_Controller
+class Information extends MY_Controller
 {
     protected $cid;
     protected $main_section_name;
@@ -15,7 +15,7 @@ class Info extends MY_Controller
     {
         parent::__construct();
         $this->cid = $this->input->get('cid');
-        $this->load->model('info_model', 'info');
+        $this->load->model('information_model', 'information');
         $this->main_sidebar();
     }
 
@@ -23,19 +23,19 @@ class Info extends MY_Controller
     {
         $this->db->select('t.*');
         $this->db->select('t1.sys_tpl');
-        $this->db->from('info_col t');
-        $this->db->join('sys_tpl t1', 't1.id=t.tpl_id', 'left');
+        $this->db->from('category t');
+        $this->db->join('template t1', 't1.id=t.tpl_id', 'left');
         $this->db->where('t.display', 'show');
-        $info_col_res = $this->db->get()->result_array();
-        $info_col_sort = $this->tree->serialize($info_col_res);
-        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('info_col/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
+        $category_res = $this->db->get()->result_array();
+        $category_sort = $this->tree->serialize($category_res);
+        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('category/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
         $str .= '<div class="nano iframe_main_sidebar_nano nano-hook">';
         $str .= '<div class="ph mt nano-content">';
         $str .= '<div class="mtree mtree-main-sidebar-hook">';
         $start_level = -1;
         $parent_level = 0;
         $data['main_section_name'] = '';
-        foreach ($info_col_sort as $val) {
+        foreach ($category_sort as $val) {
             $level = $val['level'];
             $current = ($val['id'] == $this->cid) ? 'current' : '';
             $indent = (15 * ($level - 1)) . 'px';
@@ -76,7 +76,7 @@ class Info extends MY_Controller
     //获取信息栏目
     public function index()
     {
-        $data = $this->info->cols();
+        $data = $this->information->cols();
         $children = array();
         $url = array();
         foreach ($data as $key => $val) {
@@ -94,14 +94,14 @@ class Info extends MY_Controller
             $url = array_slice($url, 0, 1);
             redirect(site_url($url));
         } else {
-            $this->load->view('info/index.html');
+            $this->load->view('information/index.html');
         }
     }
 
     //获取当前栏目的模板标识
     public function tpl_id()
     {
-        $res = $this->info->tpl_id($this->cid);
+        $res = $this->information->tpl_id($this->cid);
 
         return $res;
     }
