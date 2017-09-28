@@ -82,6 +82,8 @@ class Article extends Information
     //保存
     public function save()
     {
+        $image = $this->input->post('image');
+        $tags = $this->input->post('tags');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
@@ -89,8 +91,8 @@ class Article extends Information
                 'title' => $this->input->post('title'),
                 'original_link' => $this->input->post('original_link'),
                 'auther' => $this->input->post('auther'),
-                'image' => implode(',', $this->input->post('image')),
-                'tags' => implode(',', $this->input->post('tags')),
+                'image' => empty($image) ? '' : implode(',', $image),
+                'tags' => empty($tags) ? '' : implode(',', $tags),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),

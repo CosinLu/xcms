@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-28 17:29:13
+Date: 2017-09-28 18:21:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,13 +36,14 @@ CREATE TABLE `article` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
 INSERT INTO `article` VALUES ('1', '1', '基于Vue全家桶制作的的高仿美团APP', 'https://juejin.im/post/59b8ea926fb9a00a636a2f48', '白小明', '582', '<h2 style=\"color: rgb(51, 51, 51); white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">技术栈</h2><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【前端】</p><ul style=\"padding: 0px 0px 0px 2.7rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important;\" class=\" list-paddingleft-2\"><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Vue</span>：构建用户界面的 MVVM 框架，核心是响应的数据绑定和组系统件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-router</span>：为单页面应用提供的路由系统，项目上线前使用了路由懒加载技术，来异步加载路由优化性能</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vuex</span>：Vue 集中状态管理，在多个组件共享某些状态时非常便捷</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-resource</span>：服务端通讯，项目后期改用&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">axios</code></p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">axios</span>：服务端通讯。基于&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">Promise</code>&nbsp;的网络请求插件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-lazyload</span>：第三方图片懒加载库，优化页面加载速度</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">better-scroll</span>：iscroll 的优化版，使移动端滑动体验更加流畅</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Mint UI</span>：一套基于 Vue 2.0 的移动端组件库，出自饿了么前端</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Sass(Scss)</span>：css 预编译处理器</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">ES6</span>：ECMAScript 新一代语法，模块化、解构赋值、Promise、Class 等方法非常好用</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Moment.js</span>：日期时间格式化插件</p></li></ul><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【后端及数据库】</p>', 'qd,hd', '_blank', 'show', '100', '1505297925', null, null, null);
-INSERT INTO `article` VALUES ('3', '1', '安卓工程师到底要不要使用苹果手机', '', '亦枫', '583', '<p>是打发斯蒂芬阿斯蒂芬阿斯蒂</p>', '1,3', '_self', 'show', '100', '1505368278', null, null, null);
+INSERT INTO `article` VALUES ('3', '1', '安卓工程师到底要不要使用苹果手机', '', '亦枫', '1', '<p>是打发斯蒂芬阿斯蒂芬阿斯蒂</p>', '', '_self', 'show', '100', '1505368278', null, null, null);
+INSERT INTO `article` VALUES ('4', null, null, null, null, null, null, null, null, null, null, '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for cases
@@ -517,11 +518,12 @@ CREATE TABLE `sys_oplog` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
+INSERT INTO `sys_oplog` VALUES ('1', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.100', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1506592452');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -718,8 +720,9 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
+INSERT INTO `uploads` VALUES ('1', '178531e4f595a64ddd9f00eb2a73befd.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170928/', 'D:/wamp/www/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd.jpg', '/uploads/upload/20170928/', '/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd.jpg', '178531e4f595a64ddd9f00eb2a73befd', '/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd', '178531e4f595a64ddd9f00eb2a73befd.jpg', '123.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);

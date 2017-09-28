@@ -60,7 +60,7 @@ class Operation_log
             'ip' => $this->ip,
             'time' => time()
         );
-        $this->CI->db->insert('sys_log', $vals);
+        $this->CI->db->insert('sys_oplog', $vals);
     }
 
 

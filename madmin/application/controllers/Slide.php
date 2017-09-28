@@ -76,8 +76,8 @@ class Slide extends MY_Controller
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
-                'url' => ($url) ? $url : prep_url($url),
+                'image' => empty($image) ? '' : implode(',', $image),
+                'url' => $url ?: prep_url($url),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort')
