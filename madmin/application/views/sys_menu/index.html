@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=$this->config->item('title','mcms')?></title>
+    <title><?=config_item('my_title')?></title>
     <base href="<?=base_url()?>">
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,6 +33,7 @@
                                     <th>名称</th>
                                     <!--<th width="20%">权限</th>-->
                                     <th width="20%">URL</th>
+                                    <th width="10%">是否菜单</th>
                                     <th width="8%">用户类型</th>
                                     <th width="5%">状态</th>
                                     <th width="5%">排序</th>
@@ -47,6 +48,7 @@
                                         <td>{{val.prefix}}<i class="{{val.icon}}">&nbsp;</i>{{val.name}}</td>
                                         <!--<td>{{#val.sys_menu_auth}}</td>-->
                                         <td>{{#val.url}}</td>
+                                        <td>{{#val.is_menu}}</td>
                                         <td>{{#val.user_type_name}}</td>
                                         <td>{{#val.display_name}}</td>
                                         <td>{{val.sort}}</td>
@@ -89,7 +91,7 @@
                 beforeSend: function () {
                     $('.nodata-hook,.loading-hook').remove();
                     $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=$this->config->item("loading","mcms")?>');
+                    $('.list-hook').after('<?=config_item("my_loading")?>');
                 },
                 success: function (data) {
                     $('.nodata-hook,.loading-hook').remove();
@@ -97,7 +99,7 @@
                         $('#list').html(template('list_tpl', data));
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
-                        $('.list-hook').after('<?=$this->config->item("nodata","mcms")?>');
+                        $('.list-hook').after('<?=config_item("my_nodata")?>');
                     }
                 }
             })

@@ -93,7 +93,7 @@ class Index extends CI_Controller
             if ($this->pre_url == '') {
                 $this->load->library('auth', array('user_info' => $user_info));
                 $sys_menu = $this->auth->get();
-                $url = $this->valid_url($sys_menu);
+                $url = valid_url($sys_menu);
                 $session['sys_session']['home_url'] = $url[0];
                 $this->session->set_userdata($session);
                 redirect($url[0]);
@@ -189,30 +189,6 @@ class Index extends CI_Controller
         //销毁session
         $this->session->unset_userdata('sys_session');
         redirect(site_url());
-    }
-
-    //获取有效url
-    public function valid_url($data = array())
-    {
-        $data_serialize = $this->tree->serialize($data);
-        $children = array();
-        foreach ($data_serialize as $key => $val) {
-            if ($val['pid'] == 0) {
-                $children[$key] = $this->tree->get_children($data, $val['id'], TRUE);
-                foreach ($children[$key] as $val) {
-                    if ($val['url']) {
-                        $n = strpos($val['url'], '?');
-                        $conn = ($n) ? '&' : '?';
-                        $url[$key] = site_url($val['url'] . $conn . 'sys_cid=' . $val['id']);
-                        break;
-                    } else {
-                        $url[$key] = 'javascript:;';
-                    }
-                }
-            }
-        }
-
-        return $url;
     }
 
 }

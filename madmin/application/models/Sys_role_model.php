@@ -20,12 +20,14 @@ class Sys_role_model extends CI_Model
         if ($key != '') {
             $this->db->like('name', $key);
         }
-        $this->db->where('role_type > ', 0);
+        if ($this->session->sys_session['user_type'] > 0) {
+            $this->db->where('role_type > ', 0);
+        }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = $this->config->item('per_page', 'mcms');
+        $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('sort asc,id asc');
+        $this->db->order_by('role_type asc,sort asc,id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();

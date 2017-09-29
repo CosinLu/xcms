@@ -52,18 +52,17 @@ class MY_Controller extends CI_Controller
         //系统栏目
         $sys_menu = $this->auth->get();
         //获取栏目所有上级id
-        $sys_menu_parent_id = $this->tree->get_parent($sys_menu, $this->sys_cid, TRUE, 'id');
-        if (!empty($sys_menu_parent_id)) {
-            $sys_menu_parent_id = array_reverse($sys_menu_parent_id);
+        $parent_id = $this->tree->get_parent($sys_menu, array('url', $this->uri->segment(1)), TRUE, 'id');
+        if (!empty($parent_id)) {
             //主菜单有效url
-            $sys_menu_url = $this->valid_url($sys_menu);
+            $sys_menu_url = valid_url($sys_menu);
             foreach ($sys_menu as $key => $val) {
-                if ($val['pid'] == 0) {
+                if ($val['pid'] == 0 && $val['is_menu'] == 1) {
                     $data['top_menu'][$key] = $val;
                     $data['top_menu'][$key]['url'] = $sys_menu_url[$key];
-                    $data['top_menu'][$key]['active'] = ($val['id'] == $sys_menu_parent_id[0]) ? 'active' : '';
+                    $data['top_menu'][$key]['active'] = in_array($val['id'], $parent_id) ? 'active' : '';
                 }
-                if ($val['id'] == $this->sys_cid) {
+                if ($val['id'] == $parent_id[0]) {
                     $data['section_name'] = $val['name'];
                     $this->sys_menu_auth = $val['sys_menu_auth'];
                 }
@@ -82,71 +81,48 @@ class MY_Controller extends CI_Controller
         //系统栏目
         $sys_menu = $this->auth->get();
         //获取当前栏目所有上级id
-        $sys_menu_parent_id = $this->tree->get_parent($sys_menu, $this->sys_cid, TRUE, 'id');
-        if (!empty($sys_menu_parent_id)) {
-            $sys_menu_parent_id = array_reverse($sys_menu_parent_id);
+        $parent_id = $this->tree->get_parent($sys_menu, array('url', $this->uri->segment(1)), TRUE, 'id');
+        if (!empty($parent_id)) {
             //获取当前栏目一级栏目的所有下级栏目
-            $sys_menu_chidren = $this->tree->get_children($sys_menu, $sys_menu_parent_id[0]);
+            $sys_menu_chidren = $this->tree->get_children($sys_menu, array_reverse($parent_id)[0]);
             foreach ($sys_menu_chidren as $val) {
-                $level = $val['level'];
-                $n = strpos($val['url'], '?');
-                $conn = ($n) ? '&' : '?';
-                $current = ($val['id'] == $this->sys_cid) ? 'current' : '';
-                $indent = (35 * ($level - 2)) . 'px';
-                if ($level < $parent_level) {
-                    $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
-                } elseif ($level > $parent_level) {
-                    $str .= '<ul data-level="' . ($level - 1) . '">';
-                } else {
-                    $str .= '</li>';
+                if ($val['is_menu'] == 1) {
+                    $level = $val['level'];
+                    $n = strpos($val['url'], '?');
+                    $conn = ($n) ? '&' : '?';
+                    $current = in_array($val['id'], $parent_id) ? 'current' : '';
+                    $indent = (35 * ($level - 2)) . 'px';
+                    if ($level < $parent_level) {
+                        $str .= '</li>' . str_repeat('</ul></li>', $parent_level - $level);
+                    } elseif ($level > $parent_level) {
+                        $str .= '<ul data-level="' . ($level - 1) . '">';
+                    } else {
+                        $str .= '</li>';
+                    }
+                    $str .= '<li>';
+                    if (empty($val['url'])) {
+                        $str .= '<a href="javascript:;" class="' . $current . ' mtree_link mtree-link-hook">';
+                    } else {
+                        $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . ' mtree_link mtree-link-hook">';
+                    }
+                    $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
+                    $str .= '<div class="mtree_btn mtree-btn-hook"></div>';
+                    if ($val['icon']) {
+                        $str .= '<div class="mtree_icon mtree-icon-hook"><i class="' . $val['icon'] . '"></i></div>';
+                    }
+                    $str .= '<div class="mtree_name mtree-name-hook">' . $val['name'];
+                    if ($val['user_type'] == 'dev') {
+                        $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
+                    }
+                    $str .= '</div>';
+                    $str .= '</a>';
+                    $parent_level = $level;
                 }
-                $str .= '<li>';
-                if (empty($val['url'])) {
-                    $str .= '<a href="javascript:;" class="' . $current . ' mtree_link mtree-link-hook">';
-                } else {
-                    $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . ' mtree_link mtree-link-hook">';
-                }
-                $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
-                $str .= '<div class="mtree_btn mtree-btn-hook"></div>';
-                if ($val['icon']) {
-                    $str .= '<div class="mtree_icon mtree-icon-hook"><i class="' . $val['icon'] . '"></i></div>';
-                }
-                $str .= '<div class="mtree_name mtree-name-hook">' . $val['name'];
-                if ($val['user_type'] == 'dev') {
-                    $str .= '<span class="label label-danger">' . $val['user_type'] . '</span>';
-                }
-                $str .= '</div>';
-                $str .= '</a>';
-                $parent_level = $level;
             }
             $str .= str_repeat('</li></ul>', $parent_level + 1);
         }
         $data['left_menu'] = $str;
         $this->load->vars($data);
-    }
-
-    //获取有效url
-    public function valid_url($data = array())
-    {
-        $data_serialize = $this->tree->serialize($data);
-        $children = array();
-        foreach ($data_serialize as $key => $val) {
-            if ($val['pid'] == 0) {
-                $children[$key] = $this->tree->get_children($data, $val['id'], TRUE);
-                foreach ($children[$key] as $val) {
-                    if ($val['url']) {
-                        $n = strpos($val['url'], '?');
-                        $conn = ($n) ? '&' : '?';
-                        $url[$key] = site_url($val['url'] . $conn . 'sys_cid=' . $val['id']);
-                        break;
-                    } else {
-                        $url[$key] = 'javascript:;';
-                    }
-                }
-            }
-        }
-
-        return $url;
     }
 
 

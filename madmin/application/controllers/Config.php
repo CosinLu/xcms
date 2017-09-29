@@ -22,7 +22,7 @@ class Config extends MY_Controller
     public function set_url()
     {
         $url['save_url'] = site_url('config/save?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
-        $url['save_btn'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary">保存</button>');
+        $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary">保存</button>');
         $this->load->vars($url);
     }
 

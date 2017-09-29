@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'myfunc');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('config_mcms');
+$autoload['config'] = array();
 
 /*
 | -------------------------------------------------------------------

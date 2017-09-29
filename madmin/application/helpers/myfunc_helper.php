@@ -45,11 +45,19 @@ function standard_path($path = '')
  * @param bool $default 默认
  * @return string
  */
-function ddl($data = array(), $name = '', $disabled = '', $selected_val = '', $disabled_val = '', $default = TRUE, $option_val = 'id', $option_name = 'name')
+function ddl($data = array(), $name = '', $selected_val = '', $disabled_val = '', $default = TRUE, $option_val = 'id', $option_name = 'name')
 {
     $str = '';
+    //禁用
+    if ($disabled_val === TRUE) {
+        $disabled = 'disabled';
+    } else {
+        $disabled = '';
+        if (!is_array($disabled_val)) {
+            $disabled_val = explode(',', $disabled_val);
+        }
+    }
     $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
-
     if ($default === TRUE) {
         $str .= '<option value="-1">-请选择-</option>';
     } else if (is_array($default)) {
@@ -60,12 +68,19 @@ function ddl($data = array(), $name = '', $disabled = '', $selected_val = '', $d
 
     if (!empty($data)) {
         foreach ($data as $val) {
-            //选中值
+            //选中
             $option_selected = '';
             if ($selected_val != '') $option_selected = (in_array($val[$option_val], explode(',', $selected_val))) ? 'selected' : '';
-            //禁用值
-            $option_disabled = '';
-            if ($disabled_val != '') $option_disabled = (in_array($val[$option_val], explode(',', $disabled_val))) ? 'disabled' : '';
+            //禁止选择
+            if ($disabled_val === TRUE) {
+                $option_disabled = '';
+            } else {
+                if (!empty($disabled_val) && in_array($val[$option_val], $disabled_val)) {
+                    $option_disabled = 'disabled';
+                } else {
+                    $option_disabled = '';
+                }
+            }
             $str .= '<option value="' . $val[$option_val] . '" ' . $option_selected . ' ' . $option_disabled . '>' . $val[$option_name] . '</option>';
         }
     }
@@ -217,4 +232,34 @@ function go_back($url = '')
     $str = '<a href="' . $url . '" class="btn btn-default btn-xs ' . $mhook . '"><i class="fa fa-level-up fa-flip-horizontal"></i>返回上一级</a>';
 
     return $str;
+}
+
+/**
+ * 获取有效url
+ * @param array $data 数据源
+ * @return mixed
+ */
+function valid_url($data = array())
+{
+    $CI =& get_instance();
+    $CI->load->library('tree');
+    $data_serialize = $CI->tree->serialize($data);
+    $children = array();
+    foreach ($data_serialize as $key => $val) {
+        if ($val['pid'] == 0) {
+            $children[$key] = $CI->tree->get_children($data, $val['id'], TRUE);
+            foreach ($children[$key] as $val) {
+                if ($val['url']) {
+                    $n = strpos($val['url'], '?');
+                    $conn = ($n) ? '&' : '?';
+                    $url[$key] = site_url($val['url'] . $conn . 'sys_cid=' . $val['id']);
+                    break;
+                } else {
+                    $url[$key] = 'javascript:;';
+                }
+            }
+        }
+    }
+
+    return $url;
 }

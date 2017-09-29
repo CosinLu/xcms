@@ -513,3 +513,18 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+$config['my_title'] = 'MCMS';
+$config['my_loading'] = '<div class="panel-body loading-hook">数据加载中...</div>';
+$config['my_nodata'] = '<div class="panel-body nodata-hook">暂无数据</div>';
+$config['my_err'] = '<div class="panel-body error-hook">数据加载失败</div>';
+$config['my_per_page'] = 15;
+$config['my_insert'] = 'insert';
+$config['my_del'] = 'del';
+$config['my_look'] = 'look';
+$config['my_update'] = 'update';
+$config['my_upload'] = '/uploads/';
+$config['my_thumb_width'] = 120;
+$config['my_thumb_height'] = 120;
+$config['my_thumb_marker'] = '_' . $config['my_thumb_width'] . '_' . $config['my_thumb_height'];
+
+

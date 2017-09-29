@@ -19,7 +19,7 @@ class Category extends MY_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('category/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('category/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
+        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('category/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
         $url['save_url'] = site_url('category/save?sys_cid=' . $this->sys_cid);
         $this->load->vars($url);
     }
@@ -40,18 +40,18 @@ class Category extends MY_Controller
             $disabled_insert_next_btn = '<a href="javascript:;" class="disabled">新增下级</a>';
             $disabled_update_btn = '<a href="javascript:;" class="disabled">编辑</a>';
             $disabled_del_btn = '<a href="javascript:;" class="disabled">删除</a>';
-            if ($val['add_next_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('insert', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('category/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
+            if ($val['is_add_next'] == '1') {
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a href="' . site_url('category/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', $disabled_insert_next_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_insert_next_btn;
             }
-            if ($val['edit_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<a href="' . site_url('category/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
+            if ($val['is_update'] == '1') {
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('category/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', $disabled_update_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_update_btn;
             }
-            if ($val['del_auth'] == '1') {
-                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set($this->config->item('del', 'mcms'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('category/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
+            if ($val['is_del'] == '1') {
+                $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('category/del?sys_cid=' . $this->sys_cid) . '">删除</a>', $disabled_del_btn);
             } else {
                 $data['list']['list'][$key]['opera_btn'][] = $disabled_del_btn;
             }
@@ -77,7 +77,7 @@ class Category extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->category->update($id);
-        $data['template'] = ddl($this->category->template(), 'tpl_id', '', $data['item']['tpl_id']);
+        $data['template'] = ddl($this->category->template(), 'tpl_id', $data['item']['tpl_id']);
         $data['cols'] = $this->tree->ddl($this->category->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),

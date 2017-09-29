@@ -30,7 +30,7 @@ class Sys_oplog_model extends CI_Model
             $this->db->where('t.user_id', $this->session->sys_session['user_id']);
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = $this->config->item('per_page', 'mcms');
+        $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
         $this->db->order_by('t.time desc');

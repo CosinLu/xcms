@@ -95,7 +95,7 @@ class MY_Upload extends CI_Upload
                 $res[$name] = $this->get_data($id);
                 if (!empty($res[$name])) {
                     foreach ($res[$name] as $key => $sub_val) {
-                        $res[$name][$key]['thumb_rel_path'] = $sub_val['is_image'] ? $sub_val['raw_rel_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $sub_val['file_ext'] : '';
+                        $res[$name][$key]['thumb_rel_path'] = $sub_val['is_image'] ? $sub_val['raw_rel_path'] . config_item('my_thumb_marker') . $sub_val['file_ext'] : '';
                     }
                 }
             }
@@ -103,7 +103,7 @@ class MY_Upload extends CI_Upload
             $res = $this->get_data($arr);
             if (!empty($res)) {
                 foreach ($res as $key => $val) {
-                    $res[$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . $this->CI->config->item('thumb_marker', 'mcms') . $val['file_ext'] : '';
+                    $res[$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
                 }
             }
         }

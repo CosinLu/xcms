@@ -116,6 +116,7 @@ class Tree
      */
     public function get_children($data = array(), $pid = 0, $is_self = FALSE, $variable = '')
     {
+        $pid = $this->get_id($data, $pid);
         $res = $this->serialize($data, $pid);
 
         //是否包含自身
@@ -142,6 +143,7 @@ class Tree
      */
     public function get_parent($data = array(), $id = '', $is_self = FALSE, $variable = '')
     {
+        $id = $this->get_id($data, $id);
         $res = $this->reverse_serialize($data, $id);
 
         if (!$is_self) {
@@ -153,6 +155,28 @@ class Tree
     }
 
     /**
+     * 获得标识
+     * @param array $data 数据源
+     * @param array $arr array('字段名','值')
+     * @return string
+     */
+    public function get_id($data = array(), $arr = array())
+    {
+        if (is_array($arr)) {
+            $id = '';
+            foreach ($data as $val) {
+                if ($val[$arr[0]] == $arr[1]) {
+                    $id = $val[$this->id];
+                    break;
+                }
+            }
+            return $id;
+        }
+
+        return $arr;
+    }
+
+    /**
      * 返回指定键值数据
      * @param array $res 数据源
      * @param string $variable 指定的键值，string或array
@@ -160,6 +184,8 @@ class Tree
      */
     public function _get_variable($res = array(), $variable = '')
     {
+        if (empty($res)) return array();
+
         if (is_string($variable) && $variable != '') {
             $variable = explode(',', $variable);
         }

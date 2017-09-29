@@ -25,12 +25,14 @@ class Sys_user_model extends CI_Model
         if ($key != '') {
             $this->db->like('t.username', $key);
         }
-        $this->db->where('t.user_type > ', 0);
+        if ($this->session->sys_session['user_type'] > 0) {
+            $this->db->where('t.user_type > ', 0);
+        }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
-        $config['per_page'] = $this->config->item('per_page', 'mcms');
+        $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
-        $this->db->order_by('t.id asc');
+        $this->db->order_by('t.user_type asc,t.id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data['list'] = $this->db->get()->result_array();
         $data['pagination'] = $this->pagination->create_ajax_links();
@@ -63,8 +65,10 @@ class Sys_user_model extends CI_Model
     //角色
     public function sys_role()
     {
-        $this->db->where('role_type > ', 0);
-        $this->db->order_by('sort asc,id asc');
+        if ($this->session->sys_session['user_type'] > 0) {
+            $this->db->where('role_type > ', 0);
+        }
+        $this->db->order_by('role_type asc,sort asc,id asc');
         $res = $this->db->get('sys_role')->result_array();
 
         return $res;

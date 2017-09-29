@@ -29,7 +29,7 @@ class Uploads extends CI_Controller
         $key = $this->input->post('key');
         $data['list'] = $this->uploads->get_list($page, $key);
         foreach ($data['list'] as $key => $val) {
-            $data['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . $this->config->item('thumb_marker', 'mcms') . $val['file_ext'] : '';
+            $data['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
         }
         echo json_encode($data);
     }
@@ -58,7 +58,7 @@ class Uploads extends CI_Controller
     public function do_upload()
     {
         $filename = $this->input->post('filename');
-        $config['upload_path'] = standard_path($this->config->item('upload', 'mcms') . 'upload/' . date('Ymd', time()) . '/');
+        $config['upload_path'] = standard_path(config_item('my_upload') . 'upload/' . date('Ymd', time()) . '/');
         $config['allowed_types'] = '*';
         $config['file_name'] = md5(uniqid(microtime(TRUE), TRUE));
         $this->load->library('upload', $config, 'my_upload');
@@ -69,9 +69,9 @@ class Uploads extends CI_Controller
         $data['thumb_rel_path'] = '';
         //生成缩略图
         if ($data['is_image']) {
-            $this->create_thumb($data['abs_path'], $this->config->item('thumb_width', 'mcms'), $this->config->item('thumb_height', 'mcms'));
+            $this->create_thumb($data['abs_path'], config_item('my_thumb_width'), config_item('my_thumb_height'));
             //拼接缩略图地址
-            $data['thumb_rel_path'] = $data['raw_rel_path'] . $this->config->item('thumb_marker', 'mcms') . $data['file_ext'];
+            $data['thumb_rel_path'] = $data['raw_rel_path'] . config_item('my_thumb_marker') . $data['file_ext'];
         }
         //返回数据
         echo json_encode($data);

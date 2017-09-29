@@ -22,7 +22,7 @@ class Ueditor
     {
         $settings_path = str_replace('\\', '/', FCPATH . 'plugin/ueditor/php/settings.json');
         $str = file_get_contents($settings_path);
-        $str = preg_replace('/"upload": ".*"/', '"upload": "' . $this->CI->config->item('upload', 'mcms') . '"', $str);
+        $str = preg_replace('/"upload": ".*"/', '"upload": "' . config_item('my_upload') . '"', $str);
         file_put_contents($settings_path, $str);
     }
 

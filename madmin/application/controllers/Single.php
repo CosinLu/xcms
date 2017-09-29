@@ -20,8 +20,8 @@ class Single extends Information
     //设置url
     public function set_url()
     {
-        $url['save_url'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, site_url('Single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
-        $url['save_btn'] = $this->auth->set($this->config->item('update', 'mcms'), $this->sys_menu_auth, '<button type="submit" name="is_save" value="1" class="btn btn-primary">保存
+        $url['save_url'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, site_url('Single/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid));
+        $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" name="is_save" value="1" class="btn btn-primary">保存
                                 </button>');
         $this->load->vars($url);
     }
