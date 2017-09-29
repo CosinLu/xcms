@@ -11,7 +11,7 @@ class Slide extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('slide_model', 'slide');
+        $this->load->model('slide_model');
         $this->set_url();
     }
 
@@ -35,7 +35,7 @@ class Slide extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->slide->get_list($key, $page);
+        $data['list'] = $this->slide_model->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('slide/update?id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
@@ -58,7 +58,7 @@ class Slide extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->slide->update($id);
+        $data['item'] = $this->slide_model->update($id);
         $data['uploads']['image'] = $this->upload->result($data['item']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
@@ -83,7 +83,7 @@ class Slide extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->slide->save($post);
+        $bool = $this->slide_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

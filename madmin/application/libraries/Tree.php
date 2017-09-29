@@ -246,8 +246,8 @@ class Tree
                 $disabled = (in_array($val[$this->id], $children_id)) ? 'disabled' : '';
             }
             //禁止选择[用于只允许选择相同类型]
-            if ($type != '' && isset($val['tpl_id'])) {
-                $disabled = ($val['tpl_id'] != $type) ? 'disabled' : '';
+            if ($type != '' && isset($val['model_id'])) {
+                $disabled = ($val['model_id'] != $type) ? 'disabled' : '';
             }
             //附加数据
             $content = isset($val['data']) ? $val['data'] : '';
@@ -261,36 +261,36 @@ class Tree
 
     /**
      * 获取一条数据
-     * @param string $tbname 表名
+     * @param string $table 表名
      * @param array $where 查询条件
      * @return array
      */
-    public function one($tbname = '', $where = array())
+    public function one($table = '', $where = array())
     {
         if (empty($where)) return array();
         $this->CI->db->where($where);
-        $res = $this->CI->db->get($tbname)->row_array();
+        $res = $this->CI->db->get($table)->row_array();
 
         return $res;
     }
 
     /**
      * 新增
-     * @param string $tbname 表名
+     * @param string $table 表名
      * @param array $post 需要提交的数据
      * @return mixed
      */
-    public function insert($tbname = '', $post = array())
+    public function insert($table = '', $post = array())
     {
         if ($post[$this->pid] == 0) {
             $level = 1;
         } else {
-            $res = $this->one($tbname, array($this->id => $post[$this->pid]));
+            $res = $this->one($table, array($this->id => $post[$this->pid]));
             $level = $res[$this->level] + 1;
         };
         //写入数据
         $post[$this->level] = $level;
-        $this->CI->db->insert($tbname, $post);
+        $this->CI->db->insert($table, $post);
         $insert_id = $this->CI->db->insert_id();
 
         return $insert_id;
@@ -299,20 +299,20 @@ class Tree
     /**
      * 修改
      * @param array $data 数据源
-     * @param string $tbname 表名
+     * @param string $table 表名
      * @param string $id 标识
      * @param array $post 需要提交的数据
      * @return bool
      */
-    public function update($data = array(), $tbname = '', $id = '', $post = array())
+    public function update($data = array(), $table = '', $id = '', $post = array())
     {
         if (empty($id)) {
             return FALSE;
         }
         //当前分类信息
-        $res = $this->one($tbname, array($this->id => $id));
+        $res = $this->one($table, array($this->id => $id));
         //上级分类信息
-        $parent_row = $this->one($tbname, array($this->id => $post[$this->pid]));
+        $parent_row = $this->one($table, array($this->id => $post[$this->pid]));
         //上级分类级别
         $parent_level = (empty($parent_row)) ? 0 : $parent_row[$this->level];
         //当前分类新级别
@@ -331,12 +331,12 @@ class Tree
             //执行更新
             $this->CI->db->set($this->level, $next_new_level);
             $this->CI->db->where($this->id, $val[$this->id]);
-            $this->CI->db->update($tbname);
+            $this->CI->db->update($table);
         }
         //修改当前分类等级及数据
         $post[$this->level] = $current_new_level;
         $this->CI->db->where($this->id, $id);
-        $bool = $this->CI->db->update($tbname, $post);
+        $bool = $this->CI->db->update($table, $post);
 
         return $bool;
     }
@@ -344,11 +344,11 @@ class Tree
     /**
      * 删除
      * @param array $data 数据源
-     * @param string $tbname 表名
+     * @param string $table 表名
      * @param string $id 标识
      * @return bool
      */
-    public function del($data = array(), $tbname = '', $id = '')
+    public function del($data = array(), $table = '', $id = '')
     {
         if (empty($id)) {
             return FALSE;
@@ -359,7 +359,7 @@ class Tree
             return FALSE;
         }
         $this->CI->db->where_in($this->id, $children_id);
-        $this->CI->db->delete($tbname);
+        $this->CI->db->delete($table);
         $rows = $this->CI->db->affected_rows();
 
         return $rows;

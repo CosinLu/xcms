@@ -13,7 +13,7 @@ class Sys_user_auth extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sys_user_auth_model', 'sys_user_auth');
+        $this->load->model('sys_user_auth_model');
         $this->user_id = $this->input->get('user_id');
         $this->set_url();
     }
@@ -91,9 +91,9 @@ class Sys_user_auth extends MY_Controller
         $id = $this->input->post('id');
         $auth = $this->input->post('auth');
         //删除
-        $rows = $this->sys_user_auth->del($this->user_id);
+        $rows = $this->sys_user_auth_model->del($this->user_id);
         //添加
-        $bool = $this->sys_user_auth->insert($this->user_id, $id, $auth);
+        $bool = $this->sys_user_auth_model->insert($this->user_id, $id, $auth);
         //写入日志
         $this->oplog->insert('角色权限', '2', $bool);
         $config['icon'] = 1;

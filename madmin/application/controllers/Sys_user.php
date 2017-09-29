@@ -11,7 +11,7 @@ class Sys_user extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sys_user_model', 'sys_user');
+        $this->load->model('sys_user_model');
         $this->set_url();
     }
 
@@ -35,7 +35,7 @@ class Sys_user extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->sys_user->get_list($key, $page);
+        $data['list'] = $this->sys_user_model->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['status_name'] = '<span style="color:' . $val['status_color'] . ';">' . $val['status_name'] . '</span>';
             if ($val['user_type'] < 2) {
@@ -56,7 +56,7 @@ class Sys_user extends MY_Controller
     //新增
     public function insert()
     {
-        $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id');
+        $data['sys_role'] = ddl($this->sys_user_model->sys_role(), 'role_id');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'user_status', 'status')
         ));
@@ -67,9 +67,9 @@ class Sys_user extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->sys_user->update($id);
+        $data['item'] = $this->sys_user_model->update($id);
         $disabled = ($data['item']['user_type'] < 2) ? TRUE : '';
-        $data['sys_role'] = ddl($this->sys_user->sys_role(), 'role_id', $data['item']['role_id'], $disabled);
+        $data['sys_role'] = ddl($this->sys_user_model->sys_role(), 'role_id', $data['item']['role_id'], $disabled);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'user_status', 'status', $data['item']['status'], $disabled)
         ));
@@ -94,7 +94,7 @@ class Sys_user extends MY_Controller
                 )
             )
         );
-        $bool = $this->sys_user->save($post);
+        $bool = $this->sys_user_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

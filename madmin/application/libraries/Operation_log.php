@@ -36,6 +36,9 @@ class Operation_log
      */
     public function insert($col_name = '', $opera_code = '', $status = '')
     {
+        //禁止本地操作加入操作日志
+        if ($this->ip = '127.0.0.1') return;
+
         switch ($opera_code) {
             case '1':
                 $opera = 'insert';
@@ -52,7 +55,7 @@ class Operation_log
             'username' => $this->username,
             'col_name' => $col_name,
             'opera' => $opera,
-            'status' => ($status) ? 'success' : 'fail',
+            'status' => $status ? 'success' : 'fail',
             'browser' => $this->browser,
             'version' => $this->version,
             'platform' => $this->platform,

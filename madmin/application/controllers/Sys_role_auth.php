@@ -13,7 +13,7 @@ class Sys_role_auth extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sys_role_auth_model', 'sys_role_auth');
+        $this->load->model('sys_role_auth_model');
         $this->role_id = $this->input->get('role_id');
         $this->set_url();
     }
@@ -89,9 +89,9 @@ class Sys_role_auth extends MY_Controller
         $id = $this->input->post('id');
         $auth = $this->input->post('auth');
         //删除
-        $rows = $this->sys_role_auth->del($this->role_id);
+        $rows = $this->sys_role_auth_model->del($this->role_id);
         //添加
-        $bool = $this->sys_role_auth->insert($this->role_id, $id, $auth);
+        $bool = $this->sys_role_auth_model->insert($this->role_id, $id, $auth);
         //写入日志
         $this->oplog->insert('角色权限', '2', $bool);
         $config['icon'] = 1;

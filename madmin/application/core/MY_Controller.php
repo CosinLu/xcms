@@ -12,7 +12,6 @@ class MY_Controller extends CI_Controller
     //上一个页面url
     protected $prferer;
     //保存：1=保存，2=保存并继续新增
-    protected $is_save;
     protected $sys_menu_auth;
     //栏目名称
     protected $section_name;
@@ -24,9 +23,7 @@ class MY_Controller extends CI_Controller
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->submit_type = ($this->input->post('submit_type') == '') ? '1' : $this->input->post('submit_type');
         $this->sys_menu_auth = '';
-        $this->load->library('auth', array(
-            'user_info' => $this->session->sys_session
-        ));
+        $this->load->library('auth');
         $this->top_menu();
         $this->left_menu();
     }

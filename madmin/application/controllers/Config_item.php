@@ -13,7 +13,7 @@ class Config_item extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('config_item_model', 'config_item');
+        $this->load->model('config_item_model');
         $this->category = $this->input->get('category');
         $this->set_url();
     }
@@ -38,7 +38,7 @@ class Config_item extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->config_item->get_list($key, $page, $this->category);
+        $data['list'] = $this->config_item_model->get_list($key, $page, $this->category);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('config_item/update?id=' . $val['id'] . '&category=' . $this->category) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
@@ -50,7 +50,7 @@ class Config_item extends MY_Controller
     //新增
     public function insert()
     {
-        $data['config_group'] = ddl($this->config_item->config_group(), 'category', $this->category,'', TRUE, 'category', 'name');
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $this->category,'', TRUE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display'),
             array('rbl', 'config_type', 'type')
@@ -62,8 +62,8 @@ class Config_item extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->config_item->update($id);
-        $data['config_group'] = ddl($this->config_item->config_group(), 'category', $data['item']['category'],'', TRUE, 'category', 'name');
+        $data['item'] = $this->config_item_model->update($id);
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['item']['category'],'', TRUE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['item']['display']),
             array('rbl', 'config_type', 'type', $data['item']['type'])
@@ -87,7 +87,7 @@ class Config_item extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->config_item->save($post);
+        $bool = $this->config_item_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

@@ -14,7 +14,7 @@ class Article_model extends CI_Model
     }
 
     //获取列表
-    public function get_list($cid = '', $children_id = array(), $key = '', $page = '')
+    public function get_list($cid = array(), $key = '', $page = '')
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
@@ -23,7 +23,7 @@ class Article_model extends CI_Model
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
-        $this->db->where_in('t.cid', $children_id);
+        $this->db->where_in('t.cid', $cid);
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
         $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;

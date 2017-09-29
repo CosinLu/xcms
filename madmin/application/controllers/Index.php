@@ -19,7 +19,7 @@ class Index extends CI_Controller
         $this->password = $this->input->post('password');
         $this->pre_url = urldecode($this->input->get('url'));
         $this->set_url();
-        $this->load->model('index_model', 'index');
+        $this->load->model('index_model');
         $this->load->library('form_validation');
         $this->session->unset_userdata('sys_session');
     }
@@ -65,7 +65,7 @@ class Index extends CI_Controller
             $this->load->view('index/index.html');
         } //登录成功
         else {
-            $user_info = $this->index->user_info($this->username, $this->password);
+            $user_info = $this->index_model->user_info($this->username, $this->password);
             $session['sys_session']['user_id'] = $user_info['id'];
             $session['sys_session']['role_id'] = $user_info['role_id'];
             $session['sys_session']['username'] = $user_info['username'];
@@ -86,7 +86,7 @@ class Index extends CI_Controller
                 'login_ip' => $this->input->ip_address(),
                 'login_time' => time()
             );
-            $this->index->insert_login_log($data);
+            $this->index_model->insert_login_log($data);
             //写入session
             $this->session->set_userdata($session);
             //跳转至backurl
@@ -123,13 +123,13 @@ class Index extends CI_Controller
     public function check_username()
     {
         if ($this->username != '') {
-            $rows = $this->index->check_username($this->username);
+            $rows = $this->index_model->check_username($this->username);
             if ($rows == 0) {
                 $this->form_validation->set_message('check_username', '{field} 不存在。');
 
                 return FALSE;
             } else {
-                $userinfo = $this->index->user_info($this->username, $this->password);
+                $userinfo = $this->index_model->user_info($this->username, $this->password);
                 if ($userinfo['status'] == 'forzen') {
                     $this->form_validation->set_message('check_username', '{field} 被冻结。');
 
@@ -146,7 +146,7 @@ class Index extends CI_Controller
     //验证密码
     public function check_password()
     {
-        $userinfo = $this->index->user_info($this->username, $this->password);
+        $userinfo = $this->index_model->user_info($this->username, $this->password);
         if (empty($userinfo) && $this->password != '') {
             $this->form_validation->set_message('check_password', '{field} 输入错误。');
 
@@ -159,7 +159,7 @@ class Index extends CI_Controller
     //验证系统栏目权限
     public function check_sys_menu_auth()
     {
-        $user_info = $this->index->user_info($this->username, $this->password);
+        $user_info = $this->index_model->user_info($this->username, $this->password);
         if (!empty($user_info)) {
             $this->load->library('auth', array('user_info' => $user_info));
             $sys_menu = $this->auth->get();

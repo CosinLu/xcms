@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 <?php require_once(VIEWPATH.'include/header.html');?>
 <!-- 主内容区域 -->
@@ -24,28 +26,17 @@
             <div class="section_container">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div class="panel-title"><?=$main_section_name.go_back()?></div>
+                        <div class="panel-title"><?=$main_section_name?></div>
                     </div>
-                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>"
+                          method="post">
                         <div class="panel-body">
-                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <input type="hidden" name="cid" value="<?=$item['id']?>">
                             <div class="form-group">
-                                <div class="col-xs-2 control-label">栏目</div>
+                                <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <?=$cols?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">标题</div>
-                                <div class="col-xs-8">
-                                    <input type="text" name="title" value="<?=$item['title']?>" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">摘要</div>
-                                <div class="col-xs-8">
-                                    <textarea name="summary" rows="3"
-                                              class="form-control"><?=$item['summary']?></textarea>
+                                    <input type="text" name="name" value="<?=$item['name']?>" class="form-control"
+                                           disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -53,24 +44,6 @@
                                 <div class="col-xs-8">
                                     <script id="content" class="editor-hook" name="content"
                                             type="text/plain"><?=$item['content']?></script>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">目标窗口</div>
-                                <div class="col-xs-5 radio">
-                                    <?=$dict['target']?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">状态</div>
-                                <div class="col-xs-8 radio">
-                                    <?=$dict['display']?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">排序</div>
-                                <div class="col-xs-2">
-                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -83,9 +56,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-8">
-                                    <button type="submit" name="is_save" value="1" class="btn btn-primary">
-                                        保存
-                                    </button>
+                                    <?=$save_btn?>
                                 </div>
                             </div>
                         </div>
@@ -99,10 +70,11 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit'], function (unit) {
+    require(['unit', ''], function (unit) {
         unit.ueditor();
         unit.datetime();
     })
 </script>
 </body>
+
 </html>

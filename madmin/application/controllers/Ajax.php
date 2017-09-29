@@ -14,7 +14,7 @@ class Ajax extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('ajax_model', 'ajax');
+        $this->load->model('ajax_model');
         $this->col_name = (urldecode($this->input->get('col_name'))) ?: $this->section_name;
     }
 
@@ -24,7 +24,7 @@ class Ajax extends MY_Controller
         $tbname = $this->input->post('tbname');
         $id = $this->input->post('id');
         $primary = $this->input->post('primary') ?: 'id';
-        $rows = $this->ajax->del($tbname, $id, $primary);
+        $rows = $this->ajax_model->del($tbname, $id, $primary);
         //写入日志
         $this->oplog->insert($this->col_name, '3', $rows);
         echo $rows;
@@ -36,7 +36,7 @@ class Ajax extends MY_Controller
         $tbname = $this->input->post('tbname');
         $id = explode(',', $this->input->post('id'));
         $primary = $this->input->post('primary') ?: 'id';
-        $rows = $this->ajax->batch_del($tbname, $id, $primary);
+        $rows = $this->ajax_model->batch_del($tbname, $id, $primary);
         //写入日志
         $this->oplog->insert($this->col_name, '3', $rows);
         echo $rows;

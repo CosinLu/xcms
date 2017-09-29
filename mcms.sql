@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-28 22:54:16
+Date: 2017-09-29 18:00:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,14 +36,11 @@ CREATE TABLE `article` (
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-INSERT INTO `article` VALUES ('1', '1', '基于Vue全家桶制作的的高仿美团APP', 'https://juejin.im/post/59b8ea926fb9a00a636a2f48', '白小明', '582', '<h2 style=\"color: rgb(51, 51, 51); white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">技术栈</h2><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【前端】</p><ul style=\"padding: 0px 0px 0px 2.7rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important;\" class=\" list-paddingleft-2\"><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Vue</span>：构建用户界面的 MVVM 框架，核心是响应的数据绑定和组系统件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-router</span>：为单页面应用提供的路由系统，项目上线前使用了路由懒加载技术，来异步加载路由优化性能</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vuex</span>：Vue 集中状态管理，在多个组件共享某些状态时非常便捷</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-resource</span>：服务端通讯，项目后期改用&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">axios</code></p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">axios</span>：服务端通讯。基于&nbsp;<code style=\"font-size: 1rem; padding: 0.26rem 0.53em; word-break: break-word; color: rgb(78, 89, 128); background-color: rgb(248, 248, 248); border-radius: 2px; overflow-x: auto; user-select: text !important;\">Promise</code>&nbsp;的网络请求插件</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">vue-lazyload</span>：第三方图片懒加载库，优化页面加载速度</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">better-scroll</span>：iscroll 的优化版，使移动端滑动体验更加流畅</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Mint UI</span>：一套基于 Vue 2.0 的移动端组件库，出自饿了么前端</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Sass(Scss)</span>：css 预编译处理器</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">ES6</span>：ECMAScript 新一代语法，模块化、解构赋值、Promise、Class 等方法非常好用</p></li><li><p style=\"text-align: left;\"><span style=\"user-select: text !important; font-weight: 700;\">Moment.js</span>：日期时间格式化插件</p></li></ul><p style=\"line-height: 2.27rem; color: rgb(51, 51, 51); font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); user-select: text !important; text-align: left;\">【后端及数据库】</p>', 'qd,hd', '_blank', 'show', '100', '1505297925', null, null, null);
-INSERT INTO `article` VALUES ('3', '1', '安卓工程师到底要不要使用苹果手机', '', '亦枫', '1', '<p>是打发斯蒂芬阿斯蒂芬阿斯蒂</p>', '', '_self', 'show', '100', '1505368278', null, null, null);
-INSERT INTO `article` VALUES ('4', null, null, null, null, null, null, null, null, null, null, '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for cases
@@ -81,7 +78,7 @@ CREATE TABLE `category` (
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `tpl_id` int(11) DEFAULT NULL COMMENT '模板标识',
+  `model_id` int(11) DEFAULT NULL COMMENT '模型',
   `dir` varchar(30) DEFAULT NULL COMMENT '目录',
   `url` varchar(255) DEFAULT NULL COMMENT '链接',
   `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
@@ -89,22 +86,21 @@ CREATE TABLE `category` (
   `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  `add_next_auth` tinyint(1) DEFAULT '1' COMMENT '新增下级权限：0=禁止，1=允许',
-  `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
-  `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
+  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
+  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
+  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '文章', '0', '1', '1', 'article', '', '_self', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `category` VALUES ('2', '模板', '0', '1', '2', 'template', '', '_self', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `category` VALUES ('3', '产品', '0', '1', '2', 'product', '', '_self', null, null, 'show', '100', null, null, null, null, '1', '1', '1');
+INSERT INTO `category` VALUES ('1', '产品中心', '0', '1', '2', 'product', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `category` VALUES ('2', '产品服务', '1', '2', '2', 'fuwu', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `category` VALUES ('3', '新闻中心', '0', '1', '1', 'news', '', '_blank', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `category` VALUES ('4', '行业动态', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `category` VALUES ('5', '帮助中心', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `category` VALUES ('6', '关于我们', '0', '1', '3', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for category_adv
@@ -141,47 +137,43 @@ CREATE TABLE `common_dict` (
   `level` tinyint(2) DEFAULT NULL COMMENT '级别',
   `ident` varchar(20) DEFAULT NULL COMMENT '唯一标识',
   `color` char(7) DEFAULT NULL COMMENT '颜色',
-  `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型',
+  `is_sys` tinyint(1) DEFAULT '0' COMMENT '是否系统字典',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
 
 -- ----------------------------
 -- Records of common_dict
 -- ----------------------------
-INSERT INTO `common_dict` VALUES ('1', '操作', '0', '1', 'sys_menu_auth', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('3', '修改', '1', '2', 'update', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('18', '用户状态', '0', '1', 'user_status', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', '#5cb85c', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('34', '失败', '32', '2', 'fail', '#d9534f', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('35', '用户类型', '0', '1', 'user_type', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('36', '生产者', '35', '2', 'pro', '#333333', 'dev', '100', null, null, null, null);
-INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f', 'dev', '100', null, null, null, null);
+INSERT INTO `common_dict` VALUES ('1', '操作', '0', '1', 'sys_menu_auth', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('2', '新增', '1', '2', 'insert', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('3', '编辑', '1', '2', 'update', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('4', '删除', '1', '2', 'del', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('5', '查看', '1', '2', 'look', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('9', '显示', '0', '1', 'display', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('10', '显示', '9', '2', 'show', '#5cb85c', '0', '100');
+INSERT INTO `common_dict` VALUES ('11', '隐藏', '9', '2', 'hide', '#d9534f', '0', '100');
+INSERT INTO `common_dict` VALUES ('12', '配置项类型', '0', '1', 'config_type', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('13', '文本', '12', '2', 'text', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('14', '单选', '12', '2', 'radio', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('15', '复选', '12', '2', 'checkbox', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('16', '下拉列表', '12', '2', 'select', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('17', '文本域', '12', '2', 'textarea', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('18', '用户状态', '0', '1', 'user_status', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('19', '正常', '18', '2', 'normal', '#5cb85c', '0', '100');
+INSERT INTO `common_dict` VALUES ('20', '冻结', '18', '2', 'forzen', '#d9534f', '0', '100');
+INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', '#5cb85c', '0', '100');
+INSERT INTO `common_dict` VALUES ('34', '失败', '32', '2', 'fail', '#d9534f', '0', '100');
+INSERT INTO `common_dict` VALUES ('35', '用户类型', '0', '1', 'user_type', '#333333', '1', '100');
+INSERT INTO `common_dict` VALUES ('36', '生产者', '35', '2', 'pro', '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f', '0', '100');
 
 -- ----------------------------
 -- Table structure for config
@@ -244,16 +236,34 @@ CREATE TABLE `link` (
   `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接表';
 
 -- ----------------------------
 -- Records of link
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for model
+-- ----------------------------
+DROP TABLE IF EXISTS `model`;
+CREATE TABLE `model` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` char(50) DEFAULT NULL COMMENT '名称',
+  `model` varchar(20) DEFAULT NULL COMMENT '模型',
+  `list` varchar(50) DEFAULT NULL COMMENT '列表',
+  `detail` varchar(50) DEFAULT NULL COMMENT '详细',
+  `display` char(4) DEFAULT NULL COMMENT '显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模型表';
+
+-- ----------------------------
+-- Records of model
+-- ----------------------------
+INSERT INTO `model` VALUES ('1', '文章', 'article', 'article', 'article/detail', 'show', '100');
+INSERT INTO `model` VALUES ('2', '案例', 'cases', 'cases', 'cases/detail', 'show', '100');
+INSERT INTO `model` VALUES ('3', '单页', 'page', 'page', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for navigation
@@ -270,41 +280,31 @@ CREATE TABLE `navigation` (
   `position` varchar(10) DEFAULT NULL COMMENT '位置',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  `add_next_auth` tinyint(1) DEFAULT '1' COMMENT '新增下级权限：0=禁止，1=允许',
-  `edit_auth` tinyint(1) DEFAULT '1' COMMENT '编辑权限：0=禁止，1=允许',
-  `del_auth` tinyint(1) DEFAULT '1' COMMENT '删除权限：0=禁止，1=允许',
+  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
+  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
+  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='导航表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航表';
 
 -- ----------------------------
 -- Records of navigation
 -- ----------------------------
-INSERT INTO `navigation` VALUES ('1', '文章', '0', '1', '1', 'article', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('2', '产品', '0', '1', '3', 'product', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
-INSERT INTO `navigation` VALUES ('3', '模板', '0', '1', '2', 'template', '_self', 'top', 'show', '100', null, null, null, null, '1', '1', '1');
 
 -- ----------------------------
--- Table structure for single
+-- Table structure for page
 -- ----------------------------
-DROP TABLE IF EXISTS `single`;
-CREATE TABLE `single` (
+DROP TABLE IF EXISTS `page`;
+CREATE TABLE `page` (
   `cid` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
-  `summary` varchar(100) DEFAULT NULL COMMENT '摘要',
   `content` text COMMENT '内容',
   `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
 
 -- ----------------------------
--- Records of single
+-- Records of page
 -- ----------------------------
+INSERT INTO `page` VALUES ('6', '<p>关于我们内容</p>', null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -318,18 +318,12 @@ CREATE TABLE `slide` (
   `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
 -- ----------------------------
 -- Records of slide
 -- ----------------------------
-INSERT INTO `slide` VALUES ('7', '123', '595', '', '_self', 'show', '100', null, null, null, null);
-INSERT INTO `slide` VALUES ('8', '345', '597', '', '_self', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -341,27 +335,11 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
-INSERT INTO `sys_login_log` VALUES ('1', '4', '127.0.0.1', '1506388201');
-INSERT INTO `sys_login_log` VALUES ('2', '4', '::1', '1506388850');
-INSERT INTO `sys_login_log` VALUES ('3', '4', '::1', '1506426810');
-INSERT INTO `sys_login_log` VALUES ('4', '4', '::1', '1506434767');
-INSERT INTO `sys_login_log` VALUES ('5', '4', '::1', '1506514712');
-INSERT INTO `sys_login_log` VALUES ('6', '4', '::1', '1506516549');
-INSERT INTO `sys_login_log` VALUES ('7', '4', '::1', '1506582070');
-INSERT INTO `sys_login_log` VALUES ('8', '2', '::1', '1506587238');
-INSERT INTO `sys_login_log` VALUES ('9', '3', '::1', '1506587386');
-INSERT INTO `sys_login_log` VALUES ('10', '4', '::1', '1506587395');
-INSERT INTO `sys_login_log` VALUES ('11', '4', '::1', '1506602105');
-INSERT INTO `sys_login_log` VALUES ('12', '4', '::1', '1506605245');
-INSERT INTO `sys_login_log` VALUES ('13', '2', '::1', '1506605493');
-INSERT INTO `sys_login_log` VALUES ('14', '4', '::1', '1506605599');
-INSERT INTO `sys_login_log` VALUES ('15', '2', '::1', '1506605614');
-INSERT INTO `sys_login_log` VALUES ('16', '4', '::1', '1506605637');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -370,6 +348,7 @@ DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
+  `is_menu` tinyint(1) DEFAULT '1' COMMENT '是否是菜单：0=否，1=是',
   `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `pid` int(10) DEFAULT '0' COMMENT '上级标识',
   `level` tinyint(2) DEFAULT NULL COMMENT '级别',
@@ -378,37 +357,38 @@ CREATE TABLE `sys_menu` (
   `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '起始页', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('2', '系统管理', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('3', '内容管理', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('4', '模块管理', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('7', '我的面板', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('9', '配置组', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '200', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('10', '配置项', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '200', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('11', '网站配置', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('12', '栏目管理', 'fa fa-columns', '3', '2', 'category', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('13', '信息管理', 'fa fa-list', '3', '2', 'information', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('14', '模板管理', 'fa fa-codepen', '2', '2', 'template', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('15', '幻灯片', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('16', '菜单管理', 'fa fa-bars', '1', '2', 'sys_menu', '', 'dev', 'show', '200', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('17', '角色管理', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('18', '用户管理', 'fa fa-user', '2', '2', 'sys_user', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('31', '操作日志', 'fa fa-list', '1', '2', 'sys_oplog', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('38', '文件管理', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'hide', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('41', '导航管理', 'fa fa-bars', '2', '2', 'navigation', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('42', '友情链接', 'fa fa-link', '4', '2', 'link', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('48', '通用字典', 'fa fa-book', '2', '2', 'common_dict', '', 'pro', 'show', '100', null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('50', '广告管理', 'fa fa-image', '3', '2', 'category_adv', '', 'pro', 'show', '100', null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('1', '起始页', '1', 'fa fa-home', '0', '1', '', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('2', '系统管理', '1', 'fa fa-laptop', '0', '1', '', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('3', '内容管理', '1', 'fa fa-folder', '0', '1', '', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('4', '模块管理', '1', 'fa fa-th-large', '0', '1', '', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('7', '我的面板', '1', 'fa fa-list-alt', '1', '2', 'welcome', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('9', '配置组', '1', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '200');
+INSERT INTO `sys_menu` VALUES ('10', '配置项', '1', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '200');
+INSERT INTO `sys_menu` VALUES ('11', '网站配置', '1', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('12', '栏目管理', '1', 'fa fa-columns', '3', '2', 'category', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('13', '信息管理', '1', 'fa fa-list', '3', '2', 'information', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('14', '模型管理', '1', 'fa fa-codepen', '3', '2', 'model', '', 'pro', 'show', '110');
+INSERT INTO `sys_menu` VALUES ('15', '幻灯片', '1', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('16', '菜单管理', '1', 'fa fa-bars', '1', '2', 'sys_menu', '', 'dev', 'show', '200');
+INSERT INTO `sys_menu` VALUES ('17', '角色管理', '1', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('18', '用户管理', '1', 'fa fa-user', '2', '2', 'sys_user', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('31', '操作日志', '1', 'fa fa-list', '1', '2', 'sys_oplog', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('38', '文件管理', '1', 'fa fa-file-text-o', '4', '2', 'uploads', '', 'pro', 'hide', '120');
+INSERT INTO `sys_menu` VALUES ('41', '导航管理', '1', 'fa fa-bars', '4', '2', 'navigation', '', 'pro', 'show', '130');
+INSERT INTO `sys_menu` VALUES ('42', '友情链接', '1', 'fa fa-link', '4', '2', 'link', '', 'pro', 'show', '110');
+INSERT INTO `sys_menu` VALUES ('48', '通用字典', '1', 'fa fa-book', '4', '2', 'common_dict', '', 'pro', 'show', '140');
+INSERT INTO `sys_menu` VALUES ('50', '广告管理', '1', 'fa fa-image', '3', '2', 'category_adv', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('51', '角色权限', '0', 'fa fa-file-text', '17', '3', 'sys_role_auth', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('52', '用户权限', '0', 'fa fa-file-text', '18', '3', 'sys_user_auth', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('53', '文章', '0', 'fa fa-file-text', '13', '3', 'article', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('54', '案例', '0', 'fa fa-file-text', '13', '3', 'cases', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('55', '单页', '0', 'fa fa-file-text', '13', '3', 'page', '', 'pro', 'show', '100');
 
 -- ----------------------------
 -- Table structure for sys_menu_auth
@@ -481,10 +461,10 @@ INSERT INTO `sys_menu_auth` VALUES ('41', 'look');
 INSERT INTO `sys_menu_auth` VALUES ('41', 'del');
 INSERT INTO `sys_menu_auth` VALUES ('41', 'update');
 INSERT INTO `sys_menu_auth` VALUES ('41', 'insert');
-INSERT INTO `sys_menu_auth` VALUES ('42', 'insert');
-INSERT INTO `sys_menu_auth` VALUES ('42', 'update');
-INSERT INTO `sys_menu_auth` VALUES ('42', 'del');
 INSERT INTO `sys_menu_auth` VALUES ('42', 'look');
+INSERT INTO `sys_menu_auth` VALUES ('42', 'del');
+INSERT INTO `sys_menu_auth` VALUES ('42', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('42', 'insert');
 INSERT INTO `sys_menu_auth` VALUES ('44', 'look');
 INSERT INTO `sys_menu_auth` VALUES ('44', 'del');
 INSERT INTO `sys_menu_auth` VALUES ('44', 'update');
@@ -505,6 +485,18 @@ INSERT INTO `sys_menu_auth` VALUES ('50', 'look');
 INSERT INTO `sys_menu_auth` VALUES ('50', 'del');
 INSERT INTO `sys_menu_auth` VALUES ('50', 'update');
 INSERT INTO `sys_menu_auth` VALUES ('50', 'insert');
+INSERT INTO `sys_menu_auth` VALUES ('53', 'look');
+INSERT INTO `sys_menu_auth` VALUES ('53', 'del');
+INSERT INTO `sys_menu_auth` VALUES ('53', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('53', 'insert');
+INSERT INTO `sys_menu_auth` VALUES ('54', 'look');
+INSERT INTO `sys_menu_auth` VALUES ('54', 'del');
+INSERT INTO `sys_menu_auth` VALUES ('54', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('54', 'insert');
+INSERT INTO `sys_menu_auth` VALUES ('51', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('52', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('55', 'update');
+INSERT INTO `sys_menu_auth` VALUES ('55', 'look');
 
 -- ----------------------------
 -- Table structure for sys_oplog
@@ -524,12 +516,11 @@ CREATE TABLE `sys_oplog` (
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   `time` int(10) DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
-INSERT INTO `sys_oplog` VALUES ('1', '4', 'madmin', '文章', 'update', 'success', 'Chrome', '61.0.3163.100', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1506592452');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -541,19 +532,15 @@ CREATE TABLE `sys_role` (
   `role_type` tinyint(1) DEFAULT '2' COMMENT '角色类型：0=开发者，1=超级管理员【拥有所有生产者的权限】，2=普通管理员',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '超级管理员', '1', '拥有所有权限', '100', null, null, null, null);
-INSERT INTO `sys_role` VALUES ('3', '演示', '2', '演示使用', '100', null, null, null, null);
-INSERT INTO `sys_role` VALUES ('4', '开发者', '0', '开发者', '100', null, null, null, null);
+INSERT INTO `sys_role` VALUES ('1', '超级管理员', '1', '拥有所有权限', '100');
+INSERT INTO `sys_role` VALUES ('3', '演示', '2', '演示使用', '100');
+INSERT INTO `sys_role` VALUES ('4', '开发者', '0', '开发者', '100');
 
 -- ----------------------------
 -- Table structure for sys_role_auth
@@ -619,19 +606,15 @@ CREATE TABLE `sys_user` (
   `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `status` char(6) DEFAULT NULL COMMENT '状态',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('2', '1', 'admin', '1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('3', '3', 'demo', '2', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal', null, null, null, null);
-INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e057f20f883e', 'Meng Xianghan', '开发者', null, 'normal', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('2', '1', 'admin', '1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal');
+INSERT INTO `sys_user` VALUES ('3', '3', 'demo', '2', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal');
+INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e057f20f883e', 'Meng Xianghan', '开发者', null, 'normal');
 
 -- ----------------------------
 -- Table structure for sys_user_auth
@@ -663,43 +646,12 @@ CREATE TABLE `tags` (
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签表';
 
 -- ----------------------------
 -- Records of tags
 -- ----------------------------
-
--- ----------------------------
--- Table structure for template
--- ----------------------------
-DROP TABLE IF EXISTS `template`;
-CREATE TABLE `template` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `list_tpl` varchar(20) DEFAULT NULL COMMENT '列表模板',
-  `detail_tpl` varchar(20) DEFAULT NULL COMMENT '详细模板',
-  `sys_tpl` varchar(20) DEFAULT NULL COMMENT '后台模板',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模板表';
-
--- ----------------------------
--- Records of template
--- ----------------------------
-INSERT INTO `template` VALUES ('1', '文章模板', 'article', 'article/detail', 'article', '', 'show', '100', null, null, null, null);
-INSERT INTO `template` VALUES ('2', '案例模板', 'cases', 'cases/detail', 'cases', '', 'show', '100', null, null, null, null);
-INSERT INTO `template` VALUES ('3', '单页模板', 'single', '', 'single', '', 'show', '100', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for uploads
@@ -726,9 +678,8 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', '178531e4f595a64ddd9f00eb2a73befd.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170928/', 'D:/wamp/www/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd.jpg', '/uploads/upload/20170928/', '/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd.jpg', '178531e4f595a64ddd9f00eb2a73befd', '/uploads/upload/20170928/178531e4f595a64ddd9f00eb2a73befd', '178531e4f595a64ddd9f00eb2a73befd.jpg', '123.jpg', '.jpg', '107.75', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);

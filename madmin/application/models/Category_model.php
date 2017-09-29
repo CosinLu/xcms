@@ -19,10 +19,10 @@ class Category_model extends CI_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
-        $this->db->select('t2.name template_name');
+        $this->db->select('t2.name model_name');
         $this->db->from('category t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
-        $this->db->join('template t2', 't2.id=t.tpl_id', 'left');
+        $this->db->join('model t2', 't2.id=t.model_id', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
@@ -55,10 +55,10 @@ class Category_model extends CI_Model
     }
 
     //模型
-    public function template()
+    public function model()
     {
         $this->db->where('display', 'show');
-        $res = $this->db->get('template')->result_array();
+        $res = $this->db->get('model')->result_array();
 
         return $res;
     }

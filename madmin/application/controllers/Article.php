@@ -13,8 +13,8 @@ class Article extends Information
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('article_model', 'article');
-        $this->load->model('information_model', 'information');
+        $this->load->model('article_model');
+        $this->load->model('information_model');
         $this->set_url();
     }
 
@@ -38,8 +38,7 @@ class Article extends Information
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $children_id = $this->tree->get_children($this->information->data(), $this->cid, TRUE, 'id');
-        $data['list'] = $this->article->get_list($this->cid, $children_id, $key, $page);
+        $data['list'] = $this->article_model->get_list($this->children_cid, $key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['title'] = $val['title'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
@@ -53,12 +52,12 @@ class Article extends Information
     //新增
     public function insert()
     {
-        $data['cols'] = $this->tree->ddl($this->information->data(), 'cid', $this->cid, '', $this->tpl_id());
+        $data['cols'] = $this->tree->ddl($this->information_model->data(), 'cid', $this->cid, '', $this->model_id());
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
         ));
-        $data['tags'] = $this->article->get_tags();
+        $data['tags'] = $this->article_model->get_tags();
         $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('article/insert.html', $data);
     }
@@ -67,15 +66,15 @@ class Article extends Information
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->article->update($id);
-        $data['cols'] = $this->tree->ddl($this->information->data(), 'cid', $data['item']['cid'], '', $this->tpl_id());
+        $data['item'] = $this->article_model->update($id);
+        $data['cols'] = $this->tree->ddl($this->information_model->data(), 'cid', $data['item']['cid'], '', $this->model_id());
         $data['uploads']['image'] = $this->upload->result($data['item']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
-        $data['tags'] = $this->article->get_tags();
+        $data['tags'] = $this->article_model->get_tags();
         $this->load->view('article/update.html', $data);
     }
 
@@ -100,7 +99,7 @@ class Article extends Information
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );
-        $bool = $this->article->save($post);
+        $bool = $this->article_model->save($post);
         //写入日志
         $this->oplog->insert($this->main_section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

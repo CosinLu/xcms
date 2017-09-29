@@ -11,7 +11,7 @@ class Navigation extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('navigation_model', 'navigation');
+        $this->load->model('navigation_model');
         $this->set_url();
     }
 
@@ -32,7 +32,7 @@ class Navigation extends MY_Controller
     //获取列表
     public function get_list()
     {
-        $data['list'] = $this->navigation->get_list();
+        $data['list'] = $this->navigation_model->get_list();
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
@@ -64,8 +64,8 @@ class Navigation extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $id);
-        $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
+        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $id);
+        $data['col'] = $this->tree->ddl($this->navigation_model->cols(), 'col', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'position', 'position'),
@@ -78,9 +78,9 @@ class Navigation extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->navigation->update($id);
-        $data['type'] = $this->tree->ddl($this->navigation->data(), 'pid', $data['item']['pid'], $data['item']['id']);
-        $data['col'] = $this->tree->ddl($this->navigation->cols(), 'col', '', '', '', array('', '-请选择-'));
+        $data['item'] = $this->navigation_model->update($id);
+        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['col'] = $this->tree->ddl($this->navigation_model->cols(), 'col', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'position', 'position', $data['item']['position']),
@@ -106,7 +106,7 @@ class Navigation extends MY_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->navigation->save($post);
+        $bool = $this->navigation_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
@@ -132,7 +132,7 @@ class Navigation extends MY_Controller
     {
         $id = $this->input->post('id');
         //删除栏目
-        $rows = $this->tree->del($this->navigation->data(), 'navigation', $id);
+        $rows = $this->tree->del($this->navigation_model->data(), 'navigation', $id);
         //写入日志
         $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;

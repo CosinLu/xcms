@@ -15,7 +15,7 @@ class Common_dict extends MY_Controller
         parent::__construct();
         //pid为空的时默认为第一级
         $this->pid = $this->input->get('pid') ?: 0;
-        $this->load->model('common_dict_model', 'common_dict');
+        $this->load->model('common_dict_model');
         $this->set_url();
     }
 
@@ -39,7 +39,7 @@ class Common_dict extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = $this->input->post('page') ?: 1;
-        $data['list'] = $this->common_dict->get_list($this->pid, $key, $page, $this->session->sys_session['user_type']);
+        $data['list'] = $this->common_dict_model->get_list($this->pid, $key, $page, $this->session->sys_session['user_type']);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['name'] = '<span style="color:' . $val['color'] . '">' . $val['name'] . '</span>';
             if (!$this->pid) {
@@ -55,7 +55,7 @@ class Common_dict extends MY_Controller
     public function insert()
     {
         $data['pid'] = $this->pid;
-        $data['common_dict_type'] = $this->common_dict->common_dict_type();
+        $data['common_dict_type'] = $this->common_dict_model->common_dict_type();
         $this->load->view('common_dict/insert.html', $data);
     }
 
@@ -64,8 +64,8 @@ class Common_dict extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['pid'] = $this->pid;
-        $data['item'] = $this->common_dict->update($id);
-        $data['common_dict_type'] = $this->common_dict->common_dict_type();
+        $data['item'] = $this->common_dict_model->update($id);
+        $data['common_dict_type'] = $this->common_dict_model->common_dict_type();
         $this->load->view('common_dict/update.html', $data);
     }
 
@@ -83,7 +83,7 @@ class Common_dict extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->common_dict->save($post);
+        $bool = $this->common_dict_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
@@ -108,7 +108,7 @@ class Common_dict extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->tree->del($this->common_dict->data(), 'common_dict', $id);
+        $rows = $this->tree->del($this->common_dict_model->data(), 'common_dict', $id);
         //写入日志
         $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;

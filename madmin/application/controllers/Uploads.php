@@ -12,7 +12,7 @@ class Uploads extends CI_Controller
     {
         parent::__construct();
         $this->set_url();
-        $this->load->model('uploads_model', 'uploads');
+        $this->load->model('uploads_model');
     }
 
     //设置url
@@ -27,7 +27,7 @@ class Uploads extends CI_Controller
     {
         $page = $this->input->post('page');
         $key = $this->input->post('key');
-        $data['list'] = $this->uploads->get_list($page, $key);
+        $data['list'] = $this->uploads_model->get_list($page, $key);
         foreach ($data['list'] as $key => $val) {
             $data['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
         }
@@ -64,7 +64,7 @@ class Uploads extends CI_Controller
         $this->load->library('upload', $config, 'my_upload');
         $this->my_upload->do_upload($filename);
         $data = $res = $this->my_upload->data();
-        $data['id'] = $this->uploads->save($res);
+        $data['id'] = $this->uploads_model->save($res);
         $data['input_name'] = $filename;
         $data['thumb_rel_path'] = '';
         //生成缩略图

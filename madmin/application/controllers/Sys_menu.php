@@ -11,7 +11,7 @@ class Sys_menu extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sys_menu_model', 'sys_menu');
+        $this->load->model('sys_menu_model');
         $this->set_url();
     }
 
@@ -32,7 +32,7 @@ class Sys_menu extends MY_Controller
     //获取列表
     public function get_list()
     {
-        $data['list'] = $this->sys_menu->get_list();
+        $data['list'] = $this->sys_menu_model->get_list();
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['user_type_name'] = '<span style="color:' . $val['user_type_color'] . ';">' . $val['user_type_name'] . '</span>';
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
@@ -49,7 +49,7 @@ class Sys_menu extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->tree->ddl($this->sys_menu->data(), 'pid', $id);
+        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $id);
         $data['dict'] = $this->dictionary->dict(array(
             array('cbl', 'sys_menu_auth', 'auth'),
             array('rbl', 'display', 'display'),
@@ -62,8 +62,8 @@ class Sys_menu extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->sys_menu->update($id);
-        $data['cols'] = $this->tree->ddl($this->sys_menu->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['item'] = $this->sys_menu_model->update($id);
+        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['dict'] = $this->dictionary->dict(array(
             array('cbl', 'sys_menu_auth', 'auth', $data['item']['sys_menu_auth']),
             array('rbl', 'display', 'display', $data['item']['display']),
@@ -91,7 +91,7 @@ class Sys_menu extends MY_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->sys_menu->save($post);
+        $bool = $this->sys_menu_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
@@ -116,8 +116,8 @@ class Sys_menu extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $this->sys_menu->del_sys_menu_auth($id);//删除系统栏目权限
-        $rows = $this->tree->del($this->sys_menu->data(), 'sys_menu', $id);//删除系统栏目
+        $this->sys_menu_model->del_sys_menu_auth($id);//删除系统栏目权限
+        $rows = $this->tree->del($this->sys_menu_model->data(), 'sys_menu', $id);//删除系统栏目
         $this->oplog->insert($this->section_name, '3', $rows);//日志
         echo $rows;
     }

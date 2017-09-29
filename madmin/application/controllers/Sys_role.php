@@ -11,7 +11,7 @@ class Sys_role extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('sys_role_model', 'sys_role');
+        $this->load->model('sys_role_model');
         $this->set_url();
     }
 
@@ -35,7 +35,7 @@ class Sys_role extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->sys_role->get_list($key, $page);
+        $data['list'] = $this->sys_role_model->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             if ($val['role_type'] < 2) {
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">设置权限</a>';
@@ -62,7 +62,7 @@ class Sys_role extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->sys_role->update($id);
+        $data['item'] = $this->sys_role_model->update($id);
         $this->load->view('sys_role/update.html', $data);
     }
 
@@ -77,7 +77,7 @@ class Sys_role extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->sys_role->save($post);
+        $bool = $this->sys_role_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;

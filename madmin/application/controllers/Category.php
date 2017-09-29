@@ -11,7 +11,7 @@ class Category extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('category_model', 'category');
+        $this->load->model('category_model');
         $this->set_url();
     }
 
@@ -32,7 +32,7 @@ class Category extends MY_Controller
     //获取列表
     public function get_list()
     {
-        $data['list'] = $this->category->get_list();
+        $data['list'] = $this->category_model->get_list();
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['link'] = $val['url'] ?: $val['dir'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
@@ -63,8 +63,8 @@ class Category extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->tree->ddl($this->category->data(), 'pid', $id);
-        $data['template'] = ddl($this->category->template(), 'tpl_id');
+        $data['cols'] = $this->tree->ddl($this->category_model->data(), 'pid', $id);
+        $data['model'] = ddl($this->category_model->model(), 'model_id');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
@@ -76,9 +76,9 @@ class Category extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->category->update($id);
-        $data['template'] = ddl($this->category->template(), 'tpl_id', $data['item']['tpl_id']);
-        $data['cols'] = $this->tree->ddl($this->category->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['item'] = $this->category_model->update($id);
+        $data['model'] = ddl($this->category_model->model(), 'model_id', $data['item']['model_id']);
+        $data['cols'] = $this->tree->ddl($this->category_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
@@ -93,7 +93,7 @@ class Category extends MY_Controller
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
-                'tpl_id' => $this->input->post('tpl_id'),
+                'model_id' => $this->input->post('model_id'),
                 'name' => $this->input->post('name'),
                 'pid' => $this->input->post('pid'),
                 'dir' => $this->input->post('dir'),
@@ -103,7 +103,7 @@ class Category extends MY_Controller
                 'sort' => $this->input->post('sort'),
             )
         );
-        $bool = $this->category->save($post);
+        $bool = $this->category_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
@@ -128,7 +128,7 @@ class Category extends MY_Controller
     public function del()
     {
         $id = $this->input->post('id');
-        $rows = $this->tree->del($this->category->data(), 'category', $id);
+        $rows = $this->tree->del($this->category_model->data(), 'category', $id);
         //日志
         $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;

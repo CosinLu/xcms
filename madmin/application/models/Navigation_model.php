@@ -58,9 +58,9 @@ class Navigation_model extends CI_Model
     public function cols()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.template');
+        $this->db->select('t1.model');
         $this->db->from('category t');
-        $this->db->join('template t1', 't1.id=t.tpl_id', 'left');
+        $this->db->join('model t1', 't1.id=t.model_id', 'left');
         $this->db->where('t.display', 'show');
         $this->db->order_by('t.sort asc,t.id asc');
         $res = $this->db->get()->result_array();

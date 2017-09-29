@@ -9,22 +9,24 @@
 class Information extends MY_Controller
 {
     protected $cid;
+    protected $children_cid;
     protected $main_section_name;
 
     public function __construct()
     {
         parent::__construct();
         $this->cid = $this->input->get('cid');
-        $this->load->model('information_model', 'information');
+        $this->load->model('information_model');
+        $this->children_cid = $this->tree->get_children($this->information_model->data(), $this->cid, TRUE, 'id');
         $this->main_sidebar();
     }
 
     public function main_sidebar()
     {
         $this->db->select('t.*');
-        $this->db->select('t1.sys_tpl');
+        $this->db->select('t1.model');
         $this->db->from('category t');
-        $this->db->join('template t1', 't1.id=t.tpl_id', 'left');
+        $this->db->join('model t1', 't1.id=t.model_id', 'left');
         $this->db->where('t.display', 'show');
         $category_res = $this->db->get()->result_array();
         $category_sort = $this->tree->serialize($category_res);
@@ -50,10 +52,10 @@ class Information extends MY_Controller
                 $str .= '</li>';
             }
             $str .= '<li>';
-            if ($val['sys_tpl'] == '') {
+            if ($val['model'] == '') {
                 $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;">';
             } else {
-                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?cid=' . $val['id']) . '">';
+                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;" data-url="' . site_url($val['model'] . '?cid=' . $val['id']) . '">';
             }
             $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
             $str .= '<div class="mtree_btn mtree-btn-hook"></div>';
@@ -76,14 +78,14 @@ class Information extends MY_Controller
     //获取信息栏目
     public function index()
     {
-        $data = $this->information->cols();
+        $data = $this->information_model->cols();
         $children = array();
         $url = array();
         foreach ($data as $key => $val) {
             $children[$key] = $this->tree->get_children($data, $val['pid'], TRUE);
             foreach ($children[$key] as $val) {
-                if ($val['sys_tpl']) {
-                    $url[$key] = $val['sys_tpl'] . '?cid=' . $val['id'];
+                if ($val['model']) {
+                    $url[$key] = $val['model'] . '?cid=' . $val['id'];
                     break;
                 } else {
                     $url[$key] = '';
@@ -98,10 +100,10 @@ class Information extends MY_Controller
         }
     }
 
-    //获取当前栏目的模板标识
-    public function tpl_id()
+    //获取当前栏目的模型标识
+    public function model_id()
     {
-        $res = $this->information->tpl_id($this->cid);
+        $res = $this->information_model->model_id($this->cid);
 
         return $res;
     }

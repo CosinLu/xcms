@@ -24,7 +24,7 @@ class Auth
         $this->tb_sys_role_auth = $this->CI->db->dbprefix . 'sys_role_auth';
         $this->tb_sys_user_auth = $this->CI->db->dbprefix . 'sys_user_auth';
         $this->tb_common_dict = $this->CI->db->dbprefix . 'common_dict';
-        $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : '';
+        $this->user_info = (isset($arr['user_info'])) ? $arr['user_info'] : $this->CI->session->sys_session;
     }
 
     //根据权限获取系统栏目

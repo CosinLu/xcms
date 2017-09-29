@@ -11,7 +11,7 @@ class Config_group extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('config_group_model', 'config_group');
+        $this->load->model('config_group_model');
         $this->set_url();
     }
 
@@ -35,7 +35,7 @@ class Config_group extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
-        $data['list'] = $this->config_group->get_list($key, $page);
+        $data['list'] = $this->config_group_model->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('config_item?category=' . $val['category']) . '">配置项</a>', '<a href="javascript:;" class="disabled">配置项</a>');
@@ -58,7 +58,7 @@ class Config_group extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->config_group->update($id);
+        $data['item'] = $this->config_group_model->update($id);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
@@ -77,7 +77,7 @@ class Config_group extends MY_Controller
                 'sort' => $this->input->post('sort')
             )
         );
-        $bool = $this->config_group->save($post);
+        $bool = $this->config_group_model->save($post);
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
