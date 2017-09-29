@@ -54,10 +54,10 @@ class Index_model extends CI_Model
     }
 
     //添加登录日志
-    public function insert_login_log($data = array())
+    public function insert_login_log($post = array())
     {
-        if (!empty($data)) {
-            $this->db->insert('sys_login_log', $data['vals']);
+        if (!empty($post)) {
+            $this->db->insert('sys_login_log', $post['vals']);
         }
     }
 

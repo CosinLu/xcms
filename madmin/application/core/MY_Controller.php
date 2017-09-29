@@ -9,8 +9,6 @@
 class MY_Controller extends CI_Controller
 {
     protected $sys_session;
-    //系统栏目标识
-    protected $sys_cid;
     //上一个页面url
     protected $prferer;
     //保存：1=保存，2=保存并继续新增
@@ -22,7 +20,6 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->sys_cid = $this->input->get('sys_cid');
         $this->check_login();
         $this->peferer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
         $this->submit_type = ($this->input->post('submit_type') == '') ? '1' : $this->input->post('submit_type');
@@ -103,7 +100,7 @@ class MY_Controller extends CI_Controller
                     if (empty($val['url'])) {
                         $str .= '<a href="javascript:;" class="' . $current . ' mtree_link mtree-link-hook">';
                     } else {
-                        $str .= '<a href="javascript:;" data-url="' . site_url($val['url'] . $conn . 'sys_cid=' . $val['id']) . '" class="' . $current . ' mtree_link mtree-link-hook">';
+                        $str .= '<a href="javascript:;" data-url="' . site_url($val['url']) . '" class="' . $current . ' mtree_link mtree-link-hook">';
                     }
                     $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
                     $str .= '<div class="mtree_btn mtree-btn-hook"></div>';

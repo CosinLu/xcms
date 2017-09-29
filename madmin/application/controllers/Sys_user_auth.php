@@ -22,8 +22,10 @@ class Sys_user_auth extends MY_Controller
     public function set_url()
     {
         $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary mt">保存</button>');
-        $url['save_url'] = site_url('sys_user_auth/save?sys_cid=' . $this->sys_cid . '&user_id=' . $this->user_id);
-        $url['get_list_url'] = site_url('sys_user_auth/get_list?sys_cid=' . $this->sys_cid . '&user_id=' . $this->user_id);
+        $url['save_url'] = site_url('sys_user_auth/save?
+        user_id=' . $this->user_id);
+        $url['get_list_url'] = site_url('sys_user_auth/get_list?
+        user_id=' . $this->user_id);
         $this->load->vars($url);
     }
 
@@ -86,12 +88,12 @@ class Sys_user_auth extends MY_Controller
     //保存
     public function save()
     {
-        $id_arr = $this->input->post('id');
-        $auth_arr = $this->input->post('auth');
+        $id = $this->input->post('id');
+        $auth = $this->input->post('auth');
         //删除
         $rows = $this->sys_user_auth->del($this->user_id);
         //添加
-        $bool = $this->sys_user_auth->insert($this->user_id, $id_arr, $auth_arr);
+        $bool = $this->sys_user_auth->insert($this->user_id, $id, $auth);
         //写入日志
         $this->oplog->insert('角色权限', '2', $bool);
         $config['icon'] = 1;

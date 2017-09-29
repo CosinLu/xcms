@@ -18,7 +18,7 @@ class Sys_oplog extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('sys_oplog/get_list?sys_cid=' . $this->sys_cid);
+        $url['get_list_url'] = site_url('sys_oplog/get_list');
         $this->load->vars($url);
     }
 

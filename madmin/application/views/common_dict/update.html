@@ -35,6 +35,14 @@
                                         <input type="hidden" name="color" value="<?=$item['color']?>">
                                     </div>
                                 </div>
+                                <?php if($this->session->sys_session['user_type']==0):?>
+                                <div class="col-xs-2 checkbox">
+                                    <label>
+                                        <input type="checkbox" name="is_sys" value="1" <?=checked(1,$item['is_sys'])?>>
+                                        <ins>设为系统字典</ins>
+                                    </label>
+                                </div>
+                                <?php endif;?>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">标识</div>
@@ -42,14 +50,6 @@
                                     <input type="text" name="ident" class="form-control" value="<?=$item['ident']?>">
                                 </div>
                             </div>
-                            <?php if($user_type=='dev'):?>
-                            <div class="form-group">
-                                <div class="col-xs-2 control-label">用户类型</div>
-                                <div class="col-xs-2 radio">
-                                    <?=$dict['user_type']?>
-                                </div>
-                            </div>
-                            <?php endif;?>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">排序</div>
                                 <div class="col-xs-2">

@@ -22,8 +22,8 @@ class Sys_role_auth extends MY_Controller
     public function set_url()
     {
         $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary mt">保存</button>');
-        $url['save_url'] = site_url('sys_role_auth/save?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
-        $url['get_list_url'] = site_url('sys_role_auth/get_list?sys_cid=' . $this->sys_cid . '&role_id=' . $this->role_id);
+        $url['save_url'] = site_url('sys_role_auth/save?role_id=' . $this->role_id);
+        $url['get_list_url'] = site_url('sys_role_auth/get_list?role_id=' . $this->role_id);
         $this->load->vars($url);
     }
 
@@ -86,12 +86,12 @@ class Sys_role_auth extends MY_Controller
     //保存
     public function save()
     {
-        $id_arr = $this->input->post('id');
-        $auth_arr = $this->input->post('auth');
+        $id = $this->input->post('id');
+        $auth = $this->input->post('auth');
         //删除
         $rows = $this->sys_role_auth->del($this->role_id);
         //添加
-        $bool = $this->sys_role_auth->insert($this->role_id, $id_arr, $auth_arr);
+        $bool = $this->sys_role_auth->insert($this->role_id, $id, $auth);
         //写入日志
         $this->oplog->insert('角色权限', '2', $bool);
         $config['icon'] = 1;

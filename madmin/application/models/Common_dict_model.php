@@ -25,9 +25,9 @@ class Common_dict_model extends CI_Model
             $this->db->like('name', $key);
         }
         //生产者禁止获取重要字典
-        if ($user_type == 'pro') {
+        if ($user_type > 0) {
             $this->db->where(array(
-                'user_type' => 'pro'
+                'is_sys' => 0
             ));
         }
         $config['total_rows'] = $this->db->count_all_results('', FALSE);
@@ -77,6 +77,7 @@ class Common_dict_model extends CI_Model
     public function data()
     {
         $res = $this->db->get('common_dict')->result_array();
+
         return $res;
     }
 

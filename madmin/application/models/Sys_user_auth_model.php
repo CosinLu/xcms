@@ -33,19 +33,19 @@ class Sys_user_auth_model extends CI_Model
     }
 
     //添加权限
-    public function insert($user_id = '', $id_arr = array(), $auth_arr = array())
+    public function insert($user_id = '', $id = array(), $auth = array())
     {
-        if (!empty($id_arr) && !empty($auth_arr)) {
+        if (!empty($id) && !empty($auth)) {
             $vals = array();
-            foreach ($id_arr as $val) {
-                if (empty($auth_arr[$val])) {
+            foreach ($id as $val) {
+                if (empty($auth[$val])) {
                     $vals[] = array(
                         'user_id' => $user_id,
                         'sys_menu_id' => $val,
                         'sys_menu_auth' => ''
                     );
                 } else {
-                    foreach ($auth_arr[$val] as $item) {
+                    foreach ($auth[$val] as $item) {
                         $vals[] = array(
                             'user_id' => $user_id,
                             'sys_menu_id' => $val,

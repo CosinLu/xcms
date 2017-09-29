@@ -21,7 +21,7 @@ class Config extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['save_url'] = site_url('config/save?sys_cid=' . $this->sys_cid . '&category=' . $this->category);
+        $url['save_url'] = site_url('config/save?category=' . $this->category);
         $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary">保存</button>');
         $this->load->vars($url);
     }
@@ -50,7 +50,7 @@ class Config extends MY_Controller
                 } else {
                     $active = ($val['category'] == $this->category) ? 'active' : '';
                 }
-                $str .= '<li class="' . $active . '"><a href="' . site_url('config?sys_cid=' . $this->sys_cid . '&category=' . $val['category']) . '">' . $val['name'] . '</a></li>';
+                $str .= '<li class="' . $active . '"><a href="' . site_url('config?category=' . $val['category']) . '">' . $val['name'] . '</a></li>';
             }
         }
 

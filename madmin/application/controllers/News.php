@@ -20,10 +20,10 @@ class News extends Information
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('news/get_list?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
-        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('news/insert?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="news" data-checkname="id" data-url = "' . site_url('ajax/batch_del?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid) . '">删除</a>');
-        $url['save_url'] = site_url('news/save?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
+        $url['get_list_url'] = site_url('news/get_list?cid=' . $this->cid);
+        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('news/insert?cid=' . $this->cid) . '">新增</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="news" data-checkname="id" data-url = "' . site_url('ajax/batch_del?cid=' . $this->cid) . '">删除</a>');
+        $url['save_url'] = site_url('news/save?cid=' . $this->cid);
         $this->load->vars($url);
     }
 
@@ -42,8 +42,8 @@ class News extends Information
             $data['list']['list'][$key]['title'] = $val['title'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['create_time'] = date('m/d H:i', $val['create_time']);
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('news/update?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="news" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid . '&col_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('news/update?cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="news" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?cid=' . $this->cid . '&col_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -94,7 +94,7 @@ class News extends Information
         //写入日志
         $this->oplog->insert($this->main_section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
-        $config['url'] = site_url('news?sys_cid=' . $this->sys_cid . '&cid=' . $this->cid);
+        $config['url'] = site_url('news?cid=' . $this->cid);
         if ($bool) {
             switch ($this->is_save) {
                 case '1':

@@ -18,9 +18,9 @@ class Sys_menu extends MY_Controller
     //设置url
     public function set_url()
     {
-        $url['get_list_url'] = site_url('sys_menu/get_list?sys_cid=' . $this->sys_cid);
-        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_menu/insert?sys_cid=' . $this->sys_cid) . '">新增</a>');
-        $url['save_url'] = site_url('sys_menu/save?sys_cid=' . $this->sys_cid);
+        $url['get_list_url'] = site_url('sys_menu/get_list');
+        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_menu/insert') . '">新增</a>');
+        $url['save_url'] = site_url('sys_menu/save');
         $this->load->vars($url);
     }
 
@@ -38,9 +38,9 @@ class Sys_menu extends MY_Controller
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['prefix'] = str_repeat('&nbsp;&nbsp;', ($val['level'] - 1) * 2) . (($val['level'] > 1) ? '└─&nbsp;' : '');
             $data['list']['list'][$key]['is_menu'] = $val['is_menu'] == 1 ? '是' : '<span class="text-danger">否</span>';
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a href="' . site_url('sys_menu/insert?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">新增下级</a>', '<a href="javascript:;" class="disabled">新增下级</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('sys_menu/update?sys_cid=' . $this->sys_cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('sys_menu/del?sys_cid=' . $this->sys_cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a href="' . site_url('sys_menu/insert?id=' . $val['id']) . '">新增下级</a>', '<a href="javascript:;" class="disabled">新增下级</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('sys_menu/update?id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('sys_menu/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -76,13 +76,12 @@ class Sys_menu extends MY_Controller
     //保存
     public function save()
     {
-        $is_menu = $this->input->post('is_menu');
         $post = array(
             'id' => $this->input->post('id'),
             'auth' => $this->input->post('auth'),
             'vals' => array(
                 'name' => $this->input->post('name'),
-                'is_menu' => $is_menu ?: 0,
+                'is_menu' => $this->input->post('is_menu') ?: 0,
                 'pid' => $this->input->post('pid'),
                 'icon' => $this->input->post('icon'),
                 'url' => $this->input->post('url'),
@@ -96,7 +95,7 @@ class Sys_menu extends MY_Controller
         //写入日志
         $this->oplog->insert($this->section_name, (!$post['id']) ? '1' : '2', $bool);
         $config['icon'] = 1;
-        $config['url'] = site_url('sys_menu?sys_cid=' . $this->sys_cid);
+        $config['url'] = site_url('sys_menu');
         if ($bool) {
             switch ($this->submit_type) {
                 case '1':

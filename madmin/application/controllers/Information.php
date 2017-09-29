@@ -28,7 +28,7 @@ class Information extends MY_Controller
         $this->db->where('t.display', 'show');
         $category_res = $this->db->get()->result_array();
         $category_sort = $this->tree->serialize($category_res);
-        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('category/insert?sys_cid=12') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
+        $str = '<div class="ph pt iframe_main_sidebar_btn_group"><a href="' . site_url('category/insert') . '" class="btn btn-primary btn-block">新增栏目</a></div>';
         $str .= '<div class="nano iframe_main_sidebar_nano nano-hook">';
         $str .= '<div class="ph mt nano-content">';
         $str .= '<div class="mtree mtree-main-sidebar-hook">';
@@ -53,7 +53,7 @@ class Information extends MY_Controller
             if ($val['sys_tpl'] == '') {
                 $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;">';
             } else {
-                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id']) . '">';
+                $str .= '<a class="' . $current . ' mtree_link mtree-link-hook" href="javascript:;" data-url="' . site_url($val['sys_tpl'] . '?cid=' . $val['id']) . '">';
             }
             $str .= '<div class="mtree_indent mtree-indent-hook" style="width:' . $indent . '"></div>';
             $str .= '<div class="mtree_btn mtree-btn-hook"></div>';
@@ -83,7 +83,7 @@ class Information extends MY_Controller
             $children[$key] = $this->tree->get_children($data, $val['pid'], TRUE);
             foreach ($children[$key] as $val) {
                 if ($val['sys_tpl']) {
-                    $url[$key] = $val['sys_tpl'] . '?sys_cid=' . $this->sys_cid . '&cid=' . $val['id'];
+                    $url[$key] = $val['sys_tpl'] . '?cid=' . $val['id'];
                     break;
                 } else {
                     $url[$key] = '';

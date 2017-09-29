@@ -204,7 +204,6 @@ function upload_icon($arr = array())
  */
 function url_to_arr($url = '', $arr = array())
 {
-    //welcome?&sys_cid=7&a=1
     $reg = '/\?&|\?|&/';
     $url = preg_replace($reg, '/', $url);
     $n = strpos($url, '#');
@@ -250,9 +249,7 @@ function valid_url($data = array())
             $children[$key] = $CI->tree->get_children($data, $val['id'], TRUE);
             foreach ($children[$key] as $val) {
                 if ($val['url']) {
-                    $n = strpos($val['url'], '?');
-                    $conn = ($n) ? '&' : '?';
-                    $url[$key] = site_url($val['url'] . $conn . 'sys_cid=' . $val['id']);
+                    $url[$key] = site_url($val['url']);
                     break;
                 } else {
                     $url[$key] = 'javascript:;';
