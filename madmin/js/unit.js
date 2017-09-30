@@ -289,7 +289,7 @@ define(['jquery', 'layer'], function ($) {
         //通用日期插件
         datetime: function () {
             require(['datetimepicker'], function () {
-                $('input.datetimepicker-hook').datetimepicker({
+                $('input.datetime-hook').datetimepicker({
                     language: 'zh-CN',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     pickerPosition: 'top-right',
@@ -304,7 +304,7 @@ define(['jquery', 'layer'], function ($) {
             var _this = this;
             require(['ueditor'], function (UE) {
                 //实例化编辑器
-                $('.editor-hook').each(function () {
+                $('.ueditor-hook').each(function () {
                     var id = $(this).attr('id');
                     var ue = UE.getEditor(id, {
                         toolbars: [
