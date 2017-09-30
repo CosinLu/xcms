@@ -74,4 +74,13 @@ class Sys_user_model extends CI_Model
         return $res;
     }
 
+    //验证用户名
+    public function check_username($username = '', $id = '')
+    {
+        $this->db->where('username', $username);
+        if ($id != '') $this->db->where('id!=', $id);
+        $res = $this->db->get('sys_user')->result_array();
+        return $res;
+    }
+
 }

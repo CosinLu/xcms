@@ -24,9 +24,13 @@
                     <div class="panel-body">
                         <div class="form-inline pb">
                             <?=$insert_btn?>
-                            <div class="form-group">
-                                <input type="text" name="key" class="form-control input-sm">
-                            </div>
+                            <select name="category" class="form-control input-sm">
+                                <option value="0">-分类-</option>
+                                <?php foreach($category as $val):?>
+                                <option value="<?=$val['id']?>" <?=selected($val['id'],$pid)?>><?=$val['name']?></option>
+                                <?php endforeach;?>
+                            </select>
+                            <input type="text" name="key" class="form-control input-sm">
                             <button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>
                         </div>
                         <div class="table-responsive">
@@ -90,6 +94,7 @@
             var data = {
                 x: Math.random(),
                 page: pageIndex,
+                pid: $('select[name="category"]').val(),
                 key: $('input[name="key"]').val()
             };
             $.ajax({

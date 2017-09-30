@@ -50,7 +50,7 @@ class Config_item extends MY_Controller
     //新增
     public function insert()
     {
-        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $this->category,'', TRUE, 'category', 'name');
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $this->category, '', TRUE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display'),
             array('rbl', 'config_type', 'type')
@@ -63,7 +63,7 @@ class Config_item extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->config_item_model->update($id);
-        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['item']['category'],'', TRUE, 'category', 'name');
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['item']['category'], '', TRUE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['item']['display']),
             array('rbl', 'config_type', 'type', $data['item']['type'])
@@ -77,8 +77,8 @@ class Config_item extends MY_Controller
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
-                'title' => $this->input->post('title'),
                 'name' => $this->input->post('name'),
+                'variable' => $this->input->post('variable'),
                 'category' => $this->input->post('category'),
                 'type' => $this->input->post('type'),
                 'param' => $this->input->post('param'),

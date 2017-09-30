@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-29 18:00:42
+Date: 2017-09-29 23:35:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -187,7 +187,7 @@ CREATE TABLE `config` (
   `category` varchar(20) DEFAULT NULL COMMENT '类别',
   `type` varchar(50) DEFAULT NULL COMMENT '配置项类型',
   `param` varchar(100) DEFAULT NULL COMMENT '参数',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
@@ -197,13 +197,13 @@ CREATE TABLE `config` (
 -- Records of config
 -- ----------------------------
 INSERT INTO `config` VALUES ('1', '标题', 'title', '轩宇网络工作室', 'base', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '', 'base', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('3', '描述', 'description', '', 'base', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('4', '版权', 'copyright', '@ 轩宇网络', 'base', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', 'base', 'text', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('6', '统计/商桥', 'count_code', '', 'base', 'textarea', '', '', 'show', '100');
-INSERT INTO `config` VALUES ('7', '状态', 'status', '1', 'status', 'radio', '1|正常,0|关闭', '', 'show', '100');
-INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', 'status', 'textarea', '', '', 'show', '100');
+INSERT INTO `config` VALUES ('2', '关键字', 'keywords', '', 'base', 'textarea', '', null, 'show', '100');
+INSERT INTO `config` VALUES ('3', '描述', 'description', '', 'base', 'textarea', '', null, 'show', '100');
+INSERT INTO `config` VALUES ('4', '版权', 'copyright', '@ 轩宇网络', 'base', 'text', '', null, 'show', '100');
+INSERT INTO `config` VALUES ('5', '备案号', 'icp_num', '京ICP备15054430号-1', 'base', 'text', '', null, 'show', '100');
+INSERT INTO `config` VALUES ('6', '统计/商桥', 'count_code', '', 'base', 'textarea', '', null, 'show', '100');
+INSERT INTO `config` VALUES ('7', '状态', 'status', '1', 'status', 'radio', '1|正常,0|关闭', null, 'show', '100');
+INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级，敬请期待！', 'status', 'textarea', '', null, 'show', '100');
 
 -- ----------------------------
 -- Table structure for config_group
@@ -335,11 +335,12 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
+INSERT INTO `sys_login_log` VALUES ('1', '4', '::1', '1506691157');
 
 -- ----------------------------
 -- Table structure for sys_menu

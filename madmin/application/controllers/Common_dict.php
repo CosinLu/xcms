@@ -31,12 +31,23 @@ class Common_dict extends MY_Controller
 
     public function index()
     {
-        $this->load->view('common_dict/index.html');
+        $data['pid'] = $this->pid;
+        $data['category'] = array();
+        foreach ($this->common_dict_model->data() as $val) {
+            if ($val['pid'] == 0) {
+                $data['category'][] = $val;
+            }
+        }
+        $this->load->view('common_dict/index.html', $data);
     }
 
     //获取列表
     public function get_list()
     {
+        $pid = $this->input->post('pid');
+        if ($pid != '') {
+            $this->pid = $this->input->post('pid');
+        }
         $key = $this->input->post('key');
         $page = $this->input->post('page') ?: 1;
         $data['list'] = $this->common_dict_model->get_list($this->pid, $key, $page, $this->session->sys_session['user_type']);
