@@ -37,11 +37,13 @@
                                             <ins></ins>
                                         </label>
                                     </th>
+                                    <th width="10%">缩略图</th>
+                                    <th width="10%">栏目</th>
                                     <th>名称</th>
-                                    <th>类别</th>
+                                    <th width="30%">URL</th>
                                     <th width="10%">状态</th>
                                     <th width="10%">排序</th>
-                                    <th width="20%">操作</th>
+                                    <th width="10%">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody id="list"></tbody>
@@ -53,8 +55,10 @@
                                                 <ins></ins>
                                             </label>
                                         </td>
+                                        <td><img src="{{val.rel_path}}"></td>
+                                        <td>{{val.category_name}}</td>
                                         <td>{{val.name}}</td>
-                                        <td>{{val.category}}</td>
+                                        <td>{{val.url}}</td>
                                         <td>{{#val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
@@ -81,7 +85,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit', 'template'], function (unit, template) {
+    require(['unit', 'template', 'jqthumb'], function (unit, template) {
         get_list();
 
         //分页
@@ -114,7 +118,7 @@
                 success: function (data) {
                     $('.nodata-hook,.loading-hook').remove();
                     if (data.list.list.length) {
-                        $('#list').html(template('list_tpl', data));
+                        $('#list').html(template('list_tpl', data)).find('img').jqthumb({width: 120, height: 80});
                         $('#pagination').html(template('pagination_tpl', data));
                     } else {
                         $('.list-hook').after('<?=config_item("my_nodata")?>');

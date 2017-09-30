@@ -24,37 +24,28 @@
                     <div class="panel-body">
                         <div class="form-inline search_bar">
                             <?=$insert_btn?>
-                            <?=$del_btn?>
-                            <input type="text" name="key" class="form-control input-sm">
-                            <button type="button" class="btn btn-default btn-sm search-btn-hook">搜索</button>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table_list list-hook">
                                 <thead>
                                 <tr>
-                                    <th width="5%">
-                                        <label><input type="checkbox" name="checkAll" data-checkname="id">
-                                            <ins></ins>
-                                        </label>
-                                    </th>
+                                    <th width="5%">NO.</th>
                                     <th>名称</th>
-                                    <th>类别</th>
-                                    <th width="10%">状态</th>
-                                    <th width="10%">排序</th>
-                                    <th width="20%">操作</th>
+                                    <th width="30%">目录/URL</th>
+                                    <th width="10%">模型</th>
+                                    <th width="5%">状态</th>
+                                    <th width="5%">排序</th>
+                                    <th width="18%">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody id="list"></tbody>
                                 <script id="list_tpl" type="text/html">
                                     {{each list.list as val}}
                                     <tr>
-                                        <td>
-                                            <label><input type="checkbox" name="id[]" value="{{val.id}}">
-                                                <ins></ins>
-                                            </label>
-                                        </td>
-                                        <td>{{val.name}}</td>
-                                        <td>{{val.category}}</td>
+                                        <td>{{val.id}}</td>
+                                        <td>{{val.prefix + val.name}}</td>
+                                        <td>{{val.link}}</td>
+                                        <td>{{val.model_name}}</td>
                                         <td>{{#val.display_name}}</td>
                                         <td>{{val.sort}}</td>
                                         <td>
@@ -69,7 +60,7 @@
                         </div>
                         <div class="pagination_box" id="pagination"></div>
                         <script id="pagination_tpl" type="text/html">
-                            {{#list.pagination}}
+                            <div class="pagination_info">共有{{list.total}}条</div>
                         </script>
                     </div>
                 </div>
@@ -81,25 +72,12 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit', 'template'], function (unit, template) {
+    require(['template'], function (template) {
         get_list();
-
-        //分页
-        unit.pagination(function () {
-            get_list($(this).data('page'));
-        });
-
-        //搜索
-        unit.search(function () {
-            get_list();
-        });
-
         //获取列表
-        function get_list(pageIndex) {
+        function get_list() {
             var data = {
-                x: Math.random(),
-                page: pageIndex,
-                key: $('input[name="key"]').val()
+                x: Math.random()
             };
             $.ajax({
                 url: '<?=$get_list_url?>',

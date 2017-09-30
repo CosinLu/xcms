@@ -28,6 +28,7 @@ class Tree
 
     /**
      * 排序
+     *
      * @param $a
      * @param $b
      * @return int
@@ -46,6 +47,7 @@ class Tree
 
     /**
      * 序列化
+     *
      * @param array $data 数据源
      * @param int $pid 标识，默认从0开始
      * @return array
@@ -77,6 +79,7 @@ class Tree
 
     /**
      * 反转序列化
+     *
      * @param array $data 数据源
      * @param string $id 标识，必填
      * @return array
@@ -108,6 +111,7 @@ class Tree
 
     /**
      * 获取子级
+     *
      * @param array $data 数据源
      * @param int $pid 标识
      * @param bool $is_self 是否包含自身
@@ -135,6 +139,7 @@ class Tree
 
     /**
      * 获取父级
+     *
      * @param array $data 数据源
      * @param string $id 标识
      * @param bool $is_self 是否包含自身
@@ -156,6 +161,7 @@ class Tree
 
     /**
      * 获得标识
+     *
      * @param array $data 数据源
      * @param array $arr array('字段名','值')
      * @return string
@@ -170,6 +176,7 @@ class Tree
                     break;
                 }
             }
+
             return $id;
         }
 
@@ -178,6 +185,7 @@ class Tree
 
     /**
      * 返回指定键值数据
+     *
      * @param array $res 数据源
      * @param string $variable 指定的键值，string或array
      * @return array
@@ -209,6 +217,7 @@ class Tree
 
     /**
      * 下拉菜单
+     *
      * @param array $data 数据源
      * @param string $name 下拉菜单名称
      * @param string $selected_val 选中值
@@ -261,6 +270,7 @@ class Tree
 
     /**
      * 获取一条数据
+     *
      * @param string $table 表名
      * @param array $where 查询条件
      * @return array
@@ -276,6 +286,7 @@ class Tree
 
     /**
      * 新增
+     *
      * @param string $table 表名
      * @param array $post 需要提交的数据
      * @return mixed
@@ -298,6 +309,7 @@ class Tree
 
     /**
      * 修改
+     *
      * @param array $data 数据源
      * @param string $table 表名
      * @param string $id 标识
@@ -308,6 +320,9 @@ class Tree
     {
         if (empty($id)) {
             return FALSE;
+        }
+        if (isset($post[$this->pid]) && $post[$this->pid] < 1) {
+            $post[$this->pid] = 0;
         }
         //当前分类信息
         $res = $this->one($table, array($this->id => $id));
@@ -343,6 +358,7 @@ class Tree
 
     /**
      * 删除
+     *
      * @param array $data 数据源
      * @param string $table 表名
      * @param string $id 标识

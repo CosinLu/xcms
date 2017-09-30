@@ -10,121 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-29 23:35:19
+Date: 2017-09-30 16:03:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for article
--- ----------------------------
-DROP TABLE IF EXISTS `article`;
-CREATE TABLE `article` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(500) DEFAULT NULL COMMENT '标题',
-  `original_link` varchar(255) DEFAULT NULL COMMENT '原文链接',
-  `auther` varchar(30) DEFAULT NULL COMMENT '作者',
-  `image` varchar(10) DEFAULT NULL COMMENT '图片',
-  `content` text COMMENT '内容',
-  `tags` varchar(20) DEFAULT NULL COMMENT '标签',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '状态',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
-
--- ----------------------------
--- Records of article
--- ----------------------------
-
--- ----------------------------
--- Table structure for cases
--- ----------------------------
-DROP TABLE IF EXISTS `cases`;
-CREATE TABLE `cases` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `image` int(10) DEFAULT NULL COMMENT '缩略图',
-  `images` varchar(255) DEFAULT NULL COMMENT '图片',
-  `case_url` varchar(255) DEFAULT NULL COMMENT '案例链接',
-  `case_target` varchar(10) DEFAULT NULL COMMENT '案例链接打开方式',
-  `content` text COMMENT '内容',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息案例表';
-
--- ----------------------------
--- Records of cases
--- ----------------------------
-
--- ----------------------------
--- Table structure for category
--- ----------------------------
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
-  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识',
-  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `model_id` int(11) DEFAULT NULL COMMENT '模型',
-  `dir` varchar(30) DEFAULT NULL COMMENT '目录',
-  `url` varchar(255) DEFAULT NULL COMMENT '链接',
-  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
-  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
-  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
-  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
-  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
-
--- ----------------------------
--- Records of category
--- ----------------------------
-INSERT INTO `category` VALUES ('1', '产品中心', '0', '1', '2', 'product', '', '_self', null, null, 'show', '100', '1', '1', '1');
-INSERT INTO `category` VALUES ('2', '产品服务', '1', '2', '2', 'fuwu', '', '_self', null, null, 'show', '100', '1', '1', '1');
-INSERT INTO `category` VALUES ('3', '新闻中心', '0', '1', '1', 'news', '', '_blank', null, null, 'show', '100', '1', '1', '1');
-INSERT INTO `category` VALUES ('4', '行业动态', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
-INSERT INTO `category` VALUES ('5', '帮助中心', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
-INSERT INTO `category` VALUES ('6', '关于我们', '0', '1', '3', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
-
--- ----------------------------
--- Table structure for category_adv
--- ----------------------------
-DROP TABLE IF EXISTS `category_adv`;
-CREATE TABLE `category_adv` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(11) DEFAULT NULL COMMENT '信息栏目标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
-  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目广告表';
-
--- ----------------------------
--- Records of category_adv
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for common_dict
@@ -225,6 +114,154 @@ INSERT INTO `config_group` VALUES ('1', '基本配置', 'base', 'show', '100');
 INSERT INTO `config_group` VALUES ('2', '网站状态', 'status', 'show', '100');
 
 -- ----------------------------
+-- Table structure for info_article
+-- ----------------------------
+DROP TABLE IF EXISTS `info_article`;
+CREATE TABLE `info_article` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
+  `title` varchar(500) DEFAULT NULL COMMENT '标题',
+  `original_link` varchar(255) DEFAULT NULL COMMENT '原文链接',
+  `auther` varchar(30) DEFAULT NULL COMMENT '作者',
+  `image` varchar(10) DEFAULT NULL COMMENT '图片',
+  `content` text COMMENT '内容',
+  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
+  `display` char(4) DEFAULT NULL COMMENT '状态',
+  `sort` int(10) DEFAULT '100' COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+
+-- ----------------------------
+-- Records of info_article
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_cases
+-- ----------------------------
+DROP TABLE IF EXISTS `info_cases`;
+CREATE TABLE `info_cases` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
+  `title` varchar(100) DEFAULT NULL COMMENT '标题',
+  `image` int(10) DEFAULT NULL COMMENT '缩略图',
+  `images` varchar(255) DEFAULT NULL COMMENT '图片',
+  `case_url` varchar(255) DEFAULT NULL COMMENT '案例链接',
+  `case_target` varchar(10) DEFAULT NULL COMMENT '案例链接打开方式',
+  `content` text COMMENT '内容',
+  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
+  `display` char(4) DEFAULT NULL COMMENT '显示',
+  `sort` int(10) DEFAULT '100' COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息案例表';
+
+-- ----------------------------
+-- Records of info_cases
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_category
+-- ----------------------------
+DROP TABLE IF EXISTS `info_category`;
+CREATE TABLE `info_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识',
+  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
+  `model_id` int(11) DEFAULT NULL COMMENT '模型',
+  `dir` varchar(30) DEFAULT NULL COMMENT '目录',
+  `url` varchar(255) DEFAULT NULL COMMENT '链接',
+  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
+  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
+  `display` char(4) DEFAULT NULL COMMENT '显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
+  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
+  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
+
+-- ----------------------------
+-- Records of info_category
+-- ----------------------------
+INSERT INTO `info_category` VALUES ('1', '产品中心', '0', '1', '2', 'product', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `info_category` VALUES ('2', '产品服务', '1', '2', '2', 'fuwu', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `info_category` VALUES ('3', '新闻中心', '0', '1', '1', 'news', '', '_blank', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `info_category` VALUES ('4', '行业动态', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `info_category` VALUES ('5', '帮助中心', '3', '2', '1', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
+INSERT INTO `info_category` VALUES ('6', '关于我们', '0', '1', '3', '', '', '_self', null, null, 'show', '100', '1', '1', '1');
+
+-- ----------------------------
+-- Table structure for info_category_adv
+-- ----------------------------
+DROP TABLE IF EXISTS `info_category_adv`;
+CREATE TABLE `info_category_adv` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `cid` int(11) DEFAULT NULL COMMENT '信息栏目标识',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
+  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `display` char(4) DEFAULT NULL COMMENT '显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
+  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
+  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目广告表';
+
+-- ----------------------------
+-- Records of info_category_adv
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_model
+-- ----------------------------
+DROP TABLE IF EXISTS `info_model`;
+CREATE TABLE `info_model` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
+  `name` char(50) DEFAULT NULL COMMENT '名称',
+  `model` varchar(20) DEFAULT NULL COMMENT '模型',
+  `list_model` varchar(50) DEFAULT NULL COMMENT '列表模型',
+  `detail_model` varchar(50) DEFAULT NULL COMMENT '详细模型',
+  `display` char(4) DEFAULT NULL COMMENT '显示',
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息模型表';
+
+-- ----------------------------
+-- Records of info_model
+-- ----------------------------
+INSERT INTO `info_model` VALUES ('1', '文章', 'info_article', 'article', 'article/detail', 'show', '100');
+INSERT INTO `info_model` VALUES ('2', '案例', 'info_cases', 'cases', 'cases/detail', 'show', '100');
+INSERT INTO `info_model` VALUES ('3', '单页', 'info_page', 'page', '', 'show', '100');
+
+-- ----------------------------
+-- Table structure for info_page
+-- ----------------------------
+DROP TABLE IF EXISTS `info_page`;
+CREATE TABLE `info_page` (
+  `cid` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
+  `content` text COMMENT '内容',
+  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
+
+-- ----------------------------
+-- Records of info_page
+-- ----------------------------
+INSERT INTO `info_page` VALUES ('6', '<p>关于我们内容</p>', null);
+
+-- ----------------------------
 -- Table structure for link
 -- ----------------------------
 DROP TABLE IF EXISTS `link`;
@@ -242,28 +279,6 @@ CREATE TABLE `link` (
 -- ----------------------------
 -- Records of link
 -- ----------------------------
-
--- ----------------------------
--- Table structure for model
--- ----------------------------
-DROP TABLE IF EXISTS `model`;
-CREATE TABLE `model` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `model` varchar(20) DEFAULT NULL COMMENT '模型',
-  `list` varchar(50) DEFAULT NULL COMMENT '列表',
-  `detail` varchar(50) DEFAULT NULL COMMENT '详细',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模型表';
-
--- ----------------------------
--- Records of model
--- ----------------------------
-INSERT INTO `model` VALUES ('1', '文章', 'article', 'article', 'article/detail', 'show', '100');
-INSERT INTO `model` VALUES ('2', '案例', 'cases', 'cases', 'cases/detail', 'show', '100');
-INSERT INTO `model` VALUES ('3', '单页', 'page', 'page', '', 'show', '100');
 
 -- ----------------------------
 -- Table structure for navigation
@@ -289,22 +304,6 @@ CREATE TABLE `navigation` (
 -- ----------------------------
 -- Records of navigation
 -- ----------------------------
-
--- ----------------------------
--- Table structure for page
--- ----------------------------
-DROP TABLE IF EXISTS `page`;
-CREATE TABLE `page` (
-  `cid` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
-  `content` text COMMENT '内容',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
-
--- ----------------------------
--- Records of page
--- ----------------------------
-INSERT INTO `page` VALUES ('6', '<p>关于我们内容</p>', null);
 
 -- ----------------------------
 -- Table structure for slide
@@ -335,12 +334,16 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
 -- ----------------------------
 INSERT INTO `sys_login_log` VALUES ('1', '4', '::1', '1506691157');
+INSERT INTO `sys_login_log` VALUES ('2', '4', '::1', '1506736569');
+INSERT INTO `sys_login_log` VALUES ('3', '4', '::1', '1506739359');
+INSERT INTO `sys_login_log` VALUES ('4', '4', '::1', '1506745776');
+INSERT INTO `sys_login_log` VALUES ('5', '4', '::1', '1506754980');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -359,7 +362,7 @@ CREATE TABLE `sys_menu` (
   `display` char(4) DEFAULT NULL COMMENT '显示',
   `sort` int(10) DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -372,9 +375,9 @@ INSERT INTO `sys_menu` VALUES ('7', '我的面板', '1', 'fa fa-list-alt', '1', 
 INSERT INTO `sys_menu` VALUES ('9', '配置组', '1', 'fa fa-cogs', '1', '2', 'config_group', '', 'dev', 'show', '200');
 INSERT INTO `sys_menu` VALUES ('10', '配置项', '1', 'fa fa-cog', '1', '2', 'config_item', '', 'dev', 'show', '200');
 INSERT INTO `sys_menu` VALUES ('11', '网站配置', '1', 'fa fa-cog', '2', '2', 'config', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('12', '栏目管理', '1', 'fa fa-columns', '3', '2', 'category', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('13', '信息管理', '1', 'fa fa-list', '3', '2', 'information', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('14', '模型管理', '1', 'fa fa-codepen', '3', '2', 'model', '', 'pro', 'show', '110');
+INSERT INTO `sys_menu` VALUES ('12', '栏目管理', '1', 'fa fa-columns', '3', '2', 'info_category', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('13', '信息管理', '1', 'fa fa-list', '3', '2', 'info', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('14', '模型管理', '1', 'fa fa-codepen', '3', '2', 'info_model', '', 'pro', 'show', '110');
 INSERT INTO `sys_menu` VALUES ('15', '幻灯片', '1', 'fa fa-slideshare', '4', '2', 'slide', '', 'pro', 'show', '100');
 INSERT INTO `sys_menu` VALUES ('16', '菜单管理', '1', 'fa fa-bars', '1', '2', 'sys_menu', '', 'dev', 'show', '200');
 INSERT INTO `sys_menu` VALUES ('17', '角色管理', '1', 'fa fa-users', '2', '2', 'sys_role', '', 'pro', 'show', '100');
@@ -384,12 +387,12 @@ INSERT INTO `sys_menu` VALUES ('38', '文件管理', '1', 'fa fa-file-text-o', '
 INSERT INTO `sys_menu` VALUES ('41', '导航管理', '1', 'fa fa-bars', '4', '2', 'navigation', '', 'pro', 'show', '130');
 INSERT INTO `sys_menu` VALUES ('42', '友情链接', '1', 'fa fa-link', '4', '2', 'link', '', 'pro', 'show', '110');
 INSERT INTO `sys_menu` VALUES ('48', '通用字典', '1', 'fa fa-book', '4', '2', 'common_dict', '', 'pro', 'show', '140');
-INSERT INTO `sys_menu` VALUES ('50', '广告管理', '1', 'fa fa-image', '3', '2', 'category_adv', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('50', '广告管理', '1', 'fa fa-image', '3', '2', 'info_category_adv', '', 'pro', 'show', '100');
 INSERT INTO `sys_menu` VALUES ('51', '角色权限', '0', 'fa fa-file-text', '17', '3', 'sys_role_auth', '', 'pro', 'show', '100');
 INSERT INTO `sys_menu` VALUES ('52', '用户权限', '0', 'fa fa-file-text', '18', '3', 'sys_user_auth', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('53', '文章', '0', 'fa fa-file-text', '13', '3', 'article', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('54', '案例', '0', 'fa fa-file-text', '13', '3', 'cases', '', 'pro', 'show', '100');
-INSERT INTO `sys_menu` VALUES ('55', '单页', '0', 'fa fa-file-text', '13', '3', 'page', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('53', '文章', '0', 'fa fa-file-text', '13', '3', 'info_article', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('54', '案例', '0', 'fa fa-file-text', '13', '3', 'info_cases', '', 'pro', 'show', '100');
+INSERT INTO `sys_menu` VALUES ('55', '单页', '0', 'fa fa-file-text', '13', '3', 'info_page', '', 'pro', 'show', '100');
 
 -- ----------------------------
 -- Table structure for sys_menu_auth
@@ -496,8 +499,8 @@ INSERT INTO `sys_menu_auth` VALUES ('54', 'update');
 INSERT INTO `sys_menu_auth` VALUES ('54', 'insert');
 INSERT INTO `sys_menu_auth` VALUES ('51', 'update');
 INSERT INTO `sys_menu_auth` VALUES ('52', 'update');
-INSERT INTO `sys_menu_auth` VALUES ('55', 'update');
 INSERT INTO `sys_menu_auth` VALUES ('55', 'look');
+INSERT INTO `sys_menu_auth` VALUES ('55', 'update');
 
 -- ----------------------------
 -- Table structure for sys_oplog
@@ -639,22 +642,6 @@ INSERT INTO `sys_user_auth` VALUES ('6', '15', 'del');
 INSERT INTO `sys_user_auth` VALUES ('6', '4', '');
 
 -- ----------------------------
--- Table structure for tags
--- ----------------------------
-DROP TABLE IF EXISTS `tags`;
-CREATE TABLE `tags` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签表';
-
--- ----------------------------
--- Records of tags
--- ----------------------------
-
--- ----------------------------
 -- Table structure for uploads
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -679,8 +666,9 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
+INSERT INTO `uploads` VALUES ('1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170930/', 'D:/wamp/www/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', '/uploads/upload/20170930/', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'b9e23b5c278c0f238f3217e444ba0ee1', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
