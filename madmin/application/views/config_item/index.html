@@ -91,20 +91,20 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['unit', 'template'], function (unit, template) {
-        get_list();
+        getList();
 
         //分页
         unit.pagination(function () {
-            get_list($(this).data('page'));
+            getList($(this).data('page'));
         });
 
         //搜索
         unit.search(function () {
-            get_list();
+            getList();
         });
 
         //获取列表
-        function get_list(pageIndex) {
+        function getList(pageIndex) {
             var data = {
                 x: Math.random(),
                 page: pageIndex,

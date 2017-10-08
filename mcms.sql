@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-09-30 17:31:45
+Date: 2017-10-08 19:30:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -334,7 +334,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
   `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -344,6 +344,7 @@ INSERT INTO `sys_login_log` VALUES ('2', '4', '::1', '1506736569');
 INSERT INTO `sys_login_log` VALUES ('3', '4', '::1', '1506739359');
 INSERT INTO `sys_login_log` VALUES ('4', '4', '::1', '1506745776');
 INSERT INTO `sys_login_log` VALUES ('5', '4', '::1', '1506754980');
+INSERT INTO `sys_login_log` VALUES ('6', '4', '::1', '1506774812');
 
 -- ----------------------------
 -- Table structure for sys_menu

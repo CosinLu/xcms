@@ -57,13 +57,14 @@ function ddl($data = array(), $name = '', $selected_val = '', $disabled_val = ''
             $disabled_val = explode(',', $disabled_val);
         }
     }
-    $str .= '<select name="' . $name . '" class="form-control" ' . $disabled . '>';
+    $class = (is_array($default) && count($default) > 2) ? $default[2] : '';
+    $str .= '<select name="' . $name . '" class="form-control ' . $class . '" ' . $disabled . '>';
     if ($default === TRUE) {
-        $str .= '<option value="-1">-请选择-</option>';
+        $str .= '<option value="">-请选择-</option>';
     } else if (is_array($default)) {
         $str .= '<option value="' . $default[0] . '">' . $default[1] . '</option>';
     } else if (is_string($default) && $default != '') {
-        $str .= '<option value="-1">' . $default . '</option>';
+        $str .= '<option value="">' . $default . '</option>';
     }
 
     if (!empty($data)) {
@@ -87,6 +88,69 @@ function ddl($data = array(), $name = '', $selected_val = '', $disabled_val = ''
     $str .= '</select>';
 
     return $str;
+}
+
+/**
+ * 复选框
+ * @param array $data 数据源
+ * @param string $name 名称
+ * @param string $checked_val 选中项
+ * @param string $disabled_val 禁用项
+ * @param bool $is_disabled 是否禁用
+ * @param string $item_val value取值名称
+ * @param string $item_name name取值名称
+ * @return string
+ */
+function cbl($data = array(), $name = '', $checked_val = '', $disabled_val = '', $is_disabled = FALSE, $item_val = 'id', $item_name = 'name')
+{
+    $str = '';
+    if (empty($data)) return $str;
+    $disabled = $is_disabled ? 'disabled' : '';
+    foreach ($data as $val) {
+        if ($is_disabled === FALSE && $disabled_val != '') {
+            if (!is_array($disabled_val)) {
+                $disabled_val = explode(',', $disabled_val);
+            }
+            $disabled = in_array($val[$item_val], $disabled_val) ? 'disabled' : '';
+        }
+        if (!is_array($checked_val) && $checked_val != '') {
+            $checked_val = explode(',', $checked_val);
+        }
+        $checked = ($checked_val != '' && in_array($val[$item_val], $checked_val)) ? 'checked' : '';
+        $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val[$item_val] . '" ' . $disabled . ' ' . $checked . '><ins>' . $val[$item_name] . '</ins></label>';
+    };
+    return $str;
+
+}
+
+/**
+ * 单选框
+ * @param array $data 数据源
+ * @param string $name 名称
+ * @param string $checked_val 选中项
+ * @param string $disabled_val 禁用项
+ * @param bool $is_disabled 是否禁用
+ * @param string $item_val value取值名称
+ * @param string $item_name name取值名称
+ * @return string
+ */
+function rbl($data = array(), $name = '', $checked_val = '', $disabled_val = '', $is_disabled = FALSE, $item_val = 'id', $item_name = 'name')
+{
+    $str = '';
+    if (empty($data)) return $str;
+    $disabled = $is_disabled ? 'disabled' : '';
+    foreach ($data as $val) {
+        if ($is_disabled === FALSE && $disabled_val != '') {
+            if (!is_array($disabled_val)) {
+                $disabled_val = explode(',', $disabled_val);
+            }
+            $disabled = in_array($val[$item_val], $disabled_val) ? 'disabled' : '';
+        }
+        $checked = $val[$item_val] == $checked_val ? 'checked' : '';
+        $str .= '<label><input type="radio" name="' . $name . '" value="' . $val[$item_val] . '" ' . $disabled . ' ' . $checked . '><ins>' . $val[$item_name] . '</ins></label>';
+    };
+    return $str;
+
 }
 
 /**

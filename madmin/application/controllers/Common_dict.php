@@ -31,13 +31,13 @@ class Common_dict extends MY_Controller
 
     public function index()
     {
-        $data['pid'] = $this->pid;
-        $data['category'] = array();
+        $category = array();
         foreach ($this->common_dict_model->data() as $val) {
             if ($val['pid'] == 0) {
-                $data['category'][] = $val;
+                $category[] = $val;
             }
         }
+        $data['category'] = ddl($category, 'category', $this->pid, '', array('', '-分类-', 'input-sm'));
         $this->load->view('common_dict/index.html', $data);
     }
 
