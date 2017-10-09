@@ -39,9 +39,9 @@
                                     <th width="10%">IP</th>
                                 </tr>
                                 </thead>
-                                <tbody id="list"></tbody>
-                                <script id="list_tpl" type="text/html">
-                                    {{each list.list as val}}
+                                <tbody class="list-body-hook"></tbody>
+                                <script id="listTpl" type="text/html">
+                                    {{each list as val}}
                                     <tr>
                                         <td>{{val.time}}</td>
                                         <td>{{#val.content}}</td>
@@ -54,9 +54,9 @@
                                 </script>
                             </table>
                         </div>
-                        <div class="pagination_box" id="pagination"></div>
-                        <script id="pagination_tpl" type="text/html">
-                            {{#list.pagination}}
+                        <div class="pagination_box pagination-hook"></div>
+                        <script id="paginationTpl" type="text/html">
+                            {{#pagination}}
                         </script>
                     </div>
                 </div>
@@ -67,15 +67,13 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template', 'datetimepicker'], function (template) {
+    require(['unit', 'datetimepicker'], function (unit) {
         getList();
 
         //分页
-        $(document).on({
-            click: function (e) {
-                getList($(this).data('page'));
-            }
-        }, '.pagination-hook li[class!="active"] a');
+        unit.pagination(function () {
+            getList($(this).data('page'));
+        });
 
         //搜索
         $('.search-btn-hook').click(function () {
@@ -84,32 +82,15 @@
 
         //获取列表
         function getList(pageIndex) {
-            var data = {
-                x: Math.random(),
-                page: pageIndex,
-                start_time: $('input[name="start_time"]').val(),
-                stop_time: $('input[name="stop_time"]').val()
-            };
-            $.ajax({
+            unit.getList({
                 url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
-                beforeSend: function () {
-                    $('.nodata-hook,.loading-hook').remove();
-                    $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=config_item("my_loading")?>');
-                },
-                success: function (data) {
-                    $('.nodata-hook,.loading-hook').remove();
-                    if (data.list.list.length) {
-                        $('#list').html(template('list_tpl', data));
-                        $('#pagination').html(template('pagination_tpl', data));
-                    } else {
-                        $('.list-hook').after('<?=config_item("my_nodata")?>');
-                    }
+                data: {
+                    x: Math.random(),
+                    page: pageIndex,
+                    start_time: $('input[name="start_time"]').val(),
+                    stop_time: $('input[name="stop_time"]').val()
                 }
-            })
+            });
         }
 
         //日期时间

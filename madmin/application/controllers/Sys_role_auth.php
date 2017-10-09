@@ -64,7 +64,7 @@ class Sys_role_auth extends MY_Controller
             $parent_level = $level;
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
-        $data['list'] = $str;
+        $data['list']['list'] = $str;
         echo json_encode($data);
     }
 

@@ -46,9 +46,9 @@
                                     <th width="10%">操作</th>
                                 </tr>
                                 </thead>
-                                <tbody id="list"></tbody>
-                                <script id="list_tpl" type="text/html">
-                                    {{each list.list as val}}
+                                <tbody class="list-body-hook"></tbody>
+                                <script id="listTpl" type="text/html">
+                                    {{each list as val}}
                                     <tr>
                                         <td>
                                             <label><input type="checkbox" name="id[]" value="{{val.id}}">
@@ -71,9 +71,9 @@
                                 </script>
                             </table>
                         </div>
-                        <div class="pagination_box" id="pagination"></div>
-                        <script id="pagination_tpl" type="text/html">
-                            {{#list.pagination}}
+                        <div class="pagination_box pagination-hook"></div>
+                        <script id="paginationTpl" type="text/html">
+                            {{#pagination}}
                         </script>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit', 'template', 'jqthumb'], function (unit, template) {
+    require(['unit'], function (unit) {
         getList();
 
         //分页
@@ -100,31 +100,14 @@
 
         //获取列表
         function getList(pageIndex) {
-            var data = {
-                x: Math.random(),
-                page: pageIndex,
-                key: $('input[name="key"]').val()
-            };
-            $.ajax({
+            unit.getList({
                 url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
-                beforeSend: function () {
-                    $('.nodata-hook,.loading-hook').remove();
-                    $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=config_item("my_loading")?>');
-                },
-                success: function (data) {
-                    $('.nodata-hook,.loading-hook').remove();
-                    if (data.list.list.length) {
-                        $('#list').html(template('list_tpl', data)).find('img').jqthumb({width: 120, height: 80});
-                        $('#pagination').html(template('pagination_tpl', data));
-                    } else {
-                        $('.list-hook').after('<?=config_item("my_nodata")?>');
-                    }
+                data: {
+                    x: Math.random(),
+                    page: pageIndex,
+                    key: $('input[name="key"]').val()
                 }
-            })
+            });
         }
     });
 </script>

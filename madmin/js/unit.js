@@ -4,9 +4,69 @@
 define(['jquery', 'layer'], function ($) {
     return {
 
+        //获取列表
+        getList: function (options) {
+            require(['template', 'jqthumb'], function (template) {
+                var defaults = {
+                    url: '',
+                    data: {
+                        x: Math.random()
+                    },
+                    listEle: '.list-hook',
+                    listBodyEle: '.list-body-hook',
+                    listTpl: 'listTpl',
+                    paginationEle: '.pagination-hook',
+                    paginationTpl: 'paginationTpl',
+                    nodataEle: '.nodata-hook',
+                    loadingEle: '.loading-hook',
+                    errdataEle: '.error-hook',
+                    loadingDom: '<div class="panel-body loading-hook">数据加载中...</div>',
+                    nodataDom: '<div class="panel-body nodata-hook">暂无数据</div>',
+                    errordataDom: '<div class="panel-body error-hook">数据加载失败</div>',
+                    beforeSend: function () {
+                        $(opt.nodataEle + ',' + opt.loadingEle).remove();
+                        $(opt.listBodyEle).html('');
+                        if (opt.paginationEle.length) $(opt.paginationEle).html('');
+                        if (opt.listEle.length) $(opt.listEle).after(opt.loadingDom);
+                    },
+                    success: function (data) {
+                        $(opt.nodataEle + ',' + opt.loadingEle).remove();
+                        if (data.list.list.length) {
+                            $(opt.listBodyEle).html(template(opt.listTpl, data.list));
+                            if ($(opt.listBodyEle).find('img').length) {
+                                $(opt.listBodyEle).find('img').each(function () {
+                                    var width = $(this).data('width') || 120;
+                                    var height = $(this).data('height') || 80;
+                                    $(this).jqthumb({
+                                        width: width, height: height
+                                    })
+                                });
+                            }
+                            if ($(opt.paginationEle).length) $(opt.paginationEle).html(template(opt.paginationTpl, data.list));
+                        } else {
+                            if (opt.listEle.length) $(opt.listEle).after(opt.nodataDom);
+                        }
+                    },
+                    error: function () {
+                        if (opt.listEle.length) $(opt.listEle).after(opt.errordataDom);
+                    }
+                };
+                var opt = $.extend({}, defaults, options);
+                $.ajax({
+                    url: opt.url,
+                    type: 'post',
+                    dataType: 'json',
+                    data: opt.data,
+                    beforeSend: opt.beforeSend,
+                    success: opt.success,
+                    error: opt.error
+                })
+            })
+        },
+
         //分页
         pagination: function (fn) {
-            $(document).on('click', '.pagination-hook li[class!="active"] a', fn)
+            $(document).on('click', '.page-hook li[class!="active"] a', fn)
         },
 
         //检索

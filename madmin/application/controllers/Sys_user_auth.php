@@ -24,8 +24,7 @@ class Sys_user_auth extends MY_Controller
         $url['save_btn'] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<button type="submit" class="btn btn-primary mt">保存</button>');
         $url['save_url'] = site_url('sys_user_auth/save?
         user_id=' . $this->user_id);
-        $url['get_list_url'] = site_url('sys_user_auth/get_list?
-        user_id=' . $this->user_id);
+        $url['get_list_url'] = site_url('sys_user_auth/get_list?user_id=' . $this->user_id);
         $this->load->vars($url);
     }
 
@@ -66,7 +65,7 @@ class Sys_user_auth extends MY_Controller
             $parent_level = $level;
         }
         $str .= str_repeat('</li></ul>', $parent_level - $start_level + 1);
-        $data['list'] = $str;
+        $data['list']['list'] = $str;
         echo json_encode($data);
     }
 

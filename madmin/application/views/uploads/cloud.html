@@ -34,8 +34,8 @@
             </div>
             <div class="cloud_list cloud-list-hook">
                 <div class="list-content-hook">
-                    <div class="list-hook clearfix" id="list"></div>
-                    <script type="text/html" id="list_tpl">
+                    <div class="list-hook clearfix"></div>
+                    <script type="text/html" id="listTpl">
                         {{each list as val}}
                         <div class="item item-hook" title="{{val.client_name}}">
                             <input type="checkbox" class="checkbox checkbox-hook"
@@ -76,7 +76,7 @@
 
         //搜索
         $('.search-btn-hook').on('click', function () {
-            $('#list').html('');
+            $('.list-hook').html('');
             pageIndex = 0;
             dropload.unlock();
             dropload.noData(false);
@@ -103,7 +103,7 @@
                     data: data,
                     success: function (data) {
                         if (data.list.length) {
-                            $('#list').append(template('list_tpl', data));
+                            $('.list-hook').append(template('listTpl', data));
                         } else {
                             me.lock();
                             me.noData();

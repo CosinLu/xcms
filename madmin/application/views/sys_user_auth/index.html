@@ -35,9 +35,9 @@
                                         <div class="div_th opera">操作</div>
                                     </div>
                                 </div>
-                                <div class="div_tbody div-tbody-hook" id="list"></div>
+                                <div class="div_tbody div-tbody-hook"></div>
                             </div>
-                            <script type="text/html" id="list_tpl">
+                            <script type="text/html" id="listTpl">
                                 {{#list}}
                             </script>
                             <?=$save_btn?>
@@ -52,32 +52,14 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['template', 'unit'], function (template, unit) {
+    require(['unit'], function (unit) {
         getList();
         //获取列表
         function getList() {
-            var data = {
-                x: Math.random()
-            };
-            $.ajax({
+            unit.getList({
                 url: '<?=$get_list_url?>',
-                type: 'post',
-                dataType: 'json',
-                data: data,
-                beforeSend: function () {
-                    $('.nodata-hook,.loading-hook').remove();
-                    $('#list,#pagination').html('');
-                    $('.list-hook').after('<?=config_item("my_loading")?>');
-                },
-                success: function (data) {
-                    $('.nodata-hook,.loading-hook').remove();
-                    if (data.list.length) {
-                        $('#list').html(template('list_tpl', data));
-                    } else {
-                        $('.list-hook').after('<?=config_item("my_nodata")?>');
-                    }
-                }
-            })
+                listBodyEle: '.div-tbody-hook'
+            });
         }
 
         unit.authCheck();
