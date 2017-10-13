@@ -10,20 +10,31 @@ defined('BASEPATH') OR exit('Error');
 class Tree
 {
     private $CI;
-    private $sort;
-    private $id;
-    private $pid;
-    private $level;
-    private $name;
+    private $sort = 'sort';
+    private $id = 'id';
+    private $pid = 'pid';
+    private $level = 'level';
+    private $name = 'name';
+    private $order_by = 'asc';
 
-    public function __construct()
+    public function __construct($params = array())
     {
         $this->CI =& get_instance();
-        $this->sort = 'sort';
-        $this->id = 'id';
-        $this->pid = 'pid';
-        $this->level = 'level';
-        $this->name = 'name';
+
+        //初始化参数
+        $this->initialize($params);
+    }
+
+    /**
+     * 初始化参数
+     *
+     * @param array $config
+     */
+    public function initialize($config = array())
+    {
+        foreach ($config as $key => $val) {
+            $this->$key = $val;
+        }
     }
 
     /**
@@ -39,10 +50,18 @@ class Tree
         $a_sort = $a[$sort];
         $b_sort = $b[$sort];
         if ($a_sort == $b_sort) {
-            return ($a[$this->id] > $b[$this->id]) ? 1 : -1;
+            if ($this->order_by == 'asc') {
+                return ($a[$this->id] > $b[$this->id]) ? 1 : -1;
+            } else {
+                return ($a[$this->id] < $b[$this->id]) ? 1 : -1;
+            }
         }
 
-        return ($a_sort > $b_sort) ? 1 : -1;
+        if ($this->order_by == 'asc') {
+            return ($a_sort > $b_sort) ? 1 : -1;
+        } else {
+            return ($a_sort < $b_sort) ? 1 : -1;
+        }
     }
 
     /**
