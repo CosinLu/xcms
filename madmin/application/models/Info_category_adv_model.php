@@ -22,7 +22,7 @@ class info_category_adv_model extends CI_Model
         $this->db->select('t3.rel_path');
         $this->db->from('info_category_adv t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
-        $this->db->join('category t2', 't2.id=t.cid', 'left');
+        $this->db->join('info_category t2', 't2.id=t.cid', 'left');
         $this->db->join('uploads t3', 't3.id=t.cid', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
@@ -62,13 +62,13 @@ class info_category_adv_model extends CI_Model
     }
 
     //信息栏目
-    public function category()
+    public function info_category()
     {
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(
             'display' => 'show'
         ));
-        $res = $this->db->get('category')->result_array();
+        $res = $this->db->get('info_category')->result_array();
 
         return $res;
     }

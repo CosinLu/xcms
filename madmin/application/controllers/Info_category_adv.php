@@ -59,7 +59,7 @@ class Info_category_adv extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->info_category_adv_model->update($id);
-        $data['cols'] = ddl($this->info_category_adv_model->category(), 'cid', $data['item']['cid']);
+        $data['cols'] = ddl($this->info_category_adv_model->info_category(), 'cid', $data['item']['cid']);
         $data['uploads']['image'] = $this->upload->result($data['item']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['item']['display'])
