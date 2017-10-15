@@ -23,7 +23,7 @@ class Info_article extends Info
     {
         $url['get_list_url'] = site_url('info_article/get_list?cid=' . $this->cid);
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_article/insert?cid=' . $this->cid) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_article" data-checkname="id" data-url = "' . site_url('ajax/batch_del?cid=' . $this->cid) . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_article" data-checkname="id" data-url = "' . site_url('api/batch_del?cid=' . $this->cid) . '">删除</a>');
         $url['save_url'] = site_url('info_article/save?cid=' . $this->cid);
         $this->load->vars($url);
     }
@@ -44,7 +44,7 @@ class Info_article extends Info
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['create_time'] = date('m/d H:i', $val['create_time']);
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('info_article/update?cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_article" data-id="' . $val['id'] . '" data-url="' . site_url('ajax/del?cid=' . $this->cid . '&col_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_article" data-id="' . $val['id'] . '" data-url="' . site_url('api/del?cid=' . $this->cid . '&col_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }

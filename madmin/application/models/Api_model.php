@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('Error');
  * Time: 16:32
  * Email: 1056811341@qq.com
  */
-class Ajax_model extends CI_Model
+class Api_model extends CI_Model
 {
     public function __construct()
     {
