@@ -185,18 +185,27 @@ class Tree
      * @param array $arr array('字段名','值')
      * @return string
      */
-    public function get_id($data = array(), $arr = array())
+    public function get_id($data = array(), $arr = array(), $variable = '')
     {
-        if (is_array($arr)) {
-            $id = '';
+        $arr = is_array($arr) ? $arr : explode(',', $arr);
+        if (count($arr) > 1) {
+            $res = '';
+            $variable = $variable ?: $this->id;
+            $variable = is_array($variable) ? $variable : explode(',', $variable);
             foreach ($data as $val) {
                 if ($val[$arr[0]] == $arr[1]) {
-                    $id = $val[$this->id];
+                    if (count($variable) == 1) {
+                        $res = $val[$variable[0]];
+                    } else {
+                        foreach ($variable as $val) {
+                            $res[$val] = $val[$val];
+                        }
+                    }
                     break;
                 }
             }
 
-            return $id;
+            return $res;
         }
 
         return $arr;

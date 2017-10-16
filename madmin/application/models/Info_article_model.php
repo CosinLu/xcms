@@ -18,8 +18,10 @@ class Info_article_model extends CI_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
+        $this->db->select('t2.name category_name');
         $this->db->from('info_article t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
+        $this->db->join('info_category t2','t2.id=t.cid','left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

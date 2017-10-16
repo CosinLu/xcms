@@ -19,6 +19,7 @@ class MY_Upload extends CI_Upload
 
     /**
      * 验证上传路径
+     *
      * @return bool
      */
     public function validate_upload_path()
@@ -108,7 +109,11 @@ class MY_Upload extends CI_Upload
             }
         }
 
-        return json_encode($res);
+        foreach ($res as $key => $val) {
+            $res[$key] = json_encode($val);
+        }
+
+        return $res;
     }
 
     /**
