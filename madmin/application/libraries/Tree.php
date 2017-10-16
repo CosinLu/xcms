@@ -139,7 +139,7 @@ class Tree
      */
     public function get_children($data = array(), $pid = 0, $is_self = FALSE, $variable = '')
     {
-        $pid = $this->get_id($data, $pid);
+        $pid = $this->get_field($data, $pid);
         $res = $this->serialize($data, $pid);
 
         //是否包含自身
@@ -167,7 +167,7 @@ class Tree
      */
     public function get_parent($data = array(), $id = '', $is_self = FALSE, $variable = '')
     {
-        $id = $this->get_id($data, $id);
+        $id = $this->get_field($data, $id);
         $res = $this->reverse_serialize($data, $id);
 
         if (!$is_self) {
@@ -185,7 +185,7 @@ class Tree
      * @param array $arr array('字段名','值')
      * @return string
      */
-    public function get_id($data = array(), $arr = array(), $variable = '')
+    public function get_field($data = array(), $arr = array(), $variable = '')
     {
         $arr = is_array($arr) ? $arr : explode(',', $arr);
         if (count($arr) > 1) {
@@ -208,7 +208,7 @@ class Tree
             return $res;
         }
 
-        return $arr;
+        return implode(',', $arr);
     }
 
     /**

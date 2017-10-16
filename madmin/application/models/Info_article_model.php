@@ -26,7 +26,7 @@ class Info_article_model extends CI_Model
             $this->db->like('t.name', $key);
         }
         $this->db->where_in('t.cid', $cid);
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        $config['total_rows'] = $this->db->count_all_results(NULL, FALSE);
         $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);

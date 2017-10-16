@@ -25,7 +25,7 @@ class Slide_model extends CI_Model
         if ($key != '') {
             $this->db->like('t.name', $key);
         }
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        $config['total_rows'] = $this->db->count_all_results(NULL, FALSE);
         $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);

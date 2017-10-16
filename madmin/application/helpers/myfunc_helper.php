@@ -308,6 +308,7 @@ function valid_url($data = array())
     $CI->load->library('tree');
     $data_serialize = $CI->tree->serialize($data);
     $children = array();
+    $url = array();
     foreach ($data_serialize as $key => $val) {
         if ($val['pid'] == 0) {
             $children[$key] = $CI->tree->get_children($data, $val['id'], TRUE);

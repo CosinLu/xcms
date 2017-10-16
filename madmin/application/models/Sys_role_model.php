@@ -23,7 +23,7 @@ class Sys_role_model extends CI_Model
         if ($this->session->sys_session['user_type'] > 0) {
             $this->db->where('role_type > ', 0);
         }
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        $config['total_rows'] = $this->db->count_all_results(NULL, FALSE);
         $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);

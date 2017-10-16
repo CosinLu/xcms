@@ -30,7 +30,7 @@ class Common_dict_model extends CI_Model
                 'is_sys' => 0
             ));
         }
-        $config['total_rows'] = $this->db->count_all_results('', FALSE);
+        $config['total_rows'] = $this->db->count_all_results(NULL, FALSE);
         $config['per_page'] = config_item('my_per_page');
         $config['cur_page'] = $page;
         $this->pagination->initialize($config);
