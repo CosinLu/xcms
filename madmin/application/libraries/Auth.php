@@ -236,9 +236,9 @@ class Auth
                 `id` ASC";
         }
         $res = $this->CI->db->query($sql)->result_array();
-        $res_sort = $this->CI->tree->serialize($res);
+        $res = $this->CI->tree->serialize($res);
 
-        return $res_sort;
+        return $res;
     }
 
     /**
