@@ -22,7 +22,7 @@ class Uploads_model extends CI_Model
         $config['cur_page'] = $page;
         $this->db->order_by('id desc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
-        $data = $this->db->get()->result_array();
+        $res = $this->db->get()->result_array();
 
         return $res;
     }
