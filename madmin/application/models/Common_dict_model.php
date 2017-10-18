@@ -36,11 +36,11 @@ class Common_dict_model extends CI_Model
         $this->pagination->initialize($config);
         $this->db->order_by('sort asc,id asc');
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
-        $data['list'] = $this->db->get()->result_array();
-        $data['pagination'] = $this->pagination->create_ajax_links();
-        $data['total'] = $config['total_rows'];
+        $res['list'] = $this->db->get()->result_array();
+        $res['pagination'] = $this->pagination->create_ajax_links();
+        $res['total'] = $config['total_rows'];
 
-        return $data;
+        return $res;
     }
 
     //修改

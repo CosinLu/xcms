@@ -29,10 +29,10 @@ class Sys_menu_model extends CI_Model
         $this->db->order_by('t.sort asc,t.id asc');
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
-        $data['list'] = $this->tree->serialize($res);
-        $data['total'] = count($res);
+        $res['list'] = $this->tree->serialize($res);
+        $res['total'] = count($res);
 
-        return $data;
+        return $res;
     }
 
     //修改

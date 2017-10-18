@@ -24,7 +24,7 @@ class Uploads_model extends CI_Model
         $this->db->limit($config['per_page'], ($page - 1) * $config['per_page']);
         $data = $this->db->get()->result_array();
 
-        return $data;
+        return $res;
     }
 
     //写入
