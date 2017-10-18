@@ -4,7 +4,7 @@
 /*加载，暂无数据*/
 div.loading-hook,
 div.nodata-hook,
-div.error-hook{
+div.error-hook {
     padding: 20px 0 30px !important;
     text-align: center;
     border-bottom: @table-border-color solid 1px;
@@ -398,6 +398,9 @@ div.error-hook{
                 border-bottom-width: 0;
                 padding-top: 12px;
                 padding-bottom: 12px;
+                &.thumb {
+                    text-indent: 34px;
+                }
                 > label {
                     margin-bottom: 2px !important;
                 }
@@ -413,6 +416,14 @@ div.error-hook{
                 padding-bottom: 10px;
                 > label {
                     margin-top: 3px;
+                }
+                > .thumb {
+                    width: 24px;
+                    height: 24px;
+                    float: left;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 10px;
                 }
             }
         }
@@ -744,4 +755,3 @@ div.error-hook{
         }
     }
 }
-
