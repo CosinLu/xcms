@@ -89,7 +89,6 @@ class Info_cases extends Info
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'title' => $this->input->post('title'),
-                'case_url' => $this->input->post('case_url'),
                 'image' => empty($image) ? '' : implode(',', $image),
                 'images' => empty($images) ? '' : implode(',', $images),
                 'target' => $this->input->post('target'),

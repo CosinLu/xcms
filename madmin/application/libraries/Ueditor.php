@@ -22,7 +22,12 @@ class Ueditor
     {
         $settings_path = str_replace('\\', '/', FCPATH . 'plugin/ueditor/php/settings.json');
         $str = file_get_contents($settings_path);
-        $str = preg_replace('/"upload": ".*"/', '"upload": "' . config_item('my_upload') . '"', $str);
+        $str = preg_replace('/"upload":\s?"?.*"?[^,\s]/', '"upload": "' . config_item('my_upload') . '"', $str);
+        $str = preg_replace('/"imageMaxSize":\s?"?.*"?[^,\s]/', '"imageMaxSize": ' . config_item('my_image_max_size'), $str);
+        $str = preg_replace('/"scrawlMaxSize":\s?"?.*"?[^,\s]/', '"scrawlMaxSize": ' . config_item('my_scrawl_max_size'), $str);
+        $str = preg_replace('/"catcherMaxSize":\s?"?.*"?[^,\s]/', '"catcherMaxSize": ' . config_item('my_catcher_max_size'), $str);
+        $str = preg_replace('/"videoMaxSize":\s?"?.*"?[^,\s]/', '"videoMaxSize": ' . config_item('my_video_max_size'), $str);
+        $str = preg_replace('/"fileMaxSize":\s?"?.*"?[^,\s]/', '"fileMaxSize": ' . config_item('my_file_max_size'), $str);
         file_put_contents($settings_path, $str);
     }
 

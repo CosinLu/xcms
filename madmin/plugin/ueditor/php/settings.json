@@ -1,3 +1,8 @@
 {
-  "upload": "/uploads/"
+  "upload": "/uploads/",
+  "imageMaxSize": 204800000,
+  "scrawlMaxSize": 2048000,
+  "catcherMaxSize": 2048000,
+  "videoMaxSize": 102400000,
+  "fileMaxSize": 51200000
 }

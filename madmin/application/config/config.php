@@ -522,9 +522,14 @@ $config['my_insert'] = 'insert';
 $config['my_del'] = 'del';
 $config['my_look'] = 'look';
 $config['my_update'] = 'update';
-$config['my_upload'] = '/uploads/';
-$config['my_thumb_width'] = 120;
-$config['my_thumb_height'] = 120;
+$config['my_upload'] = '/uploads/';//上传目录
+$config['my_image_max_size'] = 204800000;//图片上传大小限制，单位B
+$config['my_scrawl_max_size'] = 2048000;//涂鸦图片上传大小限制，单位B
+$config['my_catcher_max_size'] = 2048000;//远程图片大小限制，单位B
+$config['my_video_max_size'] = 102400000;//视频上传大小限制，单位B
+$config['my_file_max_size'] = 51200000;//文件上传大小限制，单位B
+$config['my_thumb_width'] = 120;//缩略图宽
+$config['my_thumb_height'] = 120;//缩略图高
 $config['my_thumb_marker'] = '_' . $config['my_thumb_width'] . '_' . $config['my_thumb_height'];
 
 

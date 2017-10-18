@@ -7,7 +7,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 $config = file_get_contents("config.json");
 $settings = json_decode(file_get_contents('settings.json'));
-$config = str_replace('//', '/', str_replace('{upload}', $settings->upload, $config));
+$config = str_replace('//', '/', str_replace(['{upload}', '{imageMaxSize}', '{scrawlMaxSize}', '{catcherMaxSize}', '{videoMaxSize}', '{fileMaxSize}'], [$settings->upload, $settings->imageMaxSize, $settings->scrawlMaxSize, $settings->catcherMaxSize, $settings->videoMaxSize, $settings->fileMaxSize], $config));
 $CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", $config), TRUE);
 ////$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("config.json")), true);
 $action = $_GET['action'];

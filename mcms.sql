@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-10-08 19:30:56
+Date: 2017-10-18 18:08:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -149,8 +149,6 @@ CREATE TABLE `info_cases` (
   `title` varchar(100) DEFAULT NULL COMMENT '标题',
   `image` int(10) DEFAULT NULL COMMENT '缩略图',
   `images` varchar(255) DEFAULT NULL COMMENT '图片',
-  `case_url` varchar(255) DEFAULT NULL COMMENT '案例链接',
-  `case_target` varchar(10) DEFAULT NULL COMMENT '案例链接打开方式',
   `content` text COMMENT '内容',
   `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
   `display` char(4) DEFAULT NULL COMMENT '显示',

@@ -19,18 +19,18 @@ define(['jquery', 'layer'], function ($) {
                     paginationTpl: 'paginationTpl',
                     nodataEle: '.nodata-hook',
                     loadingEle: '.loading-hook',
-                    errdataEle: '.error-hook',
+                    errordataEle: '.error-hook',
                     loadingDom: '<div class="panel-body loading-hook">数据加载中...</div>',
                     nodataDom: '<div class="panel-body nodata-hook">暂无数据</div>',
                     errordataDom: '<div class="panel-body error-hook">数据加载失败</div>',
                     beforeSend: function () {
-                        $(opt.nodataEle + ',' + opt.loadingEle).remove();
+                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
                         $(opt.listBodyEle).html('');
                         if (opt.paginationEle.length) $(opt.paginationEle).html('');
                         if (opt.listEle.length) $(opt.listEle).after(opt.loadingDom);
                     },
                     success: function (data) {
-                        $(opt.nodataEle + ',' + opt.loadingEle).remove();
+                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
                         if (data.list.list.length) {
                             $(opt.listBodyEle).html(template(opt.listTpl, data.list));
                             if ($(opt.listBodyEle).find('img').length) {
@@ -48,6 +48,7 @@ define(['jquery', 'layer'], function ($) {
                         }
                     },
                     error: function () {
+                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
                         if (opt.listEle.length) $(opt.listEle).after(opt.errordataDom);
                     }
                 };
