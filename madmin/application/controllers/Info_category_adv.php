@@ -77,6 +77,7 @@ class Info_category_adv extends MY_Controller
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'name' => $this->input->post('name'),
+                'indent' => $this->input->post('indent'),
                 'image' => (!empty($image)) ? implode(',', $image) : '',
                 'url' => ($url) ? $url : prep_url($url),
                 'display' => $this->input->post('display'),

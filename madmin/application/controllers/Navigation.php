@@ -65,10 +65,10 @@ class Navigation extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $id);
-        $data['col'] = $this->tree->ddl($this->navigation_model->cols(), 'col', '', '', '', array('', '-请选择-'));
+        $data['category'] = $this->tree->ddl($this->navigation_model->category(), 'category', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
-            array('rbl', 'position', 'position'),
+            array('cbl', 'position', 'position'),
             array('rbl', 'display', 'display')
         ));
         $this->load->view('navigation/insert.html', $data);
@@ -80,10 +80,10 @@ class Navigation extends MY_Controller
         $id = $this->input->get('id');
         $data['item'] = $this->navigation_model->update($id);
         $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
-        $data['col'] = $this->tree->ddl($this->navigation_model->cols(), 'col', '', '', '', array('', '-请选择-'));
+        $data['category'] = $this->tree->ddl($this->navigation_model->category(), 'category', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
-            array('rbl', 'position', 'position', $data['item']['position']),
+            array('cbl', 'position', 'position', $data['item']['position']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
         $this->load->view('navigation/update.html', $data);
@@ -93,15 +93,16 @@ class Navigation extends MY_Controller
     //保存
     public function save()
     {
+        $position = $this->input->post('position');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
                 'pid' => $this->input->post('pid'),
-                'col' => $this->input->post('col'),
+                'category' => $this->input->post('category'),
                 'url' => $this->input->post('url'),
                 'target' => $this->input->post('target'),
-                'position' => $this->input->post('position'),
+                'position' => empty($position) ? '' : implode(',', $position),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
             )

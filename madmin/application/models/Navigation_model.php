@@ -19,15 +19,16 @@ class Navigation_model extends CI_Model
     {
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
-        $this->db->select('t2.name position_name');
+        $this->db->select('group_concat(t3.name order by t2.sort asc separator ",") position_name');
         $this->db->from('navigation t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
-        $this->db->join('common_dict t2', 't2.ident=t.position', 'left');
+        $this->db->join('common_dict t2', "t2.ident='position'", 'left');
+        $this->db->join('common_dict t3', 't3.pid=t2.id', 'left');
         $this->db->order_by('t.sort asc,t.id asc');
+        $this->db->where("instr(concat(',',t.position,','),concat(',',t3.ident,','))>", 0);
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
         $res['list'] = $this->tree->serialize($res);
-        $res['total'] = count($res);
 
         return $res;
     }
@@ -55,7 +56,7 @@ class Navigation_model extends CI_Model
     }
 
     //获取信息栏目
-    public function cols()
+    public function category()
     {
         $this->db->select('t.*');
         $this->db->select('t1.model');
@@ -87,6 +88,7 @@ class Navigation_model extends CI_Model
     public function data()
     {
         $res = $this->db->get('navigation')->result_array();
+
         return $res;
     }
 

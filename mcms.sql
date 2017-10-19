@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-10-18 18:08:37
+Date: 2017-10-19 18:07:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,14 +20,14 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `common_dict`;
 CREATE TABLE `common_dict` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
-  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识【默认0】',
-  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `ident` varchar(20) DEFAULT NULL COMMENT '唯一标识',
-  `color` char(7) DEFAULT NULL COMMENT '颜色',
-  `is_sys` tinyint(1) DEFAULT '0' COMMENT '是否系统字典',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT '0',
+  `level` tinyint(2) DEFAULT NULL,
+  `ident` varchar(20) DEFAULT NULL,
+  `color` char(7) DEFAULT NULL,
+  `is_sys` tinyint(1) DEFAULT '0',
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
 
@@ -69,16 +69,16 @@ INSERT INTO `common_dict` VALUES ('37', '开发者', '35', '2', 'dev', '#d9534f'
 -- ----------------------------
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `variable` varchar(100) DEFAULT NULL COMMENT '变量名',
-  `value` varchar(500) DEFAULT NULL COMMENT '值',
-  `category` varchar(20) DEFAULT NULL COMMENT '类别',
-  `type` varchar(50) DEFAULT NULL COMMENT '配置项类型',
-  `param` varchar(100) DEFAULT NULL COMMENT '参数',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) unsigned DEFAULT '100' COMMENT '排序',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `variable` varchar(100) DEFAULT NULL,
+  `value` varchar(500) DEFAULT NULL,
+  `category` varchar(20) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `param` varchar(100) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) unsigned DEFAULT '100',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='基本配置表';
 
@@ -99,11 +99,11 @@ INSERT INTO `config` VALUES ('8', '关闭说明', 'close_explain', '网站升级
 -- ----------------------------
 DROP TABLE IF EXISTS `config_group`;
 CREATE TABLE `config_group` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `category` varchar(20) DEFAULT NULL COMMENT '类别',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `category` varchar(20) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT '100',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统配置组';
 
@@ -118,20 +118,20 @@ INSERT INTO `config_group` VALUES ('2', '网站状态', 'status', 'show', '100')
 -- ----------------------------
 DROP TABLE IF EXISTS `info_article`;
 CREATE TABLE `info_article` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(500) DEFAULT NULL COMMENT '标题',
-  `original_link` varchar(255) DEFAULT NULL COMMENT '原文链接',
-  `auther` varchar(30) DEFAULT NULL COMMENT '作者',
-  `image` varchar(10) DEFAULT NULL COMMENT '图片',
-  `content` text COMMENT '内容',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '状态',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `cid` int(10) DEFAULT NULL,
+  `title` varchar(500) DEFAULT NULL,
+  `original_link` varchar(255) DEFAULT NULL,
+  `auther` varchar(30) DEFAULT NULL,
+  `image` varchar(10) DEFAULT NULL,
+  `content` text,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT '100',
+  `create_time` int(10) DEFAULT NULL,
+  `create_user` int(10) DEFAULT NULL,
+  `update_time` int(10) DEFAULT NULL,
+  `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
@@ -144,19 +144,19 @@ CREATE TABLE `info_article` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_cases`;
 CREATE TABLE `info_cases` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(10) DEFAULT NULL COMMENT '信息栏目标识',
-  `title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `image` int(10) DEFAULT NULL COMMENT '缩略图',
-  `images` varchar(255) DEFAULT NULL COMMENT '图片',
-  `content` text COMMENT '内容',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `cid` int(10) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `image` int(10) DEFAULT NULL,
+  `images` varchar(255) DEFAULT NULL,
+  `content` text,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT '100',
+  `create_time` int(10) DEFAULT NULL,
+  `create_user` int(10) DEFAULT NULL,
+  `update_time` int(10) DEFAULT NULL,
+  `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息案例表';
 
@@ -169,21 +169,21 @@ CREATE TABLE `info_cases` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_category`;
 CREATE TABLE `info_category` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
-  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识',
-  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `model_id` int(11) DEFAULT NULL COMMENT '模型',
-  `dir` varchar(30) DEFAULT NULL COMMENT '目录',
-  `url` varchar(255) DEFAULT NULL COMMENT '链接',
-  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
-  `seo_title` varchar(80) DEFAULT NULL COMMENT 'SEO标题',
-  `seo_desc` varchar(200) DEFAULT NULL COMMENT 'SEO描述',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
-  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
-  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT '0',
+  `level` tinyint(2) DEFAULT NULL,
+  `model_id` int(11) DEFAULT NULL,
+  `dir` varchar(30) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `target` varchar(10) DEFAULT NULL,
+  `seo_title` varchar(80) DEFAULT NULL,
+  `seo_desc` varchar(200) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `is_add_next` tinyint(1) DEFAULT '1',
+  `is_update` tinyint(1) DEFAULT '1',
+  `is_del` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息栏目表';
 
@@ -202,18 +202,19 @@ INSERT INTO `info_category` VALUES ('6', '关于我们', '0', '1', '3', '', '', 
 -- ----------------------------
 DROP TABLE IF EXISTS `info_category_adv`;
 CREATE TABLE `info_category_adv` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `cid` int(11) DEFAULT NULL COMMENT '信息栏目标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
-  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
-  `create_user` int(10) DEFAULT NULL COMMENT '创建者',
-  `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
-  `update_user` int(10) DEFAULT NULL COMMENT '更新者',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `ident` varchar(50) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `create_time` int(10) DEFAULT NULL,
+  `create_user` int(10) DEFAULT NULL,
+  `update_time` int(10) DEFAULT NULL,
+  `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息栏目广告表';
 
@@ -226,13 +227,13 @@ CREATE TABLE `info_category_adv` (
 -- ----------------------------
 DROP TABLE IF EXISTS `info_model`;
 CREATE TABLE `info_model` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` char(50) DEFAULT NULL COMMENT '名称',
-  `model` varchar(20) DEFAULT NULL COMMENT '模型',
-  `list_model` varchar(50) DEFAULT NULL COMMENT '列表模型',
-  `detail_model` varchar(50) DEFAULT NULL COMMENT '详细模型',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` char(50) DEFAULT NULL,
+  `model` varchar(20) DEFAULT NULL,
+  `list_model` varchar(50) DEFAULT NULL,
+  `detail_model` varchar(50) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息模型表';
 
@@ -248,9 +249,9 @@ INSERT INTO `info_model` VALUES ('3', '单页', 'info_page', 'page', '', 'show',
 -- ----------------------------
 DROP TABLE IF EXISTS `info_page`;
 CREATE TABLE `info_page` (
-  `cid` int(10) unsigned NOT NULL COMMENT '信息栏目标识',
-  `content` text COMMENT '内容',
-  `create_time` int(10) DEFAULT NULL COMMENT '创建时间',
+  `cid` int(10) unsigned NOT NULL,
+  `content` text,
+  `create_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息单页表';
 
@@ -264,13 +265,13 @@ INSERT INTO `info_page` VALUES ('6', '<p>关于我们内容</p>', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `link`;
 CREATE TABLE `link` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
-  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `thumb` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接表';
 
@@ -283,19 +284,19 @@ CREATE TABLE `link` (
 -- ----------------------------
 DROP TABLE IF EXISTS `navigation`;
 CREATE TABLE `navigation` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
-  `pid` int(10) unsigned DEFAULT '0' COMMENT '分类所属上级标识',
-  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `col` tinyint(10) DEFAULT NULL COMMENT '栏目',
-  `url` varchar(255) DEFAULT NULL COMMENT '链接',
-  `target` varchar(10) DEFAULT NULL COMMENT '打开方式',
-  `position` varchar(10) DEFAULT NULL COMMENT '位置',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
-  `is_add_next` tinyint(1) DEFAULT '1' COMMENT '是否允许新增下级：0=否，1=是',
-  `is_update` tinyint(1) DEFAULT '1' COMMENT '是否允许编辑：0=否，1=是',
-  `is_del` tinyint(1) DEFAULT '1' COMMENT '是否允许删除：0=否，1=是',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT '0',
+  `level` tinyint(2) DEFAULT NULL,
+  `category` tinyint(10) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `target` varchar(10) DEFAULT NULL,
+  `position` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `is_add_next` tinyint(1) DEFAULT '1',
+  `is_update` tinyint(1) DEFAULT '1',
+  `is_del` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航表';
 
@@ -308,13 +309,13 @@ CREATE TABLE `navigation` (
 -- ----------------------------
 DROP TABLE IF EXISTS `slide`;
 CREATE TABLE `slide` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(100) DEFAULT NULL COMMENT '名称',
-  `image` varchar(100) DEFAULT NULL COMMENT '上传文件标识',
-  `url` varchar(255) DEFAULT NULL COMMENT '跳转链接',
-  `target` varchar(10) DEFAULT NULL COMMENT 'url打开方式',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='幻灯片表';
 
@@ -328,9 +329,9 @@ CREATE TABLE `slide` (
 DROP TABLE IF EXISTS `sys_login_log`;
 CREATE TABLE `sys_login_log` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) DEFAULT NULL COMMENT '用户标识',
-  `login_ip` varchar(20) DEFAULT NULL COMMENT '登录ip地址',
-  `login_time` int(10) DEFAULT NULL COMMENT '登录时间',
+  `user_id` int(10) DEFAULT NULL,
+  `login_ip` varchar(20) DEFAULT NULL,
+  `login_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
@@ -349,17 +350,17 @@ INSERT INTO `sys_login_log` VALUES ('6', '4', '::1', '1506774812');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `name` varchar(20) DEFAULT NULL COMMENT '名称',
-  `is_menu` tinyint(1) DEFAULT '1' COMMENT '是否是菜单：0=否，1=是',
-  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
-  `pid` int(10) DEFAULT '0' COMMENT '上级标识',
-  `level` tinyint(2) DEFAULT NULL COMMENT '级别',
-  `url` varchar(255) DEFAULT NULL COMMENT '链接',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `user_type` varchar(10) DEFAULT NULL COMMENT '用户类型',
-  `display` char(4) DEFAULT NULL COMMENT '显示',
-  `sort` int(10) DEFAULT '100' COMMENT '排序',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `is_menu` tinyint(1) DEFAULT '1',
+  `icon` varchar(50) DEFAULT NULL,
+  `pid` int(10) DEFAULT '0',
+  `level` tinyint(2) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `user_type` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT '100',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
@@ -398,8 +399,8 @@ INSERT INTO `sys_menu` VALUES ('55', '单页', '0', 'fa fa-file-text', '13', '3'
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu_auth`;
 CREATE TABLE `sys_menu_auth` (
-  `sys_menu_id` int(10) NOT NULL COMMENT '系统菜单标识',
-  `sys_menu_auth` varchar(10) NOT NULL COMMENT '系统菜单权限标识'
+  `sys_menu_id` int(10) NOT NULL,
+  `sys_menu_auth` varchar(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统菜单权限表';
 
 -- ----------------------------
@@ -507,17 +508,17 @@ INSERT INTO `sys_menu_auth` VALUES ('55', 'update');
 DROP TABLE IF EXISTS `sys_oplog`;
 CREATE TABLE `sys_oplog` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) DEFAULT NULL COMMENT '用户标识',
-  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
-  `col_name` varchar(10) DEFAULT NULL COMMENT '栏目名称',
-  `opera` varchar(20) DEFAULT NULL COMMENT '操作',
-  `status` varchar(10) DEFAULT NULL COMMENT '状态',
-  `browser` varchar(50) DEFAULT NULL COMMENT '浏览器名称',
-  `version` varchar(50) DEFAULT NULL COMMENT '浏览器版本号',
-  `platform` varchar(50) DEFAULT NULL COMMENT '平台',
-  `hostname` varchar(50) DEFAULT NULL COMMENT '主机名',
-  `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
-  `time` int(10) DEFAULT NULL COMMENT '时间',
+  `user_id` int(10) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `menu_name` varchar(10) DEFAULT NULL,
+  `opera` varchar(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `browser` varchar(50) DEFAULT NULL,
+  `version` varchar(50) DEFAULT NULL,
+  `platform` varchar(50) DEFAULT NULL,
+  `hostname` varchar(50) DEFAULT NULL,
+  `ip` varchar(30) DEFAULT NULL,
+  `time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
@@ -531,10 +532,10 @@ CREATE TABLE `sys_oplog` (
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
+  `name` varchar(50) DEFAULT NULL,
   `role_type` tinyint(1) DEFAULT '2' COMMENT '角色类型：0=开发者，1=超级管理员【拥有所有生产者的权限】，2=普通管理员',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `remark` varchar(100) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='系统角色表';
 
@@ -550,9 +551,9 @@ INSERT INTO `sys_role` VALUES ('4', '开发者', '0', '开发者', '100');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_auth`;
 CREATE TABLE `sys_role_auth` (
-  `role_id` int(10) DEFAULT NULL COMMENT '角色标识',
-  `sys_menu_id` int(10) DEFAULT NULL COMMENT '系统菜单标识',
-  `sys_menu_auth` varchar(10) DEFAULT NULL COMMENT '系统菜单权限'
+  `role_id` int(10) DEFAULT NULL,
+  `sys_menu_id` int(10) DEFAULT NULL,
+  `sys_menu_auth` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统角色权限表';
 
 -- ----------------------------
@@ -600,15 +601,15 @@ INSERT INTO `sys_role_auth` VALUES ('3', '18', 'update');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '标识',
-  `role_id` int(10) unsigned DEFAULT NULL COMMENT '角色标识',
-  `username` varchar(50) DEFAULT NULL COMMENT '用户名',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   `user_type` tinyint(1) DEFAULT '2' COMMENT '用户类型：0=开发者，1=系统默认，2=普通',
-  `password` varchar(50) DEFAULT NULL COMMENT '密码',
-  `realname` varchar(50) DEFAULT NULL COMMENT '姓名',
-  `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
-  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `status` char(6) DEFAULT NULL COMMENT '状态',
+  `password` varchar(50) DEFAULT NULL,
+  `realname` varchar(50) DEFAULT NULL,
+  `nickname` varchar(50) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `status` char(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
@@ -624,9 +625,9 @@ INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e05
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_auth`;
 CREATE TABLE `sys_user_auth` (
-  `user_id` int(10) DEFAULT NULL COMMENT '角色标识',
-  `sys_menu_id` int(10) DEFAULT NULL COMMENT '系统菜单标识',
-  `sys_menu_auth` varchar(10) DEFAULT NULL COMMENT '系统菜单权限'
+  `user_id` int(10) DEFAULT NULL,
+  `sys_menu_id` int(10) DEFAULT NULL,
+  `sys_menu_auth` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统用户权限表';
 
 -- ----------------------------
@@ -645,7 +646,7 @@ INSERT INTO `sys_user_auth` VALUES ('6', '4', '');
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
 CREATE TABLE `uploads` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章ID',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `file_name` varchar(255) DEFAULT NULL COMMENT '文件名',
   `file_type` varchar(50) DEFAULT NULL COMMENT '文件类型【MIME】',
   `abs_path_dir` varchar(255) DEFAULT NULL COMMENT '绝对路径目录',

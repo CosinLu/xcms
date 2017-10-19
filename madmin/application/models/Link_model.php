@@ -21,7 +21,7 @@ class Link_model extends CI_Model
         $this->db->select('t2.rel_path');
         $this->db->from('link t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
-        $this->db->join('uploads t2', 't2.id=t.image', 'left');
+        $this->db->join('uploads t2', 't2.id=t.thumb', 'left');
         if ($key != '') {
             $this->db->like('t.name', $key);
         }

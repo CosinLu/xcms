@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">选择栏目</div>
                                 <div class="col-xs-3">
-                                    <?=$col?>
+                                    <?=$category?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -94,13 +94,13 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['jquery'], function ($) {
-        var $_selectCol = $('select[name="col"]');
+        var $_selectCategory = $('select[name="category"]');
         var $_inputUrl = $('input[name="url"]');
         //栏目和url联动
         //载入时重置
-        $_inputUrl.val($_selectCol.find('option:selected').data('content').dir);
+        $_inputUrl.val($_selectCategory.find('option:selected').data('content').dir);
         //改变时重置
-        $_selectCol.on('change', function () {
+        $_selectCategory.on('change', function () {
             var dataContent = $(this).find('option:selected').data('content');
             $('input[name="url"]').val(dataContent.dir);
         });

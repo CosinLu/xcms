@@ -3,6 +3,7 @@ pre {
     border: 1px solid #ccc;
     font-size: 0.8em;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    border-radius: 2px !important;
 }
 
 blockquote {

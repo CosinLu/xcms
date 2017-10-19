@@ -30,11 +30,11 @@ class Operation_log
     /**
      * 插入操作日志
      *
-     * @param string $col_name 栏目名
+     * @param string $menu_name 栏目名
      * @param string $opera_code 操作：1=新增，2=修改，3=删除
      * @param int $status 状态：error=失败，success=成功
      */
-    public function insert($col_name = '', $opera_code = '', $status = '')
+    public function insert($menu_name = '', $opera_code = '', $status = '')
     {
         //禁止本地操作加入操作日志
         if ($this->ip = '127.0.0.1') return;
@@ -53,7 +53,7 @@ class Operation_log
         $vals = array(
             'user_id' => $this->user_id,
             'username' => $this->username,
-            'col_name' => $col_name,
+            'menu_name' => $menu_name,
             'opera' => $opera,
             'status' => $status ? 'success' : 'fail',
             'browser' => $this->browser,

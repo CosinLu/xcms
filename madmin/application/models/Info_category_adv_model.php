@@ -62,7 +62,7 @@ class info_category_adv_model extends CI_Model
     }
 
     //信息栏目
-    public function info_category()
+    public function category()
     {
         $this->db->order_by('sort asc,id asc');
         $this->db->where(array(

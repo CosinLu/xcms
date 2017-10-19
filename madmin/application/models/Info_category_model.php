@@ -27,7 +27,6 @@ class Info_category_model extends CI_Model
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
         $res['list'] = $this->tree->serialize($res);
-        $res['total'] = count($res);
 
         return $res;
     }

@@ -9,13 +9,13 @@ defined('BASEPATH') OR exit('Error');
  */
 class Api extends MY_Controller
 {
-    protected $col_name;
+    protected $menu_name;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('api_model');
-        $this->col_name = (urldecode($this->input->get('col_name'))) ?: $this->section_name;
+        $this->menu_name = (urldecode($this->input->get('menu_name'))) ?: $this->section_name;
     }
 
     //删除
@@ -26,7 +26,7 @@ class Api extends MY_Controller
         $primary = $this->input->post('primary') ?: 'id';
         $rows = $this->api_model->del($tbname, $id, $primary);
         //写入日志
-        $this->oplog->insert($this->col_name, '3', $rows);
+        $this->oplog->insert($this->menu_name, '3', $rows);
         echo $rows;
     }
 
@@ -38,7 +38,7 @@ class Api extends MY_Controller
         $primary = $this->input->post('primary') ?: 'id';
         $rows = $this->api_model->batch_del($tbname, $id, $primary);
         //写入日志
-        $this->oplog->insert($this->col_name, '3', $rows);
+        $this->oplog->insert($this->menu_name, '3', $rows);
         echo $rows;
     }
 }

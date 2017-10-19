@@ -63,20 +63,20 @@ class Link extends MY_Controller
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
         ));
-        $data['uploads']['image'] = $this->upload->result($data['item']['image']);
+        $data['uploads']['thumb'] = $this->upload->result($data['item']['thumb']);
         $this->load->view('link/update.html', $data);
     }
 
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
+        $thumb = $this->input->post('thumb');
         $url = $this->input->post('url');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
-                'image' => empty($image) ? '' : implode(',', $image),
+                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
                 'url' => $url ?: prep_url($url),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
