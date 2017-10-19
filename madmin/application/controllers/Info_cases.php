@@ -67,7 +67,7 @@ class Info_cases extends Info
         $id = $this->input->get('id');
         $data['item'] = $this->info_cases_model->update($id);
         $data['cols'] = $this->tree->ddl($this->info_model->data(), 'cid', $data['item']['cid'], '', $this->model_id());
-        $data['uploads'] = $this->upload->result(array(
+        $data['uploads'] = $this->upload->get(array(
             array('image', $data['item']['image']),
             array('images', $data['item']['images'])
         ));
