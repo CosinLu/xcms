@@ -37,7 +37,7 @@ class Operation_log
     public function insert($menu_name = '', $opera_code = '', $status = '')
     {
         //禁止本地操作加入操作日志
-        if ($this->ip = '127.0.0.1') return;
+        if ($this->ip == '127.0.0.1') return;
 
         switch ($opera_code) {
             case '1':

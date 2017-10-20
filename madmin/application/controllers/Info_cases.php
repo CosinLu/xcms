@@ -68,7 +68,7 @@ class Info_cases extends Info
         $data['item'] = $this->info_cases_model->update($id);
         $data['cols'] = $this->tree->ddl($this->info_model->data(), 'cid', $data['item']['cid'], '', $this->model_id());
         $data['uploads'] = $this->upload->get(array(
-            array('image', $data['item']['image']),
+            array('thumb', $data['item']['thumb']),
             array('images', $data['item']['images'])
         ));
         $data['dict'] = $this->dictionary->dict(array(
@@ -82,14 +82,14 @@ class Info_cases extends Info
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
+        $thumb = $this->input->post('thumb');
         $images = $this->input->post('images');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'title' => $this->input->post('title'),
-                'image' => empty($image) ? '' : implode(',', $image),
+                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
                 'images' => empty($images) ? '' : implode(',', $images),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),

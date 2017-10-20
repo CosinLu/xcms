@@ -80,7 +80,6 @@ class Info_article extends Info
     public function save()
     {
         $thumb = $this->input->post('thumb');
-        $tags = $this->input->post('tags');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
