@@ -59,7 +59,7 @@ class Slide extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['item'] = $this->slide_model->update($id);
-        $data['uploads']['image'] = $this->upload->result($data['item']['image']);
+        $data['uploads']['image'] = $this->upload->get('image',$data['item']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])

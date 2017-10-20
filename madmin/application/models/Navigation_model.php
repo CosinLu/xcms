@@ -23,9 +23,8 @@ class Navigation_model extends CI_Model
         $this->db->from('navigation t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         $this->db->join('common_dict t2', "t2.ident='position'", 'left');
-        $this->db->join('common_dict t3', 't3.pid=t2.id', 'left');
+        $this->db->join('common_dict t3', "t3.pid=t2.id and instr(concat(',',t.position,','),concat(',',t3.ident,','))>0", 'left');
         $this->db->order_by('t.sort asc,t.id asc');
-        $this->db->where("instr(concat(',',t.position,','),concat(',',t3.ident,','))>", 0);
         $this->db->group_by('t.id');
         $res = $this->db->get()->result_array();
         $res['list'] = $this->tree->serialize($res);

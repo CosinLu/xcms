@@ -1,9 +1,17 @@
 /*可以在这里添加你自己的css*/
+* {
+    font-family: "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+
 pre {
-    border: 1px solid #ccc;
     font-size: 0.8em;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     border-radius: 2px !important;
+
+    border: 0;
+    background: #f8f8f8;
+    padding: 8px 15px;
+    line-height: 24px;
 }
 
 blockquote {

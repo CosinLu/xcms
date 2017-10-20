@@ -85,7 +85,7 @@ class MY_Upload extends CI_Upload
      * @param string $p2
      * @return string
      */
-    public function result($arr = array())
+    public function get($arr = array())
     {
         $res = array();
         if (is_array($arr)) {
@@ -93,7 +93,7 @@ class MY_Upload extends CI_Upload
                 $val = array_pad($val, 2, '');
                 $name = $val[0];
                 $id = $val[1];
-                $res[$name] = $this->get_data($id);
+                $res[$name] = $this->record($id);
                 if (!empty($res[$name])) {
                     foreach ($res[$name] as $key => $sub_val) {
                         $res[$name][$key]['thumb_rel_path'] = $sub_val['is_image'] ? $sub_val['raw_rel_path'] . config_item('my_thumb_marker') . $sub_val['file_ext'] : '';
@@ -101,7 +101,7 @@ class MY_Upload extends CI_Upload
                 }
             }
         } else {
-            $res = $this->get_data($arr);
+            $res = $this->record($arr);
             if (!empty($res)) {
                 foreach ($res as $key => $val) {
                     $res[$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
@@ -109,8 +109,12 @@ class MY_Upload extends CI_Upload
             }
         }
 
-        foreach ($res as $key => $val) {
-            $res[$key] = json_encode($val);
+        if (is_array($arr)) {
+            foreach ($res as $key => $val) {
+                $res[$key] = json_encode($val);
+            }
+        } else {
+            $res = json_encode($res);
         }
 
         return $res;
@@ -122,7 +126,7 @@ class MY_Upload extends CI_Upload
      * @param string $id
      * @return string
      */
-    public function get_data($id = '')
+    public function record($id = '')
     {
         if ($id == '') return array();
         $id_arr = explode(',', $id);
