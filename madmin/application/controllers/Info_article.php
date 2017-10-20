@@ -42,7 +42,7 @@ class Info_article extends Info
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['title'] = $val['title'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
-            $data['list']['list'][$key]['create_time'] = date('m/d H:i', $val['create_time']);
+            $data['list']['list'][$key]['create_time'] = date('Y-m-d H:i', $val['create_time']);
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('info_article/update?cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_article" data-id="' . $val['id'] . '" data-url="' . site_url('api/del?cid=' . $this->cid . '&menu_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
@@ -67,7 +67,7 @@ class Info_article extends Info
         $id = $this->input->get('id');
         $data['item'] = $this->info_article_model->update($id);
         $data['cols'] = $this->tree->ddl($this->info_model->data(), 'cid', $data['item']['cid'], '', $this->model_id());
-        $data['uploads']['image'] = $this->upload->result($data['item']['image']);
+        $data['uploads']['thumb'] = $this->upload->get($data['item']['thumb']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['item']['target']),
             array('rbl', 'display', 'display', $data['item']['display'])
@@ -79,7 +79,7 @@ class Info_article extends Info
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
+        $thumb = $this->input->post('thumb');
         $tags = $this->input->post('tags');
         $post = array(
             'id' => $this->input->post('id'),
@@ -88,7 +88,7 @@ class Info_article extends Info
                 'title' => $this->input->post('title'),
                 'original_link' => $this->input->post('original_link'),
                 'auther' => $this->input->post('auther'),
-                'image' => empty($image) ? '' : implode(',', $image),
+                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),

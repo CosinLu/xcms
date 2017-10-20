@@ -24,7 +24,7 @@
             <div class="section_container">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div class="panel-title"><?=$main_section_name.go_back()?></div>
+                        <div class="panel-title"><?=$section_name.go_back()?></div>
                     </div>
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
@@ -56,11 +56,12 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">图片</div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-8">
                                     <div class="uploads-panel">
-                                        <div id="image" class="uploads-queue uploads-queue-hook"
-                                             data-list='<?=$uploads["image"]?>'></div>
-                                        <input data-name="image" class="uploads-btn-hook hidden" type="file" data-cloud="true">
+                                        <div id="thumb" class="uploads-queue uploads-queue-hook"
+                                             data-list='<?=$uploads["thumb"]?>'></div>
+                                        <input data-name="thumb" class="uploads-btn-hook hidden" type="file"
+                                               data-cloud="true">
                                     </div>
                                 </div>
                             </div>
