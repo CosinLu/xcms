@@ -18,13 +18,13 @@
                 <div class="login_header">
                     <!--<h4>用户登录</h4>-->
                     <img src="images/logo.png" alt="">
-                    <p class="text-muted">MCMS内容管理系统
+                    <p class="text-muted">XCMS内容管理系统
                         <small>v3.1.0</small>
                     </p>
                 </div>
                 <form action="<?=$login_url?>" method="post">
                     <div class="form-group">
-                        <input type="text" value="<?=set_value('username','madmin')?>" class="form-control"
+                        <input type="text" value="<?=set_value('username')?>" class="form-control"
                                name="username"
                                autofocus
                                autocomplete="off" placeholder="用户名">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" value="<?=set_value('password','123456')?>" class="form-control"
+                        <input type="password" value="<?=set_value('password')?>" class="form-control"
                                name="password"
                                autocomplete="off" placeholder="密码">
                         <div class="form_alert text-danger">
@@ -59,7 +59,7 @@
         </div>
         <div class="col-lg-5 col-md-6 brand">
             <div class="brand_panel">
-                <h2>MCMS</h2>
+                <h2>XCMS</h2>
                 <p>基于最新 Web 技术的企业级通用管理系统快速开发框架</p>
                 <p>提高工作效率，节省开发成本，提升品牌形象</p>
                 <p>快速开发各种MIS系统，如CMS、OA、CRM、ERP、POS等</p>

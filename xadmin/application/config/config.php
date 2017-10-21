@@ -513,7 +513,7 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-$config['my_title'] = 'MCMS';
+$config['my_title'] = 'XCMS';
 $config['my_loading'] = '<div class="panel-body loading-hook">数据加载中...</div>';
 $config['my_nodata'] = '<div class="panel-body nodata-hook">暂无数据</div>';
 $config['my_err'] = '<div class="panel-body error-hook">数据加载失败</div>';

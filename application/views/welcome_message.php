@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>欢迎使用 MCMS</title>
+    <title>欢迎使用 XCMS</title>
 
     <style type="text/css">
 
@@ -71,15 +71,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-    <h1>欢迎使用 MCMS</h1>
+    <h1>欢迎使用 XCMS</h1>
 
     <div id="body">
         <h3>使用说明</h3>
-        <p>1.将根目录下的mcms.sql数据库导入</p>
+        <p>1.将根目录下的xcms.sql数据库导入</p>
 
         <p>2.修改数据库配置信息</p>
         <code>
-            <p>文件 madmin/application/config/database.php</p>
+            <p>文件 xadmin/application/config/database.php</p>
             <p>'hostname' => 'localhost',</p>
             <p>'username' => '',</p>
             <p>'password' => '',</p>
@@ -88,10 +88,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <p>3.修改基准路径</p>
         <code>
-            <p>文件 madmin/application/config/config.php</p>
+            <p>文件 xadmin/application/config/config.php</p>
             <p>$config['base_url'] ='';</p>
         </code>
-        <p>初始用户名：admin，密码：123456； <a href="madmin" target="_blank">后台入口</a></p>
+        <p>初始用户名：admin，密码：123456； <a href="xadmin" target="_blank">后台入口</a></p>
         <p>其他信息请参考官方 <a href="http://codeigniter.org.cn/user_guide/" target="_blank">用户手册</a></p>
     </div>
 
