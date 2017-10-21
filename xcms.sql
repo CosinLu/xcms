@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : mcms
+Source Database       : xcms
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-10-19 22:39:46
+Date: 2017-10-21 09:15:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -123,7 +123,7 @@ CREATE TABLE `info_article` (
   `title` varchar(500) DEFAULT NULL,
   `original_link` varchar(255) DEFAULT NULL,
   `auther` varchar(30) DEFAULT NULL,
-  `image` varchar(10) DEFAULT NULL,
+  `thumb` int(10) DEFAULT NULL,
   `content` text,
   `target` varchar(10) DEFAULT NULL,
   `display` char(4) DEFAULT NULL,
@@ -133,11 +133,12 @@ CREATE TABLE `info_article` (
   `update_time` int(10) DEFAULT NULL,
   `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of info_article
 -- ----------------------------
+INSERT INTO `info_article` VALUES ('1', '5', '123124', '', '', '6', '', '_self', 'show', '100', '1508503903', null, null, null);
 
 -- ----------------------------
 -- Table structure for info_cases
@@ -147,7 +148,7 @@ CREATE TABLE `info_cases` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `cid` int(10) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `image` int(10) DEFAULT NULL,
+  `thumb` int(10) DEFAULT NULL,
   `images` varchar(255) DEFAULT NULL,
   `content` text,
   `target` varchar(10) DEFAULT NULL,
@@ -158,11 +159,12 @@ CREATE TABLE `info_cases` (
   `update_time` int(10) DEFAULT NULL,
   `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='信息案例表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息案例表';
 
 -- ----------------------------
 -- Records of info_cases
 -- ----------------------------
+INSERT INTO `info_cases` VALUES ('1', '2', '12345', '7', '3,4,5', '', '_self', 'show', '100', '1508503553', null, null, null);
 
 -- ----------------------------
 -- Table structure for info_category
@@ -333,7 +335,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL,
   `login_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -345,6 +347,8 @@ INSERT INTO `sys_login_log` VALUES ('4', '4', '::1', '1506745776');
 INSERT INTO `sys_login_log` VALUES ('5', '4', '::1', '1506754980');
 INSERT INTO `sys_login_log` VALUES ('6', '4', '::1', '1506774812');
 INSERT INTO `sys_login_log` VALUES ('7', '4', '::1', '1508416123');
+INSERT INTO `sys_login_log` VALUES ('8', '4', '::1', '1508503547');
+INSERT INTO `sys_login_log` VALUES ('9', '4', '::1', '1508548296');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -619,7 +623,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('2', '1', 'admin', '1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, 'normal');
 INSERT INTO `sys_user` VALUES ('3', '3', 'demo', '2', 'e10adc3949ba59abbe56e057f20f883e', 'demo', null, null, 'normal');
-INSERT INTO `sys_user` VALUES ('4', '4', 'madmin', '0', 'e10adc3949ba59abbe56e057f20f883e', 'Meng Xianghan', '开发者', null, 'normal');
+INSERT INTO `sys_user` VALUES ('4', '4', 'xadmin', '0', 'e10adc3949ba59abbe56e057f20f883e', 'Meng Xianghan', '开发者', null, 'normal');
 
 -- ----------------------------
 -- Table structure for sys_user_auth
@@ -667,9 +671,15 @@ CREATE TABLE `uploads` (
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
 INSERT INTO `uploads` VALUES ('1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170930/', 'D:/wamp/www/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', '/uploads/upload/20170930/', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'b9e23b5c278c0f238f3217e444ba0ee1', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('2', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '33d177d5d1c42db9b24c007fd6ef4d48', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('3', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'a6bb7d26a8e54095ae30ec6bb421604d', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', '59ace85aNf6612abe.jpg', '.jpg', '64.76', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('4', '94e9a04b72b05a7e3f033b2914ff6886.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '94e9a04b72b05a7e3f033b2914ff6886', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886', '94e9a04b72b05a7e3f033b2914ff6886.jpg', '59ad20b0Ne7fda0f0.jpg', '.jpg', '95.12', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('5', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '7d79a11e12cd8ad87860d93db0f83dc3', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', '59ad205aN2f73c174.jpg', '.jpg', '148.52', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('6', '4594e0810e3359ba3ee598e2a5f1f437.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '4594e0810e3359ba3ee598e2a5f1f437', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437', '4594e0810e3359ba3ee598e2a5f1f437.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
+INSERT INTO `uploads` VALUES ('7', '1b16e684093528dd45adfb3dc871dd59.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '1b16e684093528dd45adfb3dc871dd59', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59', '1b16e684093528dd45adfb3dc871dd59.jpg', 'logo-001.jpg', '.jpg', '21.01', '1', '127', '127', 'jpeg', 'width=\"640\" height=\"640\"', null);
