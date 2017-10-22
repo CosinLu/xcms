@@ -34,14 +34,17 @@
                                 <div class="col-xs-2 control-label">用户名</div>
                                 <div class="col-xs-3">
                                     <input type="text" name="username" value="<?=$item['username']?>"
-                                           class="form-control">
+                                           class="form-control"
+                                           datatype="*"
+                                           ajaxurl="<?=site_url('sys_user/check_username?id='.$item['id'])?>">
                                 </div>
                                 <div class="col-xs-4 form-control-static msg-hook"></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">密码</div>
                                 <div class="col-xs-3">
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control" datatype="*6-20"
+                                           ignore="ignore">
                                     <span class="help-block">不填写则不修改</span>
                                 </div>
                             </div>
@@ -85,7 +88,9 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
     require(['unit'], function (unit) {
-        unit.ajaxForm();
+        unit.ajaxForm({
+            tiptype: 3
+        });
     });
 </script>
 </body>

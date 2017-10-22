@@ -71,8 +71,7 @@ require.config({
             deps: ['jquery']
         },
         'form': {
-            deps: ['jquery',
-                'css!plugin/validform/Validform_v5.3.2.css']
+            deps: ['jquery']
         }
     }
 
@@ -103,9 +102,6 @@ require(['jquery', 'unit', 'layer', 'bootstrap'], function ($, unit) {
 
     //批量删除
     unit.batchDel();
-
-    //异步提交表单
-    unit.ajaxForm();
 
     //缩略图预览
     unit.imagePreview();

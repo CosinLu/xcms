@@ -109,7 +109,8 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['iconpicker'], function () {
+    require(['unit','iconpicker'], function (unit) {
+        unit.ajaxForm();
         $('[name="icon"]').iconpicker({
             placement: 'bottomRight'
         });

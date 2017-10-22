@@ -85,7 +85,8 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['uploads'], function () {
+    require(['unit','uploads'], function (unit) {
+        unit.ajaxForm();
     });
 </script>
 </body>

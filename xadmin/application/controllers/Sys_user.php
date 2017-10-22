@@ -116,14 +116,15 @@ class Sys_user extends MY_Controller
     }
 
     //验证用户名
-    public function check_username($id = '')
+    public function check_username()
     {
+        $id = $this->input->get('id');
         $username = $this->input->post('param');
         $res = $this->sys_user_model->check_username($username, $id);
-        if(empty($res)){
-            return '验证通过';
-        }else{
-            return '验证失败';
+        if ($res) {
+            echo '{"info":"用户名已存在","status":"n"}';
+        } else {
+            echo '{"info":"","status":"y"}';
         }
     }
 
