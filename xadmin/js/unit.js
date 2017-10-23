@@ -24,13 +24,13 @@ define(['jquery', 'layer'], function ($) {
                     nodataDom: '<div class="panel-body nodata-hook">暂无数据</div>',
                     errordataDom: '<div class="panel-body error-hook">数据加载失败</div>',
                     beforeSend: function () {
-                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
+                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         $(opt.listBodyEle).html('');
                         if (opt.paginationEle.length) $(opt.paginationEle).html('');
                         if (opt.listEle.length) $(opt.listEle).after(opt.loadingDom);
                     },
                     success: function (data) {
-                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
+                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         if (data.list.list.length) {
                             $(opt.listBodyEle).html(template(opt.listTpl, data.list));
                             if ($(opt.listBodyEle).find('img').length) {
@@ -48,7 +48,7 @@ define(['jquery', 'layer'], function ($) {
                         }
                     },
                     error: function () {
-                        $(opt.nodataEle + ',' + opt.loadingEle+ ',' + opt.errordataEle).remove();
+                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         if (opt.listEle.length) $(opt.listEle).after(opt.errordataDom);
                     }
                 };
@@ -177,8 +177,9 @@ define(['jquery', 'layer'], function ($) {
                 var tbname = $(this).data('tb') || '';
                 var url = $(this).data('url') || '';
                 var primary = $(this).data('primary') || '';
-                var checkname = ($(this).data('checkname')) ? $(this).data('checkname') : 'id';
+                var checkname = $(this).data('checkname') ? $(this).data('checkname') : 'id';
                 var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
+                var menu = $(this).data('menu') || '';
                 var id = '';
                 //遍历已选中checkbox并获得val
                 checkbox.each(function () {
@@ -194,7 +195,7 @@ define(['jquery', 'layer'], function ($) {
                     $.ajax({
                         url: url,
                         type: 'post',
-                        data: {tbname: tbname, id: id, primary: primary},
+                        data: {tbname: tbname, id: id, primary: primary, menu: menu},
                         beforeSend: function () {
                             layer.msg('正在删除数据...', {icon: 16, shade: 0.6});
                         },
@@ -219,6 +220,7 @@ define(['jquery', 'layer'], function ($) {
                 var id = $(this).data('id');
                 var url = $(this).data('url');
                 var primary = $(this).data('primary');
+                var menu = $(this).data('menu') || '';
                 if (tbname == '' || id == '' || url == '') {
                     layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
                     return;
@@ -227,7 +229,7 @@ define(['jquery', 'layer'], function ($) {
                     $.ajax({
                         url: url,
                         type: 'post',
-                        data: {tbname: tbname, id: id, primary: primary},
+                        data: {tbname: tbname, id: id, primary: primary, menu: menu},
                         beforeSend: function () {
                             layer.msg('正在删除数据...', {icon: 16, shade: 0.6});
                         },

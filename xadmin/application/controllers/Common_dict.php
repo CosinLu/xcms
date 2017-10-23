@@ -57,7 +57,7 @@ class Common_dict extends MY_Controller
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="' . site_url('common_dict?pid=' . $val['id']) . '">编辑属性</a>';
             }
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('common_dict/update?id=' . $val['id'] . '&pid=' . $val['pid']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('common_dict/del?pid=' . $this->pid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-id="' . $val['id'] . '" data-url="' . site_url('common_dict/del?pid=' . $this->pid . '&menu_name=' . urlencode($this->section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -75,7 +75,7 @@ class Common_dict extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['pid'] = $this->pid;
-        $data['item'] = $this->common_dict_model->update($id);
+        $data['record'] = $this->common_dict_model->update($id);
         $data['common_dict_type'] = $this->common_dict_model->common_dict_type();
         $this->load->view('common_dict/update.html', $data);
     }

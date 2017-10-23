@@ -64,7 +64,7 @@ class Navigation extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $id);
+        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $id, '', '', array(0, '主导航'));
         $data['category'] = $this->tree->ddl($this->navigation_model->category(), 'category', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
@@ -78,13 +78,13 @@ class Navigation extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->navigation_model->update($id);
-        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['record'] = $this->navigation_model->update($id);
+        $data['type'] = $this->tree->ddl($this->navigation_model->data(), 'pid', $data['record']['pid'], $data['record']['id'], '', array(0, '主导航'));
         $data['category'] = $this->tree->ddl($this->navigation_model->category(), 'category', '', '', '', array('', '-请选择-'));
         $data['dict'] = $this->dictionary->dict(array(
-            array('rbl', 'target', 'target', $data['item']['target']),
-            array('cbl', 'position', 'position', $data['item']['position']),
-            array('rbl', 'display', 'display', $data['item']['display'])
+            array('rbl', 'target', 'target', $data['record']['target']),
+            array('cbl', 'position', 'position', $data['record']['position']),
+            array('rbl', 'display', 'display', $data['record']['display'])
         ));
         $this->load->view('navigation/update.html', $data);
     }

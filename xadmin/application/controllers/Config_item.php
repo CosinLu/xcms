@@ -23,7 +23,7 @@ class Config_item extends MY_Controller
     {
         $url['get_list_url'] = site_url('config_item/get_list?category=' . $this->category);
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_item/insert?category=' . $this->category) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-checkname="id" data-url = "' . site_url('api/batch_del?category=' . $this->category) . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-checkname="id" data-menu="' . $this->section_name . '" data-url = "' . site_url('api/batch_del?category=' . $this->category) . '">删除</a>');
         $url['save_url'] = site_url('config_item/save?category=' . $this->category);
         $this->load->vars($url);
     }
@@ -42,7 +42,7 @@ class Config_item extends MY_Controller
         foreach ($data['list']['list'] as $key => $val) {
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('config_item/update?id=' . $val['id'] . '&category=' . $this->category) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="config" data-id="' . $val['id'] . '" data-url="' . site_url('api/del?category=' . $this->category) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="config" data-id="' . $val['id'] . '" data-menu="' . $this->section_name . '" data-url="' . site_url('api/del?category=' . $this->category) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -62,11 +62,11 @@ class Config_item extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->config_item_model->update($id);
-        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['item']['category'], '', TRUE, 'category', 'name');
+        $data['record'] = $this->config_item_model->update($id);
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['record']['category'], '', TRUE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
-            array('rbl', 'display', 'display', $data['item']['display']),
-            array('rbl', 'config_type', 'type', $data['item']['type'])
+            array('rbl', 'display', 'display', $data['record']['display']),
+            array('rbl', 'config_type', 'type', $data['record']['type'])
         ));
         $this->load->view('config_item/update.html', $data);
     }

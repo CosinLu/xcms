@@ -23,7 +23,7 @@
                     </div>
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
-                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <input type="hidden" name="id" value="<?=$record['id']?>">
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">配置组</div>
                                 <div class="col-xs-3">
@@ -33,13 +33,13 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="name" value="<?=$item['name']?>" class="form-control">
+                                    <input type="text" name="name" value="<?=$record['name']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">变量名</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="variable" value="<?=$item['variable']?>"
+                                    <input type="text" name="variable" value="<?=$record['variable']?>"
                                            class="form-control">
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">参数</div>
                                 <div class="col-xs-5">
-                                    <textarea name="param" class="form-control" rows="3"><?=$item['param']?></textarea>
+                                    <textarea name="param" class="form-control" rows="3"><?=$record['param']?></textarea>
                                     <span class="help-block">仅对单选/复选/下拉列表有效，例：1|开启,0|关闭</span>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 <div class="col-xs-2 control-label">备注</div>
                                 <div class="col-xs-5">
                                     <textarea name="remark" class="form-control"
-                                              rows="3"><?=$item['remark']?></textarea>
+                                              rows="3"><?=$record['remark']?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">排序</div>
                                 <div class="col-xs-2">
-                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
+                                    <input type="text" name="sort" value="<?=$record['sort']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">

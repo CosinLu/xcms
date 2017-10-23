@@ -23,7 +23,7 @@ class Info_cases extends Info
     {
         $url['get_list_url'] = site_url('info_cases/get_list?cid=' . $this->cid);
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_cases/insert?cid=' . $this->cid) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_cases" data-checkname="id" data-url = "' . site_url('api/batch_del?cid=' . $this->cid) . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="info_cases" data-checkname="id" data-menu="' . $this->main_section_name . '" data-url = "' . site_url('api/batch_del?cid=' . $this->cid) . '">删除</a>');
         $url['save_url'] = site_url('info_cases/save?cid=' . $this->cid);
         $this->load->vars($url);
     }
@@ -44,7 +44,7 @@ class Info_cases extends Info
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['create_time'] = date('Y-m-d H:i', $val['create_time']);
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('info_cases/update?cid=' . $this->cid . '&id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_cases" data-id="' . $val['id'] . '" data-url="' . site_url('api/del?cid=' . $this->cid . '&menu_name=' . urlencode($this->main_section_name)) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="info_cases" data-id="' . $val['id'] . '" data-menu="' . $this->main_section_name . '" data-url="' . site_url('api/del?cid=' . $this->cid) . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -65,17 +65,17 @@ class Info_cases extends Info
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->info_cases_model->update($id);
-        $data['cols'] = $this->tree->ddl($this->info_model->data(), 'cid', $data['item']['cid'], '', $this->model_id());
+        $data['record'] = $this->info_cases_model->update($id);
+        $data['cols'] = $this->tree->ddl($this->info_model->data(), 'cid', $data['record']['cid'], '', $this->model_id());
         $data['uploads'] = $this->upload->get(array(
-            array('thumb', $data['item']['thumb']),
-            array('images', $data['item']['images'])
+            array('thumb', $data['record']['thumb']),
+            array('images', $data['record']['images'])
         ));
         $data['dict'] = $this->dictionary->dict(array(
-            array('rbl', 'target', 'target', $data['item']['target']),
-            array('rbl', 'display', 'display', $data['item']['display'])
+            array('rbl', 'target', 'target', $data['record']['target']),
+            array('rbl', 'display', 'display', $data['record']['display'])
         ));
-        $data['create_time'] = date('Y-m-d H:i:s', $data['item']['create_time']);
+        $data['create_time'] = date('Y-m-d H:i:s', $data['record']['create_time']);
         $this->load->view('info_cases/update.html', $data);
     }
 

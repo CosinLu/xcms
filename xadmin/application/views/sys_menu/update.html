@@ -23,7 +23,7 @@
                     </div>
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
-                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <input type="hidden" name="id" value="<?=$record['id']?>">
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">所属栏目</div>
                                 <div class="col-xs-3">
@@ -33,11 +33,11 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="name" value="<?=$item['name']?>" class="form-control">
+                                    <input type="text" name="name" value="<?=$record['name']?>" class="form-control">
                                 </div>
                                 <div class="col-xs-2 checkbox">
                                     <label>
-                                        <input type="checkbox" name="is_menu" value="1" <?=checked(1,$item['is_menu'])?>
+                                        <input type="checkbox" name="is_menu" value="1" <?=checked(1,$record['is_menu'])?>
                                         >
                                         <ins>设为菜单</ins>
                                     </label>
@@ -47,7 +47,7 @@
                                 <div class="col-xs-2 control-label">图标</div>
                                 <div class="col-xs-3">
                                     <div class="input-group">
-                                        <input type="text" name="icon" id="icon" value="<?=$item['icon']?>"
+                                        <input type="text" name="icon" id="icon" value="<?=$record['icon']?>"
                                                class="form-control">
                                         <div class="input-group-addon"></div>
                                     </div>
@@ -56,14 +56,14 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">URL</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="url" value="<?=$item['url']?>" class="form-control">
+                                    <input type="text" name="url" value="<?=$record['url']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">备注</div>
                                 <div class="col-xs-5">
                                     <textarea class="form-control" name="remark"
-                                              rows="3"><?=$item['remark']?></textarea>
+                                              rows="3"><?=$record['remark']?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">排序</div>
                                 <div class="col-xs-2">
-                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
+                                    <input type="text" name="sort" value="<?=$record['sort']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">

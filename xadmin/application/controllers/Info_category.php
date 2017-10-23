@@ -63,7 +63,7 @@ class Info_category extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->tree->ddl($this->info_category_model->data(), 'pid', $id);
+        $data['cols'] = $this->tree->ddl($this->info_category_model->data(), 'pid', $id, '', '', array(0, '根目录'));
         $data['model'] = ddl($this->info_category_model->model(), 'model_id');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target'),
@@ -76,12 +76,12 @@ class Info_category extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->info_category_model->update($id);
-        $data['model'] = ddl($this->info_category_model->model(), 'model_id', $data['item']['model_id']);
-        $data['cols'] = $this->tree->ddl($this->info_category_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['record'] = $this->info_category_model->update($id);
+        $data['model'] = ddl($this->info_category_model->model(), 'model_id', $data['record']['model_id']);
+        $data['cols'] = $this->tree->ddl($this->info_category_model->data(), 'pid', $data['record']['pid'], $data['record']['id']);
         $data['dict'] = $this->dictionary->dict(array(
-            array('rbl', 'target', 'target', $data['item']['target']),
-            array('rbl', 'display', 'display', $data['item']['display'])
+            array('rbl', 'target', 'target', $data['record']['target']),
+            array('rbl', 'display', 'display', $data['record']['display'])
         ));
         $this->load->view('info_category/update.html', $data);
     }

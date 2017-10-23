@@ -23,31 +23,31 @@
                     </div>
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
-                            <input type="hidden" name="id" value="<?=$item['id']?>">
+                            <input type="hidden" name="id" value="<?=$record['id']?>">
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="name" value="<?=$item['name']?>" class="form-control">
+                                    <input type="text" name="name" value="<?=$record['name']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">模型表名</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="model" value="<?=$item['model']?>"
+                                    <input type="text" name="model" value="<?=$record['model']?>"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">列表</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="list_model" value="<?=$item['list_model']?>"
+                                    <input type="text" name="list_model" value="<?=$record['list_model']?>"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">详细</div>
                                 <div class="col-xs-3">
-                                    <input type="text" name="detail_model" value="<?=$item['detail_model']?>"
+                                    <input type="text" name="detail_model" value="<?=$record['detail_model']?>"
                                            class="form-control">
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">排序</div>
                                 <div class="col-xs-2">
-                                    <input type="text" name="sort" value="<?=$item['sort']?>" class="form-control">
+                                    <input type="text" name="sort" value="<?=$record['sort']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">

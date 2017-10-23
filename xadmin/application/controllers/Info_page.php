@@ -28,7 +28,7 @@ class Info_page extends Info
 
     public function index()
     {
-        $data['item'] = $this->info_page_model->index($this->cid);
+        $data['record'] = $this->info_page_model->index($this->cid);
         $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_page/index.html', $data);
     }

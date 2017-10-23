@@ -49,7 +49,7 @@ class Sys_menu extends MY_Controller
     public function insert()
     {
         $id = $this->input->get('id');
-        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $id);
+        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $id, '', '', array(0, '根目录'));
         $data['dict'] = $this->dictionary->dict(array(
             array('cbl', 'sys_menu_auth', 'auth'),
             array('rbl', 'display', 'display'),
@@ -62,12 +62,12 @@ class Sys_menu extends MY_Controller
     public function update()
     {
         $id = $this->input->get('id');
-        $data['item'] = $this->sys_menu_model->update($id);
-        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $data['item']['pid'], $data['item']['id']);
+        $data['record'] = $this->sys_menu_model->update($id);
+        $data['cols'] = $this->tree->ddl($this->sys_menu_model->data(), 'pid', $data['record']['pid'], $data['record']['id'], '', array(0, '根目录'));
         $data['dict'] = $this->dictionary->dict(array(
-            array('cbl', 'sys_menu_auth', 'auth', $data['item']['sys_menu_auth']),
-            array('rbl', 'display', 'display', $data['item']['display']),
-            array('rbl', 'user_type', 'user_type', $data['item']['user_type'])
+            array('cbl', 'sys_menu_auth', 'auth', $data['record']['sys_menu_auth']),
+            array('rbl', 'display', 'display', $data['record']['display']),
+            array('rbl', 'user_type', 'user_type', $data['record']['user_type'])
         ));
         $this->load->view('sys_menu/update.html', $data);
     }
