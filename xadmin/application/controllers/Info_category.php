@@ -21,6 +21,7 @@ class Info_category extends MY_Controller
         $url['get_list_url'] = site_url('info_category/get_list');
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('info_category/insert') . '">新增</a>');
         $url['save_url'] = site_url('info_category/save');
+        $url['check_dir_url'] = site_url('info_category/check_dir');
         $this->load->vars($url);
     }
 
@@ -132,6 +133,19 @@ class Info_category extends MY_Controller
         //日志
         $this->oplog->insert($this->section_name, '3', $rows);
         echo $rows;
+    }
+
+    //验证目录
+    public function check_dir()
+    {
+        $id = $this->input->get('id');
+        $dir = $this->input->post('param');
+        $res = $this->info_category_model->check_dir($dir, $id);
+        if ($res) {
+            echo '{"info":"目录已存在","status":"n"}';
+        } else {
+            echo '{"info":"","status":"y"}';
+        }
     }
 
 }

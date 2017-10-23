@@ -70,4 +70,13 @@ class Info_category_model extends CI_Model
         return $res;
     }
 
+    //验证目录
+    public function check_dir($dir = '', $id = '')
+    {
+        $this->db->where('dir', $dir);
+        if ($id != '') $this->db->where('id!=', $id);
+        $res = $this->db->get('info_category')->result_array();
+        return $res;
+    }
+
 }

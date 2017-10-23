@@ -22,6 +22,7 @@ class Sys_user extends MY_Controller
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('sys_user/insert') . '">新增</a>');
         $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="sys_user" data-checkname="id" data-menu="' . $this->section_name . '" data-url = "' . site_url('api/batch_del') . '">删除</a>');
         $url['save_url'] = site_url('sys_user/save');
+        $url['check_username_url'] = site_url('sys_user/check_username');
         $this->load->vars($url);
     }
 

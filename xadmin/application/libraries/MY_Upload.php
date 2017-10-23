@@ -68,6 +68,7 @@ class MY_Upload extends CI_Upload
             'image_height' => $this->image_height,//图片高度
             'image_type' => $this->image_type,//图片类型（通常是不带句点的文件后缀名）
             'image_size_str' => $this->image_size_str,//一个包含了图片宽度和高度的字符串（用于放在 image 标签中）
+            'create_time' => time(),//创建时间
         );
         if (!empty($index)) {
             return isset($data[$index]) ? $data[$index] : NULL;

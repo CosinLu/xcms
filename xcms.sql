@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-10-22 20:12:20
+Date: 2017-10-23 23:00:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -525,11 +525,15 @@ CREATE TABLE `sys_oplog` (
   `ip` varchar(30) DEFAULT NULL,
   `time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
+INSERT INTO `sys_oplog` VALUES ('1', '4', 'xadmin', '网站配置', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1508768913');
+INSERT INTO `sys_oplog` VALUES ('2', '4', 'xadmin', '角色权限', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1508768923');
+INSERT INTO `sys_oplog` VALUES ('3', '4', 'xadmin', '角色权限', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1508768929');
+INSERT INTO `sys_oplog` VALUES ('4', '4', 'xadmin', '角色权限', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-FTTP3GQ', '::1', '1508768937');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -574,9 +578,6 @@ INSERT INTO `sys_role_auth` VALUES ('2', '20', '');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '24', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'insert');
-INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
-INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del');
-INSERT INTO `sys_role_auth` VALUES ('3', '2', '');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'del');
 INSERT INTO `sys_role_auth` VALUES ('2', '25', 'look');
@@ -590,6 +591,9 @@ INSERT INTO `sys_role_auth` VALUES ('2', '3', '');
 INSERT INTO `sys_role_auth` VALUES ('2', '11', 'look');
 INSERT INTO `sys_role_auth` VALUES ('2', '11', 'update');
 INSERT INTO `sys_role_auth` VALUES ('2', '2', '');
+INSERT INTO `sys_role_auth` VALUES ('3', '1', '');
+INSERT INTO `sys_role_auth` VALUES ('3', '31', 'del');
+INSERT INTO `sys_role_auth` VALUES ('3', '2', '');
 INSERT INTO `sys_role_auth` VALUES ('3', '11', 'look');
 INSERT INTO `sys_role_auth` VALUES ('3', '11', 'update');
 INSERT INTO `sys_role_auth` VALUES ('3', '17', 'del');
@@ -670,16 +674,17 @@ CREATE TABLE `uploads` (
   `image_type` varchar(50) DEFAULT NULL COMMENT '图片类型（通常是不带句点的文件后缀名）',
   `image_size_str` varchar(100) DEFAULT NULL COMMENT '一个包含了图片宽度和高度的字符串（用于放在 image 标签中）',
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
+  `create_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170930/', 'D:/wamp/www/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', '/uploads/upload/20170930/', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'b9e23b5c278c0f238f3217e444ba0ee1', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('2', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '33d177d5d1c42db9b24c007fd6ef4d48', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('3', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'a6bb7d26a8e54095ae30ec6bb421604d', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', '59ace85aNf6612abe.jpg', '.jpg', '64.76', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('4', '94e9a04b72b05a7e3f033b2914ff6886.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '94e9a04b72b05a7e3f033b2914ff6886', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886', '94e9a04b72b05a7e3f033b2914ff6886.jpg', '59ad20b0Ne7fda0f0.jpg', '.jpg', '95.12', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('5', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '7d79a11e12cd8ad87860d93db0f83dc3', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', '59ad205aN2f73c174.jpg', '.jpg', '148.52', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('6', '4594e0810e3359ba3ee598e2a5f1f437.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '4594e0810e3359ba3ee598e2a5f1f437', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437', '4594e0810e3359ba3ee598e2a5f1f437.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null);
-INSERT INTO `uploads` VALUES ('7', '1b16e684093528dd45adfb3dc871dd59.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '1b16e684093528dd45adfb3dc871dd59', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59', '1b16e684093528dd45adfb3dc871dd59.jpg', 'logo-001.jpg', '.jpg', '21.01', '1', '127', '127', 'jpeg', 'width=\"640\" height=\"640\"', null);
+INSERT INTO `uploads` VALUES ('1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20170930/', 'D:/wamp/www/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', '/uploads/upload/20170930/', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1.jpg', 'b9e23b5c278c0f238f3217e444ba0ee1', '/uploads/upload/20170930/b9e23b5c278c0f238f3217e444ba0ee1', 'b9e23b5c278c0f238f3217e444ba0ee1.jpg', '59ad05bdNae81e2b2.jpg', '.jpg', '189.91', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('2', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48.jpg', '33d177d5d1c42db9b24c007fd6ef4d48', '/uploads/upload/20171020/33d177d5d1c42db9b24c007fd6ef4d48', '33d177d5d1c42db9b24c007fd6ef4d48.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('3', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d.jpg', 'a6bb7d26a8e54095ae30ec6bb421604d', '/uploads/upload/20171020/a6bb7d26a8e54095ae30ec6bb421604d', 'a6bb7d26a8e54095ae30ec6bb421604d.jpg', '59ace85aNf6612abe.jpg', '.jpg', '64.76', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('4', '94e9a04b72b05a7e3f033b2914ff6886.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886.jpg', '94e9a04b72b05a7e3f033b2914ff6886', '/uploads/upload/20171020/94e9a04b72b05a7e3f033b2914ff6886', '94e9a04b72b05a7e3f033b2914ff6886.jpg', '59ad20b0Ne7fda0f0.jpg', '.jpg', '95.12', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('5', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3.jpg', '7d79a11e12cd8ad87860d93db0f83dc3', '/uploads/upload/20171020/7d79a11e12cd8ad87860d93db0f83dc3', '7d79a11e12cd8ad87860d93db0f83dc3.jpg', '59ad205aN2f73c174.jpg', '.jpg', '148.52', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('6', '4594e0810e3359ba3ee598e2a5f1f437.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437.jpg', '4594e0810e3359ba3ee598e2a5f1f437', '/uploads/upload/20171020/4594e0810e3359ba3ee598e2a5f1f437', '4594e0810e3359ba3ee598e2a5f1f437.jpg', '59a65fc3Na16894cb.jpg', '.jpg', '132.85', '1', '127', '127', 'jpeg', 'width=\"790\" height=\"340\"', null, null);
+INSERT INTO `uploads` VALUES ('7', '1b16e684093528dd45adfb3dc871dd59.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171020/', 'D:/wamp/www/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '/uploads/upload/20171020/', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59.jpg', '1b16e684093528dd45adfb3dc871dd59', '/uploads/upload/20171020/1b16e684093528dd45adfb3dc871dd59', '1b16e684093528dd45adfb3dc871dd59.jpg', 'logo-001.jpg', '.jpg', '21.01', '1', '127', '127', 'jpeg', 'width=\"640\" height=\"640\"', null, null);
