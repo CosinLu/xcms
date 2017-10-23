@@ -60,7 +60,7 @@ class Jump
      */
     private function _dispatch_jump($message = '', $status = '', $jump_url = '', $detail = '', $wait_second)
     {
-        $data['item'] = array(
+        $data['record'] = array(
             'status' => $status,
             'message' => $message,
             'jump_url' => $jump_url,
