@@ -55,7 +55,9 @@
                                         </td>
                                         <td>{{val.name}}</td>
                                         <td>{{val.category}}</td>
-                                        <td>{{#val.display_name}}</td>
+                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
+                                               data-pk="{{val.id}}">{{#val.display_name}}</a>
+                                        </td>
                                         <td>{{val.sort}}</td>
                                         <td>
                                             {{each val.opera_btn as btn}}
@@ -98,10 +100,19 @@
         function getList(pageIndex) {
             unit.getList({
                 url: '<?=$get_list_url?>',
-                data:{
+                data: {
                     x: Math.random(),
                     page: pageIndex,
                     key: $('input[name="key"]').val()
+                },
+                complete: function () {
+                    unit.editable({
+                        dom: '.display-hook',
+                        type: 'select',
+                        url: '<?=$editable_url?>',
+                        source: JSON.parse('<?=$display_source?>'),
+                        params: {field: 'display', tbname: 'config_group'}
+                    });
                 }
             });
         }

@@ -30,27 +30,27 @@
                         <div class="panel-body">
                             <input type="hidden" name="id" value="<?=$record['id']?>">
                             <div class="form-group">
-                                <div class="col-xs-2 control-label">所属栏目</div>
+                                <div class="col-xs-2 control-label">文章分类</div>
                                 <div class="col-xs-3">
                                     <?=$cols?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">标题</div>
-                                <div class="col-xs-8">
+                                <div class="col-xs-5">
                                     <input type="text" name="title" value="<?=$record['title']?>" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">原文链接</div>
-                                <div class="col-xs-8">
+                                <div class="col-xs-5">
                                     <input type="text" name="original_link" value="<?=$record['original_link']?>"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">作者</div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-2">
                                     <input type="text" name="auther" value="<?=$record['auther']?>" class="form-control">
                                 </div>
                             </div>
@@ -73,8 +73,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div class="col-xs-2 control-label">标签</div>
+                                <div class="col-xs-8 radio">
+                                    <?=$tag?>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-xs-2 control-label">打开方式</div>
-                                <div class="col-xs-5 radio">
+                                <div class="col-xs-8 radio">
                                     <?=$dict['target']?>
                                 </div>
                             </div>

@@ -30,7 +30,8 @@ class Info_article extends Info
 
     public function index()
     {
-        $this->load->view('info_article/index.html');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('info_article/index.html', $data);
     }
 
     //获取列表
@@ -73,6 +74,7 @@ class Info_article extends Info
             array('rbl', 'target', 'target', $data['record']['target']),
             array('rbl', 'display', 'display', $data['record']['display'])
         ));
+        $data['tag'] = cbl($this->info_article_model->tag(), 'tag', $data['record']['tag']);
         $data['create_time'] = date('Y-m-d H:i:s', $data['record']['create_time']);
         $this->load->view('info_article/update.html', $data);
     }

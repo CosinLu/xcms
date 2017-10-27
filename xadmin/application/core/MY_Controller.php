@@ -26,6 +26,14 @@ class MY_Controller extends CI_Controller
         $this->load->library('auth');
         $this->top_menu();
         $this->left_menu();
+        $this->set_common_url();
+    }
+
+    //设置url
+    public function set_common_url()
+    {
+        $common_url['editable_url'] = site_url('api/editable');
+        $this->load->vars($common_url);
     }
 
     //登录验证

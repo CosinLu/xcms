@@ -30,7 +30,8 @@ class Info_cases extends Info
 
     public function index()
     {
-        $this->load->view('info_cases/index.html');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('info_cases/index.html', $data);
     }
 
     //获取列表

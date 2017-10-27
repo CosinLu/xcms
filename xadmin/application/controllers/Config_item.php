@@ -30,7 +30,8 @@ class Config_item extends MY_Controller
 
     public function index()
     {
-        $this->load->view('config_item/index.html');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('config_item/index.html',$data);
     }
 
     //获取列表

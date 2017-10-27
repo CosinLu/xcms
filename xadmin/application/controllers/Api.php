@@ -40,4 +40,16 @@ class Api extends MY_Controller
         $this->oplog->insert($menu, '3', $rows);
         echo $rows;
     }
+
+    //修改指定数据
+    public function editable()
+    {
+        $tbname = $this->input->post('tbname');
+        $pk = $this->input->post('pk');
+        $field = $this->input->post('field');
+        $value = $this->input->post('value');
+        $bool = $this->api_model->editable($tbname, $pk, $field, $value);
+
+        return $bool;
+    }
 }

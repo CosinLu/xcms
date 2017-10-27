@@ -33,4 +33,14 @@ class Api_model extends CI_Model
 
         return $rows;
     }
+
+    //修改指定数据
+    public function editable($tbname = '', $pk = '', $field = '', $value = '')
+    {
+        $this->db->where('id', $pk);
+        $bool = $this->db->update($tbname, array($field => $value));
+
+        return $bool;
+    }
+
 }

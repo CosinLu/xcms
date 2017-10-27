@@ -4,6 +4,30 @@
 define(['jquery', 'layer'], function ($) {
     return {
 
+        //editable
+        editable: function (options) {
+            var defaults = {
+                dom: '',
+                type: '',
+                url: '',
+                source: [],
+                params: {}
+            };
+            var opt = $.extend({}, defaults, options);
+            require(['editable'], function () {
+                $(opt.dom).editable({
+                    escape: false,
+                    type: opt.type,
+                    url: opt.url,
+                    source: opt.source,
+                    params: function (params) {
+                        params = $.extend({}, params, opt.params);
+                        return params;
+                    }
+                });
+            })
+        },
+
         //获取列表
         getList: function (options) {
             require(['template', 'jqthumb'], function (template) {
@@ -50,6 +74,8 @@ define(['jquery', 'layer'], function ($) {
                     error: function () {
                         $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         if (opt.listEle.length) $(opt.listEle).after(opt.errordataDom);
+                    },
+                    complete: function () {
                     }
                 };
                 var opt = $.extend({}, defaults, options);
@@ -60,7 +86,8 @@ define(['jquery', 'layer'], function ($) {
                     data: opt.data,
                     beforeSend: opt.beforeSend,
                     success: opt.success,
-                    error: opt.error
+                    error: opt.error,
+                    complete: opt.complete
                 })
             })
         },

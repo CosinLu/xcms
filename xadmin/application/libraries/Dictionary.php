@@ -225,6 +225,30 @@ class Dictionary
         $str .= '</select>';
 
         return $str;
+    }
 
+
+    /**
+     * 获取指定字典
+     *
+     * @param string $ident 标记
+     * @return string
+     */
+    public function source($ident = '')
+    {
+        $this->CI->db->select('t.ident,t.name,t.color');
+        $this->CI->db->from('common_dict t');
+        $this->CI->db->join('common_dict t1', "t1.ident='{$ident}'", 'left');
+        $this->CI->db->where('t.pid=t1.id');
+        $res = $this->CI->db->get()->result_array();
+        $data = array();
+        foreach ($res as $key => $val) {
+            $data[] = array(
+                'value' => $val['ident'],
+                'text' => '<font color=' . $val['color'] . '>' . $val['name'] . '</font>'
+            );
+        }
+
+        return json_encode($data);
     }
 }

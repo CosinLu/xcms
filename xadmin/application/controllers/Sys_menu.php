@@ -26,7 +26,9 @@ class Sys_menu extends MY_Controller
 
     public function index()
     {
-        $this->load->view('sys_menu/index.html');
+        $data['user_type_source'] = $this->dictionary->source('user_type');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('sys_menu/index.html', $data);
     }
 
     //获取列表

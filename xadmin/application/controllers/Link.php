@@ -27,7 +27,8 @@ class Link extends MY_Controller
 
     public function index()
     {
-        $this->load->view('link/index.html');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('link/index.html', $data);
     }
 
     //获取列表

@@ -24,30 +24,48 @@
                     <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
                         <div class="panel-body">
                             <input type="hidden" name="id" value="<?=$record['id']?>">
-                            <input type="hidden" name="pid" value="<?=$pid?>">
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">名称</div>
                                 <div class="col-xs-3">
-                                    <div class="input-group colorpicker-hook">
-                                        <input type="text" name="name" class="form-control name-hook"
-                                               value="<?=$record['name']?>" style="color:<?=$record['color']?>">
-                                        <div class="input-group-addon"><i title="颜色选择器"></i></div>
-                                        <input type="hidden" name="color" value="<?=$record['color']?>">
-                                    </div>
+                                    <input type="text" name="name" value="<?=$record['name']?>" class="form-control">
                                 </div>
-                                <?php if($this->session->sys_session['user_type']==0):?>
-                                <div class="col-xs-2 checkbox">
-                                    <label>
-                                        <input type="checkbox" name="is_sys" value="1" <?=checked(1,$record['is_sys'])?>>
-                                        <ins>设为系统字典</ins>
-                                    </label>
-                                </div>
-                                <?php endif;?>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">标记</div>
-                                <div class="col-xs-2">
-                                    <input type="text" name="ident" class="form-control" value="<?=$record['ident']?>">
+                                <div class="col-xs-3">
+                                    <input type="text" name="ident" value="<?=$record['ident']?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">图片</div>
+                                <div class="col-xs-8">
+                                    <div class="uploads-panel">
+                                        <div id="thumb" class="uploads-queue uploads-queue-hook"
+                                             data-list='<?=$uploads["thumb"]?>'></div>
+                                        <input data-name="thumb" class="uploads-btn-hook hidden" type="file"
+                                               data-cloud="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">打开方式</div>
+                                <div class="col-xs-8 radio">
+                                    <?=$dict['target']?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">状态</div>
+                                <div class="col-xs-8 radio">
+                                    <?=$dict['display']?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">其他属性</div>
+                                <div class="col-xs-3 checkbox">
+                                    <label><input type="checkbox" name="is_recommend"
+                                                  value="1" <?=checked(1,$record['is_recommend'])?>>
+                                        <ins>推荐</ins>
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -77,21 +95,8 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit','colorpicker'], function (unit) {
+    require(['unit', 'uploads'], function (unit) {
         unit.ajaxForm();
-        $('.colorpicker-hook').colorpicker({
-            input: 'input[name="color"]',
-            colorSelectors: {
-                '#333': '#333',//default
-                '#007CF9': '#007CF9',//primary
-                '#5cb85c': '#5cb85c',//success
-                '#007fff': '#007fff',//info
-                '#f0ad4e': '#f0ad4e',//warning
-                '#d9534f': '#d9534f'//danger
-            }
-        }).on('changeColor', function (e) {
-            $('input[name="name"]').css('color', e.color.toHex());
-        });
     });
 </script>
 </body>

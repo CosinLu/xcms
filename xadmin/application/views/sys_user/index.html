@@ -99,10 +99,19 @@
         function getList(pageIndex) {
             unit.getList({
                 url: '<?=$get_list_url?>',
-                data:{
+                data: {
                     x: Math.random(),
                     page: pageIndex,
                     key: $('input[name="key"]').val()
+                },
+                complete: function () {
+                    unit.editable({
+                        dom: '.status-hook',
+                        type: 'select',
+                        url: '<?=$editable_url?>',
+                        source: JSON.parse('<?=$status_source?>'),
+                        params: {field: 'status', tbname: 'sys_user'}
+                    });
                 }
             });
         }

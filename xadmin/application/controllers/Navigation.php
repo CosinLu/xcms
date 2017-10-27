@@ -26,7 +26,9 @@ class Navigation extends MY_Controller
 
     public function index()
     {
-        $this->load->view('navigation/index.html');
+        $data['position_source'] = $this->dictionary->source('position');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('navigation/index.html', $data);
     }
 
     //获取列表

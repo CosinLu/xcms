@@ -45,8 +45,10 @@
                                         <td>{{val.id}}</td>
                                         <td>{{val.prefix + val.name}}</td>
                                         <td>{{val.url}}</td>
-                                        <td>{{val.position_name}}</td>
-                                        <td>{{#val.display_name}}</td>
+                                        <td><a href="javascript:;" class="position-hook" data-value="{{val.position}}"
+                                               data-pk="{{val.id}}">{{val.position_name}}</a></td>
+                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
+                                               data-pk="{{val.id}}">{{#val.display_name}}</a></td>
                                         <td>{{val.sort}}</td>
                                         <td>
                                             {{each val.opera_btn as btn}}
@@ -77,7 +79,23 @@
         //获取列表
         function getList() {
             unit.getList({
-                url: '<?=$get_list_url?>'
+                url: '<?=$get_list_url?>',
+                complete: function () {
+                    unit.editable({
+                        dom: '.display-hook',
+                        type: 'select',
+                        url: '<?=$editable_url?>',
+                        source: JSON.parse('<?=$display_source?>'),
+                        params: {field: 'display', tbname: 'navigation'}
+                    });
+                    unit.editable({
+                        dom: '.position-hook',
+                        type: 'select',
+                        url: '<?=$editable_url?>',
+                        source: JSON.parse('<?=$position_source?>'),
+                        params: {field: 'position', tbname: 'navigation'}
+                    });
+                }
             });
         }
     });

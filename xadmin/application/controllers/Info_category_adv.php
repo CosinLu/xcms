@@ -27,7 +27,8 @@ class Info_category_adv extends MY_Controller
 
     public function index()
     {
-        $this->load->view('info_category_adv/index.html');
+        $data['display_source'] = $this->dictionary->source('display');
+        $this->load->view('info_category_adv/index.html',$data);
     }
 
     //获取列表
@@ -59,7 +60,7 @@ class Info_category_adv extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['record'] = $this->info_category_adv_model->update($id);
-        $data['cols'] = ddl($this->info_category_adv_model->info_category(), 'cid', $data['record']['cid']);
+        $data['cols'] = ddl($this->info_category_adv_model->category(), 'cid', $data['record']['cid']);
         $data['uploads']['image'] = $this->upload->get($data['record']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['record']['display'])

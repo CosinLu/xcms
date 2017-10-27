@@ -23,7 +23,8 @@ require.config({
         'uploadifive': 'plugin/uploads/js/jquery.uploadifive',
         'uploadsUnit': 'plugin/uploads/js/uploads.unit',
         'uploads': 'plugin/uploads/js/uploads',
-        'form': 'plugin/validform/Validform_v5.3.2_min'
+        'form': 'plugin/validform/Validform_v5.3.2_min',
+        'editable': 'plugin/editable/js/bootstrap-editable'
     },
     shim: {
         'bootstrap': {
@@ -71,7 +72,13 @@ require.config({
             deps: ['jquery']
         },
         'form': {
-            deps: ['jquery']
+            deps: ['jquery',
+                'css!plugin/../css/validform.css']
+        },
+        'editable': {
+            deps: ['jquery',
+                'css!plugin/editable/css/bootstrap-editable.css',
+                'css!plugin/../css/editable.css']
         }
     }
 

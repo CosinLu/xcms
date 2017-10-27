@@ -1,0 +1,18 @@
+@import "variable.less";
+
+.editable {
+    color: @color;
+    border-bottom-color: @color-muted !important;
+    &:hover {
+        color: @color;
+    }
+}
+
+.editable-container {
+    .editable-submit,
+    .editable-cancel{
+        i {
+            vertical-align: -1px;
+        }
+    }
+}
