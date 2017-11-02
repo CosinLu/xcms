@@ -89,6 +89,7 @@ class Common_dict extends MY_Controller
                 'name' => $this->input->post('name'),
                 'pid' => $this->input->post('pid'),
                 'ident' => $this->input->post('ident'),
+                'field' => $this->input->post('field'),
                 'color' => $this->input->post('color'),
                 'is_sys' => $this->input->post('is_sys') ?: 0,
                 'sort' => $this->input->post('sort')

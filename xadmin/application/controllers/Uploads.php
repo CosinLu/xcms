@@ -6,7 +6,7 @@
  * Date: 2017/8/28
  * Time: 13:51
  */
-class Uploads extends CI_Controller
+class Uploads extends MY_Controller
 {
     public function __construct()
     {
@@ -19,7 +19,14 @@ class Uploads extends CI_Controller
     public function set_url()
     {
         $url['get_list_url'] = site_url('uploads/get_list');
+        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('uploads/insert') . '">新增</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="uploads" data-menu="' . $this->section_name . '" data-checkname="id" data-url = "' . site_url('uploads/batch_del') . '">删除</a>');
         $this->load->vars($url);
+    }
+
+    public function index()
+    {
+        $this->load->view('uploads/index.html');
     }
 
     //文件列表
@@ -28,8 +35,9 @@ class Uploads extends CI_Controller
         $page = $this->input->post('page');
         $key = $this->input->post('key');
         $data['list'] = $this->uploads_model->get_list($page, $key);
-        foreach ($data['list'] as $key => $val) {
-            $data['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
+        foreach ($data['list']['list'] as $key => $val) {
+            $data['list']['list'][$key]['thumb_rel_path'] = $val['is_image'] ? $val['raw_rel_path'] . config_item('my_thumb_marker') . $val['file_ext'] : '';
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="uploads" data-id="' . $val['id'] . '" data-menu="' . $this->section_name . '" data-url="' . site_url('uploads/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }
@@ -90,6 +98,30 @@ class Uploads extends CI_Controller
         $config['thumb_marker'] = '_' . $config['width'] . '_' . $config['height'];
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();
+    }
+
+    //删除
+    public function del()
+    {
+        $tbname = $this->input->post('tbname');
+        $id = $this->input->post('id');
+        $primary = $this->input->post('primary') ?: 'id';
+        $rows = $this->uploads_model->del($tbname, $id, $primary);
+        //写入日志
+        $this->oplog->insert($this->section_name, '3', $rows);
+        echo $rows;
+    }
+
+    //批量删除
+    public function batch_del()
+    {
+        $tbname = $this->input->post('tbname');
+        $id = explode(',', $this->input->post('id'));
+        $primary = $this->input->post('primary') ?: 'id';
+        $rows = $this->uploads_model->batch_del($tbname, $id, $primary);
+        //写入日志
+        $this->oplog->insert($this->section_name, '3', $rows);
+        echo $rows;
     }
 
 

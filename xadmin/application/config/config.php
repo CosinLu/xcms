@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = str_replace('index.php', '', "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']);
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/xuanyu/xadmin/';
 
 /*
 |--------------------------------------------------------------------------
@@ -514,9 +514,6 @@ $config['proxy_ips'] = '';
 
 
 $config['my_title'] = 'XCMS';
-$config['my_loading'] = '<div class="panel-body loading-hook">数据加载中...</div>';
-$config['my_nodata'] = '<div class="panel-body nodata-hook">暂无数据</div>';
-$config['my_err'] = '<div class="panel-body error-hook">数据加载失败</div>';
 $config['my_per_page'] = 15;
 $config['my_insert'] = 'insert';
 $config['my_del'] = 'del';

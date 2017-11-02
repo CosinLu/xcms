@@ -172,6 +172,7 @@ class Dictionary
                     $disabled = '';
                 }
             }
+            $name = ($name == '' OR $name === NULL) ? $val['field'] : $name;
             $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val['ident'] . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
 

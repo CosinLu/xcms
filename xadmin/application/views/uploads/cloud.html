@@ -102,15 +102,15 @@
                     dataType: 'json',
                     data: data,
                     success: function (data) {
-                        if (data.list.length) {
-                            $('.list-hook').append(template('listTpl', data));
+                        if (data.list.list.length) {
+                            $('.list-hook').append(template('listTpl', data.list));
                         } else {
                             me.lock();
                             me.noData();
                         }
                         me.resetload();
 
-                        if (!data.list.length && pageIndex == 1) {
+                        if (!data.list.list.length && pageIndex == 1) {
                             $('.dropload-nodata-hook').html('暂无数据');
                         }
                     }
