@@ -7,21 +7,26 @@ define(['jquery', 'layer'], function ($) {
         //editable
         editable: function (options) {
             var defaults = {
-                dom: '',
-                type: '',
-                url: '',
+                dom: '.editable-hook',
+                mode: 'popup',
+                escape: false,
+                type: 'select',
+                title: '',
+                url: 'index.php/api/editable',
                 source: [],
                 params: {}
             };
             var opt = $.extend({}, defaults, options);
             require(['editable'], function () {
                 $(opt.dom).editable({
-                    escape: false,
-                    type: opt.type,
-                    url: opt.url,
-                    source: opt.source,
+                    mode: $(this).data('mode') || opt.mode,
+                    escape: $(this).data('escape') || opt.escape,
+                    type: $(this).data('type') || opt.type,
+                    title: $(this).data('title') || opt.title,
+                    url: $(this).data('url') || opt.url,
+                    source: $(this).data('source') || opt.source,
                     params: function (params) {
-                        params = $.extend({}, params, opt.params);
+                        params = $.extend({}, params, opt.params, $(this).data('params'));
                         return params;
                     }
                 });

@@ -46,14 +46,25 @@
                                     <tr>
                                         <td>{{val.id}}</td>
                                         <td>{{val.prefix}}<i class="{{val.icon}}">&nbsp;</i>{{val.name}}</td>
-                                        <!--<td>{{#val.sys_menu_auth}}</td>-->
                                         <td>{{#val.url}}</td>
                                         <td>{{#val.is_menu}}</td>
-                                        <td><a href="javascript:;" class="user-type-hook" data-value="{{val.user_type}}"
-                                               data-pk="{{val.id}}">{{#val.user_type_name}}</a></td>
-                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
-                                               data-pk="{{val.id}}">{{#val.display_name}}</a></td>
-                                        <td>{{val.sort}}</td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-value="{{val.user_type}}"
+                                               data-source='<?=$user_type_source?>'
+                                               data-params="{field: 'user_type', tbname: 'sys_menu'}">{{#val.user_type_name}}</a>
+                                        </td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-value="{{val.display}}"
+                                               data-source='<?=$display_source?>'
+                                               data-params="{field: 'display', tbname: 'sys_menu'}">{{#val.display_name}}</a>
+                                        </td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-type="text"
+                                               data-params="{field:'sort',tbname:'sys_menu'}">{{val.sort}}</a>
+                                        </td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}
@@ -85,20 +96,7 @@
             unit.getList({
                 url: '<?=$get_list_url?>',
                 complete: function () {
-                    unit.editable({
-                        dom: '.display-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$display_source?>'),
-                        params: {field: 'display', tbname: 'sys_menu'}
-                    });
-                    unit.editable({
-                        dom: '.user-type-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$user_type_source?>'),
-                        params: {field: 'user_type', tbname: 'sys_menu'}
-                    });
+                    unit.editable();
                 }
             });
         }

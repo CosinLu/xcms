@@ -48,7 +48,10 @@
                                         <td>{{#val.name}}</td>
                                         <td>{{val.ident}}</td>
                                         <td>{{val.field}}</td>
-                                        <td>{{val.sort}}</td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-type="text"
+                                               data-params="{field:'sort',tbname:'common_dict'}">{{val.sort}}</a></td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}

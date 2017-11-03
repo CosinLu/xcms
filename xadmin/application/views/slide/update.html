@@ -36,7 +36,8 @@
                                     <div class="uploads-panel">
                                         <div id="image" class="uploads-queue uploads-queue-hook"
                                              data-list='<?=$uploads["image"]?>'></div>
-                                        <input data-name="image" class="uploads-btn-hook hidden" type="file" data-cloud="true">
+                                        <input data-name="image" class="uploads-btn-hook hidden" type="file"
+                                               data-cloud="true">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +86,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit','uploads'], function (unit) {
+    require(['unit', 'uploads'], function (unit) {
         unit.ajaxForm();
     });
 </script>

@@ -105,13 +105,7 @@
                     key: $('input[name="key"]').val()
                 },
                 complete: function () {
-                    unit.editable({
-                        dom: '.status-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$status_source?>'),
-                        params: {field: 'status', tbname: 'sys_user'}
-                    });
+                    unit.editable();
                 }
             });
         }

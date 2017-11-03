@@ -45,11 +45,22 @@
                                         <td>{{val.id}}</td>
                                         <td>{{val.prefix + val.name}}</td>
                                         <td>{{val.url}}</td>
-                                        <td><a href="javascript:;" class="position-hook" data-value="{{val.position}}"
-                                               data-pk="{{val.id}}">{{val.position_name}}</a></td>
-                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
-                                               data-pk="{{val.id}}">{{#val.display_name}}</a></td>
-                                        <td>{{val.sort}}</td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-value="{{val.position}}"
+                                               data-source='<?=$position_source?>'
+                                               data-params="{field: 'position', tbname: 'navigation'}">{{val.position_name}}</a>
+                                        </td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-value="{{val.display}}"
+                                               data-source='<?=$display_source?>'
+                                               data-params="{field: 'display', tbname: 'navigation'}">{{#val.display_name}}</a>
+                                        </td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-type="text"
+                                               data-params="{field:'sort',tbname:'navigation'}">{{val.sort}}</a></td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}
@@ -81,20 +92,7 @@
             unit.getList({
                 url: '<?=$get_list_url?>',
                 complete: function () {
-                    unit.editable({
-                        dom: '.display-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$display_source?>'),
-                        params: {field: 'display', tbname: 'navigation'}
-                    });
-                    unit.editable({
-                        dom: '.position-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$position_source?>'),
-                        params: {field: 'position', tbname: 'navigation'}
-                    });
+                    unit.editable();
                 }
             });
         }

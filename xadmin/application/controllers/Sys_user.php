@@ -28,8 +28,7 @@ class Sys_user extends MY_Controller
 
     public function index()
     {
-        $data['status_source'] = $this->dictionary->source('user_status');
-        $this->load->view('sys_user/index.html', $data);
+        $this->load->view('sys_user/index.html');
     }
 
     //获取列表
@@ -37,6 +36,7 @@ class Sys_user extends MY_Controller
     {
         $key = $this->input->post('key');
         $page = ($this->input->post('page')) ?: 1;
+        $status_source = $this->dictionary->source('user_status');
         $data['list'] = $this->sys_user_model->get_list($key, $page);
         foreach ($data['list']['list'] as $key => $val) {
             if ($val['user_type'] < 2) {
@@ -46,7 +46,7 @@ class Sys_user extends MY_Controller
                 $data['list']['list'][$key]['opera_btn'][] = '<a href="javascript:;" class="disabled">删除</a>';
                 $data['list']['list'][$key]['disabled'] = 'disabled';
             } elseif ($val['user_type'] == 2) {
-                $data['list']['list'][$key]['status_name'] = '<a href="javascript:;" class="status-hook" data-value="' . $val['status'] . '" data-pk="' . $val['id'] . '"><span style="color:' . $val['status_color'] . ';">' . $val['status_name'] . '</span></a>';
+                $data['list']['list'][$key]['status_name'] = '<a href="javascript:;" class="editable-hook" data-pk="' . $val['id'] . '" data-value="' . $val['status'] . '" data-source=\'' . $status_source . '\' data-params="{field: \'status\', tbname: \'sys_user\'}" ><span style="color:' . $val['status_color'] . ';">' . $val['status_name'] . '</span></a>';
                 $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a href="' . site_url('sys_user_auth?user_id=' . $val['id']) . '">设置权限</a>', '<a href="javascript:;" class="disabled">设置权限</a>');
                 $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('sys_user/update?id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
                 $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="sys_user" data-id="' . $val['id'] . '" data-menu="' . $this->section_name . '" data-url="' . site_url('api/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');

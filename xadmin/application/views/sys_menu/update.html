@@ -37,7 +37,8 @@
                                 </div>
                                 <div class="col-xs-2 checkbox">
                                     <label>
-                                        <input type="checkbox" name="is_menu" value="1" <?=checked(1,$record['is_menu'])?>
+                                        <input type="checkbox" name="is_menu"
+                                               value="1" <?=checked(1,$record['is_menu'])?>
                                         >
                                         <ins>设为菜单</ins>
                                     </label>
@@ -109,7 +110,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit','iconpicker'], function (unit) {
+    require(['unit', 'iconpicker'], function (unit) {
         unit.ajaxForm();
         $('[name="icon"]').iconpicker({
             placement: 'bottomRight'

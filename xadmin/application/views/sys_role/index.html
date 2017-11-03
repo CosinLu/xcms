@@ -55,7 +55,10 @@
                                         </td>
                                         <td>{{val.name}}</td>
                                         <td>{{val.remark}}</td>
-                                        <td>{{val.sort}}</td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-type="text"
+                                               data-params="{field:'sort',tbname:'sys_role'}">{{val.sort}}</a></td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}
@@ -101,6 +104,9 @@
                     x: Math.random(),
                     page: pageIndex,
                     key: $('input[name="key"]').val()
+                },
+                complete:function(){
+                    unit.editable();
                 }
             });
         }

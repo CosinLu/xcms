@@ -57,9 +57,16 @@
                                         <td><img src="{{val.rel_path}}"></td>
                                         <td>{{val.name}}</td>
                                         <td>{{val.url}}</td>
-                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
-                                               data-pk="{{val.id}}">{{#val.display_name}}</a></td>
-                                        <td>{{val.sort}}</td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-value="{{val.display}}"
+                                               data-source='<?=$display_source?>'
+                                               data-params="{field: 'display', tbname: 'slide'}">{{#val.display_name}}</a>
+                                        </td>
+                                        <td><a href="javascript:;" class="editable-hook"
+                                               data-pk="{{val.id}}"
+                                               data-type="text"
+                                               data-params="{field:'sort',tbname:'slide'}">{{val.sort}}</a></td>
                                         <td>
                                             {{each val.opera_btn as btn}}
                                             {{#btn}}
@@ -106,13 +113,7 @@
                     key: $('input[name="key"]').val()
                 },
                 complete: function () {
-                    unit.editable({
-                        dom: '.display-hook',
-                        type: 'select',
-                        url: '<?=$editable_url?>',
-                        source: JSON.parse('<?=$display_source?>'),
-                        params: {field: 'display', tbname: 'slide'}
-                    });
+                    unit.editable();
                 }
             });
         }

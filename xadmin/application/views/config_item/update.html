@@ -52,7 +52,8 @@
                             <div class="form-group">
                                 <div class="col-xs-2 control-label">参数</div>
                                 <div class="col-xs-5">
-                                    <textarea name="param" class="form-control" rows="3"><?=$record['param']?></textarea>
+                                    <textarea name="param" class="form-control"
+                                              rows="3"><?=$record['param']?></textarea>
                                     <span class="help-block">仅对单选/复选/下拉列表有效，例：1|开启,0|关闭</span>
                                 </div>
                             </div>
@@ -96,7 +97,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit'],function(unit){
+    require(['unit'], function (unit) {
         unit.ajaxForm();
     });
 </script>

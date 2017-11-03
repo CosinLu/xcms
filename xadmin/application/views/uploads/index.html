@@ -53,49 +53,6 @@
                             </div>
                             {{/each}}
                         </script>
-
-                        <!--<div class="table-responsive">
-                            <table class="table table-hover table_list list-hook">
-                                <thead>
-                                <tr>
-                                    <th width="5%">
-                                        <label><input type="checkbox" name="checkAll" data-checkname="id">
-                                            <ins></ins>
-                                        </label>
-                                    </th>
-                                    <th width="10%">缩略图</th>
-                                    <th>名称</th>
-                                    <th width="30%">URL</th>
-                                    <th width="10%">状态</th>
-                                    <th width="10%">排序</th>
-                                    <th width="10%">操作</th>
-                                </tr>
-                                </thead>
-                                <tbody class="list-body-hook"></tbody>
-                                <script id="listTpl" type="text/html">
-                                    {{each list as val}}
-                                    <tr>
-                                        <td>
-                                            <label><input type="checkbox" name="id[]" value="{{val.id}}">
-                                                <ins></ins>
-                                            </label>
-                                        </td>
-                                        <td><img src="{{val.rel_path}}"></td>
-                                        <td>{{val.name}}</td>
-                                        <td>{{val.url}}</td>
-                                        <td><a href="javascript:;" class="display-hook" data-value="{{val.display}}"
-                                               data-pk="{{val.id}}">{{#val.display_name}}</a></td>
-                                        <td>{{val.sort}}</td>
-                                        <td>
-                                            {{each val.opera_btn as btn}}
-                                            {{#btn}}
-                                            {{/each}}
-                                        </td>
-                                    </tr>
-                                    {{/each}}
-                                </script>
-                            </table>
-                        </div>-->
                         <div class="pagination_box pagination-hook"></div>
                         <script id="paginationTpl" type="text/html">
                             {{#pagination}}
@@ -131,15 +88,6 @@
                     x: Math.random(),
                     page: pageIndex,
                     key: $('input[name="key"]').val()
-                },
-                complete: function () {
-                    /*unit.editable({
-                     dom: '.display-hook',
-                     type: 'select',
-                     url: '<?=$editable_url?>',
-                     source: JSON.parse('<?=$display_source?>'),
-                     params: {field: 'display', tbname: 'slide'}
-                     });*/
                 }
             });
         }

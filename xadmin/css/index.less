@@ -289,7 +289,18 @@ div.error-hook {
             &.current {
                 color: #fff;
                 background: rgba(0, 0, 0, .2);
-                box-shadow: 4px 0 0 @color-primary inset;
+                //box-shadow: 4px 0 0 @color-primary inset;
+                &:before {
+                    content: '';
+                    width: 5px;
+                    height: 14px;
+                    left: 0;
+                    top: 13px;
+                    z-index: 1;
+                    position: absolute;
+                    background: @color-primary;
+
+                }
             }
             div {
                 &.mtree_btn {

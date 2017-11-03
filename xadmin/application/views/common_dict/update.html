@@ -38,7 +38,8 @@
                                 <?php if($this->session->sys_session['user_type']==0):?>
                                 <div class="col-xs-2 checkbox">
                                     <label>
-                                        <input type="checkbox" name="is_sys" value="1" <?=checked(1,$record['is_sys'])?>>
+                                        <input type="checkbox" name="is_sys" value="1" <?=checked(1,$record['is_sys'])?>
+                                        >
                                         <ins>设为系统字典</ins>
                                     </label>
                                 </div>
@@ -84,7 +85,7 @@
 <script type="text/javascript" src="plugin/require.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
-    require(['unit','colorpicker'], function (unit) {
+    require(['unit', 'colorpicker'], function (unit) {
         unit.ajaxForm();
         $('.colorpicker-hook').colorpicker({
             input: 'input[name="color"]',
