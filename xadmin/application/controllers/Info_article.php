@@ -95,7 +95,7 @@ class Info_article extends Info
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
-                'content' => $this->input->post('content'),
+                'content' => $this->input->post('content', FALSE),
                 'tag' => empty($tag) ? '' : implode(',', $tag),
                 'create_time' => strtotime($this->input->post('create_time'))
             )

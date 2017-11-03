@@ -98,6 +98,9 @@
                     page: pageIndex,
                     pid: $('select[name="category"]').val(),
                     key: $('input[name="key"]').val()
+                },
+                complete:function(){
+                    unit.editable();
                 }
             });
         }
