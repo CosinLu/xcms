@@ -44,11 +44,11 @@
                                 <div class="col-xs-6 radio">
                                     <?php
                                     foreach($val['param_arr'] as $item):
-                                    $checked = ($val['val'] == $record['value']) ? 'checked' : '';
+                                    $checked = ($val['val'] == $item['value']) ? 'checked' : '';
                                     ?>
                                     <label><input type="radio" name="<?=$val['variable']?>"
-                                                  value="<?=$record['value']?>" <?=$checked?>>
-                                        <ins><?=$record['name']?></ins>
+                                                  value="<?=$item['value']?>" <?=$checked?>>
+                                        <ins><?=$item['name']?></ins>
                                     </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
@@ -57,11 +57,11 @@
                                 <div class="col-xs-6 checkbox">
                                     <?php
                                 foreach($val['param_arr'] as $item):
-                                $checked = (in_array($record['value'],$val['val'])) ? 'checked' : '';
+                                $checked = (in_array($item['value'],$val['val'])) ? 'checked' : '';
                                 ?>
                                     <label><input type="checkbox" name="<?=$val['variable']?>[]"
-                                                  value="<?=$record['value']?>" <?=$checked?>>
-                                        <ins><?=$record['name']?></ins>
+                                                  value="<?=$item['value']?>" <?=$checked?>>
+                                        <ins><?=$item['name']?></ins>
                                     </label>
                                     <?php endforeach;?>
                                     <?=$help_block?>
@@ -72,10 +72,10 @@
                                         <option value="0">-请选择-</option>
                                         <?php
                                         foreach($val['param_arr'] as $item):
-                                        $selected = ($val['val'] == $record['value']) ? 'selected' : '';
+                                        $selected = ($val['val'] == $item['value']) ? 'selected' : '';
                                         ?>
-                                        <option value="<?=$record['value']?>"
-                                        <?=$selected?>><?=$record['name']?></option>
+                                        <option value="<?=$item['value']?>"
+                                        <?=$selected?>><?=$item['name']?></option>
                                         <?php endforeach;?>
                                     </select>
                                     <?=$help_block?>
