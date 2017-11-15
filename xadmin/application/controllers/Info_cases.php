@@ -83,19 +83,17 @@ class Info_cases extends Info
     //保存
     public function save()
     {
-        $thumb = $this->input->post('thumb');
-        $images = $this->input->post('images');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'cid' => $this->input->post('cid'),
                 'title' => $this->input->post('title'),
-                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
-                'images' => empty($images) ? '' : implode(',', $images),
+                'thumb' => new_implode(',', $this->input->post('thumb')),
+                'images' => new_implode(',', $this->input->post('images')),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
-                'content' => $this->input->post('content'),
+                'content' => $this->input->post('content', FALSE),
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );

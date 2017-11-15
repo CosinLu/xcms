@@ -71,13 +71,12 @@ class Link extends MY_Controller
     //保存
     public function save()
     {
-        $thumb = $this->input->post('thumb');
         $url = $this->input->post('url');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
-                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
+                'thumb' => new_implode(',', $this->input->post('thumb')),
                 'url' => $url ?: prep_url($url),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),

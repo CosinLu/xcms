@@ -82,8 +82,6 @@ class Info_article extends Info
     //保存
     public function save()
     {
-        $thumb = $this->input->post('thumb');
-        $tag = $this->input->post('tag');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
@@ -91,12 +89,12 @@ class Info_article extends Info
                 'title' => $this->input->post('title'),
                 'original_link' => $this->input->post('original_link'),
                 'auther' => $this->input->post('auther'),
-                'thumb' => empty($thumb) ? '' : implode(',', $thumb),
+                'thumb' => new_implode(',', $this->input->post('thumb')),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
                 'content' => $this->input->post('content', FALSE),
-                'tag' => empty($tag) ? '' : implode(',', $tag),
+                'tag' => new_implode(',', $this->input->post('tag')),
                 'create_time' => strtotime($this->input->post('create_time'))
             )
         );

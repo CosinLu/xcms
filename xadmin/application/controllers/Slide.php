@@ -60,7 +60,7 @@ class Slide extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['record'] = $this->slide_model->update($id);
-        $data['uploads']['image'] = $this->upload->get('image', $data['record']['image']);
+        $data['uploads']['image'] = $this->upload->get($data['record']['image']);
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'target', 'target', $data['record']['target']),
             array('rbl', 'display', 'display', $data['record']['display'])
@@ -71,13 +71,12 @@ class Slide extends MY_Controller
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
         $url = $this->input->post('url');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
                 'name' => $this->input->post('name'),
-                'image' => empty($image) ? '' : implode(',', $image),
+                'image' => new_implode(',', $this->input->post('image')),
                 'url' => $url ?: prep_url($url),
                 'target' => $this->input->post('target'),
                 'display' => $this->input->post('display'),

@@ -39,7 +39,7 @@ class Info_page extends Info
         $post = array(
             'vals' => array(
                 'cid' => $this->input->post('cid'),
-                'content' => $this->input->post('content'),
+                'content' => $this->input->post('content', FALSE),
                 'create_time' => $this->input->post('create_time')
             )
         );

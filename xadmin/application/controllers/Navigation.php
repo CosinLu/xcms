@@ -95,7 +95,6 @@ class Navigation extends MY_Controller
     //保存
     public function save()
     {
-        $position = $this->input->post('position');
         $post = array(
             'id' => $this->input->post('id'),
             'vals' => array(
@@ -104,7 +103,7 @@ class Navigation extends MY_Controller
                 'category' => $this->input->post('category'),
                 'url' => $this->input->post('url'),
                 'target' => $this->input->post('target'),
-                'position' => empty($position) ? '' : implode(',', $position),
+                'position' => new_implode(',', $this->input->post('position')),
                 'display' => $this->input->post('display'),
                 'sort' => $this->input->post('sort'),
             )

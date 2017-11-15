@@ -503,8 +503,20 @@ label {
     .panel-body {
         padding: @spacing;
         .panel-body-title {
-            font-size: 14px;
-            color: @color-muted;
+            margin-top: 15px;
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            line-height: 14px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 5px;
+                height: 14px;
+                background: @color-primary;
+                vertical-align: -2px;
+                margin-right:8px;
+            }
         }
     }
 }

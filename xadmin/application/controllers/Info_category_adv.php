@@ -71,7 +71,6 @@ class Info_category_adv extends MY_Controller
     //保存
     public function save()
     {
-        $image = $this->input->post('image');
         $url = $this->input->post('url');
         $post = array(
             'id' => $this->input->post('id'),
@@ -79,7 +78,7 @@ class Info_category_adv extends MY_Controller
                 'cid' => $this->input->post('cid'),
                 'name' => $this->input->post('name'),
                 'indent' => $this->input->post('indent'),
-                'image' => (!empty($image)) ? implode(',', $image) : '',
+                'image' => new_implode(',', $this->input->post('image')),
                 'url' => ($url) ? $url : prep_url($url),
                 'display' => $this->input->post('display'),
                 'remark' => $this->input->post('remark'),

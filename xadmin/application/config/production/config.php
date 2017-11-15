@@ -422,7 +422,7 @@ $config['standardize_newlines'] = FALSE;
 |          for backwards compatibility purposes!
 |
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -514,9 +514,6 @@ $config['proxy_ips'] = '';
 
 
 $config['my_title'] = 'XCMS';
-$config['my_loading'] = '<div class="panel-body loading-hook">数据加载中...</div>';
-$config['my_nodata'] = '<div class="panel-body nodata-hook">暂无数据</div>';
-$config['my_err'] = '<div class="panel-body error-hook">数据加载失败</div>';
 $config['my_per_page'] = 15;
 $config['my_insert'] = 'insert';
 $config['my_del'] = 'del';

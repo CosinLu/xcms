@@ -6,6 +6,19 @@
  * Time: 23:07
  */
 
+/**
+ * 重构implode函数，防止第二个参数为空时报错
+ *
+ * @param string $separator
+ * @param string $arr
+ * @return string
+ */
+function new_implode($separator = ',', $arr = '')
+{
+    if ($arr == '') return '';
+
+    return implode($separator, $arr);
+}
 
 /**
  * 判断链接是否有前缀 http:// or https://
@@ -92,6 +105,7 @@ function ddl($data = array(), $name = '', $selected_val = '', $disabled_val = ''
 
 /**
  * 复选框
+ *
  * @param array $data 数据源
  * @param string $name 名称
  * @param string $checked_val 选中项
@@ -119,12 +133,14 @@ function cbl($data = array(), $name = '', $checked_val = '', $disabled_val = '',
         $checked = ($checked_val != '' && in_array($val[$item_val], $checked_val)) ? 'checked' : '';
         $str .= '<label><input type="checkbox" name="' . $name . '[]" value="' . $val[$item_val] . '" ' . $disabled . ' ' . $checked . '><ins>' . $val[$item_name] . '</ins></label>';
     };
+
     return $str;
 
 }
 
 /**
  * 单选框
+ *
  * @param array $data 数据源
  * @param string $name 名称
  * @param string $checked_val 选中项
@@ -149,6 +165,7 @@ function rbl($data = array(), $name = '', $checked_val = '', $disabled_val = '',
         $checked = $val[$item_val] == $checked_val ? 'checked' : '';
         $str .= '<label><input type="radio" name="' . $name . '" value="' . $val[$item_val] . '" ' . $disabled . ' ' . $checked . '><ins>' . $val[$item_name] . '</ins></label>';
     };
+
     return $str;
 
 }
@@ -299,6 +316,7 @@ function go_back($url = '')
 
 /**
  * 获取有效url
+ *
  * @param array $data 数据源
  * @return mixed
  */
