@@ -28,8 +28,7 @@ require.config({
     },
     shim: {
         'bootstrap': {
-            deps: ['jquery',
-                'css!plugin/font-awesome/css/font-awesome.min.css']
+            deps: ['jquery']
         },
         'colorpicker': {
             deps: ['bootstrap',
@@ -109,7 +108,4 @@ require(['jquery', 'unit', 'layer', 'bootstrap'], function ($, unit) {
 
     //批量删除
     unit.batchDel();
-
-    //缩略图预览
-    unit.imagePreview();
 });

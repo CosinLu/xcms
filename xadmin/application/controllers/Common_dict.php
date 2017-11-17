@@ -14,7 +14,7 @@ class Common_dict extends MY_Controller
     {
         parent::__construct();
         //pid为空的时默认为第一级
-        $this->pid = $this->input->get('pid') ?: 0;
+        $this->pid = $this->input->get('pid');
         $this->load->model('common_dict_model');
         $this->set_url();
     }
@@ -24,7 +24,7 @@ class Common_dict extends MY_Controller
     {
         $url['index_back_btn'] = ($this->pid) ? go_back(site_url('common_dict')) : '';
         $url['get_list_url'] = site_url('common_dict/get_list?pid=' . $this->pid);
-        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('common_dict/insert?pid=' . $this->pid) . '">新增</a>');
+        $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm insert-btn-hook" href="' . site_url('common_dict/insert?pid=' . $this->pid) . '">新增</a>');
         $url['save_url'] = site_url('common_dict/save?pid=' . $this->pid);
         $this->load->vars($url);
     }
@@ -37,7 +37,7 @@ class Common_dict extends MY_Controller
                 $category[] = $val;
             }
         }
-        $data['category'] = ddl($category, 'category', $this->pid, '', array('', '-分类-', 'input-sm'));
+        $data['category'] = ddl($category, 'category', $this->pid, '', array('0', '-分类-', 'input-sm'));
         $this->load->view('common_dict/index.html', $data);
     }
 

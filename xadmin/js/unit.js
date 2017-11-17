@@ -4,20 +4,48 @@
 define(['jquery', 'layer'], function ($) {
     return {
 
+        //颜色选择器
+        colorPicker: function (options) {
+            require(['colorpicker'], function () {
+                var defaults = {
+                    dom: '.colorpicker-hook',
+                    input: '.colorpicker-input-hook',
+                    defaultColor: '#333',
+                    affectedDom: '.colorpicker-affected-hook',
+                    onChange: function (e) {
+                        $(opt.affectedDom).css('color', e.color.toHex());
+                    }
+                };
+                var opt = $.extend({}, defaults, options);
+                $(opt.dom).colorpicker({
+                    input: opt.input,
+                    color: opt.defaultColor,
+                    colorSelectors: {
+                        '#333': '#333',//default
+                        '#007CF9': '#007CF9',//primary
+                        '#5cb85c': '#5cb85c',//success
+                        '#007fff': '#007fff',//info
+                        '#f0ad4e': '#f0ad4e',//warning
+                        '#d9534f': '#d9534f'//danger
+                    }
+                }).on('changeColor', opt.onChange);
+            })
+        },
+
         //editable
         editable: function (options) {
-            var defaults = {
-                dom: '.editable-hook',
-                mode: 'popup',
-                escape: false,
-                type: 'select',
-                title: '',
-                url: 'index.php/api/editable',
-                source: [],
-                params: {}
-            };
-            var opt = $.extend({}, defaults, options);
             require(['editable'], function () {
+                var defaults = {
+                    dom: '.editable-hook',
+                    mode: 'popup',
+                    escape: false,
+                    type: 'select',
+                    title: '',
+                    url: 'index.php/api/editable',
+                    source: [],
+                    params: {}
+                };
+                var opt = $.extend({}, defaults, options);
                 $(opt.dom).editable({
                     mode: $(this).data('mode') || opt.mode,
                     escape: $(this).data('escape') || opt.escape,
@@ -179,8 +207,8 @@ define(['jquery', 'layer'], function ($) {
                             });
                         }
                     };
-                    var ops = $.extend({}, defaults, options);
-                    var validform = $('.ajax-form-hook').Validform(ops);
+                    var opt = $.extend({}, defaults, options);
+                    var validform = $('.ajax-form-hook').Validform(opt);
 
                     $('.submit-hook').on('click', function () {
                         _this._setFormSubmitType($(this));
@@ -357,8 +385,8 @@ define(['jquery', 'layer'], function ($) {
                 var defaults = {
                     dom: '.nano-hook'
                 };
-                var ops = $.extend({}, defaults, options);
-                $(ops.dom).nanoScroller();
+                var opt = $.extend({}, defaults, options);
+                $(opt.dom).nanoScroller();
             })
         },
 
@@ -382,7 +410,7 @@ define(['jquery', 'layer'], function ($) {
         },
 
         //通用日期插件
-        datetime: function () {
+        datetimePicker: function () {
             require(['datetimepicker'], function () {
                 $('input.datetime-hook').datetimepicker({
                     language: 'zh-CN',
