@@ -20,7 +20,7 @@ class Tag extends MY_Controller
     {
         $url['get_list_url'] = site_url('tag/get_list');
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('tag/insert') . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="tag" data-checkname="id" data-menu="' . $this->section_name . '" data-url = "' . site_url('api/batch_del') . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="tag" data-menu="' . $this->section_name . '">删除</a>');
         $url['save_url'] = site_url('tag/save');
         $this->load->vars($url);
     }
@@ -41,7 +41,7 @@ class Tag extends MY_Controller
             $data['list']['list'][$key]['name'] = $val['is_recommend'] == 1 ? $val['name'] . '&nbsp;<span class="badge bg-success">推荐</span>' : $val['name'];
             $data['list']['list'][$key]['display_name'] = '<span style="color:' . $val['display_color'] . ';">' . $val['display_name'] . '</span>';
             $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_update'), $this->sys_menu_auth, '<a href="' . site_url('tag/update?id=' . $val['id']) . '">编辑</a>', '<a href="javascript:;" class="disabled">编辑</a>');
-            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="tag" data-id="' . $val['id'] . '" data-menu="' . $this->section_name . '" data-url="' . site_url('api/del') . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
+            $data['list']['list'][$key]['opera_btn'][] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a href="javascript:;" class="del-hook" data-tb="tag" data-id="' . $val['id'] . '" data-menu="' . $this->section_name . '">删除</a>', '<a href="javascript:;" class="disabled">删除</a>');
         }
         echo json_encode($data);
     }

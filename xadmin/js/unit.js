@@ -63,12 +63,13 @@ define(['jquery', 'layer'], function ($) {
 
         //获取列表
         getList: function (options) {
-            require(['template', 'jqthumb'], function (template) {
+            require(['template'], function (template) {
                 var defaults = {
                     url: '',
                     data: {
                         x: Math.random()
                     },
+                    jqthumb: false,
                     listEle: '.list-hook',
                     listBodyEle: '.list-body-hook',
                     listTpl: 'listTpl',
@@ -90,14 +91,18 @@ define(['jquery', 'layer'], function ($) {
                         $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         if (data.list.list.length) {
                             $(opt.listBodyEle).html(template(opt.listTpl, data.list));
-                            if ($(opt.listBodyEle).find('img').length) {
-                                $(opt.listBodyEle).find('img').each(function () {
-                                    var width = $(this).data('width') || 120;
-                                    var height = $(this).data('height') || 80;
-                                    $(this).jqthumb({
-                                        width: width, height: height
-                                    })
-                                });
+                            if (opt.jqthumb) {
+                                require(['jqthumb'], function () {
+                                    if ($(opt.listBodyEle).find('.jqthumb-hook').length) {
+                                        $(opt.listBodyEle).find('.jqthumb-hook').each(function () {
+                                            var width = $(this).data('width') || 120;
+                                            var height = $(this).data('height') || 80;
+                                            $(this).jqthumb({
+                                                width: width, height: height
+                                            })
+                                        });
+                                    }
+                                })
                             }
                             if ($(opt.paginationEle).length) $(opt.paginationEle).html(template(opt.paginationTpl, data.list));
                         } else {
@@ -235,8 +240,8 @@ define(['jquery', 'layer'], function ($) {
         batchDel: function () {
             $(document).on('click', '.batch-del-hook', function () {
                 var tbname = $(this).data('tb') || '';
-                var url = $(this).data('url') || '';
-                var primary = $(this).data('primary') || '';
+                var url = $(this).data('url') || 'index.php/api/batch_del';
+                var primary = $(this).data('primary') || 'id';
                 var checkname = $(this).data('checkname') ? $(this).data('checkname') : 'id';
                 var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
                 var menu = $(this).data('menu') || '';
@@ -276,10 +281,10 @@ define(['jquery', 'layer'], function ($) {
         //删除
         del: function () {
             $(document).on('click', '.del-hook', function () {
-                var tbname = $(this).data('tb');
-                var id = $(this).data('id');
-                var url = $(this).data('url');
-                var primary = $(this).data('primary');
+                var tbname = $(this).data('tb') || '';
+                var id = $(this).data('id') || '';
+                var url = $(this).data('url') || 'index.php/api/del';
+                var primary = $(this).data('primary') || 'id';
                 var menu = $(this).data('menu') || '';
                 if (tbname == '' || id == '' || url == '') {
                     layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
@@ -410,14 +415,22 @@ define(['jquery', 'layer'], function ($) {
         },
 
         //通用日期插件
-        datetimePicker: function () {
+        datetimePicker: function (options) {
             require(['datetimepicker'], function () {
-                $('input.datetime-hook').datetimepicker({
+                var defaults = {
                     language: 'zh-CN',
                     format: 'yyyy-mm-dd hh:ii:ss',
                     pickerPosition: 'top-right',
                     autoclose: true,
                     todayBtn: true
+                };
+                var opt = $.extend({}, defaults, options);
+                $('input.datetimepicker-hook').datetimepicker({
+                    language: opt.language,
+                    format: opt.format,
+                    pickerPosition: opt.pickerPosition,
+                    autoclose: opt.autoclose,
+                    todayBtn: opt.todayBtn
                 });
             });
         },

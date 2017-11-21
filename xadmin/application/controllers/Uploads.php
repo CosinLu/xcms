@@ -20,7 +20,7 @@ class Uploads extends MY_Controller
     {
         $url['get_list_url'] = site_url('uploads/get_list');
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('uploads/insert') . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="uploads" data-menu="' . $this->section_name . '" data-checkname="id" data-url = "' . site_url('uploads/batch_del') . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="uploads" data-menu="' . $this->section_name . '" data-url = "' . site_url('uploads/batch_del') . '">删除</a>');
         $this->load->vars($url);
     }
 

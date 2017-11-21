@@ -53,7 +53,7 @@
                                                 <ins></ins>
                                             </label>
                                         </td>
-                                        <td><img src="{{val.rel_path}}"></td>
+                                        <td><img src="{{val.rel_path}}" class="jqthumb-hook"></td>
                                         <td>{{val.name}}</td>
                                         <td>{{val.url}}</td>
                                         <td><a href="javascript:;" class="editable-hook"
@@ -106,6 +106,7 @@
         function getList(pageIndex) {
             unit.getList({
                 url: '<?=$get_list_url?>',
+                jqthumb: true,
                 data: {
                     x: Math.random(),
                     page: pageIndex,

@@ -23,7 +23,7 @@ class Config_item extends MY_Controller
     {
         $url['get_list_url'] = site_url('config_item/get_list?category=' . $this->category);
         $url['insert_btn'] = $this->auth->set(config_item('my_insert'), $this->sys_menu_auth, '<a class="btn btn-primary btn-sm" href="' . site_url('config_item/insert?category=' . $this->category) . '">新增</a>');
-        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-checkname="id" data-menu="' . $this->section_name . '" data-url = "' . site_url('api/batch_del?category=' . $this->category) . '">删除</a>');
+        $url['del_btn'] = $this->auth->set(config_item('my_del'), $this->sys_menu_auth, '<a class="btn btn-danger btn-sm batch-del-hook" href="javascript:;" data-tb="config" data-menu="' . $this->section_name . '" data-url = "' . site_url('api/batch_del?category=' . $this->category) . '">删除</a>');
         $url['save_url'] = site_url('config_item/save?category=' . $this->category);
         $this->load->vars($url);
     }

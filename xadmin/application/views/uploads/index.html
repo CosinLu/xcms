@@ -40,14 +40,11 @@
                                         <ins></ins>
                                     </label>
                                     <div class="thumb">
-                                        <img src="{{val.rel_path}}" data-width="100%" data-height="120">
+                                        <div class="thumb_box">
+                                            <img src="{{val.rel_path}}">
+                                        </div>
                                     </div>
-                                    <div class="caption">
-                                        <p class="ellipsis" title="{{val.client_name}}">{{val.client_name}}</p>
-                                        {{each val.opera_btn as btn}}
-                                        {{#btn}}
-                                        {{/each}}
-                                    </div>
+                                    <div class="caption">{{val.client_name}}</div>
                                 </div>
                             </div>
                             {{/each}}

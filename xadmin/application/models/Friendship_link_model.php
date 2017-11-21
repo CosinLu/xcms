@@ -6,7 +6,7 @@
  * Date: 2016/8/23
  * Time: 21:12
  */
-class Link_model extends CI_Model
+class Friendship_link_model extends CI_Model
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class Link_model extends CI_Model
         $this->db->select('t.*');
         $this->db->select('t1.name display_name,t1.color display_color');
         $this->db->select('t2.rel_path');
-        $this->db->from('link t');
+        $this->db->from('Friendship_link t');
         $this->db->join('common_dict t1', 't1.ident=t.display', 'left');
         $this->db->join('uploads t2', 't2.id=t.thumb', 'left');
         if ($key != '') {
@@ -42,7 +42,7 @@ class Link_model extends CI_Model
     public function update($id = '')
     {
         $this->db->where('id', $id);
-        $res = $this->db->get('link')->row_array();
+        $res = $this->db->get('Friendship_link')->row_array();
 
         return $res;
     }
@@ -51,9 +51,9 @@ class Link_model extends CI_Model
     public function save($post = array())
     {
         if ($post['id']) {
-            $bool = $this->db->where('id', $post['id'])->update('link', $post['vals']);
+            $bool = $this->db->where('id', $post['id'])->update('Friendship_link', $post['vals']);
         } else {
-            $bool = $this->db->insert('link', $post['vals']);
+            $bool = $this->db->insert('Friendship_link', $post['vals']);
         }
 
         return $bool;
