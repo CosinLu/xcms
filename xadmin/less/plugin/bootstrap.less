@@ -1,4 +1,4 @@
-﻿@import "variable";
+﻿@import "../variable";
 
 html, body {
     font-family: @font-family;
@@ -418,18 +418,20 @@ label {
 }
 
 /*下拉菜单*/
-.dropdown {
-    .dropdown-menu {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        > li > a {
-            padding: 8px 10px;
-        }
-    }
-}
-
 .dropdown-menu {
     border-radius: @border-radius;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    > li {
+        > a {
+            padding: 8px 10px;
+            > i {
+                &.fa {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
 }
 
 /*面板*/

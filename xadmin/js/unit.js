@@ -4,6 +4,24 @@
 define(['jquery', 'layer'], function ($) {
     return {
 
+        //右键菜单
+        contextmenu: function (options) {
+            require(['contextmenu'], function () {
+                var defaults = {
+                    dom: '.context-hook',
+                    before: function () {
+                    },
+                    onItem: function () {
+                    }
+                };
+                var opt = $.extend({}, defaults, options);
+                $(opt.dom).contextmenu({
+                    before: opt.before,
+                    onItem: opt.onItem
+                })
+            });
+        },
+
         //颜色选择器
         colorPicker: function (options) {
             require(['colorpicker'], function () {

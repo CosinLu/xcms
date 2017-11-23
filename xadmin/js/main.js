@@ -24,7 +24,8 @@ require.config({
         'uploadsUnit': 'plugin/uploads/js/uploads.unit',
         'uploads': 'plugin/uploads/js/uploads',
         'form': 'plugin/validform/Validform_v5.3.2_min',
-        'editable': 'plugin/editable/js/bootstrap-editable'
+        'editable': 'plugin/editable/js/bootstrap-editable',
+        'contextmenu': 'plugin/contextmenu/js/bootstrap-contextmenu.min'
     },
     shim: {
         'bootstrap': {
@@ -38,7 +39,7 @@ require.config({
             deps: ['bootstrap',
                 'plugin/datetimepicker/js/bootstrap-datetimepicker.min',
                 'css!plugin/datetimepicker/css/bootstrap-datetimepicker.min.css',
-                'css!plugin/../css/datetimepicker.css']
+                'css!plugin/../css/plugin/datetimepicker.css']
         },
         'dropload': {
             deps: ['jquery',
@@ -48,7 +49,7 @@ require.config({
             deps: ['jquery',
                 'bootstrap',
                 'css!plugin/iconpicker/css/fontawesome-iconpicker.min.css',
-                'css!plugin/../css/iconpicker.css']
+                'css!plugin/../css/plugin/iconpicker.css']
         },
         'mtree': {
             deps: ['jquery',
@@ -72,12 +73,15 @@ require.config({
         },
         'form': {
             deps: ['jquery',
-                'css!plugin/../css/validform.css']
+                'css!plugin/../css/plugin/validform.css']
         },
         'editable': {
             deps: ['jquery',
                 'css!plugin/editable/css/bootstrap-editable.css',
-                'css!plugin/../css/editable.css']
+                'css!plugin/../css/plugin/editable.css']
+        },
+        'contextmenu': {
+            deps: ['jquery']
         }
     }
 
