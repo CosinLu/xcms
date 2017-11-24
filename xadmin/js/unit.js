@@ -91,6 +91,7 @@ define(['jquery', 'layer'], function ($) {
                     listEle: '.list-hook',
                     listBodyEle: '.list-body-hook',
                     listTpl: 'listTpl',
+                    pagination: true,
                     paginationEle: '.pagination-hook',
                     paginationTpl: 'paginationTpl',
                     nodataEle: '.nodata-hook',
@@ -102,7 +103,7 @@ define(['jquery', 'layer'], function ($) {
                     beforeSend: function () {
                         $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
                         $(opt.listBodyEle).html('');
-                        if (opt.paginationEle.length) $(opt.paginationEle).html('');
+                        if (opt.pagination && opt.paginationEle.length) $(opt.paginationEle).html('');
                         if (opt.listEle.length) $(opt.listEle).after(opt.loadingDom);
                     },
                     success: function (data) {
@@ -122,7 +123,7 @@ define(['jquery', 'layer'], function ($) {
                                     }
                                 })
                             }
-                            if ($(opt.paginationEle).length) $(opt.paginationEle).html(template(opt.paginationTpl, data.list));
+                            if (opt.pagination && $(opt.paginationEle).length) $(opt.paginationEle).html(template(opt.paginationTpl, data.list));
                         } else {
                             if (opt.listEle.length) $(opt.listEle).after(opt.nodataDom);
                         }
@@ -181,8 +182,7 @@ define(['jquery', 'layer'], function ($) {
                 path: 'plugin/layer/',
                 extend: 'bootcss/css/style.css',
                 skin: 'layer-ext-bootcss',
-                shade: [0.6, '#373737'],
-                shadeClose: true
+                shade: [0.6, '#373737']
             });
         },
 
