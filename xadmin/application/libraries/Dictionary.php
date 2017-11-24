@@ -118,30 +118,32 @@ class Dictionary
         if ($disabled_val !== TRUE) {
             $disabled_val = is_array($disabled_val) ? $disabled_val : explode(',', $disabled_val);
         }
-        foreach ($data as $key => $val) {
-            //ident为空时使用id填充
-            $value = $val['ident'] ?: $val['id'];
-            //设置选中项
-            if ($selected_val == '' && $key == 0) {
-                $checked = 'checked="checked"';
-            } else if ($selected_val != '' && $value == $selected_val) {
-                $checked = 'checked="checked"';
-            } else {
-                $checked = '';
-            }
-            //设置禁选项
-            if ($disabled_val === TRUE) {
-                $disabled = 'disabled="disabled"';
-            } else {
-                if (!empty($disabled_val) && in_array($value, $disabled_val)) {
+        if (!empty($data)) {
+            foreach ($data as $key => $val) {
+                //ident为空时使用id填充
+                $value = $val['ident'] ?: $val['id'];
+                //设置选中项
+                if ($selected_val == '' && $key == 0) {
+                    $checked = 'checked="checked"';
+                } else if ($selected_val != '' && $value == $selected_val) {
+                    $checked = 'checked="checked"';
+                } else {
+                    $checked = '';
+                }
+                //设置禁选项
+                if ($disabled_val === TRUE) {
                     $disabled = 'disabled="disabled"';
                 } else {
-                    $disabled = '';
+                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
+                        $disabled = 'disabled="disabled"';
+                    } else {
+                        $disabled = '';
+                    }
                 }
+                //指定控件名称
+                $field = $val['field'] ?: $name;
+                $str .= '<label><input type="radio" name="' . $field . '" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
             }
-            //指定控件名称
-            $field = $val['field'] ?: $name;
-            $str .= '<label><input type="radio" name="' . $field . '" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
 
         return $str;
@@ -164,24 +166,26 @@ class Dictionary
         $str = '';
         $checked_val = is_array($checked_val) ? $checked_val : explode(',', $checked_val);
         $disabled_val = is_array($disabled_val) ? $disabled_val : explode(',', $disabled_val);
-        foreach ($data as $val) {
-            //ident为空时使用id填充
-            $value = $val['ident'] ?: $val['id'];
-            //设置选中项
-            $checked = !empty($checked_val) && in_array($value, $checked_val) ? 'checked="checked"' : '';
-            //设置禁选项
-            if ($disabled_val === TRUE) {
-                $disabled = 'disabled="disabled"';
-            } else {
-                if (!empty($disabled_val) && in_array($value, $disabled_val)) {
+        if (!empty($data)) {
+            foreach ($data as $val) {
+                //ident为空时使用id填充
+                $value = $val['ident'] ?: $val['id'];
+                //设置选中项
+                $checked = !empty($checked_val) && in_array($value, $checked_val) ? 'checked="checked"' : '';
+                //设置禁选项
+                if ($disabled_val === TRUE) {
                     $disabled = 'disabled="disabled"';
                 } else {
-                    $disabled = '';
+                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
+                        $disabled = 'disabled="disabled"';
+                    } else {
+                        $disabled = '';
+                    }
                 }
+                //指定控件名称
+                $field = $val['field'] ?: $name;
+                $str .= '<label><input type="checkbox" name="' . $field . '[]" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
             }
-            //指定控件名称
-            $field = $val['field'] ?: $name;
-            $str .= '<label><input type="checkbox" name="' . $field . '[]" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
         }
 
         return $str;
@@ -216,22 +220,24 @@ class Dictionary
         }
         $str .= '<select name="' . $name . '" ' . $disabled . ' class="form-control">';
         $str .= $default ? '<option value="' . $default[1] . '">' . $default[0] . '</option>' : '';
-        foreach ($data as $val) {
-            //ident为空时使用id填充
-            $value = $val['ident'] ?: $val['id'];
-            //选中
-            $selected = ($value == $selected_val) ? 'selected="selected"' : '';
-            //禁止选择
-            if ($disabled_val === TRUE) {
-                $option_disabled = '';
-            } else {
-                if (!empty($disabled_val) && in_array($value, $disabled_val)) {
-                    $option_disabled = 'disabled';
-                } else {
+        if (!empty($data)) {
+            foreach ($data as $val) {
+                //ident为空时使用id填充
+                $value = $val['ident'] ?: $val['id'];
+                //选中
+                $selected = ($value == $selected_val) ? 'selected="selected"' : '';
+                //禁止选择
+                if ($disabled_val === TRUE) {
                     $option_disabled = '';
+                } else {
+                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
+                        $option_disabled = 'disabled';
+                    } else {
+                        $option_disabled = '';
+                    }
                 }
+                $str .= '<option value="' . $value . '" ' . $selected . ' ' . $option_disabled . '>' . $val['name'] . '</option>';
             }
-            $str .= '<option value="' . $value . '" ' . $selected . ' ' . $option_disabled . '>' . $val['name'] . '</option>';
         }
         $str .= '</select>';
 
