@@ -1,0 +1,149 @@
+@import "variable";
+
+/*客户管理*/
+.customer {
+    /*.contact,
+    .remark {
+        .item {
+            padding: 10px 0;
+            margin: 0;
+            border: transparent dotted 1px;
+            position: relative;
+            margin-bottom: 10px;
+            &:hover {
+                border-color: @border-color;
+            }
+            .remove_btn {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, .2);
+                position: absolute;
+                right: -9px;
+                top: -9px;
+                text-align: center;
+                line-height: 16px;
+                font-weight: 700;
+                color: #fff;
+                cursor: pointer;
+                z-index: 100;
+                display: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        }
+    }
+
+    !*联系人信息*!
+    .contact {
+        .contact_dl {
+            width: 300px;
+            padding: 30px 20px;
+            border: @border-color solid 1px;
+            border-radius: @border-radius;
+            margin: 0;
+            dt {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 20px;
+                padding: 0;
+                margin: 0;
+                span {
+                    font-size: 14px;
+                    color: @color-muted;
+                }
+            }
+            dd {
+                line-height: 20px;
+                margin-top: 5px;
+                i {
+                    &.fa {
+                        width: 30px;
+                        height: 20px;
+                        font-size: 14px;
+
+                    }
+                }
+            }
+        }
+
+        .contact_panel {
+            .contact_body {
+                display: flex;
+                padding: 10px 0;
+                background: #ccc;
+                line-height: 22px;
+                .name {
+                    width: 225px;
+                }
+                .content {
+                    flex: 1;
+                }
+            }
+            .contact_footer {
+                > ul {
+                    > li {
+                        float: left;
+                        + li {
+                            margin-left: 20px;
+                        }
+                        i {
+                            &.fa {
+                                color: @color-muted;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }*/
+
+    .contact {
+        tr {
+            &.active {
+                background: transparent;
+                &:hover {
+                    background: transparent;
+                    td {
+                        background: transparent;
+                    }
+                }
+                td {
+                    background: transparent;
+                    border-bottom-color: transparent;
+                }
+                & + tr {
+                    &.toggle_detail {
+                        &:hover {
+                            background: transparent;
+                            td {
+                                background: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .contact_detail {
+            dl {
+                margin: 0 0 10px;
+                dt {
+                    width: 42px;
+                    float: left;
+                }
+                dd {
+                    margin-left: 42px;
+                }
+            }
+        }
+    }
+}
+
+/*行业分类*/
+.insert_industry_panel {
+    .insert_industry_body {
+        padding-top: 20px;
+    }
+}

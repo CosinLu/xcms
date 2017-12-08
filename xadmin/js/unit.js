@@ -4,6 +4,22 @@
 define(['jquery', 'layer'], function ($) {
     return {
 
+        //select2
+        select2: function (options) {
+            require(['select2'], function () {
+                var defaults = {
+                    dom: '.select2-hook',
+                    placeholder: '可选填',
+                    width: '100%'
+                };
+                var opt = $.extend({}, defaults, options);
+                $(opt.dom).select2({
+                    placeholder: opt.placeholder,
+                    width: opt.width
+                });
+            })
+        },
+
         //右键菜单
         contextmenu: function (options) {
             require(['contextmenu'], function () {
@@ -96,18 +112,20 @@ define(['jquery', 'layer'], function ($) {
                     paginationTpl: 'paginationTpl',
                     nodataEle: '.nodata-hook',
                     loadingEle: '.loading-hook',
-                    errordataEle: '.error-hook',
-                    loadingDom: '<div class="panel-body loading-hook">数据加载中...</div>',
-                    nodataDom: '<div class="panel-body nodata-hook">暂无数据</div>',
-                    errordataDom: '<div class="panel-body error-hook">数据加载失败</div>',
+                    errorEle: '.error-hook',
+                    loadingDom: '<div class="panel-body loading loading-hook">数据加载中...</div>',
+                    nodataDom: '<div class="panel-body nodata nodata-hook">暂无数据</div>',
+                    errorDom: '<div class="panel-body error error-hook">数据加载失败</div>',
                     beforeSend: function () {
-                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
+                        //$(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errorEle).remove();
+                        $(opt.listEle + '+' + opt.nodataEle + ',' + opt.listEle + '+' + opt.loadingEle + ',' + opt.listEle + '+' + opt.errorEle).remove();
                         $(opt.listBodyEle).html('');
                         if (opt.pagination && opt.paginationEle.length) $(opt.paginationEle).html('');
                         if (opt.listEle.length) $(opt.listEle).after(opt.loadingDom);
                     },
                     success: function (data) {
-                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
+                        //$(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errorEle).remove();
+                        $(opt.listEle + '+' + opt.nodataEle + ',' + opt.listEle + '+' + opt.loadingEle + ',' + opt.listEle + '+' + opt.errorEle).remove();
                         if (data.list.list.length) {
                             $(opt.listBodyEle).html(template(opt.listTpl, data.list));
                             if (opt.jqthumb) {
@@ -129,8 +147,9 @@ define(['jquery', 'layer'], function ($) {
                         }
                     },
                     error: function () {
-                        $(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errordataEle).remove();
-                        if (opt.listEle.length) $(opt.listEle).after(opt.errordataDom);
+                        //$(opt.nodataEle + ',' + opt.loadingEle + ',' + opt.errorEle).remove();
+                        $(opt.listEle + '+' + opt.nodataEle + ',' + opt.listEle + '+' + opt.loadingEle + ',' + opt.listEle + '+' + opt.errorEle).remove();
+                        if (opt.listEle.length) $(opt.listEle).after(opt.errorDom);
                     },
                     complete: function () {
                     }
@@ -258,7 +277,7 @@ define(['jquery', 'layer'], function ($) {
         batchDel: function () {
             $(document).on('click', '.batch-del-hook', function () {
                 var tbname = $(this).data('tb') || '';
-                var url = $(this).data('url') || 'index.php/api/batch_del';
+                var url = $(this).data('url') || 'index.php/api/del';
                 var primary = $(this).data('primary') || 'id';
                 var checkname = $(this).data('checkname') ? $(this).data('checkname') : 'id';
                 var checkbox = $('input[type="checkbox"][name^=' + checkname + ']:enabled:checked');
@@ -304,7 +323,7 @@ define(['jquery', 'layer'], function ($) {
                 var url = $(this).data('url') || 'index.php/api/del';
                 var primary = $(this).data('primary') || 'id';
                 var menu = $(this).data('menu') || '';
-                if (tbname == '' || id == '' || url == '') {
+                if (id == '' || url == '') {
                     layer.msg('删除失败！', {icon: 2, shade: 0.6, shadeClose: true});
                     return;
                 }

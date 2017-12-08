@@ -28,7 +28,7 @@ class Tag extends MY_Controller
     public function index()
     {
         $data['display_source'] = $this->dictionary->source('display');
-        $this->load->view('tag/index.html',$data);
+        $this->load->view('tag/index.html', $data);
     }
 
     //获取列表

@@ -16,34 +16,40 @@ class Dictionary
     }
 
     /**
-     * 根据类型获取数据
-     *
-     * @param array $arr array(['控件类型','字典标识','控件名称','选中项','禁选项','默认值（下拉列表第一条数据）array('title','value') OR false'])
-     * @return string
+     * @param array $arr
+     * @return array|string
      */
     public function dict($arr = array())
     {
-        if (empty($arr)) return '';
-        //数据源
-        $data = $this->data();
-        //传参标准
-        //array('type' => '', 'ident' => '', 'name' => '', 'selected' => '', 'disabled' => '', 'default' => array('-请选择-', '0'))
+        if (!$arr) return '';
+        $all_data = $this->data();
         $res = array();
         foreach ($arr as $key => $val) {
-            //格式化参数
-            $val = array_pad($val, 6, '');
-            list($type, $ident, $name, $selected, $disabled, $default) = $val;
-            $default = $default ?: array('-请选择-', '0');
-            //控件名称
-            $name = $name ?: $ident;
+            $temp = array_pad($val, 2, '');
+            list($type, $ident) = $temp;
+            if (!$type) break;
+            $data = $this->filter($all_data, $ident);
             if ($type == 'ddl') {
-                $res[$name] = $this->$type($data, $ident, $name, $selected, $disabled, $default);
+                //$data, $name, $selected_val, $disabled_val, $class, $multiple, $value_field , $text_field , $default
+                $val = array_pad($val, 10, '');
+                list($type, $ident, $name, $selected_val, $disabled_val, $class, $multiple, $value_field, $text_field, $default) = $val;
+                $name = $name ?: $ident;
+                $multiple = $multiple ?: FALSE;
+                $value_field = $value_field ?: 'id';
+                $text_field = $text_field ?: 'name';
+                $default = $default ?: array('-请选择-', 0);
+                $res[$name] = $type($data, $name, $selected_val, $disabled_val, $class, $multiple, $value_field, $text_field, $default);
             } else {
-                $res[$name] = $this->$type($data, $ident, $name, $selected, $disabled);
+                //$data, $name, $checked_val, $disabled_val, $value_field, $text_field
+                $val = array_pad($val, 7, '');
+                list($type, $ident, $name, $checked_val, $disabled_val, $value_field, $text_field) = $val;
+                $name = $name ?: $ident;
+                $value_field = $value_field ?: 'id';
+                $text_field = $text_field ?: 'name';
+                $res[$name] = $type($data, $name, $checked_val, $disabled_val, $value_field, $text_field);
             }
         }
 
-        //返回数据
         return $res;
     }
 
@@ -77,9 +83,9 @@ class Dictionary
      */
     public function filter($data = array(), $ident = '')
     {
-        //数据源
-        if (empty($data)) $data = $this->data($ident);
-        if (empty($data)) return '';
+        if (!$ident) return array();
+        if (!$data) $data = $this->data($ident);
+        if (!$data) return array();
         //当前标识的id
         $pid = '';
         foreach ($data as $val) {
@@ -101,151 +107,6 @@ class Dictionary
     }
 
     /**
-     * 单选
-     *
-     * @param array $data 数据源
-     * @param string $ident 字典标识
-     * @param string $name 控件名称
-     * @param string $selected_val 选中项
-     * @param string|array $disabled_val 禁用项
-     * @return string
-     */
-    public function rbl($data = array(), $ident = '', $name = '', $selected_val = '', $disabled_val = '')
-    {
-        //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
-        $str = '';
-        if ($disabled_val !== TRUE) {
-            $disabled_val = is_array($disabled_val) ? $disabled_val : explode(',', $disabled_val);
-        }
-        if (!empty($data)) {
-            foreach ($data as $key => $val) {
-                //ident为空时使用id填充
-                $value = $val['ident'] ?: $val['id'];
-                //设置选中项
-                if ($selected_val == '' && $key == 0) {
-                    $checked = 'checked="checked"';
-                } else if ($selected_val != '' && $value == $selected_val) {
-                    $checked = 'checked="checked"';
-                } else {
-                    $checked = '';
-                }
-                //设置禁选项
-                if ($disabled_val === TRUE) {
-                    $disabled = 'disabled="disabled"';
-                } else {
-                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
-                        $disabled = 'disabled="disabled"';
-                    } else {
-                        $disabled = '';
-                    }
-                }
-                //指定控件名称
-                $field = $val['field'] ?: $name;
-                $str .= '<label><input type="radio" name="' . $field . '" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
-            }
-        }
-
-        return $str;
-    }
-
-    /**
-     * 复选
-     *
-     * @param array $data 数据源
-     * @param string $ident 字典标识
-     * @param string $name 控件名称
-     * @param string|array $selected_val 选中项
-     * @param string|array $disabled_val 禁用项
-     * @return string
-     */
-    public function cbl($data = array(), $ident = '', $name = '', $checked_val = '', $disabled_val = '')
-    {
-        //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
-        $str = '';
-        $checked_val = is_array($checked_val) ? $checked_val : explode(',', $checked_val);
-        $disabled_val = is_array($disabled_val) ? $disabled_val : explode(',', $disabled_val);
-        if (!empty($data)) {
-            foreach ($data as $val) {
-                //ident为空时使用id填充
-                $value = $val['ident'] ?: $val['id'];
-                //设置选中项
-                $checked = !empty($checked_val) && in_array($value, $checked_val) ? 'checked="checked"' : '';
-                //设置禁选项
-                if ($disabled_val === TRUE) {
-                    $disabled = 'disabled="disabled"';
-                } else {
-                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
-                        $disabled = 'disabled="disabled"';
-                    } else {
-                        $disabled = '';
-                    }
-                }
-                //指定控件名称
-                $field = $val['field'] ?: $name;
-                $str .= '<label><input type="checkbox" name="' . $field . '[]" value="' . $value . '" ' . $checked . ' ' . $disabled . '><ins>' . $val['name'] . '</ins></label>';
-            }
-        }
-
-        return $str;
-    }
-
-    /**
-     * 下拉列表
-     *
-     * @param array $data 数据源
-     * @param string $ident 字典标识
-     * @param string $name 控件名称
-     * @param string $selected_val 选中项
-     * @param string|array $disabled_val 禁用项
-     * @param array|bool $default 第一条默认值：array('title','value') OR false
-     * @return string
-     */
-    public function ddl($data = array(), $ident = '', $name = '', $selected_val = '', $disabled_val = '', $default = array('-请选择-', '0'))
-    {
-        //默认值
-        $default = is_array($default) ? array_merge(array('-请选择-', '0'), $default) : $default;
-        //数据源
-        $data = empty($data) ? $this->data($ident) : $this->filter($data, $ident);
-        $str = '';
-        //禁用
-        if ($disabled_val === TRUE) {
-            $disabled = 'disabled';
-        } else {
-            $disabled = '';
-            if (!is_array($disabled_val)) {
-                $disabled_val = explode(',', $disabled_val);
-            }
-        }
-        $str .= '<select name="' . $name . '" ' . $disabled . ' class="form-control">';
-        $str .= $default ? '<option value="' . $default[1] . '">' . $default[0] . '</option>' : '';
-        if (!empty($data)) {
-            foreach ($data as $val) {
-                //ident为空时使用id填充
-                $value = $val['ident'] ?: $val['id'];
-                //选中
-                $selected = ($value == $selected_val) ? 'selected="selected"' : '';
-                //禁止选择
-                if ($disabled_val === TRUE) {
-                    $option_disabled = '';
-                } else {
-                    if (!empty($disabled_val) && in_array($value, $disabled_val)) {
-                        $option_disabled = 'disabled';
-                    } else {
-                        $option_disabled = '';
-                    }
-                }
-                $str .= '<option value="' . $value . '" ' . $selected . ' ' . $option_disabled . '>' . $val['name'] . '</option>';
-            }
-        }
-        $str .= '</select>';
-
-        return $str;
-    }
-
-
-    /**
      * 获取指定字典
      *
      * @param string $ident 标记
@@ -253,11 +114,7 @@ class Dictionary
      */
     public function source($ident = '')
     {
-        $this->CI->db->select('t.ident,t.name,t.color');
-        $this->CI->db->from('common_dict t');
-        $this->CI->db->join('common_dict t1', "t1.ident='{$ident}'", 'left');
-        $this->CI->db->where('t.pid=t1.id');
-        $res = $this->CI->db->get()->result_array();
+        $res = $this->data($ident);
         $data = array();
         foreach ($res as $key => $val) {
             $data[] = array(

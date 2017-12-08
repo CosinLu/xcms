@@ -10,10 +10,30 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-11-21 18:47:16
+Date: 2017-12-08 16:52:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `source` varchar(20) DEFAULT NULL,
+  `source_id` int(10) DEFAULT NULL,
+  `pid` int(10) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `create_time` int(10) DEFAULT NULL,
+  `audit_status` varchar(20) DEFAULT 'wait',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='评论表';
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for common_dict
@@ -30,7 +50,7 @@ CREATE TABLE `common_dict` (
   `is_sys` tinyint(1) DEFAULT '0',
   `sort` int(10) DEFAULT '100',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COMMENT='通用字典表';
 
 -- ----------------------------
 -- Records of common_dict
@@ -56,7 +76,7 @@ INSERT INTO `common_dict` VALUES ('26', '位置', '0', '1', 'position', null, '#
 INSERT INTO `common_dict` VALUES ('27', '顶部', '26', '2', 'top', null, '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('28', '底部', '26', '2', 'bottom', null, '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('29', '打开方式', '0', '1', 'target', null, '#333333', '1', '100');
-INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', null, '#333333', '0', '100');
+INSERT INTO `common_dict` VALUES ('30', '当前窗口', '29', '2', '_self', '', '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('31', '新窗口', '29', '2', '_blank', null, '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('32', '日志状态', '0', '1', 'log_status', null, '#333333', '1', '100');
 INSERT INTO `common_dict` VALUES ('33', '成功', '32', '2', 'success', null, '#5cb85c', '0', '100');
@@ -71,13 +91,6 @@ INSERT INTO `common_dict` VALUES ('50', '未通过', '47', '2', 'nopass', null, 
 INSERT INTO `common_dict` VALUES ('51', '行业分类', '0', '1', 'industry', '', '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('55', '金融', '51', '2', '', '', '#333333', '0', '100');
 INSERT INTO `common_dict` VALUES ('56', 'IT', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('64', '123', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('65', '876', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('66', '1111111', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('67', '阿打算发斯蒂芬', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('68', '大', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('69', '阿斯蒂芬阿斯蒂芬阿斯蒂芬', '51', '2', null, null, null, '0', '100');
-INSERT INTO `common_dict` VALUES ('70', '空间和规范的', '51', '2', null, null, null, '0', '100');
 
 -- ----------------------------
 -- Table structure for config
@@ -129,6 +142,87 @@ INSERT INTO `config_group` VALUES ('1', '基本配置', 'base', 'show', '100');
 INSERT INTO `config_group` VALUES ('2', '网站状态', 'status', 'show', '100');
 
 -- ----------------------------
+-- Table structure for customer
+-- ----------------------------
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `industry` int(10) DEFAULT NULL,
+  `company` varchar(50) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `scope_business` varchar(255) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='客户表';
+
+-- ----------------------------
+-- Records of customer
+-- ----------------------------
+INSERT INTO `customer` VALUES ('3', '55', '测试2', '', null, '', '100', null);
+INSERT INTO `customer` VALUES ('4', '55', '测试3', '', null, '', '100', null);
+INSERT INTO `customer` VALUES ('5', '55', '测试4', '', null, '', '100', null);
+INSERT INTO `customer` VALUES ('6', '55', '测试5', '', null, '', '100', null);
+
+-- ----------------------------
+-- Table structure for customer_contact
+-- ----------------------------
+DROP TABLE IF EXISTS `customer_contact`;
+CREATE TABLE `customer_contact` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `post` varchar(30) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
+  `qq` varchar(20) DEFAULT NULL,
+  `wechat` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `sort` int(10) DEFAULT '100',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='客户信息表';
+
+-- ----------------------------
+-- Records of customer_contact
+-- ----------------------------
+INSERT INTO `customer_contact` VALUES ('6', '4', '修改可以用了', '', '', '', '', '', '', '100');
+INSERT INTO `customer_contact` VALUES ('7', '5', '1', '', '', '', '', '', '', '100');
+
+-- ----------------------------
+-- Table structure for customer_remark
+-- ----------------------------
+DROP TABLE IF EXISTS `customer_remark`;
+CREATE TABLE `customer_remark` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) DEFAULT NULL,
+  `content` text,
+  `sort` int(10) DEFAULT '100',
+  `create_time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='客户备注表';
+
+-- ----------------------------
+-- Records of customer_remark
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for follow
+-- ----------------------------
+DROP TABLE IF EXISTS `follow`;
+CREATE TABLE `follow` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `create_user` int(10) DEFAULT NULL,
+  `create_time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关注表';
+
+-- ----------------------------
+-- Records of follow
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for friendship_link
 -- ----------------------------
 DROP TABLE IF EXISTS `friendship_link`;
@@ -169,7 +263,7 @@ CREATE TABLE `info_article` (
   `update_time` int(10) DEFAULT NULL,
   `update_user` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='信息文章表';
 
 -- ----------------------------
 -- Records of info_article
@@ -301,6 +395,39 @@ CREATE TABLE `info_page` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for info_work
+-- ----------------------------
+DROP TABLE IF EXISTS `info_work`;
+CREATE TABLE `info_work` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `original_link` varchar(255) DEFAULT NULL,
+  `design_source` varchar(100) DEFAULT NULL,
+  `designer` varchar(100) DEFAULT NULL,
+  `programmer` varchar(100) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `thumb` int(10) DEFAULT NULL,
+  `works` varchar(50) DEFAULT NULL,
+  `content` text,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(11) DEFAULT '100',
+  `create_time` int(10) DEFAULT NULL,
+  `create_user` int(11) DEFAULT NULL,
+  `update_time` int(10) DEFAULT NULL,
+  `update_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='信息作品表';
+
+-- ----------------------------
+-- Records of info_work
+-- ----------------------------
+INSERT INTO `info_work` VALUES ('1', '4', '德州三生设计工作室', '', '', '三生设计工作室', '轩宇网络工作室', 'http://www.sheji100.cn/', '9', '31,30,33,32,34,35,36,37,38,39', '', '_self', 'show', '100', '1508407277', null, null, null);
+INSERT INTO `info_work` VALUES ('2', '4', '北京鑫洲隆源商贸有限公司', '', '', '', '轩宇网络工作室', 'http://www.dzxvip.com/', '8', '25,21,20,24,23,22,26,27,28,29', '', '_self', 'show', '100', '1508407398', null, null, null);
+INSERT INTO `info_work` VALUES ('3', '4', '亨通（北京）文化传媒有限公司', '', '', '', '轩宇网络工作室', 'http://www.hengtongtv.com/', '7', '17,15,19,18,16', '', '_self', 'show', '100', '1508407436', null, null, null);
+
+-- ----------------------------
 -- Table structure for navigation
 -- ----------------------------
 DROP TABLE IF EXISTS `navigation`;
@@ -330,6 +457,181 @@ INSERT INTO `navigation` VALUES ('3', '发现', '0', '1', '0', 'explore', '_self
 INSERT INTO `navigation` VALUES ('4', '作品', '0', '1', '0', 'work', '_self', 'top', 'show', '100', '1', '1', '1');
 
 -- ----------------------------
+-- Table structure for reading
+-- ----------------------------
+DROP TABLE IF EXISTS `reading`;
+CREATE TABLE `reading` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `source` varchar(20) DEFAULT NULL,
+  `source_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COMMENT='阅读量表';
+
+-- ----------------------------
+-- Records of reading
+-- ----------------------------
+INSERT INTO `reading` VALUES ('1', 'info_article', '1');
+INSERT INTO `reading` VALUES ('2', 'info_article', '1');
+INSERT INTO `reading` VALUES ('3', 'info_article', '1');
+INSERT INTO `reading` VALUES ('4', 'info_article', '1');
+INSERT INTO `reading` VALUES ('5', 'info_article', '1');
+INSERT INTO `reading` VALUES ('6', 'info_article', '1');
+INSERT INTO `reading` VALUES ('7', 'info_article', '1');
+INSERT INTO `reading` VALUES ('8', 'info_article', '1');
+INSERT INTO `reading` VALUES ('9', 'info_article', '1');
+INSERT INTO `reading` VALUES ('10', 'info_article', '1');
+INSERT INTO `reading` VALUES ('11', 'info_article', '2');
+INSERT INTO `reading` VALUES ('12', 'info_article', '2');
+INSERT INTO `reading` VALUES ('13', 'info_article', '6');
+INSERT INTO `reading` VALUES ('14', 'info_article', '5');
+INSERT INTO `reading` VALUES ('15', 'info_article', '5');
+INSERT INTO `reading` VALUES ('16', 'info_article', '7');
+INSERT INTO `reading` VALUES ('17', 'info_article', '7');
+INSERT INTO `reading` VALUES ('18', 'info_article', '8');
+INSERT INTO `reading` VALUES ('19', 'info_article', '8');
+INSERT INTO `reading` VALUES ('20', 'info_article', '8');
+INSERT INTO `reading` VALUES ('21', 'info_article', '8');
+INSERT INTO `reading` VALUES ('22', 'info_article', '9');
+INSERT INTO `reading` VALUES ('23', 'info_article', '8');
+INSERT INTO `reading` VALUES ('24', 'info_article', '9');
+INSERT INTO `reading` VALUES ('25', 'info_article', '9');
+INSERT INTO `reading` VALUES ('26', 'info_article', '9');
+INSERT INTO `reading` VALUES ('27', 'info_article', '9');
+INSERT INTO `reading` VALUES ('28', 'info_work', '3');
+INSERT INTO `reading` VALUES ('29', 'info_work', '3');
+INSERT INTO `reading` VALUES ('30', 'info_work', '3');
+INSERT INTO `reading` VALUES ('31', 'info_work', '3');
+INSERT INTO `reading` VALUES ('32', 'info_work', '3');
+INSERT INTO `reading` VALUES ('33', 'info_work', '3');
+INSERT INTO `reading` VALUES ('34', 'info_work', '3');
+INSERT INTO `reading` VALUES ('35', 'info_work', '3');
+INSERT INTO `reading` VALUES ('36', 'info_work', '3');
+INSERT INTO `reading` VALUES ('37', 'info_work', '3');
+INSERT INTO `reading` VALUES ('38', 'info_work', '3');
+INSERT INTO `reading` VALUES ('39', 'info_work', '3');
+INSERT INTO `reading` VALUES ('40', 'info_work', '3');
+INSERT INTO `reading` VALUES ('41', 'info_work', '3');
+INSERT INTO `reading` VALUES ('42', 'info_work', '3');
+INSERT INTO `reading` VALUES ('43', 'info_work', '1');
+INSERT INTO `reading` VALUES ('44', 'info_work', '1');
+INSERT INTO `reading` VALUES ('45', 'info_work', '1');
+INSERT INTO `reading` VALUES ('46', 'info_work', '3');
+INSERT INTO `reading` VALUES ('47', 'info_work', '3');
+INSERT INTO `reading` VALUES ('48', 'info_work', '3');
+INSERT INTO `reading` VALUES ('49', 'info_work', '3');
+INSERT INTO `reading` VALUES ('50', 'info_work', '3');
+INSERT INTO `reading` VALUES ('51', 'info_work', '3');
+INSERT INTO `reading` VALUES ('52', 'info_work', '3');
+INSERT INTO `reading` VALUES ('53', 'info_work', '3');
+INSERT INTO `reading` VALUES ('54', 'info_work', '3');
+INSERT INTO `reading` VALUES ('55', 'info_work', '3');
+INSERT INTO `reading` VALUES ('56', 'info_work', '3');
+INSERT INTO `reading` VALUES ('57', 'info_work', '3');
+INSERT INTO `reading` VALUES ('58', 'info_work', '3');
+INSERT INTO `reading` VALUES ('59', 'info_work', '3');
+INSERT INTO `reading` VALUES ('60', 'info_work', '3');
+INSERT INTO `reading` VALUES ('61', 'info_work', '3');
+INSERT INTO `reading` VALUES ('62', 'info_work', '3');
+INSERT INTO `reading` VALUES ('63', 'info_work', '3');
+INSERT INTO `reading` VALUES ('64', 'info_work', '3');
+INSERT INTO `reading` VALUES ('65', 'info_work', '3');
+INSERT INTO `reading` VALUES ('66', 'info_work', '3');
+INSERT INTO `reading` VALUES ('67', 'info_work', '3');
+INSERT INTO `reading` VALUES ('68', 'info_work', '3');
+INSERT INTO `reading` VALUES ('69', 'info_work', '3');
+INSERT INTO `reading` VALUES ('70', 'info_work', '3');
+INSERT INTO `reading` VALUES ('71', 'info_work', '3');
+INSERT INTO `reading` VALUES ('72', 'info_work', '3');
+INSERT INTO `reading` VALUES ('73', 'info_work', '3');
+INSERT INTO `reading` VALUES ('74', 'info_work', '3');
+INSERT INTO `reading` VALUES ('75', 'info_work', '3');
+INSERT INTO `reading` VALUES ('76', 'info_work', '3');
+INSERT INTO `reading` VALUES ('77', 'info_work', '2');
+INSERT INTO `reading` VALUES ('78', 'info_work', '2');
+INSERT INTO `reading` VALUES ('79', 'info_work', '1');
+INSERT INTO `reading` VALUES ('80', 'info_work', '1');
+INSERT INTO `reading` VALUES ('81', 'info_work', '1');
+INSERT INTO `reading` VALUES ('82', 'info_work', '2');
+INSERT INTO `reading` VALUES ('83', 'info_work', '2');
+INSERT INTO `reading` VALUES ('84', 'info_work', '1');
+INSERT INTO `reading` VALUES ('85', 'info_work', '3');
+INSERT INTO `reading` VALUES ('86', 'info_work', '2');
+INSERT INTO `reading` VALUES ('87', 'info_work', '1');
+INSERT INTO `reading` VALUES ('88', 'info_work', '3');
+INSERT INTO `reading` VALUES ('89', 'info_work', '3');
+INSERT INTO `reading` VALUES ('90', 'info_work', '2');
+INSERT INTO `reading` VALUES ('91', 'info_work', '3');
+INSERT INTO `reading` VALUES ('92', 'info_work', '3');
+INSERT INTO `reading` VALUES ('93', 'info_article', '9');
+INSERT INTO `reading` VALUES ('94', 'info_article', '9');
+INSERT INTO `reading` VALUES ('95', 'info_article', '9');
+INSERT INTO `reading` VALUES ('96', 'info_article', '9');
+INSERT INTO `reading` VALUES ('97', 'info_article', '9');
+INSERT INTO `reading` VALUES ('98', 'info_article', '9');
+INSERT INTO `reading` VALUES ('99', 'info_article', '9');
+INSERT INTO `reading` VALUES ('100', 'info_article', '9');
+INSERT INTO `reading` VALUES ('101', 'info_article', '9');
+INSERT INTO `reading` VALUES ('102', 'info_article', '9');
+INSERT INTO `reading` VALUES ('103', 'info_article', '9');
+INSERT INTO `reading` VALUES ('104', 'info_article', '9');
+INSERT INTO `reading` VALUES ('105', 'info_article', '9');
+INSERT INTO `reading` VALUES ('106', 'info_article', '9');
+INSERT INTO `reading` VALUES ('107', 'info_article', '9');
+INSERT INTO `reading` VALUES ('108', 'info_article', '9');
+INSERT INTO `reading` VALUES ('109', 'info_article', '9');
+INSERT INTO `reading` VALUES ('110', 'info_article', '9');
+INSERT INTO `reading` VALUES ('111', 'info_article', '9');
+INSERT INTO `reading` VALUES ('112', 'info_article', '9');
+INSERT INTO `reading` VALUES ('113', 'info_article', '9');
+INSERT INTO `reading` VALUES ('114', 'info_article', '9');
+INSERT INTO `reading` VALUES ('115', 'info_article', '9');
+INSERT INTO `reading` VALUES ('116', 'info_article', '9');
+INSERT INTO `reading` VALUES ('117', 'info_article', '9');
+INSERT INTO `reading` VALUES ('118', 'info_article', '9');
+INSERT INTO `reading` VALUES ('119', 'info_article', '9');
+INSERT INTO `reading` VALUES ('120', 'info_article', '9');
+INSERT INTO `reading` VALUES ('121', 'info_article', '9');
+INSERT INTO `reading` VALUES ('122', 'info_article', '9');
+INSERT INTO `reading` VALUES ('123', 'info_article', '9');
+INSERT INTO `reading` VALUES ('124', 'info_article', '9');
+INSERT INTO `reading` VALUES ('125', 'info_article', '5');
+INSERT INTO `reading` VALUES ('126', 'info_article', '5');
+INSERT INTO `reading` VALUES ('127', 'info_work', '3');
+INSERT INTO `reading` VALUES ('128', 'info_article', '9');
+INSERT INTO `reading` VALUES ('129', 'info_work', '2');
+INSERT INTO `reading` VALUES ('130', 'info_work', '3');
+INSERT INTO `reading` VALUES ('131', 'info_work', '3');
+INSERT INTO `reading` VALUES ('132', 'info_work', '2');
+INSERT INTO `reading` VALUES ('133', 'info_work', '1');
+INSERT INTO `reading` VALUES ('134', 'info_article', '9');
+INSERT INTO `reading` VALUES ('135', 'info_article', '9');
+INSERT INTO `reading` VALUES ('136', 'info_article', '9');
+INSERT INTO `reading` VALUES ('137', 'info_article', '9');
+INSERT INTO `reading` VALUES ('138', 'info_article', '9');
+INSERT INTO `reading` VALUES ('139', 'info_article', '8');
+INSERT INTO `reading` VALUES ('140', 'info_article', '6');
+INSERT INTO `reading` VALUES ('141', 'info_article', '3');
+INSERT INTO `reading` VALUES ('142', 'info_article', '2');
+INSERT INTO `reading` VALUES ('143', 'info_article', '2');
+INSERT INTO `reading` VALUES ('144', 'info_article', '2');
+INSERT INTO `reading` VALUES ('145', 'info_article', '2');
+INSERT INTO `reading` VALUES ('146', 'info_article', '2');
+INSERT INTO `reading` VALUES ('147', 'info_article', '2');
+INSERT INTO `reading` VALUES ('148', 'info_article', '2');
+INSERT INTO `reading` VALUES ('149', 'info_article', '2');
+INSERT INTO `reading` VALUES ('150', 'info_article', '2');
+INSERT INTO `reading` VALUES ('151', 'info_article', '2');
+INSERT INTO `reading` VALUES ('152', 'info_article', '2');
+INSERT INTO `reading` VALUES ('153', 'info_article', '2');
+INSERT INTO `reading` VALUES ('154', 'info_article', '2');
+INSERT INTO `reading` VALUES ('155', 'info_article', '2');
+INSERT INTO `reading` VALUES ('156', 'info_article', '2');
+INSERT INTO `reading` VALUES ('157', 'info_article', '6');
+INSERT INTO `reading` VALUES ('158', 'info_article', '7');
+INSERT INTO `reading` VALUES ('159', 'info_article', '9');
+INSERT INTO `reading` VALUES ('160', 'info_work', '2');
+
+-- ----------------------------
 -- Table structure for slide
 -- ----------------------------
 DROP TABLE IF EXISTS `slide`;
@@ -348,7 +650,7 @@ CREATE TABLE `slide` (
 -- Records of slide
 -- ----------------------------
 INSERT INTO `slide` VALUES ('5', '123', '43', '', '_self', 'show', '100');
-INSERT INTO `slide` VALUES ('6', '234', '42', '', '_self', 'show', '100');
+INSERT INTO `slide` VALUES ('6', '234', '44', '', '_self', 'show', '100');
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -360,7 +662,7 @@ CREATE TABLE `sys_login_log` (
   `login_ip` varchar(20) DEFAULT NULL,
   `login_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='系统登录日志表';
 
 -- ----------------------------
 -- Records of sys_login_log
@@ -412,6 +714,28 @@ INSERT INTO `sys_login_log` VALUES ('44', '4', '::1', '1511167969');
 INSERT INTO `sys_login_log` VALUES ('45', '4', '::1', '1511225559');
 INSERT INTO `sys_login_log` VALUES ('46', '4', '::1', '1511229926');
 INSERT INTO `sys_login_log` VALUES ('47', '4', '::1', '1511235065');
+INSERT INTO `sys_login_log` VALUES ('48', '4', '::1', '1511311448');
+INSERT INTO `sys_login_log` VALUES ('49', '4', '::1', '1511330525');
+INSERT INTO `sys_login_log` VALUES ('50', '4', '::1', '1511346419');
+INSERT INTO `sys_login_log` VALUES ('51', '4', '::1', '1511400095');
+INSERT INTO `sys_login_log` VALUES ('52', '4', '::1', '1511416259');
+INSERT INTO `sys_login_log` VALUES ('53', '4', '::1', '1511485209');
+INSERT INTO `sys_login_log` VALUES ('54', '4', '::1', '1511486276');
+INSERT INTO `sys_login_log` VALUES ('55', '4', '::1', '1511487217');
+INSERT INTO `sys_login_log` VALUES ('56', '4', '::1', '1511501886');
+INSERT INTO `sys_login_log` VALUES ('57', '4', '::1', '1511746543');
+INSERT INTO `sys_login_log` VALUES ('58', '4', '::1', '1511763212');
+INSERT INTO `sys_login_log` VALUES ('59', '4', '::1', '1511770587');
+INSERT INTO `sys_login_log` VALUES ('60', '4', '::1', '1511830161');
+INSERT INTO `sys_login_log` VALUES ('61', '4', '::1', '1511857739');
+INSERT INTO `sys_login_log` VALUES ('62', '4', '::1', '1511917102');
+INSERT INTO `sys_login_log` VALUES ('63', '4', '::1', '1511936343');
+INSERT INTO `sys_login_log` VALUES ('64', '4', '::1', '1512006597');
+INSERT INTO `sys_login_log` VALUES ('65', '4', '::1', '1512090124');
+INSERT INTO `sys_login_log` VALUES ('66', '4', '::1', '1512115499');
+INSERT INTO `sys_login_log` VALUES ('67', '4', '::1', '1512364957');
+INSERT INTO `sys_login_log` VALUES ('68', '4', '::1', '1512522665');
+INSERT INTO `sys_login_log` VALUES ('69', '4', '::1', '1512636287');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -617,7 +941,7 @@ CREATE TABLE `sys_oplog` (
   `ip` varchar(30) DEFAULT NULL,
   `time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
@@ -712,6 +1036,76 @@ INSERT INTO `sys_oplog` VALUES ('87', '4', 'xadmin', '菜单管理', 'update', '
 INSERT INTO `sys_oplog` VALUES ('88', '4', 'xadmin', '菜单管理', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511241250');
 INSERT INTO `sys_oplog` VALUES ('89', '4', 'xadmin', '菜单管理', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511241270');
 INSERT INTO `sys_oplog` VALUES ('90', '4', 'xadmin', '菜单管理', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511251857');
+INSERT INTO `sys_oplog` VALUES ('91', '4', 'xadmin', '媒体库', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511400661');
+INSERT INTO `sys_oplog` VALUES ('92', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511488007');
+INSERT INTO `sys_oplog` VALUES ('93', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511488012');
+INSERT INTO `sys_oplog` VALUES ('94', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511490891');
+INSERT INTO `sys_oplog` VALUES ('95', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491002');
+INSERT INTO `sys_oplog` VALUES ('96', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491061');
+INSERT INTO `sys_oplog` VALUES ('97', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491137');
+INSERT INTO `sys_oplog` VALUES ('98', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491270');
+INSERT INTO `sys_oplog` VALUES ('99', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491367');
+INSERT INTO `sys_oplog` VALUES ('100', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491387');
+INSERT INTO `sys_oplog` VALUES ('101', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491599');
+INSERT INTO `sys_oplog` VALUES ('102', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491694');
+INSERT INTO `sys_oplog` VALUES ('103', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491898');
+INSERT INTO `sys_oplog` VALUES ('104', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511491992');
+INSERT INTO `sys_oplog` VALUES ('105', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511506814');
+INSERT INTO `sys_oplog` VALUES ('106', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511506928');
+INSERT INTO `sys_oplog` VALUES ('107', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511516167');
+INSERT INTO `sys_oplog` VALUES ('108', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511516362');
+INSERT INTO `sys_oplog` VALUES ('109', '4', 'xadmin', '通用字典', 'del', 'fail', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511750982');
+INSERT INTO `sys_oplog` VALUES ('110', '4', 'xadmin', '通用字典', 'del', 'fail', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511750990');
+INSERT INTO `sys_oplog` VALUES ('111', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751077');
+INSERT INTO `sys_oplog` VALUES ('112', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751095');
+INSERT INTO `sys_oplog` VALUES ('113', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751100');
+INSERT INTO `sys_oplog` VALUES ('114', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751103');
+INSERT INTO `sys_oplog` VALUES ('115', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751107');
+INSERT INTO `sys_oplog` VALUES ('116', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751111');
+INSERT INTO `sys_oplog` VALUES ('117', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751116');
+INSERT INTO `sys_oplog` VALUES ('118', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511751120');
+INSERT INTO `sys_oplog` VALUES ('119', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511753186');
+INSERT INTO `sys_oplog` VALUES ('120', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511753719');
+INSERT INTO `sys_oplog` VALUES ('121', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511754354');
+INSERT INTO `sys_oplog` VALUES ('122', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511770767');
+INSERT INTO `sys_oplog` VALUES ('123', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511770964');
+INSERT INTO `sys_oplog` VALUES ('124', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511771040');
+INSERT INTO `sys_oplog` VALUES ('125', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511778679');
+INSERT INTO `sys_oplog` VALUES ('126', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511779091');
+INSERT INTO `sys_oplog` VALUES ('127', '4', 'xadmin', '通用字典', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511832726');
+INSERT INTO `sys_oplog` VALUES ('128', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511832935');
+INSERT INTO `sys_oplog` VALUES ('129', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511834371');
+INSERT INTO `sys_oplog` VALUES ('130', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511834680');
+INSERT INTO `sys_oplog` VALUES ('131', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511834805');
+INSERT INTO `sys_oplog` VALUES ('132', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511834837');
+INSERT INTO `sys_oplog` VALUES ('133', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511857748');
+INSERT INTO `sys_oplog` VALUES ('134', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511917184');
+INSERT INTO `sys_oplog` VALUES ('135', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511925809');
+INSERT INTO `sys_oplog` VALUES ('136', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511925815');
+INSERT INTO `sys_oplog` VALUES ('137', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511938133');
+INSERT INTO `sys_oplog` VALUES ('138', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511938152');
+INSERT INTO `sys_oplog` VALUES ('139', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511938183');
+INSERT INTO `sys_oplog` VALUES ('140', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511938187');
+INSERT INTO `sys_oplog` VALUES ('141', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511939115');
+INSERT INTO `sys_oplog` VALUES ('142', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511939128');
+INSERT INTO `sys_oplog` VALUES ('143', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511939151');
+INSERT INTO `sys_oplog` VALUES ('144', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511939155');
+INSERT INTO `sys_oplog` VALUES ('145', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511948828');
+INSERT INTO `sys_oplog` VALUES ('146', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1511948832');
+INSERT INTO `sys_oplog` VALUES ('147', '4', 'xadmin', '文章', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512015409');
+INSERT INTO `sys_oplog` VALUES ('148', '4', 'xadmin', '文章', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512015419');
+INSERT INTO `sys_oplog` VALUES ('149', '4', 'xadmin', '文章', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512015437');
+INSERT INTO `sys_oplog` VALUES ('150', '4', 'xadmin', '文章', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512015447');
+INSERT INTO `sys_oplog` VALUES ('151', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512026592');
+INSERT INTO `sys_oplog` VALUES ('152', '4', 'xadmin', '通用字典', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512097030');
+INSERT INTO `sys_oplog` VALUES ('153', '4', 'xadmin', '通用字典', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512097056');
+INSERT INTO `sys_oplog` VALUES ('154', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512117847');
+INSERT INTO `sys_oplog` VALUES ('155', '4', 'xadmin', '幻灯片', 'update', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512118660');
+INSERT INTO `sys_oplog` VALUES ('156', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512119442');
+INSERT INTO `sys_oplog` VALUES ('157', '4', 'xadmin', '客户管理', 'insert', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512119723');
+INSERT INTO `sys_oplog` VALUES ('158', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512637293');
+INSERT INTO `sys_oplog` VALUES ('159', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512637400');
+INSERT INTO `sys_oplog` VALUES ('160', '4', 'xadmin', '客户管理', 'del', 'success', 'Chrome', '62.0.3202.62', 'Windows 10', 'DESKTOP-PRO736K', '::1', '1512637408');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -838,6 +1232,32 @@ INSERT INTO `sys_user_auth` VALUES ('6', '15', 'del');
 INSERT INTO `sys_user_auth` VALUES ('6', '4', '');
 
 -- ----------------------------
+-- Table structure for tag
+-- ----------------------------
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE `tag` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `thumb` int(10) DEFAULT NULL,
+  `target` varchar(10) DEFAULT NULL,
+  `display` char(4) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `is_recommend` tinyint(1) DEFAULT NULL,
+  `ident` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='标签表';
+
+-- ----------------------------
+-- Records of tag
+-- ----------------------------
+INSERT INTO `tag` VALUES ('1', 'SEO', '1', '_self', 'show', '100', '1', 'seo');
+INSERT INTO `tag` VALUES ('2', 'PHP', '2', '_self', 'show', '100', null, 'php');
+INSERT INTO `tag` VALUES ('3', '后端', '3', '_self', 'show', '100', null, 'backend');
+INSERT INTO `tag` VALUES ('4', '前端', '4', '_self', 'show', '100', null, 'frontend');
+INSERT INTO `tag` VALUES ('5', 'Debug', '5', '_self', 'show', '100', null, 'debug');
+INSERT INTO `tag` VALUES ('6', 'PhpStorm', '6', '_self', 'show', '100', null, 'phpstrom');
+
+-- ----------------------------
 -- Table structure for uploads
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -863,11 +1283,35 @@ CREATE TABLE `uploads` (
   `errors` varchar(255) DEFAULT NULL COMMENT '错误信息',
   `create_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='上传文件表';
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('41', 'ef9c41f43f449c5c6a6f9dadd09b33c0.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171103/', 'D:/wamp/www/uploads/upload/20171103/ef9c41f43f449c5c6a6f9dadd09b33c0.jpg', '/uploads/upload/20171103/', '/uploads/upload/20171103/ef9c41f43f449c5c6a6f9dadd09b33c0.jpg', 'ef9c41f43f449c5c6a6f9dadd09b33c0', '/uploads/upload/20171103/ef9c41f43f449c5c6a6f9dadd09b33c0', 'ef9c41f43f449c5c6a6f9dadd09b33c0.jpg', 'datika2.jpg', '.jpg', '163.38', '1', '127', '127', 'jpeg', 'width=\"1189\" height=\"1683\"', null, '1509699403');
-INSERT INTO `uploads` VALUES ('42', '08252d6c80d4614cb786917f662f2e4b.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171103/', 'D:/wamp/www/uploads/upload/20171103/08252d6c80d4614cb786917f662f2e4b.jpg', '/uploads/upload/20171103/', '/uploads/upload/20171103/08252d6c80d4614cb786917f662f2e4b.jpg', '08252d6c80d4614cb786917f662f2e4b', '/uploads/upload/20171103/08252d6c80d4614cb786917f662f2e4b', '08252d6c80d4614cb786917f662f2e4b.jpg', 'datika3.jpg', '.jpg', '163.16', '1', '127', '127', 'jpeg', 'width=\"1189\" height=\"1683\"', null, '1509699418');
+INSERT INTO `uploads` VALUES ('44', '5fd8b25d4f17b46489e06457e02d8203.jpg', 'image/jpeg', 'D:/wamp/www/uploads/upload/20171201/', 'D:/wamp/www/uploads/upload/20171201/5fd8b25d4f17b46489e06457e02d8203.jpg', '/uploads/upload/20171201/', '/uploads/upload/20171201/5fd8b25d4f17b46489e06457e02d8203.jpg', '5fd8b25d4f17b46489e06457e02d8203', '/uploads/upload/20171201/5fd8b25d4f17b46489e06457e02d8203', '5fd8b25d4f17b46489e06457e02d8203.jpg', '4719000245c2b5b29eb0.jpg', '.jpg', '11.19', '1', '127', '127', 'jpeg', 'width=\"640\" height=\"427\"', null, '1512118658');
 INSERT INTO `uploads` VALUES ('43', '1a0928d8a8f5627b91e10a2b1e32929c.png', 'image/png', 'D:/wamp/www/uploads/upload/20171115/', 'D:/wamp/www/uploads/upload/20171115/1a0928d8a8f5627b91e10a2b1e32929c.png', '/uploads/upload/20171115/', '/uploads/upload/20171115/1a0928d8a8f5627b91e10a2b1e32929c.png', '1a0928d8a8f5627b91e10a2b1e32929c', '/uploads/upload/20171115/1a0928d8a8f5627b91e10a2b1e32929c', '1a0928d8a8f5627b91e10a2b1e32929c.png', 'logo.png', '.png', '230.79', '1', '127', '127', 'png', 'width=\"1904\" height=\"420\"', null, '1510716454');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `avatar` int(10) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `intro` varchar(255) DEFAULT NULL,
+  `homepage` varchar(255) DEFAULT NULL,
+  `create_time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '孟祥涵', 'e10adc3949ba59abbe56e057f20f883e', '18810622636', '', '40', null, null, null, null, null, null);

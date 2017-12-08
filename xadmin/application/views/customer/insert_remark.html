@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=config_item('my_title')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container-fluid pv">
+    <form class="ajax-form-hook" action="<?=$save_additional_info_url?>" method="post">
+        <input type="hidden" name="customer_id" value="<?=$customer_id?>">
+        <input type="hidden" name="type" value="remark">
+        <div class="form-group ">
+            <textarea name="content" rows="10" class="form-control" placeholder="备注"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+</div>
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['js/controller/customer'], function (customer) {
+        customer.saveAdditionalInfo();
+    });
+</script>
+</body>
+</html>

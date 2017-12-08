@@ -70,8 +70,8 @@ define(['jquery'], function ($) {
                     if (list != undefined || list == '') {
                         $.each(list, function (i, data) {
                             var item = $(u.config.itemTemplate).clone();
-                            var src = eval(data.is_image) ? data.rel_path : u.thumbnail(data.file_ext);
-                            var thumbSrc = data.thumb_rel_path || u.thumbnail(data.file_ext);
+                            var src = eval(data.is_image) ? data.rel_path : _this.thumbnail(data.file_ext);
+                            var thumbSrc = data.thumb_rel_path || _this.thumbnail(data.file_ext);
                             //状态
                             item.addClass('complete');
                             //预览图片信息
@@ -149,6 +149,7 @@ define(['jquery'], function ($) {
 
         //实例化上传组件
         initUploads: function () {
+            var _this = this;
             require(['uploadifive'], function (uploadifive) {
                 $('.uploads-btn-hook').uploadifive({
                     'auto': true,
@@ -165,8 +166,8 @@ define(['jquery'], function ($) {
                     'onUploadComplete': function (file, data) {
                         var data = $.parseJSON(data);
                         var item = file.queueItem;
-                        var src = eval(data.is_image) ? data.rel_path : u.thumbnail(data.file_ext);
-                        var thumbSrc = data.thumb_rel_path || u.thumbnail(data.file_ext);
+                        var src = eval(data.is_image) ? data.rel_path : _this.thumbnail(data.file_ext);
+                        var thumbSrc = data.thumb_rel_path || _this.thumbnail(data.file_ext);
                         //预览图片信息
                         item.find('.uploads-preview-hook')
                             .attr('data-content', '{"src":"' + src + '","client_name":"' + data.client_name + '","file_size":"' + data.file_size + '","image_width":"' + data.image_width + '","image_height":"' + data.image_height + '","is_image":"' + data.is_image + '"}');

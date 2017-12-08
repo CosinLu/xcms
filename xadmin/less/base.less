@@ -43,7 +43,17 @@ a.disabled:focus {
     }
 }
 
+/*加载，暂无数据*/
+div.loading,
+div.nodata,
+div.error {
+    padding: 20px 0 30px !important;
+    text-align: center;
+    border-bottom: @table-border-color solid 1px;
+}
+
 /*辅助类*/
+
 .required {
     width: 6px;
     height: 6px;
@@ -61,7 +71,8 @@ a.disabled:focus {
     text-overflow: ellipsis;
 }
 
-.jqthumb-hook {
+.jqthumb-hook,
+.select2 {
     display: none;
 }
 

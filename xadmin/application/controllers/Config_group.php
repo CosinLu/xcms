@@ -28,7 +28,7 @@ class Config_group extends MY_Controller
     public function index()
     {
         $data['display_source'] = $this->dictionary->source('display');
-        $this->load->view('config_group/index.html',$data);
+        $this->load->view('config_group/index.html', $data);
     }
 
     //获取列表

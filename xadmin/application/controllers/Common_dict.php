@@ -33,11 +33,9 @@ class Common_dict extends MY_Controller
     {
         $category = array();
         foreach ($this->common_dict_model->data() as $val) {
-            if ($val['pid'] == 0) {
-                $category[] = $val;
-            }
+            if ($val['pid'] == 0) $category[] = $val;
         }
-        $data['category'] = ddl($category, 'category', $this->pid, '', array('0', '-分类-', 'input-sm'));
+        $data['category'] = ddl($category, 'category', $this->pid, '', 'input-sm', FALSE, 'id', 'name', array('-分类-', '0'));
         $this->load->view('common_dict/index.html', $data);
     }
 

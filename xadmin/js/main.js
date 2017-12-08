@@ -25,7 +25,8 @@ require.config({
         'uploads': 'plugin/uploads/js/uploads',
         'form': 'plugin/validform/Validform_v5.3.2_min',
         'editable': 'plugin/editable/js/bootstrap-editable',
-        'contextmenu': 'plugin/contextmenu/js/bootstrap-contextmenu.min'
+        'contextmenu': 'plugin/contextmenu/js/bootstrap-contextmenu.min',
+        'select2': 'plugin/select2/js/select2.full.min'
     },
     shim: {
         'bootstrap': {
@@ -82,6 +83,11 @@ require.config({
         },
         'contextmenu': {
             deps: ['jquery']
+        },
+        'select2': {
+            deps: ['jquery',
+                'css!plugin/select2/css/select2.min.css',
+                'css!plugin/../css/plugin/select2.css']
         }
     }
 

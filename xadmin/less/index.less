@@ -1,14 +1,5 @@
 @import "variable";
 
-/*加载，暂无数据*/
-div.loading-hook,
-div.nodata-hook,
-div.error-hook {
-    padding: 20px 0 30px !important;
-    text-align: center;
-    border-bottom: @table-border-color solid 1px;
-}
-
 /*滚动条*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -696,7 +687,7 @@ div.error-hook {
                             }
                         }
                     }
-                    .name { 
+                    .name {
                         height: 35px;
                         padding: 0 6px;
                         line-height: 35px;
@@ -782,6 +773,8 @@ div.error-hook {
         position: relative;
         padding: 0 0 35px;
         overflow: hidden;
+        font-size: 0;
+
         label {
             position: absolute;
             z-index: 10;
@@ -836,6 +829,7 @@ div.error-hook {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-size: 14px;
         }
     }
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=config_item('my_title')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container-fluid insert_industry_panel">
+    <form class="form-horizontal ajax-form-hook" action="<?=$save_additional_info_url?>" method="post">
+        <input type="hidden" name="id" value="<?=$record['id']?>">
+        <input type="hidden" name="customer_id" value="<?=$record['customer_id']?>">
+        <input type="hidden" name="type" value="contact">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>姓名</label>
+                        <input type="text" name="name" value="<?=$record['name']?>" class="form-control">
+                    </div>
+                    <div class="col-xs-6">
+                        <label>职务</label>
+                        <input type="text" name="post" value="<?=$record['post']?>" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>手机</label>
+                        <textarea name="mobile" class="form-control" rows="3"><?=$record['mobile']?></textarea>
+                    </div>
+                    <div class="col-xs-6">
+                        <label>电话</label>
+                        <textarea name="tel" class="form-control" rows="3"><?=$record['tel']?></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>QQ</label>
+                        <textarea name="qq" class="form-control" rows="2"><?=$record['qq']?></textarea>
+                    </div>
+                    <div class="col-xs-6">
+                        <label>微信</label>
+                        <textarea name="wechat" class="form-control" rows="2"><?=$record['wechat']?></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>邮箱</label>
+                <textarea name="email" class="form-control" rows="2"><?=$record['email']?></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit_type" value="1"
+                        class="btn btn-primary submit-hook">
+                    保存
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['js/controller/customer'], function (customer) {
+        customer.saveAdditionalInfo();
+    });
+</script>
+</body>
+</html>

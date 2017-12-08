@@ -1,0 +1,51 @@
+<script type="text/html" id="contactItem">
+    {{each list as val}}
+    <div class="form-group item contact-item-hook">
+        <span class="remove_btn remove-attr-btn-hook" data-type="contact">&times;</span>
+        <div class="col-xs-1">
+            <input type="text" name="contact[][contacts]" placeholder="联系人"
+                   class="form-control input-sm" value="{{contacts}}">
+        </div>
+        <div class="col-xs-1">
+            <input type="text" name="contact[][post]" placeholder="职务"
+                   class="form-control input-sm" value="{{post}}">
+        </div>
+        <div class="col-xs-2">
+                                    <textarea name="contact[][mobile]" class="form-control input-sm"
+                                              placeholder="手机" value="{{mobile}}"></textarea>
+        </div>
+        <div class="col-xs-2">
+                                    <textarea name="contact[][tel]" class="form-control input-sm"
+                                              placeholder="电话" value="{{tel}}"></textarea>
+        </div>
+        <div class="col-xs-2">
+                                    <textarea name="contact[][qq]" class="form-control input-sm"
+                                              placeholder="QQ" value="{{qq}}"></textarea>
+        </div>
+        <div class="col-xs-2">
+                                    <textarea name="contact[][wechat]" class="form-control input-sm"
+                                              placeholder="微信" value="{{wechat}}"></textarea>
+        </div>
+        <div class="col-xs-2">
+                                    <textarea name="contact[][email]" class="form-control input-sm"
+                                              placeholder="邮箱" value="{{email}}"></textarea>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script type="text/html" id="remarkItem">
+    {{each list as val}}
+    <div class="form-group item remark-item-hook">
+        <span class="remove_btn remove-attr-btn-hook" data-type="remark">&times;</span>
+        <div class="col-xs-10">
+                                    <textarea name="remark[][content]" class="form-control input-sm"
+                                              placeholder="备注">{{content}}</textarea>
+        </div>
+        <div class="col-xs-2">
+            <input type="text" name="remark[][create_time]"
+                   class="form-control input-sm datetimepicker-hook" value="{{create_time}}">
+        </div>
+    </div>
+    {{/each}}
+</script>

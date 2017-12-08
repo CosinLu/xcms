@@ -1,0 +1,37 @@
+@import "../variable";
+
+.bootstrap-tagsinput {
+    width: 100%;
+    border-radius: @border-radius;
+    padding: 4px 6px 3px;
+    .tag {
+        margin-bottom: 1px;
+        &.label {
+            font-size: 12px;
+            padding: 5px;
+            font-weight: 400;
+            border-radius: @border-radius-sm;
+            display: inline-block;
+            &.label-info {
+                background: @color-info;
+            }
+        }
+        [data-role="remove"] {
+            &:hover {
+                box-shadow: none;
+            }
+            &:after {
+                content: "×";
+                vertical-align: 1px;
+            }
+        }
+    }
+    input {
+        &[type="text"] {
+            min-width: 125px;
+            margin-bottom: 1px;
+            height: 23px;
+            line-height: 23px;
+        }
+    }
+}

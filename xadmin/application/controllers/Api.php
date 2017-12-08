@@ -19,23 +19,10 @@ class Api extends MY_Controller
     public function del()
     {
         $tbname = $this->input->post('tbname');
-        $id = $this->input->post('id');
-        $primary = $this->input->post('primary') ?: 'id';
-        $menu = $this->input->post('menu');
-        $rows = $this->api_model->del($tbname, $id, $primary);
-        //写入日志
-        $this->oplog->insert($menu, '3', $rows);
-        echo $rows;
-    }
-
-    //批量删除
-    public function batch_del()
-    {
-        $tbname = $this->input->post('tbname');
         $id = explode(',', $this->input->post('id'));
         $primary = $this->input->post('primary') ?: 'id';
         $menu = $this->input->post('menu');
-        $rows = $this->api_model->batch_del($tbname, $id, $primary);
+        $rows = $this->api_model->del($tbname, $id, $primary);
         //写入日志
         $this->oplog->insert($menu, '3', $rows);
         echo $rows;

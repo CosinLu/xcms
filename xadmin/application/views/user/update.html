@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=config_item('my_title')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php require_once(VIEWPATH.'include/header.html');?>
+<!-- 主内容区域 -->
+<div class="container-fluid iframe-container">
+    <?php require_once(VIEWPATH.'include/sidebar.html');?>
+    <!-- 主面板 -->
+    <div class="iframe-main">
+        <div class="iframe-main-section">
+            <div class="section_container">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name.go_back()?></div>
+                    </div>
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
+                        <div class="panel-body">
+                            <input type="hidden" name="id" value="<?=$record['id']?>">
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">名称</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="name" value="<?=$record['username']?>"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">头像</div>
+                                <div class="col-xs-8">
+                                    <div class="uploads-panel">
+                                        <div id="avatar" class="uploads-queue uploads-queue-hook"
+                                             data-list='<?=$uploads["avatar"]?>'></div>
+                                        <input data-name="avatar" class="uploads-btn-hook hidden" type="file"
+                                               data-cloud="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">密码</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">手机</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="phone" value="<?=$record['phone']?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">Email</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="email" value="<?=$record['email']?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">昵称</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="nickname" value="<?=$record['nickname']?>"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">职务</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="position" value="<?=$record['position']?>"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">公司</div>
+                                <div class="col-xs-3">
+                                    <input type="text" name="company" value="<?=$record['company']?>"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 control-label">自我介绍</div>
+                                <div class="col-xs-5">
+                                    <textarea name="intro" class="form-control" id=""
+                                              rows="5"><?=$record['intro']?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-8">
+                                    <button type="submit" name="submit_type" value="1"
+                                            class="btn btn-primary submit-hook">
+                                        保存
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row form_container">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['unit', 'uploads'], function (unit) {
+        unit.ajaxForm();
+    });
+</script>
+</body>
+</html>

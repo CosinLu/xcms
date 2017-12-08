@@ -31,7 +31,7 @@ class Config_item extends MY_Controller
     public function index()
     {
         $data['display_source'] = $this->dictionary->source('display');
-        $this->load->view('config_item/index.html',$data);
+        $this->load->view('config_item/index.html', $data);
     }
 
     //获取列表
@@ -51,7 +51,7 @@ class Config_item extends MY_Controller
     //新增
     public function insert()
     {
-        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $this->category, '', TRUE, 'category', 'name');
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $this->category, '', '', FALSE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display'),
             array('rbl', 'config_type', 'type')
@@ -64,7 +64,7 @@ class Config_item extends MY_Controller
     {
         $id = $this->input->get('id');
         $data['record'] = $this->config_item_model->update($id);
-        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['record']['category'], '', TRUE, 'category', 'name');
+        $data['config_group'] = ddl($this->config_item_model->config_group(), 'category', $data['record']['category'], '', '', FALSE, 'category', 'name');
         $data['dict'] = $this->dictionary->dict(array(
             array('rbl', 'display', 'display', $data['record']['display']),
             array('rbl', 'config_type', 'type', $data['record']['type'])

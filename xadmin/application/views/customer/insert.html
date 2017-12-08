@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=config_item('my_title')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php require_once(VIEWPATH.'include/header.html');?>
+<!-- 主内容区域 -->
+<div class="container-fluid iframe-container">
+    <?php require_once(VIEWPATH.'include/sidebar.html');?>
+    <!-- 主面板 -->
+    <div class="iframe-main">
+        <div class="iframe-main-section customer">
+            <div class="section_container">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title"><?=$section_name.go_back()?></div>
+                    </div>
+                    <form class="form-horizontal ajax-form-hook" action="<?=$save_url?>" method="post">
+                        <input type="hidden" name="id" class="id-input-hook">
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs nav-tabs-hook">
+                                <li class="active"><a href="javascript:;" data-toggle="tab"
+                                                      data-target="#basic">基本信息</a></li>
+                                <li class="disabled"><a href="javascript:;" data-toggle=""
+                                                        data-target="#contact">联系人</a></li>
+                                <li class="disabled"><a href="javascript:;" data-toggle="" data-target="#remark">备注</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <!--基本信息-->
+                            <div class="tab-pane active" id="basic">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">行业分类</div>
+                                        <div class="col-xs-3">
+                                            <div class="input-group">
+                                                <?=$dict['industry']?>
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-link insert-industry-hook"><i
+                                                            class="fa fa-plus-circle"></i>&nbsp;新增行业
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">公司/团体</div>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="company" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">别名</div>
+                                        <div class="col-xs-5">
+                                            <textarea name="alias" rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">网址</div>
+                                        <div class="col-xs-5">
+                                            <textarea name="" rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">业务范围</div>
+                                        <div class="col-xs-5">
+                                            <textarea name="scope_business" rows="4" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2 control-label">排序</div>
+                                        <div class="col-xs-2">
+                                            <input type="text" name="sort" value="100" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-8">
+                                            <button type="submit" name="submit_type" value="1"
+                                                    class="btn btn-primary submit-hook">
+                                                保存
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--联系人-->
+                            <div class="tab-pane contact" id="contact">
+                                <button type="button" class="btn btn-primary btn-sm mh insert-additional-info-btn-hook"
+                                        data-type="contact"
+                                        data-url="<?=$insert_additional_info_url?>"><i
+                                        class="fa fa-plus-circle"></i>&nbsp;新增联系人
+                                </button>
+                                <div class="panel-body">
+                                    <table class="table table-hover table_list list-contact-hook">
+                                        <colgroup>
+                                            <col width="20px">
+                                            <col width="120px">
+                                            <col width="140px">
+                                            <col>
+                                            <col width="180px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>姓名</td>
+                                            <td>职务</td>
+                                            <td>备注</td>
+                                            <td>时间</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list-contact-body-hook"></tbody>
+                                        <script type="text/html" id="listContactTpl">
+                                            {{each list as record}}
+                                            <tr class="toggle toggle-hook context-hook" data-toggle="context"
+                                                data-target=".context-menu-hook"
+                                                data-id="{{record.id}}"
+                                                data-type="contact"
+                                                data-tb="customer_contact"
+                                                data-menu="{{record.menu}}">
+                                                <td><i class="fa fa-star-o"></i></td>
+                                                <td><span class="text-primary">{{record.name}}</span></td>
+                                                <td>{{record.post}}</td>
+                                                <td><span class="text-muted">这家伙很懒，什么都没留下~~</span></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="toggle_detail toggle-detail-hook hidden">
+                                                <td></td>
+                                                <td colspan="4">
+                                                    <div class="row contact_detail">
+                                                        <dl class="col-xs-2-5">
+                                                            <dt>手机：</dt>
+                                                            <dd>{{#record.mobile}}</dd>
+                                                        </dl>
+                                                        <dl class="col-xs-2-5">
+                                                            <dt>电话：</dt>
+                                                            <dd>{{#record.tel}}</dd>
+                                                        </dl>
+                                                        <dl class="col-xs-2-5">
+                                                            <dt>QQ：</dt>
+                                                            <dd>{{#record.qq}}</dd>
+                                                        </dl>
+                                                        <dl class="col-xs-2-5">
+                                                            <dt>微信：</dt>
+                                                            <dd>{{#record.wechat}}</dd>
+                                                        </dl>
+                                                        <dl class="col-xs-2-5">
+                                                            <dt>邮箱：</dt>
+                                                            <dd>{{#record.email}}</dd>
+                                                        </dl>
+                                                        <dl class="col-xs-12">
+                                                            <dt>备注：</dt>
+                                                            <dd><span class="text-muted">这家伙很懒，什么都没留下~~</span></dd>
+                                                        </dl>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </script>
+                                    </table>
+                                    <div class="panel-body nodata nodata-hook">暂无数据</div>
+                                </div>
+                            </div>
+                            <!--备注-->
+                            <div class="tab-pane" id="remark">
+                                <button type="button" class="btn btn-primary btn-sm mh insert-additional-info-btn-hook"
+                                        data-type="remark"
+                                        data-url="<?=$insert_additional_info_url?>"><i
+                                        class="fa fa-plus-circle"></i>&nbsp;新增备注
+                                </button>
+                                <div class="panel-body">
+                                    <table class="table table-hover table_list list-remark-hook">
+                                        <colgroup>
+                                            <col>
+                                            <col width="180px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <td>备注</td>
+                                            <td>时间</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list-remark-body-hook"></tbody>
+                                        <script type="text/html" id="listRemarkTpl">
+                                            {{each list as record}}
+                                            <tr class="toggle-hook context-hook" data-toggle="context"
+                                                data-target=".context-menu-hook"
+                                                data-id="{{record.id}}"
+                                                data-type="remark"
+                                                data-tb="customer_remark"
+                                                data-menu="{{record.menu}}">
+                                                <td>{{record.content}}</td>
+                                                <td>{{record.create_time}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </script>
+                                    </table>
+                                    <div class="panel-body nodata nodata-hook">暂无数据</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['unit', 'js/controller/customer'], function (unit, customer) {
+        unit.ajaxForm({
+            callback: function (data) {
+                if (data) {
+                    layer.msg('操作成功！', {icon: 1, time: 1000, shade: 0.6, shadeClose: true}, function () {
+                        var $_btn = $('.insert-additional-info-btn-hook');
+                        var re = new RegExp('customer_id=[0-9]*', 'g');
+                        $('.id-input-hook').val(data);
+                        $_btn.each(function () {
+                            var url = $(this).data('url');
+                            $(this).data('url', url.replace(re, 'customer_id=' + data))
+                        });
+                        $('.nav-tabs-hook li').siblings()
+                                .removeClass('disabled')
+                                .find('a').attr('data-toggle', 'tab');
+                        $('.nav-tabs-hook li:eq(1) a').tab('show');
+                    });
+                } else {
+                    layer.msg('操作失败！', {icon: 2, time: 2000, shade: 0.6, shadeClose: true});
+                }
+            }
+        });
+        customer.insertIndustry();
+        customer.toggleDetail();
+        customer.insertAdditionalInfo();
+    });
+</script>
+</body>
+</html>

@@ -279,13 +279,9 @@ class Tree
             $selected = ($val[$this->id] == $selected_val) ? 'selected' : '';
             //禁止选择
             $disabled = '';
-            if ($disabled_val != '') {
-                $disabled = (in_array($val[$this->id], $children_id)) ? 'disabled' : '';
-            }
+            if ($disabled_val != '') $disabled = (in_array($val[$this->id], $children_id)) ? 'disabled' : '';
             //禁止选择[用于只允许选择相同类型]
-            if ($type != '' && isset($val['model_id'])) {
-                $disabled = ($val['model_id'] != $type) ? 'disabled' : '';
-            }
+            if ($type != '' && isset($val['model_id'])) $disabled = ($val['model_id'] != $type) ? 'disabled' : '';
             //附加数据
             $content = isset($val['data']) ? $val['data'] : '';
             $str .= '<option data-content=\'' . $content . '\' value="' . $val[$this->id] . '" ' . $selected . ' ' . $disabled . '>' . $space . $prefix . $val[$this->name] . '</option>';

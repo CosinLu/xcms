@@ -8,12 +8,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <style type="text/css">
 
         ::selection {
-            background-color: #E13300;
+            background-color: #007CF9;
             color: white;
         }
 
         ::-moz-selection {
-            background-color: #E13300;
+            background-color: #007CF9;
             color: white;
         }
 

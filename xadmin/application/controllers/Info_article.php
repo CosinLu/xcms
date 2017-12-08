@@ -58,7 +58,7 @@ class Info_article extends Info
             array('rbl', 'target', 'target'),
             array('rbl', 'display', 'display')
         ));
-        $data['tag'] = cbl($this->info_article_model->tag(), 'tag');
+        $data['tag'] = ddl($this->info_article_model->tag(), 'tag[]', '', '', 'select2 select2-hook', TRUE, 'id', 'name', FALSE);
         $data['create_time'] = date('Y-m-d H:i:s', time());
         $this->load->view('info_article/insert.html', $data);
     }
@@ -74,7 +74,7 @@ class Info_article extends Info
             array('rbl', 'target', 'target', $data['record']['target']),
             array('rbl', 'display', 'display', $data['record']['display'])
         ));
-        $data['tag'] = cbl($this->info_article_model->tag(), 'tag', $data['record']['tag']);
+        $data['tag'] = ddl($this->info_article_model->tag(), 'tag[]', $data['record']['tag'], '', 'select2 select2-hook', TRUE, 'id', 'name', FALSE);
         $data['create_time'] = date('Y-m-d H:i:s', $data['record']['create_time']);
         $this->load->view('info_article/update.html', $data);
     }
@@ -117,6 +117,18 @@ class Info_article extends Info
             $config['icon'] = 2;
             echo json_encode($config);
         }
+    }
+
+    //获取标签
+    public function get_tag()
+    {
+        $data = array();
+        $res = $this->info_article_model->tag();
+        foreach ($res as $key => $val) {
+            $data[$key]['value'] = $val['id'];
+            $data[$key]['text'] = $val['name'];
+        }
+        echo json_encode($data);
     }
 
 }

@@ -151,9 +151,9 @@ div.edui-box {
     position: relative;
     overflow: visible;
     border-radius: 2px;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .edui-editor div {

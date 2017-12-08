@@ -1,0 +1,51 @@
+@import "../variable";
+
+.select2-container .select2-selection--multiple {
+    min-height: 34px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border-color: @border-color;
+    border-radius: @border-radius;
+}
+
+.select2-dropdown {
+    z-index: 99999;
+    border-color: @border-color;
+    border-radius: @border-radius;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background: @color-primary;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: @border-color;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background: @color-primary;
+    border: 0;
+    border-radius: @border-radius-sm;
+    color: #fff;
+    font-size: 12px;
+    padding: 0 5px;
+    line-height: 22px;
+    height: 22px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    float: right;
+    color: #fff;
+    margin: 0 0 0 8px;
+    line-height: 20px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: #fff;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    height: 22px;
+    line-height: 22px;
+}

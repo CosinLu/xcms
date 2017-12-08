@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=config_item('my_title')?></title>
+    <base href="<?=base_url()?>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container-fluid insert_industry_panel">
+    <form class="form-horizontal ajax-form-hook" action="<?=$save_industry_url?>" method="post">
+        <div class="row insert_industry_body">
+            <div class="col-xs-9">
+                <input type="text" name="name" class="form-control" datatype="*">
+            </div>
+            <div class="col-xs-3">
+                <button type="submit" class="btn btn-primary btn-block">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="plugin/require.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+    require(['js/controller/customer'], function (customer) {
+        customer.saveIndustry();
+    });
+</script>
+</body>
+</html>

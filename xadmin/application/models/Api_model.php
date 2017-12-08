@@ -15,17 +15,7 @@ class Api_model extends CI_Model
     }
 
     //删除
-    public function del($tbname = '', $id = '', $primary = '')
-    {
-        $this->db->where($primary, $id);
-        $this->db->delete($tbname);
-        $rows = $this->db->affected_rows();
-
-        return $rows;
-    }
-
-    //批量删除
-    public function batch_del($tbname = '', $id = array(), $primary = '')
+    public function del($tbname = '', $id = array(), $primary = '')
     {
         $this->db->where_in($primary, $id);
         $this->db->delete($tbname);
